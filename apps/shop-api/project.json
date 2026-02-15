@@ -1,7 +1,7 @@
 {
   "name": "shop-api",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "shop-api/src",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/shop-api/src",
   "projectType": "application",
   "release": {
     "docker": {
@@ -16,12 +16,12 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "shop-api/dist",
+        "outputPath": "apps/shop-api/dist",
         "format": ["cjs"],
         "bundle": false,
-        "main": "shop-api/src/main.ts",
-        "tsConfig": "shop-api/tsconfig.app.json",
-        "assets": ["shop-api/src/assets"],
+        "main": "apps/shop-api/src/main.ts",
+        "tsConfig": "apps/shop-api/tsconfig.app.json",
+        "assets": ["apps/shop-api/src/assets"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
