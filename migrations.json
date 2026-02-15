@@ -1,0 +1,10 @@
+{
+  "nx-console": {
+    "initialGitRef": {
+      "ref": "ac1fcbe03e4d9690c418dc9513bfbf9174dd1737",
+      "subject": "Initial commit"
+    },
+    "targetVersion": "latest",
+    "confirmedPackageUpdates": true
+  }
+}
