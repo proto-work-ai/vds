@@ -19,7 +19,7 @@
             "input": "apps/orm-studio/public"
           }
         ],
-        "styles": ["apps/orm-studio/src/styles.css"]
+        "styles": ["apps/orm-studio/src/styles.scss"]
       },
       "configurations": {
         "production": {
