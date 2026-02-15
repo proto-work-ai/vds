@@ -2,7 +2,9 @@
   "name": "@org/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "studio:dev": "npx nx run orm-studio:serve --configuration=development "
+  },
   "private": true,
   "dependencies": {
     "@angular-devkit/build-angular": "21.1.1",
