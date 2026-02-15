@@ -1,14 +1,14 @@
 {
-  "name": "api",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/api/src",
+  "name": "shop-api",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "shop-api/src",
   "projectType": "application",
-  "tags": ["scope:api"],
   "release": {
     "docker": {
       "repositoryName": "org/angular-template-api"
     }
   },
+  "tags": ["scope:api"],
   "targets": {
     "build": {
       "executor": "@nx/esbuild:esbuild",
@@ -16,12 +16,12 @@
       "defaultConfiguration": "production",
       "options": {
         "platform": "node",
-        "outputPath": "apps/api/dist",
+        "outputPath": "shop-api/dist",
         "format": ["cjs"],
         "bundle": false,
-        "main": "apps/api/src/main.ts",
-        "tsConfig": "apps/api/tsconfig.app.json",
-        "assets": ["apps/api/src/assets"],
+        "main": "shop-api/src/main.ts",
+        "tsConfig": "shop-api/tsconfig.app.json",
+        "assets": ["shop-api/src/assets"],
         "generatePackageJson": true,
         "esbuildOptions": {
           "sourcemap": true,
@@ -49,15 +49,15 @@
       "defaultConfiguration": "development",
       "dependsOn": ["build"],
       "options": {
-        "buildTarget": "api:build",
+        "buildTarget": "shop-api:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "api:build:development"
+          "buildTarget": "shop-api:build:development"
         },
         "production": {
-          "buildTarget": "api:build:production"
+          "buildTarget": "shop-api:build:production"
         }
       }
     },
