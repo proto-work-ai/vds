@@ -22,9 +22,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Debug orm-studio-api with Nx",
+      "name": "Debug proto-api with Nx",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["nx", "serve", "orm-studio-api"],
+      "runtimeArgs": ["nx", "serve", "ptoto-api"],
       "env": {
         "NODE_OPTIONS": "--inspect=9230"
       },
@@ -33,7 +33,7 @@
       "skipFiles": ["<node_internals>/**"],
       "sourceMaps": true,
       "outFiles": [
-        "${workspaceFolder}/apps/orm-studio-api/dist/**/*.(m|c|)js",
+        "${workspaceFolder}/apps/proto/dist/**/*.(m|c|)js",
         "!**/node_modules/**"
       ]
     }

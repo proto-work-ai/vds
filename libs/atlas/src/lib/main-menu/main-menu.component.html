@@ -1,0 +1,63 @@
+<div class="d-flex bg-grey-100 min-vh-100">
+  <div
+    class="col-auto border-end d-flex flex-column overflow-y-auto top-0 position-sticky vh-100 bg-white"
+  >
+    <!-- logo -->
+    <div class="border-bottom">
+      <!-- <a class="logo p-3 d-block m-3 cursor-pointer"></a> -->
+    </div>
+
+    <!-- menu -->
+    <section
+      class="flex-fill d-flex flex-column gap-1 align-items-center py-1 h-100"
+    >
+      @for (child of children; track child) {
+        @if (child.isDivider) {
+          <div class="border-bottom w-50"></div>
+        } @else {
+          <!-- <a
+            [routerLink]="[child.path]"
+            routerLinkActive
+            #laRef="routerLinkActive"
+            [matTooltip]="child.title"
+            matTooltipPosition="right"
+            [class.blue-600]="laRef.isActive"
+            [class.grey-600]="!laRef.isActive"
+            [class.bg-blue-hover-200]="laRef.isActive"
+            [class.bg-grey-hover-200]="!laRef.isActive"
+            class="p-4 rounded-2 position-relative d-inline-flex cursor-pointer"
+          >
+            @if (isArray(child.icon)) {
+              <atlas-icon
+                [name]="child.icon[0]"
+                [pack]="child.icon[1]"
+                class="position-absolute top-50 start-50 translate-middle"
+              ></atlas-icon>
+            } @else {
+              <i
+                class="{{
+                  child.icon
+                }} position-absolute top-50 start-50 translate-middle"
+              ></i>
+            }
+          </a> -->
+        }
+      }
+
+      <!-- user -->
+      <!-- <div class="mt-auto">
+        <a [routerLink]="['/profile']" class="cursor-pointer d-block my-2">
+          <img
+            src="/assets/users/avatar-male-2.jpg"
+            class="rounded-circle d-block"
+            style="width: 25px"
+          />
+        </a>
+      </div> -->
+    </section>
+  </div>
+
+  <div class="col overflow-y-auto top-0 vh-100 position-sticky">
+    <router-outlet />
+  </div>
+</div>

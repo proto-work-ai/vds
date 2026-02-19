@@ -2,7 +2,7 @@
   "name": "orm-studio",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "app",
+  "prefix": "orm-studio",
   "sourceRoot": "apps/orm-studio/src",
   "tags": [],
   "targets": {
@@ -46,7 +46,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "dependsOn": ["orm-studio-api:serve"],
+      "dependsOn": ["proto-api:serve"],
       "continuous": true,
       "executor": "@angular/build:dev-server",
       "configurations": {

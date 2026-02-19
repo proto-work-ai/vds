@@ -1,0 +1,74 @@
+<div hlmSidebarWrapper class="flex-col">
+  <proto-nav-header-breadcrumb header />
+
+  <div class="flex flex-1">
+    <hlm-sidebar
+      class="bg-sidebar"
+      sidebarContainerClass="top-(--header-height) h-[calc(100svh-var(--header-height))]"
+    >
+      <section hlmSidebarHeader>
+        <ul hlmSidebarMenu>
+          <li hlmSidebarMenuItem>
+            <a hlmSidebarMenuButton size="lg" href="#">
+              <div
+                class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+              >
+                <ng-icon name="lucideCommand" class="text-base" />
+              </div>
+              <div class="grid flex-1 text-left text-sm leading-tight">
+                <span class="truncate font-medium">Acme Inc</span>
+                <span class="truncate text-xs">Enterprise</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section hlmSidebarContent>
+        <app-nav-main [items]="data.navMain" />
+        <app-nav-secondary class="mt-auto" [items]="data.navSecondary" />
+      </section>
+
+      <section hlmSidebarFooter>
+        <app-nav-user [user]="data.user" />
+      </section>
+    </hlm-sidebar>
+
+    <main hlmSidebarInset>
+      <router-outlet />
+    </main>
+  </div>
+</div>
+
+<!-- 
+<hlm-sidebar
+  class="bg-sidebar"
+  sidebarContainerClass="top-(--header-height) h-[calc(100svh-var(--header-height))]"
+>
+  <section hlmSidebarHeader>
+    <ul hlmSidebarMenu>
+      <li hlmSidebarMenuItem>
+        <a hlmSidebarMenuButton size="lg" href="#">
+          <div
+            class="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg"
+          >
+            <ng-icon name="lucideCommand" class="text-base" />
+          </div>
+          <div class="grid flex-1 text-left text-sm leading-tight">
+            <span class="truncate font-medium">Acme Inc</span>
+            <span class="truncate text-xs">Enterprise</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section hlmSidebarContent>
+    <app-nav-main [items]="data.navMain" />
+    <app-nav-secondary class="mt-auto" [items]="data.navSecondary" />
+  </section>
+
+  <section hlmSidebarFooter>
+    <app-nav-user [user]="data.user" />
+  </section>
+</hlm-sidebar> -->

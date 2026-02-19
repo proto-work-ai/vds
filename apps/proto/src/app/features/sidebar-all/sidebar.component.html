@@ -1,0 +1,171 @@
+<div hlmSidebarWrapper>
+  <hlm-sidebar class="bg-sidebar">
+    <section hlmSidebarHeader>
+      <ul hlmSidebarMenu>
+        <li hlmSidebarMenuItem>
+          <button
+            hlmSidebarMenuButton
+            [hlmDropdownMenuTrigger]="menu"
+          >
+            Select Workspace
+            <!-- <ng-icon hlm name="lucideChevronDown" class="ml-auto" /> -->
+            <ng-icon hlm size="md" name="appLogo" />
+          </button>
+          <ng-template #menu>
+            <hlm-dropdown-menu class="w-60">
+              <hlm-dropdown-menu-label>Acme Inc</hlm-dropdown-menu-label>
+              <hlm-dropdown-menu-label>Acme Corp.</hlm-dropdown-menu-label>
+            </hlm-dropdown-menu>
+          </ng-template>
+        </li>
+      </ul>
+    </section>
+
+    <section hlmSidebarContent>
+      <div hlmSidebarGroup>
+        <div hlmSidebarGroupContent>
+          <ul hlmSidebarMenu>
+            @for (item of collapsibleItems; track item.title) {
+              <hlm-collapsible
+                [expanded]="item.defaultOpen"
+                class="group/collapsible"
+              >
+                <li hlmSidebarMenuItem>
+                  <button
+                    hlmCollapsibleTrigger
+                    hlmSidebarMenuButton
+                    class="flex w-full items-center justify-between"
+                  >
+                    <span>{{ item.title }}</span>
+                    <ng-icon
+                      name="lucideChevronRight"
+                      class="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-90"
+                      hlm
+                    />
+                  </button>
+                  <hlm-collapsible-content>
+                    <ul hlmSidebarMenuSub>
+                      @for (subItem of item.items; track subItem.title) {
+                        <li hlmSidebarMenuSubItem>
+                          <button hlmSidebarMenuSubButton class="w-full">
+                            <span>{{ subItem.title }}</span>
+                          </button>
+                        </li>
+                      }
+                    </ul>
+                  </hlm-collapsible-content>
+                </li>
+              </hlm-collapsible>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div hlmSidebarGroup>
+        <div hlmSidebarGroupContent>
+          <ul hlmSidebarMenu>
+            @for (item of items; track item.title) {
+              <li hlmSidebarMenuItem>
+                <button hlmSidebarMenuButton>
+                  <span>{{ item.title }}</span>
+                </button>
+                <ul hlmSidebarMenuSub>
+                  @for (subItem of item.items; track subItem.title) {
+                    <li hlmSidebarMenuSubItem>
+                      <button hlmSidebarMenuSubButton class="w-full">
+                        <span>{{ subItem.title }}</span>
+                      </button>
+                    </li>
+                  }
+                </ul>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div hlmSidebarGroup>
+        <div hlmSidebarGroupLabel>Projects</div>
+        <div hlmSidebarGroupContent>
+          <ul hlmSidebarMenu>
+            @for (project of projects; track project) {
+              <li hlmSidebarMenuItem>
+                <a hlmSidebarMenuButton [href]="project.url">
+                  <ng-icon hlm [name]="project.icon" />
+                  <span>{{ project.name }}</span>
+                </a>
+                <button hlmSidebarMenuAction [hlmDropdownMenuTrigger]="menu">
+                  <ng-icon hlm name="lucideEllipsis" />
+                  <span class="sr-only">More</span>
+                </button>
+
+                <ng-template #menu>
+                  <hlm-dropdown-menu>
+                    <button hlmDropdownMenuItem>Edit Project</button>
+                    <button hlmDropdownMenuItem>Delete Project</button>
+                  </hlm-dropdown-menu>
+                </ng-template>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div hlmSidebarGroup>
+        <div hlmSidebarGroupLabel>Application</div>
+        <div hlmSidebarGroupContent>
+          <ul hlmSidebarMenu>
+            @for (item of _items; track item.title) {
+              <li hlmSidebarMenuItem>
+                <a hlmSidebarMenuButton>
+                  <ng-icon hlm [name]="item.icon" />
+                  <span>{{ item.title }}</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div hlmSidebarGroup>
+        <div hlmSidebarGroupLabel>Help</div>
+        <div hlmSidebarGroupContent>
+          <ul hlmSidebarMenu>
+            <li hlmSidebarMenuItem>
+              <a hlmSidebarMenuButton>
+                <ng-icon hlm name="lucideLifeBuoy" />
+                <span>Support</span>
+              </a>
+            </li>
+            <li hlmSidebarMenuItem>
+              <a hlmSidebarMenuButton>
+                <ng-icon hlm name="lucideSend" />
+                <span>Feedback</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section hlmSidebarFooter>
+      <ul hlmSidebarMenu>
+        <li hlmSidebarMenuItem>
+          <button hlmSidebarMenuButton [hlmDropdownMenuTrigger]="menu">
+            Select Workspace
+            <ng-icon hlm name="lucideChevronUp" class="ml-auto" />
+          </button>
+          <ng-template #menu>
+            <hlm-dropdown-menu class="w-60">
+              <button hlmDropdownMenuItem>Account</button>
+              <button hlmDropdownMenuItem>Billing</button>
+              <button hlmDropdownMenuItem>Sign out</button>
+            </hlm-dropdown-menu>
+          </ng-template>
+        </li>
+      </ul>
+    </section>
+  </hlm-sidebar>
+
+  <ng-content />
+</div>
