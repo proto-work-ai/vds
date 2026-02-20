@@ -49,13 +49,13 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
           align="end"
         >
           <hlm-avatar class="rounded-lg">
-            <img [src]="u.avatar" [alt]="u.name" hlmAvatarImage />
+            <img [src]="u.avatar" [alt]="u.title" hlmAvatarImage />
             <span class="rounded-lg bg-[#FD005B] text-white" hlmAvatarFallback
               >RG</span
             >
           </hlm-avatar>
           <div class="grid flex-1 text-left text-sm leading-tight">
-            <span class="truncate font-medium">{{ u.name }}</span>
+            <span class="truncate font-medium">{{ u.title }}</span>
             <span class="truncate text-xs">{{ u.email }}</span>
           </div>
           <ng-icon name="lucideChevronsUpDown" class="ml-auto text-base" />
@@ -68,13 +68,13 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
         <hlm-dropdown-menu-label>
           <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
             <hlm-avatar class="rounded-lg">
-              <img [src]="u.avatar" [alt]="u.name" hlmAvatarImage />
+              <img [src]="u.avatar" [alt]="u.title" hlmAvatarImage />
               <span class="rounded-lg bg-[#FD005B] text-white" hlmAvatarFallback
                 >RG</span
               >
             </hlm-avatar>
             <div class="grid flex-1 text-left text-sm leading-tight">
-              <span class="truncate font-medium">{{ u.name }}</span>
+              <span class="truncate font-medium">{{ u.title }}</span>
               <span class="truncate text-xs">{{ u.email }}</span>
             </div>
           </div>
@@ -117,7 +117,7 @@ export class NavUser {
   );
 
   public readonly user = input.required<{
-    name: string;
+    title: string;
     email: string;
     avatar: string;
   }>();

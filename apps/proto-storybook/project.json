@@ -1,0 +1,121 @@
+{
+  "name": "proto-storybook",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/proto-storybook/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/proto-storybook",
+        "browser": "apps/proto-storybook/src/main.ts",
+        "tsConfig": "apps/proto-storybook/tsconfig.app.json",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/proto-storybook/public"
+          }
+        ],
+        "styles": ["apps/proto-storybook/src/styles.css"]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "proto-storybook:build:production"
+        },
+        "development": {
+          "buildTarget": "proto-storybook:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "proto-storybook:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/proto-storybook/browser",
+        "spa": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/proto-storybook/.storybook",
+        "browserTarget": "proto-storybook:build-storybook",
+        "compodoc": false,
+        "styles": [
+          "apps/proto/src/styles.scss", 
+          "apps/proto-storybook/src/styles.scss"]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/proto-storybook",
+        "configDir": "apps/proto-storybook/.storybook",
+        "browserTarget": "proto-storybook:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "proto-storybook:build-storybook",
+        "staticFilePath": "dist/storybook/proto-storybook",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "proto-storybook:build-storybook:ci"
+        }
+      }
+    }
+  }
+}

@@ -17,7 +17,7 @@ export class MainMenuComponent {
   protected routeConfig: any;//= inject(ROUTE_CONFIG) as IAppRoute;
 
   protected get children() {
-    return this.routeConfig.children;
+    return this.routeConfig?.children;
   }
 
   protected isArray(icon: string | string[]) {

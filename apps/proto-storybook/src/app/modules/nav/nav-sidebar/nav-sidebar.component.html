@@ -1,6 +1,21 @@
 <div hlmSidebarWrapper>
   <hlm-sidebar class="bg-sidebar">
     <section hlmSidebarHeader>
+      <!--<ul hlmSidebarMenu>
+        <li hlmSidebarMenuItem>
+          <button hlmSidebarMenuButton [hlmDropdownMenuTrigger]="menuSchema">
+            Schema
+            <ng-icon hlm name="lucideChevronDown" class="ml-auto" />
+          </button>
+          <ng-template #menuSchema>
+            <hlm-dropdown-menu class="w-60">
+              <button hlmDropdownMenuItem>Public</button>
+              <button hlmDropdownMenuItem>Delete Project</button>
+            </hlm-dropdown-menu>
+          </ng-template>
+        </li>
+      </ul>-->
+
       <brn-select
         class="inline-block"
         placeholder="Select schema"
@@ -63,6 +78,36 @@
           </ul>
         </div>
       </div>
+
+      <!-- group menu -->
+      <!-- <div hlmSidebarGroup>
+      <div hlmSidebarGroupLabel>Projects</div>
+
+      <div hlmSidebarGroupContent>
+        <ul hlmSidebarMenu>
+          @for (project of projects; track project) {
+            <li hlmSidebarMenuItem>
+              <a hlmSidebarMenuButton [href]="project.url">
+                <ng-icon hlm [name]="project.icon" />
+                <span>{{ project.name }}</span>
+              </a>
+
+              <button hlmSidebarMenuAction [hlmDropdownMenuTrigger]="menu">
+                <ng-icon hlm name="lucideEllipsis" />
+                <span class="sr-only">More</span>
+              </button>
+
+              <ng-template #menu>
+                <hlm-dropdown-menu>
+                  <button hlmDropdownMenuItem>Edit Project</button>
+                  <button hlmDropdownMenuItem>Delete Project</button>
+                </hlm-dropdown-menu>
+              </ng-template>
+            </li>
+          }
+        </ul>
+      </div>
+    </div> -->
     </section>
   </hlm-sidebar>
 

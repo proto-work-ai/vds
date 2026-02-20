@@ -2,24 +2,11 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
-  lucideCalendar,
-  lucideChartPie,
-  lucideChevronDown,
-  lucideChevronRight,
-  lucideChevronUp,
-  lucideEllipsis,
-  lucideFrame,
-  lucideHouse,
-  lucideInbox,
-  lucideLifeBuoy,
-  lucideMap,
-  lucideSearch,
-  lucideSend,
-  lucideSettings,
-  lucideCode,
-  lucideTable2,
+  lucideMaximize,
+  lucideMinimize,
+  lucideRefreshCcw,
 } from '@ng-icons/lucide';
-import { HlmIcon } from '@spartan-ng/helm/icon';
+import { HlmIcon, HlmIconImports } from '@spartan-ng/helm/icon';
 import {
   HlmSidebarImports,
   provideHlmSidebarConfig,
@@ -29,14 +16,20 @@ import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { NavMain } from '../sidebar-header/nav-main';
+import { NavSecondary } from '../sidebar-header/nav-secondary';
+import { NavUser } from '../sidebar-header/nav-user';
+import { data } from '../sidebar-header/data';
+import { appLogo } from '../../../common/icons';
 
 @Component({
-  selector: 'app-sidebar-with-navigation',
+  selector: 'proto-sidebar-with-navigation',
   styleUrl: 'sidebar-with-navigation.component.scss',
   templateUrl: 'sidebar-with-navigation.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgIcon,
     HlmIcon,
     HlmSidebarImports,
     HlmDropdownMenuImports,
@@ -44,25 +37,22 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     BrnSelectImports,
     HlmSelectImports,
     ReactiveFormsModule,
+    RouterOutlet,
+    NgIcon,
+    HlmIcon,
+    HlmSidebarImports,
+    HlmButtonImports,
+    HlmIconImports,
+    NavMain,
+    NavSecondary,
+    NavUser,
   ],
   providers: [
     provideIcons({
-      lucideHouse,
-      lucideInbox,
-      lucideCalendar,
-      lucideSearch,
-      lucideSettings,
-      lucideChevronDown,
-      lucideLifeBuoy,
-      lucideSend,
-
-      lucideFrame,
-      lucideChartPie,
-      lucideMap,
-      lucideEllipsis,
-      lucideChevronRight,
-      lucideCode,
-      lucideTable2,
+      lucideMaximize,
+      lucideMinimize,
+      lucideRefreshCcw,
+      appLogo,
     }),
     provideHlmSidebarConfig({
       sidebarWidth: '16rem',
@@ -73,11 +63,10 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
       sidebarKeyboardShortcut: 'b',
       mobileBreakpoint: '768px',
     }),
-
-    provideIcons({ lucideChevronUp, lucideChevronDown }),
   ],
 })
-export class StudioSidebarSidebar {
+export class SidebarWithNavigation {
+  public readonly data = data;
   protected readonly schemaOptions = signal([
     { title: 'Public', value: 1 },
     { title: 'Apple', value: 2 },

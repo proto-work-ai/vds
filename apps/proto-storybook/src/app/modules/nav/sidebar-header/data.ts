@@ -1,6 +1,8 @@
+import { IMenuItem } from "../../../common/menu";
+
 export const data = {
   user: {
-    name: 'spartan',
+    title: 'spartan',
     email: 'hello@spartan.com',
     avatar: '/assets/avatar.png',
   },
@@ -90,7 +92,7 @@ export const data = {
         },
       ],
     },
-  ],
+  ] satisfies IMenuItem[],
   navSecondary: [
     {
       title: 'Support',
@@ -102,22 +104,22 @@ export const data = {
       url: '.',
       icon: 'lucideSend',
     },
-  ],
+  ] satisfies IMenuItem[],
   projects: [
     {
-      name: 'Design Engineering',
+      title: 'Design Engineering',
       url: '.',
       icon: 'lucideFrame',
     },
     {
-      name: 'Sales & Marketing',
+      title: 'Sales & Marketing',
       url: '.',
       icon: 'lucideChartPie',
     },
     {
-      name: 'Travel',
+      title: 'Travel',
       url: '.',
       icon: 'lucideMap',
     },
-  ],
+  ] satisfies IMenuItem[],
 };
