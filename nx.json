@@ -117,7 +117,7 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/orm-studio-api-e2e/**/*"]
+      "exclude": ["apps/metadb-api-e2e/**/*"]
     },
     {
       "plugin": "@nx/storybook/plugin",

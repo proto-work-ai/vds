@@ -4,7 +4,11 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { RouterOutlet } from '@angular/router';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideMaximize, lucideMinimize, lucideRefreshCcw } from '@ng-icons/lucide';
+import {
+  lucideMaximize,
+  lucideMinimize,
+  lucideRefreshCcw,
+} from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { AppSidebar } from '../home-sidebar/home-sidebar.component';
 

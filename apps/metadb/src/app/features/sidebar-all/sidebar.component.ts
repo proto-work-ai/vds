@@ -59,7 +59,7 @@ import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
       lucideChartPie,
       lucideMap,
       lucideEllipsis,
-      lucideChevronRight 
+      lucideChevronRight,
     }),
   ],
 })
@@ -145,7 +145,7 @@ export class AppSidebar {
     },
   ];
 
-protected readonly collapsibleItems = [
+  protected readonly collapsibleItems = [
     {
       title: 'Getting Started',
       defaultOpen: true,

@@ -1,25 +1,25 @@
 {
-  "name": "orm-studio",
+  "name": "metadb",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "orm-studio",
-  "sourceRoot": "apps/orm-studio/src",
+  "prefix": "metadb",
+  "sourceRoot": "apps/metadb/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/orm-studio",
-        "browser": "apps/orm-studio/src/main.ts",
-        "tsConfig": "apps/orm-studio/tsconfig.app.json",
+        "outputPath": "dist/apps/metadb",
+        "browser": "apps/metadb/src/main.ts",
+        "tsConfig": "apps/metadb/tsconfig.app.json",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/orm-studio/public"
+            "input": "apps/metadb/public"
           }
         ],
-        "styles": ["apps/orm-studio/src/styles.scss"]
+        "styles": ["apps/metadb/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -51,10 +51,10 @@
       "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "orm-studio:build:production"
+          "buildTarget": "metadb:build:production"
         },
         "development": {
-          "buildTarget": "orm-studio:build:development"
+          "buildTarget": "metadb:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -66,9 +66,9 @@
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "orm-studio:build",
+        "buildTarget": "metadb:build",
         "port": 4200,
-        "staticFilePath": "dist/apps/orm-studio/browser",
+        "staticFilePath": "dist/apps/metadb/browser",
         "spa": true
       }
     }

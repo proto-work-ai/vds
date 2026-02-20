@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "proto:dev": "npx nx run proto:serve --configuration=development",
-    "studio:dev": "npx nx run orm-studio:serve --configuration=development"
+    "metadb:dev": "npx nx run metadb:serve --configuration=development"
   },
   "private": true,
   "dependencies": {

@@ -12,7 +12,7 @@ export default [
         'error',
         {
           type: 'attribute',
-          prefix: 'orm-studio',
+          prefix: 'metadb',
           style: 'camelCase',
         },
       ],
@@ -20,7 +20,7 @@ export default [
         'error',
         {
           type: 'element',
-          prefix: 'orm-studio',
+          prefix: 'metadb',
           style: 'kebab-case',
         },
       ],
