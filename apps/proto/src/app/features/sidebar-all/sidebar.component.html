@@ -90,7 +90,7 @@
           <ul hlmSidebarMenu>
             @for (project of projects; track project) {
               <li hlmSidebarMenuItem>
-                <a hlmSidebarMenuButton [href]="project.url">
+                <a hlmSidebarMenuButton [href]="project.link">
                   <ng-icon hlm [name]="project.icon" />
                   <span>{{ project.name }}</span>
                 </a>

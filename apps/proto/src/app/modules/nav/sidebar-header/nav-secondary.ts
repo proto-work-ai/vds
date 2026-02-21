@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -15,7 +16,7 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
         <ul hlmSidebarMenu>
           @for (item of items(); track $index) {
             <li hlmSidebarMenuItem>
-              <a hlmSidebarMenuButton size="sm" [routerLink]="item.url">
+              <a hlmSidebarMenuButton size="sm" [routerLink]="item.link">
                 <ng-icon [name]="item.icon" />
                 {{ item.title }}
               </a>
@@ -30,7 +31,7 @@ export class NavSecondary {
   public readonly items = input.required<
     {
       title: string;
-      url: string;
+      link: string;
       icon: string;
     }[]
   >();

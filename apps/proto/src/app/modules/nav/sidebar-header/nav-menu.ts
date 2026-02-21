@@ -19,7 +19,7 @@ import {
 } from '@ng-icons/lucide';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
-import { IMenuItem } from '../../../common/menu';
+import { ISignalMenuItem } from '../../../common/menu';
 
 @Component({
   selector: 'proto-nav-menu',
@@ -43,7 +43,7 @@ import { IMenuItem } from '../../../common/menu';
       <ul hlmSidebarMenu>
         @for (project of items(); track $index) {
           <li hlmSidebarMenuItem>
-            <a hlmSidebarMenuButton [routerLink]="project.url">
+            <a hlmSidebarMenuButton [routerLink]="project.link">
               <ng-icon [name]="project.icon" />
               {{ project.title }}
             </a>
@@ -90,5 +90,5 @@ import { IMenuItem } from '../../../common/menu';
   `,
 })
 export class NavMenu {
-  public readonly items = input.required<IMenuItem[]>();
+  public readonly items = input.required<ISignalMenuItem[]>();
 }

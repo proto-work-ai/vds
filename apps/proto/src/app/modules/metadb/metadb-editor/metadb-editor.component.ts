@@ -1,24 +1,34 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { HlmIcon, HlmIconImports } from '@spartan-ng/helm/icon';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
+  lucideBox,
+  lucideBraces,
+  lucideDatabase,
+  lucideLayersPlus,
   lucideMaximize,
   lucideMinimize,
   lucideRefreshCcw,
+  lucideSearch,
 } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HlmSeparator } from '@spartan-ng/helm/separator';
+import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
+import { ISignalMenuItem } from '../../../common/menu';
+import { injectMenuItems } from './metadb-editor.menu';
 
 @Component({
-  selector: 'proto-studio-editor',
-  templateUrl: './studio-editor.component.html',
-  styleUrls: ['./studio-editor.component.scss'],
+  selector: 'proto-metadb-editor',
+  templateUrl: './metadb-editor.component.html',
+  styleUrls: ['./metadb-editor.component.scss'],
   imports: [
     HlmSidebarImports,
     HlmSidebarImports,
@@ -35,14 +45,22 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     HlmButtonImports,
     HlmIconImports,
     NgIcon,
-    RouterOutlet,
+    HlmSeparator,
+    HlmInputGroupImports,
+    RouterLink,
+    RouterLinkActive,
     RouterOutlet,
   ],
   providers: [
     provideIcons({
       lucideMaximize,
       lucideMinimize,
+      lucideBraces,
       lucideRefreshCcw,
+      lucideDatabase,
+      lucideLayersPlus,
+      lucideBox,
+      lucideSearch,
     }),
   ],
 })
@@ -51,19 +69,10 @@ export class StudioPageComponent {
     { title: 'Public', value: 1 },
     { title: 'Apple', value: 2 },
   ]);
+
   protected readonly schemaControl = new FormControl(
     this.schemaOptions()[0].value,
   );
 
-  protected readonly menuItems = [
-    { title: 'Visualizer', url: '#', icon: '' },
-    { title: 'Console', url: '#', icon: '' },
-  ];
-
-  protected readonly schemaTables = [
-    { title: 'Table1', url: '#', icon: '' },
-    { title: 'Table2', url: '#', icon: '' },
-  ];
-
-  projects = [{ name: 'Design Engineering', url: '#', icon: 'lucideFrame' }];
+  protected readonly menuItems = injectMenuItems();
 }

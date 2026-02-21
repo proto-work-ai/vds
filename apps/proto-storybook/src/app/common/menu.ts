@@ -1,6 +1,6 @@
 export interface IMenuItem {
   title: string;
-  url: string;
+  link: string;
   icon?: string;
   isActive?: boolean;
   items?: IMenuItem[]

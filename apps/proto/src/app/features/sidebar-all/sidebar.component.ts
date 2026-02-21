@@ -69,37 +69,37 @@ export class AppSidebar {
   protected readonly _items = [
     {
       title: 'Home',
-      url: '#',
+      link: '#',
       icon: 'lucideHouse',
     },
     {
       title: 'Inbox',
-      url: '#',
+      link: '#',
       icon: 'lucideInbox',
     },
     {
       title: 'Calendar',
-      url: '#',
+      link: '#',
       icon: 'lucideCalendar',
     },
     {
       title: 'Search',
-      url: '#',
+      link: '#',
       icon: 'lucideSearch',
     },
     {
       title: 'Settings',
-      url: '#',
+      link: '#',
       icon: 'lucideSettings',
     },
   ];
 
   projects = [
-    { name: 'Design Engineering', url: '#', icon: 'lucideFrame' },
-    { name: 'Sales & Marketing', url: '#', icon: 'lucideChartPie' },
-    { name: 'Travel', url: '#', icon: 'lucideMap' },
-    { name: 'Support', url: '#', icon: 'lucideLifeBuoy' },
-    { name: 'Feedback', url: '#', icon: 'lucideSend' },
+    { name: 'Design Engineering', link: '#', icon: 'lucideFrame' },
+    { name: 'Sales & Marketing', link: '#', icon: 'lucideChartPie' },
+    { name: 'Travel', link: '#', icon: 'lucideMap' },
+    { name: 'Support', link: '#', icon: 'lucideLifeBuoy' },
+    { name: 'Feedback', link: '#', icon: 'lucideSend' },
   ];
 
   protected readonly items = [

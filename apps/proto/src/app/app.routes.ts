@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
-import { studioRoute } from './modules/studio/studio.route';
 import { homeRoute } from './modules/home/home.route';
 import { NavSidebarHeader } from './modules/nav/sidebar-header/sidebar-header.component';
+import { metadbRoute } from './modules/metadb/metadb.route';
 import { SidebarWithNavigation } from './modules/nav/sidebar-with-navigation/sidebar-with-navigation.component';
 
 export const appPages = {
@@ -9,10 +9,10 @@ export const appPages = {
   home: {
     root: 'home',
   },
-  studio: {
-    root: 'studio',
+  metadb: {
+    root: 'metadb',
   },
-};
+} as const;
 
 export const appRoutes: Route[] = [
   {
@@ -21,8 +21,8 @@ export const appRoutes: Route[] = [
     // component: SidebarWithNavigation,
     children: [
       homeRoute(appPages.home.root),
-      studioRoute(appPages.studio.root),
-      { path: '**', redirectTo: appPages.studio.root },
+      metadbRoute(appPages.metadb.root),
+      { path: '**', redirectTo: appPages.metadb.root },
     ],
   },
 ];

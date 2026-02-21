@@ -1,7 +1,9 @@
-export interface IMenuItem {
+import { Signal, WritableSignal } from '@angular/core';
+
+export interface ISignalMenuItem {
   title: string;
-  url: string;
+  link: string;
   icon?: string;
-  isActive?: boolean;
-  items?: IMenuItem[]
+  children?: Signal<ISignalMenuItem[]>;
+  active?: WritableSignal<boolean>;
 }

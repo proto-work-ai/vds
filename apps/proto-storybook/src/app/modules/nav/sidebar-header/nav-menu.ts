@@ -37,7 +37,7 @@ import { IMenuItem } from '../../../common/menu';
       <ul hlmSidebarMenu>
         @for (project of items(); track $index) {
           <li hlmSidebarMenuItem>
-            <a hlmSidebarMenuButton [routerLink]="project.url">
+            <a hlmSidebarMenuButton [routerLink]="project.link">
               <ng-icon [name]="project.icon" />
               {{ project.title }}
             </a>

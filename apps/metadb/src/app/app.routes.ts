@@ -7,13 +7,13 @@ export const appPages = {
   home: {
     root: 'home',
   },
-  studio: {
-    root: 'studio',
+  metadb: {
+    root: 'metadb',
   },
-};
+} as const;
 
 export const appRoutes: Route[] = [
   homeRoute(appPages.home.root),
-  studioRoute(appPages.studio.root),
-  { path: '**', redirectTo: appPages.studio.root },
+  studioRoute(appPages.metadb.root),
+  { path: '**', redirectTo: appPages.metadb.root },
 ];

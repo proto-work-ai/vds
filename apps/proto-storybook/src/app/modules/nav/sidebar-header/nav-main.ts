@@ -18,7 +18,7 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 				@for (item of items(); track $index) {
 					<hlm-collapsible [expanded]="item.isActive ?? false">
 						<li hlmSidebarMenuItem>
-							<a hlmSidebarMenuButton [routerLink]="item.url">
+							<a hlmSidebarMenuButton [routerLink]="item.link">
 								<ng-icon [name]="item.icon" />
 								{{ item.title }}
 							</a>
@@ -30,7 +30,7 @@ import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 									<ul hlmSidebarMenuSub>
 										@for (subItem of subItems; track $index) {
 											<li hlmSidebarMenuSubItem>
-												<a hlmSidebarMenuSubButton [routerLink]="subItem.url">{{ subItem.title }}</a>
+												<a hlmSidebarMenuSubButton [routerLink]="subItem.link">{{ subItem.title }}</a>
 											</li>
 										}
 									</ul>
@@ -47,12 +47,12 @@ export class NavMain {
 	public readonly items = input.required<
 		{
 			title: string;
-			url: string;
+			link: string;
 			icon: string;
 			isActive?: boolean;
 			items?: {
 				title: string;
-				url: string;
+				link: string;
 			}[];
 		}[]
 	>();

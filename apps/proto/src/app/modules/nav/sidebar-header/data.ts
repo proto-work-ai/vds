@@ -1,4 +1,5 @@
-import { IMenuItem } from "../../../common/menu";
+import { signal } from '@angular/core';
+import { ISignalMenuItem } from '../../../common/menu';
 
 export const data = {
   user: {
@@ -9,117 +10,117 @@ export const data = {
   navMain: [
     {
       title: 'Playground',
-      url: '.',
+      link: '.',
       icon: 'lucideSquareTerminal',
-      isActive: true,
-      items: [
+      active: signal(true),
+      children: signal([
         {
           title: 'History',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Starred',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Settings',
-          url: '.',
+          link: '.',
         },
-      ],
+      ]),
     },
     {
       title: 'Models',
-      url: '.',
+      link: '.',
       icon: 'lucideBot',
-      items: [
+      children: signal([
         {
           title: 'Genesis',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Explorer',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Quantum',
-          url: '.',
+          link: '.',
         },
-      ],
+      ]),
     },
     {
       title: 'Documentation',
-      url: '.',
+      link: '.',
       icon: 'lucideBookOpen',
-      items: [
+      children: signal([
         {
           title: 'Introduction',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Get Started',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Tutorials',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Changelog',
-          url: '.',
+          link: '.',
         },
-      ],
+      ]),
     },
     {
       title: 'Settings',
-      url: '.',
+      link: '.',
       icon: 'lucideSettings2',
-      items: [
+      children: signal([
         {
           title: 'General',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Team',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Billing',
-          url: '.',
+          link: '.',
         },
         {
           title: 'Limits',
-          url: '.',
+          link: '.',
         },
-      ],
+      ]),
     },
-  ] satisfies IMenuItem[],
+  ] satisfies ISignalMenuItem[],
   navSecondary: [
     {
       title: 'Support',
-      url: '.',
+      link: '.',
       icon: 'lucideLifeBuoy',
     },
     {
       title: 'Feedback',
-      url: '.',
+      link: '.',
       icon: 'lucideSend',
     },
-  ] satisfies IMenuItem[],
+  ] satisfies ISignalMenuItem[],
   projects: [
     {
       title: 'Design Engineering',
-      url: '.',
+      link: '.',
       icon: 'lucideFrame',
     },
     {
       title: 'Sales & Marketing',
-      url: '.',
+      link: '.',
       icon: 'lucideChartPie',
     },
     {
       title: 'Travel',
-      url: '.',
+      link: '.',
       icon: 'lucideMap',
     },
-  ] satisfies IMenuItem[],
+  ] satisfies ISignalMenuItem[],
 };

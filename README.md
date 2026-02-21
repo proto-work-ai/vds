@@ -7,3 +7,6 @@
 - nx add @nx/storybook   
 - nx g @nx/angular:storybook-configuration [projectName]
 - npx nx run [projectName]:storybook
+
+# Spartan Commands
+- npx nx g @spartan-ng/cli:ui [name]

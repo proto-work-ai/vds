@@ -1,3 +1,5 @@
+/* eslint-disable @angular-eslint/component-selector */
+/* eslint-disable @nx/enforce-module-boundaries */
 import {
   ChangeDetectionStrategy,
   Component,
@@ -40,7 +42,7 @@ import { HlmSidebarImports, HlmSidebarService } from '@spartan-ng/helm/sidebar';
       <ul hlmSidebarMenu>
         @for (project of projects(); track $index) {
           <li hlmSidebarMenuItem>
-            <a hlmSidebarMenuButton [routerLink]="project.url">
+            <a hlmSidebarMenuButton [routerLink]="project.link">
               <ng-icon [name]="project.icon" />
               {{ project.name }}
             </a>
@@ -103,7 +105,7 @@ export class NavProjects {
   public readonly projects = input.required<
     {
       name: string;
-      url: string;
+      link: string;
       icon: string;
     }[]
   >();

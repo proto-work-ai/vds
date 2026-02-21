@@ -87,14 +87,14 @@ export class AppSidebar {
   );
 
   protected readonly menuItems = [
-    { title: 'Visualizer', url: '#', icon: '' },
-    { title: 'Console', url: '#', icon: '' },
+    { title: 'Visualizer', link: '#', icon: '' },
+    { title: 'Console', link: '#', icon: '' },
   ];
 
   protected readonly schemaTables = [
-    { title: 'Table1', url: '#', icon: '' },
-    { title: 'Table2', url: '#', icon: '' },
+    { title: 'Table1', link: '#', icon: '' },
+    { title: 'Table2', link: '#', icon: '' },
   ];
 
-  projects = [{ name: 'Design Engineering', url: '#', icon: 'lucideFrame' }];
+  projects = [{ name: 'Design Engineering', link: '#', icon: 'lucideFrame' }];
 }

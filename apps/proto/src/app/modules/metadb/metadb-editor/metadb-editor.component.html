@@ -29,11 +29,16 @@
             Studio
           </div>
 
+          <!-- Nav Menu -->
           <div hlmSidebarGroupContent>
             <ul hlmSidebarMenu>
-              @for (item of menuItems; track item) {
+              @for (item of menuItems(); track item) {
                 <li hlmSidebarMenuItem>
-                  <a hlmSidebarMenuButton>
+                  <a
+                    hlmSidebarMenuButton
+                    [routerLink]="item.link"
+                    [isActive]="item?.active()"
+                  >
                     <ng-icon hlm [name]="item.icon" />
                     <span>{{ item.title }}</span>
                   </a>
@@ -43,21 +48,37 @@
           </div>
         </div>
 
+        <hlm-separator />
+
         <div hlmSidebarGroup>
-          <div hlmSidebarGroupLabel class="flex gap-1">
+          <!-- <div hlmSidebarGroupLabel class="flex gap-1">
             <ng-icon hlm name="lucideTable2" />
             Tables
+          </div> -->
+
+          <div hlmSidebarGroupContent class="mb-3">
+            <div hlmInputGroup class="w-full sm:ml-auto sm:w-auto">
+              <input hlmInputGroupInput placeholder="Search text" />
+              <div hlmInputGroupAddon>
+                <ng-icon name="lucideSearch" />
+              </div>
+            </div>
           </div>
 
+          <!-- Sub Menu-->
           <div hlmSidebarGroupContent>
             <ul hlmSidebarMenu>
-              @for (item of schemaTables; track item) {
-                <li hlmSidebarMenuItem>
-                  <a hlmSidebarMenuButton>
-                    <ng-icon hlm [name]="item.icon" />
-                    <span>{{ item.title }}</span>
-                  </a>
-                </li>
+              @for (item of menuItems(); track item) {
+                @if (item?.active()) {
+                  @for (child of item?.children(); track child) {
+                    <li hlmSidebarMenuItem>
+                      <a hlmSidebarMenuButton routerLinkActive="active">
+                        <ng-icon hlm [name]="child.icon" />
+                        <span>{{ child.title }}</span>
+                      </a>
+                    </li>
+                  }
+                }
               }
             </ul>
           </div>
@@ -66,25 +87,7 @@
     </section>
 
     <section class="flex-1 h-full">
-      <header class="flex items-center justify-end px-4 h-10 border-b">
-        <!-- <button hlmSidebarTrigger><span class="sr-only"></span></button> -->
-
-        <div class="flex gap-2">
-          <button hlmBtn size="icon" variant="outline" class="size-7">
-            <ng-icon hlm size="sm" name="lucideRefreshCcw"></ng-icon>
-          </button>
-
-          <button hlmBtn size="icon" variant="outline" class="size-7">
-            <ng-icon hlm size="sm" name="lucideMaximize"></ng-icon>
-          </button>
-
-          <button hlmBtn size="icon" variant="outline" class="size-7">
-            <ng-icon hlm size="sm" name="lucideMinimize"></ng-icon>
-          </button>
-        </div>
-      </header>
-
-      <div></div>
+      <router-outlet />
     </section>
   </div>
 </div>
