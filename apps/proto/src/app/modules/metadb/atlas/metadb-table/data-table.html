@@ -1,4 +1,3 @@
-@if(table(); as table){
 <section class="p-5">
   <header
     class="flex flex-col justify-between gap-4 py-4 sm:flex-row sm:items-center"
@@ -33,12 +32,11 @@
   <!-- Table -->
   <div class="overflow-hidden rounded-md border">
     <!-- we defer the loading of the table, because tanstack manipulates the DOM with flexRender which can cause errors during SSR -->
-    @defer {
     <div hlmTableContainer>
       <table hlmTable>
         <thead hlmTHead>
-          @for ( headerGroup of table.getHeaderGroups(); track headerGroup.id )
-          {
+          @for ( headerGroup of table().getHeaderGroups(); track headerGroup.id
+          ) {
           <tr hlmTr>
             @for (header of headerGroup.headers; track header.id) {
             <th hlmTh [attr.colSpan]="header.colSpan">
@@ -59,7 +57,7 @@
           }
         </thead>
         <tbody hlmTBody>
-          @for (row of table.getRowModel().rows; track row.id) {
+          @for (row of table().getRowModel().rows; track row.id) {
           <tr
             hlmTr
             [attr.key]="row.id"
@@ -93,16 +91,15 @@
         </tbody>
       </table>
     </div>
-    }
   </div>
 
   <footer
     class="flex flex-col justify-between py-4 sm:flex-row sm:items-center"
   >
-    @if (table.getRowCount() > 0) {
+    @if (table().getRowCount() > 0) {
     <div class="${hlmMuted}">
-      {{ table.getSelectedRowModel().rows.length }} of {{ table.getRowCount() }}
-      row(s) selected
+      {{ table().getSelectedRowModel().rows.length }} of {{
+      table().getRowCount() }} row(s) selected
     </div>
 
     <div class="mt-2 flex space-x-2 sm:mt-0">
@@ -110,8 +107,8 @@
         size="sm"
         variant="outline"
         hlmBtn
-        [disabled]="!table.getCanPreviousPage()"
-        (click)="table.previousPage()"
+        [disabled]="!table().getCanPreviousPage()"
+        (click)="table().previousPage()"
       >
         Previous
       </button>
@@ -120,8 +117,8 @@
         size="sm"
         variant="outline"
         hlmBtn
-        [disabled]="!table.getCanNextPage()"
-        (click)="table.nextPage()"
+        [disabled]="!table().getCanNextPage()"
+        (click)="table().nextPage()"
       >
         Next
       </button>
@@ -133,4 +130,3 @@
     }
   </footer>
 </section>
-}

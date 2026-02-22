@@ -9,4 +9,11 @@
 - npx nx run [projectName]:storybook
 
 # Spartan Commands
-- npx nx g @spartan-ng/cli:ui [name]
+- npx nx g @spartan-ng/cli:ui [appName]
+- npx nx g @nx/angular:lib libs/[libName]
+
+# Prisma Commands
+- npm install prisma typescript ts-node @types/node --save-dev
+- npm install passport passport-jwt @nestjs/passport @supabase/supabase-js
+- npx prisma init
+- npx prisma init --schema apps/[appName]/prisma/schema.prisma

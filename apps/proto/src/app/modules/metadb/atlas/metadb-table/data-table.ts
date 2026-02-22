@@ -20,6 +20,7 @@ import {
   inject,
   input,
   computed,
+  effect,
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { lucideChevronDown } from '@ng-icons/lucide';
@@ -45,6 +46,7 @@ import {
 
 import { filter, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { data } from '../../../nav/sidebar-header/data';
 
 export type Payment = {
   id: string;
@@ -100,7 +102,42 @@ export class AtlasDataTableComponent implements OnInit {
   private readonly rowSelection = signal<RowSelectionState>({});
   private readonly columnVisibility = signal<VisibilityState>({});
 
-  protected readonly table = signal<Table<Payment> | undefined>(undefined);
+  protected readonly table = signal<Table<Payment>>(
+    createAngularTable<Payment>(() => ({
+      data: this.data(),
+      columns: this.columns(),
+      onSortingChange: (updater) => {
+        updater instanceof Function
+          ? this.sorting.update(updater)
+          : this.sorting.set(updater);
+      },
+      onColumnFiltersChange: (updater) => {
+        updater instanceof Function
+          ? this.columnFilters.update(updater)
+          : this.columnFilters.set(updater);
+      },
+      getCoreRowModel: getCoreRowModel(),
+      getPaginationRowModel: getPaginationRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      getFilteredRowModel: getFilteredRowModel(),
+      onColumnVisibilityChange: (updater) => {
+        updater instanceof Function
+          ? this.columnVisibility.update(updater)
+          : this.columnVisibility.set(updater);
+      },
+      onRowSelectionChange: (updater) => {
+        updater instanceof Function
+          ? this.rowSelection.update(updater)
+          : this.rowSelection.set(updater);
+      },
+      state: {
+        sorting: this.sorting(),
+        columnFilters: this.columnFilters(),
+        columnVisibility: this.columnVisibility(),
+        rowSelection: this.rowSelection(),
+      },
+    })),
+  );
 
   protected readonly hidableColumns = computed(() => {
     const table = this.table();
@@ -114,43 +151,6 @@ export class AtlasDataTableComponent implements OnInit {
   protected readonly selectedColumn = new FormControl<string[]>([]);
 
   ngOnInit(): void {
-    this.table.set(
-      createAngularTable<Payment>(() => ({
-        data: this.data(),
-        columns: this.columns(),
-        onSortingChange: (updater) => {
-          updater instanceof Function
-            ? this.sorting.update(updater)
-            : this.sorting.set(updater);
-        },
-        onColumnFiltersChange: (updater) => {
-          updater instanceof Function
-            ? this.columnFilters.update(updater)
-            : this.columnFilters.set(updater);
-        },
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
-        onColumnVisibilityChange: (updater) => {
-          updater instanceof Function
-            ? this.columnVisibility.update(updater)
-            : this.columnVisibility.set(updater);
-        },
-        onRowSelectionChange: (updater) => {
-          updater instanceof Function
-            ? this.rowSelection.update(updater)
-            : this.rowSelection.set(updater);
-        },
-        state: {
-          sorting: this.sorting(),
-          columnFilters: this.columnFilters(),
-          columnVisibility: this.columnVisibility(),
-          rowSelection: this.rowSelection(),
-        },
-      })),
-    );
-
     this.selectedColumn.setValue(this.hidableColumns().map((a) => a.id));
     this.selectedColumn.valueChanges
       .pipe(
