@@ -1,3 +1,5 @@
+<!-- eslint-disable @angular-eslint/template/interactive-supports-focus -->
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
 <section class="p-5">
   <header
     class="flex flex-col justify-between gap-4 py-4 sm:flex-row sm:items-center"
@@ -79,11 +81,7 @@
           </tr>
           } @empty {
           <tr hlmTr>
-            <td
-              hlmTd
-              class="h-24 text-center"
-              [attr.colspan]="columns().length"
-            >
+            <td hlmTd class="h-24 text-center" [attr.colspan]="columns.length">
               No results.
             </td>
           </tr>
@@ -103,25 +101,64 @@
     </div>
 
     <div class="mt-2 flex space-x-2 sm:mt-0">
-      <button
-        size="sm"
-        variant="outline"
-        hlmBtn
-        [disabled]="!table().getCanPreviousPage()"
-        (click)="table().previousPage()"
-      >
-        Previous
-      </button>
+      <!-- <hlm-numbered-pagination
+        [currentPage]="1"
+        [itemsPerPage]="4"
+        [totalItems]="10"
+      ></hlm-numbered-pagination> -->
 
-      <button
-        size="sm"
-        variant="outline"
-        hlmBtn
-        [disabled]="!table().getCanNextPage()"
-        (click)="table().nextPage()"
-      >
-        Next
-      </button>
+      <section class="flex">
+        <span class="flex items-center gap-1">
+          Go to page:
+          <input
+            type="number"
+            [value]="table().getState().pagination.pageIndex + 1"
+            (input)="onPageInputChange($event)"
+            class="border p-1 rounded w-16"
+          />
+        </span>
+
+        <nav hlmPagination>
+          <ul hlmPaginationContent>
+            <li hlmPaginationItem>
+              <button
+                size="sm"
+                variant="outline"
+                hlmBtn
+                [disabled]="!table().getCanPreviousPage()"
+                (click)="table().previousPage()"
+              >
+                Previous
+              </button>
+            </li>
+            <li hlmPaginationItem>
+              <a hlmPaginationLink (click)="table().previousPage()">1</a>
+            </li>
+            <li hlmPaginationItem>
+              <a hlmPaginationLink (click)="table().previousPage()" isActive
+                >2</a
+              >
+            </li>
+            <li hlmPaginationItem>
+              <a hlmPaginationLink (click)="table().previousPage()">3</a>
+            </li>
+            <li hlmPaginationItem>
+              <hlm-pagination-ellipsis />
+            </li>
+            <li hlmPaginationItem>
+              <button
+                size="sm"
+                variant="outline"
+                hlmBtn
+                [disabled]="!table().getCanNextPage()"
+                (click)="table().nextPage()"
+              >
+                Next
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </section>
     </div>
     } @else {
     <div class="flex h-full w-full items-center justify-center">

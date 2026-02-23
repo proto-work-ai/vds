@@ -10,11 +10,8 @@ import {
   lucideRefreshCcw,
 } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { AtlasDataTableComponent, Payment } from '../atlas/metadb-table/data-table';
-import { ColumnDef, flexRenderComponent } from '@tanstack/angular-table';
-import { TableHeadSelection, TableRowSelection } from '../atlas/metadb-table/selection-column';
-import { TableHeadSortButton } from '../atlas/metadb-table/sort-header-button';
-import { ActionDropdown } from '../atlas/metadb-table/action-dropdown';
+import { dataTableColumns } from '../../atlas/data-table/data-table.columns';
+import { AtlasDataTableComponent, Payment } from '../../atlas/data-table/data-table';
 
 @Component({
   selector: 'proto-metadb-attributes',
@@ -70,48 +67,6 @@ export class MetadbAttributesComponent {
       email: 'carmella@hotmail.com',
     },
   ];
-  protected readonly columns: ColumnDef<Payment>[] = [
-    {
-      id: 'select',
-      header: () => flexRenderComponent(TableHeadSelection),
-      cell: () => flexRenderComponent(TableRowSelection),
-      enableSorting: false,
-      enableHiding: false,
-    },
-    {
-      accessorKey: 'status',
-      id: 'status',
-      header: 'Status',
-      enableSorting: false,
-      cell: (info) =>
-        `<span class="capitalize">${info.getValue<string>()}</span>`,
-    },
-    {
-      accessorKey: 'email',
-      id: 'email',
-      header: () =>
-        flexRenderComponent(TableHeadSortButton, { inputs: { header: '' } }),
-      cell: (info) => `<div class="lowercase">${info.getValue<string>()}</div>`,
-    },
-    {
-      accessorKey: 'amount',
-      id: 'amount',
-      header: '<div class="text-right">Amount</div>',
-      enableSorting: false,
-      cell: (info) => {
-        const amount = parseFloat(info.getValue<string>());
-        const formatted = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(amount);
 
-        return `<div class="text-right">${formatted}</div>`;
-      },
-    },
-    {
-      id: 'actions',
-      enableHiding: false,
-      cell: () => flexRenderComponent(ActionDropdown),
-    },
-  ];
+  protected readonly columns = dataTableColumns;
 }

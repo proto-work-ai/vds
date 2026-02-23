@@ -11,11 +11,10 @@
 # Spartan Commands
 - npm install -g @nestjs/cli
 - npx nx g @spartan-ng/cli:ui [appName]
-- npx nx g @nx/angular:lib libs/[libName]
-- nx g @nx/node:lib libs/metadb/prisma
 
 # Nest Commands
 - nx reset
+- npx nx g @nx/angular:lib libs/[libName]
 - nx g @nx/nest:app apps/my-nest-app
 - nx g @nx/nest:lib libs/my-nest-lib
 - nx g @nx/nest:lib libs/my-nest-lib --publishable --importPath=@my-workspace/my-nest-lib

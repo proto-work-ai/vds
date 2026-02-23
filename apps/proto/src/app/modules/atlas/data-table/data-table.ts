@@ -18,9 +18,7 @@ import {
   OnInit,
   DestroyRef,
   inject,
-  input,
   computed,
-  effect,
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { lucideChevronDown } from '@ng-icons/lucide';
@@ -30,9 +28,9 @@ import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import {
-  type ColumnDef,
   type ColumnFiltersState,
   createAngularTable,
+  ExpandedState,
   FlexRenderDirective,
   getCoreRowModel,
   getFilteredRowModel,
@@ -46,7 +44,10 @@ import {
 
 import { filter, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { data } from '../../../nav/sidebar-header/data';
+import { HlmPaginationImports } from '@spartan-ng/helm/pagination';
+import { dataTableColumns } from './data-table.columns';
+import { tableData } from './data-table.data';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 export type Payment = {
   id: string;
@@ -59,6 +60,7 @@ export type Payment = {
   selector: 'atlas-data-table',
   templateUrl: './data-table.html',
   styleUrls: ['./data-table.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     HlmSidebarImports,
     HlmIconImports,
@@ -76,20 +78,24 @@ export type Payment = {
     NgIcon,
     RouterOutlet,
     ReactiveFormsModule,
+    HlmPaginationImports,
   ],
   providers: [
     provideIcons({
       lucideMaximize,
       lucideMinimize,
       lucideRefreshCcw,
-      lucideChevronDown,
-    }),
+		<div class="flex flex-col justify-between gap-4 py-4 sm:flex-row sm:items-center">
+			<input hlmInput class="w-full md:w-80" placeholder="Filter emails..." (input)="_filterChanged($event)" />
   ],
 })
 export class AtlasDataTableComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
-  public readonly data = input<Payment[]>([]);
-  public readonly columns = input<ColumnDef<Payment>[]>([]);
+  readonly expanded = signal<ExpandedState>({});
+
+  protected readonly data = tableData;
+
+  protected readonly columns = dataTableColumns;
 
   protected filterChanged(event: Event) {
     this.table()!
@@ -104,8 +110,8 @@ export class AtlasDataTableComponent implements OnInit {
 
   protected readonly table = signal<Table<Payment>>(
     createAngularTable<Payment>(() => ({
-      data: this.data(),
-      columns: this.columns(),
+      data: [...this.data, ...this.data],
+      columns: this.columns,
       onSortingChange: (updater) => {
         updater instanceof Function
           ? this.sorting.update(updater)
@@ -135,6 +141,10 @@ export class AtlasDataTableComponent implements OnInit {
         columnFilters: this.columnFilters(),
         columnVisibility: this.columnVisibility(),
         rowSelection: this.rowSelection(),
+        pagination: {
+          pageIndex: 0,
+          pageSize: 5,
+        },
       },
     })),
   );
@@ -151,6 +161,12 @@ export class AtlasDataTableComponent implements OnInit {
   protected readonly selectedColumn = new FormControl<string[]>([]);
 
   ngOnInit(): void {
+    console.log('getState ', this.table().getState());
+    console.log('getPageCount ', this.table().getPageCount());
+    console.log('getTotalSize ', this.table().getTotalSize());
+    console.log('getPaginationRowModel ', this.table().getPaginationRowModel());
+    console.log('getRowModel', this.table().getRowModel());
+    console.log('getPageOptions', this.table().getPageOptions());
     this.selectedColumn.setValue(this.hidableColumns().map((a) => a.id));
     this.selectedColumn.valueChanges
       .pipe(
@@ -169,5 +185,22 @@ export class AtlasDataTableComponent implements OnInit {
     const target = email.target as HTMLInputElement;
     const typedValue = target.value;
     this.table()!.setGlobalFilter(typedValue);
+  }
+  readonly rawExpandedState = computed(() =>
+    JSON.stringify(this.expanded(), undefined, 2),
+  );
+
+  readonly rawRowSelectionState = computed(() =>
+    JSON.stringify(this.table().getState().rowSelection, undefined, 2),
+  );
+
+  onPageInputChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    const page = inputElement.value ? Number(inputElement.value) - 1 : 0;
+    this.table().setPageIndex(page);
+  }
+
+  onPageSizeChange(event: any): void {
+    this.table().setPageSize(Number(event.target.value));
   }
 }

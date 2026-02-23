@@ -10,11 +10,11 @@ import {
   lucideRefreshCcw,
 } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { AtlasDataTableComponent, Payment } from "../atlas/metadb-table/data-table";
 import { ColumnDef, flexRenderComponent } from '@tanstack/angular-table';
-import { TableHeadSelection, TableRowSelection } from '../atlas/metadb-table/selection-column';
-import { TableHeadSortButton } from '../atlas/metadb-table/sort-header-button';
-import { ActionDropdown } from '../atlas/metadb-table/action-dropdown';
+import { AtlasDataTableComponent, Payment } from '../../atlas/data-table/data-table';
+import { TableHeadSelection, TableRowSelection } from '../../atlas/data-table/selection-column';
+import { TableHeadSortButton } from '../../atlas/data-table/sort-header-button';
+import { ActionDropdown } from '../../atlas/data-table/action-dropdown';
 
 @Component({
   selector: 'proto-metadb-record-table',
@@ -37,81 +37,4 @@ import { ActionDropdown } from '../atlas/metadb-table/action-dropdown';
     RouterOutlet,
 ],
 })
-export class MetadbRecordsComponent {
-  protected readonly data: Payment[] = [
-    {
-      id: 'm5gr84i9',
-      amount: 316,
-      status: 'success',
-      email: 'ken99@yahoo.com',
-    },
-    {
-      id: '3u1reuv4',
-      amount: 242,
-      status: 'success',
-      email: 'Abe45@gmail.com',
-    },
-    {
-      id: 'derv1ws0',
-      amount: 837,
-      status: 'processing',
-      email: 'Monserrat44@gmail.com',
-    },
-    {
-      id: '5kma53ae',
-      amount: 874,
-      status: 'success',
-      email: 'Silas22@gmail.com',
-    },
-    {
-      id: 'bhqecj4p',
-      amount: 721,
-      status: 'failed',
-      email: 'carmella@hotmail.com',
-    },
-  ];
-  protected readonly columns: ColumnDef<Payment>[] = [
-    {
-      id: 'select',
-      header: () => flexRenderComponent(TableHeadSelection),
-      cell: () => flexRenderComponent(TableRowSelection),
-      enableSorting: false,
-      enableHiding: false,
-    },
-    {
-      accessorKey: 'status',
-      id: 'status',
-      header: 'Status',
-      enableSorting: false,
-      cell: (info) =>
-        `<span class="capitalize">${info.getValue<string>()}</span>`,
-    },
-    {
-      accessorKey: 'email',
-      id: 'email',
-      header: () =>
-        flexRenderComponent(TableHeadSortButton, { inputs: { header: '' } }),
-      cell: (info) => `<div class="lowercase">${info.getValue<string>()}</div>`,
-    },
-    {
-      accessorKey: 'amount',
-      id: 'amount',
-      header: '<div class="text-right">Amount</div>',
-      enableSorting: false,
-      cell: (info) => {
-        const amount = parseFloat(info.getValue<string>());
-        const formatted = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(amount);
-
-        return `<div class="text-right">${formatted}</div>`;
-      },
-    },
-    {
-      id: 'actions',
-      enableHiding: false,
-      cell: () => flexRenderComponent(ActionDropdown),
-    },
-  ];
-}
+export class MetadbRecordsComponent {}

@@ -24,13 +24,15 @@ import {
   FlexRenderDirective,
 } from '@tanstack/angular-table';
 
-import { AtlasDataTableComponent } from '../atlas/metadb-table/data-table';
+import { AtlasDataTableComponent } from '../../atlas/data-table/data-table';
 import {
   TableHeadSelection,
   TableRowSelection,
-} from '../atlas/metadb-table/selection-column';
-import { TableHeadSortButton } from '../atlas/metadb-table/sort-header-button';
-import { ActionDropdown } from '../atlas/metadb-table/action-dropdown';
+} from '../../atlas/data-table/selection-column';
+import { TableHeadSortButton } from '../../atlas/data-table/sort-header-button';
+import { ActionDropdown } from '../../atlas/data-table/action-dropdown';
+import { AtlasAgGridTable } from '../../atlas/ag-grid-table/ag-grid-table';
+import { AtlasColumnGroupingTable } from '../../atlas/column-grouping-table/column-grouping-table';
 
 export type Payment = {
   id: string;
@@ -61,6 +63,8 @@ export type Payment = {
     AtlasDataTableComponent,
     FlexRenderDirective,
     RouterOutlet,
+    AtlasAgGridTable,
+    AtlasColumnGroupingTable,
   ],
   providers: [
     provideIcons({
