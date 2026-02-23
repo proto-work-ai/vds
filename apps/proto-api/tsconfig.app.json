@@ -9,7 +9,7 @@
     "target": "es2021",
     "moduleResolution": "node"
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/app/metadb/value/value.service.js", "src/app/metadb/value/index.js", "src/app/metadb/server/metadb.module.js"],
   "exclude": [
     "jest.config.ts",
     "jest.config.cts",

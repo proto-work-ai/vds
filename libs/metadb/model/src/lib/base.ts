@@ -176,6 +176,7 @@ export const ATTRIBUTE_NUMBER_RANGE = 'NUMBER_RANGE';
 // Нужно описание
 export const ATTRIBUTE_PARENT = 'PARENT';
 export const ATTRIBUTE_PARENT_MANY = 'PARENT_MANY';
+export const ATTRIBUTE_PARENT_COUNT = 'PARENT_COUNT';
 
 //export const ATTRIBUTE_RELATION = 'relation';
 
@@ -207,9 +208,14 @@ export type CollectionAttributeType =
   | typeof ATTRIBUTE_CREATED_AT
   | typeof ATTRIBUTE_ID
   //| typeof ATTRIBUTE_RELATION
-  | typeof ATTRIBUTE_RELATION_COUNT;
+  | typeof ATTRIBUTE_RELATION_COUNT
+  | typeof ATTRIBUTE_PARENT
+  | typeof ATTRIBUTE_PARENT_MANY
+  | typeof ATTRIBUTE_SELECT
+  | typeof ATTRIBUTE_PARENT_COUNT
+  | typeof ATTRIBUTE_MEMO;
 
-export enum EntityAttributeType {
+export const enum EntityAttributeType {
   ONE_TO_ONE = ATTRIBUTE_ONE_TO_ONE,
   ONE_TO_MANY = ATTRIBUTE_ONE_TO_MANY,
   MANY_TO_MANY = ATTRIBUTE_MANY_TO_MANY,
@@ -261,7 +267,7 @@ export const isParentRelation = (type: EntityAttributeType) =>
 
 export const isManyRelation = (_type: EntityAttributeType) => true; // всегда мани [EntityAttributeType.RELATION_MANY, EntityAttributeType.PARENT_MANY].includes(type);
 
-export const VALUE_KEY_SET: Partial<Record<EntityAttributeType, any>> = {
+export const VALUE_KEY_SET: Partial<Record<CollectionAttributeType, any>> = {
   // EntityAttributeType.TREE]: 'children',
   [EntityAttributeType.BOOLEAN]: 'bit',
 

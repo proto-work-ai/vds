@@ -1,19 +1,20 @@
-import { Attribute, Value } from '@prisma/client';
+/* eslint-disable @nx/enforce-module-boundaries */
 import {
   ATTRIBUTE_BOOLEAN,
   attributeRelationFilterExcept,
   attributeViewFilterExcept,
   EntityAttributeType,
-  VALUE_KEY_SET
-} from '@atlas/core/base';
+  VALUE_KEY_SET,
+} from '@metadb/model';
+import { MetaAttribute, MetaValue } from '@metadb/prisma';
 
 /*
   использовать только для простых хначений не relation
 */
 export function getValuesForRecord(
   record: Record<string, any>,
-  attributes: Pick<Attribute, 'id' | 'name' | 'type'>[]
-): Value[] {
+  attributes: Pick<MetaAttribute, 'id' | 'name' | 'type'>[],
+): MetaValue[] {
   return (
     attributes
       // Убираем атрибуты которые не редактируем
@@ -32,21 +33,21 @@ export function getValuesForRecord(
 */
 function getValueForRecord(
   record: Record<string, any>,
-  attribute: Pick<Attribute, 'id' | 'name' | 'type'>
-): Value {
+  attribute: Pick<MetaAttribute, 'id' | 'name' | 'type'>,
+): MetaValue {
   const type = attribute.type as EntityAttributeType;
   const valueKey = VALUE_KEY_SET[type];
 
   return {
     name: attribute.name,
     attributeId: attribute.id,
-    [valueKey]: prepareValueForDatabase(record[attribute.name], type)
-  } as Value;
+    [valueKey]: prepareValueForDatabase(record[attribute.name], type),
+  } as MetaValue;
 }
 
 function prepareValueForDatabase(
   value: any,
-  attributeType: EntityAttributeType
+  attributeType: EntityAttributeType,
 ) {
   switch (attributeType) {
     case ATTRIBUTE_BOOLEAN:

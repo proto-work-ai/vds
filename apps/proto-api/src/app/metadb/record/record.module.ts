@@ -1,15 +1,15 @@
-import { Module } from "@nestjs/common";
-import { PrismaModule } from "../prisma/prisma.module";
-import { PrismaService } from "../prisma/prisma.service";
-import { AuthModule } from "../auth/auth.module";
-import { UserModule } from "../user/user.module";
+/* eslint-disable @nx/enforce-module-boundaries */
+import { Module } from '@nestjs/common';
+import { PrismaModule, PrismaService } from '@metadb/prisma';
+import { AuthModule } from '../auth/auth.module';
+import { UserModule } from '../user/user.module';
 
-import { EntryController } from "./entry.controller";
-import { EntryService } from "./entry.service";
+import { EntryController } from './record.controller';
+import { EntryService } from './record.service';
 
 @Module({
-    controllers: [EntryController],
-    providers: [EntryService, PrismaService],
-    imports:[PrismaModule, AuthModule, UserModule],
+  controllers: [EntryController],
+  providers: [EntryService, PrismaService],
+  imports: [PrismaModule, AuthModule, UserModule],
 })
-export class EntryModule{}
+export class RecordModule {}

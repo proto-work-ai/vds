@@ -1,4 +1,6 @@
-import { Entry, Value } from '@prisma/client';
+/* eslint-disable no-case-declarations */
+/* eslint-disable @nx/enforce-module-boundaries */
+
 import {
   ATTRIBUTE_RELATION_COUNT,
   ATTRIBUTE_PASSWORD,
@@ -9,24 +11,24 @@ import {
   EntityAttributeType,
   VALUE_KEY_SET,
   ATTRIBUTE_ONE_TO_MANY,
-  ATTRIBUTE_MANY_TO_MANY
-} from '@atlas/core/base';
+  ATTRIBUTE_MANY_TO_MANY,
+} from '@metadb/model';
+import { MetaRecord, MetaValue } from '@metadb/prisma';
 
 export function recordMap({
   values,
   recordKey,
   entry,
   record,
-  type
+  type,
 }: {
-  values: Value[];
+  values: MetaValue[];
   recordKey: string;
-  entry: Entry;
-  record: Object;
+  entry: MetaRecord;
+  record: any;
   type: EntityAttributeType;
 }) {
   switch (type) {
-    case ATTRIBUTE_ONE_TO_MANY:
     case ATTRIBUTE_ONE_TO_MANY:
     case ATTRIBUTE_MANY_TO_MANY:
       // VOID
@@ -51,7 +53,7 @@ export function recordMap({
         // Get Last Date
         record[recordKey] = values.reduce(
           (a, b) => (a.createdAt.valueOf() > b.createdAt.valueOf() ? a : b),
-          values[0]
+          values[0],
         ).updatedAt;
       }
       break;

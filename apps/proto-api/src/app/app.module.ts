@@ -1,10 +1,9 @@
 import { Module } from '@nestjs/common';
-import { AppService } from './app.service';
-import { metadbApi } from './metadb';
+import { AttributeModule, EntityModule, RecordModule } from './metadb';
 
 @Module({
-  controllers: [...metadbApi],
-  imports: [],
-  providers: [AppService],
+  controllers: [],
+  imports: [AttributeModule, EntityModule, RecordModule],
+  providers: [],
 })
 export class AppModule {}

@@ -1,15 +1,15 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Module } from "@nestjs/common";
-import { PrismaModule } from "../prisma/prisma.module";
-import { PrismaService } from "../prisma/prisma.service";
+import { PrismaModule, PrismaService } from "@metadb/prisma";
+
 import { AuthModule } from "../auth/auth.module";
 import { UserModule } from "../user/user.module";
-
 import { EntityController } from "./entity.controller";
-import { TypeService } from "./entity.service";
+import { MetaEntityService } from "./entity.service";
 
 @Module({
     controllers: [EntityController],
-    providers: [TypeService, PrismaService],
+    providers: [MetaEntityService, PrismaService],
     imports:[PrismaModule, AuthModule, UserModule],
 })
 export class EntityModule{}

@@ -1,2 +1,2 @@
-﻿export * from './entry.service';
-export * from './entry.module';
+﻿export * from './record.service';
+export * from './record.module';

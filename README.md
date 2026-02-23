@@ -9,9 +9,16 @@
 - npx nx run [projectName]:storybook
 
 # Spartan Commands
+- npm install -g @nestjs/cli
 - npx nx g @spartan-ng/cli:ui [appName]
 - npx nx g @nx/angular:lib libs/[libName]
 - nx g @nx/node:lib libs/metadb/prisma
+
+# Добавить новую библиотеку Nest можно с помощью следующей команды:
+- nx g @nx/nest:lib libs/my-nest-lib
+
+# Для создания библиотеки publishableиспользуйте следующую команду
+- nx g @nx/nest:lib libs/my-nest-lib --publishable --importPath=@my-workspace/my-nest-lib
 
 # Prisma Commands
 - npm install prisma typescript ts-node @types/node --save-dev

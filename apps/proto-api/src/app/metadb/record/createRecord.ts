@@ -1,8 +1,13 @@
-﻿import { EntityType } from '@metadb/model';
-import { Attribute, Entity, Prisma } from 'prisma/prisma-client';
+/* eslint-disable @nx/enforce-module-boundaries */
+import { EntityType } from '@metadb/model';
+import {
+  MetaAttribute,
+  MetaEntity,
+  Prisma,
+  PrismaService,
+} from '@metadb/prisma';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
-import { PrismaService } from 'src/prisma/prisma.service';
-import { getValuesForRecord } from 'src/record/getValuesForRecord';
+import { getValuesForRecord } from './getValuesForRecord';
 
 export function createRecord(
   prisma: PrismaService,
@@ -24,12 +29,12 @@ export function createRecord(
 
 async function createEntity(
   type: EntityType,
-  attributes: Prisma.AttributeCreateManyInput[],
-  prisma: PrismaService
+  attributes: Prisma.MetaAttributeCreateManyInput[],
+  prisma: PrismaService,
 ) {
   const findEntity = await prisma.metaEntity.findFirst({
     where: {
-      type: type as any
+      type: type as any,
     },
     include: {
       children: true,
@@ -55,7 +60,7 @@ async function createEntity(
     },
   });
 
-  return [entity, attributes] as [Entity, Attribute[]];
+  return [entity, attributes] as [MetaEntity, MetaAttribute[]];
 }
 
 export function createRecords(
@@ -99,14 +104,14 @@ export async function createTypeSeed(
     readonly,
     title,
     attributes,
-  }: EntityCreateInput & { attributes: Prisma.AttributeCreateManyInput[] },
+  }: EntityCreateInput & { attributes: Prisma.MetaAttributeCreateManyInput[] },
   records: Record<string, any>[],
-  prisma: PrismaService
+  prisma: PrismaService,
 ) {
-  let entity = await prisma.entity.findFirst({
+  let entity = await prisma.metaEntity.findFirst({
     where: {
-      type: type as any
-    }
+      type: type as any,
+    },
   });
 
   if (entity) {
@@ -114,7 +119,7 @@ export async function createTypeSeed(
   }
 
   // Save Entity
-  entity = await prisma.entity.create({
+  entity = await prisma.metaEntity.create({
     data: {
       title,
       name,
@@ -122,15 +127,15 @@ export async function createTypeSeed(
       type: type as any,
       children: {
         createMany: {
-          data: attributes
-        }
-      }
-    }
+          data: attributes,
+        },
+      },
+    },
   });
 
   // Create Read Update Delete Publish
 
-  await createRecords(prisma, entity.id, records, attributes as Attribute[]);
+  await createRecords(prisma, entity.id, records, attributes as MetaAttribute[]);
 
   return entity;
 }

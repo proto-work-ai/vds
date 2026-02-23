@@ -14,14 +14,14 @@ import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { EntityType } from '@metadb/model';
 
 import { AuthGuard } from '../middlewares/auth.guard';
-import { TypeService } from './entity.service';
+import { MetaEntityService } from './entity.service';
 import { CreateEntityDto, UpdateEntityDto } from './dto';
 
 @ApiTags('Entities')
 @Controller('entity')
 @ApiBearerAuth()
 export class EntityController {
-  constructor(private readonly entityService: TypeService) {}
+  constructor(private readonly entityService: MetaEntityService) {}
 
   @Get()
   @ApiResponse({ status: 200, description: 'Get all entities' })

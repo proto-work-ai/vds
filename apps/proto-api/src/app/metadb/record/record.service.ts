@@ -1,29 +1,33 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@nestjs/common';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
 import { validate as validateUuid } from 'uuid';
-import { Attribute, Entity, Entry, PrismaClient } from '@prisma/client';
-import { FilterAndPagination, bindFieldWhere } from '@proto/ui/core';
+import { attributeRelationFilterOn, bindFieldWhere, EntityAttributeType, EntityType, FilterAndPagination, IRecord } from '@metadb/model';
+import { MetaAttribute, MetaEntity, MetaRecord, PrismaClient } from '@metadb/prisma';
 import { pagination } from 'prisma-extension-pagination';
-import { getValuesForRecord } from 'src/record/getValuesForRecord';
-import { recordMap } from 'src/record/recordMap';
-import { IRecord } from '@proto/ui/core/permission';
-import { EntityType } from '@metadb/model';
-import {
-  attributeRelationFilterOn,
-  EntityAttributeType
-} from '@atlas/core/base';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '@metadb/prisma';
+import { getValuesForRecord } from './getValuesForRecord';
+import { recordMap } from './recordMap';
+// import { FilterAndPagination, bindFieldWhere } from '@proto/ui/core';
+// import { getValuesForRecord } from 'src/record/getValuesForRecord';
+// import { recordMap } from 'src/record/recordMap';
+// import { IRecord } from '@proto/ui/core/permission';
+// import {
+//   attributeRelationFilterOn,
+//   EntityAttributeType
+// } from '@atlas/core/base';
+//import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
 export class EntryService {
   private prismaPagination = new PrismaClient().$extends(pagination());
   private get delegate() {
-    return this.prisma.entry;
+    return this.prisma.metaRecord;
   }
 
   constructor(private prisma: PrismaService) {}
 
-  async getAll(type: EntityType): Promise<Entry[]> {
+  async getAll(type: EntityType): Promise<MetaRecord[]> {
     return this.delegate.findMany({
       where: {
         entity: {
@@ -36,16 +40,16 @@ export class EntryService {
   async create(
     entityId: string | EntityType,
     record: IRecord,
-    attributes?: Attribute[]
+    attributes?: MetaAttribute[]
   ) {
     return this.createById(null, entityId, record, attributes);
   }
 
   async createById(
-    entryId: string,
+    recordId: string,
     entityId: string | EntityType,
     record: IRecord,
-    attributes?: Attribute[]
+    attributes?: MetaAttribute[]
   ) {
     if (attributes == null) {
       const [entity1, attributes1] = await this.getAttributesByEntity(entityId);
@@ -53,9 +57,9 @@ export class EntryService {
       attributes = attributes1;
     }
     const values = getValuesForRecord(record, attributes);
-    const entry = await this.prisma.entry.create({
+    const entry = await this.prisma.metaRecord.create({
       data: {
-        id: entryId ?? undefined,
+        id: recordId ?? undefined,
         entityId,
         value: {
           createMany: {
@@ -72,7 +76,7 @@ export class EntryService {
   async createMany(
     entityId: string | EntityType,
     records: Record<string, any>[],
-    attributes?: Attribute[]
+    attributes?: MetaAttribute[]
   ) {
     return lastValueFrom(
       merge(records).pipe(
@@ -84,28 +88,28 @@ export class EntryService {
   }
 
   async update(
-    entryId: string | EntityType,
+    recordId: string | EntityType,
     record: IRecord,
-    attributes?: Attribute[]
+    attributes?: MetaAttribute[]
   ) {
     if (attributes == null) {
-      const [entity1, attributes1] = await this.getAttributesByEntry(entryId);
+      const [entity1, attributes1] = await this.getAttributesByEntry(recordId);
       attributes = attributes1;
     }
 
     const values = getValuesForRecord(record, attributes);
-    debugger;
+
     const data = await Promise.all(
       values.map((val) => {
-        return this.prisma.value.upsert({
+        return this.prisma.metaValue.upsert({
           where: {
             parentId_name: {
-              parentId: entryId,
+              parentId: recordId,
               name: val.name
             }
           },
           create: {
-            parentId: entryId,
+            parentId: recordId,
             ...val
           },
           update: val
@@ -113,60 +117,60 @@ export class EntryService {
       })
     );
 
-    await this.createValueRelation(entryId, record, attributes);
+    await this.createValueRelation(recordId, record, attributes);
     return data;
   }
 
   async updateMany(
-    entryId: string,
+    recordId: string,
     records: Record<string, any>[],
-    attributes?: Attribute[]
+    attributes?: MetaAttribute[]
   ) {
     return lastValueFrom(
       merge(records).pipe(
         concatMap((record) => {
-          return this.update(entryId, record, attributes);
+          return this.update(recordId, record, attributes);
         })
       )
     );
   }
 
   private async createValueRelation(
-    entryId: string,
+    recordId: string,
     record: Record<string, any>,
-    attributes: Attribute[]
+    attributes: MetaAttribute[]
   ) {
-    for (let attr of attributes.filter(attributeRelationFilterOn)) {
+    for (const attr of attributes.filter(attributeRelationFilterOn)) {
       const recordKey = attr.name;
       const value = record[recordKey];
       if (value != null) {
         const valueName = attr.name;
-        const valueParentId = entryId;
+        const valueParentId = recordId;
 
         // Delete Of Exists
-        await this.prisma.entryRelation.deleteMany({
+        await this.prisma.metaRecordRelation.deleteMany({
           where: {
-            // entryId: connectId,
+            // recordId: connectId,
             valueName,
             valueParentId
           }
         });
 
         // Add Value Relation
-        for (let val of Array.isArray(value) ? value : [value]) {
+        for (const val of Array.isArray(value) ? value : [value]) {
           const connectId = typeof val === 'string' ? val : val['id'];
-          debugger;
+
           if (validateUuid(connectId)) {
-            await this.prisma.entryRelation.upsert({
+            await this.prisma.metaRecordRelation.upsert({
               where: {
-                valueParentId_valueName_entryId: {
-                  entryId: connectId,
+                valueParentId_valueName_recordId: {
+                  recordId: connectId,
                   valueName: attr.name,
-                  valueParentId: entryId
+                  valueParentId: recordId
                 }
               },
               create: {
-                entry: {
+                record: {
                   connect: {
                     id: connectId
                   }
@@ -176,19 +180,19 @@ export class EntryService {
                     where: {
                       parentId_name: {
                         name: attr.name,
-                        parentId: entryId
+                        parentId: recordId
                       }
                     },
                     create: {
                       name: attr.name,
-                      parentId: entryId,
+                      parentId: recordId,
                       attributeId: attr.id
                     }
                   }
                 }
               },
               update: {
-                entryId: connectId,
+                recordId: connectId,
                 valueName,
                 valueParentId
               }
@@ -201,11 +205,11 @@ export class EntryService {
     }
   }
 
-  async getById(entryId: string): Promise<Record<string, any>> {
+  async getById(recordId: string): Promise<Record<string, any>> {
     return this.delegate
       .findFirst({
         where: {
-          id: entryId
+          id: recordId
         },
         include: {
           entity: {
@@ -222,7 +226,7 @@ export class EntryService {
             include: {
               children: {
                 include: {
-                  entry: {
+                  record: {
                     include: {
                       value: true,
                       entity: {
@@ -260,7 +264,7 @@ export class EntryService {
           if (value?.children?.length) {
             const recordKey = value.name;
             const relationRecord = value.children.map((relation) => {
-              const entry = relation.entry;
+              const entry = relation.record;
               const childRecord = {};
               entry.entity.children
                 .filter((a) => !a.security)
@@ -288,10 +292,9 @@ export class EntryService {
 
   getAttributesByEntity(
     entityId: string | EntityType
-  ): Promise<[Entity, Attribute[]]> {
-    debugger;
+  ): Promise<[MetaEntity, MetaAttribute[]]> {
     if (validateUuid(entityId)) {
-      return this.prisma.entity
+      return this.prisma.metaEntity
         .findFirst({
           where: {
             id: entityId
@@ -304,7 +307,7 @@ export class EntryService {
           return [entity, entity.children];
         });
     } else {
-      return this.prisma.entity
+      return this.prisma.metaEntity
         .findFirst({
           where: {
             type: {
@@ -322,12 +325,12 @@ export class EntryService {
   }
 
   private getAttributesByEntry(
-    entryId: string
-  ): Promise<[Entity, Attribute[]]> {
-    return this.prisma.entry
+    recordId: string
+  ): Promise<[MetaEntity, MetaAttribute[]]> {
+    return this.prisma.metaRecord
       .findFirst({
         where: {
-          id: entryId
+          id: recordId
         },
         include: {
           entity: {
@@ -342,14 +345,14 @@ export class EntryService {
       });
   }
 
-  async deleteById(id: string): Promise<Entry> {
+  async deleteById(id: string): Promise<MetaRecord> {
     return this.delegate.delete({
       where: { id }
     });
   }
 
   async find(type: EntityType, search: FilterAndPagination = {}): Promise<any> {
-    return this.prisma.entry
+    return this.prisma.metaRecord
       .findFirstOrThrow({
         where: {
           entity: {
@@ -373,7 +376,7 @@ export class EntryService {
             include: {
               children: {
                 include: {
-                  entry: {
+                  record: {
                     include: {
                       value: true,
                       entity: {
@@ -412,7 +415,7 @@ export class EntryService {
             if (value?.children?.length) {
               const recordKey = value.name;
               const relationRecord = value.children.map((relation) => {
-                const entry = relation.entry;
+                const entry = relation.record;
                 const childRecord = {};
                 entry.entity.children
                   .filter((a) => !a.security)
@@ -460,7 +463,7 @@ export class EntryService {
 
     const whereByValue = bindFieldWhere(search?.filters);
 
-    return this.prismaPagination.entry
+    return this.prismaPagination.metaRecord
       .paginate({
         where: {
           OR: [
@@ -489,7 +492,7 @@ export class EntryService {
             include: {
               children: {
                 include: {
-                  entry: {
+                  record: {
                     include: {
                       value: true,
                       entity: {
@@ -536,7 +539,7 @@ export class EntryService {
             if (value?.children?.length) {
               const recordKey = value.name;
               const relationRecord = value.children.map((relation) => {
-                const entry = relation.entry;
+                const entry = relation.record;
                 const childRecord = {};
                 entry.entity.children
                   .filter((a) => !a.security)

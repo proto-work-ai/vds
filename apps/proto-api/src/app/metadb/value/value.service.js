@@ -1,24 +1,22 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { validate } from 'uuid';
-import { EventEmitter2 } from '@nestjs/event-emitter';
-import { async_timer } from '@atlas/shared';
 import { forkJoin, map } from 'rxjs';
 import { DS_ERROR_EVENT, ErrorEventData } from '../event';
-import { Entity, Value, Entry } from '@prisma/client';
+import { MetaAttribute, MetaEntity, MetaValue } from '@metadb/prisma';
 
 @Injectable()
 export class ValueSevice {
   constructor(
-    private emitter2: EventEmitter2,
     private readonly roleSevice: RoleSevice,
     private readonly entitySevice: EntitySevice,
-    @InjectRepository(QtValue) private readonly valueRep: Repository<QtValue>,
+    @InjectRepository(MetaValue) private readonly valueRep: Repository<MetaValue>,
     @InjectRepository(QtRecord)
     private readonly recordRep: Repository<QtRecord>,
-    @InjectRepository(QtEntity) private readonly entityRep: Repository<QtEntity>
+    @InjectRepository(MetaEntity) private readonly entityRep: Repository<MetaEntity>
   ) {}
 
-  protected prepareResult(values: QtValue[]) {
+  protected prepareResult(values: MetaValue[]) {
     values.map((v) => {
       delete v.parent;
       delete v.attribute;
@@ -33,7 +31,7 @@ export class ValueSevice {
    * обновляем attr и entity у value
    * удаляем схемму без id а также устанавливаем тип если не указан
    */
-  @async_timer() async updateValuesByEntityAndParent(
+  async updateValuesByEntityAndParent(
     values: Value[],
     entity: Entity,
     record: Entry
@@ -63,9 +61,9 @@ export class ValueSevice {
 
   // обновляем field у value
   public async updateValueByField(
-    value: QtValue,
-    attr: IMetaDbAttribute,
-    entity: QtEntity
+    value: MetaValue,
+    attr: MetaAttribute,
+    entity: MetaEntity
   ) {
     value.type = attr.type || EntityAttributeType.STRING;
     value.name = attr.name;
@@ -137,7 +135,7 @@ export class ValueSevice {
       .createQueryBuilder('entity')
       .leftJoinAndSelect('entity.children', 'field');
 
-    let entity: QtEntity;
+    let entity: MetaEntity;
 
     if (recordId) {
       if (!validate(entityId)) {
@@ -175,8 +173,8 @@ export class ValueSevice {
   }
 
   // сохраняем значения и создаем record если его не было
-  @async_timer() async save(
-    parentValues: QtValue[],
+  async save(
+    parentValues: MetaValue[],
     { recordId, entityId, userId }: ValueQuery
   ) {
     try {
@@ -261,7 +259,7 @@ export class ValueSevice {
   public async getValues(query: RelationQuery) {
     const { id, relation } = query;
 
-    async function getValues(repositoty: Repository<QtValue>) {
+    async function getValues(repositoty: Repository<MetaValue>) {
       //
       const base = repositoty
         .createQueryBuilder('value')
@@ -289,12 +287,12 @@ export class ValueSevice {
       getValues(this.valueRep)
       // getValues(this.valueManyRep)
     ])
-      .pipe(map((values) => values.flat() as QtValue[]))
+      .pipe(map((values) => values.flat() as MetaValue[]))
       .toPromise();
   }
 
   // добавляем занчения в список не заменяя
-  @async_timer() async push(recordId: string, values: QtValue[]) {
+  async push(recordId: string, values: MetaValue[]) {
     if (!recordId) {
       throw new HttpException(`Not found recordId`, HttpStatus.BAD_REQUEST);
     }

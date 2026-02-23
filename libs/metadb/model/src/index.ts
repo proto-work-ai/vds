@@ -1,3 +1,4 @@
-export * from './lib/prisma';
 export * from './lib/meta';
 export * from './lib/model';
+export * from './lib/base';
+export * from './lib/filter';

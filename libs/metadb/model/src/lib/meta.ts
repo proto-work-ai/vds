@@ -2,8 +2,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-function-type */
 import { EntityAttributeType } from './base';
 
-// export type QtEntityType = IMetaDbEntity | Function | string;
-
 export interface IMetaDbEntity {
   id?: string;
   title?: string;

@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "proto:dev": "npx nx run proto:serve --configuration=development",
-    "proto-api:dev": "npx nx run proto-api:serve --configuration=development",
+    "proto-api:dev": "npx nx watch run proto-api:serve --configuration=development",
+    "proto-api:watch": "set NODE_ENV=development& nest start -d -w -p ./apps/proto-api/tsconfig.json -c ./apps/proto-api/nest-cli.json ",
     "supabase:start": "npx supabase start",
     "metadb:dev": "npx nx run metadb:serve --configuration=development"
   },
@@ -22,6 +23,8 @@
     "@angular/ssr": "^21.0.0",
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
+    "@nestjs/jwt": "^11.0.2",
+    "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.0",
     "@nestjs/swagger": "^11.2.6",
     "@ng-icons/core": ">=32.0.0 <34.0.0",
@@ -35,6 +38,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "express": "^4.21.2",
+    "prisma-extension-pagination": "^0.7.6",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~7.8.0",
     "tailwind-merge": "^3.3.1",

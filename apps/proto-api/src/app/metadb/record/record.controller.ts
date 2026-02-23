@@ -1,3 +1,5 @@
+/* eslint-disable @nx/enforce-module-boundaries */
+/* eslint-disable no-empty */
 import {
   Controller,
   Get,
@@ -13,10 +15,8 @@ import {
 import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 
 import { AuthGuard } from '../middlewares/auth.guard';
-import { EntryService } from './entry.service';
-import { UpdateEntryDto } from './dto';
-import { IRecord } from '@proto/ui/core/permission';
-import { EntityType } from '@metadb/model';
+import { EntryService } from './record.service';
+import { EntityType, IRecord } from '@metadb/model';
 
 @ApiTags('Entries')
 @Controller('entry')
@@ -50,17 +50,17 @@ export class EntryController {
     }
   }
 
-  @Put(':entryId')
+  @Put(':recordId')
   @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a entry by ENTITY' })
   async update(
-    @Param('entryId') entryId: string,
+    @Param('recordId') recordId: string,
     @Body() data: IRecord | IRecord[]
   ) {
     if (Array.isArray(data)) {
-      return this.entityService.updateMany(entryId, data);
+      return this.entityService.updateMany(recordId, data);
     } else {
-      return this.entityService.update(entryId, data);
+      return this.entityService.update(recordId, data);
     }
   }
 
@@ -74,7 +74,7 @@ export class EntryController {
   @Patch(':id')
   @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a entity by ID' })
-  async patch(@Param('id') id: string, @Body() data: UpdateEntryDto) {
+  async patch(@Param('id') id: string, @Body() data: any) {
     return this.entityService.update(id, data);
   }
 

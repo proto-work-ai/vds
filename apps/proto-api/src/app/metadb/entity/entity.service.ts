@@ -3,16 +3,12 @@ import { Injectable } from '@nestjs/common';
 import { CreateEntityDto, UpdateEntityDto } from './dto';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
 import { EntityType } from '@metadb/model';
-import { PrismaService } from '../services/prisma.service';
-//import { MetaEntity } from '../prisma/generated';
-//import { Entity } from '@prisma/client';
-import { MetaEntity } from '@metadb/prisma';
-
+import { MetaEntity, PrismaService } from '@metadb/prisma';
 
 @Injectable()
-export class TypeService {
+export class MetaEntityService {
   private get delegate() {
-    return this.prisma.entity;
+    return this.prisma.metaEntity;
   }
 
   constructor(private prisma: PrismaService) {}
@@ -24,7 +20,7 @@ export class TypeService {
   async getById(id: string): Promise<MetaEntity> {
     return this.delegate
       .findUnique({
-        where: { id }
+        where: { id },
       })
       .then((entity) => {
         // TODO удвалить(readonly)
@@ -35,11 +31,11 @@ export class TypeService {
   }
 
   async getByType(type: EntityType): Promise<MetaEntity> {
-    return this.prisma.entity
+    return this.prisma.metaEntity
       .findFirst({
         where: {
-          type: type as any
-        }
+          type: type as any,
+        },
       })
       .then((entity) => {
         // TODO удвалить(readonly)
@@ -52,44 +48,44 @@ export class TypeService {
   async create(data: CreateEntityDto): Promise<MetaEntity> {
     return this.delegate.create({
       data: {
-        name: data.name
-      }
+        name: data.name,
+      },
     });
   }
 
   async update(id: string, data: UpdateEntityDto): Promise<MetaEntity> {
     return this.delegate.update({
       where: { id },
-      data
+      data,
     });
   }
 
   async deleteById(entityId: string, andRecords = true): Promise<MetaEntity> {
     if (andRecords) {
-      const records = await this.prisma.entry.findMany({
+      const records = await this.prisma.metaRecord.findMany({
         where: {
-          entityId
+          entityId,
         },
         select: {
-          id: true
-        }
+          id: true,
+        },
       });
 
       if (records.length) {
         await lastValueFrom(
           merge(records).pipe(
             concatMap((a) => {
-              return this.prisma.entry.delete({
-                where: { id: a.id }
+              return this.prisma.metaRecord.delete({
+                where: { id: a.id },
               });
-            })
-          )
+            }),
+          ),
         );
       }
     }
 
     return this.delegate.delete({
-      where: { id: entityId }
+      where: { id: entityId },
     });
   }
 }

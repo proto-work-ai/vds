@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import {
   Controller,
   Get,
@@ -8,27 +9,30 @@ import {
   HttpStatus,
   UseGuards
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { forkJoin, map } from 'rxjs';
-import { ST_VALUE_API } from '@proto/ui/client';
+import { AuthGuard } from '@nestjs/passport';
+import { ValueSevice } from './value.service.js';
+import { MetaValue } from '@metadb/prisma';
+import { MetaEntityService } from '../entity';
 
 @UseGuards(AuthGuard())
-@Controller(ST_VALUE_API)
+@Controller('value')
 export class ValueController {
   constructor(
     private readonly valueSevice: ValueSevice,
-    private readonly entitySevice: EntitySevice,
-    @InjectRepository(QtValue) private readonly valueRep: Repository<QtValue>
+    private readonly entitySevice: MetaEntityService,
+    //@InjectRepository(MetaValue) private readonly valueRep: Repository<MetaValue>
   ) {}
 
   @Get('filter/:entityId')
   public async filterByField(@Param('entityId') entityId: string) {
-    const valueOne = this.valueRep
-      .createQueryBuilder('value')
-      .leftJoinAndSelect('value.attribute', 'field')
-      .leftJoinAndSelect('value.parent', 'record')
-      .where('field.id=:entityId', { entityId })
-      .getMany();
+    const valueOne = null;
+    // const valueOne = this.valueRep
+    //   .createQueryBuilder('value')
+    //   .leftJoinAndSelect('value.attribute', 'field')
+    //   .leftJoinAndSelect('value.parent', 'record')
+    //   .where('field.id=:entityId', { entityId })
+    //   .getMany();
 
     // const valueMany = this.valueManyRep
     //   .createQueryBuilder('value')
@@ -44,23 +48,24 @@ export class ValueController {
       .pipe(map((values) => values.flat()))
       .toPromise();
 
-    deserializationValue(values);
+    // deserializationValue(values);
 
     return values;
   }
 
-  @Get('filter-by-record')
-  public async filterByEntry(@QueryPayload() query: RelationQuery) {
-    const values = await this.valueSevice.getValues(query);
-    const entity = await this.entitySevice.getByEntry(query.id);
-    deserializationValue(values, entity);
-    return values;
-  }
+  // @Get('filter-by-record')
+  // public async filterByEntry(@QueryPayload() query: RelationQuery) {
+  //   const values = await this.valueSevice.getValues(query);
+  //   const entity = await this.entitySevice.getByEntry(query.id);
+  //   deserializationValue(values, entity);
+  //   return values;
+  // }
 
   @Post('save-values')
   public async saveValues(
-    @Body() values: QtValue[],
-    @QueryPayload() query: ValueQuery
+    @Body() values: MetaValue[],
+    //@QueryPayload() query: ValueQuery
+    query: any
   ) {
     const result = await this.valueSevice.save(values, query);
 
@@ -89,7 +94,7 @@ export class ValueController {
   @Post('push/:recordId')
   public async addRelation(
     @Param('recordId') recordId: string,
-    @Body() values: QtValue[]
+    @Body() values: MetaValue[]
   ) {
     const resultValues = await this.valueSevice.push(recordId, values);
 

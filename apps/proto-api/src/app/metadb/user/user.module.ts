@@ -1,8 +1,9 @@
-import { Module, forwardRef } from '@nestjs/common';
-import { EntryService } from 'src/entry/entry.service';
-import { PrismaModule } from 'src/prisma/prisma.module';
-import { AuthModule } from 'src/auth/auth.module';
+/* eslint-disable @nx/enforce-module-boundaries */
+import { Module } from '@nestjs/common';
+import { PrismaModule } from '@metadb/prisma';
 
+import { AuthModule } from '../auth/auth.module';
+import { EntryService } from '../record/record.service';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 

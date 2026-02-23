@@ -1,11 +1,12 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@nestjs/common';
 import { UserDto } from './dto/user.dto';
-import { EntryService }  from 'src/entry/entry.service';
-import { IUser } from '@proto/ui/core';
-import { ATTRIBUTE_STRING } from '@atlas/core/base';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '@metadb/prisma';
+import { ATTRIBUTE_STRING, IUser } from '@metadb/model';
+
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
+import { EntryService } from '../record/record.service';
 
 export interface UserWithRoles extends CreateUserDto {
   id: string;
@@ -18,7 +19,7 @@ export interface UserWithRoles extends CreateUserDto {
 @Injectable()
 export class UserService {
   private get delegate() {
-    return this.prisma.entry;
+    return this.prisma.metaRecord;
   }
   constructor(
     private prisma: PrismaService,
