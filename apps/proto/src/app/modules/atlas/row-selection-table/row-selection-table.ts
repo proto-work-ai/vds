@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @angular-eslint/component-selector */
 import {
@@ -20,7 +21,6 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -35,9 +35,7 @@ import {
   type SortingState,
   type VisibilityState,
 } from '@tanstack/angular-table';
-import { ActionDropdown } from './action-dropdown';
-import { TableHeadSelection, TableRowSelection } from './selection-column';
-import { TableHeadSortButton } from './sort-header-button';
+import { TableHeadSelection } from './selection-column';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { makeData, Person } from './makeData';
 import { TableRowSelectionComponent } from './selection-column.component';
@@ -50,9 +48,9 @@ export type Payment = {
 };
 
 @Component({
-  selector: 'atlas-data-table',
-  templateUrl: './data-table.html',
-  styleUrls: ['./data-table.scss'],
+  selector: 'atlas-row-selection-table',
+  templateUrl: './row-selection-table.html',
+  styleUrls: ['./row-selection-table.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     HlmSidebarImports,
@@ -77,7 +75,7 @@ export type Payment = {
     class: 'w-full',
   },
 })
-export class AtlasDataTableComponent implements OnInit {
+export class AtlasRowSelectionTableComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   protected readonly selectedColumn = new FormControl<string[]>([]);
 
@@ -128,18 +126,18 @@ export class AtlasDataTableComponent implements OnInit {
           header: 'More Info',
           columns: [
             {
-              header: () => 'Visits',
               accessorKey: 'visits',
+              header: () => 'Visits',
               footer: (props) => props.column.id,
             },
             {
-              header: 'Status',
               accessorKey: 'status',
+              header: 'Status',
               footer: (props) => props.column.id,
             },
             {
-              header: 'Profile Progress',
               accessorKey: 'progress',
+              header: 'Profile Progress',
               footer: (props) => props.column.id,
             },
           ],
