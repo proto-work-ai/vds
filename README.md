@@ -11,6 +11,7 @@
 # Spartan Commands
 - npx nx g @spartan-ng/cli:ui [appName]
 - npx nx g @nx/angular:lib libs/[libName]
+- nx g @nx/node:lib libs/metadb/prisma
 
 # Prisma Commands
 - npm install prisma typescript ts-node @types/node --save-dev
