@@ -3,17 +3,18 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "types": ["node"],
+    "types": [ "node" ],
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "target": "es2021",
     "moduleResolution": "node"
   },
-  "include": ["src/**/*.ts", "src/app/metadb/value/value.service.js", "src/app/metadb/value/index.js", "src/app/metadb/server/metadb.module.js"],
+  "include": [ "src/**/*.ts", "src/app/metadb/value/value.service.js", "src/app/metadb/value/index.js", "src/app/metadb/server/metadb.module.js" ],
   "exclude": [
     "jest.config.ts",
     "jest.config.cts",
     "src/**/*.spec.ts",
-    "src/**/*.test.ts"
+    "src/**/*.test.ts",
+    "**/*.js.map"
   ]
 }

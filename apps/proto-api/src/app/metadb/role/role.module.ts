@@ -8,7 +8,7 @@ import { PrismaModule, PrismaService } from '@metadb/prisma';
 
 @Module({
   controllers: [RoleController],
-  providers: [RoleService, PrismaService],
+  providers: [RoleService],
   imports: [PrismaModule, AuthModule, UserModule],
 })
 export class RoleModule {}

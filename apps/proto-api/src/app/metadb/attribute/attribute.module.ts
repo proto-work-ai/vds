@@ -9,7 +9,11 @@ import { AttributeSevice } from './attribute.service';
 
 @Module({
   controllers: [AttributeController],
-  providers: [AttributeSevice, PrismaService],
-  imports: [PrismaModule, AuthModule, UserModule],
+  providers: [AttributeSevice],
+  imports: [
+    //AuthModule,
+    PrismaModule,
+    UserModule,
+  ],
 })
 export class AttributeModule {}

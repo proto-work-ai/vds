@@ -8,7 +8,7 @@ import { RoleService } from "./role.service";
 
 @ApiTags('Roles')
 @Controller('role')
-@ApiBearerAuth()
+// @ApiBearerAuth()
 export class RoleController {
   constructor(private readonly roleService: RoleService) {}
 
@@ -19,7 +19,7 @@ export class RoleController {
   }
 
   @Post()
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 201, description: 'Create a new role' })
   async create(@Body() data: CreateRoleDto) {
     return this.roleService.create(data);
@@ -32,14 +32,14 @@ export class RoleController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Delete a role by ID' })
   async deleteById(@Param('id') id: string) {
     return this.roleService.deleteById(id);
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a role by ID' })
   async update(@Param('id') id: string, @Body() data: UpdateRoleDto) {
     return this.roleService.update(id, data);

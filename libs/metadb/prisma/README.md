@@ -1,7 +1,9 @@
-# prisma
-
-This library was generated with [Nx](https://nx.dev).
-
-## Building
-
-Run `nx build prisma` to build the library.
+# Prisma Commands
+- npx prisma",
+- npx prisma init",
+- prisma db push",
+- prisma format",
+- prisma generate",
+- npx prisma migrate dev",
+- prisma migrate status",
+- prisma migrate reset"

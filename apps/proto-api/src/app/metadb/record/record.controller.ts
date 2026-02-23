@@ -37,7 +37,7 @@ export class EntryController {
   }
 
   @Post(':entityId')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 201, description: 'Create or update entry by ENTITY' })
   async create(
     @Param('entityId') entityId: string,
@@ -51,7 +51,7 @@ export class EntryController {
   }
 
   @Put(':recordId')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a entry by ENTITY' })
   async update(
     @Param('recordId') recordId: string,
@@ -65,14 +65,14 @@ export class EntryController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Delete a entity by ID' })
   async deleteById(@Param('id') id: string) {
     return this.entityService.deleteById(id);
   }
 
   @Patch(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a entity by ID' })
   async patch(@Param('id') id: string, @Body() data: any) {
     return this.entityService.update(id, data);

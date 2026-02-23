@@ -9,7 +9,7 @@ import { EntryService } from './record.service';
 
 @Module({
   controllers: [EntryController],
-  providers: [EntryService, PrismaService],
+  providers: [EntryService],
   imports: [PrismaModule, AuthModule, UserModule],
 })
 export class RecordModule {}

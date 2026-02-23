@@ -18,9 +18,10 @@ import { AuthGuard } from '../middlewares/auth.guard';
 
 @ApiTags('Attribute')
 @Controller('attribute')
-@ApiBearerAuth()
+// @ApiBearerAuth()
 export class AttributeController {
-  constructor(private readonly attributeSevice: AttributeSevice) {}
+  constructor(private readonly attributeSevice: AttributeSevice) {
+  }
 
   @Get()
   @ApiResponse({ status: 200, description: 'Get all attributes' })
@@ -35,21 +36,21 @@ export class AttributeController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Delete a attribute by ID' })
   async deleteById(@Param('id') id: string) {
     return this.attributeSevice.deleteById(id);
   }
 
   @Post(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 201, description: 'Create a new attribute' })
   async create(@Param('id') id: string, @Body() data: CreateAttributeDto) {
     return this.attributeSevice.create(id, data);
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a attribute by ID' })
   async update(@Param('id') id: string, @Body() data: UpdateAttributeDto) {
     return this.attributeSevice.update(id, data);

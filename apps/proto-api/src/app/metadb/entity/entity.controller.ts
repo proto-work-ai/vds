@@ -19,7 +19,7 @@ import { CreateEntityDto, UpdateEntityDto } from './dto';
 
 @ApiTags('Entities')
 @Controller('entity')
-@ApiBearerAuth()
+// @ApiBearerAuth()
 export class EntityController {
   constructor(private readonly entityService: MetaEntityService) {}
 
@@ -45,28 +45,28 @@ export class EntityController {
   }
 
   @Post()
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 201, description: 'Create a new entity' })
   async create(@Body() data: CreateEntityDto) {
     return this.entityService.create(data);
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Delete a entity by ID' })
   async deleteById(@Param('id') id: string) {
     return this.entityService.deleteById(id);
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a entity by ID' })
   async update(@Param('id') id: string, @Body() data: UpdateEntityDto) {
     return this.entityService.update(id, data);
   }
 
   @Patch(':id')
-  @UseGuards(AuthGuard)
+  // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a entity by ID' })
   async patch(@Param('id') id: string, @Body() data: UpdateEntityDto) {
     return this.entityService.update(id, data);

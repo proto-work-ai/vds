@@ -9,7 +9,7 @@ import { MetaEntityService } from "./entity.service";
 
 @Module({
     controllers: [EntityController],
-    providers: [MetaEntityService, PrismaService],
+    providers: [MetaEntityService],
     imports:[PrismaModule, AuthModule, UserModule],
 })
 export class EntityModule{}

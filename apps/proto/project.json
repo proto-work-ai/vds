@@ -56,7 +56,10 @@
           "buildTarget": "proto:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/proto/proxy.conf.json"
+      }
     },
     "lint": {
       "executor": "@nx/eslint:lint"

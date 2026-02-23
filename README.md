@@ -14,10 +14,10 @@
 - npx nx g @nx/angular:lib libs/[libName]
 - nx g @nx/node:lib libs/metadb/prisma
 
-# Добавить новую библиотеку Nest можно с помощью следующей команды:
+# Nest Commands
+- nx reset
+- nx g @nx/nest:app apps/my-nest-app
 - nx g @nx/nest:lib libs/my-nest-lib
-
-# Для создания библиотеки publishableиспользуйте следующую команду
 - nx g @nx/nest:lib libs/my-nest-lib --publishable --importPath=@my-workspace/my-nest-lib
 
 # Prisma Commands
