@@ -4,12 +4,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  DestroyRef,
-  inject,
   signal,
   OnInit,
-  TemplateRef,
-  viewChild,
+  inject,
+  DestroyRef,
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -35,10 +33,12 @@ import {
   type SortingState,
   type VisibilityState,
 } from '@tanstack/angular-table';
-import { TableHeadSelection } from './selection-column';
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
+import { ActionDropdown } from './action-dropdown';
+import { TableHeadSelection, TableRowSelection } from './selection-column';
+import { TableHeadSortButton } from './sort-header-button';
 import { makeData, Person } from './makeData';
-import { TableRowSelectionComponent } from './selection-column.component';
+import { filter, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 export type Payment = {
   id: string;
@@ -46,17 +46,14 @@ export type Payment = {
   status: 'pending' | 'processing' | 'success' | 'failed';
   email: string;
 };
-
 @Component({
-  selector: 'atlas-row-selection-table',
-  templateUrl: './row-selection-table.html',
-  styleUrls: ['./row-selection-table.scss'],
+  selector: 'atlas-column-select-table',
+  templateUrl: './column-select-table.html',
+  styleUrls: ['./column-select-table.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    HlmSidebarImports,
-    HlmIconImports,
-    HlmButtonImports,
-    HlmIconImports,
+    FlexRenderDirective,
+    FormsModule,
     HlmDropdownMenuImports,
     HlmButtonImports,
     HlmIconImports,
@@ -64,85 +61,81 @@ export type Payment = {
     BrnSelectImports,
     HlmSelectImports,
     HlmTableImports,
-    FlexRenderDirective,
-    FormsModule,
-    NgIcon,
     ReactiveFormsModule,
-    HlmIconImports,
+    NgIcon,
   ],
   providers: [provideIcons({ lucideChevronDown })],
   host: {
     class: 'w-full',
   },
 })
-export class AtlasRowSelectionTableComponent implements OnInit {
+export class AtlasColumnSelectTableComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
   protected readonly selectedColumn = new FormControl<string[]>([]);
-
-  readonly ageHeaderCell =
-    viewChild.required<TemplateRef<unknown>>('ageHeaderCell');
-
   protected _filterChanged(event: Event) {
     this.table
       .getColumn('email')
       ?.setFilterValue((event.target as HTMLInputElement).value);
   }
 
-  protected readonly _columns: ColumnDef<Person>[] = [
+  protected readonly columns: ColumnDef<Person>[] = [
     {
       id: 'select',
       header: () => flexRenderComponent(TableHeadSelection),
-      cell: () => flexRenderComponent(TableRowSelectionComponent),
+      cell: () => flexRenderComponent(TableRowSelection),
+      enableSorting: false,
+      enableHiding: false,
     },
     {
-      header: 'Name',
-      footer: (props) => props.column.id,
-      columns: [
-        {
-          accessorKey: 'firstName',
-          cell: (info) => info.getValue(),
-          footer: (props) => props.column.id,
-          header: 'First name',
-        },
-        {
-          accessorFn: (row) => row.lastName,
-          id: 'lastName',
-          cell: (info) => info.getValue(),
-          header: () => 'Last Name',
-          footer: (props) => props.column.id,
-        },
-      ],
+      accessorKey: 'status',
+      id: 'status',
+      header: 'Status',
+      enableSorting: false,
+      cell: (info) =>
+        `<span class="capitalize">${info.getValue<string>()}</span>`,
     },
     {
-      header: 'Info',
+      id: 'firstName',
+      header: () =>
+        flexRenderComponent(TableHeadSortButton, { inputs: { header: '' } }),
+      accessorKey: 'firstName',
+      cell: (info) => `<div class="lowercase">${info.getValue<string>()}</div>`,
+    },
+    {
+      accessorKey: 'age',
+      id: 'age',
+      header: '<div class="text-right">Amount</div>',
+      enableSorting: false,
+      cell: (info) => {
+        const age = parseFloat(info.getValue<string>());
+        const formatted = new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD',
+        }).format(age);
+
+        return `<div class="text-right">${formatted}</div>`;
+      },
+    },
+    {
+      header: () => 'Visits',
+      accessorKey: 'visits',
       footer: (props) => props.column.id,
-      columns: [
-        {
-          accessorKey: 'age',
-          header: () => this.ageHeaderCell(),
-          footer: (props) => props.column.id,
-        },
-        {
-          header: 'More Info',
-          columns: [
-            {
-              header: () => 'Visits',
-              accessorKey: 'visits',
-              footer: (props) => props.column.id,
-            },
-            {
-              header: 'Status',
-              accessorKey: 'status',
-              footer: (props) => props.column.id,
-            },
-            {
-              header: 'Profile Progress',
-              accessorKey: 'progress',
-              footer: (props) => props.column.id,
-            },
-          ],
-        },
-      ],
+    },
+    {
+      header: 'Status',
+      accessorKey: 'status',
+      footer: (props) => props.column.id,
+    },
+    {
+      header: 'Profile Progress',
+      accessorKey: 'progress',
+      footer: (props) => props.column.id,
+    },
+
+    {
+      id: 'actions',
+      enableHiding: false,
+      cell: () => flexRenderComponent(ActionDropdown),
     },
   ];
 
@@ -151,11 +144,11 @@ export class AtlasRowSelectionTableComponent implements OnInit {
   private readonly _rowSelection = signal<RowSelectionState>({});
   private readonly _columnVisibility = signal<VisibilityState>({});
 
-  readonly data = signal(makeData(10_000));
+  data = signal<Person[]>(makeData(10_000));
 
-  protected readonly table = createAngularTable(() => ({
+  protected readonly table = createAngularTable<Person>(() => ({
     data: this.data(),
-    columns: this._columns,
+    columns: this.columns,
     onSortingChange: (updater) => {
       updater instanceof Function
         ? this._sorting.update(updater)
@@ -186,7 +179,13 @@ export class AtlasRowSelectionTableComponent implements OnInit {
       columnVisibility: this._columnVisibility(),
       rowSelection: this._rowSelection(),
     },
+    initialState: {
+      pagination: {
+        pageSize: 5,
+      },
+    },
   }));
+
   protected readonly _hidableColumns = this.table
     .getAllColumns()
     .filter((column) => column.getCanHide());
@@ -204,6 +203,19 @@ export class AtlasRowSelectionTableComponent implements OnInit {
     console.log('getPaginationRowModel ', this.table().getPaginationRowModel());
     console.log('getRowModel', this.table().getRowModel());
     console.log('getPageOptions', this.table().getPageOptions());
+
+    this.selectedColumn.setValue(this._hidableColumns.map((a) => a.id));
+    this.selectedColumn.valueChanges
+      .pipe(
+        filter(Boolean),
+        tap((values) => {
+          this._hidableColumns.forEach((column) =>
+            column.toggleVisibility(values.includes(column.id)),
+          );
+        }),
+        takeUntilDestroyed(this.destroyRef),
+      )
+      .subscribe();
   }
 
   refreshData(): void {
