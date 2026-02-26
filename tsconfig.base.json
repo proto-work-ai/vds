@@ -18,7 +18,9 @@
       "@org/api/products": ["libs/shop-api/products/src/index.ts"],
       "@org/models": ["libs/shared/models/src/index.ts"],
       "@org/shop/data": ["libs/shop/data/src/index.ts"],
-      "@org/shop/feature-product-detail": ["libs/shop/feature-product-detail/src/index.ts"],
+      "@org/shop/feature-product-detail": [
+        "libs/shop/feature-product-detail/src/index.ts"
+      ],
       "@org/shop/feature-products": ["libs/shop/feature-products/src/index.ts"],
       "@org/shop/shared-ui": ["libs/shop/shared-ui/src/index.ts"],
       "@spartan-ng/helm/sidebar": ["libs/ui/sidebar/src/index.ts"],
@@ -52,7 +54,7 @@
       "@atlas/core": ["libs/atlas/core/src/index.ts"],
       "@atlas/table": ["libs/atlas/table/src/index.ts"],
       "@metadb/prisma": ["libs/metadb/prisma/src/index.ts"],
-      "@metadb/client": ["libs/metadb/client/src/index.ts"]
+      "@metadb/client": ["libs/metadb/client/src/lib/index.d.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

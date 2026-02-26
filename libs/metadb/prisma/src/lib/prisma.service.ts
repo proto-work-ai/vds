@@ -2,7 +2,6 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
-
 import { PrismaClient } from '@metadb/client';
 
 @Injectable()
