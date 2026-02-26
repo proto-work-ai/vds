@@ -3,7 +3,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { validate } from 'uuid';
 import { forkJoin, map } from 'rxjs';
 import { DS_ERROR_EVENT, ErrorEventData } from '../event';
-import { MetaAttribute, MetaEntity, MetaValue } from '@metadb/prisma';
+import { MetaAttribute, MetaEntity, MetaValue } from '@metadb/client';
 
 @Injectable()
 export class ValueSevice {

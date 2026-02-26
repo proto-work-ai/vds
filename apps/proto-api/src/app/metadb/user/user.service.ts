@@ -1,9 +1,9 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@nestjs/common';
-import { UserDto } from './dto/user.dto';
 import { PrismaService } from '@metadb/prisma';
 import { ATTRIBUTE_STRING, IUser } from '@metadb/model';
 
+import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
 import { EntryService } from '../record/record.service';

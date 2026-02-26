@@ -12,7 +12,7 @@ import {
 import { forkJoin, map } from 'rxjs';
 import { AuthGuard } from '@nestjs/passport';
 import { ValueSevice } from './value.service.js';
-import { MetaValue } from '@metadb/prisma';
+import { MetaValue } from '@metadb/client';
 import { MetaEntityService } from '../entity';
 
 @UseGuards(AuthGuard())

@@ -1,0 +1,46 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+<hlm-dialog-header>
+  <h3 hlmDialogTitle>Create Entity</h3>
+  <!-- <p hlmDialogDescription>Click a row to select a user.</p> -->
+</hlm-dialog-header>
+
+<form [formGroup]="form" class="flex flex-col gap-3">
+  <label hlmLabel>
+    <hlm-form-field>
+      <div class="mb-1">Title</div>
+      <input hlmInput formControlName="title" />
+      <hlm-error>The Title is required.</hlm-error>
+    </hlm-form-field>
+  </label>
+
+  <!-- <label hlmLabel>
+    <hlm-form-field>
+      <div class="mb-1">Name</div>
+      <input hlmInput formControlName="name" />
+      <hlm-error>The Name is required.</hlm-error>
+    </hlm-form-field>
+  </label> -->
+
+  <label hlmLabel>
+    <hlm-form-field>
+      <div class="mb-1">Description</div>
+      <textarea hlmInput formControlName="description" class="h-20"></textarea>
+      <hlm-error>The Description is required.</hlm-error>
+    </hlm-form-field>
+  </label>
+
+  <label hlmLabel class="flex items-center gap-2">
+    <hlm-checkbox formControlName="disable" />
+    Disable
+  </label>
+
+  <label hlmLabel class="flex items-center gap-2">
+    <hlm-checkbox formControlName="readonly" />
+    Readonly
+  </label>
+</form>
+
+<hlm-dialog-footer>
+  <button hlmBtn variant="outline" hlmDialogClose>Cancel</button>
+  <button hlmBtn variant="default" type="submit">Save</button>
+</hlm-dialog-footer>

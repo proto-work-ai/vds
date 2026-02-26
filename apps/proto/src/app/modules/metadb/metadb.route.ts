@@ -26,7 +26,7 @@ export function metadbRoute(path: string): Route {
       {
         path: metadbPages.entities.root,
         loadComponent: () =>
-          import('./metadb-entitie-table/metadb-entitie-table.component').then(
+          import('./metadb-entity-table/metadb-entity-table.component').then(
             (a) => a.MetadbEntitiesComponent,
           ),
       },

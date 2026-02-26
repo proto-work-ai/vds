@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/directive-selector */
 /* eslint-disable @nx/enforce-module-boundaries */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @angular-eslint/component-selector */
@@ -8,8 +9,12 @@ import {
   OnInit,
   inject,
   DestroyRef,
+  Directive,
+  computed,
+  ViewContainerRef,
+  TemplateRef,
 } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
@@ -19,7 +24,6 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
   type ColumnDef,
   type ColumnFiltersState,
@@ -38,8 +42,8 @@ import { ActionDropdown } from './action-dropdown';
 import { TableHeadSelection, TableRowSelection } from './selection-column';
 import { TableHeadSortButton } from './sort-header-button';
 import { makeData, Person } from './makeData';
-import { filter, tap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { contentChild } from '@angular/core';
+import { PortalModule, TemplatePortal } from '@angular/cdk/portal';
 
 export type Payment = {
   id: string;
@@ -47,23 +51,31 @@ export type Payment = {
   status: 'pending' | 'processing' | 'success' | 'failed';
   email: string;
 };
+
+@Directive({
+  selector: '[dataTableHeader], [data-taable-header]',
+  standalone: true,
+})
+export class DataTableHeader {}
+
 @Component({
   selector: 'atlas-data-table',
   templateUrl: './data-table.html',
   styleUrls: ['./data-table.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    NgIcon,
     FlexRenderDirective,
     FormsModule,
     HlmDropdownMenuImports,
     HlmButtonImports,
-    NgIcon,
     HlmIconImports,
     HlmInputImports,
     BrnSelectImports,
     HlmSelectImports,
     HlmTableImports,
     ReactiveFormsModule,
+    PortalModule,
   ],
   providers: [provideIcons({ lucideChevronDown })],
   host: {
@@ -72,8 +84,20 @@ export type Payment = {
 })
 export class AtlasDataTableComponent implements OnInit {
   private readonly destroyRef = inject(DestroyRef);
-  protected readonly selectedColumn = new FormControl<string[]>([]);
-  protected _filterChanged(event: Event) {
+  protected readonly headerTemplate = contentChild(DataTableHeader, {
+    read: TemplateRef,
+  });
+  private readonly viewContainerRef = inject(ViewContainerRef);
+
+  protected readonly tableHeaderPortal = computed(() => {
+    const header = this.headerTemplate();
+    return header
+      ? new TemplatePortal(header, this.viewContainerRef)
+      : undefined;
+  });
+
+  // protected readonly selectedColumn = new FormControl<string[]>([]);
+  protected filterChanged(event: Event) {
     this.table
       .getColumn('email')
       ?.setFilterValue((event.target as HTMLInputElement).value);
@@ -147,7 +171,7 @@ export class AtlasDataTableComponent implements OnInit {
 
   data = signal<Person[]>(makeData(10_000));
 
-  protected readonly table = createAngularTable<Person>(() => ({
+  public readonly table = createAngularTable<Person>(() => ({
     data: this.data(),
     columns: this.columns,
     onSortingChange: (updater) => {
@@ -187,9 +211,9 @@ export class AtlasDataTableComponent implements OnInit {
     },
   }));
 
-  protected readonly _hidableColumns = this.table
-    .getAllColumns()
-    .filter((column) => column.getCanHide());
+  // protected readonly hidableColumns = this.table
+  //   .getAllColumns()
+  //   .filter((column) => column.getCanHide());
 
   protected _filterChange(email: Event) {
     const target = email.target as HTMLInputElement;
@@ -203,23 +227,28 @@ export class AtlasDataTableComponent implements OnInit {
     console.log('getTotalSize ', this.table().getTotalSize());
     console.log('getPaginationRowModel ', this.table().getPaginationRowModel());
     console.log('getRowModel', this.table().getRowModel());
-    console.log('getPageOptions', this.table().getPageOptions());
+    //console.log('getPageOptions', this.table().getPageOptions());
 
-    this.selectedColumn.setValue(this._hidableColumns.map((a) => a.id));
-    this.selectedColumn.valueChanges
-      .pipe(
-        filter(Boolean),
-        tap((values) => {
-          this._hidableColumns.forEach((column) =>
-            column.toggleVisibility(values.includes(column.id)),
-          );
-        }),
-        takeUntilDestroyed(this.destroyRef),
-      )
-      .subscribe();
+    // this.selectedColumn.setValue(this.hidableColumns.map((a) => a.id));
+    // this.selectedColumn.valueChanges
+    //   .pipe(
+    //     filter(Boolean),
+    //     tap((values) => {
+    //       this.hidableColumns.forEach((column) =>
+    //         column.toggleVisibility(values.includes(column.id)),
+    //       );
+    //     }),
+    //     takeUntilDestroyed(this.destroyRef),
+    //   )
+    //   .subscribe();
   }
 
   refreshData(): void {
     this.data.set(makeData(10_000));
   }
 }
+
+export const AtlasDataTableComponents = [
+  AtlasDataTableComponent,
+  DataTableHeader,
+];

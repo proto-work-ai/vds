@@ -3,7 +3,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateEntityDto, UpdateEntityDto } from './dto';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
 import { EntityType } from '@metadb/model';
-import { MetaEntity, PrismaService } from '@metadb/prisma';
+import { MetaEntity } from '@metadb/client';
+import { PrismaService } from '@metadb/prisma';
 
 @Injectable()
 export class MetaEntityService {

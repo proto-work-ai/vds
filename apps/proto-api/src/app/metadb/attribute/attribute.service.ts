@@ -4,7 +4,8 @@ import { Injectable } from '@nestjs/common';
 import { CreateAttributeDto, UpdateAttributeDto } from './dto';
 //import { attributeSpecificityFilterExcept } from '@atlas/core/base';
 import { attributeSpecificityFilterExcept, EntityType } from '@metadb/model';
-import { MetaAttribute, PrismaService } from '@metadb/prisma';
+import { MetaAttribute } from '@metadb/client';
+import { PrismaService } from '@metadb/prisma';
 
 @Injectable()
 export class AttributeSevice {

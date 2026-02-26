@@ -3,13 +3,12 @@
 */ 
 generator client {
   provider = "prisma-client-js"
-  output   = "../../../../libs/metadb/prisma/src/lib/client"
+  output   = "../../../../libs/metadb/client/src/lib"
 }
 
 datasource db {
   provider  = "postgresql"
 }
-
 
 model MetaEntity {
   id                                              String              @id @default(uuid())

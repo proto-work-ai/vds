@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main-menu',
-  standalone: true,
   templateUrl: 'main-menu.component.html',
   styleUrl: 'main-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

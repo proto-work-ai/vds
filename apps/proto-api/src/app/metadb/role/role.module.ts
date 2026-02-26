@@ -4,7 +4,7 @@ import { RoleController } from './role.controller';
 import { RoleService } from './role.service';
 import { AuthModule } from '../auth/auth.module';
 import { UserModule } from '../user/user.module';
-import { PrismaModule, PrismaService } from '@metadb/prisma';
+import { PrismaModule } from '@metadb/prisma';
 
 @Module({
   controllers: [RoleController],

@@ -11,7 +11,11 @@ import {
 } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { dataTableColumns } from '../../atlas/data-table/data-table.columns';
-import { AtlasDataTableComponent, Payment } from '../../atlas/data-table/data-table';
+import {
+  AtlasDataTableComponent,
+  AtlasDataTableComponents,
+  Payment,
+} from '../../atlas/data-table/data-table';
 
 @Component({
   selector: 'proto-metadb-attributes',
@@ -31,7 +35,7 @@ import { AtlasDataTableComponent, Payment } from '../../atlas/data-table/data-ta
     HlmIconImports,
     RouterOutlet,
     NgIcon,
-    AtlasDataTableComponent,
+    AtlasDataTableComponents,
   ],
 })
 export class MetadbAttributesComponent {

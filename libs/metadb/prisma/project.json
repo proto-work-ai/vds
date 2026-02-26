@@ -3,6 +3,13 @@
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/metadb/prisma/src",
   "projectType": "library",
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": ["dist/{projectRoot}"],
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk"
+    }
+  },
   "tags": [],
   "targets": {
     "build": {
@@ -14,6 +21,11 @@
         "packageJson": "libs/metadb/prisma/package.json",
         "main": "libs/metadb/prisma/src/index.ts",
         "assets": ["libs/metadb/prisma/*.md"]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
       }
     }
   }

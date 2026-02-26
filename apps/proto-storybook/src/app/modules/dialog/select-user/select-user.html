@@ -1,0 +1,19 @@
+<hlm-dialog-header>
+  <h3 hlmDialogTitle>Select user</h3>
+  <p hlmDialogDescription>Click a row to select a user.</p>
+</hlm-dialog-header>
+
+<table hlmTable class="w-full">
+  <tr hlmTr>
+    <th hlmTh>Name</th>
+    <th hlmTh>Email</th>
+    <th hlmTh>Phone</th>
+  </tr>
+  @for (user of _users; track user.name) {
+  <tr hlmTr (click)="selectUser(user)" class="cursor-pointer">
+    <td hlmTd truncate class="font-medium">{{ user.name }}</td>
+    <td hlmTd>{{ user.email }}</td>
+    <td hlmTd>{{ user.phone }}</td>
+  </tr>
+  }
+</table>

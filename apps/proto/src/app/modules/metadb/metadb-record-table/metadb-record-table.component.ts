@@ -11,8 +11,15 @@ import {
 } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { ColumnDef, flexRenderComponent } from '@tanstack/angular-table';
-import { AtlasDataTableComponent, Payment } from '../../atlas/data-table/data-table';
-import { TableHeadSelection, TableRowSelection } from '../../atlas/data-table/selection-column';
+import {
+  AtlasDataTableComponent,
+  AtlasDataTableComponents,
+  Payment,
+} from '../../atlas/data-table/data-table';
+import {
+  TableHeadSelection,
+  TableRowSelection,
+} from '../../atlas/data-table/selection-column';
 import { TableHeadSortButton } from '../../atlas/data-table/sort-header-button';
 import { ActionDropdown } from '../../atlas/data-table/action-dropdown';
 
@@ -32,9 +39,9 @@ import { ActionDropdown } from '../../atlas/data-table/action-dropdown';
     HlmIconImports,
     HlmButtonImports,
     HlmIconImports,
+    AtlasDataTableComponents,
     NgIcon,
-    AtlasDataTableComponent,
     RouterOutlet,
-],
+  ],
 })
 export class MetadbRecordsComponent {}
