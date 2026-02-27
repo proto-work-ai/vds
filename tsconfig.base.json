@@ -42,7 +42,6 @@
       "@spartan-ng/helm/tooltip": ["libs/ui/tooltip/src/index.ts"],
       "@spartan-ng/helm/typography": ["libs/ui/typography/src/index.ts"],
       "@spartan-ng/helm/utils": ["libs/ui/utils/src/index.ts"],
-
       "@metadb/model": ["libs/metadb/model/src/index.ts"],
       "@atlas/core": ["libs/atlas/core/src/index.ts"],
       "@atlas/table": ["libs/atlas/table/src/index.ts"],

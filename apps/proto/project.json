@@ -1,94 +1,64 @@
 {
   "name": "proto",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "projectType": "application",
-  "prefix": "proto",
   "sourceRoot": "apps/proto/src",
+  "projectType": "application",
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "nx:run-commands",
       "options": {
-        "outputPath": "dist/apps/proto",
-        "browser": "apps/proto/src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
-        "tsConfig": "apps/proto/tsconfig.app.json",
-        "inlineStyleLanguage": "scss",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "apps/proto/public"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
-          }
-        ],
-        "styles": [
-          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-          "apps/proto/src/styles.scss"
-        ]
+        "command": "webpack-cli build",
+        "args": ["--node-env=production"],
+        "cwd": "apps/proto"
       },
       "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
-            }
-          ],
-          "outputHashing": "all"
-        },
         "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
+          "args": ["--node-env=development"]
         }
-      },
-      "defaultConfiguration": "production"
+      }
+    },
+    "prune-lockfile": {
+      "dependsOn": ["build"],
+      "cache": true,
+      "executor": "@nx/js:prune-lockfile",
+      "outputs": [
+        "{workspaceRoot}/dist/apps/proto/package.json",
+        "{workspaceRoot}/dist/apps/proto/package-lock.json"
+      ],
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "copy-workspace-modules": {
+      "dependsOn": ["build"],
+      "cache": true,
+      "outputs": ["{workspaceRoot}/dist/apps/proto/workspace_modules"],
+      "executor": "@nx/js:copy-workspace-modules",
+      "options": {
+        "buildTarget": "build"
+      }
+    },
+    "prune": {
+      "dependsOn": ["prune-lockfile", "copy-workspace-modules"],
+      "executor": "nx:noop"
     },
     "serve": {
       "continuous": true,
-      "executor": "@angular/build:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "proto:build:production"
-        },
-        "development": {
-          "buildTarget": "proto:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular/build:extract-i18n",
-      "options": {
-        "buildTarget": "proto:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
-    "serve-static": {
-      "continuous": true,
-      "executor": "@nx/web:file-server",
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
       "options": {
         "buildTarget": "proto:build",
-        "staticFilePath": "dist/apps/proto/browser",
-        "spa": true
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "proto:build:development"
+        },
+        "production": {
+          "buildTarget": "proto:build:production"
+        }
       }
     }
   }
