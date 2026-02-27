@@ -1734,7 +1734,7 @@ export namespace Prisma {
       children: Prisma.$MetaAttributePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      id: string | null
+      id: string
       name: string | null
       title: string | null
       description: string | null

@@ -8,18 +8,28 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/proto-storybook",
         "browser": "apps/proto-storybook/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/proto-storybook/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/proto-storybook/public"
           }
         ],
-        "styles": ["apps/proto-storybook/src/styles.css"]
+        "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/proto-storybook/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -57,6 +67,12 @@
         }
       },
       "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "proto-storybook:build"
+      }
     },
     "lint": {
       "executor": "@nx/eslint:lint"

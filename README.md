@@ -18,6 +18,8 @@
 
 # Spartan Commands
 - npm install -g @nestjs/cli
+- npm install -D @spartan-ng/cli
+- npx nx g @spartan-ng/cli:init 
 - npx nx g @spartan-ng/cli:ui [appName]
 
 # Nest Commands

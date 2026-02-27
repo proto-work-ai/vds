@@ -8,18 +8,33 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/proto",
         "browser": "apps/proto/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "apps/proto/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "apps/proto/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
           }
         ],
-        "styles": ["apps/proto/src/styles.scss"]
+        "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/proto/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {
@@ -56,9 +71,12 @@
           "buildTarget": "proto:build:development"
         }
       },
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
       "options": {
-        "proxyConfig": "apps/proto/proxy.conf.json"
+        "buildTarget": "proto:build"
       }
     },
     "lint": {
@@ -69,58 +87,8 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "proto:build",
-        "port": 4200,
         "staticFilePath": "dist/apps/proto/browser",
         "spa": true
-      }
-    },
-    "storybook": {
-      "executor": "@storybook/angular:start-storybook",
-      "options": {
-        "port": 4400,
-        "configDir": "apps/proto/.storybook",
-        "browserTarget": "proto:build-storybook",
-        "compodoc": false
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "build-storybook": {
-      "executor": "@storybook/angular:build-storybook",
-      "outputs": ["{options.outputDir}"],
-      "options": {
-        "outputDir": "dist/storybook/proto",
-        "configDir": "apps/proto/.storybook",
-        "browserTarget": "proto:build-storybook",
-        "compodoc": false
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "test-storybook": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "test-storybook -c apps/proto/.storybook --url=http://localhost:4400"
-      }
-    },
-    "static-storybook": {
-      "executor": "@nx/web:file-server",
-      "dependsOn": ["build-storybook"],
-      "options": {
-        "buildTarget": "proto:build-storybook",
-        "staticFilePath": "dist/storybook/proto",
-        "spa": true
-      },
-      "configurations": {
-        "ci": {
-          "buildTarget": "proto:build-storybook:ci"
-        }
       }
     }
   }

@@ -1,4 +1,5 @@
 # Supabase Commands
+- npm install supabase --save-dev
 - npm install -g supabase
-- supabase init
-- supabase start
+- npm supabase init
+- npm supabase start

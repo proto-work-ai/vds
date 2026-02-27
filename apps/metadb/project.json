@@ -2,7 +2,7 @@
   "name": "metadb",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "metadb",
+  "prefix": "app",
   "sourceRoot": "apps/metadb/src",
   "tags": [],
   "targets": {
@@ -12,7 +12,9 @@
       "options": {
         "outputPath": "dist/apps/metadb",
         "browser": "apps/metadb/src/main.ts",
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/metadb/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
@@ -46,7 +48,6 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "dependsOn": ["proto-api:serve"],
       "continuous": true,
       "executor": "@angular/build:dev-server",
       "configurations": {
@@ -59,6 +60,12 @@
       },
       "defaultConfiguration": "development"
     },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "metadb:build"
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint"
     },
@@ -67,7 +74,6 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "metadb:build",
-        "port": 4200,
         "staticFilePath": "dist/apps/metadb/browser",
         "spa": true
       }

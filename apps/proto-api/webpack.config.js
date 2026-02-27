@@ -4,7 +4,6 @@ const { join } = require('path');
 module.exports = {
   output: {
     path: join(__dirname, '../../dist/apps/proto-api'),
-    clean: true,
     ...(process.env.NODE_ENV !== 'production' && {
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
     }),
@@ -19,7 +18,7 @@ module.exports = {
       optimization: false,
       outputHashing: 'none',
       generatePackageJson: true,
-      sourceMap: true,
+      sourceMaps: true,
     }),
   ],
 };
