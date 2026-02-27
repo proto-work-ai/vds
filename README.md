@@ -2,6 +2,7 @@
 - https://nx.dev/docs/technologies/angular/generators#examples
 
 # Nx Commands
+- nx migrate latest
 - npm cache clean --force  
 - npx nx generate @nx/workspace:move --projectName=[projectName] --newProjectName [projectName] --destination [patch]
 
