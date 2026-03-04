@@ -1,1 +1,2 @@
-export * from './lib/core';
+export * from './lib/mark-as-submit';
+export * from './lib/form-type';

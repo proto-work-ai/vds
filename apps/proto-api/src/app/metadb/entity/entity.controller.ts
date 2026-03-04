@@ -7,26 +7,24 @@ import {
   Delete,
   Body,
   Param,
-  UseGuards,
-  Patch
+  Patch,
+  Query,
 } from '@nestjs/common';
-import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
+import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { EntityType } from '@metadb/model';
-
-import { AuthGuard } from '../middlewares/auth.guard';
+import { MetaEntity } from '@metadb/client';
 import { MetaEntityService } from './entity.service';
-import { CreateEntityDto, UpdateEntityDto } from './dto';
 
 @ApiTags('Entities')
 @Controller('entity')
 // @ApiBearerAuth()
 export class EntityController {
-  constructor(private readonly entityService: MetaEntityService) {}
+  constructor(private readonly entityService: MetaEntityService) { }
 
   @Get()
   @ApiResponse({ status: 200, description: 'Get all entities' })
-  async getAll() {
-    return this.entityService.getAll();
+  async getAll(@Query('length') length: number, @Query('currentPage') page: number) {
+    return this.entityService.getAll({ limit: Number(length ?? 10), page: Number(page ?? 0) });
   }
 
   @Get(':id')
@@ -47,8 +45,15 @@ export class EntityController {
   @Post()
   // @UseGuards(AuthGuard)
   @ApiResponse({ status: 201, description: 'Create a new entity' })
-  async create(@Body() data: CreateEntityDto) {
+  async create(@Body() data: MetaEntity) {
     return this.entityService.create(data);
+  }
+
+  @Put(':id')
+  // @UseGuards(AuthGuard)
+  @ApiResponse({ status: 200, description: 'Update a entity by ID' })
+  async update(@Param('id') id: string, @Body() data: MetaEntity) {
+    return this.entityService.update(id, data);
   }
 
   @Delete(':id')
@@ -58,17 +63,10 @@ export class EntityController {
     return this.entityService.deleteById(id);
   }
 
-  @Put(':id')
-  // @UseGuards(AuthGuard)
-  @ApiResponse({ status: 200, description: 'Update a entity by ID' })
-  async update(@Param('id') id: string, @Body() data: UpdateEntityDto) {
-    return this.entityService.update(id, data);
-  }
-
   @Patch(':id')
   // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a entity by ID' })
-  async patch(@Param('id') id: string, @Body() data: UpdateEntityDto) {
+  async patch(@Param('id') id: string, @Body() data: MetaEntity) {
     return this.entityService.update(id, data);
   }
 }

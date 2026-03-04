@@ -58,6 +58,26 @@ export type Payment = {
 })
 export class DataTableHeader {}
 
+/*
+  <atlas-data-table>
+    <header *dataTableHeader class="flex gap-2 flex-1">
+
+      <button variant="outline" hlmBtn (click)="openEditModal()">Add Entity</button>
+
+      <atlas-data-table-filter [columnName]="'email'"></atlas-data-table-filter>
+
+      <div class="flex-1"></div>
+
+      <atlas-data-table-column-select></atlas-data-table-column-select>
+
+      <button hlmBtn size="icon" variant="outline">
+        <ng-icon hlm size="sm" name="lucideRefreshCcw"></ng-icon>
+      </button>
+
+      <atlas-data-table-toggle-size></atlas-data-table-toggle-size>
+    </header>
+  </atlas-data-table>
+*/
 @Component({
   selector: 'atlas-data-table',
   templateUrl: './data-table.html',

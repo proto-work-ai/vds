@@ -20,7 +20,7 @@ import { recordMap } from './recordMap';
 
 @Injectable()
 export class EntryService {
-  // private prismaPagination = new PrismaClient().$extends(pagination());
+  //private prismaPagination = new PrismaClient().$extends(pagination());
   private get delegate() {
     return this.prisma.metaRecord;
   }

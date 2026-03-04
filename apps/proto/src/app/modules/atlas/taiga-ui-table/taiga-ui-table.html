@@ -1,0 +1,50 @@
+<table tuiTable class="w-full" size="m">
+  <thead>
+    <tr tuiThGroup>
+      @for(col of columns(); track col){
+      <th tuiTh>{{col.title}}</th>
+      }
+    </tr>
+  </thead>
+
+  <tbody tuiTbody>
+    @for(item of rows(); track $index){
+    <tr (click)="onTableRowClick(item)">
+      @for(col of columns(); track col){
+      <td tuiTd>{{ item?.[col.key] }}</td>
+      }
+      <!-- <td tuiTd>{{ item.balance | tuiFormatNumber | async }}</td> -->
+    </tr>
+    }
+  </tbody>
+
+  <caption tuiCaption>
+    <span>999 rows</span>
+    @if(pagination(); as pagination){
+    <button
+      appearance="flat"
+      tuiButton
+      tuiButtonSelect
+      type="button"
+      [(ngModel)]="pagination.pageCount"
+      (ngModelChange)="pageCountChange(pagination.pageCount)"
+    >
+      {{ pagination.currentPage * pagination.pageCount + 1 }}-{{
+      (pagination.currentPage + 1) * pagination.pageCount }} rows
+      <tui-data-list-wrapper
+        *tuiTextfieldDropdown
+        new
+        [itemContent]="content"
+        [items]="pagination.items ?? []"
+      />
+    </button>
+    } @if(pagination(); as pagination){
+    <tui-pagination
+      [style.float]="'right'"
+      [length]="pagination.pageCount"
+      [index]="pageIndex"
+      (indexChange)="pageIndexChange($event)"
+    />
+    }
+  </caption>
+</table>

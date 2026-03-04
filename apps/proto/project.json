@@ -27,7 +27,7 @@
           {
             "glob": "**/*",
             "input": "node_modules/@taiga-ui/icons/src",
-            "output": "public/taiga-ui/icons"
+            "output": "assets/taiga-ui/icons"
           }
         ],
         "styles": [
@@ -71,7 +71,10 @@
           "buildTarget": "proto:build:development"
         }
       },
-      "defaultConfiguration": "development"
+      "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/proto/proxy.conf.json"
+      }
     },
     "extract-i18n": {
       "executor": "@angular/build:extract-i18n",

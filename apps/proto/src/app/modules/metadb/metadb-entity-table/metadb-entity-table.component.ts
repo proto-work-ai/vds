@@ -1,43 +1,36 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @nx/enforce-module-boundaries */
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
-import { RouterOutlet } from '@angular/router';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
+  lucideLayersPlus,
   lucideMaximize,
   lucideMinimize,
   lucideRefreshCcw,
+  lucideChevronDown,
 } from '@ng-icons/lucide';
-import { Component, DestroyRef, inject } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { lucideChevronDown } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import {
-  ColumnDef,
-  flexRenderComponent,
-  FlexRenderDirective,
-} from '@tanstack/angular-table';
-
-import { AtlasDataTableComponent, AtlasDataTableComponents } from '../../atlas/data-table/data-table';
-import {
-  TableHeadSelection,
-  TableRowSelection,
-} from '../../atlas/data-table/selection-column';
-import { TableHeadSortButton } from '../../atlas/data-table/sort-header-button';
-import { ActionDropdown } from '../../atlas/data-table/action-dropdown';
-import { AtlasAgGridTable } from '../../atlas/ag-grid-table/ag-grid-table';
-import { AtlasDataTableFilter } from "../../atlas/data-table-tools/data-table-filter";
-import { AtlasDataTableColumnSelect } from '../../atlas/data-table-tools/data-table-column-select';
+import { TuiDialogService } from '@taiga-ui/experimental';
+import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
+import { tap } from 'rxjs';
+import { TuiAlertService } from '@taiga-ui/core';
+import { MetaEntity } from '@metadb/client';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { AtlasDataTableComponents } from '../../atlas/data-table/data-table';
 import { AtlasDataTableToggleSize } from '../../atlas/data-table-tools/data-table-toggle-size';
-import { AtlasDataTableBtnRefresh } from '../../atlas/data-table-tools/data-table-btn-refresh';
-import { HlmDialogService } from '@spartan-ng/helm/dialog';
+import { AtlasTaigaUiTable, ITableColumn, ITablePaginate } from "../../atlas/taiga-ui-table/taiga-ui-table";
+import { MetaDbEntityService } from '../services/metadb-entity.service';
+import { attributeMetaEntityDescription, attributeMetaEntityDisable, attributeMetaEntityReadonly, attributeMetaEntityTitle } from '../attributes/meta-entity.attributes';
 import { MetaEntityModal } from './metadb-entity-modal/metadb-entity-modal';
+import { AtlasTablePaginatePipe } from '../../atlas/atlas-table-paginate';
 
 export type Payment = {
   id: string;
@@ -66,114 +59,54 @@ export type Payment = {
     FormsModule,
     NgIcon,
     ReactiveFormsModule,
-    AtlasDataTableFilter,
-    AtlasDataTableColumnSelect,
+    AtlasTaigaUiTable,
     AtlasDataTableToggleSize,
-],
+    AtlasTablePaginatePipe,
+  ],
   providers: [
     provideIcons({
       lucideMaximize,
       lucideMinimize,
       lucideRefreshCcw,
       lucideChevronDown,
+      lucideLayersPlus,
     }),
   ],
 })
 export class MetadbEntitiesComponent {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly dialogService = inject(HlmDialogService);
+  private readonly alerts = inject(TuiAlertService);
+  private readonly dialogService = inject(TuiDialogService);
+  protected readonly entityService = inject(MetaDbEntityService);
+  protected readonly columns = signal<ITableColumn<MetaEntity>[]>([
+    attributeMetaEntityTitle,
+    attributeMetaEntityDescription,
+    attributeMetaEntityDisable,
+    attributeMetaEntityReadonly,
+  ]);
 
-  protected readonly data: Payment[] = [
-    {
-      id: 'm5gr84i9',
-      amount: 316,
-      status: 'success',
-      email: 'ken99@yahoo.com',
-    },
-    {
-      id: '3u1reuv4',
-      amount: 242,
-      status: 'success',
-      email: 'Abe45@gmail.com',
-    },
-    {
-      id: 'derv1ws0',
-      amount: 837,
-      status: 'processing',
-      email: 'Monserrat44@gmail.com',
-    },
-    {
-      id: '5kma53ae',
-      amount: 874,
-      status: 'success',
-      email: 'Silas22@gmail.com',
-    },
-    {
-      id: 'bhqecj4p',
-      amount: 721,
-      status: 'failed',
-      email: 'carmella@hotmail.com',
-    },
-  ];
-  
-  protected readonly columns: ColumnDef<Payment>[] = [
-    {
-      id: 'select',
-      header: () => flexRenderComponent(TableHeadSelection),
-      cell: () => flexRenderComponent(TableRowSelection),
-      enableSorting: false,
-      enableHiding: false,
-    },
-    {
-      accessorKey: 'status',
-      id: 'status',
-      header: 'Status',
-      enableSorting: false,
-      cell: (info) =>
-        `<span class="capitalize">${info.getValue<string>()}</span>`,
-    },
-    {
-      accessorKey: 'email',
-      id: 'email',
-      header: () =>
-        flexRenderComponent(TableHeadSortButton, { inputs: { header: '' } }),
-      cell: (info) => `<div class="lowercase">${info.getValue<string>()}</div>`,
-    },
-    {
-      accessorKey: 'amount',
-      id: 'amount',
-      header: '<div class="text-right">Amount</div>',
-      enableSorting: false,
-      cell: (info) => {
-        const amount = parseFloat(info.getValue<string>());
-        const formatted = new Intl.NumberFormat('en-US', {
-          style: 'currency',
-          currency: 'USD',
-        }).format(amount);
+  protected readonly entityServiceAll = signal((paginate: ITablePaginate) =>
+    this.entityService.getAll(paginate)
+  );
 
-        return `<div class="text-right">${formatted}</div>`;
-      },
-    },
-    {
-      id: 'actions',
-      enableHiding: false,
-      cell: () => flexRenderComponent(ActionDropdown),
-    },
-  ];
+  protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
 
-
-  public openEditModal() {
-    const dialogRef = this.dialogService.open(MetaEntityModal, {
-      context: {
-        users: [],
-      },
-      contentClass: 'w-120 sm:!max-w-[950px]',
-    });
-
-    dialogRef.closed$.subscribe((user) => {
-      if (user) {
-        console.log('Selected user:', user);
-      }
-    });
+  protected openEditModal(model?: unknown): void {
+    this.dialogService
+      .open<string>(new PolymorpheusComponent(MetaEntityModal), {
+        label: model ? 'Edit Entity' : 'Create Entity',
+        size: 'm',
+        data: { model },
+      })
+      .pipe(
+        tap((result) => {
+          if (result) {
+            this.alerts.open('Alert');
+            // this.tableRefresh()
+          }
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 }

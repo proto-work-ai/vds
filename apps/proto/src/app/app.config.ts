@@ -8,6 +8,8 @@ import {
   UrlSerializer,
   UrlTree,
 } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideEventPlugins } from '@taiga-ui/event-plugins';
 import { appRoutes } from './app.routes';
 
 export class LowerCaseUrlSerializer extends DefaultUrlSerializer {
@@ -25,5 +27,7 @@ export const appConfig: ApplicationConfig = {
       provide: UrlSerializer,
       useClass: LowerCaseUrlSerializer,
     },
+    provideAnimations(),
+    provideEventPlugins(),
   ],
 };

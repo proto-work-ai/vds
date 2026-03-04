@@ -5,7 +5,7 @@ export const data = {
   user: {
     title: 'spartan',
     email: 'hello@spartan.com',
-    avatar: '/assets/avatar.png',
+    avatar: '/avatar.png',
   },
   navMain: [
     {
