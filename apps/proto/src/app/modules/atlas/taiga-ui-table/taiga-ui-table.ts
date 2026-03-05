@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/component-selector */
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, OnInit, PipeTransform, DestroyRef, inject, signal, Pipe, untracked, ViewContainerRef, TemplateRef, ElementRef, Injector } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TuiTable } from '@taiga-ui/addon-table';
@@ -11,6 +11,8 @@ import {
   TuiPagination,
 } from '@taiga-ui/kit';
 import { TuiContext, TuiStringHandler } from '@taiga-ui/cdk/types';
+import { IMetaAttribute } from '../../metadb/attributes/meta-checked.attributes';
+import { ComponentPortal, ComponentType, DomPortal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
 
 /*
   extends PageNumberPagination, PageNumberCounters
@@ -35,6 +37,28 @@ export interface ITableColumn<T extends Record<string, unknown>> {
   type: 'number' | 'string' | 'boolean' | 'date';
 }
 
+@Pipe({ name: 'componentPortal' })
+export class ComponentPortalPipe<T = unknown> implements PipeTransform {
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly injector = inject(Injector);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly componentType = signal<ComponentType<T> | undefined>(undefined);
+
+  transform(context: unknown, attr: IMetaAttribute) {
+    const cellTemplate = attr.cellTemplate;
+    switch (attr.type) {
+      case 'template':
+        return new TemplatePortal(cellTemplate as TemplateRef<unknown>, this.viewContainerRef, context, this.injector);
+      case 'component':
+        return new ComponentPortal(cellTemplate as ComponentType<unknown>, this.viewContainerRef, this.injector);
+      case 'element':
+        return new DomPortal(cellTemplate as ElementRef<HTMLElement>);
+      default:
+        return '';
+    }
+  }
+}
+
 @Component({
   selector: 'atlas-taiga-ui-table',
   templateUrl: './taiga-ui-table.html',
@@ -49,12 +73,14 @@ export interface ITableColumn<T extends Record<string, unknown>> {
     TuiTextfield,
     TuiFormatNumberPipe,
     AsyncPipe,
+    PortalModule,
+    ComponentPortalPipe,
   ],
 })
-export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
+export class AtlasTaigaUiTable<T extends Record<string, unknown>> implements OnInit {
   protected readonly content: TuiStringHandler<TuiContext<number>> = ({ $implicit }) => `${$implicit} items per page`;
   public readonly rows = input.required<T[] | undefined>({ alias: 'tableRows' });
-  public readonly columns = input.required<ITableColumn<T>[]>({ alias: 'tableColumns' });
+  public readonly columns = input.required<IMetaAttribute[]>({ alias: 'tableColumns' });
   public readonly pagination = input<ITablePaginate | undefined>({
     length: 10,
     pageCount: 10,
@@ -79,7 +105,6 @@ export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
 
   protected pageIndexChange(indexPage: number): void {
     this.paginationChange.emit({ currentPage: indexPage + 1, pageCount: this.pagination()?.pageCount ?? 0, length: this.pagination()?.length ?? 0 });
-
   }
 
   protected pageCountChange(pageCount: number): void {
@@ -88,6 +113,10 @@ export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
 
   protected onTableRowClick(data: unknown): void {
     this.tableRowClick.emit(data);
+  }
+
+  ngOnInit(): void {
+    console.log('columns', this.columns());
   }
 }
 

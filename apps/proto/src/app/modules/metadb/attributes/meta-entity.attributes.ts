@@ -1,31 +1,36 @@
-export const attributeMetaEntityId = {
-    title: 'Id',
-    key: 'id',
-    type: 'string'
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @nx/enforce-module-boundaries */
+
+import { IMetaAttribute } from "./meta-checked.attributes";
+
+export const attributeMetaEntityId: IMetaAttribute = {
+  title: 'Id',
+  key: 'id',
+  type: 'string'
 } as const;
 
-export const attributeMetaEntityTitle = {
-    title: 'Title',
-    key: 'title',
-    type: 'string'
+export const attributeMetaEntityTitle: IMetaAttribute = {
+  title: 'Title',
+  key: 'title',
+  type: 'string'
 } as const;
 
-export const attributeMetaEntityDescription = {
-    title: 'Description',
-    key: 'description',
-    type: 'string'
+export const attributeMetaEntityDescription: IMetaAttribute = {
+  title: 'Description',
+  key: 'description',
+  type: 'string'
 } as const;
 
-export const attributeMetaEntityDisable = {
-    title: 'Disable',
-    key: 'disable',
-    type: 'boolean'
+export const attributeMetaEntityDisable: IMetaAttribute = {
+  title: 'Disable',
+  key: 'disable',
+  type: 'boolean'
 } as const;
 
-export const attributeMetaEntityReadonly = {
-    title: 'Readonly',
-    key: 'readonly',
-    type: 'string'
+export const attributeMetaEntityReadonly: IMetaAttribute = {
+  title: 'Readonly',
+  key: 'readonly',
+  type: 'string'
 } as const;
 
 /*

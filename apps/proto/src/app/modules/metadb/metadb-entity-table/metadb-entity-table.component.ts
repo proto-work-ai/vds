@@ -22,7 +22,6 @@ import { TuiDialogService } from '@taiga-ui/experimental';
 import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { tap } from 'rxjs';
 import { TuiAlertService } from '@taiga-ui/core';
-import { MetaEntity } from '@metadb/client';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponents } from '../../atlas/data-table/data-table';
 import { AtlasDataTableToggleSize } from '../../atlas/data-table-tools/data-table-toggle-size';
@@ -31,6 +30,7 @@ import { MetaDbEntityService } from '../services/metadb-entity.service';
 import { attributeMetaEntityDescription, attributeMetaEntityDisable, attributeMetaEntityReadonly, attributeMetaEntityTitle } from '../attributes/meta-entity.attributes';
 import { MetaEntityModal } from './metadb-entity-modal/metadb-entity-modal';
 import { AtlasTablePaginatePipe } from '../../atlas/atlas-table-paginate';
+import { attributeColumnMenu, IMetaAttribute } from '../attributes/meta-checked.attributes';
 
 export type Payment = {
   id: string;
@@ -38,6 +38,7 @@ export type Payment = {
   status: 'pending' | 'processing' | 'success' | 'failed';
   email: string;
 };
+
 
 @Component({
   selector: 'proto-metadb-entity-table',
@@ -78,11 +79,12 @@ export class MetadbEntitiesComponent {
   private readonly alerts = inject(TuiAlertService);
   private readonly dialogService = inject(TuiDialogService);
   protected readonly entityService = inject(MetaDbEntityService);
-  protected readonly columns = signal<ITableColumn<MetaEntity>[]>([
+  protected readonly columns = signal<IMetaAttribute[]>([
     attributeMetaEntityTitle,
     attributeMetaEntityDescription,
     attributeMetaEntityDisable,
     attributeMetaEntityReadonly,
+    attributeColumnMenu(),
   ]);
 
   protected readonly entityServiceAll = signal((paginate: ITablePaginate) =>
