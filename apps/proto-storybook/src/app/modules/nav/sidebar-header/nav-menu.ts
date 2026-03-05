@@ -1,6 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IMenuItem } from '@atlas/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideChartPie,
@@ -13,7 +14,6 @@ import {
 } from '@ng-icons/lucide';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
-import { IMenuItem } from '../../../common/menu';
 
 @Component({
   selector: 'proto-nav-menu',

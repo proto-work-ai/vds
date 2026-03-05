@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/component-selector */
-import { Component, input, output, OnInit, PipeTransform, DestroyRef, inject, signal, Pipe, untracked, ViewContainerRef, TemplateRef, ElementRef, Injector } from '@angular/core';
+import { Component, input, output, OnInit, PipeTransform, DestroyRef, inject, signal, Pipe, untracked, ViewContainerRef, TemplateRef, ElementRef, Injector, InjectionToken } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TuiTable } from '@taiga-ui/addon-table';
@@ -11,8 +11,9 @@ import {
   TuiPagination,
 } from '@taiga-ui/kit';
 import { TuiContext, TuiStringHandler } from '@taiga-ui/cdk/types';
-import { IMetaAttribute } from '../../metadb/attributes/meta-checked.attributes';
 import { ComponentPortal, ComponentType, DomPortal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
+import { IMetaAttribute, MetaAttribute } from '../core/attribute';
+import { tableColumnContextProvider, tableRowDataProvider, tableRowProvider } from './table-cell-context';
 
 /*
   extends PageNumberPagination, PageNumberCounters
@@ -39,23 +40,30 @@ export interface ITableColumn<T extends Record<string, unknown>> {
 
 @Pipe({ name: 'componentPortal' })
 export class ComponentPortalPipe<T = unknown> implements PipeTransform {
-  private readonly destroyRef = inject(DestroyRef);
   private readonly injector = inject(Injector);
   private readonly viewContainerRef = inject(ViewContainerRef);
-  private readonly componentType = signal<ComponentType<T> | undefined>(undefined);
 
-  transform(context: unknown, attr: IMetaAttribute) {
-    const cellTemplate = attr.cellTemplate;
-    switch (attr.type) {
+  transform(row: Record<string, unknown>, column: MetaAttribute) {
+    switch (column.type) {
       case 'template':
-        return new TemplatePortal(cellTemplate as TemplateRef<unknown>, this.viewContainerRef, context, this.injector);
+        return new TemplatePortal(column.cellContent as TemplateRef<unknown>, this.viewContainerRef, row, this.createIngector(row, column));
       case 'component':
-        return new ComponentPortal(cellTemplate as ComponentType<unknown>, this.viewContainerRef, this.injector);
+        return new ComponentPortal(column.cellContent as ComponentType<unknown>, this.viewContainerRef, this.createIngector(row, column));
       case 'element':
-        return new DomPortal(cellTemplate as ElementRef<HTMLElement>);
+        return new DomPortal(column.cellContent as ElementRef<HTMLElement>);
       default:
         return '';
     }
+  }
+
+  private createIngector(row: Record<string, unknown>, column: MetaAttribute): Injector {
+    return Injector.create({
+      parent: this.injector, providers: [
+        tableRowProvider(row),
+        tableColumnContextProvider(column.cellContentContext),
+        tableRowDataProvider(row?.[column.key]),
+      ]
+    })
   }
 }
 
@@ -80,7 +88,7 @@ export class ComponentPortalPipe<T = unknown> implements PipeTransform {
 export class AtlasTaigaUiTable<T extends Record<string, unknown>> implements OnInit {
   protected readonly content: TuiStringHandler<TuiContext<number>> = ({ $implicit }) => `${$implicit} items per page`;
   public readonly rows = input.required<T[] | undefined>({ alias: 'tableRows' });
-  public readonly columns = input.required<IMetaAttribute[]>({ alias: 'tableColumns' });
+  public readonly columns = input.required<MetaAttribute[]>({ alias: 'tableColumns' });
   public readonly pagination = input<ITablePaginate | undefined>({
     length: 10,
     pageCount: 10,

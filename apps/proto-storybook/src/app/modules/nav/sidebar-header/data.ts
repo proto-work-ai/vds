@@ -1,4 +1,5 @@
-import { IMenuItem } from "../../../common/menu";
+import { IMenuItem } from '@atlas/core';
+
 
 export const data = {
   user: {

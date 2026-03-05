@@ -9,6 +9,8 @@ import {
   lucideMinimize,
   lucideRefreshCcw,
   lucideChevronDown,
+  lucideTrash,
+  lucidePencil,
 } from '@ng-icons/lucide';
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,10 +29,11 @@ import { AtlasDataTableComponents } from '../../atlas/data-table/data-table';
 import { AtlasDataTableToggleSize } from '../../atlas/data-table-tools/data-table-toggle-size';
 import { AtlasTaigaUiTable, ITableColumn, ITablePaginate } from "../../atlas/taiga-ui-table/taiga-ui-table";
 import { MetaDbEntityService } from '../services/metadb-entity.service';
-import { attributeMetaEntityDescription, attributeMetaEntityDisable, attributeMetaEntityReadonly, attributeMetaEntityTitle } from '../attributes/meta-entity.attributes';
+import { attributeMetaEntityDescription, attributeMetaEntityDisable, attributeMetaEntityReadonly, attributeMetaEntityTitle } from '../attribute/meta-entity.attributes';
 import { MetaEntityModal } from './metadb-entity-modal/metadb-entity-modal';
 import { AtlasTablePaginatePipe } from '../../atlas/atlas-table-paginate';
-import { attributeColumnMenu, IMetaAttribute } from '../attributes/meta-checked.attributes';
+import { attributeColumnMenu } from '../../atlas/attribute/column-checked.attributes';
+import { MetaAttribute } from '../../atlas/core/attribute';
 
 export type Payment = {
   id: string;
@@ -38,7 +41,6 @@ export type Payment = {
   status: 'pending' | 'processing' | 'success' | 'failed';
   email: string;
 };
-
 
 @Component({
   selector: 'proto-metadb-entity-table',
@@ -71,6 +73,8 @@ export type Payment = {
       lucideRefreshCcw,
       lucideChevronDown,
       lucideLayersPlus,
+      lucideTrash,
+      lucidePencil,
     }),
   ],
 })
@@ -79,12 +83,29 @@ export class MetadbEntitiesComponent {
   private readonly alerts = inject(TuiAlertService);
   private readonly dialogService = inject(TuiDialogService);
   protected readonly entityService = inject(MetaDbEntityService);
-  protected readonly columns = signal<IMetaAttribute[]>([
+  protected readonly columns = signal<MetaAttribute[]>([
     attributeMetaEntityTitle,
     attributeMetaEntityDescription,
     attributeMetaEntityDisable,
     attributeMetaEntityReadonly,
-    attributeColumnMenu(),
+    attributeColumnMenu([
+      {
+        title: 'Edit Row',
+        icon: 'lucidePencil',
+        iconClass: 'text-gray-500',
+        onClick: (d) => {
+          console.log('onClick', d)
+        }
+      },
+      {
+        title: 'Remove Row',
+        icon: 'lucideTrash',
+        iconClass: 'text-red-500',
+        onClick: (d) => {
+          console.log('onClick', d)
+        }
+      },
+    ]),
   ]);
 
   protected readonly entityServiceAll = signal((paginate: ITablePaginate) =>

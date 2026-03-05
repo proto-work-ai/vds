@@ -8,23 +8,35 @@
   </thead>
 
   <tbody tuiTbody>
-    @for(item of rows(); track $index){
+    @for(row of rows(); track $index){
     <tr>
       @for(column of columns(); track column){ @switch (column.type) { @case
       ('string') {
-      <td tuiTd>{{ item?.[column.key] }}</td>
+      <td tuiTd>{{ row?.[column.key] }}</td>
       } @case ('number') {
-      <td tuiTd>{{ $any(item?.[column.key]) | tuiFormatNumber | async }}</td>
+      <td tuiTd>{{ $any(row?.[column.key]) | tuiFormatNumber | async }}</td>
       } @case ('boolean') {
-      <td tuiTd>{{ item?.[column.key] }}</td>
+      <td tuiTd>{{ row?.[column.key] }}</td>
+      } @case ('element') {
+      <td tuiTd>
+        <ng-template
+          [cdkPortalOutlet]="row | componentPortal:column"
+        ></ng-template>
+      </td>
+      } @case ('template') {
+      <td tuiTd>
+        <ng-template
+          [cdkPortalOutlet]="row | componentPortal:column"
+        ></ng-template>
+      </td>
       } @case ('component') {
       <td tuiTd>
         <ng-template
-          [cdkPortalOutlet]="item?.[column.key] | componentPortal:column"
+          [cdkPortalOutlet]="row | componentPortal:column"
         ></ng-template>
       </td>
       } @default {
-      <td tuiTd>{{ item?.[column.key] }}</td>
+      <td tuiTd>{{ row?.[column.key] }}</td>
       } } }
     </tr>
     }

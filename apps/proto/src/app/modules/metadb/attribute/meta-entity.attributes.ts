@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @nx/enforce-module-boundaries */
 
-import { IMetaAttribute } from "./meta-checked.attributes";
+import { IMetaAttribute } from "../../atlas/core/attribute";
 
 export const attributeMetaEntityId: IMetaAttribute = {
   title: 'Id',
