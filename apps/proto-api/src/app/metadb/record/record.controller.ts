@@ -15,25 +15,25 @@ import {
 import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 
 import { AuthGuard } from '../middlewares/auth.guard';
-import { EntryService } from './record.service';
+import { RecordService } from './record.service';
 import { EntityType, IRecord } from '@metadb/model';
 
 @ApiTags('Entries')
 @Controller('entry')
 @ApiBearerAuth()
-export class EntryController {
-  constructor(private readonly entityService: EntryService) {}
+export class RecordController {
+  constructor(private readonly recordService: RecordService) {}
 
   @Get()
-  @ApiResponse({ status: 200, description: 'Get all entries' })
-  async getAll() {
-    return this.entityService.getAll(null);
+  @ApiResponse({ status: 200, description: 'Get all entities' })
+  async getAll(@Query('length') length: number, @Query('currentPage') page: number) {
+    return this.recordService.getAll({ limit: Number(length ?? 10), page: Number(page ?? 0) });
   }
 
   @Get(':id')
   @ApiResponse({ status: 200, description: 'Get a entry by ID' })
   async getRoleById(@Param('id') id: string) {
-    return this.entityService.getById(id);
+    return this.recordService.getById(id);
   }
 
   @Post(':entityId')
@@ -44,9 +44,9 @@ export class EntryController {
     @Body() data: IRecord | IRecord[]
   ) {
     if (Array.isArray(data)) {
-      return this.entityService.createMany(entityId, data);
+      return this.recordService.createMany(entityId, data);
     } else {
-      return this.entityService.create(entityId, data);
+      return this.recordService.create(entityId, data);
     }
   }
 
@@ -58,9 +58,9 @@ export class EntryController {
     @Body() data: IRecord | IRecord[]
   ) {
     if (Array.isArray(data)) {
-      return this.entityService.updateMany(recordId, data);
+      return this.recordService.updateMany(recordId, data);
     } else {
-      return this.entityService.update(recordId, data);
+      return this.recordService.update(recordId, data);
     }
   }
 
@@ -68,14 +68,14 @@ export class EntryController {
   // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Delete a entity by ID' })
   async deleteById(@Param('id') id: string) {
-    return this.entityService.deleteById(id);
+    return this.recordService.deleteById(id);
   }
 
   @Patch(':id')
   // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a entity by ID' })
   async patch(@Param('id') id: string, @Body() data: any) {
-    return this.entityService.update(id, data);
+    return this.recordService.update(id, data);
   }
 
   @Get('by-entity/:id')
@@ -91,7 +91,7 @@ export class EntryController {
     try {
       search = JSON.parse(filter as string);
     } catch (e) {}
-    return this.entityService.getManyByEntity(id, search);
+    return this.recordService.getManyByEntity(id, search);
   }
 
   @Get('by-type/:type')
@@ -107,6 +107,6 @@ export class EntryController {
     try {
       search = JSON.parse(filter as string);
     } catch (e) {}
-    return this.entityService.getManyByType(type, search);
+    return this.recordService.getManyByType(type, search);
   }
 }

@@ -26,28 +26,28 @@ export function metadbRoute(path: string): Route {
       {
         path: metadbPages.entities.root,
         loadComponent: () =>
-          import('./metadb-entity-table/metadb-entity-table.component').then(
+          import('./entity-table/entity-table.component').then(
             (a) => a.MetadbEntitiesComponent,
           ),
       },
       {
         path: metadbPages.attributes.root,
         loadComponent: () =>
-          import('./metadb-attribute-table/metadb-attribute-table.component').then(
+          import('./attribute-table/attribute-table.component').then(
             (a) => a.MetadbAttributesComponent,
           ),
       },
       {
         path: metadbPages.records.root,
         loadComponent: () =>
-          import('./metadb-record-table/metadb-record-table.component').then(
+          import('./record-table/record-table.component').then(
             (a) => a.MetadbRecordsComponent,
           ),
       },
       {
         path: metadbPages.values.root,
         loadComponent: () =>
-          import('./metadb-value-table/metadb-value-table.component').then(
+          import('./value-table/value-table.component').then(
             (a) => a.MetadbValuesComponent,
           ),
       },

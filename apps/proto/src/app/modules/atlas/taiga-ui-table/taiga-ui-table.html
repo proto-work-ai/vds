@@ -7,32 +7,37 @@
     </tr>
   </thead>
 
+  @if(rows()?.length && rows(); as rows){
   <tbody tuiTbody>
-    @for(row of rows(); track $index){
+    @for(row of rows; track $index){
     <tr>
       @for(column of columns(); track column){ @switch (column.type) { @case
       ('string') {
-      <td tuiTd>{{ row?.[column.key] }}</td>
+      <td tuiTd class="truncate max-w-100">{{ row?.[column.key] }}</td>
       } @case ('number') {
       <td tuiTd>{{ $any(row?.[column.key]) | tuiFormatNumber | async }}</td>
       } @case ('boolean') {
-      <td tuiTd>{{ row?.[column.key] }}</td>
+      <td tuiTd>
+        <ng-template
+          [cdkPortalOutlet]="row | tableCellPortal:column"
+        ></ng-template>
+      </td>
       } @case ('element') {
       <td tuiTd>
         <ng-template
-          [cdkPortalOutlet]="row | componentPortal:column"
+          [cdkPortalOutlet]="row | tableCellPortal:column"
         ></ng-template>
       </td>
       } @case ('template') {
       <td tuiTd>
         <ng-template
-          [cdkPortalOutlet]="row | componentPortal:column"
+          [cdkPortalOutlet]="row | tableCellPortal:column"
         ></ng-template>
       </td>
       } @case ('component') {
       <td tuiTd>
         <ng-template
-          [cdkPortalOutlet]="row | componentPortal:column"
+          [cdkPortalOutlet]="row | tableCellPortal:column"
         ></ng-template>
       </td>
       } @default {
@@ -43,8 +48,9 @@
   </tbody>
 
   <caption tuiCaption>
-    <span>999 rows</span>
-    @if(pagination(); as pagination){
+    @if(pagination()?.totalCount; as totalCount){
+    <span class="text-gray-400">{{totalCount}} rows</span>
+    } @if(pagination(); as pagination){
     <button
       appearance="flat"
       tuiButton
@@ -71,4 +77,13 @@
     />
     }
   </caption>
+  } @else {
+  <tbody tuiTbody>
+    <tr>
+      <td [colSpan]="columns().length" tuiTd>
+        <div class="text-center">No data available in table</div>
+      </td>
+    </tr>
+  </tbody>
+  }
 </table>

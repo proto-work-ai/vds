@@ -4,12 +4,12 @@ import { PrismaModule } from '@metadb/prisma';
 import { AuthModule } from '../auth/auth.module';
 import { UserModule } from '../user/user.module';
 
-import { EntryController } from './record.controller';
-import { EntryService } from './record.service';
+import { RecordController } from './record.controller';
+import { RecordService } from './record.service';
 
 @Module({
-  controllers: [EntryController],
-  providers: [EntryService],
+  controllers: [RecordController],
+  providers: [RecordService],
   imports: [PrismaModule, AuthModule, UserModule],
 })
 export class RecordModule {}

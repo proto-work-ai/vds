@@ -16,10 +16,10 @@ export function tableRowProvider(value: unknown): ValueProvider {
     };
 }
 
-export const TABLE_ROW_DATA = new InjectionToken<unknown>('TABLE_ROW_DATA');
+export const TABLE_CELL_DATA = new InjectionToken<unknown>('TABLE_ROW_DATA');
 export function tableRowDataProvider(value: unknown): ValueProvider {
     return {
-        provide: TABLE_ROW_DATA,
+        provide: TABLE_CELL_DATA,
         useValue: value
     };
 }

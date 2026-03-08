@@ -3,7 +3,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import {
   lucideLayersPlus,
   lucideMaximize,
@@ -11,7 +11,7 @@ import {
   lucideRefreshCcw,
   lucideChevronDown,
 } from '@ng-icons/lucide';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -19,38 +19,22 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { AtlasTaigaUiTable } from "../taiga-ui-table/taiga-ui-table";
-import { AtlasDataTableComponents } from '../data-table/data-table';
-import { AtlasDataTableToggleSize } from '../data-table-tools/data-table-toggle-size';
-import { AtlasTablePaginatePipe } from '../atlas-table-paginate';
+import { TABLE_CELL_DATA } from '../taiga-ui-table/table-cell-context';
+import { TuiCheckbox } from '@taiga-ui/kit';
+import { TuiLabel } from '@taiga-ui/core';
 
 @Component({
   selector: 'atlas-column-table-checked',
   template: `
-      <label tuiLabel>
-        <input tuiCheckbox type="checkbox" size="m" ngModel />
-        Readonly
+      <label tuiLabel class="pointer-events-none">
+        <input tuiCheckbox type="checkbox" size="s" [ngModel]="cellData" readonly/>
       </label>
     `,
   imports: [
-    HlmSidebarImports,
-    HlmIconImports,
-    HlmButtonImports,
-    HlmIconImports,
-    HlmDropdownMenuImports,
-    HlmButtonImports,
-    HlmIconImports,
-    HlmInputImports,
-    BrnSelectImports,
-    HlmSelectImports,
-    HlmTableImports,
-    AtlasDataTableComponents,
     FormsModule,
     ReactiveFormsModule,
-    NgIcon,
-    AtlasTaigaUiTable,
-    AtlasDataTableToggleSize,
-    AtlasTablePaginatePipe,
+    TuiCheckbox,
+    TuiLabel,
   ],
   providers: [
     provideIcons({
@@ -62,4 +46,6 @@ import { AtlasTablePaginatePipe } from '../atlas-table-paginate';
     }),
   ],
 })
-export class ColumnTableChecked { }
+export class ColumnTableChecked {
+  protected readonly cellData = inject(TABLE_CELL_DATA);
+ }

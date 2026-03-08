@@ -6,16 +6,33 @@ import { CreateAttributeDto, UpdateAttributeDto } from './dto';
 import { attributeSpecificityFilterExcept, EntityType } from '@metadb/model';
 import { MetaAttribute } from '@metadb/client';
 import { PrismaService } from '@metadb/prisma';
+import { PageNumberPagination } from 'prisma-extension-pagination/dist/types';
+import { pagination } from 'prisma-extension-pagination';
 
 @Injectable()
 export class AttributeSevice {
+  private prismaPagination = this.prisma.$extends(pagination());
   private get attribute() {
     return this.prisma.metaAttribute;
   }
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
-  async getAll(): Promise<MetaAttribute[]> {
-    return this.attribute.findMany();
+  async getAll(params: {
+    limit: number,
+    page: number,
+  } = {
+      limit: 10,
+      page: 1,
+    }): Promise<{ data: MetaAttribute[], paginate: PageNumberPagination }> {
+    return this.prismaPagination.metaAttribute
+      .paginate()
+      .withPages({
+        ...params,
+        includePageCount: true
+      }).then((result) => {
+        const [data, paginate] = result;
+        return { data, paginate };
+      })
   }
 
   async getById(id: string): Promise<MetaAttribute> {

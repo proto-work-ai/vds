@@ -62,7 +62,7 @@ export class DataTableHeader {}
   <atlas-data-table>
     <header *dataTableHeader class="flex gap-2 flex-1">
 
-      <button variant="outline" hlmBtn (click)="openEditModal()">Add Entity</button>
+      <button variant="outline" hlmBtn (click)="openEditModal()">Create Entity</button>
 
       <atlas-data-table-filter [columnName]="'email'"></atlas-data-table-filter>
 

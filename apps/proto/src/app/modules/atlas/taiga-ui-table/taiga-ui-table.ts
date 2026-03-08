@@ -14,6 +14,7 @@ import { TuiContext, TuiStringHandler } from '@taiga-ui/cdk/types';
 import { ComponentPortal, ComponentType, DomPortal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
 import { IMetaAttribute, MetaAttribute } from '../core/attribute';
 import { tableColumnContextProvider, tableRowDataProvider, tableRowProvider } from './table-cell-context';
+import { TableCellPortalPipe } from './table-cell-portal';
 
 /*
   extends PageNumberPagination, PageNumberCounters
@@ -38,35 +39,6 @@ export interface ITableColumn<T extends Record<string, unknown>> {
   type: 'number' | 'string' | 'boolean' | 'date';
 }
 
-@Pipe({ name: 'componentPortal' })
-export class ComponentPortalPipe<T = unknown> implements PipeTransform {
-  private readonly injector = inject(Injector);
-  private readonly viewContainerRef = inject(ViewContainerRef);
-
-  transform(row: Record<string, unknown>, column: MetaAttribute) {
-    switch (column.type) {
-      case 'template':
-        return new TemplatePortal(column.cellContent as TemplateRef<unknown>, this.viewContainerRef, row, this.createIngector(row, column));
-      case 'component':
-        return new ComponentPortal(column.cellContent as ComponentType<unknown>, this.viewContainerRef, this.createIngector(row, column));
-      case 'element':
-        return new DomPortal(column.cellContent as ElementRef<HTMLElement>);
-      default:
-        return '';
-    }
-  }
-
-  private createIngector(row: Record<string, unknown>, column: MetaAttribute): Injector {
-    return Injector.create({
-      parent: this.injector, providers: [
-        tableRowProvider(row),
-        tableColumnContextProvider(column.cellContentContext),
-        tableRowDataProvider(row?.[column.key]),
-      ]
-    })
-  }
-}
-
 @Component({
   selector: 'atlas-taiga-ui-table',
   templateUrl: './taiga-ui-table.html',
@@ -82,7 +54,7 @@ export class ComponentPortalPipe<T = unknown> implements PipeTransform {
     TuiFormatNumberPipe,
     AsyncPipe,
     PortalModule,
-    ComponentPortalPipe,
+    TableCellPortalPipe,
   ],
 })
 export class AtlasTaigaUiTable<T extends Record<string, unknown>> implements OnInit {
@@ -121,6 +93,14 @@ export class AtlasTaigaUiTable<T extends Record<string, unknown>> implements OnI
 
   protected onTableRowClick(data: unknown): void {
     this.tableRowClick.emit(data);
+  }
+
+  public refresh(): void {
+    this.paginationChange.emit({
+      pageCount: this.pagination()?.pageCount ?? 1,
+      currentPage: this.pagination()?.currentPage ?? 0,
+      length: this.pagination()?.length ?? 0
+    });
   }
 
   ngOnInit(): void {

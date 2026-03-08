@@ -30,7 +30,7 @@ export const attributeMetaEntityDisable: IMetaAttribute = {
 export const attributeMetaEntityReadonly: IMetaAttribute = {
   title: 'Readonly',
   key: 'readonly',
-  type: 'string'
+  type: 'boolean'
 } as const;
 
 /*

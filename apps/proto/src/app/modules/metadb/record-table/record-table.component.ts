@@ -12,7 +12,7 @@ import {
   lucideTrash,
   lucidePencil,
 } from '@ng-icons/lucide';
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -27,13 +27,15 @@ import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponents } from '../../atlas/data-table/data-table';
 import { AtlasDataTableToggleSize } from '../../atlas/data-table-tools/data-table-toggle-size';
-import { AtlasTaigaUiTable, ITableColumn, ITablePaginate } from "../../atlas/taiga-ui-table/taiga-ui-table";
-import { MetaDbEntityService } from '../services/metadb-entity.service';
-import { attributeMetaEntityDescription, attributeMetaEntityDisable, attributeMetaEntityReadonly, attributeMetaEntityTitle } from '../attribute/meta-entity.attributes';
-import { MetaEntityModal } from './metadb-entity-modal/metadb-entity-modal';
+import { AtlasTaigaUiTable, ITablePaginate } from "../../atlas/taiga-ui-table/taiga-ui-table";
 import { AtlasTablePaginatePipe } from '../../atlas/atlas-table-paginate';
 import { attributeColumnMenu } from '../../atlas/attribute/column-checked.attributes';
 import { MetaAttribute } from '../../atlas/core/attribute';
+import { attributeMetaEntityDescription, attributeMetaEntityDisable, attributeMetaEntityReadonly, attributeMetaEntityTitle } from '../attribute/meta-entity.attributes';
+
+import { MetaRecord } from '@metadb/client';
+import { RecordEditModal, RecordEditModalData } from './record-edit-modal/record-edit-modal';
+import { MetaRecordService } from '../services/meta-record.service';
 
 export type Payment = {
   id: string;
@@ -43,9 +45,9 @@ export type Payment = {
 };
 
 @Component({
-  selector: 'proto-metadb-entity-table',
-  templateUrl: './metadb-entity-table.component.html',
-  styleUrls: ['./metadb-entity-table.component.scss'],
+  selector: 'proto-metadb-record-table',
+  templateUrl: './record-table.component.html',
+  styleUrls: ['./record-table.component.scss'],
   imports: [
     HlmSidebarImports,
     HlmIconImports,
@@ -78,58 +80,72 @@ export type Payment = {
     }),
   ],
 })
-export class MetadbEntitiesComponent {
+export class MetadbRecordsComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly alerts = inject(TuiAlertService);
   private readonly dialogService = inject(TuiDialogService);
-  protected readonly entityService = inject(MetaDbEntityService);
+  protected readonly recordService = inject(MetaRecordService);
   protected readonly columns = signal<MetaAttribute[]>([
     attributeMetaEntityTitle,
     attributeMetaEntityDescription,
     attributeMetaEntityDisable,
     attributeMetaEntityReadonly,
-    attributeColumnMenu([
+    this.getColumnMenu(),
+  ]);
+  private readonly tableRef = viewChild(AtlasTaigaUiTable);
+
+  protected readonly entityServiceAll = signal((paginate: ITablePaginate) =>
+    this.recordService.getAll(paginate)
+  );
+
+  protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
+
+  protected openEditModal(model?: MetaRecord): void {
+    this.dialogService
+      .open<string>(new PolymorpheusComponent(RecordEditModal), {
+        label: model ? 'Edit Record' : 'Create Record',
+        size: 'm',
+        data: { model } satisfies RecordEditModalData,
+      })
+      .pipe(
+        tap((result) => {
+          if (result) {
+            this.alerts.open('Alert');
+            this.tableRefresh()
+          }
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
+  }
+
+  protected removeById(id: string) {
+    this.recordService.delete(id).pipe(
+      tap(() => this.tableRefresh()),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe();
+  }
+
+  private getColumnMenu(): MetaAttribute {
+    return attributeColumnMenu([
       {
         title: 'Edit Row',
         icon: 'lucidePencil',
         iconClass: 'text-gray-500',
-        onClick: (d) => {
-          console.log('onClick', d)
+        onClick: (data: MetaRecord) => {
+          this.openEditModal(data);
         }
       },
       {
         title: 'Remove Row',
         icon: 'lucideTrash',
         iconClass: 'text-red-500',
-        onClick: (d) => {
-          console.log('onClick', d)
-        }
+        onClick: (data: MetaRecord) => this.removeById(data.id)
       },
-    ]),
-  ]);
+    ])
+  }
 
-  protected readonly entityServiceAll = signal((paginate: ITablePaginate) =>
-    this.entityService.getAll(paginate)
-  );
-
-  protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
-
-  protected openEditModal(model?: unknown): void {
-    this.dialogService
-      .open<string>(new PolymorpheusComponent(MetaEntityModal), {
-        label: model ? 'Edit Entity' : 'Create Entity',
-        size: 'm',
-        data: { model },
-      })
-      .pipe(
-        tap((result) => {
-          if (result) {
-            this.alerts.open('Alert');
-            // this.tableRefresh()
-          }
-        }),
-        takeUntilDestroyed(this.destroyRef)
-      )
-      .subscribe();
+  private tableRefresh(): void {
+    this.tableRef()!.refresh();
   }
 }

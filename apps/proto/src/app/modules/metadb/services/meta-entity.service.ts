@@ -8,7 +8,7 @@ import { ITablePaginate } from '../../atlas/taiga-ui-table/taiga-ui-table';
 export interface IMetaEntityData<T = MetaEntity> { data: T[], paginate: ITablePaginate }
 
 @Injectable({ providedIn: 'root' })
-export class MetaDbEntityService {
+export class MetaEntityService {
   #http = inject(HttpClient);
 
   getAll(params: { currentPage: number; length: number; }): Observable<IMetaEntityData> {

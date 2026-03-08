@@ -7,7 +7,8 @@ import {
   Delete,
   Body,
   Param,
-  UseGuards
+  UseGuards,
+  Query
 } from '@nestjs/common';
 import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { EntityType } from '@metadb/model';
@@ -25,8 +26,14 @@ export class AttributeController {
 
   @Get()
   @ApiResponse({ status: 200, description: 'Get all attributes' })
-  async getAll() {
+  async getAll2() {
     return this.attributeSevice.getAll();
+  }
+
+  @Get()
+  @ApiResponse({ status: 200, description: 'Get all entities' })
+  async getAll(@Query('length') length: number, @Query('currentPage') page: number) {
+    return this.attributeSevice.getAll({ limit: Number(length ?? 10), page: Number(page ?? 0) });
   }
 
   @Get(':id')

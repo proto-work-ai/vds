@@ -5,5 +5,5 @@ export interface IMenuItem {
   iconClass?: string;
   isActive?: boolean;
   items?: IMenuItem[],
-  onClick?: (row: unknown) => void;
+  onClick?: (row: any) => void;
 }

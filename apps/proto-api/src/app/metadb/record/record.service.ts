@@ -8,6 +8,7 @@ import { pagination } from 'prisma-extension-pagination';
 import { PrismaService } from '@metadb/prisma';
 import { getValuesForRecord } from './getValuesForRecord';
 import { recordMap } from './recordMap';
+import { PageNumberPagination } from 'prisma-extension-pagination/dist/types';
 // import { FilterAndPagination, bindFieldWhere } from '@proto/ui/core';
 // import { getValuesForRecord } from 'src/record/getValuesForRecord';
 // import { recordMap } from 'src/record/recordMap';
@@ -19,22 +20,30 @@ import { recordMap } from './recordMap';
 //import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
-export class EntryService {
-  //private prismaPagination = new PrismaClient().$extends(pagination());
-  private get delegate() {
+export class RecordService {
+  private prismaPagination = this.prisma.$extends(pagination());
+  private get record() {
     return this.prisma.metaRecord;
   }
 
   constructor(private prisma: PrismaService) {}
 
-  async getAll(type: EntityType): Promise<MetaRecord[]> {
-    return this.delegate.findMany({
-      where: {
-        entity: {
-          type: type as any
-        }
-      }
-    });
+  async getAll(params: {
+    limit: number,
+    page: number,
+  } = {
+      limit: 10,
+      page: 1,
+    }): Promise<{ data: MetaRecord[], paginate: PageNumberPagination }> {
+      return this.prismaPagination.metaRecord
+      .paginate()
+      .withPages({
+        ...params,
+        includePageCount: true
+      }).then((result) => {
+        const [data, paginate] = result;
+        return { data, paginate };
+      })
   }
 
   async create(
@@ -206,7 +215,7 @@ export class EntryService {
   }
 
   async getById(recordId: string): Promise<Record<string, any>> {
-    return this.delegate
+    return this.record
       .findFirst({
         where: {
           id: recordId
@@ -346,7 +355,7 @@ export class EntryService {
   }
 
   async deleteById(id: string): Promise<MetaRecord> {
-    return this.delegate.delete({
+    return this.record.delete({
       where: { id }
     });
   }
@@ -459,11 +468,9 @@ export class EntryService {
     type?: EntityType,
     search: FilterAndPagination = {}
   ): Promise<any> {
-    const prismaPagination = new PrismaClient().$extends(pagination());
-
     const whereByValue = bindFieldWhere(search?.filters);
 
-    return prismaPagination.metaRecord
+    return this.prismaPagination.metaRecord
       .paginate({
         where: {
           OR: [

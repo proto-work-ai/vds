@@ -3,7 +3,7 @@
 <section class="p-3">
   <header class="flex gap-2 flex-1 my-2">
     <button variant="outline" hlmBtn (click)="openEditModal()">
-      Add Entity
+      Create Attribute
     </button>
 
     <div class="flex-1"></div>
@@ -18,6 +18,6 @@
   <atlas-taiga-ui-table
     [tableRows]="[] | atlasTablePaginate: entityServiceAll()"
     [tableColumns]="columns()"
-    (tableRowClick)="openEditModal($event)"
+    (tableRowClick)="openEditModal($any($event))"
   ></atlas-taiga-ui-table>
 </section>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { FormType, markAsSubmit } from '@atlas/core';
+import { markAsSubmit } from '@atlas/core';
 import { MetaEntity } from '@metadb/client';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
 import { TuiButton, TuiTextfield } from '@taiga-ui/core';
@@ -9,24 +9,25 @@ import { TuiCheckbox, TuiTextarea } from '@taiga-ui/kit';
 import { TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MetaDbEntityService } from '../../services/metadb-entity.service';
+import { MetaEntityService } from '../../services/meta-entity.service';
 import { tap } from 'rxjs';
+import { HlmButtonImports } from '@spartan-ng/helm/button';
 
-export interface MetaEntityModalData {
+export interface EntityEditModalData {
   model: Partial<any>;
 }
 
 @Component({
-  templateUrl: './metadb-entity-modal.html',
-  imports: [FormsModule, ReactiveFormsModule, TuiButton, TuiForm, TuiTextfield, TuiTextarea, TuiCheckbox, TuiAutoFocus],
+  templateUrl: './entity-edit-modal.html',
+  imports: [HlmButtonImports, FormsModule, ReactiveFormsModule, TuiButton, TuiForm, TuiTextfield, TuiTextarea, TuiCheckbox, TuiAutoFocus],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MetaEntityModal {
-  protected readonly context = injectContext<TuiDialogContext<boolean, MetaEntityModalData>>();
+export class EntityEditModal {
+  protected readonly context = injectContext<TuiDialogContext<boolean, EntityEditModalData>>();
   protected destroyRef = inject(DestroyRef);
-  protected entityService = inject(MetaDbEntityService);
+  protected entityService = inject(MetaEntityService);
 
-  protected form = new FormGroup<FormType<MetaEntity>>({
+  protected form = new FormGroup({
     id: new FormControl<string>(''),
     title: new FormControl<string>('', [Validators.required]),
     description: new FormControl<string>(''),
@@ -64,9 +65,9 @@ export class MetaEntityModal {
   protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
       if (this.isEditable) {
-        this.formUpdate(this.form.value)
+        this.formUpdate(this.form.value as MetaEntity)
       } else {
-        this.formCreate(this.form.value)
+        this.formCreate(this.form.value as MetaEntity)
       }
     }
   }

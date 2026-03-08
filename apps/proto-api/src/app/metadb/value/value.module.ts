@@ -4,12 +4,12 @@ import { PrismaModule } from "@metadb/prisma";
 
 import { AuthModule } from "../auth/auth.module";
 import { UserModule } from "../user/user.module";
-import { EntityController } from "./entity.controller";
-import { MetaEntityService } from "./entity.service";
+import { ValueController } from "./value.controller";
+import { MetaValueSevice } from "./value.service";
 
 @Module({
-  controllers: [EntityController],
-  providers: [MetaEntityService],
+  controllers: [ValueController],
+  providers: [MetaValueSevice],
   imports: [PrismaModule, AuthModule, UserModule],
 })
-export class EntityModule{}
+export class ValueModule { }

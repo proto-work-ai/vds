@@ -1,10 +1,10 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@nestjs/common';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
-import { EntityType, FilterAndPagination } from '@metadb/model';
-import { MetaEntity, PrismaClient } from '@metadb/client';
+import { EntityType } from '@metadb/model';
+import { MetaEntity } from '@metadb/client';
 import { PrismaService } from '@metadb/prisma';
-import { pagination, paginate } from 'prisma-extension-pagination';
+import { pagination } from 'prisma-extension-pagination';
 import { PageNumberPagination } from 'prisma-extension-pagination/dist/types';
 
 @Injectable()
@@ -23,8 +23,7 @@ export class MetaEntityService {
       limit: 10,
       page: 1,
     }): Promise<{ data: MetaEntity[], paginate: PageNumberPagination }> {
-    console.log('params', params);
-    return this.prismaPagination.metaEntity
+      return this.prismaPagination.metaEntity
       .paginate()
       .withPages({
         ...params,
@@ -41,7 +40,7 @@ export class MetaEntityService {
         where: { id },
       })
       .then((entity) => {
-        // TODO удвалить(readonly)
+        // TODO удалить(readonly)
         entity = { ...entity };
         entity.readonly = false;
         return entity;
@@ -56,7 +55,7 @@ export class MetaEntityService {
         },
       })
       .then((entity) => {
-        // TODO удвалить(readonly)
+        // TODO удалить(readonly)
         entity = { ...entity };
         entity.readonly = false;
         return entity;

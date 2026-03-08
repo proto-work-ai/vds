@@ -6,7 +6,7 @@ import { ATTRIBUTE_STRING, IUser } from '@metadb/model';
 import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
-import { EntryService } from '../record/record.service';
+import { RecordService } from '../record/record.service';
 
 export interface UserWithRoles extends CreateUserDto {
   id: string;
@@ -23,15 +23,15 @@ export class UserService {
   }
   constructor(
     private prisma: PrismaService,
-    private entryService: EntryService
+    private recordService: RecordService
   ) {}
 
   async getAll() {
-    const users = await this.entryService.getAll('USER');
+    // const users = await this.recordService.getAll('USER');
   }
 
   async getById(id: string): Promise<UserDto | null> {
-    const user: IUser = await this.entryService.getById(id);
+    const user: IUser = await this.recordService.getById(id);
 
     if (!user) {
       return null;
@@ -45,19 +45,19 @@ export class UserService {
   }
 
   async create(user: IUser) {
-    return await this.entryService.create('USER', user);
+    return await this.recordService.create('USER', user);
   }
 
   async update(id: string, user: UpdateUserDto) {
-    return await this.entryService.update(id, user);
+    return await this.recordService.update(id, user);
   }
 
   async deleteById(id: string): Promise<IUser> {
-    return await this.entryService.deleteById(id);
+    return await this.recordService.deleteById(id);
   }
 
   async findByUsername(username: string): Promise<IUser | null> {
-    return await this.entryService.find('USER', {
+    return await this.recordService.find('USER', {
       filters: [
         {
           field: { name: 'username', type: ATTRIBUTE_STRING },
