@@ -50,10 +50,10 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
     NgIcon,
     RouterOutlet,
     NavMain,
-    NavProjects,
     NavUser,
     NavSecondary,
     RouterOutlet,
+    NavProjects,
     NavMenu,
   ],
   providers: [

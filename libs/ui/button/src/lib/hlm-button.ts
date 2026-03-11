@@ -6,7 +6,7 @@ import type { ClassValue } from 'clsx';
 import { injectBrnButtonConfig } from './hlm-button.token';
 
 export const buttonVariants = cva(
-	"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 rounded-md text-sm font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0 [&_ng-icon:not([class*='text-'])]:text-base cursor-pointer",
+	"focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive inline-flex shrink-0 items-center justify-center gap-2 rounded-md font-medium whitespace-nowrap transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50 [&_ng-icon]:pointer-events-none [&_ng-icon]:shrink-0 [&_ng-icon:not([class*='text-'])]:text-base cursor-pointer -text-sm",
 	{
 		variants: {
 			variant: {
@@ -22,9 +22,9 @@ export const buttonVariants = cva(
 			size: {
 				xs: `h-6 gap-1 rounded-md px-2 text-xs has-[>ng-icon]:px-1.5 [&_ng-icon:not([class*='text-'])]:text-xs`,
 				sm: 'h-8 gap-1.5 rounded-md px-3 has-[>ng-icon]:px-2.5',
-				default: 'h-9 px-4 py-2 has-[>ng-icon]:px-3',
+				default: 'h-10 px-4 py-4 has-[>ng-icon]:px-3',
 				lg: 'h-10 rounded-md px-6 has-[>ng-icon]:px-4',
-				icon: 'size-9',
+				icon: 'size-10',
 				'icon-xs': `size-6 rounded-md [&_ng-icon:not([class*='text-'])]:text-xs`,
 				'icon-sm': 'size-8',
 				'icon-lg': 'size-10',

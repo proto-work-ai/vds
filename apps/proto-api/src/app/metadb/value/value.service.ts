@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@nestjs/common';
 import { MetaAttribute, MetaEntity, MetaRecord, MetaValue } from '@metadb/client';
-import { VALUE_KEY_SET } from '@metadb/model';
+import { VALUE_KEY_SET } from '@metadb/core';
 import { pagination } from 'prisma-extension-pagination';
 import { PrismaService } from '@metadb/prisma';
 import { PageNumberPagination } from 'prisma-extension-pagination/dist/types';

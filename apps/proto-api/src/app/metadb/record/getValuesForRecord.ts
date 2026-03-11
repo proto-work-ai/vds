@@ -5,7 +5,7 @@ import {
   attributeViewFilterExcept,
   EntityAttributeType,
   VALUE_KEY_SET,
-} from '@metadb/model';
+} from '@metadb/core';
 import { MetaAttribute, MetaValue } from '@metadb/client';
 
 /*

@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@nestjs/common';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
-import { EntityType } from '@metadb/model';
+import { EntityType } from '@metadb/core';
 import { MetaEntity } from '@metadb/client';
 import { PrismaService } from '@metadb/prisma';
 import { pagination } from 'prisma-extension-pagination';

@@ -5,7 +5,7 @@ import { BehaviorSubject, filter, map, Observable, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SIGNAL } from '@angular/core/primitives/signals';
 import { AtlasTaigaUiTable, ITablePaginate } from './taiga-ui-table/taiga-ui-table';
-import { IMetaEntityData } from '../metadb/services/meta-entity.service';
+import { IMetaEntityData } from '../meta/services/meta-entity.service';
 
 function applyValueToInputSignal<T>(signal: InputSignal<T>, value: T) {
   const node = signal[SIGNAL];

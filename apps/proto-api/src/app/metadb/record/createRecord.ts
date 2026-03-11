@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { EntityType } from '@metadb/model';
+import { EntityType } from '@metadb/core';
 import {
   MetaAttribute,
   MetaEntity,

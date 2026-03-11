@@ -6,7 +6,7 @@ import {
 } from './selection-column';
 import { TableHeadSortButton } from './sort-header-button';
 import { ActionDropdown } from './action-dropdown';
-import { Payment } from '../../metadb/entity-table/entity-table.component';
+import { Payment } from '../../meta/entity/entity-table.component';
 
 export const dataTableColumns: ColumnDef<Payment>[] = [
   {

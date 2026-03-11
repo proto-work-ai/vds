@@ -1,7 +1,7 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/component-selector */
-import { Component, input, output, OnInit, PipeTransform, DestroyRef, inject, signal, Pipe, untracked, ViewContainerRef, TemplateRef, ElementRef, Injector, InjectionToken } from '@angular/core';
-import { AsyncPipe } from '@angular/common';
+import { Component, input, output } from '@angular/core';
+import { AsyncPipe, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TuiTable } from '@taiga-ui/addon-table';
 import { TuiButton, TuiFormatNumberPipe, TuiTextfield } from '@taiga-ui/core';
@@ -11,9 +11,8 @@ import {
   TuiPagination,
 } from '@taiga-ui/kit';
 import { TuiContext, TuiStringHandler } from '@taiga-ui/cdk/types';
-import { ComponentPortal, ComponentType, DomPortal, PortalModule, TemplatePortal } from '@angular/cdk/portal';
-import { IMetaAttribute, MetaAttribute } from '../core/attribute';
-import { tableColumnContextProvider, tableRowDataProvider, tableRowProvider } from './table-cell-context';
+import { PortalModule } from '@angular/cdk/portal';
+import { ColumnAttributeTable } from '../core/attribute';
 import { TableCellPortalPipe } from './table-cell-portal';
 
 /*
@@ -55,12 +54,13 @@ export interface ITableColumn<T extends Record<string, unknown>> {
     AsyncPipe,
     PortalModule,
     TableCellPortalPipe,
+    DatePipe
   ],
 })
-export class AtlasTaigaUiTable<T extends Record<string, unknown>> implements OnInit {
+export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
   protected readonly content: TuiStringHandler<TuiContext<number>> = ({ $implicit }) => `${$implicit} items per page`;
   public readonly rows = input.required<T[] | undefined>({ alias: 'tableRows' });
-  public readonly columns = input.required<MetaAttribute[]>({ alias: 'tableColumns' });
+  public readonly columns = input.required<ColumnAttributeTable[]>({ alias: 'tableColumns' });
   public readonly pagination = input<ITablePaginate | undefined>({
     length: 10,
     pageCount: 10,
@@ -102,19 +102,4 @@ export class AtlasTaigaUiTable<T extends Record<string, unknown>> implements OnI
       length: this.pagination()?.length ?? 0
     });
   }
-
-  ngOnInit(): void {
-    console.log('columns', this.columns());
-  }
 }
-
-// protected readonly data = [
-//   {
-//     name: 'Alex Inkin',
-//     balance: 1323525,
-//   },
-//   {
-//     name: 'Roman Sedov',
-//     balance: 423242,
-//   },
-// ] as const;

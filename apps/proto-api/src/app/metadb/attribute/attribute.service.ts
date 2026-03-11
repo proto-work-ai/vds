@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 //import { PrismaService } from '../prisma/prisma.service';
 import { CreateAttributeDto, UpdateAttributeDto } from './dto';
 //import { attributeSpecificityFilterExcept } from '@atlas/core/base';
-import { attributeSpecificityFilterExcept, EntityType } from '@metadb/model';
+import { attributeSpecificityFilterExcept, EntityType } from '@metadb/core';
 import { MetaAttribute } from '@metadb/client';
 import { PrismaService } from '@metadb/prisma';
 import { PageNumberPagination } from 'prisma-extension-pagination/dist/types';
@@ -41,13 +41,9 @@ export class AttributeSevice {
     });
   }
 
-  async create(entityId: string, data: CreateAttributeDto): Promise<string> {
-    const item = await this.prisma.metaAttribute.create({
-      data: {
-        ...data,
-        entityId
-      }
-    });
+  async create(data: CreateAttributeDto): Promise<string> {
+    delete data.id;
+    const item = await this.prisma.metaAttribute.create({ data });
     return JSON.stringify(item.id);
   }
 

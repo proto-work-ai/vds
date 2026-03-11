@@ -4,7 +4,7 @@
 import { AtlasColumnTableMenu } from './column-table-menu';
 import { ColumnAllCheckedTable } from './columnn-all-table-checked';
 import { ColumnTableChecked } from './column-table-checked';
-import { MetaAttribute } from '../core/attribute';
+import { ColumnAttributeTable } from '../core/attribute';
 import { IMenuItem } from '@atlas/core';
 
 export const attributeRowChecked = () => {
@@ -14,7 +14,7 @@ export const attributeRowChecked = () => {
     key: 'column-checked-table',
     type: 'component',
     cellContent: ColumnTableChecked
-  } satisfies MetaAttribute;
+  } satisfies ColumnAttributeTable;
 }
 
 export const attributeColumnMenu = (context: IMenuItem[]) => {
@@ -25,7 +25,7 @@ export const attributeColumnMenu = (context: IMenuItem[]) => {
     type: 'component',
     cellContent: AtlasColumnTableMenu,
     cellContentContext: context
-  } satisfies MetaAttribute;
+  } satisfies ColumnAttributeTable;
 }
 
 /*

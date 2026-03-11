@@ -16,7 +16,7 @@ import { ApiTags, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 
 import { AuthGuard } from '../middlewares/auth.guard';
 import { RecordService } from './record.service';
-import { EntityType, IRecord } from '@metadb/model';
+import { EntityType, IRecord } from '@metadb/core';
 
 @ApiTags('Entries')
 @Controller('entry')

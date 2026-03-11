@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/component-selector */
 import { PipeTransform, inject, Pipe, ViewContainerRef, TemplateRef, ElementRef, Injector } from '@angular/core';
 import { ComponentPortal, ComponentType, DomPortal, TemplatePortal } from '@angular/cdk/portal';
-import { MetaAttribute } from '../core/attribute';
+import { ColumnAttributeTable } from '../core/attribute';
 import { tableColumnContextProvider, tableRowDataProvider, tableRowProvider } from './table-cell-context';
 import { ColumnTableChecked } from '../attribute/column-table-checked';
 
@@ -11,7 +12,7 @@ export class TableCellPortalPipe<T = unknown> implements PipeTransform {
     private readonly injector = inject(Injector);
     private readonly viewContainerRef = inject(ViewContainerRef);
 
-    transform(row: Record<string, unknown>, column: MetaAttribute) {
+    transform(row: Record<string, unknown>, column: ColumnAttributeTable) {
         switch (column.type) {
             case 'template':
                 return new TemplatePortal(column.cellContent as TemplateRef<unknown>, this.viewContainerRef, row, this.createIngector(row, column));
@@ -26,7 +27,7 @@ export class TableCellPortalPipe<T = unknown> implements PipeTransform {
         }
     }
 
-    private createIngector(row: Record<string, unknown>, column: MetaAttribute): Injector {
+    private createIngector(row: Record<string, unknown>, column: ColumnAttributeTable): Injector {
         return Injector.create({
             parent: this.injector, providers: [
                 tableRowProvider(row),

@@ -88,18 +88,19 @@
 /*
     Taiga UI
 */
+tui-root,
 :root {
+  font: var(--tui-font-text-m) !important;
+  font-size: 14px !important;
   --tui-text-secondary: inherit;
   --tui-font-text:
     Manrope, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Segoe UI',
     'Helvetica Neue', sans-serif;
 
-    
-
   --tui-height-xs: 1rem;
   --tui-height-s: 1.75rem;
   --tui-height-m: 2.5rem;
-  --tui-height-l: 3.25rem;
+  --tui-height-l: 3rem;
 
   --tui-padding-s: 0.625rem;
   --tui-padding-m: 0.75rem;
@@ -114,6 +115,16 @@
   // --tui-radius-l: 2px;
   // --tui-radius-s: 2px;
   // --tui-radius-xs: 2px;
+
+  --tui-font-text-xl: normal 1.1875rem var(--tui-font-text);
+  --tui-font-text-l: normal 1rem var(--tui-font-text);
+  --tui-font-text-m: normal 1rem var(--tui-font-text);
+  --tui-font-text-s: normal 0.8125rem var(--tui-font-text);
+  --tui-font-text-xs: normal 0.6875rem var(--tui-font-text);
+  --tui-font-text-ui-l: normal 1.0625rem var(--tui-font-text);
+  --tui-font-text-ui-m: normal 1rem var(--tui-font-text);
+  --tui-font-text-ui-s: normal 0.8125rem var(--tui-font-text);
+  --tui-font-text-ui-xs: normal 0.6875rem var(--tui-font-text);
 
   --tui-border-normal: #e0e0e0;
   --tui-text-action: rgba(0, 0, 0, 0.87);
@@ -153,10 +164,10 @@
     }
     tbody tr:last-child {
       td:first-child {
-        border-bottom-right-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
       }
       td:last-child {
-        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
       }
     }
   }
@@ -167,5 +178,9 @@
     td {
       padding-block: 0.4rem;
     }
+  }
+
+  table[data-size='l'] tbody td{
+    padding: 0.5rem 1rem !important;
   }
 }

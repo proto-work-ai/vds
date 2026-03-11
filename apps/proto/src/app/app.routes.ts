@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 import { homeRoute } from './modules/home/home.route';
 import { NavSidebarHeader } from './modules/nav/sidebar-header/sidebar-header.component';
-import { metadbRoute } from './modules/metadb/metadb.route';
+import { metadbRoute } from './modules/meta/meta.route';
 import { SidebarWithNavigation } from './modules/nav/sidebar-with-navigation/sidebar-with-navigation.component';
 
 export const appPages = {

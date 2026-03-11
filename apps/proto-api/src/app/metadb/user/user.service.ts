@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '@metadb/prisma';
-import { ATTRIBUTE_STRING, IUser } from '@metadb/model';
+import { ATTRIBUTE_STRING, IUser } from '@metadb/core';
 
 import { UserDto } from './dto/user.dto';
 import { CreateUserDto } from './dto/create.user.dto';

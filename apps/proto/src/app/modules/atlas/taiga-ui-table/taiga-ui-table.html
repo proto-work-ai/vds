@@ -1,4 +1,4 @@
-<table tuiTable class="w-full" size="m">
+<table tuiTable class="w-full" size="l">
   <thead>
     <tr tuiThGroup>
       @for(col of columns(); track col){
@@ -40,6 +40,9 @@
           [cdkPortalOutlet]="row | tableCellPortal:column"
         ></ng-template>
       </td>
+      } @case ('date') {
+      <td tuiTd>
+        @if(row?.[column.key]; as value){ {{$any(value)| date :'dd.MM.yyyy HH:mm'}} }</td>
       } @default {
       <td tuiTd>{{ row?.[column.key] }}</td>
       } } }

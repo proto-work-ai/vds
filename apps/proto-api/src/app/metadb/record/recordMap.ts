@@ -12,7 +12,7 @@ import {
   VALUE_KEY_SET,
   ATTRIBUTE_ONE_TO_MANY,
   ATTRIBUTE_MANY_TO_MANY,
-} from '@metadb/model';
+} from '@metadb/core';
 import { MetaRecord, MetaValue } from '@metadb/client';
 
 export function recordMap({
