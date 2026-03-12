@@ -31,11 +31,11 @@ import { AtlasTaigaUiTable, ITablePaginate } from "../../atlas/taiga-ui-table/ta
 import { AtlasTablePaginatePipe } from '../../atlas/atlas-table-paginate';
 import { attributeColumnMenu } from '../../atlas/attribute/column-checked.attributes';
 import { ColumnAttributeTable } from '../../atlas/core/attribute';
-import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../attribute/meta-entity.attributes';
+import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../studio-attribute/studio-entity.attributes';
 
 import { MetaAttribute, MetaValue } from '@metadb/client';
 import { ValueEditModal, ValueEditModalData } from './value-edit-modal/value-edit-modal';
-import { MetaValueService } from '../services/meta-value.service';
+import { MetaValueService } from '../services/studio-value.service';
 
 export type Payment = {
   id: string;
@@ -45,9 +45,9 @@ export type Payment = {
 };
 
 @Component({
-  selector: 'proto-metadb-values',
-  templateUrl: './value-table.component.html',
-  styleUrls: ['./value-table.component.scss'],
+  selector: 'proto-studio-values',
+  templateUrl: './studio-value-table.component.html',
+  styleUrls: ['./studio-value-table.component.scss'],
   imports: [
     HlmSidebarImports,
     HlmIconImports,
@@ -80,7 +80,7 @@ export type Payment = {
     }),
   ],
 })
-export class MetadbValuesComponent {
+export class StudioValuesComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly alerts = inject(TuiAlertService);
   private readonly dialogService = inject(TuiDialogService);

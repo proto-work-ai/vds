@@ -14,6 +14,9 @@ import {
   lucideMinimize,
   lucideRefreshCcw,
   lucideSearch,
+  lucideDot,
+  lucideLayersPlus,
+  lucideLayers,
 } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmCollapsibleImports } from '@spartan-ng/helm/collapsible';
@@ -22,12 +25,12 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HlmSeparator } from '@spartan-ng/helm/separator';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { injectMenuItems } from './metadb-editor.menu';
+import { injectContentMenu, injectStudioMenu } from './studio-editor.menu';
 
 @Component({
   selector: 'proto-metadb-editor',
-  templateUrl: './metadb-editor.component.html',
-  styleUrls: ['./metadb-editor.component.scss'],
+  templateUrl: './studio-editor.component.html',
+  styleUrls: ['./studio-editor.component.scss'],
   imports: [
     HlmSidebarImports,
     HlmSidebarImports,
@@ -60,6 +63,8 @@ import { injectMenuItems } from './metadb-editor.menu';
       lucidePlus,
       lucideBox,
       lucideSearch,
+      lucideDot,
+      lucideLayers,
     }),
   ],
 })
@@ -73,5 +78,7 @@ export class StudioPageComponent {
     this.schemaOptions()[0].value,
   );
 
-  protected readonly menuItems = injectMenuItems();
+  protected readonly menuItems = injectStudioMenu();
+
+  protected readonly contentMenu = injectContentMenu();
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
-import { MetaRecord } from '@metadb/client';
+import { MetaValue } from '@metadb/client';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
 import { TuiButton, TuiTextfield } from '@taiga-ui/core';
 import { type TuiDialogContext } from '@taiga-ui/experimental';
@@ -10,22 +10,22 @@ import { TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
-import { MetaRecordService } from '../../services/meta-record.service';
+import { MetaValueService } from '../../services/studio-value.service';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 
-export interface RecordEditModalData {
+export interface ValueEditModalData {
   model: any;
 }
 
 @Component({
-  templateUrl: './record-edit-modal.html',
+  templateUrl: './value-edit-modal.html',
   imports: [HlmButtonImports, FormsModule, ReactiveFormsModule, TuiButton, TuiForm, TuiTextfield, TuiTextarea, TuiCheckbox, TuiAutoFocus],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RecordEditModal {
-  protected readonly context = injectContext<TuiDialogContext<boolean, RecordEditModalData>>();
+export class ValueEditModal {
+  protected readonly context = injectContext<TuiDialogContext<boolean, ValueEditModalData>>();
   protected readonly destroyRef = inject(DestroyRef);
-  protected recordService = inject(MetaRecordService);
+  protected valueService = inject(MetaValueService);
 
   protected form = new FormGroup({
     id: new FormControl<string | undefined>(undefined),
@@ -48,15 +48,15 @@ export class RecordEditModal {
     this.context.completeWith(result);
   }
 
-  private formCreate(data: Partial<MetaRecord>): void {
-    this.recordService.create(data).pipe(
+  private formCreate(data: Partial<MetaValue>): void {
+    this.valueService.create(data).pipe(
       tap(() => this.modalClose(true)),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe();
   }
 
-  private formUpdate(data: Partial<MetaRecord>): void {
-    this.recordService.update(data).pipe(
+  private formUpdate(data: Partial<MetaValue>): void {
+    this.valueService.update(data).pipe(
       tap(() => this.modalClose(true)),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe();
@@ -65,9 +65,9 @@ export class RecordEditModal {
   protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
       if (this.isEditable) {
-        this.formUpdate(this.form.value as MetaRecord)
+        this.formUpdate(this.form.value as MetaValue)
       } else {
-        this.formCreate(this.form.value as MetaRecord)
+        this.formCreate(this.form.value as MetaValue)
       }
     }
   }

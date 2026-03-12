@@ -20,7 +20,7 @@ export class MetaAttributeService {
   }
 
   update(data: Partial<MetaAttribute>): Observable<MetaAttribute> {
-    return this.#http.patch<MetaAttribute>(`/api/attribute/${data.id}`, data);
+    return this.#http.put<MetaAttribute>(`/api/attribute/${data.id}`, data);
   }
 
   delete(id: string): Observable<MetaAttribute> {

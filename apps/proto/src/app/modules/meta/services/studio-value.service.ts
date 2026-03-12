@@ -20,7 +20,7 @@ export class MetaValueService {
   }
 
   update(data: Partial<MetaValue>): Observable<MetaValue> {
-    return this.#http.patch<MetaValue>(`/api/value/${data.name}/${data.parentId}`, data);
+    return this.#http.put<MetaValue>(`/api/value/${data.name}/${data.parentId}`, data);
   }
 
   delete({ name, parentId }: Pick<MetaValue, 'name' | 'parentId'>): Observable<MetaValue> {

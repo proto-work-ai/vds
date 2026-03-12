@@ -3,8 +3,7 @@
 
 import { MetaAttribute } from "@metadb/client";
 import { ColumnAttributeTable, IMetaAttribute } from "../../atlas/core/attribute";
-import { AtlasColumnTableMenu } from "../../atlas/attribute/column-table-menu";
-import { MetaAttributeType } from "./meta-attribute-type.attribute";
+import { MetaAttributeType } from "./studio-attribute-type.attribute";
 
 export const attrMetaAttributeId: IMetaAttribute<MetaAttribute> = {
   title: 'Id',

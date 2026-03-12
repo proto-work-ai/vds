@@ -24,7 +24,7 @@ export class MetaEntityService {
   }
 
   update(data: Partial<MetaEntity>): Observable<MetaEntity> {
-    return this.#http.patch<MetaEntity>(`/api/entity/${data.id}`, data);
+    return this.#http.put<MetaEntity>(`/api/entity/${data.id}`, data);
   }
 
   delete(id: string): Observable<MetaEntity> {

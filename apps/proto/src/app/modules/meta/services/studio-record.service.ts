@@ -20,7 +20,7 @@ export class MetaRecordService {
   }
 
   update(data: Partial<MetaRecord>): Observable<MetaRecord> {
-    return this.#http.patch<MetaRecord>(`/api/record/${data.id}`, data);
+    return this.#http.put<MetaRecord>(`/api/record/${data.id}`, data);
   }
 
   delete(id: string): Observable<MetaRecord> {

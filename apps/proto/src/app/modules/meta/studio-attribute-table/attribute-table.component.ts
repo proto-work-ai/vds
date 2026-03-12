@@ -31,13 +31,15 @@ import { AtlasTaigaUiTable, ITablePaginate } from "../../atlas/taiga-ui-table/ta
 import { AtlasTablePaginatePipe } from '../../atlas/atlas-table-paginate';
 import { attributeColumnMenu } from '../../atlas/attribute/column-checked.attributes';
 import { ColumnAttributeTable } from '../../atlas/core/attribute';
-import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../attribute/meta-entity.attributes';
-import { MetaEntityService } from '../services/meta-entity.service';
+import {
+  attrMetaAttributeDescription, attrMetaAttributeDisable,
+  attrMetaAttributeReadonly, attrMetaAttributeTitle
+} from '../studio-attribute/studio-attribute.attributes';
 
 import { MetaEntity } from '@metadb/client';
-import { EntityEditModal } from './entity-edit-modal/entity-edit-modal';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { metaPages } from '../meta.route';
+import { AttributeEditModal, AttributeEditModalData } from './attribute-edit-modal/attribute-edit-modal';
+import { MetaAttributeService } from '../services/studio-attribute.service';
+import { ActivatedRoute } from '@angular/router';
 
 export type Payment = {
   id: string;
@@ -47,9 +49,9 @@ export type Payment = {
 };
 
 @Component({
-  selector: 'proto-metadb-entity-table',
-  templateUrl: './entity-table.component.html',
-  styleUrls: ['./entity-table.component.scss'],
+  selector: 'proto-metadb-attributes',
+  templateUrl: './attribute-table.component.html',
+  styleUrls: ['./attribute-table.component.scss'],
   imports: [
     HlmSidebarImports,
     HlmIconImports,
@@ -82,34 +84,33 @@ export type Payment = {
     }),
   ],
 })
-export class MetadbEntitiesComponent {
+export class MetadbAttributesComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly alerts = inject(TuiAlertService);
-  private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
   private readonly dialogService = inject(TuiDialogService);
-  protected readonly entityService = inject(MetaEntityService);
+  protected readonly attributeService = inject(MetaAttributeService);
   protected readonly columns = signal<ColumnAttributeTable[]>([
-    attrMetaEntityTitle,
-    attrMetaEntityDescription,
-    attrMetaEntityDisable,
-    attrMetaEntityReadonly,
+    attrMetaAttributeTitle,
+    attrMetaAttributeDescription,
+    attrMetaAttributeDisable,
+    attrMetaAttributeReadonly,
     this.getColumnMenu(),
   ]);
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
 
-  protected readonly entityServiceAll = signal((paginate: ITablePaginate) =>
-    this.entityService.getAll(paginate)
+  protected readonly attributeServiceAll = signal((paginate: ITablePaginate) =>
+    this.attributeService.getAll(paginate)
   );
 
   protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
 
   protected openEditModal(model?: MetaEntity): void {
     this.dialogService
-      .open<string>(new PolymorpheusComponent(EntityEditModal), {
-        label: model ? 'Edit Entity' : 'Create Entity',
+      .open<string>(new PolymorpheusComponent(AttributeEditModal), {
+        label: model ? 'Edit Attribute' : 'Create Attribute',
         size: 'm',
-        data: { model },
+        data: { model } satisfies AttributeEditModalData,
       })
       .pipe(
         tap((result) => {
@@ -124,7 +125,7 @@ export class MetadbEntitiesComponent {
   }
 
   protected removeById(id: string) {
-    this.entityService.delete(id).pipe(
+    this.attributeService.delete(id).pipe(
       tap(() => this.tableRefresh()),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe();
@@ -139,12 +140,6 @@ export class MetadbEntitiesComponent {
         onClick: (data: MetaEntity) => {
           this.openEditModal(data);
         }
-      },
-      {
-        title: 'Attributes',
-        icon: 'lucideBox',
-        iconClass: 'text-gray-500',
-        onClick: (data: MetaEntity) => this.router.navigate(['..', metaPages.attributes.root, data.id], { relativeTo: this.route })
       },
       {
         title: 'Remove Row',

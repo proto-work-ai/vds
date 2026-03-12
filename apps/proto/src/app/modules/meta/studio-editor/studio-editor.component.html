@@ -23,7 +23,8 @@
       </div>
 
       <div class="overflow-auto">
-        <div hlmSidebarGroup>
+        <!-- Studio -->
+        <section hlmSidebarGroup>
           <div hlmSidebarGroupLabel class="flex gap-1">
             <ng-icon hlm name="lucideTable2" />
             Studio
@@ -46,11 +47,39 @@
               }
             </ul>
           </div>
-        </div>
+        </section>
 
         <hlm-separator />
 
-        <div hlmSidebarGroup>
+        <!-- Content -->
+        <section hlmSidebarGroup>
+          <div hlmSidebarGroupLabel class="flex gap-1">
+            <ng-icon hlm name="lucideTable2" />
+            Content
+          </div>
+
+          <!-- Nav Menu -->
+          <div hlmSidebarGroupContent>
+            <ul hlmSidebarMenu>
+              @for (item of contentMenu(); track item) {
+                <li hlmSidebarMenuItem>
+                  <a
+                    hlmSidebarMenuButton
+                    [routerLink]="item.link"
+                    [isActive]="item?.active()"
+                  >
+                    <ng-icon hlm [name]="item.icon" />
+                    <span>{{ item.title }}</span>
+                  </a>
+                </li>
+              }
+            </ul>
+          </div>
+        </section>
+
+        <hlm-separator />
+
+        <section hlmSidebarGroup>
           <!-- <div hlmSidebarGroupLabel class="flex gap-1">
             <ng-icon hlm name="lucideTable2" />
             Tables
@@ -82,7 +111,7 @@
               }
             </ul>
           </div>
-        </div>
+        </section>
       </div>
     </section>
 

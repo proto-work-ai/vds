@@ -1,8 +1,10 @@
 import { Route } from '@angular/router';
 
-export const metaPages = {
+export const studioPages = {
+  root: 'studio',
   entities: {
     root: 'entities',
+    attributes: 'attributes'
   },
   attributes: {
     root: 'attributes',
@@ -15,50 +17,58 @@ export const metaPages = {
   },
 } as const;
 
+export const contentPages = {
+  root: 'content',
+  entity: {
+    root: 'entity',
+    attributes: 'attributes'
+  },
+} as const;
+
 export function metadbRoute(path: string): Route {
   return {
     path,
     loadComponent: () =>
-      import('./metadb-editor/metadb-editor.component').then(
+      import('./studio-editor/studio-editor.component').then(
         (a) => a.StudioPageComponent,
       ),
     children: [
       {
-        path: metaPages.entities.root,
+        path: `${studioPages.root}/${studioPages.entities.root}`,
         loadComponent: () =>
-          import('./entity/entity-table.component').then(
-            (a) => a.MetadbEntitiesComponent,
+          import('./studio-entity/studio-entity-table.component').then(
+            (a) => a.StudioEntitiesComponent,
           ),
       },
       {
-        path: metaPages.attributes.root + '/:id',
+        path: `${studioPages.root}/${studioPages.entities.root}/${studioPages.entities.attributes}/:id`,
         loadComponent: () =>
-          import('./entity/attribute-table/attribute-table.component').then(
+          import('./studio-entity/attribute-table/attribute-table.component').then(
             (a) => a.EntityAttributesComponent,
           ),
       },
       {
-        path: metaPages.attributes.root,
+        path: `${studioPages.root}/${studioPages.attributes.root}`,
         loadComponent: () =>
-          import('./attribute-table/attribute-table.component').then(
+          import('./studio-attribute-table/attribute-table.component').then(
             (a) => a.MetadbAttributesComponent,
           ),
       },
       {
-        path: metaPages.records.root,
+        path: `${studioPages.root}/${studioPages.records.root}`,
         loadComponent: () =>
-          import('./record-table/record-table.component').then(
-            (a) => a.MetadbRecordsComponent,
+          import('./studio-record-table/studio-record-table.component').then(
+            (a) => a.StudioRecordsComponent,
           ),
       },
       {
-        path: metaPages.values.root,
+        path: `${studioPages.root}/${studioPages.values.root}`,
         loadComponent: () =>
-          import('./value-table/value-table.component').then(
-            (a) => a.MetadbValuesComponent,
+          import('./studio-value-table/studio-value-table.component').then(
+            (a) => a.StudioValuesComponent,
           ),
       },
-      { path: '**', redirectTo: metaPages.entities.root },
+      { path: '**', redirectTo: `${studioPages.root}/${studioPages.entities.root}` },
     ],
   };
 }

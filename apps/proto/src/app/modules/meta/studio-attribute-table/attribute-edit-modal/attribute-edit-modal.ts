@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
-import { MetaEntity } from '@metadb/client';
+import { MetaAttribute } from '@metadb/client';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
 import { TuiButton, TuiTextfield } from '@taiga-ui/core';
 import { type TuiDialogContext } from '@taiga-ui/experimental';
@@ -9,23 +9,23 @@ import { TuiCheckbox, TuiTextarea } from '@taiga-ui/kit';
 import { TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MetaEntityService } from '../../services/meta-entity.service';
 import { tap } from 'rxjs';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
+import { MetaAttributeService } from '../../services/studio-attribute.service';
 
-export interface EntityEditModalData {
-  model: Partial<any>;
+export interface AttributeEditModalData {
+  model: any;
 }
 
 @Component({
-  templateUrl: './entity-edit-modal.html',
+  templateUrl: './attribute-edit-modal.html',
   imports: [HlmButtonImports, FormsModule, ReactiveFormsModule, TuiButton, TuiForm, TuiTextfield, TuiTextarea, TuiCheckbox, TuiAutoFocus],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EntityEditModal {
-  protected readonly context = injectContext<TuiDialogContext<boolean, EntityEditModalData>>();
+export class AttributeEditModal {
+  protected readonly context = injectContext<TuiDialogContext<boolean, AttributeEditModalData>>();
   protected readonly destroyRef = inject(DestroyRef);
-  protected entityService = inject(MetaEntityService);
+  protected attributeService = inject(MetaAttributeService);
 
   protected form = new FormGroup({
     id: new FormControl<string | undefined>(undefined),
@@ -48,15 +48,15 @@ export class EntityEditModal {
     this.context.completeWith(result);
   }
 
-  private formCreate(data: Partial<MetaEntity>): void {
-    this.entityService.create(data).pipe(
+  private formCreate(data: Partial<MetaAttribute>): void {
+    this.attributeService.create(data).pipe(
       tap(() => this.modalClose(true)),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe();
   }
 
-  private formUpdate(data: Partial<MetaEntity>): void {
-    this.entityService.update(data).pipe(
+  private formUpdate(data: Partial<MetaAttribute>): void {
+    this.attributeService.update(data).pipe(
       tap(() => this.modalClose(true)),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe();
@@ -65,9 +65,9 @@ export class EntityEditModal {
   protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
       if (this.isEditable) {
-        this.formUpdate(this.form.value as MetaEntity)
+        this.formUpdate(this.form.value as MetaAttribute)
       } else {
-        this.formCreate(this.form.value as MetaEntity)
+        this.formCreate(this.form.value as MetaAttribute)
       }
     }
   }

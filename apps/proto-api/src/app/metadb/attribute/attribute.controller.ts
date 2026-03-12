@@ -49,7 +49,7 @@ export class AttributeController {
     return this.attributeSevice.create(data);
   }
 
-  @Put()
+  @Put(':id')
   // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a attribute by ID' })
   async update(@Param('id') id: string, @Body() data: UpdateAttributeDto) {

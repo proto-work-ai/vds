@@ -13,13 +13,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { ATTRIBUTE_TYPE_LIST, IAttributeType } from '@metadb/core';
-import { MetaAttributeService } from '../../services/meta-attribute.service';
-import { NgIcon, provideNgIconLoader, withCaching } from '@ng-icons/core';
+import { MetaAttributeService } from '../../services/studio-attribute.service';
+import { NgIcon } from '@ng-icons/core';
 import { HlmIcon } from '@spartan-ng/helm/icon';
-import { HttpClient } from '@angular/common/http';
 import { JsonPipe } from '@angular/common';
 import { KeyListValuePipe, StringifySetterPipe } from 'apps/proto/src/app/common/pipes/stringify-setter.pipe';
-import { provideIconAttributeType } from '../../attribute/meta-attribute-type.attribute';
+import { provideIconAttributeType } from '../../studio-attribute/studio-attribute-type.attribute';
 
 export interface AttributeEditModalData {
   model: Partial<MetaAttribute>;
