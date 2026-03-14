@@ -117,7 +117,7 @@ export enum EntityAttributeRole {
   VERSION // версия записи(создается список версия элемента, это групировка)
 }
 
-export enum QtRoleEntity {
+export enum RoleEntity {
   PROPERTY
 }
 
@@ -128,11 +128,11 @@ export const ATTRIBUTE_VALUE = 'ATTRIBUTE_VALUE'; // Список всех зн�
 export const ATTRIBUTE_ATTRIBUTE = 'ATTRIBUTE_ATTRIBUTE'; // Список всех аттрибутов
 
 // Можно выбрать не сколько значений
-export const ATTRIBUTE_SELECT = 'SELECT';
+export const ATTRIBUTE_SELECT = 'select';
 
-export const ATTRIBUTE_ONE_TO_ONE = 'ONE_TO_ONE';
-export const ATTRIBUTE_ONE_TO_MANY = 'ONE_TO_MANY';
-export const ATTRIBUTE_MANY_TO_MANY = 'MANY_TO_MANY';
+export const ATTRIBUTE_ONE_TO_ONE = 'one_to_one';
+export const ATTRIBUTE_ONE_TO_MANY = 'one_to_many';
+export const ATTRIBUTE_MANY_TO_MANY = 'many_to_many';
 
 /*
   https://www.baeldung.com/sql/mysql-store-images#:~:text=We%20generally%20store%20images%20in%20MySQL%20as%20BLOB%20datatype.&text=BLOB%20(maximum%20of%2065%2C535%20bytes,LONGBLOB%20(maximum%20of%204%2C294%2C967%2C295%20bytes)
@@ -141,42 +141,42 @@ export const ATTRIBUTE_MANY_TO_MANY = 'MANY_TO_MANY';
   MEDIUMBLOB (maximum of 16,777,215 bytes; хранятся во вторичном хранилище)
   LONGBLOB (maximum of 4,294,967,295 bytes; хранятся во вторичном хранилище)
 */
-export const ATTRIBUTE_MEDIA = 'MEDIA';
-export const ATTRIBUTE_MEMO = 'MEMO';
+export const ATTRIBUTE_MEDIA = 'media';
+export const ATTRIBUTE_MEMO = 'memo';
 
-export const ATTRIBUTE_STRING = 'STRING';
-export const ATTRIBUTE_TEXTAREA = 'TEXTAREA';
-export const ATTRIBUTE_RICHTEXT = 'RICHTEXT';
-export const ATTRIBUTE_JSON = 'JSON';
+export const ATTRIBUTE_STRING = 'string';
+export const ATTRIBUTE_TEXTAREA = 'textarea';
+export const ATTRIBUTE_RICHTEXT = 'richtext';
+export const ATTRIBUTE_JSON = 'json';
 
 // Date and Time
-export const ATTRIBUTE_TIME = 'TIME'; // '00:00:00'
-export const ATTRIBUTE_YEAR = 'YEAR'; // 0000
-export const ATTRIBUTE_DATE = 'DATE'; // '0000-00-00'
-export const ATTRIBUTE_DATE_RANGE = 'DATE_RANGE'; // '0000-00-00' - '0000-00-00'
-export const ATTRIBUTE_DATETIME = 'DATETIME'; // '0000-00-00 00:00:00'
+export const ATTRIBUTE_TIME = 'time'; // '00:00:00'
+export const ATTRIBUTE_YEAR = 'year'; // 0000
+export const ATTRIBUTE_DATE = 'date'; // '0000-00-00'
+export const ATTRIBUTE_DATE_RANGE = 'date_range'; // '0000-00-00' - '0000-00-00'
+export const ATTRIBUTE_DATETIME = 'datetime'; // '0000-00-00 00:00:00'
 
 // Special
-export const ATTRIBUTE_ID = 'UUID'; // insert Entry Id
-export const ATTRIBUTE_UPDATED_AT = 'DATE_UPDATED_AT'; // insert Updated At
-export const ATTRIBUTE_CREATED_AT = 'DATE_CREATED_AT'; // insert Created At
-export const ATTRIBUTE_PASSWORD = 'PASSWORD';
-export const ATTRIBUTE_TOKEN = 'TOKEN';
-export const ATTRIBUTE_RELATION_COUNT = 'RELATION_COUNT'; // Количество элементов в отношении
+export const ATTRIBUTE_ID = 'uuid'; // insert Entry Id
+export const ATTRIBUTE_UPDATED_AT = 'date_updated_at'; // insert Updated At
+export const ATTRIBUTE_CREATED_AT = 'date_created_at'; // insert Created At
+export const ATTRIBUTE_PASSWORD = 'password';
+export const ATTRIBUTE_TOKEN = 'token';
+export const ATTRIBUTE_RELATION_COUNT = 'relation_count'; // Количество элементов в отношении
 
-export const ATTRIBUTE_BOOLEAN = 'BOOLEAN';
+export const ATTRIBUTE_BOOLEAN = 'boolean';
 
-export const ATTRIBUTE_TINYINT = 'TINYINT';
-export const ATTRIBUTE_SMALLINT = 'SMALLINT';
-export const ATTRIBUTE_INT = 'INT';
-export const ATTRIBUTE_BIGINT = 'BIGINT';
-export const ATTRIBUTE_NUMBER = 'NUMBER';
-export const ATTRIBUTE_NUMBER_RANGE = 'NUMBER_RANGE';
+export const ATTRIBUTE_TINYINT = 'tinyint';
+export const ATTRIBUTE_SMALLINT = 'smallint';
+export const ATTRIBUTE_INT = 'int';
+export const ATTRIBUTE_BIGINT = 'bigint';
+export const ATTRIBUTE_NUMBER = 'number';
+export const ATTRIBUTE_NUMBER_RANGE = 'number_range';
 
 // Нужно описание
-export const ATTRIBUTE_PARENT = 'PARENT';
-export const ATTRIBUTE_PARENT_MANY = 'PARENT_MANY';
-export const ATTRIBUTE_PARENT_COUNT = 'PARENT_COUNT';
+export const ATTRIBUTE_PARENT = 'parent';
+export const ATTRIBUTE_PARENT_MANY = 'parent_many';
+export const ATTRIBUTE_PARENT_COUNT = 'parent_count';
 
 //export const ATTRIBUTE_RELATION = 'relation';
 
@@ -246,7 +246,7 @@ export const enum EntityAttributeType {
   PARENT = ATTRIBUTE_PARENT, // псевдо
   PARENT_MANY = ATTRIBUTE_PARENT_MANY, // псевдо
 
-  PARENT_COUNT = 'PARENT_COUNT', // когда надо получить количесво элементов в отношениие
+  PARENT_COUNT = 'parent_count', // когда надо получить количесво элементов в отношениие
 
   // SPECIFICITY_SPECIAL
   UUID = ATTRIBUTE_ID,

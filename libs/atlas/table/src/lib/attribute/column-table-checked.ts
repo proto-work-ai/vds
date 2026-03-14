@@ -13,7 +13,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiCheckbox } from '@taiga-ui/kit';
 import { TuiLabel } from '@taiga-ui/core';
-import { TABLE_CELL_DATA } from '../taiga-ui-table/table-cell-context';
+import { TABLE_CELL_DATA } from '@atlas/table';
 
 @Component({
   selector: 'atlas-column-table-checked',

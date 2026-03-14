@@ -2,7 +2,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 
 import { MetaAttribute } from "@metadb/client";
-import { IMetaAttribute } from "../../atlas/core/attribute";
+import { IMetaAttribute } from "../../../../../../../libs/atlas/core/src/lib/attribute";
 
 export const attrMetaEntityId: IMetaAttribute<MetaAttribute> = {
   title: 'Id',

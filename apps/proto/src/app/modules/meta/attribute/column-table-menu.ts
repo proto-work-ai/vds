@@ -20,13 +20,9 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { AtlasTaigaUiTable } from "../taiga-ui-table/taiga-ui-table";
-import { AtlasDataTableComponents } from '../data-table/data-table';
-import { AtlasDataTableToggleSize } from '../data-table-tools/data-table-toggle-size';
-import { AtlasTablePaginatePipe } from '../atlas-table-paginate';
-import { TABlE_COLUMN_CONTEXT, TABLE_ROW } from '../taiga-ui-table/table-cell-context';
 import { IMenuItem } from '@atlas/core';
 import { RouterModule } from '@angular/router';
+import { AtlasDataTableComponents, AtlasDataTableToggleSize, AtlasTablePaginatePipe, AtlasTaigaUiTable, TABlE_COLUMN_CONTEXT, TABLE_ROW } from '@atlas/table';
 
 @Component({
   selector: 'atlas-column-table-menu',
@@ -62,11 +58,11 @@ import { RouterModule } from '@angular/router';
     BrnSelectImports,
     HlmSelectImports,
     HlmTableImports,
-    AtlasDataTableComponents,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
     NgIcon,
+    AtlasDataTableComponents,
     AtlasTaigaUiTable,
     AtlasDataTableToggleSize,
     AtlasTablePaginatePipe,

@@ -10,7 +10,6 @@ import {
   type CellContext,
   injectFlexRenderContext,
 } from '@tanstack/angular-table';
-import { Payment } from './data-table';
 
 @Component({
   selector: 'spartan-action-dropdown',
@@ -42,7 +41,7 @@ import { Payment } from './data-table';
 })
 export class ActionDropdown {
   private readonly _context =
-    injectFlexRenderContext<CellContext<Payment, unknown>>();
+    injectFlexRenderContext<CellContext<any, unknown>>();
 
   copyPaymentId() {
     const payment = this._context.row.original;

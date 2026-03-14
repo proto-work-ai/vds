@@ -12,7 +12,7 @@ import {
   lucideTrash,
   lucidePencil,
 } from '@ng-icons/lucide';
-import { Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
+import { Component, computed, DestroyRef, inject, Signal, signal, viewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -22,9 +22,9 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import { TuiDialogService } from '@taiga-ui/experimental';
 import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
-import { tap } from 'rxjs';
+import { map, of, startWith, switchMap, tap } from 'rxjs';
 import { TuiAlertService } from '@taiga-ui/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponents } from '@atlas/table';
 import { AtlasDataTableToggleSize } from '@atlas/table';
 import { AtlasTaigaUiTable, ITablePaginate } from "@atlas/table";
@@ -32,15 +32,18 @@ import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../studio-attribute/studio-entity.attributes';
 
-import { MetaValue } from '@metadb/client';
-import { ValueEditModal, ValueEditModalData } from './value-edit-modal/value-edit-modal';
-import { MetaValueService } from '../services/studio-value.service';
+import { MetaEntity, MetaRecord } from '@metadb/client';
+import { ContentDataEditModal, ContentDataEditModalData } from './data-edit-modal/data-edit-modal';
+import { MetaRecordService } from '../services/studio-record.service';
+import { ActivatedRoute } from '@angular/router';
+import { MetaEntityService } from '../services/studio-entity.service';
+import { MetaEntityAttributeService } from '../services/studio-entity-attribute.service';
 import { attributeColumnMenu } from '../attribute/column-checked.attributes';
 
 @Component({
-  selector: 'proto-studio-values',
-  templateUrl: './studio-value-table.component.html',
-  styleUrls: ['./studio-value-table.component.scss'],
+  selector: 'proto-content-data-table',
+  templateUrl: './content-data-table.component.html',
+  styleUrls: ['./content-data-table.component.scss'],
   imports: [
     HlmSidebarImports,
     HlmIconImports,
@@ -73,12 +76,15 @@ import { attributeColumnMenu } from '../attribute/column-checked.attributes';
     }),
   ],
 })
-export class StudioValuesComponent {
+export class ContentDataTableComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly alerts = inject(TuiAlertService);
   private readonly dialogService = inject(TuiDialogService);
-  protected readonly valueService = inject(MetaValueService);
-  protected readonly columns = signal<ColumnAttributeTable[]>([
+  protected readonly recordService = inject(MetaRecordService);
+  private readonly route = inject(ActivatedRoute);
+  protected readonly entityService = inject(MetaEntityService);
+  protected readonly entityAttributeService = inject(MetaEntityAttributeService);
+  protected readonly columns = signal<any[]>([
     attrMetaEntityTitle,
     attrMetaEntityDescription,
     attrMetaEntityDisable,
@@ -86,19 +92,50 @@ export class StudioValuesComponent {
     this.getColumnMenu(),
   ]);
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
-
-  protected readonly valueServiceAll = signal((paginate: ITablePaginate) =>
-    this.valueService.getAll(paginate)
+  protected readonly metaEntity = signal<MetaEntity | undefined>(undefined);
+  protected readonly metaEntityId = toSignal(this.route.params.pipe(map(({ entityId }) => entityId)));
+  protected readonly recordServiceAll = signal((paginate: ITablePaginate) =>
+    this.recordService.getAll(paginate)
   );
 
   protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
 
-  protected openEditModal(model?: MetaValue): void {
+  protected readonly entityColums = toSignal(toObservable(this.metaEntityId).pipe(
+    switchMap((entityId) => this.entityAttributeService.getByEntity(entityId)),
+    map(({ data }) => {
+      return data.map((item) => {
+        return {
+          title: item.title!,
+          type: item.type!,
+          key: item.name,
+        } satisfies ColumnAttributeTable
+      });
+    }),
+    tap((data) =>{      
+      console.log('entityColums', data);
+    }),
+    startWith([]),
+  ));
+
+  constructor() {
+    toObservable(this.metaEntityId).pipe(
+      switchMap((entityId) => {
+        if (entityId) {
+          return this.entityService.getById(entityId);
+        }
+        return of(undefined);
+      }),
+      tap((data) => this.metaEntity.set(data)),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe();
+  }
+
+  protected openEditModal(model?: MetaRecord): void {
     this.dialogService
-      .open<string>(new PolymorpheusComponent(ValueEditModal), {
-        label: model ? 'Edit Value' : 'Create Value',
+      .open<string>(new PolymorpheusComponent(ContentDataEditModal), {
+        label: model ? 'Edit Record' : 'Create Record',
         size: 'm',
-        data: { model } satisfies ValueEditModalData,
+        data: { model } satisfies ContentDataEditModalData,
       })
       .pipe(
         tap((result) => {
@@ -112,8 +149,8 @@ export class StudioValuesComponent {
       .subscribe();
   }
 
-  protected removeBy(data: MetaValue) {
-    this.valueService.delete(data).pipe(
+  protected removeById(id: string) {
+    this.recordService.delete(id).pipe(
       tap(() => this.tableRefresh()),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe();
@@ -125,7 +162,7 @@ export class StudioValuesComponent {
         title: 'Edit Row',
         icon: 'lucidePencil',
         iconClass: 'text-gray-500',
-        onClick: (data: MetaValue) => {
+        onClick: (data: MetaRecord) => {
           this.openEditModal(data);
         }
       },
@@ -133,7 +170,7 @@ export class StudioValuesComponent {
         title: 'Remove Row',
         icon: 'lucideTrash',
         iconClass: 'text-red-500',
-        onClick: (data: MetaValue) => this.removeBy(data)
+        onClick: (data: MetaRecord) => this.removeById(data.id)
       },
     ])
   }

@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MetaAttribute } from '@metadb/client';
 import { map, Observable } from 'rxjs';
-import { ITablePaginate } from '../../atlas/taiga-ui-table/taiga-ui-table';
+import { ITablePaginate } from '../../../../../../../libs/atlas/table/src/lib/taiga-ui-table/taiga-ui-table';
 
 export interface IMetaAttributeData<T = MetaAttribute> { data: T[], paginate: ITablePaginate }
 
@@ -25,16 +25,5 @@ export class MetaAttributeService {
 
   delete(id: string): Observable<MetaAttribute> {
     return this.#http.delete<MetaAttribute>(`/api/attribute/${id}`);
-  }
-
-  getByEntity(entityId: string): Observable<IMetaAttributeData> {
-    return this.#http.get<IMetaAttributeData>(`/api/attribute/entity/${entityId}`).pipe(
-      map((data: any) => {
-        return {
-          data,
-          paginate: { currentPage: 1, totalCount: data.length, pageCount: data.length }
-        } as IMetaAttributeData
-      })
-    );
   }
 }

@@ -19,9 +19,8 @@ export const studioPages = {
 
 export const contentPages = {
   root: 'content',
-  entity: {
-    root: 'entity',
-    attributes: 'attributes'
+  data: {
+    root: 'data'
   },
 } as const;
 
@@ -43,7 +42,7 @@ export function metadbRoute(path: string): Route {
       {
         path: `${studioPages.root}/${studioPages.entities.root}/${studioPages.entities.attributes}/:id`,
         loadComponent: () =>
-          import('./studio-entity/attribute-table/attribute-table.component').then(
+          import('./studio-entity/entity-attribute-table/entity-attribute-table.component').then(
             (a) => a.EntityAttributesComponent,
           ),
       },
@@ -66,6 +65,13 @@ export function metadbRoute(path: string): Route {
         loadComponent: () =>
           import('./studio-value-table/studio-value-table.component').then(
             (a) => a.StudioValuesComponent,
+          ),
+      },
+      {
+        path: `${contentPages.root}/${contentPages.data.root}/:entityId`,
+        loadComponent: () =>
+          import('./content-data-table/content-data-table.component').then(
+            (a) => a.ContentDataTableComponent,
           ),
       },
       { path: '**', redirectTo: `${studioPages.root}/${studioPages.entities.root}` },

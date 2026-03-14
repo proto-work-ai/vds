@@ -5,19 +5,12 @@ import { BehaviorSubject, filter, map, Observable, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SIGNAL } from '@angular/core/primitives/signals';
 import { AtlasTaigaUiTable, ITablePaginate } from './taiga-ui-table/taiga-ui-table';
-import { IMetaEntityData } from '../meta/services/studio-entity.service';
+import { IMetaEntityData } from '../../../../../apps/proto/src/app/modules/meta/services/studio-entity.service';
 
 function applyValueToInputSignal<T>(signal: InputSignal<T>, value: T) {
   const node = signal[SIGNAL];
   node.applyValueToInputSignal(node, value);
 }
-
-export type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
-};
 
 export type ServicePaginateFn<T = unknown> = (paginate: ITablePaginate) => Observable<IMetaEntityData<T>>;
 

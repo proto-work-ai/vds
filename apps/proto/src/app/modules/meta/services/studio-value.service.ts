@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MetaValue } from '@metadb/client';
 import { Observable } from 'rxjs';
-import { ITablePaginate } from '../../atlas/taiga-ui-table/taiga-ui-table';
+import { ITablePaginate } from '../../../../../../../libs/atlas/table/src/lib/taiga-ui-table/taiga-ui-table';
 
 export interface IMetaValueData<T = MetaValue> { data: T[], paginate: ITablePaginate }
 

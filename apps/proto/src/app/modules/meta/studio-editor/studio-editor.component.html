@@ -58,6 +58,15 @@
             Content
           </div>
 
+          <div hlmSidebarGroupContent class="mb-3">
+            <div hlmInputGroup class="w-full sm:ml-auto sm:w-auto">
+              <input hlmInputGroupInput placeholder="Search text" />
+              <div hlmInputGroupAddon>
+                <ng-icon name="lucideSearch" />
+              </div>
+            </div>
+          </div>
+
           <!-- Nav Menu -->
           <div hlmSidebarGroupContent>
             <ul hlmSidebarMenu>
@@ -77,24 +86,14 @@
           </div>
         </section>
 
-        <hlm-separator />
+        <!-- <hlm-separator /> -->
 
-        <section hlmSidebarGroup>
-          <!-- <div hlmSidebarGroupLabel class="flex gap-1">
+        <!-- <section hlmSidebarGroup>
+          <div hlmSidebarGroupLabel class="flex gap-1">
             <ng-icon hlm name="lucideTable2" />
             Tables
-          </div> -->
-
-          <div hlmSidebarGroupContent class="mb-3">
-            <div hlmInputGroup class="w-full sm:ml-auto sm:w-auto">
-              <input hlmInputGroupInput placeholder="Search text" />
-              <div hlmInputGroupAddon>
-                <ng-icon name="lucideSearch" />
-              </div>
-            </div>
           </div>
 
-          <!-- Sub Menu-->
           <div hlmSidebarGroupContent>
             <ul hlmSidebarMenu>
               @for (item of menuItems(); track item) {
@@ -111,7 +110,7 @@
               }
             </ul>
           </div>
-        </section>
+        </section> -->
       </div>
     </section>
 

@@ -88,7 +88,7 @@ export function injectContentMenu(): Signal<ISignalMenuItem[]> {
         return data.map(({ id, name, title }) => {
           return {
             title: title!,
-            link: `${contentPages.root}/${contentPages.entity.root}/${id}`,
+            link: `${contentPages.root}/${contentPages.data.root}/${id}`,
             // icon: 'lucideLayersPlus',
             icon: 'lucideDot',
             active: signal(false),
@@ -103,12 +103,13 @@ export function injectContentMenu(): Signal<ISignalMenuItem[]> {
     .pipe(
       filter((event) => event instanceof NavigationEnd),
       startWith(true),
-      map(() => route.snapshot.firstChild?.routeConfig?.path),
       filter(Boolean),
-      tap((routePath) =>
+      map(() => route.snapshot.firstChild?.url.join('/')),
+      tap((routePath) => {
         menu().forEach((item) => {
-          item.active?.set(routePath.startsWith(item.link))
-        }),
+          item.active?.set(routePath!.startsWith(item.link))
+        })
+      }
       ),
       takeUntilDestroyed(destroyRef),
     )

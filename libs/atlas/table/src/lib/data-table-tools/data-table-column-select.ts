@@ -4,11 +4,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  signal,
-  OnInit,
   inject,
   DestroyRef,
-  input,
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
@@ -20,32 +17,13 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
-  type ColumnDef,
-  type ColumnFiltersState,
-  createAngularTable,
-  flexRenderComponent,
   FlexRenderDirective,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  type RowSelectionState,
-  type SortingState,
-  Table,
-  type VisibilityState,
 } from '@tanstack/angular-table';
 import { filter, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponent } from '../data-table/data-table';
 
-export type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
-};
 @Component({
   selector: 'atlas-data-table-column-select',
   styleUrls: [],

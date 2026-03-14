@@ -24,38 +24,28 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
 import { TuiDialogService } from '@taiga-ui/experimental';
 import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
-import { of, switchMap, tap } from 'rxjs';
+import { map, of, switchMap, tap } from 'rxjs';
 import { TuiAlertService } from '@taiga-ui/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { AtlasDataTableComponents } from '../../../atlas/data-table/data-table';
-import { AtlasTaigaUiTable, ITablePaginate } from '../../../atlas/taiga-ui-table/taiga-ui-table';
-import { AtlasDataTableToggleSize } from '../../../atlas/data-table-tools/data-table-toggle-size';
-import { AtlasTablePaginatePipe } from '../../../atlas/atlas-table-paginate';
+import { EntityAttributeEditModal, AttributeEditModalData } from '../attribute-modal/attribute-modal';
+import { MetaAttribute, MetaEntity } from '@metadb/client';
+import { ColumnAttributeTable } from '@atlas/core';
 import { MetaAttributeService } from '../../services/studio-attribute.service';
 import { MetaEntityService } from '../../services/studio-entity.service';
-import { EntityAttributeEditModal, AttributeEditModalData } from '../attribute-edit-modal/attribute-edit-modal';
-import { attributeColumnMenu } from '../../../atlas/attribute/column-checked.attributes';
-import { MetaAttribute, MetaEntity } from '@metadb/client';
-import { ColumnAttributeTable } from '../../../atlas/core/attribute';
 import {
-  attrMetaAttributeDescription, attrMetaAttributeDisable, 
+  attrMetaAttributeDescription, attrMetaAttributeDisable,
   attrMetaAttributeName, attrMetaAttributeReadonly, attrMetaAttributeTitle,
   attrMetaAttributeType, attrMetaAttributeUpdatedAt
 } from '../../studio-attribute/studio-attribute.attributes';
+import { AtlasDataTableComponents, AtlasDataTableToggleSize, AtlasTablePaginatePipe, AtlasTaigaUiTable, ITablePaginate } from '@atlas/table';
 import { MetaEntityAttributeService } from '../../services/studio-entity-attribute.service';
-
-export type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
-};
+import { attributeColumnMenu } from '../../attribute/column-checked.attributes';
 
 @Component({
   selector: 'proto-meta-entity-attributes',
-  templateUrl: './attribute-table.component.html',
-  styleUrls: ['./attribute-table.component.scss'],
+  templateUrl: './entity-attribute-table.component.html',
+  styleUrls: ['./entity-attribute-table.component.scss'],
   imports: [
     HlmSidebarImports,
     HlmIconImports,
@@ -112,23 +102,18 @@ export class EntityAttributesComponent {
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
 
   protected readonly attributeServiceAll = signal((paginate: ITablePaginate) => {
-    if (this.metaEntityId()) {
-      return this.attributeService.getByEntity(this.metaEntityId()!);
-    } else {
-      return this.attributeService.getAll(paginate);
-    }
+    return this.entityAttributeService.getByEntity(this.metaEntityId()!, paginate);
   });
 
   protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
-  protected readonly metaEntityId = signal<string | undefined>(undefined);
   protected readonly metaEntity = signal<MetaEntity | undefined>(undefined);
+  protected readonly metaEntityId = toSignal(this.route.params.pipe(map(({ id }) => id)));
 
   constructor() {
-    this.route.params.pipe(
-      switchMap(({ id }) => {
-        this.metaEntityId.set(id);
-        if (id) {
-          return this.entityService.getById(id)
+    toObservable(this.metaEntityId).pipe(
+      switchMap((entityId) => {
+        if (entityId) {
+          return this.entityService.getById(entityId)
         }
         return of(undefined);
       }),

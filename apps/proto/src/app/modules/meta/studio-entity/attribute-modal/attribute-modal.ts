@@ -25,8 +25,9 @@ export interface AttributeEditModalData {
 }
 
 @Component({
-  templateUrl: 'attribute-edit-modal.html',
-  imports: [HlmButtonImports,
+  templateUrl: 'attribute-modal.html',
+  imports: [
+    HlmButtonImports,
     FormsModule,
     ReactiveFormsModule,
     TuiForm,

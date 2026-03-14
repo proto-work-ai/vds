@@ -1,3 +1,4 @@
+@if(columns().length){
 <table tuiTable class="w-full" size="l">
   <thead>
     <tr tuiThGroup>
@@ -40,10 +41,15 @@
           [cdkPortalOutlet]="row | tableCellPortal:column"
         ></ng-template>
       </td>
-      } @case ('date') {
+      } 
+      @case ('date') {
       <td tuiTd>
-        @if(row?.[column.key]; as value){ {{$any(value)| date :'dd.MM.yyyy HH:mm'}} }</td>
-      } @default {
+        @if(row?.[column.key]; as value){ 
+          {{$any(value)| date :'dd.MM.yyyy HH:mm'}} 
+        }
+      </td>
+      } 
+      @default {
       <td tuiTd>{{ row?.[column.key] }}</td>
       } } }
     </tr>
@@ -84,9 +90,16 @@
   <tbody tuiTbody>
     <tr>
       <td [colSpan]="columns().length" tuiTd>
-        <div class="text-center">No data available in table</div>
+        <div class="text-center text-gray-500">No data available in table</div>
       </td>
     </tr>
   </tbody>
   }
 </table>
+} @else {
+<div class="border rounded-sm text-center p-3 text-gray-500">
+  <a [routerLink]="['/studio/entities/attributes/39e9d4c4-d501-4e8f-a898-5c7e02a97559']">
+    Missing attributes.
+  </a>
+</div>
+}

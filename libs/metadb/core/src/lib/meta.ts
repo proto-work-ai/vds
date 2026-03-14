@@ -8,7 +8,7 @@ export interface IMetaDbEntity {
   name?: string;
   // order?: number;
   // roleable?: boolean;
-  // roles?: QtRoleEntity[]
+  // roles?: RoleEntity[]
   entries?: IMetaDbRecord[];
   children?: IMetaDbAttribute[];
 }

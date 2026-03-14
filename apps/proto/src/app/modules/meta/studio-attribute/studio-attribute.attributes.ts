@@ -2,7 +2,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 
 import { MetaAttribute } from "@metadb/client";
-import { ColumnAttributeTable, IMetaAttribute } from "../../atlas/core/attribute";
+import { ColumnAttributeTable, IMetaAttribute } from "../../../../../../../libs/atlas/core/src/lib/attribute";
 import { MetaAttributeType } from "./studio-attribute-type.attribute";
 
 export const attrMetaAttributeId: IMetaAttribute<MetaAttribute> = {

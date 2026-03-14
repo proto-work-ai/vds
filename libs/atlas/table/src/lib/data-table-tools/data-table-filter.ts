@@ -4,20 +4,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  signal,
-  OnInit,
   inject,
   DestroyRef,
   input,
 } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import {
-  lucideChevronDown,
-  lucideMaximize,
-  lucideMinimize,
-  lucideRefreshCcw,
-} from '@ng-icons/lucide';
+import { lucideChevronDown } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
@@ -25,30 +18,13 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
-  type ColumnDef,
-  type ColumnFiltersState,
-  createAngularTable,
-  flexRenderComponent,
   FlexRenderDirective,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  type RowSelectionState,
-  type SortingState,
-  Table,
-  type VisibilityState,
 } from '@tanstack/angular-table';
-import { filter, tap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponent } from '../data-table/data-table';
-import { columns } from '../../../../../../proto-storybook/src/app/modules/table/column-grouping-table/columns';
-import { output } from '@angular/core';
 
 @Component({
-  selector: 'atlas-data-table-btn-refresh',
+  selector: 'atlas-data-table-filter',
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -64,22 +40,29 @@ import { output } from '@angular/core';
     HlmTableImports,
     ReactiveFormsModule,
   ],
-  providers: [
-    provideIcons({
-      lucideRefreshCcw,
-    }),
-  ],
+  providers: [provideIcons({ lucideChevronDown })],
   template: `
-    <button hlmBtn size="icon" variant="outline" (click)="clickRefresh()">
-      <ng-icon hlm size="sm" name="lucideRefreshCcw"></ng-icon>
-    </button>
+    <input
+      hlmInput
+      class="w-full md:w-80"
+      placeholder="Filter emails..."
+      (input)="filterChanged($event)"
+    />
   `,
 })
-export class AtlasDataTableBtnRefresh {
+export class AtlasDataTableFilter {
   private readonly destroyRef = inject(DestroyRef);
-  readonly refresh = output<void>();
+  private readonly dataTable = inject(AtlasDataTableComponent);
 
-  clickRefresh(): void {
-    this.refresh.emit();
+  protected get table() {
+    return this.dataTable.table();
+  }
+
+  readonly columnName = input.required<string>();
+
+  protected filterChanged(event: Event) {
+    this.table
+      .getColumn(this.columnName())
+      ?.setFilterValue((event.target as HTMLInputElement).value);
   }
 }

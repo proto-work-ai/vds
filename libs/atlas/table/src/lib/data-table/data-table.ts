@@ -45,12 +45,7 @@ import { makeData, Person } from './makeData';
 import { contentChild } from '@angular/core';
 import { PortalModule, TemplatePortal } from '@angular/cdk/portal';
 
-export type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
-};
+
 
 @Directive({
   selector: '[dataTableHeader], [data-taable-header]',

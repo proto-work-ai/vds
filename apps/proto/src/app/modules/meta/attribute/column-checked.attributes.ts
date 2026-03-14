@@ -1,11 +1,10 @@
 /* eslint-disable @angular-eslint/component-selector */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @nx/enforce-module-boundaries */
+import { ColumnAttributeTable, IMenuItem } from '@atlas/core';
 import { AtlasColumnTableMenu } from './column-table-menu';
 import { ColumnAllCheckedTable } from './columnn-all-table-checked';
-import { ColumnTableChecked } from './column-table-checked';
-import { ColumnAttributeTable } from '../core/attribute';
-import { IMenuItem } from '@atlas/core';
+import { ColumnTableChecked } from '@atlas/table';
 
 export const attributeRowChecked = () => {
   return {

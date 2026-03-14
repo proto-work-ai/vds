@@ -25,12 +25,11 @@ import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { tap } from 'rxjs';
 import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AtlasDataTableComponents } from '../../atlas/data-table/data-table';
-import { AtlasDataTableToggleSize } from '../../atlas/data-table-tools/data-table-toggle-size';
-import { AtlasTaigaUiTable, ITablePaginate } from "../../atlas/taiga-ui-table/taiga-ui-table";
-import { AtlasTablePaginatePipe } from '../../atlas/atlas-table-paginate';
-import { attributeColumnMenu } from '../../atlas/attribute/column-checked.attributes';
-import { ColumnAttributeTable } from '../../atlas/core/attribute';
+import { AtlasDataTableComponents } from '@atlas/table';
+import { AtlasDataTableToggleSize } from '@atlas/table';
+import { AtlasTaigaUiTable, ITablePaginate } from "@atlas/table";
+import { AtlasTablePaginatePipe } from '@atlas/table';
+import { ColumnAttributeTable } from '@atlas/core';
 import {
   attrMetaAttributeDescription, attrMetaAttributeDisable,
   attrMetaAttributeReadonly, attrMetaAttributeTitle
@@ -39,17 +38,10 @@ import {
 import { MetaEntity } from '@metadb/client';
 import { AttributeEditModal, AttributeEditModalData } from './attribute-edit-modal/attribute-edit-modal';
 import { MetaAttributeService } from '../services/studio-attribute.service';
-import { ActivatedRoute } from '@angular/router';
-
-export type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
-};
+import { attributeColumnMenu } from '../attribute/column-checked.attributes';
 
 @Component({
-  selector: 'proto-metadb-attributes',
+  selector: 'proto-attribute-table',
   templateUrl: './attribute-table.component.html',
   styleUrls: ['./attribute-table.component.scss'],
   imports: [
@@ -87,7 +79,6 @@ export type Payment = {
 export class MetadbAttributesComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly alerts = inject(TuiAlertService);
-  private readonly route = inject(ActivatedRoute);
   private readonly dialogService = inject(TuiDialogService);
   protected readonly attributeService = inject(MetaAttributeService);
   protected readonly columns = signal<ColumnAttributeTable[]>([

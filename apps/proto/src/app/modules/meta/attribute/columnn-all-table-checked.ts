@@ -19,10 +19,7 @@ import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { AtlasTaigaUiTable } from "../taiga-ui-table/taiga-ui-table";
-import { AtlasDataTableComponents } from '../data-table/data-table';
-import { AtlasDataTableToggleSize } from '../data-table-tools/data-table-toggle-size';
-import { AtlasTablePaginatePipe } from '../atlas-table-paginate';
+import { AtlasDataTableComponents, AtlasDataTableToggleSize, AtlasTablePaginatePipe, AtlasTaigaUiTable } from '@atlas/table';
 
 @Component({
   selector: 'atlas-columnn-all-table-checked',

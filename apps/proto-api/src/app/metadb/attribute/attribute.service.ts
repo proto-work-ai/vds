@@ -1,13 +1,10 @@
 import { Injectable } from '@nestjs/common';
-
-//import { PrismaService } from '../prisma/prisma.service';
-import { CreateAttributeDto, UpdateAttributeDto } from './dto';
-//import { attributeSpecificityFilterExcept } from '@atlas/core/base';
-import { attributeSpecificityFilterExcept, EntityType } from '@metadb/core';
 import { MetaAttribute } from '@metadb/client';
 import { PrismaService } from '@metadb/prisma';
 import { PageNumberPagination } from 'prisma-extension-pagination/dist/types';
 import { pagination } from 'prisma-extension-pagination';
+import { CreateAttributeDto, UpdateAttributeDto } from './dto';
+import { EntityType } from '@metadb/core';
 
 @Injectable()
 export class AttributeSevice {
@@ -69,7 +66,7 @@ export class AttributeSevice {
           }
         }
       })
-      .then((list) => list.filter(attributeSpecificityFilterExcept));
+      // .then((list) => list.filter(attributeSpecificityFilterExcept));
   }
 
   // Возвращает аттрибуты по типу
@@ -82,6 +79,6 @@ export class AttributeSevice {
           }
         }
       })
-      .then((list) => list.filter(attributeSpecificityFilterExcept));
+      // .then((list) => list.filter(attributeSpecificityFilterExcept));
   }
 }

@@ -12,8 +12,9 @@ import {
 } from '@taiga-ui/kit';
 import { TuiContext, TuiStringHandler } from '@taiga-ui/cdk/types';
 import { PortalModule } from '@angular/cdk/portal';
-import { ColumnAttributeTable } from '../core/attribute';
+import { ColumnAttributeTable } from '@atlas/core';
 import { TableCellPortalPipe } from './table-cell-portal';
+import { RouterLink } from "@angular/router";
 
 /*
   extends PageNumberPagination, PageNumberCounters
@@ -54,8 +55,9 @@ export interface ITableColumn<T extends Record<string, unknown>> {
     AsyncPipe,
     PortalModule,
     TableCellPortalPipe,
-    DatePipe
-  ],
+    DatePipe,
+    RouterLink
+],
 })
 export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
   protected readonly content: TuiStringHandler<TuiContext<number>> = ({ $implicit }) => `${$implicit} items per page`;

@@ -12,7 +12,12 @@ import {
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
-import { lucideChevronDown } from '@ng-icons/lucide';
+import {
+  lucideChevronDown,
+  lucideMaximize,
+  lucideMinimize,
+  lucideRefreshCcw,
+} from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
@@ -39,16 +44,11 @@ import {
 import { filter, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponent } from '../data-table/data-table';
-import { columns } from '../../../../../../proto-storybook/src/app/modules/table/column-grouping-table/columns';
+import { columns } from '../../../../../../apps/proto-storybook/src/app/modules/table/column-grouping-table/columns';
+import { output } from '@angular/core';
 
-export type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
-};
 @Component({
-  selector: 'atlas-data-table-filter',
+  selector: 'atlas-data-table-btn-refresh',
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -64,29 +64,22 @@ export type Payment = {
     HlmTableImports,
     ReactiveFormsModule,
   ],
-  providers: [provideIcons({ lucideChevronDown })],
+  providers: [
+    provideIcons({
+      lucideRefreshCcw,
+    }),
+  ],
   template: `
-    <input
-      hlmInput
-      class="w-full md:w-80"
-      placeholder="Filter emails..."
-      (input)="filterChanged($event)"
-    />
+    <button hlmBtn size="icon" variant="outline" (click)="clickRefresh()">
+      <ng-icon hlm size="sm" name="lucideRefreshCcw"></ng-icon>
+    </button>
   `,
 })
-export class AtlasDataTableFilter {
+export class AtlasDataTableBtnRefresh {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly dataTable = inject(AtlasDataTableComponent);
+  readonly refresh = output<void>();
 
-  protected get table() {
-    return this.dataTable.table();
-  }
-
-  readonly columnName = input.required<string>();
-
-  protected filterChanged(event: Event) {
-    this.table
-      .getColumn(this.columnName())
-      ?.setFilterValue((event.target as HTMLInputElement).value);
+  clickRefresh(): void {
+    this.refresh.emit();
   }
 }

@@ -25,24 +25,17 @@ import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { tap } from 'rxjs';
 import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AtlasDataTableComponents } from '../../atlas/data-table/data-table';
-import { AtlasDataTableToggleSize } from '../../atlas/data-table-tools/data-table-toggle-size';
-import { AtlasTaigaUiTable, ITablePaginate } from "../../atlas/taiga-ui-table/taiga-ui-table";
-import { AtlasTablePaginatePipe } from '../../atlas/atlas-table-paginate';
-import { attributeColumnMenu } from '../../atlas/attribute/column-checked.attributes';
-import { ColumnAttributeTable } from '../../atlas/core/attribute';
+import { AtlasDataTableComponents } from '@atlas/table';
+import { AtlasDataTableToggleSize } from '@atlas/table';
+import { AtlasTaigaUiTable, ITablePaginate } from "@atlas/table";
+import { AtlasTablePaginatePipe } from '@atlas/table';
+import { ColumnAttributeTable } from '@atlas/core';
 import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../studio-attribute/studio-entity.attributes';
 
 import { MetaRecord } from '@metadb/client';
 import { RecordEditModal, RecordEditModalData } from './record-edit-modal/record-edit-modal';
 import { MetaRecordService } from '../services/studio-record.service';
-
-export type Payment = {
-  id: string;
-  amount: number;
-  status: 'pending' | 'processing' | 'success' | 'failed';
-  email: string;
-};
+import { attributeColumnMenu } from '../attribute/column-checked.attributes';
 
 @Component({
   selector: 'proto-metadb-record-table',
