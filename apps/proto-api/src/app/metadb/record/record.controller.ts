@@ -19,7 +19,7 @@ import { RecordService } from './record.service';
 import { EntityType, IRecord } from '@metadb/core';
 
 @ApiTags('Entries')
-@Controller('entry')
+@Controller('record')
 @ApiBearerAuth()
 export class RecordController {
   constructor(private readonly recordService: RecordService) {}
@@ -78,20 +78,20 @@ export class RecordController {
     return this.recordService.update(id, data);
   }
 
-  @Get('by-entity/:id')
+  @Get('by-entity/:entityId')
   @ApiResponse({
     status: 200,
     description: 'Get entries by Parent and Sorting'
   })
   async getManyByEntity(
-    @Param('id') id: string,
+    @Param('entityId') entityId: string,
     @Query('filter') filter: string
   ) {
     let search = {};
     try {
       search = JSON.parse(filter as string);
     } catch (e) {}
-    return this.recordService.getManyByEntity(id, search);
+    return this.recordService.getAllByEntity(entityId, search);
   }
 
   @Get('by-type/:type')
@@ -107,6 +107,6 @@ export class RecordController {
     try {
       search = JSON.parse(filter as string);
     } catch (e) {}
-    return this.recordService.getManyByType(type, search);
+    return this.recordService.getAllByType(type, search);
   }
 }

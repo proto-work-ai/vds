@@ -35,7 +35,7 @@ import { MetaAttributeService } from '../../services/studio-attribute.service';
 import { MetaEntityService } from '../../services/studio-entity.service';
 import {
   attrMetaAttributeDescription, attrMetaAttributeDisable,
-  attrMetaAttributeName, attrMetaAttributeReadonly, attrMetaAttributeTitle,
+  attrMetaAttributeName, attrMetaAttributeOrder, attrMetaAttributeReadonly, attrMetaAttributeRequired, attrMetaAttributeTitle,
   attrMetaAttributeType, attrMetaAttributeUpdatedAt
 } from '../../studio-attribute/studio-attribute.attributes';
 import { AtlasDataTableComponents, AtlasDataTableToggleSize, AtlasTablePaginatePipe, AtlasTaigaUiTable, ITablePaginate } from '@atlas/table';
@@ -92,10 +92,12 @@ export class EntityAttributesComponent {
     attrMetaAttributeTitle,
     attrMetaAttributeName,
     attrMetaAttributeType,
-    attrMetaAttributeDisable,
-    attrMetaAttributeReadonly,
+    attrMetaAttributeRequired,
+    // attrMetaAttributeDisable,
     attrMetaAttributeDescription,
+    attrMetaAttributeOrder,
     attrMetaAttributeUpdatedAt,
+    // attrMetaAttributeReadonly,
     this.getColumnMenu(),
   ]);
 

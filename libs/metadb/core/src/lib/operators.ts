@@ -9,7 +9,7 @@ import {
   ATTRIBUTE_TEXTAREA,
   ATTRIBUTE_ID,
   ATTRIBUTE_TIME,
-  CollectionAttributeType,
+  MetaAttributeType,
   ATTRIBUTE_BIGINT,
   ATTRIBUTE_INT,
   ATTRIBUTE_UPDATED_AT,
@@ -173,7 +173,7 @@ export function getOperatorTitleByType(type: ConditionOperatorType) {
   }
 }
 
-export function getOperatorsByType(type: CollectionAttributeType): string[] {
+export function getOperatorsByType(type: MetaAttributeType): string[] {
   switch (type) {
     // String
     case ATTRIBUTE_TEXTAREA:
@@ -254,7 +254,7 @@ export function getOperatorsByType(type: CollectionAttributeType): string[] {
   return [];
 }
 
-export function getOptionsOperatorByType(type: CollectionAttributeType) {
+export function getOptionsOperatorByType(type: MetaAttributeType) {
   return getOperatorsByType(type as any).map((operator) => {
     return {
       title: getOperatorTitleByType(operator as any),

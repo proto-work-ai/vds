@@ -14,7 +14,7 @@ import {
   ATTRIBUTE_UPDATED_AT,
   ATTRIBUTE_ID,
   ATTRIBUTE_PASSWORD,
-  CollectionAttributeType,
+  MetaAttributeType,
   EntityAttributeType,
   ATTRIBUTE_TOKEN,
   ATTRIBUTE_RELATION_COUNT,
@@ -25,7 +25,7 @@ import {
 
 export interface IAttributeType {
   title: string;
-  type: CollectionAttributeType;
+  type: MetaAttributeType;
   icon: string;
 }
 

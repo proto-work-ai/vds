@@ -32,7 +32,7 @@ import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import {
   attrMetaAttributeDescription, attrMetaAttributeDisable,
-  attrMetaAttributeReadonly, attrMetaAttributeTitle
+  attrMetaAttributeReadonly, attrMetaAttributeRequired, attrMetaAttributeTitle
 } from '../studio-attribute/studio-attribute.attributes';
 
 import { MetaEntity } from '@metadb/client';
@@ -85,7 +85,8 @@ export class MetadbAttributesComponent {
     attrMetaAttributeTitle,
     attrMetaAttributeDescription,
     attrMetaAttributeDisable,
-    attrMetaAttributeReadonly,
+    // attrMetaAttributeReadonly,
+    attrMetaAttributeRequired,
     this.getColumnMenu(),
   ]);
   private readonly tableRef = viewChild(AtlasTaigaUiTable);

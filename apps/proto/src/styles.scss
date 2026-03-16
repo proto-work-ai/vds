@@ -180,7 +180,23 @@ tui-root,
     }
   }
 
-  table[data-size='l'] tbody td{
+  table[data-size='l'] tbody td {
     padding: 0.5rem 1rem !important;
+  }
+
+  [tuiAppearance][data-appearance='textfield'] {
+    --t-shadow: 0px 0.1rem 0.3rem rgb(0 0 0 / 10%);
+  }
+
+  [tuiAppearance][data-appearance='textfield']:is(
+      a,
+      button,
+      select,
+      textarea,
+      input,
+      label,
+      .tui-interactive
+    ):not(:disabled):hover:not(:disabled):not([data-state]) {
+    --t-shadow: 0px 0.1rem 0.3rem rgb(0 0 0 / 15%);
   }
 }

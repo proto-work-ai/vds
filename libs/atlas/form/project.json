@@ -1,0 +1,13 @@
+{
+  "name": "@atlas/form",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/atlas/form/src",
+  "prefix": "atlas",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

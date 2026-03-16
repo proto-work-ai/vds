@@ -8,7 +8,7 @@
 
 # Angular Commands
 - nx g @nx/angular:app apps/[aprojectName]
-- nx g @nx/angular:lib libs/[patch] --name=[projectName] --minimal true
+- nx g @nx/angular:lib libs/[patch] --name=[projectName]
 - nx g @nx/angular:component libs/my-lib/src/lib/my-component
 - nx g @nx/angular:service libs/my-lib/src/lib/my-service
 

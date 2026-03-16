@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideCalendar,
@@ -64,6 +64,7 @@ import { appLogo } from '../../common/icons';
       mobileBreakpoint: '768px',
     }),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppSidebar {
   protected readonly _items = [

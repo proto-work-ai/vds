@@ -456,10 +456,11 @@ export class RecordService {
       });
   }
 
-  async getManyByEntity(entityId: string, search: FilterAndPagination = {}) {
+  async getAllByEntity(entityId: string, search: FilterAndPagination = {}) {
     return this.getManyBy(entityId, null, search);
   }
-  async getManyByType(type?: EntityType, search: FilterAndPagination = {}) {
+  
+  async getAllByType(type?: EntityType, search: FilterAndPagination = {}) {
     return this.getManyBy(null, type, search);
   }
 

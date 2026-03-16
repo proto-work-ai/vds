@@ -12,8 +12,8 @@ import {
   lucideTrash,
   lucidePencil,
 } from '@ng-icons/lucide';
-import { Component, computed, DestroyRef, inject, Signal, signal, viewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, computed, DestroyRef, Inject, inject, Injector, Pipe, PipeTransform, Signal, signal, viewChild } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
@@ -32,13 +32,30 @@ import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../studio-attribute/studio-entity.attributes';
 
-import { MetaEntity, MetaRecord } from '@metadb/client';
-import { ContentDataEditModal, ContentDataEditModalData } from './data-edit-modal/data-edit-modal';
-import { MetaRecordService } from '../services/studio-record.service';
+import { MetaAttribute, MetaEntity, MetaRecord } from '@metadb/client';
 import { ActivatedRoute } from '@angular/router';
+import { AtlasFormImports } from '@atlas/form';
+import { JsonPipe } from '@angular/common';
 import { MetaEntityService } from '../services/studio-entity.service';
 import { MetaEntityAttributeService } from '../services/studio-entity-attribute.service';
 import { attributeColumnMenu } from '../attribute/column-checked.attributes';
+import { ContentDataEditModal, ContentDataEditModalData } from './data-edit-modal/data-edit-modal';
+import { MetaRecordService } from '../services/studio-record.service';
+import { PortalModule } from '@angular/cdk/portal';
+import { TuiForm } from '@taiga-ui/layout';
+
+@Pipe({ name: 'metaTableColumns' })
+export class MetaTableColumnsPipe implements PipeTransform {
+  transform(attributes?: MetaAttribute[]): ColumnAttributeTable[] {
+    return attributes?.map((item) => {
+      return {
+        title: item.title!,
+        type: item.type!,
+        key: item.name,
+      } satisfies ColumnAttributeTable
+    }) ?? [];
+  }
+}
 
 @Component({
   selector: 'proto-content-data-table',
@@ -63,6 +80,11 @@ import { attributeColumnMenu } from '../attribute/column-checked.attributes';
     AtlasTaigaUiTable,
     AtlasDataTableToggleSize,
     AtlasTablePaginatePipe,
+    JsonPipe,
+    MetaTableColumnsPipe,
+    PortalModule,
+    AtlasFormImports,
+    TuiForm
   ],
   providers: [
     provideIcons({
@@ -78,6 +100,7 @@ import { attributeColumnMenu } from '../attribute/column-checked.attributes';
 })
 export class ContentDataTableComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly injector = inject(Injector);
   private readonly alerts = inject(TuiAlertService);
   private readonly dialogService = inject(TuiDialogService);
   protected readonly recordService = inject(MetaRecordService);
@@ -94,26 +117,17 @@ export class ContentDataTableComponent {
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
   protected readonly metaEntity = signal<MetaEntity | undefined>(undefined);
   protected readonly metaEntityId = toSignal(this.route.params.pipe(map(({ entityId }) => entityId)));
-  protected readonly recordServiceAll = signal((paginate: ITablePaginate) =>
-    this.recordService.getAll(paginate)
-  );
-
   protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
 
-  protected readonly entityColums = toSignal(toObservable(this.metaEntityId).pipe(
+  protected readonly tableRows = signal((paginate: ITablePaginate) =>
+    toObservable(this.metaEntityId, { injector: this.injector }).pipe(
+      switchMap((entityId) => this.recordService.getByEntity(entityId, paginate))
+    )
+  );
+
+  protected readonly entityAttributes = toSignal(toObservable(this.metaEntityId).pipe(
     switchMap((entityId) => this.entityAttributeService.getByEntity(entityId)),
-    map(({ data }) => {
-      return data.map((item) => {
-        return {
-          title: item.title!,
-          type: item.type!,
-          key: item.name,
-        } satisfies ColumnAttributeTable
-      });
-    }),
-    tap((data) =>{      
-      console.log('entityColums', data);
-    }),
+    map(({ data }) => data),
     startWith([]),
   ));
 
@@ -135,7 +149,11 @@ export class ContentDataTableComponent {
       .open<string>(new PolymorpheusComponent(ContentDataEditModal), {
         label: model ? 'Edit Record' : 'Create Record',
         size: 'm',
-        data: { model } satisfies ContentDataEditModalData,
+        data: {
+          entityId: this.metaEntityId(),
+          model,
+          attributes: this.entityAttributes()!
+        } satisfies ContentDataEditModalData,
       })
       .pipe(
         tap((result) => {
@@ -162,9 +180,7 @@ export class ContentDataTableComponent {
         title: 'Edit Row',
         icon: 'lucidePencil',
         iconClass: 'text-gray-500',
-        onClick: (data: MetaRecord) => {
-          this.openEditModal(data);
-        }
+        onClick: (data: MetaRecord) => this.openEditModal(data)
       },
       {
         title: 'Remove Row',

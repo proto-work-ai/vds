@@ -180,7 +180,7 @@ export const ATTRIBUTE_PARENT_COUNT = 'parent_count';
 
 //export const ATTRIBUTE_RELATION = 'relation';
 
-export type CollectionAttributeType =
+export type MetaAttributeType =
   | typeof ATTRIBUTE_ONE_TO_ONE
   | typeof ATTRIBUTE_ONE_TO_MANY
   | typeof ATTRIBUTE_MANY_TO_MANY
@@ -267,7 +267,7 @@ export const isParentRelation = (type: EntityAttributeType) =>
 
 export const isManyRelation = (_type: EntityAttributeType) => true; // всегда мани [EntityAttributeType.RELATION_MANY, EntityAttributeType.PARENT_MANY].includes(type);
 
-export const VALUE_KEY_SET: Partial<Record<CollectionAttributeType, any>> = {
+export const VALUE_KEY_SET: Partial<Record<MetaAttributeType, any>> = {
   // EntityAttributeType.TREE]: 'children',
   [EntityAttributeType.BOOLEAN]: 'bit',
 

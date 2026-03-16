@@ -21,7 +21,6 @@ import { HlmSidebarService } from './hlm-sidebar.service';
 @Component({
   selector: 'button[hlmSidebarTrigger]',
   imports: [HlmIconImports],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     provideIcons({
       lucidePanelLeft,

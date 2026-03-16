@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
 import { RouterOutlet } from '@angular/router';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
@@ -29,5 +29,6 @@ import { AppSidebar } from '../home-sidebar/home-sidebar.component';
     HlmButtonImports,
     HlmIconImports,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {}

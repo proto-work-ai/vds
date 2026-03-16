@@ -40,4 +40,4 @@ import { TABLE_CELL_DATA } from '@atlas/table';
 })
 export class ColumnTableChecked {
   protected readonly cellData = inject(TABLE_CELL_DATA);
- }
+}

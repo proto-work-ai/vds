@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "proto:dev": "npx nx run proto:serve --configuration=development",
+    "proto-server:watch": "set NODE_ENV=development& nest start -d -w -p ./apps/proto-api/tsconfig.json -c ./apps/proto-api/nest-cli.json",
     "proto-api:dev": "npx nx run proto-api:serve --configuration=development",
     "supabase:start": "npx supabase start",
     "metadb:dev": "npx nx run metadb:serve --configuration=development"
@@ -89,7 +90,7 @@
     "@types/dompurify": "3.0.5",
     "@types/node": "20.19.9",
     "@typescript-eslint/utils": "^8.40.0",
-    "angular-eslint": "^21.0.0",
+    "angular-eslint": "^21.0.1",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "nx": "^22.0.0",

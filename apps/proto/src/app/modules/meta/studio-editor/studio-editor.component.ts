@@ -15,7 +15,6 @@ import {
   lucideRefreshCcw,
   lucideSearch,
   lucideDot,
-  lucideLayersPlus,
   lucideLayers,
 } from '@ng-icons/lucide';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -50,7 +49,6 @@ import { injectContentMenu, injectStudioMenu } from './studio-editor.menu';
     HlmSeparator,
     HlmInputGroupImports,
     RouterLink,
-    RouterLinkActive,
     RouterOutlet,
   ],
   providers: [

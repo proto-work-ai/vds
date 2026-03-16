@@ -49,7 +49,7 @@ export class RecordEditModal {
   }
 
   private formCreate(data: Partial<MetaRecord>): void {
-    this.recordService.create(data).pipe(
+    this.recordService.create('', data).pipe(
       tap(() => this.modalClose(true)),
       takeUntilDestroyed(this.destroyRef)
     ).subscribe();

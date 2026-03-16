@@ -20,8 +20,8 @@
   </header>
 
   <atlas-taiga-ui-table
-    [tableRows]="[] | atlasTablePaginate: recordServiceAll()"
-    [tableColumns]="entityColums()!"
+    [tableRows]="[] | atlasTablePaginate: tableRows()"
+    [tableColumns]="entityAttributes() | metaTableColumns"
     (tableRowClick)="openEditModal($any($event))"
   ></atlas-taiga-ui-table>
 </section>

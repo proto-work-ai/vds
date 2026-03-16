@@ -19,7 +19,7 @@ import {
   OPERATOR_NOT_IN,
   OPERATOR_START_WITH,
 } from './operators';
-import { CollectionAttributeType, EntityAttributeType, VALUE_KEY_SET } from './base';
+import { MetaAttributeType, EntityAttributeType, VALUE_KEY_SET } from './base';
 
 interface WhereFilter {
   // String
@@ -60,7 +60,7 @@ export interface FilterAndPaginationEx {
 }
 
 export interface IFilterField {
-  field: { name: string; type: CollectionAttributeType };
+  field: { name: string; type: MetaAttributeType };
   value: any;
   condition?: ConditionOperatorType;
 }
@@ -115,7 +115,7 @@ export function bindFieldWhere(filters: IFilterField[]) {
 
   function extend(
     group: 'some' | 'none',
-    { name, type }: { name: string; type: CollectionAttributeType },
+    { name, type }: { name: string; type: MetaAttributeType },
     condition: ConditionOperatorType,
     conditionValue: any,
   ) {

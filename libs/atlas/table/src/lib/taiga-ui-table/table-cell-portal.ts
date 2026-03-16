@@ -1,12 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @angular-eslint/no-input-rename */
-/* eslint-disable @angular-eslint/component-selector */
 import { PipeTransform, inject, Pipe, ViewContainerRef, TemplateRef, ElementRef, Injector } from '@angular/core';
 import { ComponentPortal, ComponentType, DomPortal, TemplatePortal } from '@angular/cdk/portal';
 import { ColumnAttributeTable } from '@atlas/core';
 import { tableColumnContextProvider, tableRowDataProvider, tableRowProvider } from './table-cell-context';
-import { ColumnTableChecked } from '@atlas/table';
-
+import { ColumnTableChecked } from '../attribute/column-table-checked';
 
 @Pipe({ name: 'tableCellPortal' })
 export class TableCellPortalPipe<T = unknown> implements PipeTransform {

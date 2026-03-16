@@ -2,7 +2,7 @@
 import { DestroyRef, inject, Signal, signal } from '@angular/core';
 import { ISignalMenuItem } from '../../../common/menu';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, startWith, tap } from 'rxjs';
+import { filter, map, startWith, switchMap, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MetaEntityService } from '../services/studio-entity.service';
 import { contentPages, studioPages } from '../meta.route';
@@ -96,24 +96,21 @@ export function injectContentMenu(): Signal<ISignalMenuItem[]> {
         });
       });
     }),
+    switchMap(() => {
+      return router.events
+        .pipe(
+          filter((event) => event instanceof NavigationEnd),
+          startWith(true),
+          filter(Boolean),
+          map(() => route.snapshot.firstChild?.url.join('/')),
+          filter(Boolean),
+          tap((url: string) => {
+            menu().forEach((item) => item.active?.set(url.startsWith(item.link)))
+          }),
+        )
+    }),
     takeUntilDestroyed(destroyRef)
   ).subscribe();
-
-  router.events
-    .pipe(
-      filter((event) => event instanceof NavigationEnd),
-      startWith(true),
-      filter(Boolean),
-      map(() => route.snapshot.firstChild?.url.join('/')),
-      tap((routePath) => {
-        menu().forEach((item) => {
-          item.active?.set(routePath!.startsWith(item.link))
-        })
-      }
-      ),
-      takeUntilDestroyed(destroyRef),
-    )
-    .subscribe();
 
   return menu.asReadonly();
 }
