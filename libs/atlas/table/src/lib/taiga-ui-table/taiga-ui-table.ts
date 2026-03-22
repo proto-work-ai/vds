@@ -1,39 +1,19 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/component-selector */
-import { Component, computed, input, output, OnInit, signal, model } from '@angular/core';
+import { Component, computed, input, output, model, signal } from '@angular/core';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TuiComparator, TuiSortChange, TuiTable } from '@taiga-ui/addon-table';
 import { TuiButton, TuiFormatNumberPipe, TuiTextfield } from '@taiga-ui/core';
-import {
-  TuiButtonSelect,
-  TuiDataListWrapper,
-  TuiPagination,
-} from '@taiga-ui/kit';
+import { TuiButtonSelect, TuiDataListWrapper, TuiPagination } from '@taiga-ui/kit';
 import { TuiContext, TuiStringHandler } from '@taiga-ui/cdk/types';
 import { PortalModule } from '@angular/cdk/portal';
-import { ColumnAttributeTable } from '@atlas/core';
+import { ColumnAttributeTable, PagePagination, PaginationOptions } from '@atlas/core';
 import { TableCellPortalPipe } from './table-cell-portal';
-import { RouterLink } from "@angular/router";
-import { TuiDay, tuiDefaultSort, TuiLet } from '@taiga-ui/cdk';
-import { BehaviorSubject } from 'rxjs';
-
-/*
-  extends PageNumberPagination, PageNumberCounters
-*/
-export interface ITablePaginate {
-  length: number;
-  pageCount: number; // size: number;
-  currentPage: number;// index: number;
-  // length: number;
-
-  totalCount?: number; // total: number;
-  items?: number[];
-  nextPage?: number | null;
-  isFirstPage?: boolean;
-  isLastPage?: boolean;
-  previousPage?: number | null;
-}
+import { RouterLink } from '@angular/router';
+import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
+import { sortBy } from '@atlas/form';
 
 export interface ITableColumn<T extends Record<string, unknown>> {
   title: string;
@@ -55,7 +35,6 @@ interface Item {
   styleUrls: ['./taiga-ui-table.scss'],
   imports: [
     FormsModule,
-    AsyncPipe,
     DatePipe,
     RouterLink,
     TuiButton,
@@ -64,25 +43,31 @@ interface Item {
     TuiDataListWrapper,
     TuiTable,
     TuiTextfield,
-    TuiFormatNumberPipe,
     PortalModule,
     TableCellPortalPipe,
+    TuiFormatNumberPipe,
+    AsyncPipe,
   ],
 })
 export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
   protected readonly content: TuiStringHandler<TuiContext<number>> = ({ $implicit }) => `${$implicit} items per page`;
-  public readonly rows = input.required<T[] | undefined>({ alias: 'tableRows' });
+  public readonly tableRows = input.required<T[] | undefined>({ alias: 'tableRows' });
   public readonly columns = input.required<ColumnAttributeTable[]>({ alias: 'tableColumns' });
-  public readonly columnKeys = computed(() => this.columns().map(a => a.key));
-  public readonly pagination = input<ITablePaginate | undefined>({
-    length: 10,
-    pageCount: 10,
-    currentPage: 4,
-    totalCount: 999,
-    items: [10, 50, 100],
-  }, {
-    alias: 'tablePaginate'
-  });
+  public readonly columnKeys = computed(() => this.columns().map((a) => a.key));
+
+  protected readonly pageOptions = signal<PaginationOptions>({ page: 1, limit: 8, includePageCount: true });
+
+  public readonly pagination = input<PagePagination | undefined>(
+    {
+      pageCount: 10,
+      currentPage: 4,
+      totalCount: 999,
+      items: [10, 50, 100],
+    },
+    {
+      alias: 'tablePaginate',
+    }
+  );
 
   readonly tableRowClick = output<unknown>();
 
@@ -94,18 +79,22 @@ export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
     return 0;
   }
 
-  readonly paginationChange = output<{ currentPage: number, pageCount: number, length: number }>();
+  readonly paginationChange = output<PaginationOptions>();
 
   protected readonly totalSorter: TuiComparator<Item> = (a, b) => {
     return tuiDefaultSort(a.price * a.quantity, b.price * b.quantity);
-  }
+  };
 
   protected pageIndexChange(indexPage: number): void {
-    this.paginationChange.emit({ currentPage: indexPage + 1, pageCount: this.pagination()?.pageCount ?? 0, length: this.pagination()?.length ?? 0 });
+    this.paginationChange.emit({
+      page: indexPage + 1,
+      limit: this.pagination()?.pageCount ?? 0,
+      includePageCount: true,
+    });
   }
 
-  protected pageCountChange(pageCount: number): void {
-    this.paginationChange.emit({ currentPage: this.pagination()?.currentPage ?? 0, pageCount, length: this.pagination()?.length ?? 0 });
+  protected pageCountChange(limit: number): void {
+    this.paginationChange.emit({ page: this.pagination()?.currentPage ?? 0, limit });
   }
 
   protected onTableRowClick(data: unknown): void {
@@ -114,9 +103,9 @@ export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
 
   public refresh(): void {
     this.paginationChange.emit({
-      pageCount: this.pagination()?.pageCount ?? 1,
-      currentPage: this.pagination()?.currentPage ?? 0,
-      length: this.pagination()?.length ?? 0
+      limit: this.pagination()?.pageCount ?? 1,
+      page: this.pagination()?.currentPage ?? 0,
+      includePageCount: true,
     });
   }
 
@@ -128,24 +117,8 @@ export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
   }
 
   protected readonly data = computed(() => {
+    const sortKey = this.columnSortBy() as string;
     const direction = this.columnDirection();
-    const sortBy = this.columnSortBy() as string;
-
-    return sortBy
-      ? [...this.rows()!].sort((a, b) => {
-        const valA = a[sortBy];
-        const valB = b[sortBy];
-
-        if (typeof valA === 'string' && typeof valB === 'string') {
-          return valA.localeCompare(valB) * direction;
-        }
-
-        if (typeof valA === 'number' && typeof valB === 'number') {
-          return (valA - valB) * direction;
-        }
-
-        return 0;
-      })
-      : this.rows();
+    return sortKey ? this.tableRows()?.concat().sort(sortBy(sortKey, direction)) : this.tableRows();
   });
 }

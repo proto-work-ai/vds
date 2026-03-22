@@ -12,8 +12,8 @@ import {
   lucideTrash,
   lucidePencil,
 } from '@ng-icons/lucide';
-import { Component, computed, DestroyRef, Inject, inject, Injector, Pipe, PipeTransform, Signal, signal, viewChild } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, DestroyRef, inject, Injector, Pipe, PipeTransform, signal, viewChild } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
@@ -27,14 +27,14 @@ import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponents } from '@atlas/table';
 import { AtlasDataTableToggleSize } from '@atlas/table';
-import { AtlasTaigaUiTable, ITablePaginate } from "@atlas/table";
+import { AtlasTaigaUiTable } from "@atlas/table";
 import { AtlasTablePaginatePipe } from '@atlas/table';
-import { ColumnAttributeTable } from '@atlas/core';
+import { ColumnAttributeTable, PaginationOptions } from '@atlas/core';
 import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../studio-attribute/studio-entity.attributes';
 
 import { MetaAttribute, MetaEntity, MetaRecord } from '@metadb/client';
 import { ActivatedRoute } from '@angular/router';
-import { AtlasFormImports } from '@atlas/form';
+import { AtlasFormImports, SortByPipe } from '@atlas/form';
 import { JsonPipe } from '@angular/common';
 import { MetaEntityService } from '../services/studio-entity.service';
 import { MetaEntityAttributeService } from '../services/studio-entity-attribute.service';
@@ -43,11 +43,12 @@ import { ContentDataEditModal, ContentDataEditModalData } from './data-edit-moda
 import { MetaRecordService } from '../services/studio-record.service';
 import { PortalModule } from '@angular/cdk/portal';
 import { TuiForm } from '@taiga-ui/layout';
+import { sortBy } from 'libs/atlas/form/src/lib/pipes/sort-by.pipe';
 
 @Pipe({ name: 'metaTableColumns' })
 export class MetaTableColumnsPipe implements PipeTransform {
   transform(attributes?: MetaAttribute[]): ColumnAttributeTable[] {
-    return attributes?.map((item) => {
+    return attributes?.sort(sortBy<MetaAttribute>('order')).map((item) => {
       return {
         title: item.title!,
         type: item.type!,
@@ -84,7 +85,8 @@ export class MetaTableColumnsPipe implements PipeTransform {
     MetaTableColumnsPipe,
     PortalModule,
     AtlasFormImports,
-    TuiForm
+    SortByPipe,
+    TuiForm,
   ],
   providers: [
     provideIcons({
@@ -117,9 +119,9 @@ export class ContentDataTableComponent {
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
   protected readonly metaEntity = signal<MetaEntity | undefined>(undefined);
   protected readonly metaEntityId = toSignal(this.route.params.pipe(map(({ entityId }) => entityId)));
-  protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
+  protected readonly tablePaginate = signal<PaginationOptions>({ limit: 10, page: 10, includePageCount: true });
 
-  protected readonly tableRows = signal((paginate: ITablePaginate) =>
+  protected readonly tableRows = signal((paginate: PaginationOptions) =>
     toObservable(this.metaEntityId, { injector: this.injector }).pipe(
       switchMap((entityId) => this.recordService.getByEntity(entityId, paginate))
     )

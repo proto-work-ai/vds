@@ -3,10 +3,7 @@
     <section hlmSidebarHeader>
       <ul hlmSidebarMenu>
         <li hlmSidebarMenuItem>
-          <button
-            hlmSidebarMenuButton
-            [hlmDropdownMenuTrigger]="menu"
-          >
+          <button hlmSidebarMenuButton [hlmDropdownMenuTrigger]="menu">
             Select Workspace
             <!-- <ng-icon hlm name="lucideChevronDown" class="ml-auto" /> -->
             <ng-icon hlm size="md" name="appLogo" />
@@ -26,16 +23,9 @@
         <div hlmSidebarGroupContent>
           <ul hlmSidebarMenu>
             @for (item of collapsibleItems; track item.title) {
-              <hlm-collapsible
-                [expanded]="item.defaultOpen"
-                class="group/collapsible"
-              >
+              <hlm-collapsible [expanded]="item.defaultOpen" class="group/collapsible">
                 <li hlmSidebarMenuItem>
-                  <button
-                    hlmCollapsibleTrigger
-                    hlmSidebarMenuButton
-                    class="flex w-full items-center justify-between"
-                  >
+                  <button hlmCollapsibleTrigger hlmSidebarMenuButton class="flex w-full items-center justify-between">
                     <span>{{ item.title }}</span>
                     <ng-icon
                       name="lucideChevronRight"
@@ -60,7 +50,6 @@
           </ul>
         </div>
       </section>
-
       <section hlmSidebarGroup>
         <div hlmSidebarGroupContent>
           <ul hlmSidebarMenu>

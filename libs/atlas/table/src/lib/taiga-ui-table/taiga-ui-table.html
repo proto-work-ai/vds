@@ -31,7 +31,9 @@
       ('string') {
       <td tuiTd class="truncate max-w-100">{{ row?.[column.key] }}</td>
       } @case ('number') {
-      <td tuiTd>{{ $any(row?.[column.key]) | tuiFormatNumber | async }}</td>
+      <td tuiTd>
+        {{ $any(row?.[column.key]) }}
+      </td>
       } @case ('boolean') {
       <td tuiTd>
         <ng-template

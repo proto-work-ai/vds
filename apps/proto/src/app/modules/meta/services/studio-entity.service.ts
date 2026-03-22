@@ -3,9 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MetaEntity } from '@metadb/client';
 import { Observable } from 'rxjs';
-import { ITablePaginate } from '../../../../../../../libs/atlas/table/src/lib/taiga-ui-table/taiga-ui-table';
-
-export interface IMetaEntityData<T = MetaEntity> { data: T[], paginate: ITablePaginate }
+import { PaginationOptions } from '@atlas/core';
+import { IPaginationResult } from '@atlas/core';
 
 @Injectable({ providedIn: 'root' })
 export class MetaEntityService {
@@ -15,8 +14,8 @@ export class MetaEntityService {
     return this.#http.get<MetaEntity>(`/api/entity/${id}`);
   }
 
-  getAll(params: { currentPage: number; length: number; }): Observable<IMetaEntityData> {
-    return this.#http.get<IMetaEntityData>('/api/entity', { params });
+  getAll(params: PaginationOptions): Observable<IPaginationResult<MetaEntity>> {
+    return this.#http.get<IPaginationResult<MetaEntity>>('/api/entity', { params });
   }
 
   create(data: Partial<MetaEntity>): Observable<MetaEntity> {

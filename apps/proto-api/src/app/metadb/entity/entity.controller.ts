@@ -21,16 +21,16 @@ import { MetaEntityService } from './entity.service';
 export class EntityController {
   constructor(private readonly entityService: MetaEntityService) { }
 
+  @Get()
+  @ApiResponse({ status: 200, description: 'Get all entities' })
+  async getAll(@Query('limit') limit: number, @Query('page') page: number) {
+    return this.entityService.getAll({ limit: Number(limit ?? 10), page: Number(page ?? 1) });
+  }
+
   @Get(':id')
   @ApiResponse({ status: 200, description: 'Get a entity by ID' })
   async getById(@Param('id') id: string) {
     return this.entityService.getById(id);
-  }
-
-  @Get()
-  @ApiResponse({ status: 200, description: 'Get all entities' })
-  async getAll(@Query('length') length: number, @Query('currentPage') page: number) {
-    return this.entityService.getAll({ limit: Number(length ?? 10), page: Number(page ?? 0) });
   }
 
   @Get('by-type/:type')

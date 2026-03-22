@@ -30,15 +30,15 @@ import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-i
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EntityAttributeEditModal, AttributeEditModalData } from '../attribute-modal/attribute-modal';
 import { MetaAttribute, MetaEntity } from '@metadb/client';
-import { ColumnAttributeTable } from '@atlas/core';
+import { ColumnAttributeTable, injectServiceSearch, PaginationOptions } from '@atlas/core';
 import { MetaAttributeService } from '../../services/studio-attribute.service';
 import { MetaEntityService } from '../../services/studio-entity.service';
 import {
-  attrMetaAttributeDescription, attrMetaAttributeDisable,
-  attrMetaAttributeName, attrMetaAttributeOrder, attrMetaAttributeReadonly, attrMetaAttributeRequired, attrMetaAttributeTitle,
+  attrMetaAttributeDescription,
+  attrMetaAttributeName, attrMetaAttributeOrder, attrMetaAttributeRequired, attrMetaAttributeTitle,
   attrMetaAttributeType, attrMetaAttributeUpdatedAt
 } from '../../studio-attribute/studio-attribute.attributes';
-import { AtlasDataTableComponents, AtlasDataTableToggleSize, AtlasTablePaginatePipe, AtlasTaigaUiTable, ITablePaginate } from '@atlas/table';
+import { AtlasDataTableComponents, AtlasDataTableToggleSize, AtlasTablePaginatePipe, AtlasTaigaUiTable } from '@atlas/table';
 import { MetaEntityAttributeService } from '../../services/studio-entity-attribute.service';
 import { attributeColumnMenu } from '../../attribute/column-checked.attributes';
 
@@ -103,11 +103,10 @@ export class EntityAttributesComponent {
 
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
 
-  protected readonly attributeServiceAll = signal((paginate: ITablePaginate) => {
-    return this.entityAttributeService.getByEntity(this.metaEntityId()!, paginate);
-  });
+  protected readonly serviceSearch = injectServiceSearch((paginate: PaginationOptions) => this.entityAttributeService.getByEntity(this.metaEntityId()!, paginate), false);
+  protected readonly tableData = signal<[]>([])//toSignal(this.serviceSearch()().pipe(map(a => a.data)));
 
-  protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
+  protected readonly tablePaginate = signal<PaginationOptions>({ page: 1, limit: 10, includePageCount: true });
   protected readonly metaEntity = signal<MetaEntity | undefined>(undefined);
   protected readonly metaEntityId = toSignal(this.route.params.pipe(map(({ id }) => id)));
 
@@ -125,7 +124,12 @@ export class EntityAttributesComponent {
   }
 
   protected openEditModal(model: Partial<MetaAttribute> = {}): void {
-    model.entityId = this.metaEntity()!.id;
+    if (!model.id) {
+      model.entityId = this.metaEntity()!.id;
+      if (model.order == null) {
+        model.order = this.tableData()?.length ?? 0;
+      }
+    }
     this.dialogService
       .open<string>(new PolymorpheusComponent(EntityAttributeEditModal), {
         label: model ? 'Edit Attribute' : 'Create Attribute',

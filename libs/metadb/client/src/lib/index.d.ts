@@ -3093,6 +3093,8 @@ export namespace Prisma {
       description: string | null
       multiple: boolean | null
       type: string | null
+      relationId: string | null
+      relationName: string | null
       required: boolean | null
       readonly: boolean | null
       order: number | null
@@ -3103,8 +3105,6 @@ export namespace Prisma {
       security: boolean | null
       field: string | null
       entityId: string | null
-      relationId: string | null
-      relationName: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["metaAttribute"]>

@@ -113,7 +113,7 @@ model MetaValue {
 
   type              Int                 @default(40) @db.SmallInt
   childrenProperty  String?             @db.Text
-  order             Int?
+  order             Int?                @db.SmallInt @default(0)
 
   bit               Int?                @db.SmallInt
 

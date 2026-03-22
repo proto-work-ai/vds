@@ -29,8 +29,8 @@ export class ValueController {
 
   @Get()
   @ApiResponse({ status: 200, description: 'Get all values' })
-  async getAll(@Query('length') length: number, @Query('currentPage') page: number) {
-    return this.valueSevice.getAll({ limit: Number(length ?? 10), page: Number(page ?? 0) });
+  async getAll(@Query('limit') limit: number, @Query('page') page: number) {
+    return this.valueSevice.getAll({ limit: Number(limit ?? 10), page: Number(page ?? 1) });
   }
 
   // @Get(':id')

@@ -27,10 +27,16 @@ import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponents } from '@atlas/table';
 import { AtlasDataTableToggleSize } from '@atlas/table';
-import { AtlasTaigaUiTable, ITablePaginate } from "@atlas/table";
+import { AtlasTaigaUiTable } from '@atlas/table';
 import { AtlasTablePaginatePipe } from '@atlas/table';
-import { ColumnAttributeTable } from '@atlas/core';
-import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../studio-attribute/studio-entity.attributes';
+import { ColumnAttributeTable, PaginationOptions } from '@atlas/core';
+import {
+  attrMetaEntityDescription,
+  attrMetaEntityDisable,
+  attrMetaEntityReadonly,
+  attrMetaEntityTitle,
+  attrMetaEntityOrder,
+} from '../studio-attribute/studio-entity.attributes';
 import { MetaEntityService } from '../services/studio-entity.service';
 
 import { MetaEntity } from '@metadb/client';
@@ -38,6 +44,7 @@ import { EntityEditModal } from './entity-edit-modal/entity-edit-modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { studioPages } from '../meta.route';
 import { attributeColumnMenu } from '../attribute/column-checked.attributes';
+import { MENU_CHANGE_EVENT } from '../studio-editor/studio-editor.menu';
 
 @Component({
   selector: 'proto-studio-entity-table',
@@ -82,20 +89,20 @@ export class StudioEntitiesComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly dialogService = inject(TuiDialogService);
   protected readonly entityService = inject(MetaEntityService);
+  protected readonly menuChangeEvent = inject(MENU_CHANGE_EVENT);
   protected readonly columns = signal<ColumnAttributeTable[]>([
     attrMetaEntityTitle,
     attrMetaEntityDescription,
     attrMetaEntityDisable,
     attrMetaEntityReadonly,
+    attrMetaEntityOrder,
     this.getColumnMenu(),
   ]);
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
 
-  protected readonly entityServiceAll = signal((paginate: ITablePaginate) =>
-    this.entityService.getAll(paginate)
-  );
+  protected readonly entityServiceAll = signal((options: PaginationOptions) => this.entityService.getAll(options));
 
-  protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
+  protected readonly tablePaginate = signal<PaginationOptions>({ limit: 10, page: 1, includePageCount: true });
 
   protected openEditModal(model?: MetaEntity): void {
     this.dialogService
@@ -108,7 +115,7 @@ export class StudioEntitiesComponent {
         tap((result) => {
           if (result) {
             this.alerts.open('Alert');
-            this.tableRefresh()
+            this.tableRefresh();
           }
         }),
         takeUntilDestroyed(this.destroyRef)
@@ -117,10 +124,13 @@ export class StudioEntitiesComponent {
   }
 
   protected removeById(id: string) {
-    this.entityService.delete(id).pipe(
-      tap(() => this.tableRefresh()),
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe();
+    this.entityService
+      .delete(id)
+      .pipe(
+        tap(() => this.tableRefresh()),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   private getColumnMenu(): ColumnAttributeTable {
@@ -131,24 +141,28 @@ export class StudioEntitiesComponent {
         iconClass: 'text-gray-500',
         onClick: (data: MetaEntity) => {
           this.openEditModal(data);
-        }
+        },
       },
       {
         title: 'Attributes',
         icon: 'lucideBox',
         iconClass: 'text-gray-500',
-        onClick: (data: MetaEntity) => this.router.navigate(['..', studioPages.entities.root, studioPages.entities.attributes, data.id], { relativeTo: this.route })
+        onClick: (data: MetaEntity) =>
+          this.router.navigate(['..', studioPages.entities.root, studioPages.entities.attributes, data.id], {
+            relativeTo: this.route,
+          }),
       },
       {
         title: 'Remove Row',
         icon: 'lucideTrash',
         iconClass: 'text-red-500',
-        onClick: (data: MetaEntity) => this.removeById(data.id)
+        onClick: (data: MetaEntity) => this.removeById(data.id),
       },
-    ])
+    ]);
   }
 
   private tableRefresh(): void {
     this.tableRef()!.refresh();
+    this.menuChangeEvent.next();
   }
 }

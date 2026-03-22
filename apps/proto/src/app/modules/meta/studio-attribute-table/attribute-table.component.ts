@@ -27,12 +27,15 @@ import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AtlasDataTableComponents } from '@atlas/table';
 import { AtlasDataTableToggleSize } from '@atlas/table';
-import { AtlasTaigaUiTable, ITablePaginate } from "@atlas/table";
+import { AtlasTaigaUiTable } from '@atlas/table';
 import { AtlasTablePaginatePipe } from '@atlas/table';
-import { ColumnAttributeTable } from '@atlas/core';
+import { ColumnAttributeTable, PaginationOptions } from '@atlas/core';
 import {
-  attrMetaAttributeDescription, attrMetaAttributeDisable,
-  attrMetaAttributeReadonly, attrMetaAttributeRequired, attrMetaAttributeTitle
+  attrMetaAttributeDescription,
+  attrMetaAttributeDisable,
+  attrMetaAttributeReadonly,
+  attrMetaAttributeRequired,
+  attrMetaAttributeTitle,
 } from '../studio-attribute/studio-attribute.attributes';
 
 import { MetaEntity } from '@metadb/client';
@@ -91,11 +94,11 @@ export class MetadbAttributesComponent {
   ]);
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
 
-  protected readonly attributeServiceAll = signal((paginate: ITablePaginate) =>
-    this.attributeService.getAll(paginate)
+  protected readonly attributeServiceAll = signal((options: PaginationOptions) =>
+    this.attributeService.getAll(options)
   );
 
-  protected readonly tablePaginate = signal<ITablePaginate>({ currentPage: 1, length: 10, pageCount: 10 });
+  protected readonly tablePaginate = signal<PaginationOptions>({ limit: 10, page: 10, includePageCount: true });
 
   protected openEditModal(model?: MetaEntity): void {
     this.dialogService
@@ -108,7 +111,7 @@ export class MetadbAttributesComponent {
         tap((result) => {
           if (result) {
             this.alerts.open('Alert');
-            this.tableRefresh()
+            this.tableRefresh();
           }
         }),
         takeUntilDestroyed(this.destroyRef)
@@ -117,10 +120,13 @@ export class MetadbAttributesComponent {
   }
 
   protected removeById(id: string) {
-    this.attributeService.delete(id).pipe(
-      tap(() => this.tableRefresh()),
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe();
+    this.attributeService
+      .delete(id)
+      .pipe(
+        tap(() => this.tableRefresh()),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   private getColumnMenu(): ColumnAttributeTable {
@@ -131,15 +137,15 @@ export class MetadbAttributesComponent {
         iconClass: 'text-gray-500',
         onClick: (data: MetaEntity) => {
           this.openEditModal(data);
-        }
+        },
       },
       {
         title: 'Remove Row',
         icon: 'lucideTrash',
         iconClass: 'text-red-500',
-        onClick: (data: MetaEntity) => this.removeById(data.id)
+        onClick: (data: MetaEntity) => this.removeById(data.id),
       },
-    ])
+    ]);
   }
 
   private tableRefresh(): void {

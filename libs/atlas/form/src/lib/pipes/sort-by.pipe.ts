@@ -6,15 +6,15 @@ export class SortByPipe implements PipeTransform {
     items: T[],
     key: keyof T,
     direction = 1
-  ) {
+  ): T[] {
     return items.sort(sortBy(key, direction));
   }
 }
 
 export function sortBy<T extends Record<string, unknown>>(key: keyof T, direction = 1) {
   return (a: T, b: T) => {
-    const valA = a[key];
-    const valB = b[key];
+    const valA = a[key] ?? 0;
+    const valB = b[key] ?? 0;
 
     if (typeof valA === 'string' && typeof valB === 'string') {
       return valA.localeCompare(valB) * direction;

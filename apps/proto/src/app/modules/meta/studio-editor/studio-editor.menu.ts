@@ -1,11 +1,23 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @nx/enforce-module-boundaries */
-import { DestroyRef, inject, Signal, signal } from '@angular/core';
-import { ISignalMenuItem } from '../../../common/menu';
+import { DestroyRef, inject, InjectionToken, Signal, signal, ValueProvider } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, startWith, switchMap, tap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { EMPTY, filter, map, merge, of, startWith, Subject, switchMap, tap } from 'rxjs';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { MetaEntityService } from '../services/studio-entity.service';
+import { ISignalMenuItem } from '../../../common/menu';
 import { contentPages, studioPages } from '../meta.route';
+import { MetaEntity } from '@metadb/client';
+
+export const MENU_CHANGE_EVENT = new InjectionToken<Subject<void>>('MENU_CHANGE_EVENT');
+
+export function menuChangeProvider(): ValueProvider {
+  return {
+    provide: MENU_CHANGE_EVENT,
+    useValue: new Subject<void>()
+  };
+}
 
 export function injectStudioMenu(): Signal<ISignalMenuItem[]> {
   const destroyRef = inject(DestroyRef);
@@ -78,14 +90,16 @@ export function injectContentMenu(): Signal<ISignalMenuItem[]> {
   const route = inject(ActivatedRoute);
   const router = inject(Router);
   const entityService = inject(MetaEntityService);
-
+  const menuChangeEvent = inject(MENU_CHANGE_EVENT, { optional: true }) ?? of<void>();
   const menu = signal<ISignalMenuItem[]>([]);
 
-  entityService.getAll({ currentPage: 1, length: 20 }).pipe(
+  menuChangeEvent.pipe(
+    startWith(undefined),
+    switchMap(() => entityService.getAll({ page: 1, limit: 20 })),
     map(({ data }) => data),
     tap((data) => {
       menu.update(() => {
-        return data.map(({ id, name, title }) => {
+        return data.map(({ id, title }) => {
           return {
             title: title!,
             link: `${contentPages.root}/${contentPages.data.root}/${id}`,
@@ -97,17 +111,14 @@ export function injectContentMenu(): Signal<ISignalMenuItem[]> {
       });
     }),
     switchMap(() => {
-      return router.events
-        .pipe(
-          filter((event) => event instanceof NavigationEnd),
-          startWith(true),
-          filter(Boolean),
-          map(() => route.snapshot.firstChild?.url.join('/')),
-          filter(Boolean),
-          tap((url: string) => {
-            menu().forEach((item) => item.active?.set(url.startsWith(item.link)))
-          }),
-        )
+      return router.events.pipe(
+        filter((event) => event instanceof NavigationEnd),
+        startWith(true),
+        map(() => route.snapshot.firstChild?.url.join('/')!),
+        tap((url: string) => {
+          menu().forEach((item) => item.active?.set(url.startsWith(item.link)))
+        }),
+      )
     }),
     takeUntilDestroyed(destroyRef)
   ).subscribe();

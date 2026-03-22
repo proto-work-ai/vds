@@ -7,17 +7,18 @@ import { HlmError } from './hlm-error';
 	selector: 'hlm-form-field',
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	template: `
-		<ng-content />
+    <ng-content />
 
-		@switch (_hasDisplayedMessage()) {
-			@case ('error') {
-				<ng-content select="hlm-error" />
-			}
-			@default {
-				<ng-content select="hlm-hint" />
-			}
-		}
-	`,
+    @switch (_hasDisplayedMessage()) {
+      
+@case ('error') {
+        <ng-content select="hlm-error" />
+      }
+      @default {
+        <ng-content select="hlm-hint" />
+      }
+    }
+  `,
 })
 export class HlmFormField {
 	public readonly control = contentChild(BrnFormFieldControl);
@@ -25,7 +26,7 @@ export class HlmFormField {
 	public readonly errorChildren = contentChildren(HlmError);
 
 	protected readonly _hasDisplayedMessage = computed<'error' | 'hint'>(() =>
-		this.errorChildren() && this.errorChildren().length > 0 && this.control()?.errorState() ? 'error' : 'hint',
+		this.errorChildren() && this.errorChildren().length > 0 && this.control()?.errorState() ? 'error' : 'hint'
 	);
 
 	constructor() {

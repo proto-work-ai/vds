@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @nx/enforce-module-boundaries */
 
+import { IMetaAttribute } from "@atlas/core";
 import { MetaAttribute } from "@metadb/client";
-import { IMetaAttribute } from "../../../../../../../libs/atlas/core/src/lib/attribute";
 
 export const attrMetaEntityId: IMetaAttribute<MetaAttribute> = {
   title: 'Id',
@@ -32,6 +32,12 @@ export const attrMetaEntityReadonly: IMetaAttribute<MetaAttribute> = {
   title: 'Readonly',
   key: 'readonly',
   type: 'boolean'
+} as const;
+
+export const attrMetaEntityOrder: IMetaAttribute<MetaAttribute> = {
+  title: 'Order',
+  key: 'order',
+  type: 'number'
 } as const;
 
 /*

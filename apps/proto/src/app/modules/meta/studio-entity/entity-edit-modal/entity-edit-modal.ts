@@ -5,7 +5,7 @@ import { MetaEntity } from '@metadb/client';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
 import { TuiButton, TuiTextfield } from '@taiga-ui/core';
 import { type TuiDialogContext } from '@taiga-ui/experimental';
-import { TuiCheckbox, TuiTextarea } from '@taiga-ui/kit';
+import { TuiCheckbox, TuiTextarea, TuiInputNumber } from '@taiga-ui/kit';
 import { TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -19,7 +19,18 @@ export interface EntityEditModalData {
 
 @Component({
   templateUrl: './entity-edit-modal.html',
-  imports: [HlmButtonImports, FormsModule, ReactiveFormsModule, TuiButton, TuiForm, TuiTextfield, TuiTextarea, TuiCheckbox, TuiAutoFocus],
+  imports: [
+    HlmButtonImports,
+    FormsModule,
+    ReactiveFormsModule,
+    TuiButton,
+    TuiForm,
+    TuiTextfield,
+    TuiTextarea,
+    TuiCheckbox,
+    TuiInputNumber,
+    TuiAutoFocus,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EntityEditModal {
@@ -34,6 +45,7 @@ export class EntityEditModal {
     // name: new FormControl(undefined, [Validators.required]),
     disable: new FormControl(false),
     readonly: new FormControl(false),
+    order: new FormControl<number|undefined>(undefined),
   });
 
   protected get isEditable(): boolean {

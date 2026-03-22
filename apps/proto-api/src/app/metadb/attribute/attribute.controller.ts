@@ -25,8 +25,8 @@ export class AttributeController {
 
   @Get()
   @ApiResponse({ status: 200, description: 'Get all entities' })
-  async getAll(@Query('length') length: number, @Query('currentPage') page: number) {
-    return this.attributeSevice.getAll({ limit: Number(length ?? 10), page: Number(page ?? 0) });
+  async getAll(@Query('limit') limit: number, @Query('currentPage') page: number) {
+    return this.attributeSevice.getAll({ limit: Number(limit ?? 10), page: Number(page ?? 1) });
   }
 
   @Get(':id')

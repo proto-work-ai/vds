@@ -4,7 +4,7 @@
     "outDir": "../../dist/out-tsc",
     "types": []
   },
-  "include": [ "src/**/*.ts" ],
+  "include": [ "src/**/*.ts", "../../libs/atlas/core/src/lib/virtual-scroll-paginate.pipe.ts" ],
   "exclude": [
     "jest.config.ts",
     "src/test-setup.ts",

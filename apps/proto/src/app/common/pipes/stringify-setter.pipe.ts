@@ -2,11 +2,7 @@ import { PipeTransform, Pipe } from '@angular/core';
 
 @Pipe({ name: 'stringifySetter' })
 export class StringifySetterPipe implements PipeTransform {
-  transform<T extends object>(
-    items: T[],
-    title: keyof T,
-    key: string
-  ): any {
+  transform<T extends object>(items: T[], title: keyof T, key?: string): any {
     return (id: string | object) => {
       if (id == null) {
         return undefined;
@@ -20,8 +16,6 @@ export class StringifySetterPipe implements PipeTransform {
 
       if (key == null) {
         return items?.find((item) => item === id)?.[title] ?? '';
-      } else if (typeof id === 'object') {
-        id = id + '';
       }
 
       return items?.find((item: any) => item?.[key] === id)?.[title] ?? '';

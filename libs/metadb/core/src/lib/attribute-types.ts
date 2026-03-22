@@ -55,9 +55,9 @@ export const ATTRIBUTE_TYPES: IAttributeType[] = [
   { title: 'Media', type: ATTRIBUTE_MEDIA, icon: 'attribute-media' },
   { title: 'JSON', type: ATTRIBUTE_JSON, icon: 'attribute-json' },
   { title: 'One To One', type: ATTRIBUTE_ONE_TO_ONE, icon: 'attribute-one-to-one' },
-  { title: 'One TO Many', type: ATTRIBUTE_ONE_TO_MANY, icon: 'attribute-one-to-many' },
-  { title: 'Many TO Many', type: ATTRIBUTE_MANY_TO_MANY, icon: 'attribute-many-to-many' },
-  { title: 'UUID', type: ATTRIBUTE_ID, icon: 'attribute-uuid' }
+  { title: 'One To Many', type: ATTRIBUTE_ONE_TO_MANY, icon: 'attribute-one-to-many' },
+  { title: 'Many To Many', type: ATTRIBUTE_MANY_TO_MANY, icon: 'attribute-many-to-many' },
+  { title: 'Id', type: ATTRIBUTE_ID, icon: 'attribute-uuid' }
 ];
 
 export const FILTER_ATTRIBUTES: IAttributeType[] = [

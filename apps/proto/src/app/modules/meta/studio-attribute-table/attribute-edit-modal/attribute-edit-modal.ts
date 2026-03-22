@@ -1,3 +1,4 @@
+/* eslint-disable @nx/enforce-module-boundaries */
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
@@ -19,7 +20,17 @@ export interface AttributeEditModalData {
 
 @Component({
   templateUrl: './attribute-edit-modal.html',
-  imports: [HlmButtonImports, FormsModule, ReactiveFormsModule, TuiButton, TuiForm, TuiTextfield, TuiTextarea, TuiCheckbox, TuiAutoFocus],
+  imports: [
+    HlmButtonImports,
+    FormsModule,
+    ReactiveFormsModule,
+    TuiForm,
+    TuiTextfield,
+    TuiTextarea,
+    TuiCheckbox,
+    TuiButton,
+    TuiAutoFocus,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AttributeEditModal {
@@ -49,25 +60,31 @@ export class AttributeEditModal {
   }
 
   private formCreate(data: Partial<MetaAttribute>): void {
-    this.attributeService.create(data).pipe(
-      tap(() => this.modalClose(true)),
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe();
+    this.attributeService
+      .create(data)
+      .pipe(
+        tap(() => this.modalClose(true)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   private formUpdate(data: Partial<MetaAttribute>): void {
-    this.attributeService.update(data).pipe(
-      tap(() => this.modalClose(true)),
-      takeUntilDestroyed(this.destroyRef)
-    ).subscribe();
+    this.attributeService
+      .update(data)
+      .pipe(
+        tap(() => this.modalClose(true)),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
       if (this.isEditable) {
-        this.formUpdate(this.form.value as MetaAttribute)
+        this.formUpdate(this.form.value as MetaAttribute);
       } else {
-        this.formCreate(this.form.value as MetaAttribute)
+        this.formCreate(this.form.value as MetaAttribute);
       }
     }
   }

@@ -83,6 +83,7 @@ export class MetaEntityService {
         description: data.description,
         readonly: data.readonly,
         disable: data.disable,
+        order: data.order,
       }
     });
   }

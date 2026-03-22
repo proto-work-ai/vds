@@ -10,7 +10,7 @@ import {
   type CellContext,
   injectFlexRenderContext,
 } from '@tanstack/angular-table';
-import { Payment } from '../data-table/data-table';
+import { Payment } from '../column-select-table/column-select-table';
 
 @Component({
   selector: 'spartan-action-dropdown',

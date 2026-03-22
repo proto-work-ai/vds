@@ -2,17 +2,16 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MetaAttribute } from '@metadb/client';
-import { map, Observable } from 'rxjs';
-import { ITablePaginate } from '../../../../../../../libs/atlas/table/src/lib/taiga-ui-table/taiga-ui-table';
-
-export interface IMetaAttributeData<T = MetaAttribute> { data: T[], paginate: ITablePaginate }
+import { Observable } from 'rxjs';
+import { PaginationOptions } from '@atlas/core';
+import { IPaginationResult } from '@atlas/core';
 
 @Injectable({ providedIn: 'root' })
 export class MetaAttributeService {
   #http = inject(HttpClient);
 
-  getAll(params: { currentPage: number; length: number; }): Observable<IMetaAttributeData> {
-    return this.#http.get<IMetaAttributeData>('/api/attribute', { params });
+  getAll(params: PaginationOptions): Observable<IPaginationResult<MetaAttribute>> {
+    return this.#http.get<IPaginationResult<MetaAttribute>>('/api/attribute', { params });
   }
 
   create(data: Partial<MetaAttribute>): Observable<MetaAttribute> {

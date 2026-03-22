@@ -8,12 +8,10 @@ import { RouterModule } from '@angular/router';
   templateUrl: 'main-menu.component.html',
   styleUrl: 'main-menu.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    RouterModule,
-]
+  imports: [RouterModule],
 })
 export class MainMenuComponent {
-  protected routeConfig: any;//= inject(ROUTE_CONFIG) as IAppRoute;
+  protected routeConfig: any; //= inject(ROUTE_CONFIG) as IAppRoute;
 
   protected get children() {
     return this.routeConfig?.children;

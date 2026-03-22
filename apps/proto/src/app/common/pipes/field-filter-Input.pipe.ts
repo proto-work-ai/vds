@@ -56,7 +56,7 @@ export function injectServiceSearch<T = unknown[]>(searchFn: ISearchFn) {
       return searchFn(...params);
     }),
     takeUntilDestroyed(inject(DestroyRef)),
-    shareReplay()
+    shareReplay(1)
   );
 
   return signal((...params: Parameters<ISearchFn<T>>) => {

@@ -3,16 +3,15 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MetaRecord } from '@metadb/client';
 import { Observable } from 'rxjs';
-import { ITablePaginate } from '@atlas/table';
-
-export interface IMetaRecordData<T = MetaRecord> { data: T[], paginate: ITablePaginate }
+import { PaginationOptions } from '@atlas/core';
+import { IPaginationResult } from '@atlas/core';
 
 @Injectable({ providedIn: 'root' })
 export class MetaRecordService {
   #http = inject(HttpClient);
 
-  getAll(params: { currentPage: number; length: number; }): Observable<IMetaRecordData> {
-    return this.#http.get<IMetaRecordData>('/api/record', { params });
+  getAll(params: PaginationOptions): Observable<IPaginationResult<MetaRecord>> {
+    return this.#http.get<IPaginationResult<MetaRecord>>('/api/record', { params });
   }
 
   create(entityId: string, data: Partial<MetaRecord>): Observable<MetaRecord> {
@@ -27,11 +26,11 @@ export class MetaRecordService {
     return this.#http.delete<MetaRecord>(`/api/record/${id}`);
   }
 
-  getByEntity(entityId: string, params: { currentPage: number; length: number; }): Observable<IMetaRecordData> {
-    return this.#http.get<IMetaRecordData>(`/api/record/by-entity/${entityId}`, { params });
+  getByEntity(entityId: string, params: PaginationOptions): Observable<IPaginationResult<MetaRecord>> {
+    return this.#http.get<IPaginationResult<MetaRecord>>(`/api/record/by-entity/${entityId}`, { params });
   }
 
-  getByType(entityId: string, params: { currentPage: number; length: number; }): Observable<IMetaRecordData> {
-    return this.#http.get<IMetaRecordData>(`/api/record/by-type/${entityId}`, { params });
+  getByType(entityId: string, params: { currentPage: number; length: number; }): Observable<IPaginationResult<MetaRecord>> {
+    return this.#http.get<IPaginationResult<MetaRecord>>(`/api/record/by-type/${entityId}`, { params });
   }
 }

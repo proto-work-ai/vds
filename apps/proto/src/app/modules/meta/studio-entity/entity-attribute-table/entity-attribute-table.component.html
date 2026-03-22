@@ -32,7 +32,7 @@
   </header>
 
   <atlas-taiga-ui-table
-    [tableRows]="[] | atlasTablePaginate: attributeServiceAll()"
+    [tableRows]="[] | atlasTablePaginate: serviceSearch()"
     [tableColumns]="columns()"
     (tableRowClick)="openEditModal($any($event))"
   ></atlas-taiga-ui-table>

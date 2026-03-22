@@ -130,9 +130,12 @@ export const ATTRIBUTE_ATTRIBUTE = 'ATTRIBUTE_ATTRIBUTE'; // Список все
 // Можно выбрать не сколько значений
 export const ATTRIBUTE_SELECT = 'select';
 
-export const ATTRIBUTE_ONE_TO_ONE = 'one_to_one';
-export const ATTRIBUTE_ONE_TO_MANY = 'one_to_many';
-export const ATTRIBUTE_MANY_TO_MANY = 'many_to_many';
+// export const ATTRIBUTE_ONE_TO_ONE = 'oneWay';
+export const ATTRIBUTE_ONE_TO_ONE = 'oneToOne';
+// export const ATTRIBUTE_ONE_TO_ONE = 'manyToOne';
+export const ATTRIBUTE_ONE_TO_MANY = 'oneToMany';
+export const ATTRIBUTE_MANY_TO_MANY = 'manyToMany';
+// export const ATTRIBUTE_MANY_TO_MANY = 'manyWay';
 
 /*
   https://www.baeldung.com/sql/mysql-store-images#:~:text=We%20generally%20store%20images%20in%20MySQL%20as%20BLOB%20datatype.&text=BLOB%20(maximum%20of%2065%2C535%20bytes,LONGBLOB%20(maximum%20of%204%2C294%2C967%2C295%20bytes)
@@ -180,6 +183,9 @@ export const ATTRIBUTE_PARENT_COUNT = 'parent_count';
 
 //export const ATTRIBUTE_RELATION = 'relation';
 
+/*
+  https://docs.strapi.io/cms/backend-customization/models#model-attributes
+*/
 export type MetaAttributeType =
   | typeof ATTRIBUTE_ONE_TO_ONE
   | typeof ATTRIBUTE_ONE_TO_MANY

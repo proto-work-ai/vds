@@ -1,5 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Payment } from '../../metadb/entity-table/entity-table.component';
+import { Payment } from "./column-select-table";
 
 export const tableData: Payment[] = [
     {

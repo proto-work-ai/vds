@@ -45,8 +45,6 @@ import { makeData, Person } from './makeData';
 import { contentChild } from '@angular/core';
 import { PortalModule, TemplatePortal } from '@angular/cdk/portal';
 
-
-
 @Directive({
   selector: '[dataTableHeader], [data-taable-header]',
   standalone: true,

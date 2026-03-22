@@ -23,11 +23,17 @@
           {
             "glob": "**/*",
             "input": "apps/proto-storybook/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
           }
         ],
         "styles": [
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
           "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/proto/src/styles.scss",
           "apps/proto-storybook/src/styles.scss"
         ]
       },
@@ -95,8 +101,11 @@
         "browserTarget": "proto-storybook:build-storybook",
         "compodoc": false,
         "styles": [
-          "apps/proto/src/styles.scss", 
-          "apps/proto-storybook/src/styles.scss"]
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/proto/src/styles.scss",
+          "apps/proto-storybook/src/styles.scss"
+        ]
       },
       "configurations": {
         "ci": {
@@ -125,7 +134,18 @@
       "options": {
         "buildTarget": "proto-storybook:build-storybook",
         "staticFilePath": "dist/storybook/proto-storybook",
-        "spa": true
+        "spa": true,
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/proto-storybook/storybook-static"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          }
+        ]
       },
       "configurations": {
         "ci": {

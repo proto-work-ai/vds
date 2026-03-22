@@ -3,15 +3,15 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MetaValue } from '@metadb/client';
 import { Observable } from 'rxjs';
-import { ITablePaginate } from '../../../../../../../libs/atlas/table/src/lib/taiga-ui-table/taiga-ui-table';
+import { PagePagination, PaginationOptions } from '@atlas/core';
 
-export interface IMetaValueData<T = MetaValue> { data: T[], paginate: ITablePaginate }
+export interface IMetaValueData<T = MetaValue> { data: T[], paginate: PagePagination }
 
 @Injectable({ providedIn: 'root' })
 export class MetaValueService {
   #http = inject(HttpClient);
 
-  getAll(params: { currentPage: number; length: number; }): Observable<IMetaValueData> {
+  getAll(params: PaginationOptions): Observable<IMetaValueData> {
     return this.#http.get<IMetaValueData>('/api/value', { params });
   }
 

@@ -24,7 +24,7 @@ import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HlmSeparator } from '@spartan-ng/helm/separator';
 import { HlmInputGroupImports } from '@spartan-ng/helm/input-group';
-import { injectContentMenu, injectStudioMenu } from './studio-editor.menu';
+import { menuChangeProvider, injectContentMenu, injectStudioMenu } from './studio-editor.menu';
 
 @Component({
   selector: 'proto-metadb-editor',
@@ -52,6 +52,7 @@ import { injectContentMenu, injectStudioMenu } from './studio-editor.menu';
     RouterOutlet,
   ],
   providers: [
+    menuChangeProvider(),
     provideIcons({
       lucideMaximize,
       lucideMinimize,
@@ -77,6 +78,5 @@ export class StudioPageComponent {
   );
 
   protected readonly menuItems = injectStudioMenu();
-
   protected readonly contentMenu = injectContentMenu();
 }
