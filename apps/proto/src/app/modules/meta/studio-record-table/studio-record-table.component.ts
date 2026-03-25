@@ -37,7 +37,7 @@ import {
   attrMetaEntityTitle,
 } from '../studio-attribute/studio-entity.attributes';
 
-import { MetaRecord } from '@metadb/client';
+import { MetaRecord } from '@prisma/client';
 import { RecordEditModal, RecordEditModalData } from './record-edit-modal/record-edit-modal';
 import { MetaRecordService } from '../services/studio-record.service';
 import { attributeColumnMenu } from '../attribute/column-checked.attributes';

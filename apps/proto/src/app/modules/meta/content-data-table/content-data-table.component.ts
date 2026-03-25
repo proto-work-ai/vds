@@ -32,7 +32,7 @@ import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable, PaginationOptions } from '@atlas/core';
 import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../studio-attribute/studio-entity.attributes';
 
-import { MetaAttribute, MetaEntity, MetaRecord } from '@metadb/client';
+import { MetaAttribute, MetaEntity, MetaRecord } from '@prisma/client';
 import { ActivatedRoute } from '@angular/router';
 import { AtlasFormImports, SortByPipe } from '@atlas/form';
 import { JsonPipe } from '@angular/common';

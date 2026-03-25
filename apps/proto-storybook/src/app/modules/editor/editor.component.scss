@@ -1,0 +1,46 @@
+@import "style";
+
+.atlas-editor {
+  position: relative;
+
+  [contenteditable="true"]:empty::before {
+    content: attr(placeholder);
+    color: #868e96;
+    opacity: 1;
+  }
+}
+
+.atlas-editor-wrapper {
+  position: relative;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.atlas-editor-placeholder {
+  display: none;
+  position: absolute;
+  top: 0;
+}
+
+.show-placeholder {
+  .atlas-editor-placeholder {
+    display: block;
+  }
+}
+
+.atlas-editor-inline {
+  outline: none;
+
+  &.pn-config-dblclick[contenteditable="true"] {
+    background: #eff2ff;
+    border-radius: 2px;
+  }
+}

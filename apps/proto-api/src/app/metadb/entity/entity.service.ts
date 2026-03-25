@@ -2,7 +2,7 @@
 import { Injectable } from '@nestjs/common';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
 import { EntityType } from '@metadb/core';
-import { MetaEntity } from '@metadb/client';
+import { MetaEntity } from '@prisma/client';
 import { PrismaService } from '@metadb/prisma';
 import { pagination } from 'prisma-extension-pagination';
 import { PageNumberPagination } from 'prisma-extension-pagination/dist/types';
@@ -14,24 +14,27 @@ export class MetaEntityService {
     return this.prisma.metaEntity;
   }
 
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
-  async getAll(params: {
-    limit: number,
-    page: number,
-  } = {
+  async getAll(
+    params: {
+      limit: number;
+      page: number;
+    } = {
       limit: 10,
       page: 1,
-    }): Promise<{ data: MetaEntity[], paginate: PageNumberPagination }> {
-      return this.prismaPagination.metaEntity
+    }
+  ): Promise<{ data: MetaEntity[]; paginate: PageNumberPagination }> {
+    return this.prismaPagination.metaEntity
       .paginate()
       .withPages({
         ...params,
-        includePageCount: true
-      }).then((result) => {
+        includePageCount: true,
+      })
+      .then((result) => {
         const [data, paginate] = result;
         return { data, paginate };
-      })
+      });
   }
 
   async getById(id: string): Promise<MetaEntity> {
@@ -84,7 +87,7 @@ export class MetaEntityService {
         readonly: data.readonly,
         disable: data.disable,
         order: data.order,
-      }
+      },
     });
   }
 
@@ -106,8 +109,8 @@ export class MetaEntityService {
               return this.prisma.metaRecord.delete({
                 where: { id: a.id },
               });
-            }),
-          ),
+            })
+          )
         );
       }
     }

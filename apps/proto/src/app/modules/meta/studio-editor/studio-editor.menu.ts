@@ -8,7 +8,7 @@ import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { MetaEntityService } from '../services/studio-entity.service';
 import { ISignalMenuItem } from '../../../common/menu';
 import { contentPages, studioPages } from '../meta.route';
-import { MetaEntity } from '@metadb/client';
+import { MetaEntity } from '@prisma/client';
 
 export const MENU_CHANGE_EVENT = new InjectionToken<Subject<void>>('MENU_CHANGE_EVENT');
 

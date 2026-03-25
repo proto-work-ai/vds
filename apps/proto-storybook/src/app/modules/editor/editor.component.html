@@ -1,0 +1,91 @@
+
+@switch (true) {
+  <!-- @case (config.toolbarInline) {
+    <ng-container *ngTemplateOutlet="editorTmp"></ng-container>
+    <div
+      #overlayRef="atlasPopoverTrigger"
+      [atlasPopoverTriggerFor]="contentRef"
+      [atlasPopoverDisabled]="disabled"
+      (onPopoverOpen)="toolbarToggle.emit(true)"
+      (onPopoverClose)="toolbarToggle.emit(false)"
+      >
+    </div>
+    <atlas-overlay #contentRef="atlasPopover" [hasBackdrop]="false">
+      <div class="card p-2 mt-1 mat-elevation-z4">
+        <ng-container *ngTemplateOutlet="toolbarRef"></ng-container>
+      </div>
+    </atlas-overlay>
+  } -->
+  @default {
+    <div
+      class="atlas-editor"
+      #angularEditor
+      [style.width]="config.width"
+      [style.minWidth]="config.minWidth"
+      >
+      @if (config.toolbarPosition === 'top') {
+        <div
+          class="py-1 border-bottom mb-1 mx-n1"
+          >
+          <ng-container *ngTemplateOutlet="toolbarRef"></ng-container>
+        </div>
+      }
+      <div #editorWrapper class="position-relative">
+        <ng-container *ngTemplateOutlet="editorTmp"></ng-container>
+        <span class="atlas-editor-placeholder ps-0 pn-0 grey-400">{{
+          placeholder || config['placeholder']
+        }}</span>
+      </div>
+      @if (config.toolbarPosition === 'bottom') {
+        <div
+          class="py-1 border-top mt-1 mx-n1"
+          >
+          <ng-container *ngTemplateOutlet="toolbarRef"></ng-container>
+        </div>
+      }
+    </div>
+  }
+}
+
+<ng-template #editorTmp>
+  <div
+    #editorRef
+    cdkTextareaAutosize
+    cdkAutosizeMinRows="1"
+    cdkAutosizeMaxRows="10"
+    [class.atlas-editor-textarea]="!config.toolbarInline"
+    [class.atlas-editor-inline]="config.toolbarInline"
+    [class.pn-config-dblclick]="config.dblClickEnabled"
+    [attr.contenteditable]="enabled && config.editable"
+    [attr.tabindex]="!enabled ? -1 : tabIndex"
+    [attr.translate]="config.translate"
+    [attr.spellcheck]="config.spellcheck"
+    [style.minHeight]="!config.toolbarInline && config.minHeight"
+    [style.maxHeight]="!config.toolbarInline && config.maxHeight"
+    [style.outline]="config.outline === false ? 'none' : undefined"
+    (input)="onContentChange($any($event.target))"
+    (focus)="onTextAreaFocus($event)"
+    (blur)="onTextAreaBlur($event)"
+    (click)="exec()"
+    (keyup)="exec()"
+    (mouseup)="updateSelected()"
+    (mouseout)="onTextAreaMouseOut($event)"
+    (paste)="onPaste($event)"
+  ></div>
+</ng-template>
+
+<ng-template #toolbarRef>
+  <atlas-editor-toolbar
+    #editorToolbar
+    [id]="id"
+    [tools]="config.tools!"
+    [uploadUrl]="config.uploadUrl"
+    [showToolbar]="config.showToolbar !== undefined ? config.showToolbar : true"
+    [fonts]="getFonts()"
+    [customClasses]="config.customClasses!"
+    [defaultFontName]="config.defaultFontName!"
+    [defaultFontSize]="config.defaultFontSize!"
+    [hiddenButtons]="config.toolbarHiddenButtons"
+    (execute)="executeCommand($event)"
+  ></atlas-editor-toolbar>
+</ng-template>

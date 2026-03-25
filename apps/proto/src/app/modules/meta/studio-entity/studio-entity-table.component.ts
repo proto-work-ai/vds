@@ -39,7 +39,7 @@ import {
 } from '../studio-attribute/studio-entity.attributes';
 import { MetaEntityService } from '../services/studio-entity.service';
 
-import { MetaEntity } from '@metadb/client';
+import { MetaEntity } from '@prisma/client';
 import { EntityEditModal } from './entity-edit-modal/entity-edit-modal';
 import { ActivatedRoute, Router } from '@angular/router';
 import { studioPages } from '../meta.route';

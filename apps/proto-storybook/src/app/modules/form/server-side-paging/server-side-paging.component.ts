@@ -23,20 +23,12 @@ import { HlmIcon } from '@spartan-ng/helm/icon';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { AsyncPipe } from '@angular/common';
-import { inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TuiError, TuiTextfield, TuiDataListComponent, TuiLoader } from '@taiga-ui/core';
 import { TuiChevron, TuiComboBox, TuiDataListWrapper, TuiFieldErrorPipe, TuiTextarea } from '@taiga-ui/kit';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import {
-  injectServiceSearch,
-  injectServiceSearchTest,
-  IPaginationResult,
-  VirtualScrollPaginateImports,
-} from '@atlas/core';
-import { PaginationOptions } from '@atlas/core';
-import { delay, of } from 'rxjs';
+import { injectServiceSearchTest, StringifySetterPipe, VirtualScrollPaginateImports } from '@atlas/core';
 
 @Component({
   selector: 'app-server-side-paging',
@@ -63,6 +55,7 @@ import { delay, of } from 'rxjs';
     TuiError,
     TuiFieldErrorPipe,
     TuiLoader,
+    StringifySetterPipe,
   ],
   providers: [
     provideIcons({

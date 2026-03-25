@@ -1,31 +1,21 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  Query,
-  UseGuards
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, UseGuards } from '@nestjs/common';
 import { forkJoin, map } from 'rxjs';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiResponse } from '@nestjs/swagger';
 import { MetaValueSevice } from './value.service';
 import { CreateAttributeDto } from '../attribute/dto';
-import { MetaValue } from '@metadb/client';
+import { MetaValue } from '@prisma/client';
+import { Bytes, JsonValue } from '@prisma/client/runtime/client';
 
 @UseGuards(AuthGuard())
 @Controller('value')
 export class ValueController {
   constructor(
-    private readonly valueSevice: MetaValueSevice,
+    private readonly valueSevice: MetaValueSevice
     // private readonly entitySevice: MetaEntityService,
     // @InjectRepository(MetaValue) private readonly valueRep: Repository<MetaValue>
-  ) { }
-
+  ) {}
 
   @Get()
   @ApiResponse({ status: 200, description: 'Get all values' })
@@ -56,7 +46,11 @@ export class ValueController {
   @Put(':id')
   // @UseGuards(AuthGuard)
   @ApiResponse({ status: 200, description: 'Update a attribute by ID' })
-  async update(@Param('name') name: string, @Param('parentId') parentId: string, @Body() data: MetaValue): Promise<{ bigint: bigint | null; name: string; parentId: string; attributeId: string | null; type: number; childrenProperty: string | null; order: number | null; bit: number | null; tinyint: number | null; smallint: number | null; int: number | null; float: number | null; date: Date | null; time: Date | null; datetime: Date | null; varchar: string | null; text: string | null; json: import("c:/git/proto.cms/libs/metadb/client/src/lib/runtime/client").JsonValue | null; blob: import("c:/git/proto.cms/libs/metadb/client/src/lib/runtime/client").Bytes | null; createdAt: Date; updatedAt: Date; }> {
+  async update(
+    @Param('name') name: string,
+    @Param('parentId') parentId: string,
+    @Body() data: MetaValue
+  ): Promise<MetaValue> {
     return this.valueSevice.update({ name, parentId }, data);
   }
 
@@ -78,7 +72,7 @@ export class ValueController {
     //   .getMany();
 
     const values = await forkJoin([
-      valueOne
+      valueOne,
       // valueMany
     ])
       .pipe(map((values) => values.flat()))

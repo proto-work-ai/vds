@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags, ApiResponse } from '@nestjs/swagger';
 import { EntityType } from '@metadb/core';
-import { MetaEntity } from '@metadb/client';
+import { MetaEntity } from '@prisma/client';
 import { MetaEntityService } from './entity.service';
 
 @ApiTags('Entities')

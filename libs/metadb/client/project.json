@@ -1,9 +1,0 @@
-{
-  "name": "@metadb/client",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/metadb/client/src",
-  "projectType": "library",
-  "tags": [],
-  "// targets": "to see all targets run: nx show project @metadb/client --web",
-  "targets": {}
-}

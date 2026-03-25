@@ -1,0 +1,15 @@
+<section class="container flex flex-col gap-2">
+  <header class="flex items-center py-3">
+    <div class="flex-1 font-medium">Articles</div>
+
+    <div>
+      <button class="spartan-button" [routerLink]="['/', appRoute.annotation.root]">Create Article</button>
+    </div>
+  </header>
+
+  @for (item of articles(); track item.id) {
+    <article class="border-input rounded-md border shadow-xs p-3">{{ item.title }}</article>
+  } @empty {
+    <article class="border-input rounded-md border shadow-xs p-3">No items found.</article>
+  }
+</section>

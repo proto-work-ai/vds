@@ -39,29 +39,63 @@
 
   <tui-error formControlName="type" [error]="[] | tuiFieldError | async" />
 
-  <tui-textfield tuiChevron>
-    <label tuiLabel>Select Entity</label>
+  <section class="flex gap-3">
+    <div class="w-1/2">
+      <tui-textfield
+        virtualScrollHost
+        tuiChevron
+        [stringify]="[] | virtualScrollPaginate: serviceSearch() | stringifySetter: 'title'"
+      >
+        <label tuiLabel>Select Entity</label>
 
-    <input tuiComboBox formControlName="relationId" />
+        <input tuiComboBox formControlName="relationId" />
 
-    <tui-data-list virtualScrollHost *tuiTextfieldDropdown>
-      <cdk-virtual-scroll-viewport itemSize="35" appendOnly class="example-viewport">
-        <button
-          *cdkVirtualFor="let item of [] | virtualScrollPaginate: serviceSearch()"
-          new
-          tuiOption
-          type="button"
-          [value]="item.id"
-          class="example-item"
-        >
-          {{ item.title }}
-        </button>
-      </cdk-virtual-scroll-viewport>
-      <tui-loader />
-    </tui-data-list>
-  </tui-textfield>
+        <tui-data-list *tuiTextfieldDropdown>
+          <cdk-virtual-scroll-viewport itemSize="35" appendOnly class="example-viewport">
+            <button
+              *cdkVirtualFor="let item of [] | virtualScrollPaginate: serviceSearch()"
+              new
+              tuiOption
+              type="button"
+              [value]="item.id"
+              class="example-item"
+            >
+              {{ item.title }}
+            </button>
+          </cdk-virtual-scroll-viewport>
+          <tui-loader />
+        </tui-data-list>
+      </tui-textfield>
+    </div>
 
-  <pre>{{ form.controls.type.value }}</pre>
+    <div class="w-1/2">
+      <tui-textfield
+        virtualScrollHost
+        tuiChevron
+        [stringify]="[] | virtualScrollPaginate: serviceSearch() | stringifySetter: 'title'"
+      >
+        <label tuiLabel>Select Attribute</label>
+
+        <input tuiComboBox formControlName="relationId" />
+
+        <tui-data-list *tuiTextfieldDropdown>
+          <cdk-virtual-scroll-viewport itemSize="35" appendOnly class="example-viewport">
+            <button
+              *cdkVirtualFor="let item of [] | virtualScrollPaginate: serviceSearch()"
+              new
+              tuiOption
+              type="button"
+              [value]="item.id"
+              class="example-item"
+            >
+              {{ item.title }}
+            </button>
+          </cdk-virtual-scroll-viewport>
+          <tui-loader />
+        </tui-data-list>
+      </tui-textfield>
+    </div>
+  </section>
 
   <!-- @switch ($any(form.controls.type)) { 
     @case ('1')  { 

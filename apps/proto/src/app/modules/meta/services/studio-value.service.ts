@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MetaValue } from '@metadb/client';
+import { MetaValue } from '@prisma/client';
 import { Observable } from 'rxjs';
 import { PagePagination, PaginationOptions } from '@atlas/core';
 

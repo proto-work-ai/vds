@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
-import { MetaAttribute, MetaRecord } from '@metadb/client';
+import { MetaAttribute, MetaRecord } from '@prisma/client';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
 import { TuiAlertService, TuiButton, TuiTextfield } from '@taiga-ui/core';
 import { type TuiDialogContext } from '@taiga-ui/experimental';

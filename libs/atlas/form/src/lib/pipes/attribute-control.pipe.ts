@@ -1,5 +1,5 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
-import { MetaAttribute } from '@metadb/client';
+import { MetaAttribute } from '@prisma/client';
 import { FormControl, FormGroupDirective, Validators } from '@angular/forms';
 
 @Pipe({ name: 'metaAttributeControl' })

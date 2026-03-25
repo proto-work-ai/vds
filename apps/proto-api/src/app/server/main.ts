@@ -2,7 +2,7 @@
 // import { NestFactory } from '@nestjs/core';
 // import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 // import { INestApplication, ValidationPipe } from '@nestjs/common';
-// import { PrismaClient } from '@metadb/client';
+// import { PrismaClient } from '@prisma/client';
 
 // import { AppModule } from './metadb.module';
 

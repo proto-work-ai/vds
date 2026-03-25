@@ -29,7 +29,7 @@ import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { EntityAttributeEditModal, AttributeEditModalData } from '../attribute-modal/attribute-modal';
-import { MetaAttribute, MetaEntity } from '@metadb/client';
+import { MetaAttribute, MetaEntity } from '@prisma/client';
 import { ColumnAttributeTable, injectServiceSearch, PaginationOptions } from '@atlas/core';
 import { MetaAttributeService } from '../../services/studio-attribute.service';
 import { MetaEntityService } from '../../services/studio-entity.service';

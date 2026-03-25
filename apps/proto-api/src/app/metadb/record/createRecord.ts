@@ -4,7 +4,7 @@ import {
   MetaAttribute,
   MetaEntity,
   Prisma,
-} from '@metadb/client';
+} from '@prisma/client';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
 import { getValuesForRecord } from './getValuesForRecord';
 import { PrismaService } from '@metadb/prisma';

@@ -6,7 +6,7 @@ import {
   EntityAttributeType,
   VALUE_KEY_SET,
 } from '@metadb/core';
-import { MetaAttribute, MetaValue } from '@metadb/client';
+import { MetaAttribute, MetaValue } from '@prisma/client';
 
 /*
   использовать только для простых хначений не relation

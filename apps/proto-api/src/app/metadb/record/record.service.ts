@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { concatMap, lastValueFrom, merge } from 'rxjs';
 import { validate as validateUuid } from 'uuid';
 import { attributeRelationFilterOn, bindFieldWhere, EntityAttributeType, EntityType, FilterAndPagination, IRecord } from '@metadb/core';
-import { MetaAttribute, MetaEntity, MetaRecord, PrismaClient } from '@metadb/client';
+import { MetaAttribute, MetaEntity, MetaRecord, PrismaClient } from '@prisma/client';
 import { pagination } from 'prisma-extension-pagination';
 import { PrismaService } from '@metadb/prisma';
 import { getValuesForRecord } from './getValuesForRecord';

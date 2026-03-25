@@ -24,8 +24,8 @@ export class AttributeController {
   constructor(private readonly attributeSevice: AttributeSevice) {}
 
   @Get()
-  @ApiResponse({ status: 200, description: 'Get all entities' })
-  async getAll(@Query('limit') limit: number, @Query('currentPage') page: number) {
+  @ApiResponse({ status: 200, description: 'Get all attributes' })
+  async getAll(@Query('limit') limit: number, @Query('page') page: number) {
     return this.attributeSevice.getAll({ limit: Number(limit ?? 10), page: Number(page ?? 1) });
   }
 

@@ -1,3 +1,618 @@
 .sb-show-main.sb-main-padded {
   padding: 0;
 }
+
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
+
+$red-100: #ffeaea !default;
+$red-200: #fad3d3 !default;
+$red-300: #fab4b4 !default;
+$red-400: #fa9898 !default;
+$red-500: #fa7a7a !default;
+$red-600: #e84d4d !default;
+$red-700: #dc3545 !default;
+$red-600: #ba0a0d !default;
+$danger-background: $red-100;
+$blue-100: #f4f9ff !default;
+$blue-200: #e4f2ff !default;
+$blue-300: #c6e4ff !default;
+$blue-400: #9bccff !default;
+$blue-500: #4ba8ff !default;
+$blue-600: #1890ff !default;
+$blue-700: #2d8eff !default;
+$blue-800: #3583ca !default;
+$green-100: #e7faf2 !default;
+$green-200: #a8f9d4 !default;
+$green-300: #73ffc3 !default;
+$green-400: #03ff92 !default;
+$green-500: #02de7f !default;
+$green-600: #02d479 !default; // $green-600       : #00c570 !default;
+$green-700: #00a25c !default;
+$green-800: #028c50 !default;
+$yellow-100: #fffae7 !default;
+$yellow-200: #f9eec1 !default;
+$yellow-300: #f6e7a9 !default;
+$yellow-400: #f8e59b !default;
+$yellow-500: #f7e083 !default;
+$yellow-600: #f7da64 !default;
+$yellow-700: #f9cd48 !default;
+$yellow-800: #fbc02d !default;
+$orange-100: #fff3e6 !default;
+$orange-200: #ffddb9 !default;
+$orange-300: #fbce9d !default;
+$orange-400: #f6be80 !default;
+$orange-500: #f4b066 !default;
+$orange-600: #f2a654 !default;
+$orange-700: #ec9940 !default;
+$orange-800: #e98f2e !default;
+$grey-100: #f7f8f9;
+$grey-200: #eee;
+$grey-300: #dbdbdb;
+$grey-400: #c0c0c0;
+$grey-500: #a1a1a1;
+$grey-600: #818181;
+$grey-700: #616161;
+$grey-800: #414141;
+$grey-900: #212540;
+$grey-base: $grey-800;
+$grey-darkest: $grey-700;
+$grey-darker: $grey-600;
+$enable-flex: false;
+$grey-dark: #2b3a42 !default;
+$grey: #55595c !default;
+$grey-light: #818a91 !default;
+$grey-lighter: #eceeef !default;
+$grey-lightest: #f7f7f9 !default;
+$brand-primary: $blue-500 !default;
+$brand-success: $green-600;
+$brand-info: #5bc0de !default;
+$brand-warning: #f0ad4e !default;
+$brand-danger: #d9534f !default;
+$brand-inverse: $grey-dark !default;
+$brand-white: #fff !default;
+$color-lists: (
+  'red': (
+    '100': $red-100,
+    '200': $red-200,
+    '300': $red-300,
+    '400': $red-400,
+    '500': $red-500,
+    '600': $red-600,
+    '700': $red-700,
+    '800': $red-600,
+  ),
+  'blue': (
+    '100': $blue-100,
+    '200': $blue-200,
+    '300': $blue-300,
+    '400': $blue-400,
+    '500': $blue-500,
+    '600': $blue-600,
+    '700': $blue-700,
+    '800': $blue-800,
+  ),
+  'green': (
+    '100': $green-100,
+    '200': $green-200,
+    '300': $green-300,
+    '400': $green-400,
+    '500': $green-500,
+    '600': $green-600,
+    '700': $green-700,
+    '800': $green-800,
+  ),
+  'yellow': (
+    '100': $yellow-100,
+    '200': $yellow-200,
+    '300': $yellow-300,
+    '400': $yellow-400,
+    '500': $yellow-500,
+    '600': $yellow-600,
+    '700': $yellow-700,
+    '800': $yellow-800,
+  ),
+  'orange': (
+    '100': $orange-100,
+    '200': $orange-200,
+    '300': $orange-300,
+    '400': $orange-400,
+    '500': $orange-500,
+    '600': $orange-600,
+    '700': $orange-700,
+    '800': $orange-800,
+  ),
+  'grey': (
+    '100': $grey-100,
+    '200': $grey-200,
+    '300': $grey-300,
+    '400': $grey-400,
+    '500': $grey-500,
+    '600': $grey-600,
+    '700': $grey-700,
+    '800': $grey-800,
+    '900': $grey-900,
+  ),
+  'white': (
+    '': white,
+  ),
+) !default;
+
+// Colors
+// ======
+//
+
+$transparent: rgb(0 0 0 / 0%);
+$color-black: #000;
+$color-white: #fff;
+$red: $red-700;
+$blue: $blue-700 !default;
+$green: $green-700 !default;
+$yellow: $yellow-700 !default;
+$orange: $orange-700 !default;
+$grey: $grey-700 !default;
+
+// Primary color
+//
+$color-primary: 'blue' !default;
+$color-primary-list: map-get($color-lists, $color-primary) !default;
+$color-primary-100: map-get($color-primary-list, '100') !default;
+$color-primary-200: map-get($color-primary-list, '200') !default;
+$color-primary-300: map-get($color-primary-list, '300') !default;
+$color-primary-400: map-get($color-primary-list, '400') !default;
+$color-primary-500: map-get($color-primary-list, '500') !default;
+$color-primary-600: map-get($color-primary-list, '600') !default;
+$color-primary-700: map-get($color-primary-list, '700') !default;
+$color-primary-800: map-get($color-primary-list, '800') !default;
+
+// Start with assigning color names to specific hex values.
+$white: $color-white;
+$black: $color-black;
+$orange: $orange;
+$yellow: $yellow;
+$green: $green;
+$blue: $blue;
+$inverse: $color-white;
+$brand-default: $grey-lighter;
+$brand-default-hover: $grey-lightest;
+$brand-default-active: $grey-light;
+$brand-default-100: $grey-lightest;
+$brand-primary: $color-primary-600;
+$brand-primary-hover: $color-primary-500;
+$brand-primary-active: $color-primary-700;
+$brand-primary-400: $color-primary-400;
+$brand-primary-100: $color-primary-100;
+$brand-success: $green-600;
+$brand-success-hover: $green-500;
+$brand-success-active: $green-700;
+$brand-success-400: $green-400;
+$brand-success-100: $green-100;
+$brand-warning: $orange-600;
+$brand-warning-hover: $orange-500;
+$brand-warning-active: $orange-700;
+$brand-warning-400: $orange-400;
+$brand-warning-100: $orange-100;
+$brand-danger: $red-600;
+$brand-danger-hover: $red-500;
+$brand-danger-active: $red-700;
+$brand-danger-400: $red-400;
+$brand-danger-100: $red-100;
+$brand-dark: $grey-darker;
+$brand-dark-hover: $grey-dark;
+$brand-dark-active: $grey-darkest;
+$brand-dark-100: $blue-100;
+$color-tab-focus: rgba($brand-primary, 0.6);
+$table-cell-padding: 0.5rem !default;
+$alert-padding-y: 0.5rem !default;
+$alert-padding-x: 0.5rem !default;
+$alert-margin-bottom: 0 !default;
+
+// Text color
+//
+$title-color: $grey-darkest;
+$subtitle-color: $grey-darker;
+$text-color: $grey-dark;
+$prompt-color: $grey;
+
+// Status color
+//
+$active-color-base: $color-primary-700;
+$normal-color-base: $color-primary-600;
+$hover-color-base: $color-primary-500;
+$bg-color-base: $grey-lightest;
+$disabled-color-base: $grey-light;
+$primary-lists: (
+  'primary': (
+    '100': $color-primary-100,
+    '200': $color-primary-200,
+    '300': $color-primary-300,
+    '400': $color-primary-400,
+    '500': $color-primary-500,
+    '600': $color-primary-600,
+    '700': $color-primary-700,
+    '800': $color-primary-800,
+  ),
+) !default;
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  font-family: var(--bs-btn-font-family);
+  font-size: var(--bs-btn-font-size);
+  font-weight: var(--bs-btn-font-weight);
+  line-height: var(--bs-btn-line-height);
+  color: var(--bs-btn-color);
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+  border-radius: var(--bs-btn-border-radius);
+  background-color: var(--bs-btn-bg);
+  transition:
+    color 0.15s ease-in-out,
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
+}
+
+.btn-xs {
+  font-size: 0.8125rem;
+  padding: 0.125rem 0.5rem;
+  min-height: 2rem;
+}
+
+.btn-sm {
+  min-height: 1.5rem;
+}
+
+@mixin button-style($base-color) {
+  &,
+  &:not([href]):not([tabindex]) {
+    border: 1px solid;
+    border-color: darken($base-color, 5%);
+    background-color: $base-color;
+    color: #fff;
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0 1.5px 2.5px 0 rgb(0 0 0 / 10%);
+
+    &:not([disabled]):not(.disabled):hover,
+    &:not([disabled]):not(.disabled):focus {
+      color: #fff;
+      background-color: lighten($base-color, 5%);
+      box-shadow: 0 1.5px 2.5px 0 rgb(0 0 0 / 20%);
+      border-color: $base-color;
+    }
+
+    &:not([disabled]):not(.disabled).active,
+    &:not([disabled]):not(.disabled):active {
+      color: rgb(255 255 255 / 60%);
+      box-shadow:
+        0 1px 1px 0 rgb(0 0 0 / 0%),
+        inset 0 2px 2px 0 rgb(0 0 0 / 20%);
+    }
+  }
+}
+
+@mixin buttonStyle($base-color) {
+  --button-base-color: #{$base-color};
+  color: $base-color;
+  border: 1px solid lighten($base-color, 20%);
+  background-color: lighten($base-color, 40%);
+  //&:not([href]):not([tabindex]) {
+  text-decoration: none;
+  //}
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):focus {
+    color: $base-color;
+    background-color: lighten($base-color, 35%);
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+  }
+
+  &:not([disabled]):not(.disabled).active,
+  &:not([disabled]):not(.disabled):active {
+    background-color: lighten($base-color, 32%);
+    color: $base-color;
+    border-color: lighten($base-color, 15%);
+    box-shadow:
+      0 1px 0 0 #e5eef4,
+      inset 0 2px 3px 0 lighten($base-color, 24%);
+  }
+
+  &:disabled.active,
+  &:disabled:active {
+    --bs-btn-active-bg: #{lighten($base-color, 40%)};
+    --bs-btn-active-color: #{$base-color};
+    background-color: var(--bs-btn-active-bg);
+    color: var(--bs-btn-active-color);
+  }
+}
+
+.badge.text-bg-secondary,
+.btn.btn-secondary {
+  border: 1px solid;
+  // border-color: $grey-400;
+  background-color: #fff;
+  //&:not([href]):not([tabindex]) {
+  color: #6d859e;
+  text-decoration: none;
+  //}
+  &:not([disabled]):not(.disabled):hover,
+  &:not([disabled]):not(.disabled):focus {
+    color: $grey-700;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 10%);
+  }
+
+  &:not([disabled]):not(.disabled).active,
+  &:not([disabled]):not(.disabled):active {
+    background-color: lighten(#f4f9fd, 10%);
+    color: rgb(110 133 157 / 80%);
+    border-color: #d8e0ea;
+    box-shadow:
+      0 1px 0 0 #e5eef4,
+      inset 0 2px 3px 0 #d8e0ea;
+  }
+
+  // &:disabled.active,
+  // &:disabled:active {
+  //   --bs-btn-active-bg: #{lighten($base-color, 40%)};
+  //   --bs-btn-active-color: #{$base-color};
+  //   background-color: var(--bs-btn-active-bg);
+  //   color: var(--bs-btn-active-color);
+  // }
+}
+
+.badge.text-bg-primary,
+.btn.btn-primary {
+  @include buttonStyle($blue-600);
+}
+
+.badge.text-bg-success,
+.btn.btn-success {
+  @include buttonStyle(#3da97a);
+}
+
+.badge.text-bg-danger,
+.btn.btn-danger {
+  @include buttonStyle($red-700);
+}
+
+.badge.text-bg-info,
+.btn.btn-info {
+  @include buttonStyle(#57c7d4);
+}
+
+.badge.text-bg-warning,
+.btn.btn-warning {
+  @include buttonStyle(#f2a654);
+}
+
+.btn-dark {
+  border-color: #2c3339;
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  &.focus,
+  &:focus {
+    border-color: #21262b;
+    box-shadow:
+      inset 0 1px 0 0 #4e5965,
+      0 0 0 1px #21262b;
+  }
+}
+
+.btn-light {
+  background-color: $grey-100;
+  border-color: $grey-100;
+  color: $grey-700;
+
+  &.focus,
+  &:focus,
+  &:hover {
+    color: $grey-800;
+    border-color: $grey-200;
+    background-color: $grey-200;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active {
+    &,
+    &:focus {
+      color: $grey-800;
+      border-color: $grey-300;
+      background-color: $grey-300;
+      box-shadow: none;
+    }
+  }
+}
+
+.btn-light-blue {
+  background-color: $blue-100;
+  border-color: $blue-100;
+  color: $blue-700;
+
+  &.focus,
+  &:focus,
+  &:hover {
+    color: $blue-800;
+    border-color: $blue-200;
+    background-color: $blue-200;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active {
+    &,
+    &:focus {
+      color: $blue-800;
+      border-color: $blue-300;
+      background-color: $blue-300;
+      box-shadow: none;
+    }
+  }
+}
+
+.btn-light-red {
+  background-color: $red-100;
+  border-color: $red-100;
+  color: $red-700;
+
+  &.focus,
+  &:focus,
+  &:hover {
+    color: $red-600;
+    border-color: $red-200;
+    background-color: $red-200;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active {
+    &,
+    &:focus {
+      color: $red-600;
+      border-color: $red-300;
+      background-color: $red-300;
+      box-shadow: none;
+    }
+  }
+}
+
+.btn-light-orange {
+  background-color: $orange-100;
+  border-color: $orange-100;
+  color: $orange-700;
+
+  &.focus,
+  &:focus,
+  &:hover {
+    color: $orange-800;
+    border-color: $orange-200;
+    background-color: $orange-200;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active {
+    &,
+    &:focus {
+      color: $orange-800;
+      border-color: $orange-300;
+      background-color: $orange-300;
+      box-shadow: none;
+    }
+  }
+}
+
+.btn-light-green {
+  background-color: $green-100;
+  border-color: $green-100;
+  color: $green-700;
+
+  &.focus,
+  &:focus,
+  &:hover {
+    color: $green-800;
+    border-color: $green-200;
+    background-color: $green-200;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):not(.disabled).active,
+  &:not(:disabled):not(.disabled):active {
+    &,
+    &:focus {
+      color: $green-800;
+      border-color: $green-300;
+      background-color: $green-300;
+      box-shadow: none;
+    }
+  }
+}
+
+.btn-flat {
+  &:not(:disabled):not(.disabled) {
+    &.focus,
+    &:focus,
+    &:hover {
+      color: $grey-800;
+      border-color: transparent;
+      background-color: $grey-200;
+      box-shadow: none;
+    }
+
+    &:active {
+      background-color: $grey-300;
+    }
+  }
+}
+
+.btn.disabled,
+.btn:disabled {
+  &.show,
+  &.active,
+  &:first-child:active {
+    background-color: white;
+  }
+}
+
+//////////////
+
+:root {
+  color-scheme: light;
+  --font-sans: 'Geist', sans-serif;
+  --radius: 0.625rem;
+  --background: oklch(100% 0 0);
+  --foreground: oklch(14.5% 0 0);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(14.5% 0 0);
+  --popover: oklch(100% 0 0);
+  --popover-foreground: oklch(14.5% 0 0);
+  --primary: oklch(20.5% 0 0);
+  --primary-foreground: oklch(98.5% 0 0);
+  --secondary: oklch(97% 0 0);
+  --secondary-foreground: oklch(20.5% 0 0);
+  --muted: oklch(97% 0 0);
+  --muted-foreground: oklch(55.6% 0 0);
+  --accent: oklch(97% 0 0);
+  --accent-foreground: oklch(20.5% 0 0);
+  --destructive: oklch(57.7% 0.245 27.325);
+  --border: oklch(92.2% 0 0);
+  --input: oklch(92.2% 0 0);
+  --surface: oklch(98% 0 0);
+  --surface-foreground: var(--foreground);
+}
+
+.spartan-button {
+  --tw-shadow: 0 1px 2px 0 var(--tw-shadow-color, #0000000d);
+  --tw-font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  border-radius: calc(var(--radius) - 2px);
+  border-style: var(--tw-border-style);
+  font-size: var(--text-sm);
+  line-height: var(--tw-leading, var(--text-sm--line-height));
+  font-weight: var(--font-weight-medium);
+  background-clip: padding-box;
+  border-width: 1px;
+  border-color: #0000;
+  height: calc(var(--spacing) * 9);
+  gap: calc(var(--spacing) * 1.5);
+  padding-inline: calc(var(--spacing) * 2.5);
+  border-color: var(--border);
+  background-color: var(--background);
+  box-shadow:
+    var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
+    var(--tw-shadow);
+
+  &:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+}

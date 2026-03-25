@@ -15,7 +15,7 @@ import { HlmTableImports } from '@spartan-ng/helm/table';
 import { RouterModule } from '@angular/router';
 import { ATTRIBUTE_TYPE_LIST } from '@metadb/core';
 import { HttpClient } from '@angular/common/http';
-import { KeyListValuePipe } from '../../../common/pipes/stringify-setter.pipe';
+import { KeyListValuePipe } from '../../../../../../../libs/atlas/core/src/lib/stringify-setter.pipe';
 import { TABLE_CELL_DATA } from '../../../../../../../libs/atlas/table/src/lib/taiga-ui-table/table-cell-context';
 
 export function provideIconAttributeType() {

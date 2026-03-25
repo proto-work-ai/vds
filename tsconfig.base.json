@@ -46,7 +46,6 @@
       "@atlas/core": ["libs/atlas/core/src/index.ts"],
       "@atlas/table": ["libs/atlas/table/src/index.ts"],
       "@metadb/prisma": ["libs/metadb/prisma/src/index.ts"],
-      "@metadb/client": ["libs/metadb/client/src/index.ts"],
       "@atlas/form": ["libs/atlas/form/src/index.ts"]
     }
   },

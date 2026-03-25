@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { componentWrapperDecorator, type Preview } from '@storybook/angular';
-import { TuiRoot } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-storybook-wrapper',
@@ -12,7 +11,7 @@ import { TuiRoot } from '@taiga-ui/core';
 export class StorybookWrapperComponent {}
 
 const preview: Preview = {
-  // decorators: [componentWrapperDecorator(TuiRoot)],
+  // decorators: [componentWrapperDecorator(StorybookWrapperComponent)],
 };
 
 export default preview;

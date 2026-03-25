@@ -38,7 +38,7 @@ import {
   attrMetaAttributeTitle,
 } from '../studio-attribute/studio-attribute.attributes';
 
-import { MetaEntity } from '@metadb/client';
+import { MetaEntity } from '@prisma/client';
 import { AttributeEditModal, AttributeEditModalData } from './attribute-edit-modal/attribute-edit-modal';
 import { MetaAttributeService } from '../services/studio-attribute.service';
 import { attributeColumnMenu } from '../attribute/column-checked.attributes';

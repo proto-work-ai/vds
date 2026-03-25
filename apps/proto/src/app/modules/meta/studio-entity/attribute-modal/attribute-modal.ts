@@ -13,12 +13,14 @@ import {
 } from '@angular/forms';
 import {
   IPaginationResult,
+  KeyListValuePipe,
+  StringifySetterPipe,
   VirtualScrollPaginateImports,
   injectServiceSearch,
   injectServiceSearchTest,
   markAsSubmit,
 } from '@atlas/core';
-import { MetaAttribute, MetaEntity } from '@metadb/client';
+import { MetaAttribute, MetaEntity } from '@prisma/client';
 import { TuiAutoFocus, TuiStringMatcher } from '@taiga-ui/cdk';
 import { TuiButton, TuiDataList, TuiError, TuiTextfield, TuiLoader } from '@taiga-ui/core';
 import { type TuiDialogContext } from '@taiga-ui/experimental';
@@ -50,7 +52,6 @@ import {
 import { NgIcon } from '@ng-icons/core';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { AsyncPipe, JsonPipe } from '@angular/common';
-import { KeyListValuePipe, StringifySetterPipe } from 'apps/proto/src/app/common/pipes/stringify-setter.pipe';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { PaginationOptions } from '@atlas/core';
 import { MetaAttributeService } from '../../services/studio-attribute.service';
@@ -140,7 +141,7 @@ export class EntityAttributeEditModal {
 
     type: new FormControl<string | undefined>(undefined, [Validators.required]),
     relationId: new FormControl<string | undefined>(undefined, [Validators.required]),
-    relationName: new FormControl<string | undefined>(undefined),
+    relationName: new FormControl<string | undefined>(undefined, [Validators.required]),
   });
 
   protected get isEditable(): boolean {
@@ -189,9 +190,11 @@ export class EntityAttributeEditModal {
             case ATTRIBUTE_ONE_TO_MANY:
             case ATTRIBUTE_MANY_TO_MANY:
               this.form.controls.relationId.enable();
+              this.form.controls.relationName.enable();
               break;
             default: {
               this.form.controls.relationId.disable();
+              this.form.controls.relationName.disable();
             }
           }
         }),

@@ -1,0 +1,37 @@
+<span class="pn-font pn-picker" [ngClass]="{'pn-expanded': isOpen}">
+  <button
+    #labelButton
+    [tabIndex]="-1"
+    tabindex="0"
+    type="button"
+    role="button"
+    class="pn-picker-label"
+    (click)="toggleOpen($event)"
+  >
+    {{ label }}
+    <svg viewBox="0 0 18 18">
+      <!-- <use x="0" y="0" xlink:href="../assets/icons.svg#hom"></use>-->
+      <polygon class="pn-stroke" points="7 11 9 13 11 11 7 11"></polygon>
+      <polygon class="pn-stroke" points="7 7 9 5 11 7 7 7"></polygon>
+    </svg>
+  </button>
+
+  <span class="pn-picker-options">
+    @for (item of options; track item; let i = $index) {
+      <button
+        tabindex="-1"
+        type="button"
+        role="button"
+        class="pn-picker-item"
+        [ngClass]="{selected: item.value === value, focused: i === optionId}"
+        (click)="optionSelect(item, $event)"
+      >
+        {{ item.label }}
+      </button>
+    }
+
+    @if (!options.length) {
+      <span class="dropdown-item">No items for select</span>
+    }
+  </span>
+</span>

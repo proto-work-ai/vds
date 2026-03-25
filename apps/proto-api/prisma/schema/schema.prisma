@@ -3,7 +3,7 @@
 */ 
 generator client {
   provider = "prisma-client-js"
-  output   = "../../../../libs/metadb/client/src/lib"
+  // output   = "../../../../libs/metadb/client/src/lib"
 }
 
 datasource db {

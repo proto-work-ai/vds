@@ -13,7 +13,7 @@ import {
   ATTRIBUTE_ONE_TO_MANY,
   ATTRIBUTE_MANY_TO_MANY,
 } from '@metadb/core';
-import { MetaRecord, MetaValue } from '@metadb/client';
+import { MetaRecord, MetaValue } from '@prisma/client';
 
 export function recordMap({
   values,

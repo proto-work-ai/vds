@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { PipeTransform, inject, Pipe, ViewContainerRef, Injector, InjectionToken, ValueProvider } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { MetaAttribute } from '@metadb/client';
+import { MetaAttribute } from '@prisma/client';
 import { ATTRIBUTE_UPDATED_AT, ATTRIBUTE_CREATED_AT, ATTRIBUTE_DATE, ATTRIBUTE_DATETIME, ATTRIBUTE_TEXTAREA, ATTRIBUTE_BOOLEAN, ATTRIBUTE_STRING, ATTRIBUTE_RICHTEXT, ATTRIBUTE_YEAR, ATTRIBUTE_TIME, ATTRIBUTE_TINYINT, ATTRIBUTE_SMALLINT, ATTRIBUTE_INT, ATTRIBUTE_BIGINT, ATTRIBUTE_NUMBER } from '@metadb/core';
 import { FormFieldChecked } from '../form-fields/form-field-checked';
 import { FormFieldTextfield } from '../form-fields/form-field-textfield';

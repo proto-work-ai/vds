@@ -211,10 +211,10 @@ tui-root,
   &.loaded .t-empty {
     display: none !important;
   }
+}
 
-  .cdk-virtual-scroll-content-wrapper {
-    display: flex;
-    min-height: 2rem;
-    flex-direction: column;
-  }
+.cdk-virtual-scroll-content-wrapper {
+  display: flex;
+  min-height: 2rem;
+  flex-direction: column;
 }

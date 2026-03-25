@@ -15,12 +15,14 @@ import {
   effect,
   ElementRef,
   Renderer2,
+  Signal,
 } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { filter, Observable, skip, Subject, Subscription, switchMap, tap } from 'rxjs';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { PagePagination, PaginationOptions } from '@atlas/core';
 import { ServicePaginateFn } from '@atlas/core';
+import { TuiDataListComponent, TuiTextfieldComponent } from '@taiga-ui/core';
 
 /*
   export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
@@ -36,7 +38,10 @@ export class VirtualScrollHost {
   private readonly destroyRef = inject(DestroyRef);
   private readonly render = inject(Renderer2);
   private readonly scrollViewport = contentChild(CdkVirtualScrollViewport);
-  private readonly elementRef: ElementRef<HTMLElement> = inject(ElementRef);
+  private readonly elementRef: Signal<ElementRef<HTMLElement> | undefined> = contentChild(TuiDataListComponent, {
+    read: ElementRef,
+  });
+  // private readonly elementRef: ElementRef<HTMLElement> = inject(ElementRef);
 
   readonly scrolledIndex = signal<number | undefined>(undefined);
   protected readonly scrollEventEnd$ = new Subject<void>();
@@ -50,7 +55,6 @@ export class VirtualScrollHost {
   }
 
   constructor() {
-    this.elementRef.nativeElement.classList.add('virtual-scroll-host');
     let sub: Subscription;
     effect(() => {
       sub?.unsubscribe();
@@ -72,9 +76,8 @@ export class VirtualScrollHost {
       }
     });
 
-    effect(() => {
-      this.elementRef.nativeElement.classList.toggle('loaded', this.pageLoading());
-    });
+    effect(() => this.elementRef()?.nativeElement.classList.add('virtual-scroll-host'));
+    effect(() => this.elementRef()?.nativeElement.classList.toggle('loaded', this.pageLoading()));
   }
 }
 
