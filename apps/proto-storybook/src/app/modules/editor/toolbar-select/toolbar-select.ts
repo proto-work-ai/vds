@@ -50,8 +50,8 @@ export class EditorSelectComponent implements OnInit, ControlValueAccessor {
   optionId = 0;
 
   opened = false;
-  public onChange: any = () => {};
-  public onTouched: any = () => {};
+  public propagateChange: any = () => {};
+  public propagateTouched: any = () => {};
 
   public get label(): string {
     return this.selectedOption()?.hasOwnProperty('label') ? this.selectedOption()!.label : 'Select';
@@ -77,12 +77,12 @@ export class EditorSelectComponent implements OnInit, ControlValueAccessor {
     this.hidden = 'none';
   }
 
-  optionSelect(option: SelectOption, event: PointerEvent) {debugger
+  optionSelect(option: SelectOption, event: PointerEvent) {
     event.stopPropagation();
     this.setValue(option.value);
-    this.onChange(this.selectedOption()?.value);
+    this.propagateChange(this.selectedOption()?.value);
     this.changeEvent.emit(this.selectedOption()?.value);
-    this.onTouched();
+    this.propagateTouched();
     this.opened = false;
   }
 
@@ -129,11 +129,11 @@ export class EditorSelectComponent implements OnInit, ControlValueAccessor {
   }
 
   registerOnChange(fn: any) {
-    this.onChange = fn;
+    this.propagateChange = fn;
   }
 
   registerOnTouched(fn: any) {
-    this.onTouched = fn;
+    this.propagateTouched = fn;
   }
 
   public setDisabledState(isDisabled: boolean): void {

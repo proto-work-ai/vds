@@ -52,7 +52,7 @@ export const HLM_CHECKBOX_VALUE_ACCESSOR = {
       [aria-labelledby]="ariaLabelledby()"
       [aria-describedby]="ariaDescribedby()"
       (checkedChange)="_handleChange($event)"
-      (touched)="_onTouched?.()"
+      (touched)="propagateTouched?.()"
     >
       @if (checked() || indeterminate()) {
         <span
@@ -120,14 +120,14 @@ export class HlmCheckbox implements ControlValueAccessor {
 
   protected readonly _disabled = linkedSignal(this.disabled);
 
-  protected _onChange?: ChangeFn<boolean>;
-  protected _onTouched?: TouchFn;
+  protected propagateChange?: ChangeFn<boolean>;
+  protected propagateTouched?: TouchFn;
 
   protected _handleChange(value: boolean): void {
     if (this._disabled()) return;
     this.checked.set(value);
     this.checkedChange.emit(value);
-    this._onChange?.(value);
+    this.propagateChange?.(value);
   }
 
   /** CONTROL VALUE ACCESSOR */
@@ -136,11 +136,11 @@ export class HlmCheckbox implements ControlValueAccessor {
   }
 
   registerOnChange(fn: ChangeFn<boolean>): void {
-    this._onChange = fn;
+    this.propagateChange = fn;
   }
 
   registerOnTouched(fn: TouchFn): void {
-    this._onTouched = fn;
+    this.propagateTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean): void {

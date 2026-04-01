@@ -96,8 +96,8 @@ export class AtlasEditorComponent
   @Output() viewMode = new EventEmitter<boolean>();
 
   @HostBinding('attr.tabindex') tabindex = -1;
-  private onChange: ((value: string) => void) | undefined;
-  private onTouched: (() => void) | undefined;
+  private propagateChange: ((value: string) => void) | undefined;
+  private propagateTouched: (() => void) | undefined;
   focused = false;
   modeVisual = true;
   showPlaceholder = false;
@@ -336,8 +336,8 @@ export class AtlasEditorComponent
       this.editorService.saveSelection
     );
 
-    if (typeof this.onTouched === 'function') {
-      this.onTouched();
+    if (typeof this.propagateTouched === 'function') {
+      this.propagateTouched();
     }
 
     if (event.relatedTarget === null) {
@@ -394,13 +394,13 @@ export class AtlasEditorComponent
       html = '';
     }
 
-    if (typeof this.onChange === 'function') {
+    if (typeof this.propagateChange === 'function') {
       const _sanitize =
         this.config.sanitize || this.config.sanitize === undefined
           ? this.sanitizer.sanitize(SecurityContext.HTML, html)
           : html;
 
-      this.onChange(_sanitize!);
+      this.propagateChange(_sanitize!);
 
       if (!html !== this.showPlaceholder) {
         this.togglePlaceholder(this.showPlaceholder);
@@ -417,7 +417,7 @@ export class AtlasEditorComponent
    * @param fn a function
    */
   registerOnChange(fn: any): void {
-    this.onChange = (e) => (e === '<br>' ? fn('') : fn(e));
+    this.propagateChange = (e) => (e === '<br>' ? fn('') : fn(e));
   }
 
   /**
@@ -427,7 +427,7 @@ export class AtlasEditorComponent
    * @param fn a function
    */
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.propagateTouched = fn;
   }
 
   /**

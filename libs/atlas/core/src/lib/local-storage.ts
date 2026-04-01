@@ -1,9 +1,9 @@
 import { signal, effect } from '@angular/core';
 
-export function injectLocalStorageValue(key: string, defaultValue?: unknown) {
+export function injectLocalStorageValue<T>(key: string, defaultValue?: T) {
   const keyValue = localStorage.getItem(key);
-  let prevValue: unknown = keyValue != null ? JSON.parse(keyValue) : defaultValue;
-  const value = signal<unknown>(prevValue);
+  let prevValue: T = keyValue != null ? JSON.parse(keyValue) : defaultValue;
+  const value = signal<T>(prevValue);
   effect(() => {
     const newValue = value();
     if (prevValue !== newValue) {

@@ -1,11 +1,8 @@
 import { Inject, Injectable } from '@angular/core';
-import { HttpClient, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
 
 import { CustomClass, UploadResponse } from './editor-config';
 import { DOCUMENT } from '@angular/common';
-
 
 @Injectable({ providedIn: 'any' })
 export class EditorService {
@@ -18,7 +15,7 @@ export class EditorService {
     private http: HttpClient,
     @Inject(DOCUMENT) private doc: Document
   ) {}
-  
+
   /**
    * save selection when the editor is focussed out
    */
@@ -59,8 +56,7 @@ export class EditorService {
     if (!url.includes('http')) {
       this.doc.execCommand('createlink', false, url);
     } else {
-      const newUrl =
-        '<a href="' + url + '" target="_blank">' + this.selectedText + '</a>';
+      const newUrl = '<a href="' + url + '" target="_blank">' + this.selectedText + '</a>';
       this.insertHtml(newUrl);
     }
   }
@@ -106,9 +102,7 @@ export class EditorService {
    * @param html HTML string
    */
   insertHtml(html: string): void {
-    const isHTMLInserted = this.doc.execCommand('insertHTML', false, html);
-
-    if (!isHTMLInserted) {
+    if (!this.doc.execCommand('insertHTML', false, html)) {
       throw new Error('Unable to perform the operation');
     }
   }
@@ -137,10 +131,7 @@ export class EditorService {
   /**
    * setTimeout used for execute 'saveSelection' method in next event loop iteration
    */
-  public executeInNextQueueIteration(
-    callbackFn: (...args: any[]) => any,
-    timeout = 1e2
-  ): void {
+  public executeInNextQueueIteration(callbackFn: (...args: any[]) => any, timeout = 1e2): void {
     setTimeout(callbackFn, timeout);
   }
 
@@ -165,7 +156,7 @@ export class EditorService {
     return this.http.post<UploadResponse>(this.uploadUrl!, uploadData, {
       reportProgress: true,
       observe: 'events',
-      withCredentials: this.uploadWithCredentials
+      withCredentials: this.uploadWithCredentials,
     });
   }
 
@@ -182,13 +173,12 @@ export class EditorService {
     this.doc.execCommand('defaultParagraphSeparator', false, separator);
   }
 
-  createCustomClass(customClass: CustomClass) {
+  createCustomClass(option: CustomClass) {
     let html = this.selectedText;
-    if (customClass) {
-      const tagName = customClass.tag ? customClass.tag : 'span';
-      html = `<${tagName} class="${customClass.class}">${this.selectedText}</${tagName}>`;
+    if (option) {
+      const tagName = option.tag ? option.tag : 'span';
+      html = `<${tagName} class="${option.class}">${this.selectedText}</${tagName}>`;
     }
-
     this.insertHtml(html!);
   }
 
@@ -217,22 +207,20 @@ export class EditorService {
   }
 
   private insertVimeoVideoTag(videoUrl: string): void {
-    const sub = this.http
-      .get<any>(`https://vimeo.com/api/oembed.json?url=${videoUrl}`)
-      .subscribe((data) => {
-        const imageUrl = data.thumbnail_url_with_play_button;
-        const thumbnail = `<div>
+    const sub = this.http.get<any>(`https://vimeo.com/api/oembed.json?url=${videoUrl}`).subscribe((data) => {
+      const imageUrl = data.thumbnail_url_with_play_button;
+      const thumbnail = `<div>
         <a href='${videoUrl}' target='_blank'>
           <img src="${imageUrl}" alt="${data.title}"/>
         </a>
       </div>`;
 
-        this.insertHtml(thumbnail);
-        sub.unsubscribe();
-      });
+      this.insertHtml(thumbnail);
+      sub.unsubscribe();
+    });
   }
 
-  nextNode(node: { hasChildNodes: () => any; firstChild: any; nextSibling: any; parentNode: any; }) {
+  nextNode(node: { hasChildNodes: () => any; firstChild: any; nextSibling: any; parentNode: any }) {
     if (node.hasChildNodes()) {
       return node.firstChild;
     } else {
@@ -285,16 +273,13 @@ export class EditorService {
     if (this.doc.getSelection) {
       const sel = this.doc.getSelection();
       for (let i = 0, len = sel!.rangeCount; i < len; ++i) {
-        nodes.push.apply(
-          nodes,
-          this.getRangeSelectedNodes(sel!.getRangeAt(i), true)
-        );
+        nodes.push.apply(nodes, this.getRangeSelectedNodes(sel!.getRangeAt(i), true));
       }
     }
     return nodes;
   }
 
-  replaceWithOwnChildren(el: { parentNode: any; hasChildNodes: () => any; firstChild: any; }) {
+  replaceWithOwnChildren(el: { parentNode: any; hasChildNodes: () => any; firstChild: any }) {
     const parent = el.parentNode;
     while (el.hasChildNodes()) {
       parent.insertBefore(el.firstChild, el);
@@ -305,10 +290,7 @@ export class EditorService {
   removeSelectedElements(tagNames: string) {
     const tagNamesArray = tagNames.toLowerCase().split(',');
     this.getSelectedNodes().forEach((node) => {
-      if (
-        node.nodeType === 1 &&
-        tagNamesArray.indexOf(node.tagName.toLowerCase()) > -1
-      ) {
+      if (node.nodeType === 1 && tagNamesArray.indexOf(node.tagName.toLowerCase()) > -1) {
         // Remove the node and replace it with its children
         this.replaceWithOwnChildren(node);
       }
