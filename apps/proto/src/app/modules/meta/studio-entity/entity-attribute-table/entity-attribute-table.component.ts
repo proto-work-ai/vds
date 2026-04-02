@@ -28,7 +28,7 @@ import { map, of, switchMap, tap } from 'rxjs';
 import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { EntityAttributeEditModal, AttributeEditModalData } from '../attribute-modal/attribute-modal';
+import { EntityAttributeEditModal, AttributeEditModalData } from '../attribute-edit-modal/attribute-edit-modal';
 import { MetaAttribute, MetaEntity } from '@prisma/client';
 import { ColumnAttributeTable, injectServiceSearch, PaginationOptions } from '@atlas/core';
 import { MetaAttributeService } from '../../services/studio-attribute.service';
@@ -39,7 +39,6 @@ import {
   attrMetaAttributeType, attrMetaAttributeUpdatedAt
 } from '../../studio-attribute/studio-attribute.attributes';
 import { AtlasDataTableComponents, AtlasDataTableToggleSize, AtlasTablePaginatePipe, AtlasTaigaUiTable } from '@atlas/table';
-import { MetaEntityAttributeService } from '../../services/studio-entity-attribute.service';
 import { attributeColumnMenu } from '../../attribute/column-checked.attributes';
 
 @Component({
@@ -87,7 +86,6 @@ export class EntityAttributesComponent {
   private readonly dialogService = inject(TuiDialogService);
   protected readonly entityService = inject(MetaEntityService);
   protected readonly attributeService = inject(MetaAttributeService);
-  protected readonly entityAttributeService = inject(MetaEntityAttributeService);
   protected readonly columns = signal<ColumnAttributeTable[]>([
     attrMetaAttributeTitle,
     attrMetaAttributeName,
@@ -103,7 +101,7 @@ export class EntityAttributesComponent {
 
   private readonly tableRef = viewChild(AtlasTaigaUiTable);
 
-  protected readonly serviceSearch = injectServiceSearch((paginate: PaginationOptions) => this.entityAttributeService.getByEntity(this.metaEntityId()!, paginate), false);
+  protected readonly serviceSearch = injectServiceSearch((paginate: PaginationOptions) => this.attributeService.getByEntity(this.metaEntityId()!, paginate), false);
   protected readonly tableData = signal<[]>([])//toSignal(this.serviceSearch()().pipe(map(a => a.data)));
 
   protected readonly tablePaginate = signal<PaginationOptions>({ page: 1, limit: 10, includePageCount: true });

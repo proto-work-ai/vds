@@ -37,13 +37,13 @@ import { ActivatedRoute } from '@angular/router';
 import { AtlasFormImports, SortByPipe } from '@atlas/form';
 import { JsonPipe } from '@angular/common';
 import { MetaEntityService } from '../services/studio-entity.service';
-import { MetaEntityAttributeService } from '../services/studio-entity-attribute.service';
 import { attributeColumnMenu } from '../attribute/column-checked.attributes';
 import { ContentDataEditModal, ContentDataEditModalData } from './data-edit-modal/data-edit-modal';
 import { MetaRecordService } from '../services/studio-record.service';
 import { PortalModule } from '@angular/cdk/portal';
 import { TuiForm } from '@taiga-ui/layout';
 import { sortBy } from 'libs/atlas/form/src/lib/pipes/sort-by.pipe';
+import { MetaAttributeService } from '../services/studio-attribute.service';
 
 @Pipe({ name: 'metaTableColumns' })
 export class MetaTableColumnsPipe implements PipeTransform {
@@ -108,7 +108,7 @@ export class ContentDataTableComponent {
   protected readonly recordService = inject(MetaRecordService);
   private readonly route = inject(ActivatedRoute);
   protected readonly entityService = inject(MetaEntityService);
-  protected readonly entityAttributeService = inject(MetaEntityAttributeService);
+  protected readonly entityAttributeService = inject(MetaAttributeService);
   protected readonly columns = signal<any[]>([
     attrMetaEntityTitle,
     attrMetaEntityDescription,
@@ -129,7 +129,7 @@ export class ContentDataTableComponent {
 
   protected readonly entityAttributes = toSignal(toObservable(this.metaEntityId).pipe(
     switchMap((entityId) => this.entityAttributeService.getByEntity(entityId)),
-    map(({ data }) => data),
+    map(({ data }) => data as unknown as MetaAttribute[]),
     startWith([]),
   ));
 

@@ -88,7 +88,7 @@ export class VirtualScrollPaginatePipe<T = any> implements PipeTransform {
 
   private readonly serviceFn = signal<ServicePaginateFn<T> | undefined>(undefined);
 
-  private get pageRows(): WritableSignal<T[]> {
+  private get filtered(): WritableSignal<T[]> {
     return this.viewportHost.pageRows as WritableSignal<T[]>;
   }
 
@@ -130,7 +130,11 @@ export class VirtualScrollPaginatePipe<T = any> implements PipeTransform {
           }),
           tap(({ data, paginate }) => {
             this.pagePagination.set(paginate);
-            this.pageRows.set(this.pageRows().concat(data));
+            if (paginate.currentPage > 1) {
+              this.filtered.update((a) => a.concat(data));
+            } else {
+              this.filtered.set(data);
+            }
           }),
           takeUntilDestroyed(this.destroyRef)
         )
@@ -157,7 +161,7 @@ export class VirtualScrollPaginatePipe<T = any> implements PipeTransform {
         this.paginationChange();
       }
     });
-    return this.pageRows();
+    return this.filtered();
   }
 }
 

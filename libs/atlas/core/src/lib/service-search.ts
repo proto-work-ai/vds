@@ -7,9 +7,9 @@ import { IPaginationResult, PaginationOptions } from './service-pagination';
 export type ISearchFn<P = unknown, R = unknown> = (params: P) => Observable<R>;
 
 /*
-  Функция оборачивает функцию и кеширует результат функции при одних и тех же аргументах
+  Функция оборачивает функцию и кеширует результат при одних и тех же аргументах
 */
-export function injectServiceSearch<P = unknown, R = unknown>(searchFn: ISearchFn<P, R>, caches = true) {
+export function injectServiceSearch<R = unknown, P = PaginationOptions>(searchFn: ISearchFn<P, R>, caches = true) {
   const subject = new Subject<P>();
   const share = subject.pipe(
     distinctUntilChanged((prev, cur) => (caches ? JSON.stringify(prev) === JSON.stringify(cur) : false)),
@@ -27,7 +27,7 @@ export function injectServiceSearch<P = unknown, R = unknown>(searchFn: ISearchF
 }
 
 export function injectServiceSearchTest() {
-  return injectServiceSearch<PaginationOptions, any>((options) => {
+  return injectServiceSearch<any>((options) => {
     const { limit, page } = options;
     return of({
       data: Array.from({ length: limit }).map((_, i) => `Item #${limit * (page! - 1)! + i}`),

@@ -2,7 +2,7 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MetaAttribute } from '@prisma/client';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { PaginationOptions } from '@atlas/core';
 import { IPaginationResult } from '@atlas/core';
 
@@ -24,5 +24,16 @@ export class MetaAttributeService {
 
   delete(id: string): Observable<MetaAttribute> {
     return this.#http.delete<MetaAttribute>(`/api/attribute/${id}`);
+  }
+
+  getByEntity<Type = MetaAttribute>(entityId: string, params: PaginationOptions = { page: 1, limit: 20 }): Observable<IPaginationResult<Type>> {
+    return this.#http.get<IPaginationResult<Type>>(`/api/attribute/entity/${entityId}`, { params }).pipe(
+      map((data: any) => {
+        return {
+          data,
+          paginate: { currentPage: 1, totalCount: data.length, pageCount: 1 }
+        } as IPaginationResult<Type>
+      })
+    );
   }
 }

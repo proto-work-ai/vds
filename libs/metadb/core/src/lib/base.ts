@@ -69,7 +69,7 @@ export enum FieldTypeEnum {
   COLOR = FIELD_COLOR,
   PALETTE = FIELD_PALETTE,
   CUSTOM = FIELD_CUSTOM,
-  SEARCH = FIELD_SEARCH
+  SEARCH = FIELD_SEARCH,
 }
 
 // export enum FieldTypeEnum {
@@ -114,11 +114,11 @@ export enum EntityAttributeRole {
   CREATE_DATE, // дата создания
   UPDATE_DATE, // дата последнего обновления(получается из даты последнего обновления значения => EntryValue)
   PROPERTY, // данные элемента работают только когда элемент добавлен(EntryValue => {id, option})
-  VERSION // версия записи(создается список версия элемента, это групировка)
+  VERSION, // версия записи(создается список версия элемента, это групировка)
 }
 
 export enum RoleEntity {
-  PROPERTY
+  PROPERTY,
 }
 
 // Sytem Attribute
@@ -260,13 +260,11 @@ export const enum EntityAttributeType {
   TOKEN = ATTRIBUTE_TOKEN,
   UPDATED_AT = ATTRIBUTE_UPDATED_AT,
   CREATED_AT = ATTRIBUTE_CREATED_AT,
-  RELATION_COUNT = ATTRIBUTE_RELATION_COUNT
+  RELATION_COUNT = ATTRIBUTE_RELATION_COUNT,
 }
 
-export const isRelation = (type: EntityAttributeType) =>
-  [EntityAttributeType.ONE_TO_ONE, EntityAttributeType.ONE_TO_MANY].includes(
-    type
-  );
+export const isAttributeRelation = (type?: EntityAttributeType | string) =>
+  [EntityAttributeType.ONE_TO_ONE, EntityAttributeType.ONE_TO_MANY, EntityAttributeType.MANY_TO_MANY].includes(type as EntityAttributeType);
 
 export const isParentRelation = (type: EntityAttributeType) =>
   [EntityAttributeType.PARENT, EntityAttributeType.PARENT_MANY].includes(type);
@@ -303,7 +301,7 @@ export const VALUE_KEY_SET: Partial<Record<MetaAttributeType, any>> = {
 
   [EntityAttributeType.ONE_TO_ONE]: 'children',
   [EntityAttributeType.ONE_TO_MANY]: 'children',
-  [EntityAttributeType.MANY_TO_MANY]: 'children'
+  [EntityAttributeType.MANY_TO_MANY]: 'children',
 };
 
 export interface IQtFieldOption {
@@ -325,48 +323,32 @@ export const ATTRIBUTE_SPECIFICITY_SPECIAL = [
   ATTRIBUTE_ID,
   ATTRIBUTE_TOKEN,
   ATTRIBUTE_PASSWORD,
-  ATTRIBUTE_RELATION_COUNT
+  ATTRIBUTE_RELATION_COUNT,
   // ATTRIBUTE_UPDATED_AT,
   // ATTRIBUTE_CREATED_AT,
 ];
 
 // Эти поля не редактируются и сохранять их нельзя
-export const ATTRIBUTE_VIEW_ONLY = [
-  ...ATTRIBUTE_SPECIFICITY_SPECIAL,
-  ATTRIBUTE_UPDATED_AT,
-  ATTRIBUTE_CREATED_AT
-];
+export const ATTRIBUTE_VIEW_ONLY = [...ATTRIBUTE_SPECIFICITY_SPECIAL, ATTRIBUTE_UPDATED_AT, ATTRIBUTE_CREATED_AT];
 
-export const ATTRIBUTE_RELATIONS = [
-  ATTRIBUTE_ONE_TO_ONE,
-  ATTRIBUTE_ONE_TO_MANY,
-  ATTRIBUTE_MANY_TO_MANY
-];
+export const ATTRIBUTE_RELATIONS = [ATTRIBUTE_ONE_TO_ONE, ATTRIBUTE_ONE_TO_MANY, ATTRIBUTE_MANY_TO_MANY];
 
-export function attributeViewFilterExcept(attribute: {
-  type: string | EntityAttributeType;
-}): boolean {
+export function attributeViewFilterExcept(attribute: { type: string | EntityAttributeType }): boolean {
   const type = attribute.type as EntityAttributeType;
   return !ATTRIBUTE_VIEW_ONLY.includes(type);
 }
 
-export function attributeSpecificityFilterExcept(attribute: {
-  type: string | EntityAttributeType;
-}): boolean {
+export function attributeSpecificityFilterExcept(attribute: { type: string | EntityAttributeType }): boolean {
   const type = attribute.type as EntityAttributeType;
   return !ATTRIBUTE_SPECIFICITY_SPECIAL.includes(type);
 }
 
-export function attributeRelationFilterExcept(attribute: {
-  type: string | EntityAttributeType;
-}): boolean {
+export function attributeRelationFilterExcept(attribute: { type: string | EntityAttributeType }): boolean {
   const type = attribute.type as EntityAttributeType;
   return !ATTRIBUTE_RELATIONS.includes(type);
 }
 
-export function attributeRelationFilterOn(attribute: {
-  type: string | EntityAttributeType;
-}): boolean {
+export function attributeRelationFilterOn(attribute: { type: string | EntityAttributeType }): boolean {
   const type = attribute.type as EntityAttributeType;
   return ATTRIBUTE_RELATIONS.includes(type);
 }

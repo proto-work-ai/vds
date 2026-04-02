@@ -12,12 +12,12 @@ import {
   Validators,
 } from '@angular/forms';
 import {
+  DEFAULT_PAGINATE,
   IPaginationResult,
   KeyListValuePipe,
   StringifySetterPipe,
   VirtualScrollPaginateImports,
   injectServiceSearch,
-  injectServiceSearchTest,
   markAsSubmit,
 } from '@atlas/core';
 import { MetaAttribute, MetaEntity } from '@prisma/client';
@@ -39,8 +39,8 @@ import {
 } from '@taiga-ui/kit';
 import { TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { debounceTime, delay, of, startWith, tap } from 'rxjs';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
+import { debounceTime, distinctUntilChanged, map, of, startWith, switchMap, tap } from 'rxjs';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import {
   ATTRIBUTE_MANY_TO_MANY,
@@ -48,12 +48,12 @@ import {
   ATTRIBUTE_ONE_TO_ONE,
   ATTRIBUTE_TYPE_LIST,
   IAttributeType,
+  isAttributeRelation,
 } from '@metadb/core';
 import { NgIcon } from '@ng-icons/core';
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { AsyncPipe, JsonPipe } from '@angular/common';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { PaginationOptions } from '@atlas/core';
 import { MetaAttributeService } from '../../services/studio-attribute.service';
 import { provideIconAttributeType } from '../../studio-attribute/studio-attribute-type.attribute';
 import { MetaEntityService } from '../../services/studio-entity.service';
@@ -73,8 +73,9 @@ function attrNameValidator(): (control: AbstractControl) => ValidationErrors | n
 }
 
 @Component({
-  templateUrl: 'attribute-modal.html',
-  styleUrl: 'attribute-modal.scss',
+  selector: 'proto-attribute-edit-modal',
+  templateUrl: 'attribute-edit-modal.html',
+  styleUrl: 'attribute-edit-modal.scss',
   imports: [
     HlmButtonImports,
     FormsModule,
@@ -121,8 +122,8 @@ function attrNameValidator(): (control: AbstractControl) => ValidationErrors | n
 export class EntityAttributeEditModal {
   protected readonly context = injectContext<TuiDialogContext<boolean, AttributeEditModalData>>();
   protected readonly destroyRef = inject(DestroyRef);
+  protected readonly entityService = inject(MetaEntityService);
   protected readonly attributeService = inject(MetaAttributeService);
-  protected readonly metaEntityService = inject(MetaEntityService);
   protected readonly attrTypeList = signal(inject(ATTRIBUTE_TYPE_LIST));
 
   protected form = new FormGroup({
@@ -140,21 +141,71 @@ export class EntityAttributeEditModal {
     required: new FormControl(false),
 
     type: new FormControl<string | undefined>(undefined, [Validators.required]),
+
     relationId: new FormControl<string | undefined>(undefined, [Validators.required]),
-    relationName: new FormControl<string | undefined>(undefined, [Validators.required]),
+    relationName: new FormControl<string | undefined>({ value: undefined, disabled: true }, [Validators.required]),
+
+    relationIsUpdated: new FormControl<number | undefined>(undefined),
+    relationIsRemoved: new FormControl<number | undefined>(undefined),
   });
 
   protected get isEditable(): boolean {
-    return !!this.form.controls.id?.value;
+    return !!this.context.data.model.id;
   }
 
-  protected readonly serviceSearch = injectServiceSearch<PaginationOptions, IPaginationResult<MetaEntity>>((params) =>
-    this.metaEntityService.getAll(params)
+  protected readonly entitySearch = injectServiceSearch<IPaginationResult<MetaEntity>>((params) =>
+    this.entityService.getAll(params).pipe(
+      map((d) => {
+        d.data = d.data.filter((a) => a.id != this.context.data.model.entityId);
+        return d;
+      })
+    )
   );
-  // protected readonly paginationService = injectServiceSearchTest();
+
+  protected readonly attributeByEntitySearch = toSignal(
+    this.form.controls.relationId.valueChanges.pipe(
+      switchMap((entityId) => (entityId ? this.attributeService.getByEntity(entityId) : of(DEFAULT_PAGINATE))),
+      map(({ data }) => data as MetaAttribute[]),
+      // map(({ data }) => data.filter((a: MetaAttribute) => isAttributeRelation(a.type!))),
+      tap((data) => {
+        console.log('attributes', data);
+      }),
+      startWith([] as const)
+    )
+  );
+
+  protected referencedIsUpdated = signal([
+    { title: 'No action', value: 1 },
+    { title: 'Cascade', value: 2 },
+    { title: 'Restrict', value: 3 },
+  ] as const);
+
+  protected referencedIsRemoved = signal([
+    { title: 'No action', value: 0 },
+    { title: 'Cascade', value: 1 },
+    { title: 'Restrict', value: 2 },
+    { title: 'Set default', value: 3 },
+    { title: 'Set NULL', value: 4 },
+  ] as const);
 
   constructor() {
     this.form.patchValue(this.context.data.model ?? {});
+
+    this.form.controls.relationId.valueChanges
+      .pipe(
+        startWith(this.form.value.relationId),
+        distinctUntilChanged(),
+        tap((value) => {
+          if (value) {
+            this.form.controls.relationName.setValue(undefined);
+            this.form.controls.relationName.enable();
+          } else {
+            this.form.controls.relationName.disable();
+          }
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
 
     // Name formatted
     if (!this.isEditable) {
@@ -191,16 +242,24 @@ export class EntityAttributeEditModal {
             case ATTRIBUTE_MANY_TO_MANY:
               this.form.controls.relationId.enable();
               this.form.controls.relationName.enable();
+              this.form.controls.relationIsUpdated.enable();
+              this.form.controls.relationIsRemoved.enable();
               break;
             default: {
               this.form.controls.relationId.disable();
               this.form.controls.relationName.disable();
+              this.form.controls.relationIsUpdated.disable();
+              this.form.controls.relationIsRemoved.disable();
             }
           }
         }),
         takeUntilDestroyed(this.destroyRef)
       )
       .subscribe();
+  }
+
+  protected isAttributeRelation(type: string | undefined): boolean {
+    return isAttributeRelation(type);
   }
 
   private nameFormatter(title?: string | null): string | undefined {
@@ -216,7 +275,7 @@ export class EntityAttributeEditModal {
   }
 
   private formCreate(data: Partial<MetaAttribute>): void {
-    this.attributeService
+    this.entityService
       .create(data)
       .pipe(
         tap(() => this.modalClose(true)),
@@ -226,7 +285,7 @@ export class EntityAttributeEditModal {
   }
 
   private formUpdate(data: Partial<MetaAttribute>): void {
-    this.attributeService
+    this.entityService
       .update(data)
       .pipe(
         tap(() => this.modalClose(true)),

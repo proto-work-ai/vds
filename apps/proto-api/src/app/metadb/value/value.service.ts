@@ -192,7 +192,7 @@ export class MetaValueSevice {
   //       const _double = _doubleValues[i];
   //       const value = recordValues.splice(recordValues.indexOf(_double), 1)[0];
   //       if (value) {
-  //         if (isRelation(value.type)) {
+  //         if (isAttributeRelation(value.type)) {
   //           await this.valueRep.remove(value);
   //         }
   //         {

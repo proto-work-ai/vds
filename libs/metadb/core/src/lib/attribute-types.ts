@@ -39,8 +39,8 @@ export const ATTRIBUTE_TYPE_LIST = new InjectionToken<IAttributeType[]>(
 
 export const ATTRIBUTE_TYPES: IAttributeType[] = [
   { title: 'Text', type: ATTRIBUTE_STRING, icon: 'attribute-text' },
-  { title: 'Textarea', type: ATTRIBUTE_TEXTAREA, icon: 'attribute-text' },
-  { title: 'Rich Text', type: ATTRIBUTE_RICHTEXT, icon: 'attribute-richtext' },
+  { title: 'Textarea', type: ATTRIBUTE_TEXTAREA, icon: 'attribute-richtext' },
+  // { title: 'Rich Text', type: ATTRIBUTE_RICHTEXT, icon: 'attribute-richtext' },
   { title: 'Password', type: ATTRIBUTE_PASSWORD, icon: 'attribute-password' },
 
   { title: 'Number', type: ATTRIBUTE_NUMBER, icon: 'attribute-number' },
@@ -48,8 +48,10 @@ export const ATTRIBUTE_TYPES: IAttributeType[] = [
 
   { title: 'Date', type: ATTRIBUTE_DATE, icon: 'attribute-date' },
   { title: 'Date range', type: ATTRIBUTE_DATE_RANGE, icon: 'attribute-date-range' },
-  { title: 'Updated At', type: ATTRIBUTE_UPDATED_AT, icon: 'attribute-date-updated-at' },
-  { title: 'Created At', type: ATTRIBUTE_CREATED_AT, icon: 'attribute-date-created-at' },
+  //{ title: 'Updated At', type: ATTRIBUTE_UPDATED_AT, icon: 'attribute-date-updated-at' },
+  //{ title: 'Created At', type: ATTRIBUTE_CREATED_AT, icon: 'attribute-date-created-at' },
+  { title: 'Updated At', type: ATTRIBUTE_UPDATED_AT, icon: 'attribute-date' },
+  { title: 'Created At', type: ATTRIBUTE_CREATED_AT, icon: 'attribute-date' },
 
   { title: 'Boolean', type: ATTRIBUTE_BOOLEAN, icon: 'attribute-boolean' },
   { title: 'Media', type: ATTRIBUTE_MEDIA, icon: 'attribute-media' },

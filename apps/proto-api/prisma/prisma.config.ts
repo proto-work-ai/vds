@@ -7,6 +7,6 @@ export default defineConfig({
     path: 'schema/migrations',
   },
   datasource: {
-    url: process.env.DIRECT_URL,
+    url: 'postgresql://postgres:postgres@127.0.0.1:54322/postgres',
   },
 });

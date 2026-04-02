@@ -72,6 +72,8 @@ model MetaAttribute {
   relationId                                   String?              @db.VarChar(36)
   
   relationName                                 String?              @db.VarChar(255)
+  relationIsUpdated                            Int?                 @db.SmallInt
+  relationIsRemoved                            Int?                 @db.SmallInt
 
   createdAt                                    DateTime             @default(now()) @db.Timestamptz(6)
   updatedAt                                    DateTime             @updatedAt
