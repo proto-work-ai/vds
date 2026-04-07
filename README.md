@@ -34,3 +34,8 @@
 - npm install passport passport-jwt @nestjs/passport @supabase/supabase-js
 - npx prisma init
 - npx prisma init --schema apps/[appName]/prisma/schema.prisma
+
+# Tailwind
+https://nx.dev/docs/technologies/angular/generators
+npx nx g @nx/angular:setup-tailwind --project=[NAME]
+nx generate @nx/angular:application apps/deckenart2 --prefix app --addTailwind true
