@@ -8,7 +8,7 @@
     "proto-api:dev": "npx nx run proto-api:serve --configuration=development",
     "supabase:start": "npx supabase start",
     "metadb:serve": "npx nx run metadb:serve --configuration=development",
-    "deckenart:serve": "npx nx run deckenart:serve --configuration=development"
+    "deckenmaster:serve": "npx nx run deckenmaster:serve --configuration=development"
   },
   "private": true,
   "dependencies": {

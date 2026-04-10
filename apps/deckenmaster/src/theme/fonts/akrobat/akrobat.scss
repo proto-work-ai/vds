@@ -1,0 +1,60 @@
+/*
+  Thin (Hairline)	100
+  Extra Light (Ultra Light)	200
+  Light	300
+  Normal (Regular)	400
+  Medium	500
+  Semi Bold (Demi Bold)	600
+  Bold	700
+  Extra Bold (Ultra Bold)	800
+  Black (Heavy)	900
+*/
+
+$font-path: '/akrobat/web';
+
+@font-face {
+  font-family: 'Akrobat';
+  font-weight: 900;
+  src: url('#{$font-path}/Akrobat-Black.eot') format('embedded-opentype'), url('#{$font-path}/Akrobat-Black.woff') format('woff'), url('#{$font-path}/Akrobat-Black.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-weight: 800;
+  src: url('#{$font-path}/Akrobat-ExtraBold.eot') format('embedded-opentype'), url('#{$font-path}/Akrobat-ExtraBold.woff') format('woff'), url('#{$font-path}/Akrobat-ExtraBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-weight: 700;
+  src: url('#{$font-path}/Akrobat-Bold.eot') format('embedded-opentype'), url('#{$font-path}/Akrobat-Bold.woff') format('woff'), url('#{$font-path}/Akrobat-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-weight: 600;
+  src: url('#{$font-path}/Akrobat-SemiBold.eot') format('embedded-opentype'), url('#{$font-path}/Akrobat-SemiBold.woff') format('woff'), url('#{$font-path}/Akrobat-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-weight: 400;
+  src: url('#{$font-path}/Akrobat-Regular.eot') format('embedded-opentype'), url('#{$font-path}/Akrobat-Regular.woff') format('woff'), url('#{$font-path}/Akrobat-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-weight: 300;
+  src: url('#{$font-path}/Akrobat-Light.eot') format('embedded-opentype'), url('#{$font-path}/Akrobat-Light.woff') format('woff'), url('#{$font-path}/Akrobat-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Akrobat';
+  font-weight: 200;
+  src: url('#{$font-path}/Akrobat-ExtraLight.eot') format('embedded-opentype'), url('#{$font-path}/Akrobat-ExtraLight.woff') format('woff'), url('#{$font-path}/Akrobat-ExtraLight.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Akrobat';
+  font-weight: 100;
+  src: url('#{$font-path}/Akrobat-Thin.eot') format('embedded-opentype'), url('#{$font-path}/Akrobat-Thin.woff') format('woff'), url('#{$font-path}/Akrobat-Thin.woff2') format('woff2');
+}

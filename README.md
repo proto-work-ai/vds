@@ -38,4 +38,4 @@
 # Tailwind
 https://nx.dev/docs/technologies/angular/generators
 npx nx g @nx/angular:setup-tailwind --project=[NAME]
-nx generate @nx/angular:application apps/deckenart2 --prefix app --addTailwind true
+nx generate @nx/angular:application apps/deckenmaster2 --prefix app --addTailwind true

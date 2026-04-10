@@ -1,0 +1,49 @@
+/*
+  Thin (Hairline)	100
+  Extra Light (Ultra Light)	200
+  Light	300
+  Normal (Regular)	400
+  Medium	500
+  Semi Bold (Demi Bold)	600
+  Bold	700
+  Extra Bold (Ultra Bold)	800
+  Black (Heavy)	900
+*/
+
+$font-path: '/rotonda';
+
+@font-face {
+  font-family: 'Manrope';
+  font-weight: 200;
+  src: url('Manrope-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-weight: 500;
+  src: url('Manrope-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-weight: 400;
+  src: url('Manrope-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-weight: 600;
+  src: url('Manrope-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-weight: 700;
+  src: url('Manrope-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Manrope';
+  font-weight: 800;
+  src: url('Manrope-ExtraBold.ttf') format('truetype');
+}

@@ -1,0 +1,36 @@
+@use "../akrobat/akrobat";
+
+/*
+  Thin (Hairline)	100
+  Extra Light (Ultra Light)	200
+  Light	300
+  Normal (Regular)	400
+  Medium	500
+  Semi Bold (Demi Bold)	600
+  Bold	700
+  Extra Bold (Ultra Bold)	800
+  Black (Heavy)	900
+*/
+
+akrobat.$font-path: '/rotonda';
+
+@font-face {
+  font-family: 'RotondaC';
+  src: url('#{akrobat.$font-path}/RotondaC.otf') format('opentype'), url('#{akrobat.$font-path}/RotondaC.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'RotondaC-Bold';
+  src: url('#{akrobat.$font-path}/RotondaC-Bold.otf') format('opentype'), url('#{akrobat.$font-path}/RotondaC-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Scripticus';
+  src: url('#{akrobat.$font-path}/Scripticus.otf') format('opentype'), url('#{akrobat.$font-path}/Scripticus.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'ScripticusBold';
+  src: url('#{akrobat.$font-path}/ScripticusBold.otf') format('opentype'), url('#{akrobat.$font-path}/ScripticusBold.woff') format('woff');
+}
+

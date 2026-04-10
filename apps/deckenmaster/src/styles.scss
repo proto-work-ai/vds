@@ -1,0 +1,51 @@
+@use 'sass:meta';
+@layer theme, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/preflight.css' layer(base);
+@import 'tailwindcss/utilities.css';
+
+html {
+  font-size: 14px;
+  // --default-font-family: Akrobat, system-ui, sans-serif;
+  --default-font-family: Manrope, system-ui, sans-serif;
+}
+
+/*
+  Breakpoints
+*/
+@theme {  
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 80rem;
+}
+
+/*
+  Fonts
+*/
+@include meta.load-css('theme/fonts/akrobat/akrobat.scss');
+@include meta.load-css('theme/fonts/rotonda/rotonda.scss');
+@include meta.load-css('theme/fonts/manrope/manrope.scss');
+
+/*
+  App Theme
+*/
+@include meta.load-css('theme/buttons.scss');
+@include meta.load-css('theme/taiga-ui.scss');
+
+
+.badge {
+  display: inline-block;
+  border-radius: 40px;
+  background-color: #f9a81b;
+  padding: 0.2rem 1rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.form-wrap {
+  background: #6a7181;
+  outline: 13px solid #ffffff33;
+}
