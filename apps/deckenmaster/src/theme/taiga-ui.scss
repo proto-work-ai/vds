@@ -234,6 +234,10 @@ tui-textfield {
   --tui-background-base: #1477f80f;
   --tui-background-base: white;
 
+  [type='range'] {
+    color: #f9a81b;
+  }
+
   &[data-size='s'][tuiChevron][tuiIcons]:after {
     margin-right: -0.6rem;
   }

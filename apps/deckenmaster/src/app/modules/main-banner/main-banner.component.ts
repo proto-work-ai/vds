@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TuiIcon, TuiNumberFormatSettings, TuiTextfield } from '@taiga-ui/core';
-import { TuiNumberFormat } from '@taiga-ui/core';
-import { TuiInputRange, TuiInputSlider, TuiTooltip } from '@taiga-ui/kit';
+import { TuiNumberFormatSettings, TuiTextfield } from '@taiga-ui/core';
+import { TuiInputRange, TuiInputSlider } from '@taiga-ui/kit';
+import { MainBannerFormComponent } from './main-banner-form/main-banner-form.component';
 
 @Component({
   selector: 'app-main-banner',
   templateUrl: './main-banner.component.html',
   styleUrls: ['./main-banner.component.scss'],
-  imports: [FormsModule, TuiIcon, TuiTextfield, TuiInputRange, TuiTooltip, TuiInputSlider],
+  imports: [FormsModule, TuiTextfield, TuiInputRange, TuiInputSlider, MainBannerFormComponent],
 })
 export class BannerComponent {
   protected value = '';
