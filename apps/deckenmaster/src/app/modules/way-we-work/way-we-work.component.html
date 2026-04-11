@@ -1,9 +1,33 @@
-<div class="container mx-auto">
-  <header class="text-center my-5">
-    <h2 class="text-bold text-3xl font-bold">{{title()}}</h2>
+<div class="container mx-auto my-5 flex flex-col gap-4">
+  <header class="text-center flex flex-col gap-3">
+    <h2 class="text-4xl -font-bold">{{ title() }}</h2>
+
+    <div class="w-175 mx-auto text-gray-500">Основной процесс включает замер, производство полотна и монтаж.</div>
   </header>
 
-  <div class="way-we-work">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+    @for (item of items(); track item; let index = $index) {
+      <article class="flex flex-col gap-4 -bg-gray-light">
+        <!-- <figure class="h-60 w-full bg-image -aspect-1/1" [style.background-image]="'url(' + item.src + ')'">
+          <img class="hidden" [attr.src]="item.src" [attr.alt]="item.title" />
+        </figure> -->
+
+        <header>
+          <div class="text-5xl text-black">0{{ index + 1 }}/</div>
+        </header>
+
+        <div class="flex flex-col gap-4 bg-gray-light p-3 flex-1">
+          <footer class="textr-center flex flex-col gap-2">
+            <h4 class="uppercase font-medium">{{ item.title }}</h4>
+
+            <p class="text-sm">{{ item.text }}</p>
+          </footer>
+        </div>
+      </article>
+    }
+  </div>
+
+  <!-- <div class="way-we-work">
     <div class="flex flex-col">
       @for (item of items; track item; let odd = $odd; let index = $index) {
         <article class="block-item">
@@ -14,5 +38,5 @@
         </article>
       }
     </div>
-  </div>
+  </div> -->
 </div>

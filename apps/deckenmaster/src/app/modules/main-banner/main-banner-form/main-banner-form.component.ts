@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaskitoOptions } from '@maskito/core';
-import { TuiDropdown, TuiTextfield } from '@taiga-ui/core';
+import { TuiTextfield } from '@taiga-ui/core';
 import {
   TuiChevron,
   TuiDataListWrapper,
@@ -11,11 +11,10 @@ import {
   TuiInputSlider,
   TuiSelect,
 } from '@taiga-ui/kit';
-import { MaskitoDirective } from '@maskito/angular';
 
 import { maskitoPhone } from '../phone-mask';
-import { markAsSubmit } from '../../../../../../../libs/atlas/core/src/lib/mark-as-submit';
 import { HttpClient } from '@angular/common/http';
+import { markAsSubmit } from '@atlas/core';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -29,7 +28,6 @@ import { HttpClient } from '@angular/common/http';
     ReactiveFormsModule,
     TuiTextfield,
     TuiInputRange,
-    MaskitoDirective,
     TuiInputSlider,
     TuiInputPhone,
   ],
@@ -45,7 +43,6 @@ import { HttpClient } from '@angular/common/http';
 export class MainBannerFormComponent {
   private readonly http = inject(HttpClient);
   protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);
-  protected readonly maskitoOptions = signal<MaskitoOptions>(maskitoPhone);
 
   protected readonly minRange = signal(5);
   protected readonly maxRange = signal(150);

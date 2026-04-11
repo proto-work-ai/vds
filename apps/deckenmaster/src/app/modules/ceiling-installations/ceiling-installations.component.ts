@@ -14,31 +14,31 @@ export class CeilingInstallationsComponent {
       src: '/ceiling-installations/ceiling-installations-1.jpg',
     },
     {
-      title: 'Глянцевый натяжной потолок в ванной',
-      src: '/ceiling-installations/ceiling-installations-2.jpg',
+      title: 'Матовый натяжной потолок в ванной',
+      src: '/ceiling-installations/ceiling-installations-5.jpg',
     },
-    {
-      title: 'Глянцевый натяжной потолок в спальне',
-      src: '/ceiling-installations/ceiling-installations-3.jpg',
-    },
+    // {
+    //   title: 'Глянцевый натяжной потолок в спальне',
+    //   src: '/ceiling-installations/ceiling-installations-3.jpg',
+    // },
     {
       title: 'Матовые натяжные потолки в детской',
       src: '/ceiling-installations/ceiling-installations-4.jpg',
     },
+    // {
+    //   title: '',
+    //   src: '/ceiling-installations/ceiling-installations-2.jpg',
+    // },
+    // {
+    //   title: '',
+    //   src: '/ceiling-installations/ceiling-installations-6.jpg',
+    // },
+    // {
+    //   title: 'Матовые натяжные потолки в зале',
+    //   src: '/ceiling-installations/ceiling-installations-7.jpg',
+    // },
     {
-      title: '',
-      src: '/ceiling-installations/ceiling-installations-5.jpg',
-    },
-    {
-      title: '',
-      src: '/ceiling-installations/ceiling-installations-6.jpg',
-    },
-    {
-      title: '',
-      src: '/ceiling-installations/ceiling-installations-7.jpg',
-    },
-    {
-      title: '',
+      title: 'Матовые натяжные потолки в коридоре',
       src: '/ceiling-installations/ceiling-installations-8.jpg',
     },
   ] as const;

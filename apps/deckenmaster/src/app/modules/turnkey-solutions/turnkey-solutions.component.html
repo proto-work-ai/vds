@@ -1,10 +1,11 @@
-<div class="container mx-auto flex flex-col gap-3 py-3">
-  <header class="text-center flex flex-col gap-3 my-3">
+<div class="container mx-auto flex flex-col gap-5 my-8">
+  <header class="text-center flex flex-col gap-3">
     <h2 class="text-4xl -font-bold">{{ title() }}</h2>
 
-    <div class="w-175 mx-auto text-gray-500"> 
-      Посмотрите реальные фотографии натяжных потолков,<br>
-      установленных в квартирах и домах наших клиентов </div>
+    <div class="w-175 mx-auto text-gray-500">
+      Посмотрите реальные фотографии натяжных потолков,<br />
+      установленных в квартирах и домах наших клиентов
+    </div>
   </header>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
@@ -14,7 +15,7 @@
           <img class="hidden" [attr.src]="item.src" [attr.alt]="item.title" />
         </figure>
 
-        <div class="w-1/2 flex flex-col gap-4 bg-gray p-4">
+        <div class="w-1/2 flex flex-col gap-4 bg-gray-light p-4">
           <h4 class="text-2xl">{{ item.title }}</h4>
 
           <ol class="flex-1 flex flex-col gap-5">
@@ -43,7 +44,10 @@
             <li class="flex-1"></li>
 
             <li class="font-bold text-2xl">
-              <button class="btn-primary btn-sm w-full">Выбрать решение</button>
+              <button class="btn-primary btn-sm w-full flex gap-3 items-center justify-center">
+                Подробнее
+                <ng-icon name="lucideCircleArrowRight" class="text-lg"></ng-icon>
+              </button>
             </li>
           </ol>
         </div>

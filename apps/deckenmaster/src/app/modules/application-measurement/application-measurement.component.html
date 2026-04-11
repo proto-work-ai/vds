@@ -1,12 +1,12 @@
-<div class="container mx-auto">
-  <div class="flex">
-    <section class="flex-1 flex items-bottom justify-center bg-gray2">
-      <figure class="w-1/2"></figure>
+<div class="container mx-auto my-5 flex flex-col gap-4">
+  <div class="flex flex overflow-hidden h-100 bg-gray">
+    <section class="flex-1 flex items-bottom justify-center bg-circle">
+      <figure class="aspect-1/1 w-6/10"></figure>
     </section>
 
-    <section class="flex-1 bg-gray bg-black-pearl text-white">
-      <div class="p-6 flex flex-col gap-5">
-        <h3 class="text-4xl w-100">{{ title() }}</h3>
+    <section class="flex-1  -bg-black-pearl text-white">
+      <div class="p-10 flex flex-col gap-5 h-full">
+        <h3 class="text-4xl w-100 uppercase">{{ title() }}</h3>
 
         <form class="grid grid-cols-2 gap-3 textfield-no-border" [formGroup]="form">
           <tui-textfield [tuiTextfieldCleaner]="false">
@@ -18,9 +18,9 @@
         </form>
 
         <div class="flex flex-col gap-3">
-          <h3 class="uppercase text-2xl">Выгода бесплатного замера</h3>
+          <h3 class="uppercase text-xl">Почему важен замер</h3>
 
-          <ol>
+          <ol class="list-disc ms-5 flex flex-col gap-1">
             <li>Точность замера помещения</li>
             <li>Гарантия верной цены, с применением скидок</li>
             <li>Помощь в выборе материалов и дизайна</li>

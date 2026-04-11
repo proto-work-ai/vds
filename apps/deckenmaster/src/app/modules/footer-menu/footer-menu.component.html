@@ -1,38 +1,45 @@
-<!-- <div class="container mx-auto">
-  НАТЯЖНЫЕ ПОТОЛКИ B MOCKBE
-  ЗВОНИТЕ КРУГЛОСУТОЧНО
-  +7 495 000-00-00
-  ЗАКАЗАТЬ ЗВОНОК
-</div> -->
+<div class="bg-dark-knight">
+  <div class="container mx-auto text-white">
+    <div class="flex gap-6 pt-5 pb-4">
+      <section>
+        <a [routerLink]="['/']"><img class="w-6" src="/logo/logo-icon-light.svg" /></a>
+      </section>
 
-<div class="container mx-auto">
-  <div class="flex">
-    <section class="w-1/4">
-      <div class="flex flex-col items-center justify-center gap-3 h-full">
-        <img class="w-1/3" src="/logo/logo.svg">
+      <section class="w-1/4 flex flex-col gap-3">
+        <h4 class="text-md">Контакты</h4>
 
-      © 2018-2026. ООО «DeckenMaster» - Установка натяжных потолков в Москве и области.
+        <div class="flex items-center gap-2">
+          <ng-icon name="lucidePhone" class="text-white" />
+          <a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
+        </div>
+
+        <a href="mailto:info@deckenmaster.ru">{{ 'Info@deckenmaster.ru' }}</a>
+
+        <div class="text-xs">
+          {{ periodContact }}. ООО «DeckenMaster» - Установка натяжных потолков в Москве и области.
+        </div>
+      </section>
+
+      <section class="flex flex-col gap-3">
+        <h4 class="text-md">Меню</h4>
+
+        <ol>
+          <li><a href="javascript:void(0)">О компании</a></li>
+          <li><a href="javascript:void(0)">Акции</a></li>
+          <li><a href="javascript:void(0)">Наши работы</a></li>
+          <li><a href="javascript:void(0)">Отзывы</a></li>
+        </ol>
+      </section>
+
+      <div class="flex-1"></div>
+
+      <div class="flex gap-4">
+        <a href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"
+          ><img class="w-6 block text-white" src="/icons/telegram-light.svg"
+        /></a>
+
+        <a [href]="maxContact" target="_blank"><img class="w-6 block" title="Max" src="/icons/max-icon-light.svg" /></a>
       </div>
-    </section>
-
-    <section class="flex flex-col gap-3">
-      <h4 class="text-2xl uppercase">Информация</h4>
-
-      <ol>
-        <li><a href="javascript:void(0)">О компании</a></li>
-        <li><a href="javascript:void(0)">Акции</a></li>
-        <li><a href="javascript:void(0)">Наши работы</a></li>
-        <li><a href="javascript:void(0)">Отзывы</a></li>
-        <li><a href="javascript:void(0)">Политика конфиденциальности</a></li>
-      </ol>
-    </section>
-
-    <section class="flex flex-col gap-3">
-      <h4 class="text-2xl uppercase">Контакты</h4>
-      
-      <a href="tel:+74993978881">8 (499) 397-88-81</a>
-
-      <a href="mailto:info@deckenmaster.ru">Info@deckenmaster.ru</a>
-    </section>
+    </div>
   </div>
 </div>

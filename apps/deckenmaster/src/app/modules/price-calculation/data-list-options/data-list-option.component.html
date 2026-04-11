@@ -1,0 +1,15 @@
+<article class="flex flex-col gap-2 text-center">
+  <figure
+    class="flex items-center justify-center aspect-3/2 w-20 rounded-sm"
+    [class.text-white]="selected()"
+    [class.bg-lime-500]="selected()"
+    [class.bg-gray-300]="!selected()"
+    [class.cursor-pointer]="!selected()"
+  >
+    <ng-icon [name]="icon()" class="text-white text-4xl" />
+  </figure>
+
+  <div class="text-sm w-20">
+    <ng-content></ng-content>
+  </div>
+</article>

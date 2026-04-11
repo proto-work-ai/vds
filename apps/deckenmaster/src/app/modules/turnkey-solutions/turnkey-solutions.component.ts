@@ -1,9 +1,13 @@
 import { Component, input, signal } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideCircleArrowRight } from '@ng-icons/lucide';
 
 @Component({
   selector: 'app-turnkey-solutions',
   templateUrl: './turnkey-solutions.component.html',
   styleUrls: ['./turnkey-solutions.component.scss'],
+  imports: [NgIcon],
+  providers: [provideIcons({ lucideCircleArrowRight })],
 })
 export class TurnkeySolutionsComponent {
   readonly title = input('Готовые решения под ключ');

@@ -31,7 +31,7 @@ html {
 .badge {
   display: inline-block;
   border-radius: 40px;
-  background-color: #f9a81b;
+  background-color: var(--primari-color);
   padding: 0.2rem 1rem;
   text-transform: uppercase;
   font-size: 0.75rem;
@@ -49,14 +49,13 @@ html {
   background-size: cover;
 }
 
-// .form-wrap {
-//     background: #6a7181;
-//     outline: 13px solid rgba(255, 255, 255, 0.2);
-// }
-
 .bg-gray {
   outline: 13px solid rgba(255, 255, 255, 0.2);
   background-color: #6a7181;
+}
+
+.bg-gray-light {
+  background-color: #f2f4f6;
 }
 
 .bg-black-pearl {
