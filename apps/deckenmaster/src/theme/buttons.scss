@@ -36,15 +36,15 @@
   &:hover {
     background: #f2a317;
     box-shadow: 0px calc(var(--btn-push-size) - calc(var(--btn-push-size) / 4)) 0px #d08d18;
-    margin-top: calc(var(--btn-push-size) / 4 - calc(var(--btn-push-size) / 4));
+    margin-top: calc(var(--btn-push-size) / 4 + calc(var(--btn-push-size) / 4));
     margin-bottom: calc(var(--btn-push-size) / 4 * -1 - calc(var(--btn-push-size) / 4));
   }
 
   &:active {
     background: #f2a317;
     box-shadow: 0px 0px 0px #d08d18;
-    margin-top: calc(var(--btn-push-size) / 2);
-    margin-bottom: calc(var(--btn-push-size) / 2 * -1);
+    margin-top: var(--btn-push-size);
+    margin-bottom: calc(var(--btn-push-size) * -1);
   }
 
   &.btn-xs {
@@ -61,7 +61,6 @@
     --btn-font-size: 1rem;
     --btn-border-radius: 2px;
     --btn-push-size: 1.5px;
-    --btn-push-size: 0;
     --btn-line-height: 3rem;
   }
 }

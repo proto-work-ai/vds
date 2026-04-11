@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiIcon, TuiTextfield } from '@taiga-ui/core';
 import { TuiTooltip } from '@taiga-ui/kit';
 
@@ -7,10 +7,12 @@ import { TuiTooltip } from '@taiga-ui/kit';
   selector: 'app-application-measurement',
   templateUrl: './application-measurement.component.html',
   styleUrls: ['./application-measurement.component.scss'],
-  imports: [FormsModule, TuiIcon, TuiTextfield, TuiTooltip],
+  imports: [FormsModule, ReactiveFormsModule, TuiTextfield],
 })
 export class ApplicationMeasurementComponent {
   readonly title = input('Оставьте заявку на бесплатный замер');
 
-  protected value = '';
+  protected readonly form = new FormGroup({
+    phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+  });
 }

@@ -8,3 +8,4 @@ export * from './lib/field-filter-Input.pipe';
 export * from './lib/service-pagination';
 export * from './lib/virtual-scroll-paginate.pipe';
 export * from './lib/stringify-setter.pipe';
+export * from './lib/phone-format.pipe';

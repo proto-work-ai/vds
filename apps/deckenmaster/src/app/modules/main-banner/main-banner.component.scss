@@ -1,9 +1,27 @@
 .bg-banner {
-  --tui-border-width: 0;
   background-image: url(/img/banner-1.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   display: block;
+  overflow: hidden;
 }
 
+.bg-circle {
+  z-index: 1;
+  position: relative;
+  &::before {
+    content: '';
+    background-image: url(/img/banner-circle-black.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: block;
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    top: -485px;
+    right: -300px;
+    z-index: -1;
+  }
+}

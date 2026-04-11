@@ -1,4 +1,4 @@
-<div class="bg-black">
+<div class="bg-black -sticky -top-0 z-50">
   <header class="container mx-auto text-white">
     <nav>
       <ol class="flex items-center gap-6 py-1">
@@ -9,19 +9,21 @@
 
         <li class="flex-1"></li>
 
-        <li>
+        <!-- <li>
           <nav class="flex items-center gap-12">
             <a href="javascript:void(0)">Услуги</a>
             <a href="javascript:void(0)">Акции</a>
             <a href="javascript:void(0)">О компании</a>
             <a href="javascript:void(0)">Контакты</a>
           </nav>
-        </li>
+        </li> -->
 
         <li class="flex-1"></li>
 
-        <li>
-          <button class="btn-primary btn-xs">Вызвать замерщика</button>
+        <li class="flex gap-4">
+          <a href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"><img class="w-6 block text-white" src="/icons/telegram-light.svg" /></a>
+
+          <a [href]="maxContact" target="_blank"><img class="w-6 block" title="Max" src="/icons/max-icon-light.svg" /></a>
         </li>
 
         <li>
@@ -29,13 +31,30 @@
 
           <div class="flex items-center gap-2">
             <ng-icon name="lucidePhone" class="text-white" />
-            <a href="tel:+74950000000">+7 495 000-00-00</a>
+            <a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
           </div>
         </li>
       </ol>
     </nav>
   </header>
 </div>
+
+<ol class="container mx-auto flex items-center py-2">
+  <li>
+    <nav class="flex items-center gap-12">
+      <a href="javascript:void(0)">Услуги</a>
+      <a href="javascript:void(0)">Акции</a>
+      <a href="javascript:void(0)">О компании</a>
+      <a href="javascript:void(0)">Контакты</a>
+    </nav>
+  </li>
+
+  <li class="flex-1"></li>
+
+  <li>
+    <button class="btn-primary btn-xs">Вызвать замерщика</button>
+  </li>
+</ol>
 
 <!-- <div class="container mx-auto">
   <header>
@@ -60,4 +79,3 @@
     </nav>
   </header>
 </div> -->
-

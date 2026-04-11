@@ -8,6 +8,4 @@ import { TuiRoot } from '@taiga-ui/core';
   styleUrl: './app.scss',
   imports: [RouterModule, TuiRoot],
 })
-export class App {
-  protected title = 'deckenmaster';
-}
+export class App {}

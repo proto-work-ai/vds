@@ -1,39 +1,33 @@
-<form [formGroup]="form" class="flex flex-col gap-6 p-5 text-white form-wrap">
-  <h3 class="text-xl">Рассчитайте стоимость</h3>
+<form [formGroup]="form" class="text-white bg-gray textfield-no-border" (submit)="formSubmit()">
+  <div class="flex flex-col gap-6 p-5">
+    <h3 class="text-xl">Рассчитайте стоимость</h3>
 
-  <label tuiLabel>
-    Тип потолка
     <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
+      <label tuiLabel>Тип потолка</label>
       <input tuiSelect formControlName="type" />
-
-      <tui-data-list-wrapper *tuiDropdown [items]="typeOptions()" />
-    </tui-textfield>
-  </label>
-
-  <section>
-    <tui-textfield>
-      <label tuiLabel>Укажите площадь, м2</label>
-      <input tuiInputSlider postfix=" м" [min]="minRange" [max]="maxRange" formControlName="size" />
-      <input tuiSlider type="range" />
-      <!-- <tui-icon tuiTooltip="Укажите площадь, м2" /> -->
+      <tui-data-list-wrapper *tuiTextfieldDropdown new [items]="typeOptions()" />
     </tui-textfield>
 
-    <div class="flex justify-between">
-      @for (label of ticksLabels; track label) {
-        <small>{{ label }}</small>
-      }
-    </div>
-  </section>
+    <section>
+      <tui-textfield>
+        <label tuiLabel>Укажите площадь</label>
+        <input tuiInputSlider postfix=" м²" [min]="minRange()" [max]="maxRange()" formControlName="size" />
+        <input tuiSlider type="range" />
+        <!-- <tui-icon tuiTooltip="Укажите площадь" /> -->
+      </tui-textfield>
 
-  <tui-textfield>
-    <label tuiLabel>Укажите телефон</label>
-    <input tuiTextfield [maskito]="maskitoOptions()" formControlName="phone" />
-  </tui-textfield>
+      <div class="flex justify-between px-5 pt-2">
+        @for (label of ticksLabels(); track label) {
+          <small>{{ label }}</small>
+        }
+      </div>
+    </section>
 
-  <tui-textfield [tuiTextfieldCleaner]="false">
-    <label tuiLabel>Укажите телефон</label>
-    <input tuiInputPhone formControlName="phone" />
-  </tui-textfield>
+    <tui-textfield [tuiTextfieldCleaner]="false">
+      <label tuiLabel>Укажите телефон</label>
+      <input tuiInputPhone formControlName="phone" mask="+7 ### ###-##-##" />
+    </tui-textfield>
 
-  <button class="btn-primary btn-sm">Получить предложение</button>
+    <button class="btn-primary btn-sm" type="submit">Получить предложение</button>
+  </div>
 </form>

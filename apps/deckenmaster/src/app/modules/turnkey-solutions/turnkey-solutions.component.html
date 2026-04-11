@@ -1,21 +1,23 @@
-<div class="container mx-auto flex flex-col gap-3">
+<div class="container mx-auto flex flex-col gap-3 py-3">
   <header class="text-center flex flex-col gap-3 my-3">
-    <h2 class="text-bold text-3xl font-bold">{{ title() }}</h2>
+    <h2 class="text-4xl -font-bold">{{ title() }}</h2>
 
-    <span> Посмотрите реальные фотографии натяжных потолков, установленных в квартирах и домах наших клиентов </span>
+    <div class="w-175 mx-auto text-gray-500"> 
+      Посмотрите реальные фотографии натяжных потолков,<br>
+      установленных в квартирах и домах наших клиентов </div>
   </header>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
     @for (item of items(); track item) {
       <article class="flex">
-        <figure class="w-1/2" [style.background-image]="'url(' + item.src + ')'">
+        <figure class="w-1/2 aspect-1/1" [style.background-image]="'url(' + item.src + ')'">
           <img class="hidden" [attr.src]="item.src" [attr.alt]="item.title" />
         </figure>
 
-        <div class="w-1/2 flex flex-col gap-3 bg-gray p-4">
+        <div class="w-1/2 flex flex-col gap-4 bg-gray p-4">
           <h4 class="text-2xl">{{ item.title }}</h4>
 
-          <ol class="flex-1 flex flex-col gap-3">
+          <ol class="flex-1 flex flex-col gap-5">
             <li class="flex justify-between">
               <span>Площадь</span>
               <span>{{ item.size }}</span>
@@ -36,12 +38,12 @@
               <span>{{ item.texture }}</span>
             </li>
 
-            <li class="font-bold text-2xl">{{ item.price }} Руб.</li>
+            <li class="font-bold text-2xl text-price">{{ item.price }} Руб.</li>
 
             <li class="flex-1"></li>
 
             <li class="font-bold text-2xl">
-              <button class="btn-primary btn-sm w-full">Подробнее</button>
+              <button class="btn-primary btn-sm w-full">Выбрать решение</button>
             </li>
           </ol>
         </div>

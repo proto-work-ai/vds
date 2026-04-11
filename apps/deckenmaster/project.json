@@ -8,10 +8,11 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [ "{options.outputPath}" ],
       "options": {
         "outputPath": "dist/apps/deckenmaster",
         "browser": "apps/deckenmaster/src/main.ts",
+        "polyfills": [ "zone.js" ],
         "tsConfig": "apps/deckenmaster/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [

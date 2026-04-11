@@ -1,7 +1,7 @@
-import { Component, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaskitoOptions } from '@maskito/core';
-import { TuiTextfield } from '@taiga-ui/core';
+import { TuiDropdown, TuiTextfield } from '@taiga-ui/core';
 import {
   TuiChevron,
   TuiDataListWrapper,
@@ -14,6 +14,8 @@ import {
 import { MaskitoDirective } from '@maskito/angular';
 
 import { maskitoPhone } from '../phone-mask';
+import { markAsSubmit } from '../../../../../../../libs/atlas/core/src/lib/mark-as-submit';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -41,17 +43,23 @@ import { maskitoPhone } from '../phone-mask';
   ],
 })
 export class MainBannerFormComponent {
+  private readonly http = inject(HttpClient);
   protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);
   protected readonly maskitoOptions = signal<MaskitoOptions>(maskitoPhone);
 
-  protected range = 10;
-  protected readonly minRange = 1;
-  protected readonly maxRange = 150;
-  protected readonly ticksLabels = [this.minRange, 50, 75, 100, this.maxRange].map((a) => a + 'м');
+  protected readonly minRange = signal(5);
+  protected readonly maxRange = signal(150);
+  protected readonly ticksLabels = signal([this.minRange(), 50, 75, 100, this.maxRange()].map((a) => a + 'м²'));
 
   protected readonly form = new FormGroup({
-    type: new FormControl(''),
-    size: new FormControl(1),
-    phone: new FormControl(''),
+    type: new FormControl(this.typeOptions()[0]),
+    size: new FormControl(this.minRange()),
+    phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
   });
+
+  protected formSubmit() {
+    if (markAsSubmit(this.form)) {
+      console.log('formSubmit', this.form.value);
+    }
+  }
 }
