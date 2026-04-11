@@ -1,13 +1,36 @@
 import { Component, input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiIcon, TuiTextfield } from '@taiga-ui/core';
-import { TuiTooltip } from '@taiga-ui/kit';
+import { TuiSelect, TuiTextfield } from '@taiga-ui/core';
+import {
+  TuiChevron,
+  TuiDataListWrapper,
+  TuiInputPhone,
+  tuiInputPhoneOptionsProvider,
+  TuiInputSlider,
+} from '@taiga-ui/kit';
 
 @Component({
   selector: 'app-application-measurement',
   templateUrl: './application-measurement.component.html',
   styleUrls: ['./application-measurement.component.scss'],
-  imports: [FormsModule, ReactiveFormsModule, TuiTextfield],
+  imports: [
+    TuiChevron,
+    TuiSelect,
+    TuiDataListWrapper,
+    FormsModule,
+    ReactiveFormsModule,
+    TuiTextfield,
+    TuiInputSlider,
+    TuiInputPhone,
+  ],
+  providers: [
+    tuiInputPhoneOptionsProvider({
+      valueTransformer: {
+        fromControlValue: (value) => `+${value}`,
+        toControlValue: (value) => value?.slice(1),
+      },
+    }),
+  ],
 })
 export class ApplicationMeasurementComponent {
   readonly title = input('Оставьте заявку на бесплатный замер');
