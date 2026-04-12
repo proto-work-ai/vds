@@ -1,16 +1,22 @@
 <div class="bg-dark-knight">
-  <div class="container mx-auto text-white">
-    <div class="flex gap-6 pt-5 pb-4">
-      <section>
-        <a [routerLink]="['/']"><img class="w-6" src="/logo/logo-icon-light.svg" /></a>
+  <div class="md:container max-md:px-5 mx-auto text-white">
+    <div class="flex max-sm:flex-col gap-6 pt-5 pb-4">
+      <section class="flex">
+        <div class="flex-1">
+          <a [routerLink]="['/']"><img class="w-6" src="/logo/logo-icon-light.svg" /></a>
+        </div>
+
+        <div class="sm:hidden">
+          <ng-container [ngTemplateOutlet]="sociallaLink"></ng-container>
+        </div>
       </section>
 
-      <section class="w-1/4 flex flex-col gap-3">
+      <section class="md:w-1/4 w-1/2 flex flex-col gap-3">
         <h4 class="text-md">Контакты</h4>
 
         <div class="flex items-center gap-2">
           <ng-icon name="lucidePhone" class="text-white" />
-          <a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
+          <a class="max-sm:text-sm" href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
         </div>
 
         <a href="mailto:info@deckenmaster.ru">{{ 'Info@deckenmaster.ru' }}</a>
@@ -20,7 +26,7 @@
         </div>
       </section>
 
-      <section class="flex flex-col gap-3">
+      <section class="flex-1 flex flex-col gap-3">
         <h4 class="text-md">Меню</h4>
 
         <ol>
@@ -31,15 +37,21 @@
         </ol>
       </section>
 
-      <div class="flex-1"></div>
-
-      <div class="flex gap-4">
-        <a href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"
-          ><img class="w-6 block text-white" src="/icons/telegram-light.svg"
-        /></a>
-
-        <a [href]="maxContact" target="_blank"><img class="w-6 block" title="Max" src="/icons/max-icon-light.svg" /></a>
+      <div class="sm:block hidden">
+        <ng-container [ngTemplateOutlet]="sociallaLink"></ng-container>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template #sociallaLink>
+  <div class="flex gap-2">
+    <a class="max-sm:text-sm" href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"
+      ><img class="w-6 block text-white" src="/icons/telegram-light.svg"
+    /></a>
+
+    <a class="max-sm:text-sm" [href]="maxContact" target="_blank"
+      ><img class="w-6 block" title="Max" src="/icons/max-icon-light.svg"
+    /></a>
+  </div>
+</ng-template>

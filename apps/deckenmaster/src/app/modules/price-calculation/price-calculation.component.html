@@ -1,72 +1,76 @@
 <div class="bg-gray-light py-8">
-  <div class="container mx-auto flex flex-col gap-5">
-    <header class="text-center flex flex-col gap-3">
-      <h2 class="text-4xl -font-bold">{{ title() }}</h2>
+  <div class="md:container mx-auto max-md:px-5">
+    <section class="flex flex-col gap-5 max-sm:px-5">
+      <header class="text-center flex flex-col gap-3">
+        <h2 class="lg:text-4xl text-2xl">{{ title() }}</h2>
 
-      <div class="w-175 mx-auto text-gray-500">Cтоимость зависит от выбранных материалов и технических расчетов</div>
-    </header>
+        <div class="md:w-175 mx-auto text-gray-500">
+          Cтоимость зависит от выбранных материалов и технических расчетов
+        </div>
+      </header>
+    </section>
+
+    <form [formGroup]="form" class="flex flex-col gap-3 py-5">
+      <fieldset class="flex max-lg:flex-col gap-3">
+        <div class="lg:w-80 lg:text-end">Площадь потолков:</div>
+
+        <div class="flex-1">
+          <app-zoom-controller formControlName="size"></app-zoom-controller>
+        </div>
+      </fieldset>
+
+      <fieldset class="flex max-lg:flex-col gap-5">
+        <div class="lg:w-80 lg:text-end">Тип комнаты:</div>
+
+        <data-list-options formControlName="rooms" [items]="rooms()">
+          <div class="flex flex-wrap gap-3">
+            @for (item of rooms(); track item) {
+              <data-list-option [value]="item" [icon]="item.icon">{{ item.title }}</data-list-option>
+            }
+          </div>
+        </data-list-options>
+      </fieldset>
+
+      <fieldset class="flex max-lg:flex-col gap-3">
+        <div class="lg:w-80 lg:text-end">Освещение:</div>
+
+        <data-list-options formControlName="lightings" [items]="lightins()">
+          <div class="flex flex-wrap gap-3">
+            @for (item of lightins(); track item) {
+              <data-list-option [value]="item" [icon]="item.icon">{{ item.title }}</data-list-option>
+            }
+          </div>
+        </data-list-options>
+      </fieldset>
+
+      <fieldset class="flex max-lg:flex-col gap-3">
+        <div class="lg:w-80 lg:text-end">Пожелание:</div>
+
+        <div class="flex-1">
+          <tui-textfield [tuiTextfieldCleaner]="false">
+            <label tuiLabel>Сообщение</label>
+            <textarea tuiTextarea formControlName="comment" [limit]="1000" [min]="4" [max]="4"></textarea>
+          </tui-textfield>
+        </div>
+      </fieldset>
+
+      <fieldset class="flex max-lg:flex-col gap-3">
+        <div class="lg:w-80 lg:text-end">Контакты:</div>
+
+        <div class="flex-1 flex flex-wrap gap-3">
+          <tui-textfield class="flex-1">
+            <label tuiLabel>Введите имя</label>
+            <input tuiTextfield formControlName="name" />
+          </tui-textfield>
+
+          <tui-textfield class="flex-1" [tuiTextfieldCleaner]="false">
+            <label tuiLabel>Укажите телефон</label>
+            <input tuiInputPhone formControlName="phone" mask="+7 ### ###-##-##" />
+          </tui-textfield>
+
+          <button class="btn-primary btn-sm max-md:w-full">Расчитать цену</button>
+        </div>
+      </fieldset>
+    </form>
   </div>
-
-  <form [formGroup]="form" class="container mx-auto flex flex-col gap-5 py-5">
-    <fieldset class="flex gap-4">
-      <div class="w-80 text-end">Площадь потолков:</div>
-
-      <div class="flex-1">
-        <app-zoom-controller formControlName="size"></app-zoom-controller>
-      </div>
-    </fieldset>
-
-    <fieldset class="flex gap-4">
-      <div class="w-80 text-end">Тип комнаты:</div>
-
-      <data-list-options formControlName="rooms" [items]="rooms()">
-        <div class="flex gap-3">
-          @for (item of rooms(); track item) {
-            <data-list-option [value]="item" [icon]="item.icon">{{ item.title }}</data-list-option>
-          }
-        </div>
-      </data-list-options>
-    </fieldset>
-
-    <fieldset class="flex gap-4">
-      <div class="w-80 text-end">Освещение:</div>
-
-      <data-list-options formControlName="lightings" [items]="lightins()">
-        <div class="flex gap-3">
-          @for (item of lightins(); track item) {
-            <data-list-option [value]="item" [icon]="item.icon">{{ item.title }}</data-list-option>
-          }
-        </div>
-      </data-list-options>
-    </fieldset>
-
-    <fieldset class="flex gap-4">
-      <div class="w-80 text-end">Пожелание:</div>
-
-      <div class="flex-1">
-        <tui-textfield [tuiTextfieldCleaner]="false">
-          <label tuiLabel>Сообщение</label>
-          <textarea tuiTextarea formControlName="comment" [limit]="1000" [min]="4" [max]="4"></textarea>
-        </tui-textfield>
-      </div>
-    </fieldset>
-
-    <fieldset class="flex gap-4">
-      <div class="w-80 text-end">Контакты:</div>
-
-      <div class="flex-1 grid grid-cols-3 gap-3">
-        <tui-textfield>
-          <label tuiLabel>Введите имя</label>
-          <input tuiTextfield formControlName="name" />
-        </tui-textfield>
-
-        <tui-textfield [tuiTextfieldCleaner]="false">
-          <label tuiLabel>Укажите телефон</label>
-          <input tuiInputPhone formControlName="phone" mask="+7 ### ###-##-##" />
-        </tui-textfield>
-
-        <button class="btn-primary btn-sm">Расчитать цену</button>
-      </div>
-    </fieldset>
-  </form>
 </div>

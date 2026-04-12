@@ -12,6 +12,7 @@ html {
   // --default-font-family: Gilroy,  sans-serif;
   --default-font-family: Manrope, sans-serif;
   letter-spacing: 2%;
+  min-width: 400px;
 }
 
 /*
@@ -44,13 +45,13 @@ html {
 
 .bg-image {
   display: inline-block;
-  background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-x: center;
+  background-position-y: top;
 }
 
 .bg-gray {
-  outline: 13px solid rgba(255, 255, 255, 0.2);
   background-color: #6a7181;
 }
 

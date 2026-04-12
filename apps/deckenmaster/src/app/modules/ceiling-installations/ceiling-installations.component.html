@@ -1,24 +1,22 @@
-<div class="container mx-auto flex flex-col gap-5 my-8">
+<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
   <header class="text-center flex flex-col gap-3">
-    <h2 class="text-4xl -font-bold">{{ title() }}</h2>
+    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
 
-    <div class="w-175 mx-auto text-gray-500">
+    <div class="md:w-175 mx-auto text-gray-500">
       Вы получаете идеально ровные потолки, точно соответствующие вашим требованием, чистый монтаж, гарантию на работы и
       хорошее настроение!
     </div>
   </header>
 
-  <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-3 max-sm:px-3">
+  <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
     @for (item of items; track item; let index = $index) {
-      <article class="flex flex-col bg-gray-light">
-        <figure class="h-60 w-full bg-image" [style.background-image]="'url(' + item.src + ')'">
+      <article class="flex flex-col bg-gray-light max-md:max-w-100">
+        <figure class="w-full bg-image aspect-1.5/1" [style.background-image]="'url(' + item.src + ')'">
           <img class="hidden" [attr.src]="item.src" [attr.alt]="item.title" />
         </figure>
 
         <footer class="p-3 flex flex-col gap-2">
           <h4 class="uppercase font-medium">{{ item.title }}</h4>
-
-          <!-- <p class="text-sm">{{ item.text }}</p> -->
         </footer>
       </article>
     }

@@ -25,8 +25,6 @@ import { distinctUntilChanged, pairwise, startWith, tap } from 'rxjs';
   templateUrl: './price-calculation.component.html',
   styleUrls: ['./price-calculation.component.scss'],
   imports: [
-    NgIcon,
-    TuiChevron,
     TuiDataListWrapper,
     TuiSelect,
     FormsModule,

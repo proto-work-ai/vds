@@ -14,8 +14,6 @@ import {
   templateUrl: './application-measurement.component.html',
   styleUrls: ['./application-measurement.component.scss'],
   imports: [
-    TuiChevron,
-    TuiSelect,
     TuiDataListWrapper,
     FormsModule,
     ReactiveFormsModule,

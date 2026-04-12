@@ -9,9 +9,7 @@ figure {
 
 .bg-circle {
   position: relative;
-  &:before {
-    content: '';
-    display: block;
+  .circle {
     position: absolute;
     background-color: #e5eaf3;
     width: 100%;
@@ -23,6 +21,21 @@ figure {
     top: 50%;
     right: 0;
     transform: translateY(-50%);
+    z-index: 0;
+  }
+
+  .circle-sm {
+    position: absolute;
+    background-color: #e5eaf3;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    width: 180%;
+    height: 300%;
+    border-radius: 50%;
+    top: 0;
+    left: -38%;
+    transform: translateX(0%);
     z-index: 0;
   }
 }

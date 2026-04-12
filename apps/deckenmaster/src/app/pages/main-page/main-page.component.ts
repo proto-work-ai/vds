@@ -16,9 +16,9 @@ import { PriceCalculationComponent } from '../../modules/price-calculation/price
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
   imports: [
-    FromToComponent,
-    TurnkeySolutionsComponent,
-    LeaveRequestComponent,
+    // FromToComponent,
+    // TurnkeySolutionsComponent,
+    // LeaveRequestComponent,
     BannerComponent,
     FooterMenuComponent,
     WorkTypesComponent,

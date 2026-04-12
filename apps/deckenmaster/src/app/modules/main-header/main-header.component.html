@@ -1,10 +1,15 @@
-<div class="bg-black -sticky -top-0 z-50">
+<div class="bg-black -sticky -top-0 z-50 px-3">
   <header class="container mx-auto text-white">
     <nav>
       <ol class="flex items-center gap-6 py-1">
         <li>
           <!-- <ng-icon hlm name="lucideChevronDown" class="ml-auto" /> -->
-          <a [routerLink]="['/']"><img src="/logo/logo-text-light.svg" style="width: 130px" /></a>
+
+          <a [routerLink]="['/']" class="block max-sm:hidden"><img class="w-40" src="/logo/logo-text-light.svg" /></a>
+
+          <a [routerLink]="['/']" class="hidden max-sm:block py-2"
+            ><img class="w-8" src="/logo/logo-icon-light.svg"
+          /></a>
         </li>
 
         <li class="flex-1"></li>
@@ -21,9 +26,13 @@
         <li class="flex-1"></li>
 
         <li class="flex gap-4">
-          <a href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"><img class="w-6 block text-white" src="/icons/telegram-light.svg" /></a>
+          <a href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"
+            ><img class="w-6 max-sm:w-5 max-sm:w-5 block text-white" src="/icons/telegram-light.svg"
+          /></a>
 
-          <a [href]="maxContact" target="_blank"><img class="w-6 block" title="Max" src="/icons/max-icon-light.svg" /></a>
+          <a [href]="maxContact" target="_blank"
+            ><img class="w-6 max-sm:w-5 max-sm:w-5 block" title="Max" src="/icons/max-icon-light.svg"
+          /></a>
         </li>
 
         <li>
@@ -31,7 +40,7 @@
 
           <div class="flex items-center gap-2">
             <ng-icon name="lucidePhone" class="text-white" />
-            <a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
+            <a class="max-sm:text-sm" href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
           </div>
         </li>
       </ol>
@@ -39,14 +48,17 @@
   </header>
 </div>
 
-<ol class="container mx-auto flex items-center py-2">
+<ol class="container mx-auto flex items-center py-2 px-3">
   <li>
-    <nav class="flex items-center gap-12">
-      <a href="javascript:void(0)">Услуги</a>
-      <a href="javascript:void(0)">Акции</a>
-      <a href="javascript:void(0)">О компании</a>
-      <a href="javascript:void(0)">Контакты</a>
+    <nav class="block max-sm:hidden flex items-center gap-12">
+      @for (item of items; track item) {
+        <a href="javascript:void(0)">{{ item }}</a>
+      }
     </nav>
+
+    <div class="hidden max-sm:flex">
+      <ng-icon class="cursor-pointer text-lg" name="lucideMenu" (click)="onOpen()"></ng-icon>
+    </div>
   </li>
 
   <li class="flex-1"></li>
@@ -56,26 +68,21 @@
   </li>
 </ol>
 
-<!-- <div class="container mx-auto">
-  <header>
-    <nav>
-      <ol class="flex gap-3 py-3">
-        <li>
-          <img src="/logo/logo-text.svg" style="width: 130px" />
-        </li>
-
-        <li class="flex-1"></li>
-
-        <li>Звоните круглосуточно</li>
-
-        <li>
-          <a href="tel:+74950000000">+7 495 000-00-00</a>
-        </li>
-
-        <li>
-          <a>Заказать звонок</a>
-        </li>
-      </ol>
-    </nav>
+<tui-drawer *tuiPopup="open" direction="left" class="drawer" [overlay]="true" (click.self)="onClose()">
+  <header class="sticky top-0">
+    <h2 tuiHeader>
+      <div tuiTitle>Меню</div>
+      <div tuiAccessories>
+        <ng-icon class="cursor-pointer text-lg" name="lucideX" (click)="onClose()"></ng-icon>
+      </div>
+    </h2>
   </header>
-</div> -->
+
+  <section class="flex flex-col gap-2">
+    @for (item of items; track item) {
+      <a [routerLink]="['/']" (click)="onClose()">
+        {{ item }}
+      </a>
+    }
+  </section>
+</tui-drawer>

@@ -1,27 +1,16 @@
-import { AsyncPipe, PercentPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { Component, forwardRef, input, signal } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TUI_FALSE_HANDLER, tuiClamp } from '@taiga-ui/cdk';
-import { TuiButton, TuiHint, TuiIcon, TuiTextfield } from '@taiga-ui/core';
-import { TuiInputNumber, TuiSlider, TuiTooltip } from '@taiga-ui/kit';
+import { TuiButton, TuiHint, TuiTextfield } from '@taiga-ui/core';
+import { TuiInputNumber, TuiSlider } from '@taiga-ui/kit';
 import { BehaviorSubject, distinctUntilChanged, map, of, switchMap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-zoom-controller',
   templateUrl: 'zoom-controller.component.html',
   styleUrl: 'zoom-controller.component.scss',
-  imports: [
-    AsyncPipe,
-    FormsModule,
-    TuiButton,
-    TuiHint,
-    TuiSlider,
-    FormsModule,
-    TuiInputNumber,
-    TuiTextfield,
-    TuiIcon,
-    TuiTooltip,
-  ],
+  imports: [AsyncPipe, FormsModule, TuiButton, TuiHint, TuiSlider, FormsModule, TuiInputNumber, TuiTextfield],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

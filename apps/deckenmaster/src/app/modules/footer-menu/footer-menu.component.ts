@@ -5,12 +5,13 @@ import { MAX_CONTACT, PERIOD_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '..
 import { RouterLink } from "@angular/router";
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePhone } from '@ng-icons/lucide';
+import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-footer-menu',
   templateUrl: './footer-menu.component.html',
   styleUrls: ['./footer-menu.component.scss'],
-  imports: [NgIcon, PhoneFormatPipe, RouterLink],
+  imports: [NgIcon, PhoneFormatPipe, RouterLink, NgTemplateOutlet],
   providers: [
     provideIcons({
       lucidePhone,
