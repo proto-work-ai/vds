@@ -1,7 +1,7 @@
 import { Component, input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-ceiling-installations',
+  selector: 'app-work-examples',
   templateUrl: './ceiling-installations.component.html',
   styleUrls: ['./ceiling-installations.component.scss'],
 })

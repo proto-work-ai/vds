@@ -19,6 +19,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataListOptionImports } from './data-list-options';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, pairwise, startWith, tap } from 'rxjs';
+import { FormStore } from '../../components/form-store/form-store.directive';
 
 @Component({
   selector: 'app-price-calculation',
@@ -37,15 +38,9 @@ import { distinctUntilChanged, pairwise, startWith, tap } from 'rxjs';
     ZoomControllerComponent,
     DataListOptionImports,
     TuiTextareaLimit,
+    FormStore,
   ],
   providers: [
-    tuiInputPhoneOptionsProvider({
-      valueTransformer: {
-        fromControlValue: (value) => `+${value}`,
-        toControlValue: (value) => value?.slice(1),
-      },
-    }),
-
     provideNgIconLoader((name) => {
       return inject(HttpClient).get(`/price-calculation/${name}.svg`, { responseType: 'text' });
     }, withCaching()),
@@ -66,28 +61,28 @@ export class PriceCalculationComponent {
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     type: new FormControl(this.typeOptions()[0]),
     size: new FormControl(this.minRange()),
-    comment: new FormControl(undefined),
+    description: new FormControl(undefined),
 
     rooms: new FormControl<string[]>([]),
     lightings: new FormControl<string[]>([]),
   });
 
   protected readonly rooms = signal([
-    { title: 'Вся квартира', icon: 'room-1' },
-    { title: 'Гостинная', icon: 'room-2' },
-    { title: 'Спальная', icon: 'room-3' },
-    { title: 'Детская', icon: 'room-4' },
-    { title: 'Ванная', icon: 'room-5' },
-    { title: 'Туалет', icon: 'room-6' },
-    { title: 'Коридор', icon: 'room-7' },
-    { title: 'Другое', icon: 'room-8' },
+    { id: 1, title: 'Вся квартира', icon: 'room-1' },
+    { id: 2, title: 'Гостинная', icon: 'room-2' },
+    { id: 3, title: 'Спальная', icon: 'room-3' },
+    { id: 4, title: 'Детская', icon: 'room-4' },
+    { id: 5, title: 'Ванная', icon: 'room-5' },
+    { id: 6, title: 'Туалет', icon: 'room-6' },
+    { id: 7, title: 'Коридор', icon: 'room-7' },
+    { id: 8, title: 'Другое', icon: 'room-8' },
   ] as const);
 
   protected readonly lightins = signal([
-    { title: 'Светильник', icon: 'lighting-1' },
-    { title: 'Люстра', icon: 'lighting-2' },
-    { title: 'Световые линии', icon: 'lighting-3' },
-    { title: 'LED подсветка ', icon: 'lighting-4' },
+    { id: 1, title: 'Светильник', icon: 'lighting-1' },
+    { id: 2, title: 'Люстра', icon: 'lighting-2' },
+    { id: 3, title: 'Световые линии', icon: 'lighting-3' },
+    { id: 4, title: 'LED подсветка ', icon: 'lighting-4' },
   ] as const);
 
   constructor() {
@@ -111,6 +106,8 @@ export class PriceCalculationComponent {
   protected formSubmit() {
     if (markAsSubmit(this.form)) {
       console.log('formSubmit', this.form.value);
+      this.form.reset();
+      // this.form.setValue({} as any);
     }
   }
 }

@@ -1,20 +1,18 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MaskitoOptions } from '@maskito/core';
 import { TuiTextfield } from '@taiga-ui/core';
 import {
   TuiChevron,
   TuiDataListWrapper,
   TuiInputPhone,
-  tuiInputPhoneOptionsProvider,
   TuiInputRange,
   TuiInputSlider,
   TuiSelect,
 } from '@taiga-ui/kit';
 
-import { maskitoPhone } from '../phone-mask';
 import { HttpClient } from '@angular/common/http';
 import { markAsSubmit } from '@atlas/core';
+import { FormStore } from '../../../components/form-store/form-store.directive';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -30,15 +28,8 @@ import { markAsSubmit } from '@atlas/core';
     TuiInputRange,
     TuiInputSlider,
     TuiInputPhone,
-  ],
-  providers: [
-    tuiInputPhoneOptionsProvider({
-      valueTransformer: {
-        fromControlValue: (value) => `+${value}`,
-        toControlValue: (value) => value?.slice(1),
-      },
-    }),
-  ],
+    FormStore
+  ]
 })
 export class MainBannerFormComponent {
   private readonly http = inject(HttpClient);

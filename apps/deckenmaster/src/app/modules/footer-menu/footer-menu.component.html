@@ -1,4 +1,4 @@
-<div class="bg-dark-knight">
+<div class="bg-black">
   <div class="md:container max-md:px-5 mx-auto text-white">
     <div class="flex max-sm:flex-col gap-6 pt-5 pb-4">
       <section class="flex">
@@ -29,11 +29,16 @@
       <section class="flex-1 flex flex-col gap-3">
         <h4 class="text-md">Меню</h4>
 
-        <ol>
-          <li><a href="javascript:void(0)">О компании</a></li>
+        <ol class="flex flex-col gap-1">
+          @for (item of items(); track item) {
+            <li>
+              <a href="#{{ item.name }}">{{ item.title }}</a>
+            </li>
+          }
+          <!-- <li><a href="javascript:void(0)">О компании</a></li>
           <li><a href="javascript:void(0)">Акции</a></li>
           <li><a href="javascript:void(0)">Наши работы</a></li>
-          <li><a href="javascript:void(0)">Отзывы</a></li>
+          <li><a href="javascript:void(0)">Отзывы</a></li> -->
         </ol>
       </section>
 

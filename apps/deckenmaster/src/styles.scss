@@ -1,15 +1,7 @@
 @use 'sass:meta';
-@layer theme, base, components, utilities;
-@import 'tailwindcss/theme.css' layer(theme);
-@import 'tailwindcss/preflight.css' layer(base);
-@import 'tailwindcss/utilities.css';
 
 html {
   font-size: 14px;
-  // --default-font-family: Akrobat,  sans-serif;
-  // --default-font-family: ScripticusBold,  sans-serif;
-  // --default-font-family: Akrobat,  sans-serif;
-  // --default-font-family: Gilroy,  sans-serif;
   --default-font-family: Manrope, sans-serif;
   letter-spacing: 2%;
   min-width: 400px;
@@ -20,45 +12,13 @@ html {
 */
 // @include meta.load-css('theme/fonts/rotonda/stylesheet.scss');
 // @include meta.load-css('theme/fonts/gilroy/stylesheet.scss');
-@include meta.load-css('theme/fonts/akrobat/stylesheet.scss');
-@include meta.load-css('theme/fonts/manrope/stylesheet.scss');
+@include meta.load-css('fonts/akrobat/stylesheet.scss');
+@include meta.load-css('fonts/manrope/stylesheet.scss');
 
 /*
   App Theme
 */
-@include meta.load-css('theme/buttons.scss');
 @include meta.load-css('theme/taiga-ui.scss');
-
-.badge {
-  display: inline-block;
-  border-radius: 40px;
-  background-color: var(--primari-color);
-  padding: 0.2rem 1rem;
-  text-transform: uppercase;
-  font-size: 0.75rem;
-  color: #fff;
-}
-
-.text-price {
-  font-family: Akrobat;
-}
-
-.bg-image {
-  display: inline-block;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-x: center;
-  background-position-y: top;
-}
-
-.bg-gray {
-  background-color: #6a7181;
-}
-
-.bg-gray-light {
-  background-color: #f2f4f6;
-}
-
-.bg-black-pearl {
-  background-color: #1f272e;
-}
+@include meta.load-css('theme/buttons.scss');
+@include meta.load-css('theme/custom.scss');
+@include meta.load-css('theme/fix.scss');

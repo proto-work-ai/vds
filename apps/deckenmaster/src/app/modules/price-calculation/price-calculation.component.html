@@ -10,7 +10,12 @@
       </header>
     </section>
 
-    <form [formGroup]="form" class="flex flex-col gap-3 py-5">
+    <form
+      [formStore]="'app-price-calculation'"
+      [formGroup]="form"
+      (submit)="formSubmit()"
+      class="flex flex-col gap-3 py-5"
+    >
       <fieldset class="flex max-lg:flex-col gap-3">
         <div class="lg:w-80 lg:text-end">Площадь потолков:</div>
 
@@ -19,7 +24,7 @@
         </div>
       </fieldset>
 
-      <fieldset class="flex max-lg:flex-col gap-5">
+      <fieldset class="flex max-lg:flex-col gap-3">
         <div class="lg:w-80 lg:text-end">Тип комнаты:</div>
 
         <data-list-options formControlName="rooms" [items]="rooms()">
@@ -48,8 +53,8 @@
 
         <div class="flex-1">
           <tui-textfield [tuiTextfieldCleaner]="false">
-            <label tuiLabel>Сообщение</label>
-            <textarea tuiTextarea formControlName="comment" [limit]="1000" [min]="4" [max]="4"></textarea>
+            <label tuiLabel>Введите текст</label>
+            <textarea tuiTextarea formControlName="description" [min]="4" [max]="4"></textarea>
           </tui-textfield>
         </div>
       </fieldset>
@@ -68,7 +73,7 @@
             <input tuiInputPhone formControlName="phone" mask="+7 ### ###-##-##" />
           </tui-textfield>
 
-          <button class="btn-primary btn-sm max-md:w-full">Расчитать цену</button>
+          <button class="btn-primary btn-sm max-md:w-full" type="submit">Расчитать цену</button>
         </div>
       </fieldset>
     </form>

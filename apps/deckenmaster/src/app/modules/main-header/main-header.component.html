@@ -14,17 +14,6 @@
 
         <li class="flex-1"></li>
 
-        <!-- <li>
-          <nav class="flex items-center gap-12">
-            <a href="javascript:void(0)">Услуги</a>
-            <a href="javascript:void(0)">Акции</a>
-            <a href="javascript:void(0)">О компании</a>
-            <a href="javascript:void(0)">Контакты</a>
-          </nav>
-        </li> -->
-
-        <li class="flex-1"></li>
-
         <li class="flex gap-4">
           <a href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"
             ><img class="w-6 max-sm:w-5 max-sm:w-5 block text-white" src="/icons/telegram-light.svg"
@@ -49,26 +38,24 @@
 </div>
 
 <ol class="container mx-auto flex items-center py-2 px-3">
-  <li>
-    <nav class="block max-sm:hidden flex items-center gap-12">
-      @for (item of items; track item) {
-        <a href="javascript:void(0)">{{ item }}</a>
+  <li class="flex-1">
+    <nav class="flex max-md:hidden items-center gap-8">
+      @for (item of items(); track item) {
+        <a href="#{{ item.name }}" (click)="onClose()">{{ item.title }}</a>
       }
     </nav>
 
-    <div class="hidden max-sm:flex">
+    <div class="hidden max-md:flex">
       <ng-icon class="cursor-pointer text-lg" name="lucideMenu" (click)="onOpen()"></ng-icon>
     </div>
   </li>
 
-  <li class="flex-1"></li>
-
   <li>
-    <button class="btn-primary btn-xs">Вызвать замерщика</button>
+    <a href="#measurement" class="btn-primary btn-xs">Вызвать замерщика</a>
   </li>
 </ol>
 
-<tui-drawer *tuiPopup="open" direction="left" class="drawer" [overlay]="true" (click.self)="onClose()">
+<tui-drawer *tuiPopup="open()" direction="left" class="drawer" [overlay]="true" (click.self)="onClose()">
   <header class="sticky top-0">
     <h2 tuiHeader>
       <div tuiTitle>Меню</div>
@@ -79,10 +66,8 @@
   </header>
 
   <section class="flex flex-col gap-2">
-    @for (item of items; track item) {
-      <a [routerLink]="['/']" (click)="onClose()">
-        {{ item }}
-      </a>
+    @for (item of items(); track item) {
+      <a href="#{{ item.name }}" (click)="onClose()">{{ item.title }}</a>
     }
   </section>
 </tui-drawer>

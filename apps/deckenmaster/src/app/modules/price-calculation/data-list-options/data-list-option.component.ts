@@ -16,23 +16,30 @@ export class DataListOptionComponent {
   readonly value = input<unknown>(undefined);
 
   protected readonly selected = computed(() => {
-    const value = this.value();
-    const items = this.parent?.value();
-    if (Array.isArray(items)) {
-      return items.includes(value);
-    } else {
-      return false;
-    }
+    return this.match(this.value(), this.parent?.value());
   });
 
   @HostListener('click') onSelectedItem(): void {
     const values = this.parent?.value()?.concat() ?? [];
     const value = this.value();
-    if (values.includes(value)) {
+    if (this.match(value, values)) {
       values.splice(values.indexOf(value), 1);
     } else {
       values.push(value);
     }
     this.parent?.setValue(values);
+  }
+
+  private match(value: unknown, items: unknown[]): boolean {
+    if (!Array.isArray(items)) {
+      return false;
+    }
+    if (items.includes(value)) {
+      return true;
+    }
+    if (value != null && typeof value === 'object' && Object.hasOwn(value, 'id')) {
+      return items.some((a: any) => a.id === (value as any).id);
+    }
+    return false;
   }
 }

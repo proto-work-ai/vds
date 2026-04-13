@@ -1,14 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucidePhone, lucideMenu, lucideX } from '@ng-icons/lucide';
 import { PhoneFormatPipe } from '@atlas/core';
-import { NgForOf, NgIf } from '@angular/common';
-import { TuiButton, TuiDataList, TuiDropdown, TuiIcon, TuiLink, TuiPopup, TuiTitle } from '@taiga-ui/core';
-import { TuiChevron, TuiDrawer, TuiStep } from '@taiga-ui/kit';
+import { TuiDataList, TuiDropdown, TuiPopup, TuiTitle } from '@taiga-ui/core';
+import { TuiDrawer } from '@taiga-ui/kit';
 import { TuiHeader } from '@taiga-ui/layout';
-import { TuiRepeatTimes } from '@taiga-ui/cdk';
 import { MAX_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '../../contacts';
+import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
+import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 
 @Component({
   selector: 'app-main-header',
@@ -27,6 +27,7 @@ import { MAX_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '../../contacts';
     TuiTitle,
     TuiHeader,
     RouterLink,
+    ScrollLink,
   ],
   providers: [
     provideIcons({
@@ -37,19 +38,19 @@ import { MAX_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '../../contacts';
   ],
 })
 export class MainHeaderComponent {
+  protected readonly items = inject(MenuDeferService).items;
+
   protected readonly telegramContact = inject(TELEGRAM_CONTACT);
   protected readonly maxContact = inject(MAX_CONTACT);
   protected readonly phoneContact = inject(PHONE_CONTACT);
 
-  protected readonly items = ['Услуги', 'Акции', 'О компании', 'Контакты'];
-
-  protected open = false;
+  protected open = signal(false);
 
   protected onClose(): void {
-    this.open = false;
+    this.open.set(false);
   }
 
   protected onOpen(): void {
-    this.open = true;
+    this.open.set(true);
   }
 }

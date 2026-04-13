@@ -5,6 +5,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideEventPlugins } from '@taiga-ui/event-plugins';
 import { appRoutes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
+import { tuiInputPhoneOptionsProvider } from '@taiga-ui/kit';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,6 +14,13 @@ export const appConfig: ApplicationConfig = {
     provideRouter(appRoutes),
     provideAnimations(),
     provideEventPlugins(),
-    provideHttpClient()
+    provideHttpClient(),
+
+    tuiInputPhoneOptionsProvider({
+      valueTransformer: {
+        fromControlValue: (value) => `+${value}`,
+        toControlValue: (value) => value?.slice(2),
+      },
+    }),
   ],
 };

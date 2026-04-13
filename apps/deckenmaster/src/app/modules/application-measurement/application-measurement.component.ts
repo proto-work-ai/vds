@@ -1,13 +1,9 @@
 import { Component, input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiSelect, TuiTextfield } from '@taiga-ui/core';
-import {
-  TuiChevron,
-  TuiDataListWrapper,
-  TuiInputPhone,
-  tuiInputPhoneOptionsProvider,
-  TuiInputSlider,
-} from '@taiga-ui/kit';
+import { TuiTextfield } from '@taiga-ui/core';
+import { TuiDataListWrapper, TuiInputPhone, tuiInputPhoneOptionsProvider, TuiInputSlider } from '@taiga-ui/kit';
+import { FormStore } from '../../components/form-store/form-store.directive';
+import { markAsSubmit } from '@atlas/core';
 
 @Component({
   selector: 'app-application-measurement',
@@ -20,14 +16,7 @@ import {
     TuiTextfield,
     TuiInputSlider,
     TuiInputPhone,
-  ],
-  providers: [
-    tuiInputPhoneOptionsProvider({
-      valueTransformer: {
-        fromControlValue: (value) => `+${value}`,
-        toControlValue: (value) => value?.slice(1),
-      },
-    }),
+    FormStore,
   ],
 })
 export class ApplicationMeasurementComponent {
@@ -36,4 +25,11 @@ export class ApplicationMeasurementComponent {
   protected readonly form = new FormGroup({
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
   });
+
+  protected formSubmit() {
+    if (markAsSubmit(this.form)) {
+      console.log('formSubmit', this.form.value);
+      this.form.reset();
+    }
+  }
 }

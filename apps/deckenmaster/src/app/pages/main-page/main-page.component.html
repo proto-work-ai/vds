@@ -1,18 +1,33 @@
 <app-main-header></app-main-header>
 
-<app-main-banner></app-main-banner>
+<app-main-banner id="banner"></app-main-banner>
 
-<app-price-calculation [title]="'Расчет цены натяжного потолка с установкой'"></app-price-calculation>
+<app-price-calculation
+  id="price-calculation"
+  menuTitle="Расчет цены"
+  [title]="'Расчет цены натяжного потолка с установкой'"
+></app-price-calculation>
 
-<app-work-types [title]="'Выполняем все виды натяжных потолков'"></app-work-types>
+<app-work-types
+  id="work-types"
+  menuTitle="Виды потолков"
+  [title]="'Выполняем все виды натяжных потолков'"
+></app-work-types>
 
-<app-ceiling-installations [title]="'Примеры установки матовых потолков'"></app-ceiling-installations>
+<app-work-examples
+  id="works"
+  menuTitle="Наши работы"
+  [title]="'Примеры установки матовых потолков'"
+></app-work-examples>
 
-<app-way-we-work [title]="'Этапы сотрудничества'"></app-way-we-work>
+<app-way-we-work id="way-we-work" menuTitle="Этапы рыботы" [title]="'Этапы сотрудничества'"></app-way-we-work>
 
-<app-application-measurement [title]="'Оставьте заявку на бесплатный замер'"></app-application-measurement>
+<app-application-measurement
+  id="measurement"
+  [title]="'Оставьте заявку на бесплатный замер'"
+></app-application-measurement>
 
-<app-footer-menu> </app-footer-menu>
+<app-footer-menu></app-footer-menu>
 
 <!-- 
 <section>
