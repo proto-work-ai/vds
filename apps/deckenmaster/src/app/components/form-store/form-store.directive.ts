@@ -27,9 +27,9 @@ export class FormStore implements OnInit {
       this.form.setValue(value, { emitEvent: false });
     }
 
-    if (this.form.value.rooms) {
-      console.log(this.form.value);
-    }
+    // if (this.form.value.rooms) {
+    //   console.log(this.form.value);
+    // }
 
     this.form.valueChanges
       .pipe(

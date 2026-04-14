@@ -1,25 +1,33 @@
-import { Component, DestroyRef, inject, input, signal } from '@angular/core';
+import { Component, DestroyRef, inject, input, Pipe, PipeTransform, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
 import { TuiTextfield } from '@taiga-ui/core';
 import {
-  TuiChevron,
   TuiDataListWrapper,
   TuiInputPhone,
-  tuiInputPhoneOptionsProvider,
   TuiInputRange,
   TuiInputSlider,
   TuiSelect,
   TuiTextarea,
-  TuiTextareaLimit,
 } from '@taiga-ui/kit';
 import { ZoomControllerComponent } from './zoom-controller/zoom-controller.component';
-import { NgIcon, provideNgIconLoader, withCaching } from '@ng-icons/core';
+import { provideNgIconLoader, withCaching } from '@ng-icons/core';
 import { HttpClient } from '@angular/common/http';
-import { DataListOptionImports } from './data-list-options';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { distinctUntilChanged, pairwise, startWith, tap } from 'rxjs';
+import { DataListOptionImports } from './data-list-options';
+import { distinctUntilChanged, of, pairwise, startWith, tap } from 'rxjs';
 import { FormStore } from '../../components/form-store/form-store.directive';
+import { IFormData, injectSendFormData } from '../send-form-data/send.services';
+
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+  private readonly sanitizer = inject(DomSanitizer);
+
+  transform(value: any): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(value);
+  }
+}
 
 @Component({
   selector: 'app-price-calculation',
@@ -37,8 +45,8 @@ import { FormStore } from '../../components/form-store/form-store.directive';
     TuiTextfield,
     ZoomControllerComponent,
     DataListOptionImports,
-    TuiTextareaLimit,
     FormStore,
+    SafePipe,
   ],
   providers: [
     provideNgIconLoader((name) => {
@@ -48,6 +56,7 @@ import { FormStore } from '../../components/form-store/form-store.directive';
 })
 export class PriceCalculationComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly sendForm = injectSendFormData();
   readonly title = input('Расчет цены натяжного потолка с установкой');
 
   protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);
@@ -103,11 +112,11 @@ export class PriceCalculationComponent {
       .subscribe();
   }
 
-  protected formSubmit() {
+  protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
-      console.log('formSubmit', this.form.value);
-      this.form.reset();
-      // this.form.setValue({} as any);
+      this.sendForm(this.form.value as IFormData)
+        .pipe(tap(() => this.form.reset()))
+        .subscribe();
     }
   }
 }

@@ -18,7 +18,8 @@ html {
 /*
   App Theme
 */
+@include meta.load-css('theme/tailwind.scss');
 @include meta.load-css('theme/taiga-ui.scss');
 @include meta.load-css('theme/buttons.scss');
-@include meta.load-css('theme/custom.scss');
+@include meta.load-css('theme/app-theme.scss');
 @include meta.load-css('theme/fix.scss');

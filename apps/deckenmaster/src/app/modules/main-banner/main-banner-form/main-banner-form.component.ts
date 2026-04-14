@@ -1,18 +1,12 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiTextfield } from '@taiga-ui/core';
-import {
-  TuiChevron,
-  TuiDataListWrapper,
-  TuiInputPhone,
-  TuiInputRange,
-  TuiInputSlider,
-  TuiSelect,
-} from '@taiga-ui/kit';
-
-import { HttpClient } from '@angular/common/http';
+import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputRange, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
 import { markAsSubmit } from '@atlas/core';
+import { type EmailJSResponseStatus } from '@emailjs/browser';
 import { FormStore } from '../../../components/form-store/form-store.directive';
+import { IFormData, injectSendFormData } from '../../send-form-data/send.services';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -28,11 +22,11 @@ import { FormStore } from '../../../components/form-store/form-store.directive';
     TuiInputRange,
     TuiInputSlider,
     TuiInputPhone,
-    FormStore
-  ]
+    FormStore,
+  ],
 })
 export class MainBannerFormComponent {
-  private readonly http = inject(HttpClient);
+  private readonly sendForm = injectSendFormData();
   protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);
 
   protected readonly minRange = signal(5);
@@ -45,9 +39,39 @@ export class MainBannerFormComponent {
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
   });
 
-  protected formSubmit() {
+  protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
-      console.log('formSubmit', this.form.value);
+      this.sendForm(this.form.value as IFormData)
+        .pipe(tap(() => this.form.reset()))
+        .subscribe();
+    }
+  }
+
+  async formSubmit2(): Promise<void> {
+    const emailjs = await import('@emailjs/browser');
+    if (markAsSubmit(this.form)) {
+      const { phone, size, type } = this.form.value;
+      emailjs
+        .send(
+          'service_rb65i2f',
+          'template_930b9fq',
+          {
+            title: 'Title',
+            name: 'Name',
+            message: 'Message',
+          },
+          {
+            publicKey: 'l0W05iJ53rwm5kzzM',
+          }
+        )
+        .then(
+          () => {
+            console.log('SUCCESS!');
+          },
+          (error) => {
+            console.log('FAILED...', (error as EmailJSResponseStatus).text);
+          }
+        );
     }
   }
 }

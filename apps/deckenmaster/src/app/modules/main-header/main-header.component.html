@@ -1,5 +1,5 @@
 <div class="bg-black -sticky -top-0 z-50 px-3">
-  <header class="container mx-auto text-white">
+  <header class="lg:container mx-auto text-white">
     <nav>
       <ol class="flex items-center gap-6 py-1">
         <li>
@@ -8,7 +8,7 @@
           <a [routerLink]="['/']" class="block max-sm:hidden"><img class="w-40" src="/logo/logo-text-light.svg" /></a>
 
           <a [routerLink]="['/']" class="hidden max-sm:block py-2"
-            ><img class="w-8" src="/logo/logo-icon-light.svg"
+            ><img class="w-8" src="/logo/logo-icon-light.svg" alt="Logotip"
           /></a>
         </li>
 
@@ -16,11 +16,11 @@
 
         <li class="flex gap-4">
           <a href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"
-            ><img class="w-6 max-sm:w-5 max-sm:w-5 block text-white" src="/icons/telegram-light.svg"
+            ><img class="w-6 max-sm:w-5 max-sm:w-5 block text-white" src="/icons/telegram-light.svg" alt="Telegram"
           /></a>
 
           <a [href]="maxContact" target="_blank"
-            ><img class="w-6 max-sm:w-5 max-sm:w-5 block" title="Max" src="/icons/max-icon-light.svg"
+            ><img class="w-6 max-sm:w-5 max-sm:w-5 block" title="Max" src="/icons/max-icon-light.svg" alt="Max"
           /></a>
         </li>
 
@@ -37,7 +37,7 @@
   </header>
 </div>
 
-<ol class="container mx-auto flex items-center py-2 px-3">
+<ol class="lg:container max-lg:px-3 mx-auto flex items-center py-2">
   <li class="flex-1">
     <nav class="flex max-md:hidden items-center gap-8">
       @for (item of items(); track item) {

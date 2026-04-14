@@ -1,9 +1,9 @@
 <div class="bg-black">
-  <div class="md:container max-md:px-5 mx-auto text-white">
+  <div class="sm:container max-md:px-5 mx-auto text-white">
     <div class="flex max-sm:flex-col gap-6 pt-5 pb-4">
       <section class="flex">
         <div class="flex-1">
-          <a [routerLink]="['/']"><img class="w-6" src="/logo/logo-icon-light.svg" /></a>
+          <a [routerLink]="['/']"><img class="w-6" src="/logo/logo-icon-light.svg" alt="Logotip" /></a>
         </div>
 
         <div class="sm:hidden">
@@ -29,7 +29,7 @@
       <section class="flex-1 flex flex-col gap-3">
         <h4 class="text-md">Меню</h4>
 
-        <ol class="flex flex-col gap-1">
+        <ol class="flex flex-col gap-2">
           @for (item of items(); track item) {
             <li>
               <a href="#{{ item.name }}">{{ item.title }}</a>
@@ -51,12 +51,12 @@
 
 <ng-template #sociallaLink>
   <div class="flex gap-2">
-    <a class="max-sm:text-sm" href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"
-      ><img class="w-6 block text-white" src="/icons/telegram-light.svg"
+    <a class="max-sm:text-sm" href="https://t.me/{{ telegramContact }}" target="_blank" alt="Telegram"
+      ><img class="w-6 block text-white" src="/icons/telegram-light.svg" alt="Logotip"
     /></a>
 
     <a class="max-sm:text-sm" [href]="maxContact" target="_blank"
-      ><img class="w-6 block" title="Max" src="/icons/max-icon-light.svg"
+      ><img class="w-6 block" title="Max" src="/icons/max-icon-light.svg" alt="Max"
     /></a>
   </div>
 </ng-template>

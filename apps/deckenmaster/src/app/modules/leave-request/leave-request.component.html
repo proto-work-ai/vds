@@ -11,12 +11,12 @@
 
     <form [formStore]="'app-leave-request'">
       <section class="grid grid-cols-2 gap-3">
-        <tui-textfield>
+        <tui-textfield [tuiTextfieldCleaner]="false">
           <label tuiLabel>Введите имя</label>
           <input tuiTextfield [(ngModel)]="value" [ngModelOptions]="{standalone: true}" />
         </tui-textfield>
 
-        <tui-textfield>
+        <tui-textfield [tuiTextfieldCleaner]="false">
           <label tuiLabel>Введите имя</label>
           <input tuiTextfield [(ngModel)]="value" [ngModelOptions]="{standalone: true}" />
         </tui-textfield>

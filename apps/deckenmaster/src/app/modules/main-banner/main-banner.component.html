@@ -1,6 +1,6 @@
 <div class="bg-banner">
-  <div class="lg:container md:mx-auto sm:h-120 z-1">
-    <div class="sm:flex gap-3 md:gap-6 sm:py-12 max-lg:px-5">
+  <div class="lg:container max-lg:px-3 mx-auto sm:h-120 z-1">
+    <div class="sm:flex gap-3 md:gap-6 sm:py-12">
       <section class="flex-1 flex flex-col gap-5">
         <div></div>
 
@@ -10,7 +10,7 @@
 
         <h1 class="-font-semibold max-lg:text-4xl/10 lg:text-5xl/14">Натяжные потолки <br />в Москве под ключ</h1>
 
-        <p class="text-gray-600 pb-6 w-max-100">
+        <p class="text-gray-600 pb-6 sm:w-100">
           Натяжные потолки любых видов и сложности. Поможем с выбором идеального варианта! Качественные материалы.
           Опытные мастера!
         </p>
@@ -24,32 +24,16 @@
   </div>
 </div>
 
-<div class="sm:container max-sm:px-3 py-4 mx-auto z-1 ">
+<div class="md:container max-lg:px-3 py-4 mx-auto z-1">
   <ol class="grid lg:grid-cols-4 grid-cols-2 gap-6">
-    <li class="flex items-center gap-3">
-      <div class="w-20">
-        <img src="/icons/banner-icon-1.svg" class="w-full block" />
-      </div>
-      <div class="flex-1">Бесплатный выезд замерщика</div>
-    </li>
-    <li class="flex items-center gap-3">
-      <div class="w-20">
-        <img src="/icons/banner-icon-2.svg" class="w-full block" />
-      </div>
-      <div class="flex-1">Экологично</div>
-    </li>
-    <li class="flex items-center gap-3">
-      <div class="w-20">
-        <img src="/icons/banner-icon-3.svg" class="w-full block" />
-      </div>
-      <div class="flex-1">Изготовление за 1 день, установка за 2 часа</div>
-    </li>
-    <li class="flex items-center gap-3">
-      <div class="w-20">
-        <img src="/icons/banner-icon-4.svg" class="w-full block" />
-      </div>
-      <div class="flex-1">3 года гарантии на материалы</div>
-    </li>
+    @for (item of items(); track item) {
+      <li class="flex items-center gap-3">
+        <div class="w-20">
+          <img [src]="item.src" class="w-full block" [alt]="item.title" />
+        </div>
+        <div class="flex-1">{{ item.title }}</div>
+      </li>
+    }
   </ol>
 </div>
 
