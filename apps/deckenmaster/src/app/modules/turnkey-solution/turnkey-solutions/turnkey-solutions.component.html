@@ -1,0 +1,16 @@
+<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+  <header class="text-center flex flex-col gap-3">
+    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
+
+    <div class="md:w-175 mx-auto text-gray-500">
+      Посмотрите реальные фотографии натяжных потолков,<br />
+      установленных в квартирах и домах наших клиентов
+    </div>
+  </header>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
+    @for (item of items(); track item) {
+      <app-turnkey-solution-card [item]="item" />
+    }
+  </div>
+</div>

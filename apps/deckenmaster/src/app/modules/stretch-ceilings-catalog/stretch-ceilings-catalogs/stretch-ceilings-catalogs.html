@@ -1,0 +1,18 @@
+<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+  <header class="text-center flex flex-col gap-3">
+    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
+
+    <div class="md:w-175 mx-auto text-gray-500">
+      От классики до сложных дизайнерских решений. Гарантируем быстрое производство, профессиональный монтаж, бесплатный
+      замер.
+    </div>
+  </header>
+
+  <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
+    @for (item of items(); track item) {
+      <a [routerLink]="['/', routePath.catalog.root, item.key]">
+        <app-stretch-ceilings-catalog-card [item]="item" />
+      </a>
+    }
+  </div>
+</div>

@@ -1,39 +1,32 @@
-<app-main-header></app-main-header>
+<app-main-header />
 
-<app-main-banner id="banner"></app-main-banner>
+<!--<app-menu-header />-->
+
+<app-nav-menu />
+
+<app-main-banner id="banner" />
 
 <app-price-calculation
   id="price-calculation"
   menuTitle="Расчет цены"
   [title]="'Расчет цены натяжного потолка с установкой'"
-></app-price-calculation>
+/>
 
-<app-work-types
-  id="work-types"
-  menuTitle="Виды потолков"
-  [title]="'Выполняем все виды натяжных потолков'"
-></app-work-types>
+<app-stretch-ceilings-catalogs id="work-types" menuTitle="Виды потолков" [title]="'Каталог натяжных потолков'" />
 
-<app-work-examples
-  id="works"
-  menuTitle="Наши работы"
-  [title]="'Примеры установки матовых потолков'"
-></app-work-examples>
+<app-work-examples id="works" menuTitle="Наши работы" [title]="'Примеры установки матовых потолков'" />
 
 <app-way-we-work id="way-we-work" menuTitle="Этапы рыботы" [title]="'Этапы сотрудничества'"></app-way-we-work>
 
-<app-application-measurement
-  id="measurement"
-  [title]="'Оставьте заявку на бесплатный замер'"
-></app-application-measurement>
+<app-application-measurement id="measurement" [title]="'Оставьте заявку на бесплатный замер'" />
 
-<app-footer-menu></app-footer-menu>
+<app-footer-menu />
 
-<!-- 
+<!--
 <section>
   ЧТО ВХОДИТ В УСЛУГУ КОМПЛЕКСНОГО РЕМОНТА
   <app-from-to [title]="'От идеи до готового потолка'"></app-from-to>
   <app-turnkey-solutions [title]="'Готовые решения под ключ'"></app-turnkey-solutions>
   <app-leave-request [title]="'Оставьте заявку на бесплатный замер потолка специалистом'"></app-leave-request>
-</section> 
+</section>
 -->

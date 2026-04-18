@@ -46,7 +46,6 @@ export class SafePipe implements PipeTransform {
     ZoomControllerComponent,
     DataListOptionImports,
     FormStore,
-    SafePipe,
   ],
   providers: [
     provideNgIconLoader((name) => {

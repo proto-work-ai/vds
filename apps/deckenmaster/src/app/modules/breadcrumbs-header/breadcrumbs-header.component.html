@@ -1,0 +1,21 @@
+<section class="border-b-1 border-gray-200">
+  <ol class="lg:container max-lg:px-3 mx-auto flex items-center py-2">
+    <li class="flex-1">
+      <nav class="flex max-md:hidden items-center gap-1">
+        @for (item of items(); track item) {
+          @if (item.link) {
+            <a [routerLink]="item.link">{{ item.title }}</a>
+
+            <ng-icon name="lucideChevronRight" size="1.25em" strokeWidth="1px"></ng-icon>
+          } @else {
+            <span class="text-gray-500">{{ item.title }}</span>
+          }
+        }
+      </nav>
+    </li>
+
+    <li>
+      <a href="#measurement" class="btn-primary btn-xs">Вызвать замерщика</a>
+    </li>
+  </ol>
+</section>
