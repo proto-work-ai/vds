@@ -29,21 +29,22 @@ export class FooterMenuComponent {
 
   private readonly navMenu = injectNavMenu();
   protected readonly footerMenu = computed(() => {
-    const menu = this.navMenu();
+    const menu = this.navMenu().concat();
 
-    const result = [...menu[0].children!];
+    // const result = [...menu[0].children!];
 
-    result.push({
+    menu.pop();
+    menu.push({
       title: 'Меню',
       children: [
         {
           title: 'Каталог',
-          link: ['/', 'Каталог'],
+          link: ['/catalog'],
         },
-        ...menu.slice(1),
+        // ...menu.slice(1),
       ],
     });
 
-    return result;
+    return menu;
   });
 }

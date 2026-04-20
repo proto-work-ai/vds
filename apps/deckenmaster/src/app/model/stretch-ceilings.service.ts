@@ -41,7 +41,7 @@ export function injectStretchCeilingRouteByKey() {
 export const stretchCeilingsGroupName = {
   [StretchCeilingsGroup.ByTexture]: 'По фактуре',
   [StretchCeilingsGroup.WithBacklight]: 'С подсветкой',
-  [StretchCeilingsGroup.Premium]: 'Премиум', // Эксклюзивные потолки 
+  [StretchCeilingsGroup.Premium]: 'Премиум', // Эксклюзивные потолки
   [StretchCeilingsGroup.ByPremises]: 'По типу помещений',
 } as const;
 
@@ -156,9 +156,11 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
 
 export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuItem[]> {
   const navMenu = signal<IAppMenuItem[]>([
+    ...injectStretchCeilingGroupMenu(['/', 'catalog']),
     {
-      title: 'Каталог',
-      children: injectStretchCeilingGroupMenu(['/', 'catalog']),
+      title: 'Весь каталог',
+      link: ['/catalog'],
+      // children: injectStretchCeilingGroupMenu(['/', 'catalog']),
     },
     // {
     //   title: 'Цены',

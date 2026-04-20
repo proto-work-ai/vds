@@ -17,10 +17,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { RouterLink } from '@angular/router';
 import { type TuiHandler } from '@taiga-ui/cdk';
 import { TuiHeader } from '@taiga-ui/layout';
-import {
-  injectNavMenu,
-  injectStretchCeilingGroupMenu,
-} from '../../model/stretch-ceilings.service';
+import { injectNavMenu } from '../../model/stretch-ceilings.service';
 import { IAppMenuItem } from '../../shared/menu';
 import { TuiDrawer, TuiTree } from '@taiga-ui/kit';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';

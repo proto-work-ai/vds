@@ -1,7 +1,7 @@
 <section class="border-b-1 border-gray-200 py-2 max-lg:px-3">
   <ol class="lg:container mx-auto flex items-center">
     <li class="flex-1">
-      <nav hlmNavigationMenu openOn="click" class="flex max-md:hidden">
+      <nav hlmNavigationMenu openOn="hover" class="flex max-md:hidden">
         <ul hlmNavigationMenuList class="flex-wrap gap-4">
           @for (item of navMenu(); track item; let index = $index) {
             <li hlmNavigationMenuItem class="hidden md:flex">
@@ -22,7 +22,7 @@
                 @if (item.children?.length; as count) {
                   <hlm-navigation-menu-content *hlmNavigationMenuPortal class="shadow bg-white grid-cols-3">
                     <div class="p-2">
-                      <ul class="grid grid-cols-{{ count }} w-[600px] gap-2">
+                      <ul class="grid gap-4">
                         @for (child of item.children; track $index) {
                           <li class="flex flex-col gap-2">
                             @if (child.children?.length) {
@@ -39,9 +39,9 @@
                               }
                             } @else {
                               <a [routerLink]="child.link" [queryParams]="child.queryParams ?? {}">
-                                <div class="flex flex-col gap-1 text-sm">
+                                <div class="flex flex-col gap-1">
                                   @if (child.title) {
-                                    <div class="leading-none font-medium">{{ child.title }}</div>
+                                    <div class="leading-none font-normal">{{ child.title }}</div>
                                   }
                                   @if (child.description) {
                                     <div class="text-muted-foreground line-clamp-2">{{ child.description }}</div>
@@ -52,12 +52,12 @@
                           </li>
                         }
                       </ul>
-                      @if (index === 0) {
+                      <!-- @if (index === 0) {
                         <a [routerLink]="['/', 'catalog']" class="flex items-center mt-2">
                           Весь каталог
                           <ng-icon strokewidth="1px" name="lucideChevronRight" class="text-gray-500" />
                         </a>
-                      }
+                      } -->
                     </div>
                   </hlm-navigation-menu-content>
                 }
@@ -118,7 +118,7 @@
     </ng-template>
   </section>
 
-  <section class="flex justify-start mt-4">
+  <!-- <section class="flex justify-start mt-4">
     <a [routerLink]="['/', 'catalog']" class="flex items-center" (click)="onClose()"> Весь каталог </a>
-  </section>
+  </section> -->
 </tui-drawer>
