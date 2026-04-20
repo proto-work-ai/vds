@@ -8,11 +8,15 @@
     </div>
   </header>
 
-  <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
-    @for (item of items(); track item) {
-      <a [routerLink]="['/', routePath.catalog.root, item.key]">
-        <app-stretch-ceilings-catalog-card [item]="item" />
-      </a>
-    }
-  </div>
+  <section class="flex flex-col gap-5">
+    <app-stretch-ceilings-catalog-route-filter></app-stretch-ceilings-catalog-route-filter>
+
+    <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
+      @for (item of filtered(); track item) {
+        <a [routerLink]="['/', routePath.catalog.root, item.key]">
+          <app-stretch-ceilings-catalog-card [item]="item" />
+        </a>
+      }
+    </div>
+  </section>
 </div>

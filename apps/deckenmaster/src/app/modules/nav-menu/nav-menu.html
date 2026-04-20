@@ -1,16 +1,14 @@
-<ol class="lg:container max-lg:px-3 mx-auto flex items-center py-2">
-  <li class="flex-1">
-    <nav hlmNavigationMenu openOn="click" class="flex max-md:hidden">
-      <ul hlmNavigationMenuList class="flex-wrap gap-4">
-        @for (item of navMenu(); track item) {
-          <li hlmNavigationMenuItem class="hidden md:flex">
-            @if (item.link) {
-              <a hlmNavigationMenuLink [routerLink]="item.link">{{ item.title }}</a>
-            } @else {
-              @if (item.group) {
-                <div class="leading-none font-medium text-md uppercase">{{ item.title }}</div>
+<section class="border-b-1 border-gray-200 py-2 max-lg:px-3">
+  <ol class="lg:container mx-auto flex items-center">
+    <li class="flex-1">
+      <nav hlmNavigationMenu openOn="click" class="flex max-md:hidden">
+        <ul hlmNavigationMenuList class="flex-wrap gap-4">
+          @for (item of navMenu(); track item; let index = $index) {
+            <li hlmNavigationMenuItem class="hidden md:flex">
+              @if (item.link) {
+                <a hlmNavigationMenuLink [routerLink]="item.link">{{ item.title }}</a>
               } @else {
-                <button hlmNavigationMenuTrigger>
+                <button hlmNavigationMenuTrigger class="px-0">
                   {{ item.title }}
 
                   @if (item.children?.length) {
@@ -20,62 +18,72 @@
                     />
                   }
                 </button>
-              }
 
-              @if (item.children?.length; as count) {
-                <hlm-navigation-menu-content *hlmNavigationMenuPortal class="shadow-xl bg-gray-100 grid-cols-4">
-                  <ul class="grid w-[400px] md:w-[500px] md:grid-cols-{{ count }} lg:w-[600px] p-2 gap-2">
-                    @for (child of item.children; track $index) {
-                      <li class="flex flex-col gap-2">
-                        @if (child.group) {
-                          <div class="leading-none font-medium p-1 uppercase">{{ child.title }}</div>
+                @if (item.children?.length; as count) {
+                  <hlm-navigation-menu-content *hlmNavigationMenuPortal class="shadow bg-white grid-cols-3">
+                    <div class="p-2">
+                      <ul class="grid grid-cols-{{ count }} w-[600px] gap-2">
+                        @for (child of item.children; track $index) {
+                          <li class="flex flex-col gap-2">
+                            @if (child.children?.length) {
+                              <div class="leading-none font-medium py-1 uppercase">{{ child.title }}</div>
 
-                          @for (sub of child.children; track sub) {
-                            <a
-                              [routerLink]="sub.link"
-                              [queryParams]="sub.queryParams ?? {}"
-                              class="leading-none text-md p-1 text-gray-500"
-                            >
-                              {{ sub.title }}
-                            </a>
-                          }
-                        } @else {
-                          <a [routerLink]="child.link" [queryParams]="child.queryParams ?? {}">
-                            <div class="flex flex-col gap-1 text-sm">
-                              @if (child.title) {
-                                <div class="leading-none font-medium">{{ child.title }}</div>
+                              @for (sub of child.children; track sub) {
+                                <a
+                                  [routerLink]="sub.link"
+                                  [queryParams]="sub.queryParams ?? {}"
+                                  class="leading-none text-md py-1 text-gray-500"
+                                >
+                                  {{ sub.title }}
+                                </a>
                               }
-                              @if (child.description) {
-                                <div class="text-muted-foreground line-clamp-2">{{ child.description }}</div>
-                              }
-                            </div>
-                          </a>
+                            } @else {
+                              <a [routerLink]="child.link" [queryParams]="child.queryParams ?? {}">
+                                <div class="flex flex-col gap-1 text-sm">
+                                  @if (child.title) {
+                                    <div class="leading-none font-medium">{{ child.title }}</div>
+                                  }
+                                  @if (child.description) {
+                                    <div class="text-muted-foreground line-clamp-2">{{ child.description }}</div>
+                                  }
+                                </div>
+                              </a>
+                            }
+                          </li>
                         }
-                      </li>
-                    }
-                  </ul>
-                </hlm-navigation-menu-content>
+                      </ul>
+                      @if (index === 0) {
+                        <a [routerLink]="['/', 'catalog']" class="flex items-center mt-2">
+                          Весь каталог
+                          <ng-icon strokewidth="1px" name="lucideChevronRight" class="text-gray-500" />
+                        </a>
+                      }
+                    </div>
+                  </hlm-navigation-menu-content>
+                }
               }
-            }
-          </li>
-        }
-      </ul>
-    </nav>
+            </li>
+          }
+        </ul>
+      </nav>
 
-    <div class="hidden max-md:flex">
-      <ng-icon class="cursor-pointer text-lg" name="lucideMenu" (click)="onOpen()"></ng-icon>
-    </div>
-  </li>
+      <div class="hidden max-md:flex">
+        <ng-icon class="cursor-pointer text-lg" name="lucideMenu" (click)="onOpen()"></ng-icon>
+      </div>
+    </li>
 
-  <li>
-    <a href="#measurement" class="btn-primary btn-xs">Вызвать замерщика</a>
-  </li>
-</ol>
+    <li>
+      <a href="#measurement" class="btn-primary btn-xs">Вызвать замерщика</a>
+    </li>
+  </ol>
+</section>
 
 <tui-drawer *tuiPopup="open()" direction="left" class="drawer" [overlay]="true" (click.self)="onClose()">
   <header class="sticky top-0">
     <h2 tuiHeader class="flex items-center">
-      <div tuiTitle class="font-medium text-sm uppercase">Меню</div>
+      <div tuiTitle class="font-normal text-sm uppercase">
+        <span class="text-md font-normal uppercase">Меню</span>
+      </div>
       <div tuiAccessories>
         <ng-icon class="cursor-pointer text-lg" name="lucideX" (click)="onClose()"></ng-icon>
       </div>
@@ -84,7 +92,7 @@
 
   <section class="flex flex-col gap-2">
     <nav>
-      @for (value of navMenu(); track value) {
+      @for (value of navMenu(); track value; let index = $index) {
         <tui-tree [childrenHandler]="handler" [content]="menuItem" [tuiTreeController]="true" [value]="value" />
       }
     </nav>
@@ -92,7 +100,7 @@
     <ng-template #menuItem let-value let-node="node">
       <div class="wrapper py-1" [style.opacity]="1 / node.level">
         @if (value.link) {
-          <a [routerLink]="value.link">
+          <a [routerLink]="value.link" [queryParams]="value.queryParams ?? {}" (click)="onClose()">
             @if (value.icon) {
               <tui-icon class="t-icon" [icon]="value.icon" />
             }
@@ -108,5 +116,9 @@
         }
       </div>
     </ng-template>
+  </section>
+
+  <section class="flex justify-start mt-4">
+    <a [routerLink]="['/', 'catalog']" class="flex items-center" (click)="onClose()"> Весь каталог </a>
   </section>
 </tui-drawer>

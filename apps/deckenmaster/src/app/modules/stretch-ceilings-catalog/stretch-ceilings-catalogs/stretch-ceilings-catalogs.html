@@ -8,11 +8,18 @@
     </div>
   </header>
 
-  <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
-    @for (item of items(); track item) {
+  <section class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
+    @for (item of items().slice(0, 4); track item) {
       <a [routerLink]="['/', routePath.catalog.root, item.key]">
         <app-stretch-ceilings-catalog-card [item]="item" />
       </a>
     }
-  </div>
+  </section>
+
+  <footer class="flex justify-end">
+    <a [routerLink]="['/', 'catalog']" class="text-lg flex items-center gap-1 font-medium">
+      Весь каталог
+      <ng-icon name="lucideChevronRight" />
+    </a>
+  </footer>
 </div>

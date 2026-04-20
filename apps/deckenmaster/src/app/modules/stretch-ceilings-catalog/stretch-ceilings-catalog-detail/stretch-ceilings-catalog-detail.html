@@ -2,11 +2,16 @@
   <header class="text-center flex flex-col gap-3">
     <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
 
-    <div class="md:w-175 mx-auto text-gray-500">
-      От классики до сложных дизайнерских решений. Гарантируем быстрое производство,
-       профессиональный монтаж, бесплатный замер.
-    </div>
+    <!-- <div class="md:w-180 mx-auto text-gray-500">{{ brief() }}</div> -->
   </header>
 
-  
+  <!-- @if (isPlatformBrowser) {
+    <section class="md:w-2/3 ">
+      <gallery gallerize [items]="images()" class="h-120" thumbPosition="right"></gallery>
+    </section>
+  } -->
+
+  <section>
+    <ng-template [cdkPortalOutlet]="detail() | async"></ng-template>
+  </section>
 </div>

@@ -35,16 +35,21 @@ $accent-color-hover: #f11d0d;
   --tui-font-heading-6: 500 calc(var(--tui-font-offset) + 1.25rem) / calc(24 / 20) var(--tui-font-heading);
   --tui-duration: 100ms;
   --tui-tree-item-indent: 1rem;
-
   --tui-text-primary: #333333;
   --tui-text-secondary: var(--tui-text-primary);
   --tui-border-width: 1px;
   --primari-color: #f9a81b;
   --primari-color-hover: #d08d18;
-
   --tui-border-normal: #e0e0e0;
   --tui-background-accent-1: var(--tui-border-normal);
   --tui-background-accent-1-hover: #cecece;
+  --tui-background-accent-1: var(--tui-border-normal);
+
+  tui-tabs {
+    --t-color: var(--primari-color) !important;
+    justify-content: center;
+    width: 100%;
+  }
 
   [tuiButton],
   [tuiButton][data-size='m'] {

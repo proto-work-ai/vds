@@ -9,6 +9,7 @@ import {
   lucidePhone,
   lucideMenu,
   lucideX,
+  lucideChevronRight,
 } from '@ng-icons/lucide';
 import { TuiDataList, TuiDropdown, TuiIcon, TuiPopup, TuiTitle } from '@taiga-ui/core';
 import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
@@ -16,7 +17,10 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { RouterLink } from '@angular/router';
 import { type TuiHandler } from '@taiga-ui/cdk';
 import { TuiHeader } from '@taiga-ui/layout';
-import { injectStretchCeilingGroupMenu, injectStretchCeilingsCatalog } from '../../model/stretch-ceilings.service';
+import {
+  injectNavMenu,
+  injectStretchCeilingGroupMenu,
+} from '../../model/stretch-ceilings.service';
 import { IAppMenuItem } from '../../shared/menu';
 import { TuiDrawer, TuiTree } from '@taiga-ui/kit';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
@@ -50,32 +54,12 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
       lucidePhone,
       lucideMenu,
       lucideX,
+      lucideChevronRight,
     }),
   ],
 })
 export class NavMenu {
-  protected readonly items = injectStretchCeilingsCatalog();
-
-  private readonly catalogMenu = injectStretchCeilingGroupMenu(['/', 'catalog']);
-
-  protected readonly navMenu = signal<IAppMenuItem[]>([
-    {
-      title: 'Каталог',
-      children: this.catalogMenu,
-    },
-    {
-      title: 'Цены',
-      link: ['/', 'price'],
-    },
-    {
-      title: 'Контакты',
-      link: ['/', 'contacts'],
-    },
-    {
-      title: 'О компании',
-      link: ['/', 'about'],
-    },
-  ]);
+  protected readonly navMenu = injectNavMenu();
 
   protected readonly handler: TuiHandler<IAppMenuItem, readonly IAppMenuItem[]> = (item) => item.children || [];
 

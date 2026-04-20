@@ -1,11 +1,13 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideEventPlugins } from '@taiga-ui/event-plugins';
-import { appRoutes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { tuiInputPhoneOptionsProvider } from '@taiga-ui/kit';
+import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,5 +24,14 @@ export const appConfig: ApplicationConfig = {
         toControlValue: (value) => value?.slice(2),
       },
     }),
+    {
+      provide: GALLERY_CONFIG,
+      useValue: {
+        thumbs: true,
+        autoHeight: true,
+        imageSize: 'cover',
+        thumbPosition: 'bottom'
+      } satisfies GalleryConfig
+    }
   ],
 };

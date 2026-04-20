@@ -5,3 +5,19 @@
 //     }
 //   }
 // }
+
+@media (width >= 64rem) {
+  @media (width >= 64rem) {
+    .lg\:container {
+      max-width: 64rem;
+    }
+  }
+}
+
+@media (width >= 64rem) {
+  @media (width >= 80rem) {
+    .lg\:container {
+      max-width: 80rem !important;
+    }
+  }
+}

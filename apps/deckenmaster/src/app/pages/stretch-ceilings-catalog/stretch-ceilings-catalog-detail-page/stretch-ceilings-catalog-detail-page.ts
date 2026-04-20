@@ -38,7 +38,7 @@ export class StretchCeilingsCatalogDetailPage {
           },
           {
             title: 'Каталог',
-            link: ['/'],
+            link: ['/catalog'],
           },
           {
             title: item.title,

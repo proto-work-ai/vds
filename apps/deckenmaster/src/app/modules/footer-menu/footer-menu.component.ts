@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { PhoneFormatPipe } from '@atlas/core';
 import { MAX_CONTACT, PERIOD_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '../../contacts';
 import { RouterLink } from '@angular/router';
@@ -7,6 +7,7 @@ import { lucidePhone } from '@ng-icons/lucide';
 import { NgTemplateOutlet } from '@angular/common';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
+import { injectNavMenu } from '../../model/stretch-ceilings.service';
 
 @Component({
   selector: 'app-footer-menu',
@@ -25,4 +26,24 @@ export class FooterMenuComponent {
   protected readonly maxContact = inject(MAX_CONTACT);
   protected readonly phoneContact = inject(PHONE_CONTACT);
   protected readonly periodContact = inject(PERIOD_CONTACT);
+
+  private readonly navMenu = injectNavMenu();
+  protected readonly footerMenu = computed(() => {
+    const menu = this.navMenu();
+
+    const result = [...menu[0].children!];
+
+    result.push({
+      title: 'Меню',
+      children: [
+        {
+          title: 'Каталог',
+          link: ['/', 'Каталог'],
+        },
+        ...menu.slice(1),
+      ],
+    });
+
+    return result;
+  });
 }
