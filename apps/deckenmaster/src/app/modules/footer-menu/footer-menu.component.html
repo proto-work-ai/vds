@@ -37,15 +37,22 @@
 
                     @for (sub of child.children; track sub) {
                       <a
+                        scrollLink
                         [routerLink]="sub.link"
                         [queryParams]="sub.queryParams ?? {}"
+                        [fragment]="sub.fragment"
                         class="leading-none text-sm py-1"
                       >
                         {{ sub.title }}
                       </a>
                     }
                   } @else {
-                    <a [routerLink]="child.link" [queryParams]="child.queryParams ?? {}">
+                    <a
+                      scrollLink
+                      [routerLink]="child.link"
+                      [queryParams]="child.queryParams ?? {}"
+                      [fragment]="child.fragment"
+                    >
                       <div class="flex flex-col gap-1 text-sm">
                         @if (child.title) {
                           <div class="leading-none font-medium">{{ child.title }}</div>

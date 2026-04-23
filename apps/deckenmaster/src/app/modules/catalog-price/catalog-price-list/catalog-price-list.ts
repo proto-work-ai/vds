@@ -25,13 +25,12 @@ import { ScrollLink } from '../../../components/scroll-link/scroll-link.directiv
 import { injectRouteParam } from '../../../shared/inject-route-param';
 import { PriceListRouteFilter } from '../price-list-route-filter/price-list-route-filter';
 import { PriceListBrandTable } from '../price-list-brand-table/price-list-brand-table';
-import { ColumnAttributeTable } from '@atlas/core';
 import { PriceListUnitTable } from '../price-list-unit-table/price-list-unit-table';
 
 @Component({
-  selector: 'app-price-list',
-  templateUrl: './price-list.html',
-  styleUrl: 'price-list.scss',
+  selector: 'app-catalog-price-list',
+  templateUrl: './catalog-price-list.html',
+  styleUrl: 'catalog-price-list.scss',
   imports: [
     TuiDataList,
     TuiDropdown,

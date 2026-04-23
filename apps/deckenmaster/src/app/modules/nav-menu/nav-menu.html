@@ -6,7 +6,7 @@
           @for (item of navMenu(); track item; let index = $index) {
             <li hlmNavigationMenuItem class="hidden md:flex">
               @if (item.link) {
-                <a hlmNavigationMenuLink [routerLink]="item.link">{{ item.title }}</a>
+                <a hlmNavigationMenuLink routerLinkActive="font-semibold" [routerLink]="item.link">{{ item.title }}</a>
               } @else {
                 <button hlmNavigationMenuTrigger class="px-0">
                   {{ item.title }}
@@ -22,40 +22,49 @@
                 @if (item.children?.length; as count) {
                   <hlm-navigation-menu-content *hlmNavigationMenuPortal class="shadow bg-white grid-cols-3">
                     <div class="p-2">
-                      <ul class="grid gap-4 min-w-40">
+                      <ul class="grid gap-1 min-w-40">
                         @for (child of item.children; track $index) {
-                        <li class="flex flex-col gap-2">
-                          @if (child.children?.length) {
-                          <div class="leading-none font-medium py-1 uppercase">{{ child.title }}</div>
+                          <li class="flex flex-col gap-0">
+                            @if (child.children?.length) {
+                              <div class="leading-none font-medium py-1 uppercase">{{ child.title }}</div>
 
-                          @for (sub of child.children; track sub) {
-                          <a [routerLink]="sub.link"
-                             [queryParams]="sub.queryParams ?? {}"
-                             class="leading-none text-md py-1 text-gray-500">
-                            {{ sub.title }}
-                          </a>
-                          }
-                          } @else {
-                          <a [routerLink]="child.link" [queryParams]="child.queryParams ?? {}">
-                            <div class="flex flex-col gap-1">
-                              @if (child.title) {
-                              <div class="leading-none font-normal">{{ child.title }}</div>
+                              @for (sub of child.children; track sub) {
+                                <a
+                                  hlmNavigationMenuLink
+                                  routerLinkActive="font-semibold"
+                                  [routerLink]="sub.link"
+                                  [queryParams]="sub.queryParams ?? {}"
+                                  class="leading-none text-md py-1 text-gray-500"
+                                >
+                                  {{ sub.title }}
+                                </a>
                               }
-                              @if (child.description) {
-                              <div class="text-muted-foreground line-clamp-2">{{ child.description }}</div>
-                              }
-                            </div>
-                          </a>
-                          }
-                        </li>
+                            } @else {
+                              <a
+                                hlmNavigationMenuLink
+                                routerLinkActive="font-semibold"
+                                [routerLink]="child.link"
+                                [queryParams]="child.queryParams ?? {}"
+                              >
+                                <div class="flex flex-col gap-1">
+                                  @if (child.title) {
+                                    <div class="leading-none">{{ child.title }}</div>
+                                  }
+                                  @if (child.description) {
+                                    <div class="text-muted-foreground line-clamp-2">{{ child.description }}</div>
+                                  }
+                                </div>
+                              </a>
+                            }
+                          </li>
                         }
                       </ul>
-                      @if (index === 0) {
-                      <a [routerLink]="['/', 'catalog']" class="flex items-center mt-2">
-                        Весь каталог
-                        <ng-icon strokewidth="1px" name="lucideChevronRight" class="text-gray-500" />
-                      </a>
-                      }
+                      <!-- @if (index === 0) {
+                        <a hlmNavigationMenuLink routerLinkActive="font-medium" [routerLink]="['/', 'catalog']" class="flex items-center mt-2">
+                          Весь каталог
+                          <ng-icon strokewidth="1px" name="lucideChevronRight" class="text-gray-500" />
+                        </a>
+                      } -->
                     </div>
                   </hlm-navigation-menu-content>
                 }
@@ -98,7 +107,7 @@
     <ng-template #menuItem let-value let-node="node">
       <div class="wrapper py-1" [style.opacity]="1 / node.level">
         @if (value.link) {
-          <a [routerLink]="value.link" [queryParams]="value.queryParams ?? {}" (click)="onClose()">
+          <a routerLinkActive="font-semibold" [routerLink]="value.link" [queryParams]="value.queryParams ?? {}" (click)="onClose()">
             @if (value.icon) {
               <tui-icon class="t-icon" [icon]="value.icon" />
             }
@@ -117,7 +126,6 @@
   </section>
 
   <!-- <section class="flex justify-start mt-4">
-    <a [routerLink]="['/', 'catalog']" class="flex items-center" (click)="onClose()"> Весь каталог </a>
+    <a routerLinkActive="font-semibold" [routerLink]="['/', 'catalog']" class="flex items-center" (click)="onClose()"> Весь каталог </a>
   </section> -->
 </tui-drawer>
-

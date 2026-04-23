@@ -8,7 +8,7 @@ import { MenuDeferDirective } from '../../components/menu-defer/menu-defer.direc
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { NavMenu } from '../../modules/nav-menu/nav-menu';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../modules/breadcrumbs-header/breadcrumbs-header.component';
-import { PriceList } from "../../modules/price-list/price-list/price-list";
+import { PriceList } from '../../modules/catalog-price/catalog-price-list/catalog-price-list';
 
 @Component({
   selector: 'main',
@@ -22,9 +22,12 @@ import { PriceList } from "../../modules/price-list/price-list/price-list";
     MenuDeferDirective,
     NavMenu,
     BreadcrumbsHeader,
-    PriceList
-],
+    PriceList,
+  ],
   providers: [MenuDeferService],
+  host: {
+    'id': 'main',
+  },
 })
 export class PricePage {
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([

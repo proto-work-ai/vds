@@ -17,7 +17,7 @@ export function injectStretchCeilingRouteByKey(): WritableSignal<IStretchCeiling
   const route = inject(ActivatedRoute);
   const items = injectStretchCeilingsCatalog();
 
-  const item = signal<IStretchCeiling|undefined>(undefined);
+  const item = signal<IStretchCeiling | undefined>(undefined);
 
   if (route.snapshot.data) {
     item.set(route.snapshot.data as IStretchCeiling);
@@ -159,6 +159,7 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
             title: stretchCeilingName[type] ?? '',
             link: patch.concat(item.key),
             queryParams: { type },
+            fragment: 'main',
           } satisfies IAppMenuItem;
         }),
     } satisfies IAppMenuItem;
@@ -171,6 +172,7 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
     {
       title: 'Каталог',
       link: ['/catalog'],
+      fragment: 'main',
       // children: injectStretchCeilingGroupMenu(['/', 'catalog']),
     },
 
@@ -179,6 +181,7 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
     {
       title: 'Цены',
       link: ['/', 'price'],
+      fragment: 'main',
     },
     // {
     //   title: 'Контакты',
@@ -194,11 +197,13 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
     {
       title: 'Каталог',
       link: ['/', 'catalog'],
+      fragment: 'main',
     },
 
     {
       title: 'Цены',
       link: ['/', 'price'],
+      fragment: 'main',
     },
     // {
     //   title: 'Контакты',

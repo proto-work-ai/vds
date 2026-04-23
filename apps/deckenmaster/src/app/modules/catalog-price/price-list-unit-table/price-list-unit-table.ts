@@ -87,12 +87,12 @@ export class PriceListUnitTable {
         const data = row.price;
         if (Array.isArray(data)) {
           if (data.length > 1) {
-            return `от ${data[0]} до ${data[1]}`;
+            return `от ${data[0]} до ${data[1]} руб`;
           } else if (data.length === 1) {
-            return `от ${data}`;
+            return `от ${data} руб`;
           }
         }
-        return `${data} руб/м²`;
+        return `${data} руб`;
       },
     },
   ]);

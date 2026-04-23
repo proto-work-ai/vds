@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, effect, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { StretchCeilingsCatalogDetail } from '../../../modules/stretch-ceilings-catalog/stretch-ceilings-catalog-detail/stretch-ceilings-catalog-detail';
 import { injectStretchCeilingRouteByKey } from '../../../model/stretch-ceilings.service';
 import { MainHeaderComponent } from '../../../modules/main-header/main-header.component';
@@ -7,8 +8,7 @@ import { ApplicationMeasurementComponent } from '../../../modules/application-me
 import { FooterMenuComponent } from '../../../modules/footer-menu/footer-menu.component';
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
-import { NavMenu } from "../../../modules/nav-menu/nav-menu";
-import { RouterOutlet } from '@angular/router';
+import { NavMenu } from '../../../modules/nav-menu/nav-menu';
 
 @Component({
   selector: 'main',
@@ -22,8 +22,11 @@ import { RouterOutlet } from '@angular/router';
     NavMenu,
     RouterOutlet,
     StretchCeilingsCatalogDetail,
-],
+  ],
   providers: [MenuDeferService],
+  host: {
+    'id': 'main',
+  },
 })
 export class StretchCeilingsCatalogDetailPage {
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([]);

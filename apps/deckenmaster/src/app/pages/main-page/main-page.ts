@@ -10,8 +10,8 @@ import { MainHeaderComponent } from '../../modules/main-header/main-header.compo
 import { PriceCalculationComponent } from '../../modules/price-calculation/price-calculation.component';
 import { MenuDeferDirective } from '../../components/menu-defer/menu-defer.directive';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
-import { MenuHeaderComponent } from "../../modules/menu-header/menu-header.component";
-import { NavMenu } from "../../modules/nav-menu/nav-menu";
+import { MenuHeaderComponent } from '../../modules/menu-header/menu-header.component';
+import { NavMenu } from '../../modules/nav-menu/nav-menu';
 
 @Component({
   selector: 'main',
@@ -31,8 +31,11 @@ import { NavMenu } from "../../modules/nav-menu/nav-menu";
     MenuDeferDirective,
     StretchCeilingsCatalogs,
     MenuHeaderComponent,
-    NavMenu
-],
+    NavMenu,
+  ],
   providers: [MenuDeferService],
+  host: {
+    id: 'main',
+  },
 })
 export class MainPage {}

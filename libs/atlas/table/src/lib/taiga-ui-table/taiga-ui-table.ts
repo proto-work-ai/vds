@@ -49,6 +49,9 @@ interface Item {
     RouterLink,
     JsonPipe,
   ],
+  host: {
+    ['ngSkipHydration']: 'true',
+  },
 })
 export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
   protected readonly content: TuiStringHandler<TuiContext<number>> = ({ $implicit }) => `${$implicit} items per page`;

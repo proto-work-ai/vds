@@ -6,7 +6,7 @@ import { ApplicationMeasurementComponent } from '../../../modules/application-me
 import { FooterMenuComponent } from '../../../modules/footer-menu/footer-menu.component';
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
-import { NavMenu } from "../../../modules/nav-menu/nav-menu";
+import { NavMenu } from '../../../modules/nav-menu/nav-menu';
 
 @Component({
   selector: 'main',
@@ -18,9 +18,12 @@ import { NavMenu } from "../../../modules/nav-menu/nav-menu";
     ApplicationMeasurementComponent,
     FooterMenuComponent,
     BreadcrumbsHeader,
-    NavMenu
-],
+    NavMenu,
+  ],
   providers: [MenuDeferService],
+  host: {
+    'id': 'main',
+  },
 })
 export class StretchCeilingsCatalogsPage {
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([

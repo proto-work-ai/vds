@@ -1,6 +1,6 @@
 @if (columns().length) {
   <table
-    tuiTable
+    tuiTable    
     class="w-full"
     [size]="size()"
     [direction]="columnDirection()"
@@ -45,22 +45,22 @@
                     </td>
                   }
                   @case ('boolean') {
-                    <td tuiTd ngSkipHydration>
+                    <td tuiTd>
                       <ng-template [cdkPortalOutlet]="row | tableCellPortal: column"></ng-template>
                     </td>
                   }
                   @case ('element') {
-                    <td tuiTd ngSkipHydration>
+                    <td tuiTd>
                       <ng-template [cdkPortalOutlet]="row | tableCellPortal: column"></ng-template>
                     </td>
                   }
                   @case ('template') {
-                    <td tuiTd ngSkipHydration>
+                    <td tuiTd>
                       <ng-template [cdkPortalOutlet]="row | tableCellPortal: column"></ng-template>
                     </td>
                   }
                   @case ('component') {
-                    <td tuiTd ngSkipHydration>
+                    <td tuiTd>
                       <ng-template [cdkPortalOutlet]="row | tableCellPortal: column"></ng-template>
                     </td>
                   }

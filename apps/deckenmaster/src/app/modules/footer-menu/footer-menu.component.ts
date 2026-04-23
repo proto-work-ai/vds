@@ -34,9 +34,9 @@ export class FooterMenuComponent {
 
     result.push({
       title: 'Меню',
-      children: [...menu.slice(0, 3)],
+      children: [...menu.slice(0, 2)],
     });
-    result.push(...menu.slice(3));
+    result.push(...menu.slice(2));
     return result;
   });
 }

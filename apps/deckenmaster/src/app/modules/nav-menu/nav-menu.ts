@@ -14,7 +14,7 @@ import {
 import { TuiDataList, TuiDropdown, TuiIcon, TuiPopup, TuiTitle } from '@taiga-ui/core';
 import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { type TuiHandler } from '@taiga-ui/cdk';
 import { TuiHeader } from '@taiga-ui/layout';
 import { injectNavMenu } from '../../model/stretch-ceilings.service';
@@ -39,6 +39,7 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
     TuiTree,
     TuiIcon,
     HlmIconImports,
+    RouterLinkActive,
     HlmNavigationMenuImports,
   ],
   providers: [

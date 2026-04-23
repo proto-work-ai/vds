@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input, signal, OnInit, effect } from '@angular/core';
+import { Component, DestroyRef, inject, input, signal, effect } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiButton, TuiIcon, TuiNumberFormat, TuiTextfield } from '@taiga-ui/core';
 import {
@@ -11,8 +11,6 @@ import {
   TuiTabs,
 } from '@taiga-ui/kit';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { tap } from 'rxjs';
 import { IAppMenuItem } from '../../../shared/menu';
 import { injectRouteParam } from '../../../shared/inject-route-param';
 
@@ -43,11 +41,8 @@ export class PriceListRouteFilter {
   protected readonly destroyRef = inject(DestroyRef);
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
-
   protected readonly routeCategory = injectRouteParam('category');
-
   public readonly groups = input.required<Pick<IAppMenuItem, 'title' | 'queryParams' | 'link' | 'fragment'>[]>();
-
   protected readonly activeItemIndex = signal<number>(0);
 
   constructor() {
