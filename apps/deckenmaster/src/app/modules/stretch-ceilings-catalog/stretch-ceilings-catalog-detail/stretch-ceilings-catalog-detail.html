@@ -1,4 +1,8 @@
-<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+<div
+  id="stretch-ceilings-catalog-detail"
+  name="stretch-ceilings-catalog-detail"
+  class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6"
+>
   <header class="text-center flex flex-col gap-3">
     <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
 
@@ -11,7 +15,9 @@
     </section>
   } -->
 
-  <section>
-    <ng-template [cdkPortalOutlet]="detail() | async"></ng-template>
-  </section>
+  @if (detail(); as detail) {
+    <section>
+      <ng-template [cdkPortalOutlet]="detail"></ng-template>
+    </section>
+  }
 </div>

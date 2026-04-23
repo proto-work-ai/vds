@@ -1,121 +1,127 @@
-@if(columns().length) {
-<table
-  tuiTable
-  class="w-full"
-  size="l"
-  [direction]="columnDirection()"
-  [columns]="columnKeys()"
-  [tuiSortBy]="columnSortBy()"
-  (tuiSortChange)="sortChange($event)"
->
-  <thead>
-    <tr tuiThGroup>
-      @for(col of columns(); track col){
-      <th
-        *tuiHead="col.key"
-        tuiTh
-        [tuiSortable]="!!col.sortable"
-        [width]="col.width || 'auto'"
-      >
-        {{col.title}}
-      </th>
-      }
-    </tr>
-  </thead>
-
-  @if(data()?.length && data(); as data){
-  <tbody tuiTbody [data]="data">
-    @for(row of data; track $index){
-    <tr>
-      @for(column of columns(); track column){ @switch (column.type) { @case
-      ('string') {
-      <td tuiTd class="truncate max-w-100">{{ row?.[column.key] }}</td>
-      } @case ('number') {
-      <td tuiTd>
-        {{ $any(row?.[column.key]) }}
-      </td>
-      } @case ('boolean') {
-      <td tuiTd>
-        <ng-template
-          [cdkPortalOutlet]="row | tableCellPortal:column"
-        ></ng-template>
-      </td>
-      } @case ('element') {
-      <td tuiTd>
-        <ng-template
-          [cdkPortalOutlet]="row | tableCellPortal:column"
-        ></ng-template>
-      </td>
-      } @case ('template') {
-      <td tuiTd>
-        <ng-template
-          [cdkPortalOutlet]="row | tableCellPortal:column"
-        ></ng-template>
-      </td>
-      } @case ('component') {
-      <td tuiTd>
-        <ng-template
-          [cdkPortalOutlet]="row | tableCellPortal:column"
-        ></ng-template>
-      </td>
-      } @case ('date') {
-      <td tuiTd>
-        @if(row?.[column.key]; as value){ {{$any(value)| date :'dd.MM.yyyy
-        HH:mm'}} }
-      </td>
-      } @default {
-      <td tuiTd>{{ row?.[column.key] }}</td>
-      } } }
-    </tr>
-    }
-  </tbody>
-
-  <caption tuiCaption>
-    @if(pagination()?.totalCount; as totalCount){
-    <span class="text-gray-400">{{totalCount}} rows</span>
-    } @if(pagination(); as pagination){
-    <button
-      appearance="flat"
-      tuiButton
-      tuiButtonSelect
-      type="button"
-      [(ngModel)]="pagination.pageCount"
-      (ngModelChange)="pageCountChange(pagination.pageCount)"
-    >
-      {{ pagination.currentPage * pagination.pageCount + 1 }}-{{
-      (pagination.currentPage + 1) * pagination.pageCount }} rows
-      <tui-data-list-wrapper
-        *tuiTextfieldDropdown
-        new
-        [itemContent]="content"
-        [items]="pagination.items ?? []"
-      />
-    </button>
-    } @if(pagination(); as pagination){
-    <tui-pagination
-      [style.float]="'right'"
-      [length]="pagination.pageCount"
-      [index]="pageIndex"
-      (indexChange)="pageIndexChange($event)"
-    />
-    }
-  </caption>
-  } @else {
-  <tbody tuiTbody>
-    <tr>
-      <td [colSpan]="columns().length" tuiTd>
-        <div class="text-center text-gray-500">No data available in table</div>
-      </td>
-    </tr>
-  </tbody>
-  }
-</table>
-} @else {
-<div class="border rounded-sm text-center p-3 text-gray-500">
-  <a
-    [routerLink]="['/studio/entities/attributes/39e9d4c4-d501-4e8f-a898-5c7e02a97559']"
+@if (columns().length) {
+  <table
+    tuiTable
+    class="w-full"
+    [size]="size()"
+    [direction]="columnDirection()"
+    [columns]="columnKeys()"
+    [tuiSortBy]="columnSortBy()"
+    (tuiSortChange)="sortChange($event)"
   >
-    Missing attributes.
-  </a>
-</div>
+    <thead>
+      <tr tuiThGroup>
+        @for (col of columns(); track col) {
+          <th
+            *tuiHead="col.key"
+            tuiTh
+            [tuiSortable]="!!col.sortable"
+            [width]="col.width || 'auto'"
+            [innerHtml]="col.title"
+          ></th>
+        }
+      </tr>
+    </thead>
+
+    @if (data()?.length && data(); as data) {
+      <tbody tuiTbody [data]="data">
+        @for (row of data; track $index) {
+          <tr>
+            @for (column of columns(); track column) {
+              @if (column.formatter) {
+                <td tuiTd>
+                  {{ column.formatter(row) }}
+                </td>
+              } @else {
+                @switch (column.type) {
+                  @case ('html') {
+                    <td tuiTd class="-truncate -max-w-100" [innerHtml]="row?.[column.key]"></td>
+                  }
+                  @case ('string') {
+                    <td tuiTd class="-truncate -max-w-100">{{ row?.[column.key] }}</td>
+                  }
+                  @case ('number') {
+                    <td tuiTd>
+                      {{ $any(row?.[column.key]) }}
+                    </td>
+                  }
+                  @case ('boolean') {
+                    <td tuiTd ngSkipHydration>
+                      <ng-template [cdkPortalOutlet]="row | tableCellPortal: column"></ng-template>
+                    </td>
+                  }
+                  @case ('element') {
+                    <td tuiTd ngSkipHydration>
+                      <ng-template [cdkPortalOutlet]="row | tableCellPortal: column"></ng-template>
+                    </td>
+                  }
+                  @case ('template') {
+                    <td tuiTd ngSkipHydration>
+                      <ng-template [cdkPortalOutlet]="row | tableCellPortal: column"></ng-template>
+                    </td>
+                  }
+                  @case ('component') {
+                    <td tuiTd ngSkipHydration>
+                      <ng-template [cdkPortalOutlet]="row | tableCellPortal: column"></ng-template>
+                    </td>
+                  }
+                  @case ('date') {
+                    <td tuiTd>
+                      @if (row?.[column.key]; as value) {
+                        {{ $any(value) | date: 'dd.MM.yyyy HH:mm' }}
+                      }
+                    </td>
+                  }
+                  @default {
+                    <td tuiTd>{{ row?.[column.key] }}</td>
+                  }
+                }
+              }
+            }
+          </tr>
+        }
+      </tbody>
+
+      <caption tuiCaption>
+        @if (pagination()?.totalCount; as totalCount) {
+          <span class="text-gray-400">{{ totalCount }} rows</span>
+        }
+        @if (pagination(); as pagination) {
+          <button
+            appearance="flat"
+            tuiButton
+            tuiButtonSelect
+            type="button"
+            [(ngModel)]="pagination.pageCount"
+            (ngModelChange)="pageCountChange(pagination.pageCount)"
+          >
+            {{ pagination.currentPage * pagination.pageCount + 1 }}-{{
+              (pagination.currentPage + 1) * pagination.pageCount
+            }}
+            rows
+            <tui-data-list-wrapper *tuiTextfieldDropdown new [itemContent]="content" [items]="pagination.items ?? []" />
+          </button>
+        }
+        @if (pagination(); as pagination) {
+          <tui-pagination
+            [style.float]="'right'"
+            [length]="pagination.pageCount"
+            [index]="pageIndex"
+            (indexChange)="pageIndexChange($event)"
+          />
+        }
+      </caption>
+    } @else {
+      <tbody tuiTbody>
+        <tr>
+          <td [colSpan]="columns().length" tuiTd>
+            <div class="text-center text-gray-500">No data available in table</div>
+          </td>
+        </tr>
+      </tbody>
+    }
+  </table>
+} @else {
+  <!-- <div class="border rounded-sm text-center p-3 text-gray-500">
+    <a [routerLink]="['/studio/entities/attributes/39e9d4c4-d501-4e8f-a898-5c7e02a97559']"> Missing attributes. </a>
+  </div> -->
 }

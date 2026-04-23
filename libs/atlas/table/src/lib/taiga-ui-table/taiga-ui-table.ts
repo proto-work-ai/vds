@@ -2,7 +2,7 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, computed, input, output, model, signal } from '@angular/core';
-import { AsyncPipe, DatePipe } from '@angular/common';
+import { AsyncPipe, DatePipe, JsonPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TuiComparator, TuiSortChange, TuiTable } from '@taiga-ui/addon-table';
 import { TuiButton, TuiFormatNumberPipe, TuiTextfield } from '@taiga-ui/core';
@@ -36,7 +36,6 @@ interface Item {
   imports: [
     FormsModule,
     DatePipe,
-    RouterLink,
     TuiButton,
     TuiButtonSelect,
     TuiPagination,
@@ -47,23 +46,27 @@ interface Item {
     TableCellPortalPipe,
     TuiFormatNumberPipe,
     AsyncPipe,
+    RouterLink,
+    JsonPipe,
   ],
 })
 export class AtlasTaigaUiTable<T extends Record<string, unknown>> {
   protected readonly content: TuiStringHandler<TuiContext<number>> = ({ $implicit }) => `${$implicit} items per page`;
   public readonly tableRows = input.required<T[] | undefined>({ alias: 'tableRows' });
   public readonly columns = input.required<ColumnAttributeTable[]>({ alias: 'tableColumns' });
+  public readonly size = input<'s' | 'm' | 'l'>('l');
   public readonly columnKeys = computed(() => this.columns().map((a) => a.key));
 
   protected readonly pageOptions = signal<PaginationOptions>({ page: 1, limit: 8, includePageCount: true });
 
   public readonly pagination = input<PagePagination | undefined>(
-    {
-      pageCount: 10,
-      currentPage: 4,
-      totalCount: 999,
-      items: [10, 50, 100],
-    },
+    undefined,
+    // {
+    //   pageCount: 10,
+    //   currentPage: 4,
+    //   totalCount: 999,
+    //   items: [10, 50, 100],
+    // },
     {
       alias: 'tablePaginate',
     }

@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { Component, DestroyRef, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, DestroyRef, inject, input, signal, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiButton, TuiIcon, TuiNumberFormat, TuiTextfield } from '@taiga-ui/core';
 import {
   TuiChevron,
@@ -11,14 +10,16 @@ import {
   TuiSelect,
   TuiTabs,
 } from '@taiga-ui/kit';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
-import { injectStretchCeilingGroupMenu } from '../../model/stretch-ceilings.service';
-import { IAppMenuItem } from '../../shared/menu';
+import { IAppMenuItem } from '../../../shared/menu';
+import { provideIcons, NgIcon } from '@ng-icons/core';
+import { lucideChevronDown, lucideSquareArrowOutUpRight } from '@ng-icons/lucide';
+import { HlmIcon } from "@spartan-ng/helm/icon";
 
 @Component({
-  selector: 'app-stretch-ceilings-catalog-route-filter',
+  selector: 'app-sc-catalog-route-filter',
   templateUrl: 'stretch-ceilings-catalog-route-filter.html',
   styleUrl: 'stretch-ceilings-catalog-route-filter.scss',
   imports: [
@@ -34,12 +35,20 @@ import { IAppMenuItem } from '../../shared/menu';
     TuiTabs,
     TuiTextfield,
     TuiIcon,
+    NgIcon,
+    RouterLink,
     TuiButton,
     TuiNumberFormat,
     TuiChevron,
+    HlmIcon,
+],
+  providers: [
+    provideIcons({
+      lucideSquareArrowOutUpRight,
+    }),
   ],
 })
-export class StretchCeilingsCatalogRouteFilter {
+export class SCCatalogRouteFilter implements OnInit {
   protected readonly destroyRef = inject(DestroyRef);
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
@@ -47,24 +56,17 @@ export class StretchCeilingsCatalogRouteFilter {
   protected readonly maxRange = signal(150);
   protected readonly ticksLabels = signal([this.minRange(), 50, 75, 100, this.maxRange()].map((a) => a + 'м²'));
 
-  protected readonly groups = signal<Pick<IAppMenuItem, 'title' | 'queryParams'>[]>([
-    {
-      title: 'Все виды',
-      queryParams: {},
-    },
-    // Все кромя "По типу"
-    ...injectStretchCeilingGroupMenu().slice(0, 3),
-  ]);
+  public readonly groups = input.required<Pick<IAppMenuItem, 'title' | 'queryParams' | 'link' | 'fragment'>[]>();
 
   protected readonly activeItemIndex = signal<number>(0);
 
-  constructor() {
+  ngOnInit(): void {
     this.route.queryParams
       .pipe(
         tap((params) => {
           const { group } = params;
           if (group) {
-            const index = this.groups().findIndex((a) => a?.queryParams?.['group'] === group);
+            const index = this.groups().findIndex((a) => a?.queryParams?.['group'] == group);
             if (index >= 0) {
               this.activeItemIndex.set(index);
             }
@@ -76,11 +78,19 @@ export class StretchCeilingsCatalogRouteFilter {
   }
 
   protected indexChange(index: number): void {
-    const queryParams = this.groups()[index]?.queryParams ?? 0;
-    if (queryParams) {
+    const item = this.groups()[index];
+    const queryParams = item?.queryParams ?? 0;
+    if (item?.link) {
+      this.router.navigate(item?.link as any, {
+        queryParams: item.queryParams ?? {},
+        fragment: item.fragment,
+        // queryParamsHandling: 'merge',
+      });
+    } else if (queryParams) {
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams,
+        fragment: item.fragment,
         // queryParamsHandling: 'merge',
       });
     }

@@ -35,11 +35,12 @@ export enum StretchCeilingsType {
 
   // С подсветкой
   Floating, // Парящие
-  LightLines, // Световые линии
-  Contour, // Контурные
+  Contour, // C контурной подсветкой
   Slott, // Световые линии SLOTT
   Flexy, // Световые линии Flexy
   Lightbox, // Лайтбокс*
+  LightLines, // Световые линии
+  InternalLighting, // Потолки с подсветкой внутри
 
   // Премиум/Эксклюзивные потолки
   Shadow, // Теневые,
@@ -72,7 +73,7 @@ export enum StretchCeilingsByTechnology {
   StarrySky, // Звездное небо,
 }
 
-export const stretchCeilings: IStretchCeiling[] = [
+export const stretchCeilingAll: IStretchCeiling[] = [
   {
     types: [
       StretchCeilingsType.Matte,
@@ -339,7 +340,7 @@ export const stretchCeilings: IStretchCeiling[] = [
 
   {
     types: [
-      StretchCeilingsType.LightLines,
+      StretchCeilingsType.InternalLighting,
 
       StretchCeilingsType.Kitchen,
       StretchCeilingsType.Corridor,

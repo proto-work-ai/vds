@@ -13,9 +13,9 @@ import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiCheckbox, TuiFieldErrorPipe } from '@taiga-ui/kit';
 import { TuiError, TuiLabel } from '@taiga-ui/core';
-import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
-import { AttributeControlPipe } from "../pipes/attribute-control.pipe";
 import { AsyncPipe } from '@angular/common';
+import { AttributeControlPipe } from 'libs/atlas/form/src/lib/pipes/attribute-control.pipe';
+import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
 
 @Component({
   selector: 'atlas-form-field-checked',

@@ -1,41 +1,47 @@
-import { DestroyRef, effect, inject, signal, Signal } from '@angular/core';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { DestroyRef, effect, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { startWith, tap, map } from 'rxjs';
-import { IStretchCeiling, stretchCeilings, StretchCeilingsGroup, StretchCeilingsType } from './stretch-ceilings.data';
+import { IStretchCeiling, stretchCeilingAll, StretchCeilingsGroup, StretchCeilingsType } from './stretch-ceilings.data';
 import { IAppMenuItem } from '../shared/menu';
 
 export function injectStretchCeilingsCatalog(): Signal<IStretchCeiling[]> {
   const catalog = signal<IStretchCeiling[]>([]);
-  import('./stretch-ceilings.data').then(({ stretchCeilings }) => catalog.set(stretchCeilings));
+  import('./stretch-ceilings.data').then(({ stretchCeilingAll: stretchCeilings }) => catalog.set(stretchCeilings));
   return catalog.asReadonly();
 }
 
-export function injectStretchCeilingRouteByKey() {
+export function injectStretchCeilingRouteByKey(): WritableSignal<IStretchCeiling> {
   const destroyRef = inject(DestroyRef);
   const route = inject(ActivatedRoute);
   const items = injectStretchCeilingsCatalog();
 
-  const item = signal<any>(undefined);
-  effect(() => {
-    const list = items();
-    if (list.length) {
-      route.params
-        .pipe(
-          startWith(route.snapshot.params),
-          tap(({ key }) => {
-            const findItem = list.find((a) => a.key === key);
-            if (findItem) {
-              item.set(findItem);
-            }
-          }),
-          takeUntilDestroyed(destroyRef)
-        )
-        .subscribe();
-    }
-  });
+  const item = signal<IStretchCeiling|undefined>(undefined);
 
-  return item;
+  if (route.snapshot.data) {
+    item.set(route.snapshot.data as IStretchCeiling);
+  } else {
+    effect(() => {
+      const list = items();
+      if (list.length) {
+        route.params
+          .pipe(
+            startWith(route.snapshot.params),
+            tap(({ key }) => {
+              const findItem = list.find((a) => a.key === key);
+              if (findItem) {
+                item.set(findItem);
+              }
+            }),
+            takeUntilDestroyed(destroyRef)
+          )
+          .subscribe();
+      }
+    });
+  }
+
+  return item as WritableSignal<IStretchCeiling>;
 }
 
 export const stretchCeilingsGroupName = {
@@ -45,7 +51,7 @@ export const stretchCeilingsGroupName = {
   [StretchCeilingsGroup.ByPremises]: 'По типу помещений',
 } as const;
 
-export const stretchCeilingsTypeName: Partial<Record<StretchCeilingsType, string>> = {
+export const stretchCeilingName: Partial<Record<StretchCeilingsType, string>> = {
   // ПВХ
   [StretchCeilingsType.Matte]: 'Матовые',
   [StretchCeilingsType.Glossy]: 'Глянцевые',
@@ -61,8 +67,9 @@ export const stretchCeilingsTypeName: Partial<Record<StretchCeilingsType, string
   // С подсветкой
   [StretchCeilingsType.Floating]: 'Парящие',
   [StretchCeilingsType.LightLines]: 'Световые линии',
+  [StretchCeilingsType.Contour]: 'C контурной подсветкой',
+  [StretchCeilingsType.InternalLighting]: 'C подсветкой внутри',
   [StretchCeilingsType.Lightbox]: 'Лайтбокс',
-  [StretchCeilingsType.Contour]: 'Контурные',
   [StretchCeilingsType.Slott]: 'Световые линии SLOTT',
   [StretchCeilingsType.Flexy]: 'Световые линии Flexy',
 
@@ -101,8 +108,10 @@ export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, StretchCeilingsTy
     [
       StretchCeilingsType.Floating,
       StretchCeilingsType.LightLines,
-      StretchCeilingsType.Lightbox,
       StretchCeilingsType.Contour,
+      StretchCeilingsType.InternalLighting,
+
+      StretchCeilingsType.Lightbox,
       StretchCeilingsType.Slott,
       StretchCeilingsType.Flexy,
     ],
@@ -133,22 +142,25 @@ export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, StretchCeilingsTy
 ] as const);
 
 export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IAppMenuItem[] {
-  const menu = Array.from(stretchCeilingGroupMap, ([group, types]) => {
-    const children = types
-      // Если нет в каталоге то не выводим
-      .filter((type) => stretchCeilings.some((a) => a.types.includes(type)))
-      .map((type) => {
-        return {
-          title: stretchCeilingsTypeName[type] ?? '',
-          link: patch,
-          queryParams: { type },
-        } satisfies IAppMenuItem;
-      });
-
+  patch = Array.isArray(patch) ? patch.concat() : [patch];
+  const menu = Array.from(stretchCeilingGroupMap, ([group, values]) => {
     return {
       title: stretchCeilingsGroupName[group],
       queryParams: { group },
-      children,
+      children: values
+        .map((type) => {
+          const item = stretchCeilingAll.find((a) => a.types.includes(type))!;
+          return [type, item] as const;
+        })
+        // Если нет в каталоге то не выводим
+        .filter(([type, item]) => !!item)
+        .map(([type, item]) => {
+          return {
+            title: stretchCeilingName[type] ?? '',
+            link: patch.concat(item.key),
+            queryParams: { type },
+          } satisfies IAppMenuItem;
+        }),
     } satisfies IAppMenuItem;
   });
   return menu;
@@ -156,24 +168,44 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
 
 export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuItem[]> {
   const navMenu = signal<IAppMenuItem[]>([
-    ...injectStretchCeilingGroupMenu(['/', 'catalog']),
     {
-      title: 'Весь каталог',
+      title: 'Каталог',
       link: ['/catalog'],
       // children: injectStretchCeilingGroupMenu(['/', 'catalog']),
     },
-    // {
-    //   title: 'Цены',
-    //   link: ['/', 'price'],
-    // },
+
+    ...injectStretchCeilingGroupMenu(['/', 'catalog']),
+
+    {
+      title: 'Цены',
+      link: ['/', 'price'],
+    },
     // {
     //   title: 'Контакты',
     //   link: ['/', 'contacts'],
     // },
+  ]);
+
+  return navMenu.asReadonly();
+}
+
+export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenuItem[]> {
+  const navMenu = signal<IAppMenuItem[]>([
+    {
+      title: 'Каталог',
+      link: ['/', 'catalog'],
+    },
+
+    {
+      title: 'Цены',
+      link: ['/', 'price'],
+    },
     // {
-    //   title: 'О компании',
-    //   link: ['/', 'about'],
+    //   title: 'Контакты',
+    //   link: ['/', 'contacts'],
     // },
+
+    ...injectStretchCeilingGroupMenu(['/', 'catalog']),
   ]);
 
   return navMenu.asReadonly();

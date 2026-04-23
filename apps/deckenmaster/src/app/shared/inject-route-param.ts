@@ -13,7 +13,6 @@ export function injectRouteParam(name: string): Signal<string | undefined> {
       startWith(route.snapshot.queryParams),
       tap((params) => {
         param.set(params[name]);
-        console.log('param', param());
       }),
       takeUntilDestroyed(destroyRef)
     )

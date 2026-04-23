@@ -1,7 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import { Payment } from '../../../../../../apps/proto/src/app/modules/meta/studio-entity/studio-entity-table.component';
-
-export const tableData: Payment[] = [
+export const tableData: any[] = [
     {
       id: 'm5gr84i9',
       amount: 316,

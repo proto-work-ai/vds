@@ -1,22 +1,32 @@
-import { Component, computed, DestroyRef, inject, input, Signal, signal } from '@angular/core';
-import { injectStretchCeilingsCatalog, stretchCeilingGroupMap } from '../../../model/stretch-ceilings.service';
+import { Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
+import { injectStretchCeilingGroupMenu, injectStretchCeilingsCatalog, stretchCeilingGroupMap } from '../../../model/stretch-ceilings.service';
 import { StretchCeilingsCatalogCard } from '../stretch-ceilings-catalog-card/stretch-ceilings-catalog-card';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { routePath } from '../../../app.routes';
-import { injectRouteParam } from '../../../shared/inject-toute-param';
-import { StretchCeilingsCatalogRouteFilter } from '../../../components/stretch-ceilings-catalog-route-filter/stretch-ceilings-catalog-route-filter';
+import { injectRouteParam } from '../../../shared/inject-route-param';
+import { SCCatalogRouteFilter } from '../stretch-ceilings-catalog-route-filter/stretch-ceilings-catalog-route-filter';
+import { IAppMenuItem } from '../../../shared/menu';
 
 @Component({
   selector: 'app-stretch-ceilings-catalog-all',
   templateUrl: './stretch-ceilings-catalog-all.html',
   styleUrls: ['./stretch-ceilings-catalog-all.scss'],
-  imports: [StretchCeilingsCatalogCard, RouterLink, StretchCeilingsCatalogRouteFilter],
+  imports: [StretchCeilingsCatalogCard, RouterLink, SCCatalogRouteFilter],
 })
 export class StretchCeilingsCatalogAll {
   readonly title = input('Каталог натяжных потолков');
   protected readonly destroyRef = inject(DestroyRef);
   protected readonly route = inject(ActivatedRoute);
   protected readonly routePath = routePath;
+
+  protected readonly groups = signal<Pick<IAppMenuItem, 'title' | 'queryParams'>[]>([
+    {
+      title: 'Все виды',
+      queryParams: {},
+    },
+    ...injectStretchCeilingGroupMenu().slice(0, 3), // Все кромя "По типу"
+  ]);
+
   private readonly items = injectStretchCeilingsCatalog();
   protected readonly groupParam = injectRouteParam('group');
   protected readonly filtered = computed(() => {

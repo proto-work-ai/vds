@@ -6,9 +6,8 @@ import {
 } from './selection-column';
 import { TableHeadSortButton } from './sort-header-button';
 import { ActionDropdown } from './action-dropdown';
-import { Payment } from '../../../../../../apps/proto/src/app/modules/meta/studio-entity/studio-entity-table.component';
 
-export const dataTableColumns: ColumnDef<Payment>[] = [
+export const dataTableColumns: ColumnDef<any>[] = [
   {
     id: 'select',
     header: () => flexRenderComponent(TableHeadSelection),

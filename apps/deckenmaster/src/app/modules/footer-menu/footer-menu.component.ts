@@ -7,7 +7,7 @@ import { lucidePhone } from '@ng-icons/lucide';
 import { NgTemplateOutlet } from '@angular/common';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
-import { injectNavMenu } from '../../model/stretch-ceilings.service';
+import { injectFooterMenu, injectNavMenu } from '../../model/stretch-ceilings.service';
 
 @Component({
   selector: 'app-footer-menu',
@@ -27,24 +27,16 @@ export class FooterMenuComponent {
   protected readonly phoneContact = inject(PHONE_CONTACT);
   protected readonly periodContact = inject(PERIOD_CONTACT);
 
-  private readonly navMenu = injectNavMenu();
+  private readonly navMenu = injectFooterMenu();
   protected readonly footerMenu = computed(() => {
-    const menu = this.navMenu().concat();
+    const menu = this.navMenu();
+    const result = [];
 
-    // const result = [...menu[0].children!];
-
-    menu.pop();
-    menu.push({
+    result.push({
       title: 'Меню',
-      children: [
-        {
-          title: 'Каталог',
-          link: ['/catalog'],
-        },
-        // ...menu.slice(1),
-      ],
+      children: [...menu.slice(0, 3)],
     });
-
-    return menu;
+    result.push(...menu.slice(3));
+    return result;
   });
 }

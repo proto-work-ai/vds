@@ -9,11 +9,11 @@
   </header>
 
   <section class="flex flex-col gap-5">
-    <app-stretch-ceilings-catalog-route-filter></app-stretch-ceilings-catalog-route-filter>
+    <app-sc-catalog-route-filter [groups]="groups()"></app-sc-catalog-route-filter>
 
     <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
       @for (item of filtered(); track item) {
-        <a [routerLink]="['/', routePath.catalog.root, item.key]">
+        <a [routerLink]="['/', routePath.catalog.root, item.key]" fragment="stretch-ceilings-catalog-detail">
           <app-stretch-ceilings-catalog-card [item]="item" />
         </a>
       }

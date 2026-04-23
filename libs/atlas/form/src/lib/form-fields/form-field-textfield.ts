@@ -9,10 +9,10 @@ import {
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiError, TuiLabel, TuiTextfield } from '@taiga-ui/core';
-import { AttributeControlPipe } from "../pipes/attribute-control.pipe";
-import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
 import { TuiFieldErrorPipe } from '@taiga-ui/kit';
 import { AsyncPipe } from '@angular/common';
+import { AttributeControlPipe } from "../pipes/attribute-control.pipe";
+import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
 
 @Component({
   selector: 'atlas-form-field-textfield',

@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @nx/enforce-module-boundaries */
-import { HlmSidebarImports } from '@spartan-ng/helm/sidebar';
-import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideLayersPlus,
@@ -14,36 +12,28 @@ import {
 } from '@ng-icons/lucide';
 import { Component, DestroyRef, inject, Injector, Pipe, PipeTransform, signal, viewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BrnSelectImports } from '@spartan-ng/brain/select';
-import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { HlmDropdownMenuImports } from '@spartan-ng/helm/dropdown-menu';
-import { HlmInputImports } from '@spartan-ng/helm/input';
-import { HlmSelectImports } from '@spartan-ng/helm/select';
-import { HlmTableImports } from '@spartan-ng/helm/table';
 import { TuiDialogService } from '@taiga-ui/experimental';
 import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { map, of, startWith, switchMap, tap } from 'rxjs';
 import { TuiAlertService } from '@taiga-ui/core';
 import { takeUntilDestroyed, toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { AtlasDataTableComponents } from '@atlas/table';
-import { AtlasDataTableToggleSize } from '@atlas/table';
-import { AtlasTaigaUiTable } from "@atlas/table";
-import { AtlasTablePaginatePipe } from '@atlas/table';
-import { ColumnAttributeTable, PaginationOptions } from '@atlas/core';
 import { attrMetaEntityDescription, attrMetaEntityDisable, attrMetaEntityReadonly, attrMetaEntityTitle } from '../studio-attribute/studio-entity.attributes';
 
 import { MetaAttribute, MetaEntity, MetaRecord } from '@prisma/client';
 import { ActivatedRoute } from '@angular/router';
-import { AtlasFormImports, SortByPipe } from '@atlas/form';
-import { JsonPipe } from '@angular/common';
+import { PortalModule } from '@angular/cdk/portal';
+import { sortBy } from 'libs/atlas/form/src/lib/pipes/sort-by.pipe';
+import { AtlasFormImports } from '@atlas/form';
+import { ColumnAttributeTable, PaginationOptions } from '@atlas/core';
+import { AtlasDataTableComponents } from '@atlas/table';
+import { AtlasDataTableToggleSize } from '@atlas/table';
+import { AtlasTaigaUiTable } from "@atlas/table";
+import { AtlasTablePaginatePipe } from '@atlas/table';
+import { MetaRecordService } from '../services/studio-record.service';
+import { MetaAttributeService } from '../services/studio-attribute.service';
 import { MetaEntityService } from '../services/studio-entity.service';
 import { attributeColumnMenu } from '../attribute/column-checked.attributes';
 import { ContentDataEditModal, ContentDataEditModalData } from './data-edit-modal/data-edit-modal';
-import { MetaRecordService } from '../services/studio-record.service';
-import { PortalModule } from '@angular/cdk/portal';
-import { TuiForm } from '@taiga-ui/layout';
-import { sortBy } from 'libs/atlas/form/src/lib/pipes/sort-by.pipe';
-import { MetaAttributeService } from '../services/studio-attribute.service';
 
 @Pipe({ name: 'metaTableColumns' })
 export class MetaTableColumnsPipe implements PipeTransform {
@@ -63,30 +53,16 @@ export class MetaTableColumnsPipe implements PipeTransform {
   templateUrl: './content-data-table.component.html',
   styleUrls: ['./content-data-table.component.scss'],
   imports: [
-    HlmSidebarImports,
-    HlmIconImports,
-    HlmButtonImports,
-    HlmIconImports,
-    HlmDropdownMenuImports,
-    HlmButtonImports,
-    HlmIconImports,
-    HlmInputImports,
-    BrnSelectImports,
-    HlmSelectImports,
-    HlmTableImports,
-    AtlasDataTableComponents,
     FormsModule,
     NgIcon,
     ReactiveFormsModule,
     AtlasTaigaUiTable,
     AtlasDataTableToggleSize,
     AtlasTablePaginatePipe,
-    JsonPipe,
     MetaTableColumnsPipe,
     PortalModule,
     AtlasFormImports,
-    SortByPipe,
-    TuiForm,
+    AtlasDataTableComponents,
   ],
   providers: [
     provideIcons({

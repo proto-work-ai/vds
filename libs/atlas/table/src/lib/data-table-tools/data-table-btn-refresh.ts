@@ -4,18 +4,12 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  signal,
-  OnInit,
   inject,
   DestroyRef,
-  input,
 } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
-  lucideChevronDown,
-  lucideMaximize,
-  lucideMinimize,
   lucideRefreshCcw,
 } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
@@ -25,26 +19,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { hlmMuted } from '@spartan-ng/helm/typography';
 import {
-  type ColumnDef,
-  type ColumnFiltersState,
-  createAngularTable,
-  flexRenderComponent,
   FlexRenderDirective,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  type RowSelectionState,
-  type SortingState,
-  Table,
-  type VisibilityState,
 } from '@tanstack/angular-table';
-import { filter, tap } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AtlasDataTableComponent } from '../data-table/data-table';
-import { columns } from '../../../../../../apps/proto-storybook/src/app/modules/table/column-grouping-table/columns';
 import { output } from '@angular/core';
 
 @Component({

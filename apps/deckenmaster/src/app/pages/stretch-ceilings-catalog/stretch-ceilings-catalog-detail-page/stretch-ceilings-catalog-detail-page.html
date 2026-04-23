@@ -4,7 +4,23 @@
 
 <app-breadcrumbs-header [items]="breadcrumbs()" />
 
-<app-stretch-ceilings-catalog-detail [item]="item()" />
+<section
+  id="stretch-ceilings-catalog-detail"
+  name="stretch-ceilings-catalog-detail"
+  class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6"
+>
+  <header class="text-center flex flex-col gap-3">
+    <h2 class="md:text-4xl text-2xl">{{ item()?.title }}</h2>
+
+    <!-- <div class="md:w-180 mx-auto text-gray-500">{{ brief() }}</div> -->
+  </header>
+
+  <section>
+    <router-outlet />
+  </section>
+</section>
+
+<!-- <app-stretch-ceilings-catalog-detail [item]="item()" /> -->
 
 <app-application-measurement id="measurement" [title]="'Оставьте заявку на бесплатный замер'" />
 

@@ -16,7 +16,7 @@ export class TurnkeySolutionsComponent {
   protected readonly items = signal([
     {
       title: 'Потолок в ванной',
-      size: '4м2',
+      size: '4м²',
       color: 'Белый',
       canvas: 'MSD',
       texture: 'Глянец',
@@ -25,7 +25,7 @@ export class TurnkeySolutionsComponent {
     },
     {
       title: 'Потолок в коридоре',
-      size: '4м2',
+      size: '4м²',
       color: 'Белый',
       canvas: 'MSD',
       texture: 'Глянец',
@@ -34,7 +34,7 @@ export class TurnkeySolutionsComponent {
     },
     {
       title: 'Потолок на кухне',
-      size: '4м2',
+      size: '4м²',
       color: 'Белый',
       canvas: 'MSD',
       texture: 'Глянец',
@@ -43,7 +43,7 @@ export class TurnkeySolutionsComponent {
     },
     {
       title: 'Потолок в коридоре',
-      size: '4м2',
+      size: '4м²',
       color: 'Белый',
       canvas: 'MSD',
       texture: 'Глянец',

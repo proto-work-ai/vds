@@ -8,23 +8,25 @@ import { FooterMenuComponent } from '../../../modules/footer-menu/footer-menu.co
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
 import { NavMenu } from "../../../modules/nav-menu/nav-menu";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
-  selector: 'stretch-ceilings-catalog-detail-page',
+  selector: 'main',
   templateUrl: 'stretch-ceilings-catalog-detail-page.html',
   styleUrls: ['stretch-ceilings-catalog-detail-page.scss'],
   imports: [
-    StretchCeilingsCatalogDetail,
     MainHeaderComponent,
     ApplicationMeasurementComponent,
     FooterMenuComponent,
     BreadcrumbsHeader,
-    NavMenu
+    NavMenu,
+    RouterOutlet,
+    StretchCeilingsCatalogDetail,
 ],
   providers: [MenuDeferService],
 })
 export class StretchCeilingsCatalogDetailPage {
-  protected breadcrumbs = signal<IBreadcrumbItem[]>([]);
+  protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([]);
   protected readonly item = injectStretchCeilingRouteByKey();
 
   constructor() {
