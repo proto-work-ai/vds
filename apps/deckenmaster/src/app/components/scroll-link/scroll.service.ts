@@ -18,7 +18,9 @@ export class ScrollService {
 
 export function injectScrollToElement() {
   const scroll = inject(ScrollService);
-  return (selector: string) => {
-    return scroll.scrollToElementBy(selector);
+  return (selector: string | undefined) => {
+    if (selector) {
+      return scroll.scrollToElementBy(selector);
+    }
   };
 }

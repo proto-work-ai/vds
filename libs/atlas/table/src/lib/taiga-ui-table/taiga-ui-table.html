@@ -24,8 +24,8 @@
 
     @if (data()?.length && data(); as data) {
       <tbody tuiTbody [data]="data">
-        @for (row of data; track $index) {
-          <tr>
+        @for (row of data; track $index;let even = $even) {
+          <tr [class.bg-gray-100]="even">
             @for (column of columns(); track column) {
               @if (column.formatter) {
                 <td tuiTd>

@@ -29,11 +29,12 @@ export class StretchCeilingsCatalogs {
   protected readonly items = injectStretchCeilingsCatalog();
   protected readonly routePath = routePath;
 
-  protected readonly groups = signal<Pick<IAppMenuItem, 'title' | 'queryParams' | 'link'>[]>([
+  protected readonly groups = signal<IAppMenuItem[]>([
     ...injectStretchCeilingGroupMenu().slice(0, 3), // Все кромя "По типу"
     {
       title: 'Весь список',
       link: ['/catalog'],
+      fragment: 'main',
       queryParams: {},
     },
   ]);

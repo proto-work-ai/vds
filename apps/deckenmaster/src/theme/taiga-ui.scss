@@ -319,3 +319,13 @@ tui-scrollbar {
 .textfield-no-border {
   --tui-border-width: 0;
 }
+
+caption[tuiCaption] {
+  &:empty {
+    padding: 0;
+  }
+}
+
+table[tuiTable] td {
+  background-color: transparent;
+}

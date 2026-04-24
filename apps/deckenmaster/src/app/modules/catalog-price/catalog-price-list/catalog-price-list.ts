@@ -20,12 +20,15 @@ import { TuiDrawer, TuiTree } from '@taiga-ui/kit';
 import { JsonPipe } from '@angular/common';
 import { routePath } from '../../../app.routes';
 import { IAppMenuItem } from '../../../shared/menu';
-import { dataCategoryMap, getCategoryMap, STCategoryType, STPriceBrand } from '../../../model/price-list.service';
+import { STPriceGroup, STPriceBrand } from '../../../model/price-list.service';
 import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
 import { injectRouteParam } from '../../../shared/inject-route-param';
+import { dataCategoryMap, getCatalogMap } from '../../../model/price-list-all';
 import { PriceListRouteFilter } from '../price-list-route-filter/price-list-route-filter';
 import { PriceListBrandTable } from '../price-list-brand-table/price-list-brand-table';
 import { PriceListUnitTable } from '../price-list-unit-table/price-list-unit-table';
+import { additionalWorkPrice } from '../../../model/additional-work.group';
+import { electricalEquipmentGroup, electricalEquipmentList, powerSuppliesGroup } from '../../../model/electrical-equipment.group';
 
 @Component({
   selector: 'app-catalog-price-list',
@@ -76,7 +79,7 @@ export class PriceList {
     })
   );
 
-  protected readonly dataMap = getCategoryMap();
+  protected readonly dataMap = getCatalogMap();
   private readonly routeCategory = injectRouteParam('category');
   protected readonly category = computed(() => {
     return +this.routeCategory()!;
@@ -84,6 +87,10 @@ export class PriceList {
 
   protected readonly filtered = computed(() => {
     const items = this.dataMap(this.category()) as STPriceBrand[];
-    return items ?? this.dataMap(STCategoryType.PVC);
+    return items ?? this.dataMap(STPriceGroup.PVC);
   });
+
+  protected readonly additionalWork = signal(additionalWorkPrice);
+
+  protected readonly electricalEquipments = signal(electricalEquipmentList);
 }

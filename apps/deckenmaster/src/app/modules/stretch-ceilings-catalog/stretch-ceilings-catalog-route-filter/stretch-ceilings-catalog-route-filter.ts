@@ -16,7 +16,9 @@ import { tap } from 'rxjs';
 import { IAppMenuItem } from '../../../shared/menu';
 import { provideIcons, NgIcon } from '@ng-icons/core';
 import { lucideChevronDown, lucideSquareArrowOutUpRight } from '@ng-icons/lucide';
-import { HlmIcon } from "@spartan-ng/helm/icon";
+import { HlmIcon } from '@spartan-ng/helm/icon';
+import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
+import { injectScrollToElement } from '../../../components/scroll-link/scroll.service';
 
 @Component({
   selector: 'app-sc-catalog-route-filter',
@@ -36,12 +38,13 @@ import { HlmIcon } from "@spartan-ng/helm/icon";
     TuiTextfield,
     TuiIcon,
     NgIcon,
+    ScrollLink,
     RouterLink,
     TuiButton,
     TuiNumberFormat,
     TuiChevron,
     HlmIcon,
-],
+  ],
   providers: [
     provideIcons({
       lucideSquareArrowOutUpRight,
@@ -55,6 +58,7 @@ export class SCCatalogRouteFilter implements OnInit {
   protected readonly minRange = signal(5);
   protected readonly maxRange = signal(150);
   protected readonly ticksLabels = signal([this.minRange(), 50, 75, 100, this.maxRange()].map((a) => a + 'м²'));
+  private readonly scrollTo = injectScrollToElement();
 
   public readonly groups = input.required<Pick<IAppMenuItem, 'title' | 'queryParams' | 'link' | 'fragment'>[]>();
 
@@ -86,6 +90,7 @@ export class SCCatalogRouteFilter implements OnInit {
         fragment: item.fragment,
         // queryParamsHandling: 'merge',
       });
+      this.scrollTo(item.fragment ? `#${item.fragment}` : undefined);
     } else if (queryParams) {
       this.router.navigate([], {
         relativeTo: this.route,
@@ -93,6 +98,7 @@ export class SCCatalogRouteFilter implements OnInit {
         fragment: item.fragment,
         // queryParamsHandling: 'merge',
       });
+      this.scrollTo(item.fragment ? `#${item.fragment}` : undefined);
     }
   }
 }

@@ -2,9 +2,10 @@
 import { DestroyRef, effect, inject, signal, Signal, WritableSignal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import { startWith, tap, map } from 'rxjs';
+import { startWith, tap } from 'rxjs';
 import { IStretchCeiling, stretchCeilingAll, StretchCeilingsGroup, StretchCeilingsType } from './stretch-ceilings.data';
 import { IAppMenuItem } from '../shared/menu';
+import { STPriceGroup } from './price-list.service';
 
 export function injectStretchCeilingsCatalog(): Signal<IStretchCeiling[]> {
   const catalog = signal<IStretchCeiling[]>([]);
@@ -51,11 +52,33 @@ export const stretchCeilingsGroupName = {
   [StretchCeilingsGroup.ByPremises]: 'По типу помещений',
 } as const;
 
+
+export const stretchCeilingGroupName = {
+  [STPriceGroup.PVC]: 'ПВХ',
+  [STPriceGroup.Fabric]: 'Тканевые',
+  [STPriceGroup.Satin]: 'Сатиновые',
+
+  [STPriceGroup.Matte]: 'Матовые',
+  [STPriceGroup.Glossy]: 'Глянцевые',
+  [STPriceGroup.Textured]: 'Фактурные',
+
+  [STPriceGroup.WithBacklight]: 'С подсветкой',
+  [STPriceGroup.ByDesign]: 'По конструкции',
+  // [STPriceGroup.Exclusive]: 'Эксклюзивные',
+  [STPriceGroup.AdditionalWork]: 'Дополнительные работы',
+  [STPriceGroup.ElectricalEquipment]: 'Электрооборудование',
+  [STPriceGroup.PowerSupplies]: 'Блоки питания',
+
+} as const;
+
 export const stretchCeilingName: Partial<Record<StretchCeilingsType, string>> = {
   // ПВХ
   [StretchCeilingsType.Matte]: 'Матовые',
-  [StretchCeilingsType.Glossy]: 'Глянцевые',
+  [StretchCeilingsType.MatteColor]: 'Матовые цветной',
+  [StretchCeilingsType.Glossy]: 'Глянцевые цветной',
+  [StretchCeilingsType.GlossyColor]: 'Глянцевые',
   [StretchCeilingsType.Satin]: 'Сатиновые',
+  [StretchCeilingsType.SatinColor]: 'Сатиновые цветной',
   [StretchCeilingsType.Textured]: 'Фактурные',
 
   // Тканевые
@@ -76,7 +99,7 @@ export const stretchCeilingName: Partial<Record<StretchCeilingsType, string>> = 
   // Премиум/Эксклюзивные потолки
   [StretchCeilingsType.Shadow]: 'Теневые',
   [StretchCeilingsType.Gapless]: 'Бесщелевые',
-  [StretchCeilingsType.WithPhotoPrinting]: 'С фотопечатью',
+  // [StretchCeilingsType.WithPhotoPrinting]: 'С фотопечатью',
   [StretchCeilingsType.TwoTiered]: 'Двухуровневые',
   [StretchCeilingsType.MultiLevel]: 'Многоуровневые',
   [StretchCeilingsType.StarrySky]: 'Звездное небо',
