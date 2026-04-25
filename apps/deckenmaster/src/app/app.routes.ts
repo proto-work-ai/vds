@@ -11,11 +11,11 @@ export const routePath = {
   },
 };
 
-const stretchCeilingRoutes: Route[] = stretchCeilingAll.map((item) => {
+const stretchCeilingRoutes: Route[] = stretchCeilingAll.map((data) => {
   return {
-    path: `${routePath.catalog.root}/${item.key}`,
+    path: `${routePath.catalog.root}/${data.key}`,
     pathMatch: 'full',
-    data: item,
+    data,
     loadComponent: () =>
       import(
         './pages/stretch-ceilings-catalog/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
@@ -24,8 +24,8 @@ const stretchCeilingRoutes: Route[] = stretchCeilingAll.map((item) => {
     children: [
       {
         path: ``,
-        data: item,
-        loadComponent: () => item.detail(),
+        data,
+        loadComponent: () => data.detail(),
       },
     ],
   };

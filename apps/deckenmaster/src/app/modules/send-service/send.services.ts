@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TuiDialogService } from '@taiga-ui/core';
-import { of, switchMap, tap } from 'rxjs';
+import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
+import { filter, switchMap } from 'rxjs';
+import { SendModal } from './send.modal';
 
 export interface IFormData {
   name?: string;
@@ -86,23 +88,6 @@ export function buldHtmlSend(items: IDataSendItem[]): string {
   return result;
 }
 
-export function injectSendFormData() {
-  const http = inject(HttpClient);
-  const destroyRef = inject(DestroyRef);
-  const dialog = inject(TuiDialogService);
-  return (data: IFormData) => {
-    const items = buldDataSend(data);
-    const message = buldHtmlSend(items);
-    return http.post('/api/send-message.php', { message }).pipe(
-      // return of(0).pipe(
-      tap(() => {
-        dialog.open('Мы скоро с вами свяжемся.', { label: 'Ваша заявка успешно отправлена!', size: 's' });
-      }),
-      takeUntilDestroyed(destroyRef)
-    );
-  };
-}
-
 export function getTestHtml() {
   const items = buldDataSend({
     name: 'fgnfgn',
@@ -127,44 +112,38 @@ export function getTestHtml() {
   return html;
 }
 
-/*
-  <!-- <div class="container mx-auto" [innerHTML]="html">
-    <div class="flex flex-col gap-2 px-3">
-      @for (item of items; track item) {
-        <section class="flex gap-3 items-center">
-          <div class="w-30 text-end font-medium">{{ item.title }}</div>
+export function injectSendMessage() {
+  const http = inject(HttpClient);
+  const destroyRef = inject(DestroyRef);
+  const dialog = inject(TuiDialogService);
+  return (data: IFormData) => {
+    const items = buldDataSend(data);
+    const message = buldHtmlSend(items);
+    return http.post('/api/send-message.php', { message }).pipe(
+      // return of(0).pipe(
+      switchMap(() => {
+        return dialog.open('Мы скоро с вами свяжемся.', { label: 'Ваша заявка успешно отправлена!', size: 's' });
+      }),
+      takeUntilDestroyed(destroyRef)
+    );
+  };
+}
 
-          <article class="flex-1 flex gap-3">
-            @for (value of item.values; track value) {
-              <div class="bg-gray-200 rounded-full py-2 px-4">{{ value }}</div>
-            }
-          </article>
-        </section>
-      }
-    </div>
-    
-    <div style="display: flex; flex-direction: column; gap: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem;">
-      @for (item of items; track item) {
-        <section style="display: flex; align-items: center; gap: 0.75rem">
-          <div style="text-align: end; font-weight: 500">{{ item.title }}</div>
+export function injectPhoneSendModal() {
+  const destroyRef = inject(DestroyRef);
+  const dialog = inject(TuiDialogService);
+  const sendMessage = injectSendMessage();
 
-          <article style="display: flex; flex: 1 1 0%; gap: 0.75rem">
-            @for (value of item.values; track value) {
-              <div
-                style="
-                  border-radius: 9999px;
-                  background-color: #e5e7eb;
-                  padding-left: 1rem;
-                  padding-right: 1rem;
-                  padding-top: 0.5rem;
-                  padding-bottom: 0.5rem;
-                "
-              >{{ value }}</div>
-            }
-          </article>
-        </section>
-      }
-    </div>
-  </div> -->
-
-*/
+  return () => {
+    return dialog
+      .open<IFormData>(new PolymorpheusComponent(SendModal), {
+        label: 'Оставить заявку',
+        size: 's',
+      })
+      .pipe(
+        filter(Boolean),
+        switchMap((data: IFormData) => sendMessage(data)),
+        takeUntilDestroyed(destroyRef)
+      );
+  };
+}

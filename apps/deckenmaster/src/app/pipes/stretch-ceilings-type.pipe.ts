@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StretchCeilingsType } from '../model/stretch-ceilings.data';
-import { stretchCeilingName } from '../model/stretch-ceilings.service';
+import { stretchCeilingName, StretchCeilingsType } from '../model/stretch-ceilings.data';
 
 @Pipe({ name: 'stretchCeilingsType' })
 export class StretchCeilingsTypePipe implements PipeTransform {

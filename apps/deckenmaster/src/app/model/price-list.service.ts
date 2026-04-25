@@ -1,4 +1,4 @@
-import { StretchCeilingsType } from './stretch-ceilings.data';
+import { STPriceGroup, StretchCeilingsType } from './stretch-ceilings.data';
 
 export enum STBrandType {
   Bauf = 1,
@@ -104,39 +104,16 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
 ]);
 
 export interface STUnitPrice {
-  name: string; // Название
+  // name: string; // Название
+  type: StretchCeilingsType;
   unit: Unit; // Ед.изм.
   price: number | number[] | string; //  Цена
 }
 
-export enum STPriceGroup {
-  // По материалу
-  PVC = 1, //  ПВХ(материал)
-  Fabric, //  Тканевые(материал)
-  Satin, //  Сатиновые(материал)*
-
-  // По типу поверхности
-  Matte, // Матовые(тип поверхности)*
-  Glossy, // Глянцевые(тип поверхности)*
-  Textured, // Фактурные(тип поверхности)*
-
-  // С подсветкой
-  WithBacklight,
-
-  // По конструкции
-  ByDesign,
-
-  // Эксклюзивные
-  // Exclusive,
-
-  // Дополнительные работы
-  AdditionalWork,
-
-  // Электрооборудование
-  ElectricalEquipment,
-
-  // Блоки питания Ip20
-  PowerSupplies,
+export interface UnitPrice {
+  name: string; // Название
+  unit: Unit; // Ед.изм.
+  price: number | number[] | string; //  Цена
 }
 
 // export const dataCategoryMap = new Map<STPriceGroup, string>([

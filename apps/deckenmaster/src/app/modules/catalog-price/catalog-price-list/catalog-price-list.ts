@@ -20,7 +20,7 @@ import { TuiDrawer, TuiTree } from '@taiga-ui/kit';
 import { JsonPipe } from '@angular/common';
 import { routePath } from '../../../app.routes';
 import { IAppMenuItem } from '../../../shared/menu';
-import { STPriceGroup, STPriceBrand } from '../../../model/price-list.service';
+import { STPriceBrand } from '../../../model/price-list.service';
 import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
 import { injectRouteParam } from '../../../shared/inject-route-param';
 import { dataCategoryMap, getCatalogMap } from '../../../model/price-list-all';
@@ -28,7 +28,8 @@ import { PriceListRouteFilter } from '../price-list-route-filter/price-list-rout
 import { PriceListBrandTable } from '../price-list-brand-table/price-list-brand-table';
 import { PriceListUnitTable } from '../price-list-unit-table/price-list-unit-table';
 import { additionalWorkPrice } from '../../../model/additional-work.group';
-import { electricalEquipmentGroup, electricalEquipmentList, powerSuppliesGroup } from '../../../model/electrical-equipment.group';
+import { electricalEquipmentList } from '../../../model/electrical-equipment.group';
+import { STPriceGroup } from '../../../model/stretch-ceilings.data';
 
 @Component({
   selector: 'app-catalog-price-list',
@@ -82,11 +83,11 @@ export class PriceList {
   protected readonly dataMap = getCatalogMap();
   private readonly routeCategory = injectRouteParam('category');
   protected readonly category = computed(() => {
-    return +this.routeCategory()!;
+    return this.routeCategory() != null ? +this.routeCategory()! : -1;
   });
 
   protected readonly filtered = computed(() => {
-    const items = this.dataMap(this.category()) as STPriceBrand[];
+    const items = this.dataMap(this.category());
     return items ?? this.dataMap(STPriceGroup.PVC);
   });
 

@@ -4,11 +4,20 @@ import { DOCUMENT, inject, Injectable } from '@angular/core';
 export class ScrollService {
   private readonly document = inject(DOCUMENT);
 
-  scrollToElement(element: HTMLElement | null): void {
+  scrollToElement(element: Element | null): void {
     element?.scrollIntoView({ behavior: 'smooth' });
   }
   scrollToElementBy(selector: string): void {
-    this.scrollToElement(this.document.querySelector(selector));
+    setTimeout(() => {
+      const element = this.document.querySelector(selector)!;
+      if (element) {
+        this.scrollToElement(element);
+      } else {
+        setTimeout(() => {
+          this.scrollToElement(this.document.querySelector(selector)!);
+        }, 1000);
+      }
+    });
   }
 
   scrollToElementById(id: string): void {

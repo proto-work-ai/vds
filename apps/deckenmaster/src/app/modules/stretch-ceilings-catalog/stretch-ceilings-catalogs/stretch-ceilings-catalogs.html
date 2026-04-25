@@ -13,7 +13,7 @@
 
     <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
       @for (item of filtered(); track item) {
-        <a [routerLink]="['/', routePath.catalog.root, item.key]" fragment="stretch-ceilings-catalog-detail">
+        <a scrollLink [routerLink]="['/', routePath.catalog.root, item.key]" fragment="stretch-ceilings-catalog-detail">
           <app-stretch-ceilings-catalog-card [item]="item" />
         </a>
       }
@@ -23,14 +23,14 @@
 
 <!-- <section class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
     @for (item of items().slice(0, 4); track item) {
-      <a [routerLink]="['/', routePath.catalog.root, item.key]" fragment="stretch-ceilings-catalog-detail">
+      <a scrollLink [routerLink]="['/', routePath.catalog.root, item.key]" fragment="stretch-ceilings-catalog-detail">
         <app-stretch-ceilings-catalog-card [item]="item" />
       </a>
     }
   </section> -->
 
 <!-- <footer class="flex justify-end">
-    <a [routerLink]="['/', 'catalog']" class="text-lg flex items-center gap-1 font-medium">
+    <a scrollLink [routerLink]="['/', 'catalog']" class="text-lg flex items-center gap-1 font-medium">
       Весь каталог
       <ng-icon name="lucideChevronRight" />
     </a>

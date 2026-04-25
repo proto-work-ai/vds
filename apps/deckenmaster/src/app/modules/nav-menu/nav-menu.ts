@@ -17,9 +17,9 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { type TuiHandler } from '@taiga-ui/cdk';
 import { TuiHeader } from '@taiga-ui/layout';
+import { TuiDrawer, TuiTree } from '@taiga-ui/kit';
 import { injectNavMenu } from '../../model/stretch-ceilings.service';
 import { IAppMenuItem } from '../../shared/menu';
-import { TuiDrawer, TuiTree } from '@taiga-ui/kit';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 
 @Component({
@@ -58,9 +58,7 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 })
 export class NavMenu {
   protected readonly navMenu = injectNavMenu();
-
   protected readonly handler: TuiHandler<IAppMenuItem, readonly IAppMenuItem[]> = (item) => item.children || [];
-
   protected open = signal(false);
 
   protected onClose(): void {
@@ -71,36 +69,3 @@ export class NavMenu {
     this.open.set(true);
   }
 }
-
-/*
-{
-  title: 'Alert Dialog',
-  description: 'A modal dialog that interrupts the user with important content and expects a response.',
-  link: '/components/alert-dialog',
-},
-{
-  title: 'Hover Card',
-  description: 'For sighted users to preview content available behind a link.',
-  link: '/components/hover-card',
-},
-{
-  title: 'Progress',
-  description: 'Displays an indicator showing the completion progress of a task.',
-  link: '/components/progress',
-},
-{
-  title: 'Scroll Area',
-  description: 'Visually or semantically separates content.',
-  link: '/components/scroll-area',
-},
-{
-  title: 'Tabs',
-  description: 'A set of layered content panels displayed one at a time.',
-  link: '/components/tabs',
-},
-{
-  title: 'Tooltip',
-  description: 'A popup that displays information on hover or focus.',
-  link: '/components/tooltip',
-},
-*/

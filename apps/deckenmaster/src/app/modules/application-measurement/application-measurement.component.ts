@@ -4,7 +4,7 @@ import { TuiTextfield } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
 import { FormStore } from '../../components/form-store/form-store.directive';
 import { markAsSubmit } from '@atlas/core';
-import { IFormData, injectSendFormData } from '../send-form-data/send.services';
+import { IFormData, injectSendMessage } from '../send-service/send.services';
 import { tap } from 'rxjs';
 
 @Component({
@@ -22,7 +22,7 @@ import { tap } from 'rxjs';
   ],
 })
 export class ApplicationMeasurementComponent {
-  private readonly sendForm = injectSendFormData();
+  private readonly sendForm = injectSendMessage();
   readonly title = input('Оставьте заявку на бесплатный замер');
 
   protected readonly form = new FormGroup({

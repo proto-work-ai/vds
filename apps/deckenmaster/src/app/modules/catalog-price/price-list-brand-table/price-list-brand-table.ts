@@ -20,8 +20,7 @@ import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import { TuiTree } from '@taiga-ui/kit';
 import { stretchCeilingBrandMap, STBrandType } from '../../../model/price-list.service';
-import { StretchCeilingsType } from '../../../model/stretch-ceilings.data';
-import { stretchCeilingName } from '../../../model/stretch-ceilings.service';
+import { stretchCeilingName, StretchCeilingsType } from '../../../model/stretch-ceilings.data';
 
 @Component({
   selector: 'app-column-brand-cell',
@@ -142,7 +141,7 @@ export class PriceListBrandTable {
     //     }
     //   },
     // },
-    { title: 'Температура эксплуатации, °С', key: 'operatingTemperature', type: 'string' },
+    // { title: 'Температура эксплуатации, °С', key: 'operatingTemperature', type: 'string' },
     { title: 'Гарантия', key: 'warranty', type: 'string', formatter: ({ warranty }: any) => `${warranty} лет` },
     {
       title: 'Цена за м² <div class="text-sm">с установкой</div>',

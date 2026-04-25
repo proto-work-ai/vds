@@ -19,10 +19,11 @@ export enum StretchCeilingsGroup {
   // Fabric, // Тканевые(Тканевые,D-Premium,Clipso,Cerutti)
 }
 
+// Все типы потолков
 export enum StretchCeilingsType {
   // ПВХ
   // PVC = 1, // ПВХ
-  Textured, // Фактурные
+  Textured = 1, // Фактурные
 
   Matte, // Матовые
   MatteColor, // Матовые Цветной
@@ -40,26 +41,6 @@ export enum StretchCeilingsType {
   Clipso, // Clipso,*
   Cerutti, // Cerutti*
 
-  // С подсветкой
-  Floating, // Парящие
-  Contour, // C контурной подсветкой
-  LightLines, // Световые линии
-  InternalLighting, // Потолки с подсветкой внутри
-  Slott, // Световые линии SLOTT*
-  Flexy, // Световые линии Flexy*
-  Lightbox, // Лайтбокс*
-  // С точечными светильниками
-  // Парящий
-  // С подсветкой по периметру
-
-  // [Премиум]/[Эксклюзивные потолки]
-  Shadow, // Теневые,
-  Gapless, // Бесщелевые KRAAB,
-  TwoTiered, // Двухуровневые
-  MultiLevel, // Многоуровневые
-  StarrySky, // Звездное небо
-  WithPhotoPrinting, // С фотопечатью*
-
   // [По типу помещений]/[По применению]
   Kitchen, // На кухню
   Corridor, // В коридор
@@ -68,21 +49,38 @@ export enum StretchCeilingsType {
   Nursery, //  В детскую
   LivingRoom, //  В гостиную
   House, //  В доме
-}
 
-// По технологии
-export enum StretchCeilingsByTechnology {
-  Backlit, // С подстветкой,
-  LightLines, // Световые линии,
-  Shadow, // Теневой,
-  MultiLevel, // Многоуровневые,
-  Gapless, // Бесщелевой,
+  // С подсветкой
+  Floating, // Парящие
+  Contour, // C контурной подсветкой
+  // LightLines, // Световые линии
+  LightLinesSlott, // Световые линии SLOTT*
+  LightLinesFlexy, // Световые линии Flexy*
+  InternalLighting, // Потолки с подсветкой внутри
+  // Lightbox, // Лайтбокс*
+  // С точечными светильниками
+  // Парящий
+  // С подсветкой по периметру
+
+  // [Премиум]/[Эксклюзивные потолки]
+  ShadowKRAAB, // Теневые,
+  Gapless, // Бесщелевые KRAAB,
+
+  TwoTiered, // Двухуровневые без подсветки
+  TwoTieredWithBacklight, // Двухуровневые с подсветкой
+  TwoTieredWithBacklightNiche, // Двухуровневые с подсветкой в нише
+
+  CurvedTransition, // Криволинейный переход
+  MultiLevel, // Многоуровневые
+  StarrySky, // Акустические
+  WithPhotoPrinting, // С фотопечатью*
+  Acoustic, // Звездное небо
   DoubleVision, // Double Vision,
-  Floating, // Парящий
   Transparent, // Светопрозрачный,
-  StarrySky, // Звездное небо,
+  WithIlluminationCanvas, // С подсветкой через полотно,
 }
 
+// Страницы по потолками
 export const stretchCeilingAll: IStretchCeiling[] = [
   {
     types: [
@@ -100,14 +98,10 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     title: 'Матовые натяжные потолки',
     brief:
       'Классическое, гладкое покрытие без блеска и отражений, имитирующее идеально ровную побелку или гипсокартон. Они создают уют, не перегружают интерьер, обладают антистатическим эффектом, не выгорают и стоят дешевле глянцевых аналогов',
-    detail: () => import('./stretch-ceiling-detail/matte-stretch-ceilings/matte-stretch-ceilings').then((a) => a.Detail),
+    detail: () =>
+      import('./stretch-ceiling-detail/matte-stretch-ceilings/matte-stretch-ceilings').then((a) => a.Detail),
     image: '/catalog/image-2.jpg',
-    images: [
-      '/catalog/image-2.jpg',
-      '/catalog/image-3.jpg',
-      '/catalog/image-4.jpg',
-      '/catalog/image-1.jpg',
-    ],
+    images: ['/catalog/image-2.jpg', '/catalog/image-3.jpg', '/catalog/image-4.jpg', '/catalog/image-1.jpg'],
   },
 
   // {
@@ -133,7 +127,7 @@ export const stretchCeilingAll: IStretchCeiling[] = [
 
   {
     types: [
-      StretchCeilingsType.LightLines,
+      // StretchCeilingsType.LightLines,
 
       StretchCeilingsType.Kitchen,
       StretchCeilingsType.Corridor,
@@ -177,7 +171,8 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     title: 'Тканевые натяжные потолки',
     brief:
       'Экологичные, прочные и «дышащие» потолочные покрытия из полиэстера с полиуретановой пропиткой. Они имеют матовую фактуру, монтируются без нагрева («холодный монтаж»), устойчивы к перепадам температур и не имеют запаха.',
-    detail: () => import('./stretch-ceiling-detail/fabric-stretch-ceilings/fabric-stretch-ceilings').then((a) => a.Detail),
+    detail: () =>
+      import('./stretch-ceiling-detail/fabric-stretch-ceilings/fabric-stretch-ceilings').then((a) => a.Detail),
     image: '/catalog/image-17.jpg',
     images: ['/catalog/image-17.jpg', '/catalog/image-7.jpg'],
   },
@@ -199,7 +194,8 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     title: 'Глянцевые натяжные потолки',
     brief:
       'Это зеркальное покрытие с высоким коэффициентом отражения (до 90–95%), которое визуально удваивает высоту и освещенность комнаты. Они водонепроницаемы, прочны, скрывают дефекты чернового потолка и монтируются за несколько часов',
-    detail: () => import('./stretch-ceiling-detail/glossy-stretch-ceilings/glossy-stretch-ceilings').then((a) => a.Detail),
+    detail: () =>
+      import('./stretch-ceiling-detail/glossy-stretch-ceilings/glossy-stretch-ceilings').then((a) => a.Detail),
     image: '/catalog/image-12.jpg',
     images: ['/catalog/image-12.jpg', '/catalog/image-16.jpg', '/catalog/image-18.jpg', '/catalog/image-14.jpg'],
   },
@@ -208,7 +204,7 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     types: [
       // StretchCeilingsType.Matte,
 
-      StretchCeilingsType.Shadow,
+      StretchCeilingsType.ShadowKRAAB,
 
       StretchCeilingsType.Kitchen,
       StretchCeilingsType.Corridor,
@@ -222,8 +218,9 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     title: 'Теневые натяжные потолки',
     brief:
       'Это современная технология монтажа, создающая эффект парения полотна за счет небольшого зазора (5–7 мм) между стеной и потолком. Создает четкую черную теневую линию по периметру',
-    detail: () => import('./stretch-ceiling-detail/shadow-stretch-ceilings/shadow-stretch-ceilings').then((a) => a.Detail),
-    image: '/catalog/image-3.jpg', 
+    detail: () =>
+      import('./stretch-ceiling-detail/shadow-stretch-ceilings/shadow-stretch-ceilings').then((a) => a.Detail),
+    image: '/catalog/image-3.jpg',
     images: ['/catalog/image-3.jpg', '/catalog/image-41.jpg', '/catalog/image-42.jpg'],
   },
 
@@ -295,7 +292,8 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     title: 'Сатиновые натяжные потолки',
     brief:
       'ПВХ-пленка с особой фактурой, имитирующей ткань, которая занимает промежуточное место между матовыми и глянцевыми покрытиями. Они отличаются гладкой поверхностью, легким перламутровым блеском, мягким рассеиванием света, не создавая резких бликов',
-    detail: () => import('./stretch-ceiling-detail/satin-stretch-ceilings/satin-stretch-ceilings').then((a) => a.Detail),
+    detail: () =>
+      import('./stretch-ceiling-detail/satin-stretch-ceilings/satin-stretch-ceilings').then((a) => a.Detail),
     image: '/catalog/image-7.jpg',
     images: ['/catalog/image-7.jpg', '/catalog/image-11.jpg', '/catalog/image-9.jpg', '/catalog/image-13.jpg'],
   },
@@ -389,7 +387,9 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     brief:
       'Вид натяжных потолков, где светодиодная лента устанавливается в специальный скрытый профиль по периметру. В отличие от [парящего потолка], контурный дает чёткую светящуюся линию, а не рассеянный свет',
     detail: () =>
-      import('./stretch-ceiling-detail/ceilings-with-contour-lighting/ceilings-with-contour-lighting').then((a) => a.Detail),
+      import('./stretch-ceiling-detail/ceilings-with-contour-lighting/ceilings-with-contour-lighting').then(
+        (a) => a.Detail
+      ),
     image: '/catalog/image-15.jpg',
     images: ['/catalog/image-15.jpg', '/catalog/image-17.jpg', '/catalog/image-27.jpg'],
   },
@@ -483,3 +483,161 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     images: ['/catalog/image-22.jpg', '/catalog/image-46.jpg', '/catalog/image-47.jpg'],
   },
 ];
+
+// Потолки по тгруппам
+export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, StretchCeilingsType[]> = new Map([
+  [
+    StretchCeilingsGroup.ByTexture,
+    [
+      StretchCeilingsType.Matte,
+      StretchCeilingsType.Glossy,
+      StretchCeilingsType.Satin,
+      StretchCeilingsType.Textured,
+      StretchCeilingsType.Fabric,
+    ],
+  ],
+  [
+    StretchCeilingsGroup.WithBacklight,
+    [
+      StretchCeilingsType.Floating,
+      //StretchCeilingsType.LightLines,
+      StretchCeilingsType.Contour,
+      StretchCeilingsType.InternalLighting,
+
+      //StretchCeilingsType.Lightbox,
+      StretchCeilingsType.LightLinesSlott,
+      StretchCeilingsType.LightLinesFlexy,
+    ],
+  ],
+  [
+    StretchCeilingsGroup.Premium,
+    [
+      StretchCeilingsType.ShadowKRAAB,
+      StretchCeilingsType.Gapless,
+      StretchCeilingsType.WithPhotoPrinting,
+      StretchCeilingsType.TwoTiered,
+      StretchCeilingsType.MultiLevel,
+      StretchCeilingsType.StarrySky,
+    ],
+  ],
+  // [
+  //   StretchCeilingsGroup.ByPremises,
+  //   [
+  //     StretchCeilingsType.Kitchen,
+  //     StretchCeilingsType.Corridor,
+  //     StretchCeilingsType.Bathroom,
+  //     StretchCeilingsType.Bedroom,
+  //     StretchCeilingsType.Nursery,
+  //     StretchCeilingsType.LivingRoom,
+  //   ],
+  // ],
+  // [ StretchCeilingsGroup.Fabric, [StretchCeilingsType.Fabric, StretchCeilingsType.DPremium, StretchCeilingsType.Clipso, StretchCeilingsType.Cerutti]],
+] as const);
+
+export const stretchCeilingName: Partial<Record<StretchCeilingsType, string>> = {
+  // ПВХ
+  [StretchCeilingsType.Matte]: 'Матовые',
+  [StretchCeilingsType.MatteColor]: 'Матовые цветной',
+  [StretchCeilingsType.Glossy]: 'Глянцевые цветной',
+  [StretchCeilingsType.GlossyColor]: 'Глянцевые',
+  [StretchCeilingsType.Satin]: 'Сатиновые',
+  [StretchCeilingsType.SatinColor]: 'Сатиновые цветной',
+  [StretchCeilingsType.Textured]: 'Фактурные',
+
+  // Тканевые
+  [StretchCeilingsType.Fabric]: 'Тканевые',
+  [StretchCeilingsType.DPremium]: 'D-Premium',
+  [StretchCeilingsType.Clipso]: 'Clipso',
+  [StretchCeilingsType.Cerutti]: 'Cerutti',
+
+  // Премиум/Эксклюзивные потолки
+  [StretchCeilingsType.Gapless]: 'Бесщелевые',
+  // [StretchCeilingsType.WithPhotoPrinting]: 'С фотопечатью',
+
+  // По типу помещений
+  [StretchCeilingsType.Kitchen]: 'На кухню',
+  [StretchCeilingsType.Corridor]: 'В коридор',
+  [StretchCeilingsType.Bathroom]: 'В ванную',
+  [StretchCeilingsType.Bedroom]: 'В спальню',
+  [StretchCeilingsType.Nursery]: 'В детскую',
+  [StretchCeilingsType.LivingRoom]: 'В гостиную',
+  // [StretchCeilingsType.House]: 'В доме',
+
+  // ByDesign[По конструкции]
+  [StretchCeilingsType.TwoTiered]: 'Двухуровневые без подсветки',
+  [StretchCeilingsType.TwoTieredWithBacklight]: 'с подсветкой',
+  [StretchCeilingsType.TwoTieredWithBacklightNiche]: 'Двухуровневые с подсветкой в нише',
+  [StretchCeilingsType.MultiLevel]: 'Многоуровневый натяжной потолок',
+  [StretchCeilingsType.CurvedTransition]: 'Криволинейный переход',
+  [StretchCeilingsType.DoubleVision]: 'Double Vision',
+  [StretchCeilingsType.ShadowKRAAB]: 'Теневые Euro Kraab',
+  [StretchCeilingsType.WithPhotoPrinting]: 'С фотопечатью',
+  [StretchCeilingsType.Acoustic]: 'Акустические',
+
+  // С подсветкой
+  [StretchCeilingsType.Floating]: 'Парящие',
+  [StretchCeilingsType.Contour]: 'C контурной подсветкой',
+  // [StretchCeilingsType.LightLines]: 'Световые линии',
+  [StretchCeilingsType.LightLinesSlott]: 'Световые линии SLOTT',
+  [StretchCeilingsType.LightLinesFlexy]: 'Световые линии Flexy',
+  [StretchCeilingsType.InternalLighting]: 'C подсветкой внутри',
+  [StretchCeilingsType.Transparent]: 'Светопрозрачный потоло',
+  [StretchCeilingsType.WithIlluminationCanvas]: 'С подсветкой через полотно',
+  [StretchCeilingsType.StarrySky]: 'Звездное небо',
+
+  // [StretchCeilingsType.Lightbox]: 'Лайтбокс',
+} as const;
+
+export const stretchCeilingsGroupName = {
+  [StretchCeilingsGroup.ByTexture]: 'По фактуре',
+  [StretchCeilingsGroup.WithBacklight]: 'С подсветкой',
+  [StretchCeilingsGroup.Premium]: 'Премиум', // Эксклюзивные потолки
+  [StretchCeilingsGroup.ByPremises]: 'По типу помещений',
+} as const;
+
+export enum STPriceGroup {
+  // По материалу
+  PVC = 1, //  ПВХ(материал)
+  Fabric, //  Тканевые(материал)
+  Satin, //  Сатиновые(материал)*
+
+  // По типу поверхности 
+  Matte, // Матовые(тип поверхности)*
+  Glossy, // Глянцевые(тип поверхности)*
+  Textured, // Фактурные(тип поверхности)*
+
+  // С подсветкой
+  WithBacklight,
+
+  // По конструкции
+  ByDesign,
+
+  // Эксклюзивные
+  // Exclusive,
+
+  // Дополнительные работы
+  AdditionalWork,
+
+  // Электрооборудование
+  ElectricalEquipment,
+
+  // Блоки питания Ip20
+  PowerSupplies,
+}
+
+export const stretchCeilingGroupName = {
+  [STPriceGroup.PVC]: 'ПВХ',
+  [STPriceGroup.Fabric]: 'Тканевые',
+  [STPriceGroup.Satin]: 'Сатиновые',
+
+  [STPriceGroup.Matte]: 'Матовые',
+  [STPriceGroup.Glossy]: 'Глянцевые',
+  [STPriceGroup.Textured]: 'Фактурные',
+
+  [STPriceGroup.WithBacklight]: 'С подсветкой',
+  [STPriceGroup.ByDesign]: 'По конструкции',
+  // [STPriceGroup.Exclusive]: 'Эксклюзивные',
+  [STPriceGroup.AdditionalWork]: 'Дополнительные работы',
+  [STPriceGroup.ElectricalEquipment]: 'Электрооборудование',
+  [STPriceGroup.PowerSupplies]: 'Блоки питания',
+} as const;

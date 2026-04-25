@@ -1,11 +1,13 @@
-import { STBrandType, STPriceGroup, STPriceBrand } from './price-list.service';
-import { StretchCeilingsType } from './stretch-ceilings.data';
-import { withBacklight as withBacklightGroup } from './with-backlight.group';
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { STBrandType, STPriceBrand, UnitPrice } from './price-list.service';
+import {
+  STPriceGroup,
+  stretchCeilingGroupName,
+  stretchCeilingName,
+  StretchCeilingsType,
+} from './stretch-ceilings.data';
 import { STUnitPrice } from './price-list.service';
-import { byDesignGroup } from './by-design.group';
-import { electricalEquipmentGroup, powerSuppliesGroup } from './electrical-equipment.group';
-import { map } from 'rxjs';
-import { stretchCeilingGroupName } from './stretch-ceilings.service';
+import { byDesignGroup, withBacklightGroup } from './by-design.group';
 
 const MatteMSD: STPriceBrand = {
   type: StretchCeilingsType.Matte,
@@ -139,6 +141,53 @@ const FabricCerutti: STPriceBrand = {
   price: 4500,
 };
 
+const SatinMSD: STPriceBrand = {
+  brand: STBrandType.MSD,
+  type: StretchCeilingsType.Satin,
+  size: 30,
+  width: 5,
+  thickness: [0.16, 0.18],
+  warranty: 15,
+  operatingTemperature: 'от 0 до +60 °С',
+  price: 500,
+};
+
+// MSD
+const SatinColorMSD: STPriceBrand = {
+  brand: STBrandType.MSD,
+  type: StretchCeilingsType.SatinColor,
+  size: 30,
+  width: 5,
+  thickness: [0.16, 0.18],
+  warranty: 15,
+  operatingTemperature: 'от 0 до +60 °С',
+  price: 700,
+};
+
+// Pongs
+const SatinPongs: STPriceBrand = {
+  brand: STBrandType.Pongs,
+  type: StretchCeilingsType.Satin,
+  size: 30,
+  width: 2,
+  thickness: [0.16, 0.18],
+  warranty: 15,
+  operatingTemperature: 'от 0 до +60 °С',
+  price: 800,
+};
+
+// Pongs
+const SatinColorPongs: STPriceBrand = {
+  brand: STBrandType.Pongs,
+  type: StretchCeilingsType.SatinColor,
+  size: 30,
+  width: 2.7,
+  thickness: [0.16, 0.18],
+  warranty: 15,
+  operatingTemperature: 'от 0 до +60 °С',
+  price: 1000,
+};
+
 const stretchCeilingCatalogMap = new Map<STPriceGroup, (STPriceBrand | STUnitPrice)[]>([
   // PVC (материал)
   [
@@ -174,58 +223,7 @@ const stretchCeilingCatalogMap = new Map<STPriceGroup, (STPriceBrand | STUnitPri
   [STPriceGroup.Fabric, [FabricDescor]],
 
   // Satin (материал)
-  [
-    STPriceGroup.Satin,
-    [
-      // MSD
-      {
-        brand: STBrandType.MSD,
-        type: StretchCeilingsType.Satin,
-        size: 30,
-        width: 5,
-        thickness: [0.16, 0.18],
-        warranty: 15,
-        operatingTemperature: 'от 0 до +60 °С',
-        price: 500,
-      },
-
-      // MSD
-      {
-        brand: STBrandType.MSD,
-        type: StretchCeilingsType.SatinColor,
-        size: 30,
-        width: 5,
-        thickness: [0.16, 0.18],
-        warranty: 15,
-        operatingTemperature: 'от 0 до +60 °С',
-        price: 700,
-      },
-
-      // Pongs
-      {
-        brand: STBrandType.Pongs,
-        type: StretchCeilingsType.Satin,
-        size: 30,
-        width: 2,
-        thickness: [0.16, 0.18],
-        warranty: 15,
-        operatingTemperature: 'от 0 до +60 °С',
-        price: 800,
-      },
-
-      // Pongs
-      {
-        brand: STBrandType.Pongs,
-        type: StretchCeilingsType.SatinColor,
-        size: 30,
-        width: 2.7,
-        thickness: [0.16, 0.18],
-        warranty: 15,
-        operatingTemperature: 'от 0 до +60 °С',
-        price: 1000,
-      },
-    ],
-  ],
+  [STPriceGroup.Satin, [SatinMSD, SatinColorMSD, SatinPongs, SatinColorPongs]],
 
   // Matte (тип поверхности)
   [STPriceGroup.Matte, [MatteMSD, MatteColorMSD, MattePongs, MatteColorPongs, FabricDescor]],
@@ -246,13 +244,40 @@ const stretchCeilingCatalogMap = new Map<STPriceGroup, (STPriceBrand | STUnitPri
   // [STPriceGroup.ElectricalEquipment, [...electricalEquipmentGroup, ...powerSuppliesGroup]],
 ]);
 
-// TODO удалить
 export function getCatalogMap() {
-  return <T = STPriceBrand | STUnitPrice>(key: STPriceGroup) => {
-    return stretchCeilingCatalogMap.get(key) as T;
+  return (key: STPriceGroup | undefined) => {
+    if (!key || key < 0) {
+      key = STPriceGroup.PVC;
+    }
+    const items: (STPriceBrand | STUnitPrice)[] = structuredClone(stretchCeilingCatalogMap.get(key))!;
+    return items.map((item) => {
+      if (!('name' in item)) {
+        (item as any).name = stretchCeilingName[item.type!];
+      }
+      return item;
+    });
   };
 }
 
 export const dataCategoryMap = new Map<STPriceGroup, string>(
   [...stretchCeilingCatalogMap.keys()].map((type) => [type, stretchCeilingGroupName[type]])
 );
+
+function getCatalogAll(): (STPriceBrand | STUnitPrice)[] {
+  return [...stretchCeilingCatalogMap.values()].flat();
+}
+
+export function injectCatalogPrice() {
+  const list = getCatalogAll();
+
+  return (types: StretchCeilingsType[]): number => {
+    const items = list.filter((a) => types.includes(a.type!));
+
+    const prices = items
+      .filter((a) => typeof a.price !== 'string')
+      .map((a) => (Array.isArray(a.price) ? a.price[0] : a.price) as number)
+      .sort((a, b) => a - b);
+
+    return prices[0];
+  };
+}

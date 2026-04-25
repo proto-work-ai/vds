@@ -5,7 +5,7 @@ import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputRange, TuiInputS
 import { markAsSubmit } from '@atlas/core';
 import { type EmailJSResponseStatus } from '@emailjs/browser';
 import { FormStore } from '../../../components/form-store/form-store.directive';
-import { IFormData, injectSendFormData } from '../../send-form-data/send.services';
+import { IFormData, injectSendMessage } from '../../send-service/send.services';
 import { tap } from 'rxjs';
 
 @Component({
@@ -26,7 +26,7 @@ import { tap } from 'rxjs';
   ],
 })
 export class MainBannerFormComponent {
-  private readonly sendForm = injectSendFormData();
+  private readonly sendForm = injectSendMessage();
   protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);
 
   protected readonly minRange = signal(5);

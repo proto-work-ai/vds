@@ -1,6 +1,6 @@
-import { STUnitPrice, Unit } from './price-list.service';
+import { UnitPrice, Unit } from './price-list.service';
 
-export const additionalWorkPrice: STUnitPrice[] = [
+export const additionalWorkPrice: UnitPrice[] = [
   { name: 'Ремонт ПВХ потолка', unit: Unit.LinearMeter, price: [5000] },
   { name: 'Слив воды с натяжного потолка', unit: Unit.LinearMeter, price: [700] },
   { name: 'Профиль алюминиевый + штапик + плинтус + монтаж', unit: Unit.LinearMeter, price: [250] },

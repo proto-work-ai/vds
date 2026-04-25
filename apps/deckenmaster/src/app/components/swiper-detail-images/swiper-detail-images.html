@@ -1,0 +1,11 @@
+<section class="bg-black h-[250px] max-h-[250px] overflow-hidden">
+  <swiper-container watch-slides-progress="true" slides-per-view="3">
+    @for (img of images(); track img) {
+      <swiper-slide>
+        <img [attr.src]="img" alt="" />
+      </swiper-slide>
+    }
+    <swiper-button-prev />
+    <swiper-button-next />
+  </swiper-container>
+</section>

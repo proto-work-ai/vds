@@ -1,17 +1,19 @@
 import { Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
-import { injectStretchCeilingGroupMenu, injectStretchCeilingsCatalog, stretchCeilingGroupMap } from '../../../model/stretch-ceilings.service';
+import { injectStretchCeilingGroupMenu, injectStretchCeilingsCatalog } from '../../../model/stretch-ceilings.service';
 import { StretchCeilingsCatalogCard } from '../stretch-ceilings-catalog-card/stretch-ceilings-catalog-card';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { routePath } from '../../../app.routes';
 import { injectRouteParam } from '../../../shared/inject-route-param';
 import { SCCatalogRouteFilter } from '../stretch-ceilings-catalog-route-filter/stretch-ceilings-catalog-route-filter';
 import { IAppMenuItem } from '../../../shared/menu';
+import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
+import { stretchCeilingGroupMap } from '../../../model/stretch-ceilings.data';
 
 @Component({
   selector: 'app-stretch-ceilings-catalog-all',
   templateUrl: './stretch-ceilings-catalog-all.html',
   styleUrls: ['./stretch-ceilings-catalog-all.scss'],
-  imports: [StretchCeilingsCatalogCard, RouterLink, SCCatalogRouteFilter],
+  imports: [StretchCeilingsCatalogCard, RouterLink, SCCatalogRouteFilter, ScrollLink],
 })
 export class StretchCeilingsCatalogAll {
   readonly title = input('Каталог натяжных потолков');

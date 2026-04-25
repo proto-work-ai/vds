@@ -9,19 +9,68 @@
   name="stretch-ceilings-catalog-detail"
   class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6"
 >
-  <header class="text-center flex flex-col gap-3">
-    <h2 class="md:text-4xl text-2xl">{{ item()?.title }}</h2>
+  <!-- <header class="text-center flex flex-col gap-3">
+    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
 
-    <!-- <div class="md:w-180 mx-auto text-gray-500">{{ brief() }}</div> -->
-  </header>
+    <div class="md:w-180 mx-auto text-gray-500">{{ brief() }}</div>
+  </header> -->
+
+  <div class="flex max-lg:flex-col bg-gray-light max-lg:bg-white">
+    <section class="lg:w-4/7">
+      @if (isPlatformBrowser) {
+        <!-- <gallery gallerize [items]="images()" class="h-120" thumbPosition="right"></gallery> -->
+        <app-gallerize-images [item]="item()"></app-gallerize-images>
+      }
+    </section>
+
+    <section class="flex-1 flex flex-col gap-3 p-5 gap-5">
+      <header>
+        <h2 class="text-2xl md:text-3xl">{{ title() }}</h2>
+      </header>
+
+      <p>
+        {{ item().brief }}
+      </p>
+
+      <!-- <section class="flex flex-col gap-3">
+        <h4 class="text-xl">Преимущества</h4>
+
+        <ul class="list-disc ms-5 flex flex-col gap-1">
+          <li>Низкая цена</li>
+          <li>Антистатическая поверхность</li>
+          <li>Устойчивость к влаге</li>
+          <li>Широкий цветовой диапазон</li>
+        </ul>
+      </section> -->
+
+      <div class="mt-auto flex gap-3">
+        <section class="flex flex-col gap-2">
+          <div class="title">Цена</div>
+          <div class="font-semibold text-xl">
+            от {{ price() }} руб
+            <!-- <span class="asterisk">*</span> -->
+          </div>
+          <small> *Цена указана c установкой под ключ. </small>
+        </section>
+
+        <footer class="ms-auto self-end">
+          <button (click)="formSubmit()" class="btn-primary btn-sm" type="submit">
+            <span class="px-10">Заказать</span>
+          </button>
+        </footer>
+      </div>
+    </section>
+  </div>
+
+  <!-- <section>
+    <app-swiper-detail-images [item]="item()" />
+  </section> -->
 
   <section>
     <router-outlet />
   </section>
 </section>
 
-<!-- <app-stretch-ceilings-catalog-detail [item]="item()" /> -->
-
-<app-application-measurement id="measurement" [title]="'Оставьте заявку на бесплатный замер'" />
+<app-application-measurement id="measurement" />
 
 <app-footer-menu />
