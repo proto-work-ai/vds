@@ -1,6 +1,7 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, computed, DestroyRef, effect, inject, PLATFORM_ID, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { injectStretchCeilingRouteByKey } from '../../../model/stretch-ceilings.service';
 import { MainHeaderComponent } from '../../../modules/main-header/main-header.component';
 import { ApplicationMeasurementComponent } from '../../../modules/application-measurement/application-measurement.component';
@@ -15,8 +16,7 @@ import { SwiperDetailImages } from '../../../components/swiper-detail-images/swi
 import { GallerizeImages } from '../../../components/gallerize-images/gallerize-images';
 import { injectCatalogPrice } from '../../../model/price-list-all';
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
-import { takeUntil } from 'rxjs';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'st-catalog-getail',
@@ -42,6 +42,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class StretchCeilingsCatalogDetailPage {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly meta = inject(Title);
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([]);
   protected readonly openPhoneSendModal = injectPhoneSendModal();
   protected readonly item = injectStretchCeilingRouteByKey();
@@ -52,10 +53,20 @@ export class StretchCeilingsCatalogDetailPage {
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);
+  protected readonly description = computed(() => this.item().brief);
   protected readonly price = computed(() => this.minPrice(this.item().types));
   protected readonly images = computed(() => this.item()?.images.map((src) => new ImageItem({ src, thumb: src })));
 
   constructor() {
+    const title = `Decken Master | ${this.item().title}`;
+    inject(Title).setTitle(title);
+    inject(Meta).updateTag({ property: 'og:title', content: title });
+    const image = this.item()?.images?.[0];
+    if (image) {
+      inject(Meta).updateTag({ property: 'og:image', content: image });
+    }
+    inject(Meta).updateTag({ name: 'description', content: this.description() });
+
     effect(() => {
       const item = this.item();
       if (item) {
