@@ -105,16 +105,16 @@
     </nav>
 
     <ng-template #menuItem let-value let-node="node">
-      <div class="wrapper py-1" [style.opacity]="1 / node.level">
+      <div [style.opacity]="1 / node.level">
         @if (value.link) {
-          <a routerLinkActive="font-semibold" [routerLink]="value.link" [queryParams]="value.queryParams ?? {}" (click)="onClose()">
+          <a routerLinkActive="font-semibold" class="py-1 block" [routerLink]="value.link" [queryParams]="value.queryParams ?? {}" (click)="onClose()">
             @if (value.icon) {
               <tui-icon class="t-icon" [icon]="value.icon" />
             }
             {{ value.title }}
           </a>
         } @else {
-          <span>
+          <span class="py-1 block">
             @if (value.icon) {
               <tui-icon class="t-icon" [icon]="value.icon" />
             }

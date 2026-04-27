@@ -18,7 +18,6 @@
   <div class="flex max-lg:flex-col bg-gray-light max-lg:bg-white">
     <section class="lg:w-4/7">
       @if (isPlatformBrowser) {
-        <!-- <gallery gallerize [items]="images()" class="h-120" thumbPosition="right"></gallery> -->
         <app-gallerize-images [item]="item()"></app-gallerize-images>
       }
     </section>
@@ -29,7 +28,7 @@
       </header>
 
       <p>
-        {{ description() }}
+        {{ brief() }}
       </p>
 
       <!-- <section class="flex flex-col gap-3">
@@ -61,15 +60,44 @@
       </div>
     </section>
   </div>
-
-  <!-- <section>
-    <app-swiper-detail-images [item]="item()" />
-  </section> -->
-
-  <section>
-    <router-outlet />
-  </section>
 </section>
+
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <router-outlet />
+</section>
+
+<!-- Version 2(Horizontal Slider)
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <app-swiper-full-images [item]="item()" />
+</section>
+
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <header class="text-center">
+    <h2 class="text-2xl md:text-3xl">{{ title() }}</h2>
+  </header>
+</section>
+
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <div class="mt-auto flex max-sm:flex-col gap-3" style="background: #f7f7f7; border-radius: 10px; padding: 23px">
+    <section class="flex flex-col gap-2">
+      <div class="title">Цена</div>
+      <div class="font-semibold text-xl">
+        от {{ price() }} руб
+      </div>
+      <small> *Цена указана c установкой под ключ. </small>
+    </section>
+
+    <div class="sm:ms-auto flex flex-col gap-2 sm:w-100 sm:self-end">
+      <footer class="flex flex-col gap-2">
+        <button (click)="formSubmit()" class="max-md:w-full btn-primary btn-sm" type="submit">
+          <span class="px-10">Заказать</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <router-outlet />
+</section> -->
 
 <app-application-measurement id="measurement" />
 

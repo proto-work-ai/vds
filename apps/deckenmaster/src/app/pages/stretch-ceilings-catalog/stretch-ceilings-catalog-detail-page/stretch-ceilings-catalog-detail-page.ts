@@ -2,6 +2,9 @@
 import { Component, computed, DestroyRef, effect, inject, PLATFORM_ID, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { isPlatformBrowser } from '@angular/common';
+import { GalleryModule, ImageItem } from 'ng-gallery';
+import { Meta, Title } from '@angular/platform-browser';
 import { injectStretchCeilingRouteByKey } from '../../../model/stretch-ceilings.service';
 import { MainHeaderComponent } from '../../../modules/main-header/main-header.component';
 import { ApplicationMeasurementComponent } from '../../../modules/application-measurement/application-measurement.component';
@@ -9,14 +12,11 @@ import { FooterMenuComponent } from '../../../modules/footer-menu/footer-menu.co
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
 import { NavMenu } from '../../../modules/nav-menu/nav-menu';
-import { AsyncPipe, isPlatformBrowser } from '@angular/common';
-import { GalleryModule, ImageItem } from 'ng-gallery';
-import { GallerizeDirective } from 'ng-gallery/lightbox';
-import { SwiperDetailImages } from '../../../components/swiper-detail-images/swiper-detail-images';
+import { SwiperFullImages } from '../../../components/swiper-full-images/swiper-full-images';
 import { GallerizeImages } from '../../../components/gallerize-images/gallerize-images';
 import { injectCatalogPrice } from '../../../model/price-list-all';
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
-import { Meta, Title } from '@angular/platform-browser';
+// import { TuiResponsiveDialogService } from '@taiga-ui/addon-mobile';
 
 @Component({
   selector: 'st-catalog-getail',
@@ -31,11 +31,15 @@ import { Meta, Title } from '@angular/platform-browser';
     MainHeaderComponent,
     ApplicationMeasurementComponent,
     GallerizeImages,
-    AsyncPipe,
-    GallerizeDirective,
-    SwiperDetailImages,
+    SwiperFullImages,
   ],
-  providers: [MenuDeferService],
+  providers: [
+    MenuDeferService,
+    // {
+    //   provide: TuiDialogService,
+    //   useExisting: TuiResponsiveDialogService,
+    // },
+  ],
   host: {
     id: 'main',
   },
@@ -53,7 +57,7 @@ export class StretchCeilingsCatalogDetailPage {
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);
-  protected readonly description = computed(() => this.item().brief);
+  protected readonly brief = computed(() => this.item().brief);
   protected readonly price = computed(() => this.minPrice(this.item().types));
   protected readonly images = computed(() => this.item()?.images.map((src) => new ImageItem({ src, thumb: src })));
 
@@ -65,7 +69,7 @@ export class StretchCeilingsCatalogDetailPage {
     if (image) {
       inject(Meta).updateTag({ property: 'og:image', content: image });
     }
-    inject(Meta).updateTag({ name: 'description', content: this.description() });
+    inject(Meta).updateTag({ name: 'description', content: this.brief() });
 
     effect(() => {
       const item = this.item();

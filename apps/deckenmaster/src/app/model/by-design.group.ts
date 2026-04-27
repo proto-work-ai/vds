@@ -4,9 +4,8 @@ import { StretchCeilingsType } from './stretch-ceilings.data';
 // WithBacklight[с подсветкой]
 export const withBacklightGroup: STUnitPrice[] = [
   { type: StretchCeilingsType.Floating, unit: Unit.LinearMeter, price: 2200 },
-
   { type: StretchCeilingsType.Contour, unit: Unit.LinearMeter, price: 900 },
-
+  { type: StretchCeilingsType.InternalLighting, unit: Unit.LinearMeter, price: 2500 },
   { type: StretchCeilingsType.LightLinesSlott, unit: Unit.LinearMeter, price: [2200] },
   { type: StretchCeilingsType.LightLinesFlexy, unit: Unit.LinearMeter, price: 4000 },
 
