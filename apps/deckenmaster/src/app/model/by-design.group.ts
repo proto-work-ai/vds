@@ -6,6 +6,8 @@ export const withBacklightGroup: STUnitPrice[] = [
   { type: StretchCeilingsType.Floating, unit: Unit.LinearMeter, price: 2200 },
   { type: StretchCeilingsType.Contour, unit: Unit.LinearMeter, price: 900 },
   { type: StretchCeilingsType.InternalLighting, unit: Unit.LinearMeter, price: 2500 },
+
+  { type: StretchCeilingsType.LightLines, unit: Unit.LinearMeter, price: [2200] },
   { type: StretchCeilingsType.LightLinesSlott, unit: Unit.LinearMeter, price: [2200] },
   { type: StretchCeilingsType.LightLinesFlexy, unit: Unit.LinearMeter, price: 4000 },
 
@@ -37,12 +39,12 @@ export const byDesignGroup: STUnitPrice[] = [
   { type: StretchCeilingsType.StarrySky, unit: Unit.M2, price: 16000 },
 ] as const;
 
-export enum StretchCeilingsByDesign {
-  Backlit, // С подстветкой,
-  LightLines, // Световые линии,
-  Shadow, // Теневой,
-  MultiLevel, // Многоуровневые,
-  Gapless, // Бесщелевой,
-  Floating, // Парящий
-  StarrySky, // Звездное небо,
-}
+// export enum StretchCeilingsByDesign {
+//   Backlit, // С подстветкой,
+//   LightLines, // Световые линии,
+//   Shadow, // Теневой,
+//   MultiLevel, // Многоуровневые,
+//   Gapless, // Бесщелевой,
+//   Floating, // Парящий
+//   StarrySky, // Звездное небо,
+// }

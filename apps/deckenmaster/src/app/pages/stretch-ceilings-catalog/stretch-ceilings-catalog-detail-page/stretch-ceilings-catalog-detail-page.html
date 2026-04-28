@@ -43,14 +43,7 @@
       </section> -->
 
       <div class="mt-auto flex gap-3">
-        <section class="flex flex-col gap-2">
-          <div class="title">Цена</div>
-          <div class="font-semibold text-xl">
-            от {{ price() }} руб
-            <!-- <span class="asterisk">*</span> -->
-          </div>
-          <small> *Цена указана c установкой под ключ. </small>
-        </section>
+        <app-price-card [item]="item()" size="l" />
 
         <footer class="ms-auto self-end">
           <button (click)="formSubmit()" class="btn-primary btn-sm" type="submit">

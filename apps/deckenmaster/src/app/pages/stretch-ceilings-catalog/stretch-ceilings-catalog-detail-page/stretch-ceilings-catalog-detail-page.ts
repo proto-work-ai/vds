@@ -16,6 +16,7 @@ import { SwiperFullImages } from '../../../components/swiper-full-images/swiper-
 import { GallerizeImages } from '../../../components/gallerize-images/gallerize-images';
 import { injectCatalogPrice } from '../../../model/price-list-all';
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
+import { PriceCard } from "../../../modules/stretch-ceilings-catalog/price-card";
 // import { TuiResponsiveDialogService } from '@taiga-ui/addon-mobile';
 
 @Component({
@@ -32,7 +33,8 @@ import { injectPhoneSendModal } from '../../../modules/send-service/send.service
     ApplicationMeasurementComponent,
     GallerizeImages,
     SwiperFullImages,
-  ],
+    PriceCard
+],
   providers: [
     MenuDeferService,
     // {
@@ -58,7 +60,11 @@ export class StretchCeilingsCatalogDetailPage {
 
   protected readonly title = computed(() => this.item()?.title);
   protected readonly brief = computed(() => this.item().brief);
-  protected readonly price = computed(() => this.minPrice(this.item().types));
+  protected readonly price = computed(() => {
+    const types = this.item().types;
+    const data = this.minPrice(types);
+    return data?.[0];
+  });
   protected readonly images = computed(() => this.item()?.images.map((src) => new ImageItem({ src, thumb: src })));
 
   constructor() {

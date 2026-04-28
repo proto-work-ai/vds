@@ -19,7 +19,7 @@ import { AtlasTaigaUiTable } from '@atlas/table';
 import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import { TuiTree } from '@taiga-ui/kit';
-import { Unit } from '../../../model/price-list.service';
+import { unitFormatter } from '../../stretch-ceilings-catalog/price-card';
 
 @Component({
   selector: 'app-price-list-unit-table',
@@ -64,20 +64,7 @@ export class PriceListUnitTable {
       title: 'Ед.изм.',
       key: 'unit',
       type: 'string',
-      formatter: (row: any) => {
-        switch (row.unit) {
-          case Unit.M2:
-            return 'м²';
-          case Unit.Things:
-            return 'шт.';
-          case Unit.Point:
-            return 'точка';
-          case Unit.LinearMeter:
-            return 'м.пог.';
-          default:
-            return '';
-        }
-      },
+      formatter: (row: any) => unitFormatter(row.unit),
     },
     {
       title: 'Цена с установкой',

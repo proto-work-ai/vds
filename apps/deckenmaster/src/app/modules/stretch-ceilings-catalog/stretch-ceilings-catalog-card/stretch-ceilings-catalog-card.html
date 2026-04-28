@@ -5,9 +5,25 @@
     }
   </figure>
 
-  <footer class="p-3 flex flex-col gap-2">
-    <h4 class="uppercase font-medium">{{ item()?.title }}</h4>
+  <section class="p-3 flex flex-col gap-3 h-full">
+    <footer class="flex flex-col gap-2">
+      <h4 class="uppercase font-medium">{{ title() }}</h4>
 
-    <p class="text-sm">{{ item()?.brief }}</p>
-  </footer>
+      <p class="text-sm">{{ brief() }}</p>
+    </footer>
+
+    <section class="flex flex-col mt-auto w-full">
+      <app-price-card size="s" [item]="item()"></app-price-card>
+      <!-- <div class="flex gap-1 justify-end">
+        <div class="text-sm">Цена:</div>
+        <div class="text-sm">
+          от
+          <span class="font-semibold">{{ price() }} </span>
+          руб/м²
+        </div>
+      </div> -->
+    </section>
+  </section>
 </article>
+
+<!-- <small> *Цена указана c установкой под ключ. </small> -->

@@ -53,9 +53,11 @@ export enum StretchCeilingsType {
   // С подсветкой
   Floating, // Парящие
   Contour, // C контурной подсветкой
-  // LightLines, // Световые линии
+
+  LightLines, // Световые линии
   LightLinesSlott, // Световые линии SLOTT*
   LightLinesFlexy, // Световые линии Flexy*
+  
   InternalLighting, // Потолки с подсветкой внутри
   // Lightbox, // Лайтбокс*
   // С точечными светильниками
@@ -127,7 +129,11 @@ export const stretchCeilingAll: IStretchCeiling[] = [
 
   {
     types: [
-      // StretchCeilingsType.LightLines,
+      StretchCeilingsType.LightLines,
+
+      // Нужно сделат отдельную страницу по ним
+      StretchCeilingsType.LightLinesSlott, // Световые линии SLOTT*
+      StretchCeilingsType.LightLinesFlexy, // Световые линии Flexy*
 
       StretchCeilingsType.Kitchen,
       StretchCeilingsType.Corridor,
@@ -504,9 +510,10 @@ export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, StretchCeilingsTy
       StretchCeilingsType.Contour,
       StretchCeilingsType.InternalLighting,
 
-      //StretchCeilingsType.Lightbox,
-      StretchCeilingsType.LightLinesSlott,
-      StretchCeilingsType.LightLinesFlexy,
+      StretchCeilingsType.LightLines,
+      // TODO потом добавить информацию по этим двум потолкам
+      // StretchCeilingsType.LightLinesSlott,
+      // StretchCeilingsType.LightLinesFlexy,
     ],
   ],
   [
@@ -601,7 +608,7 @@ export enum STPriceGroup {
   Fabric, //  Тканевые(материал)
   Satin, //  Сатиновые(материал)*
 
-  // По типу поверхности 
+  // По типу поверхности
   Matte, // Матовые(тип поверхности)*
   Glossy, // Глянцевые(тип поверхности)*
   Textured, // Фактурные(тип поверхности)*

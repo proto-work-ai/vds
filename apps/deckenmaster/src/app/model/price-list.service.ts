@@ -11,18 +11,6 @@ export enum STBrandType {
   Descor,
 }
 
-export interface STPriceBrand {
-  brand: STBrandType;
-  group?: STPriceGroup;
-  type?: StretchCeilingsType;
-  size: number; //Площадь
-  width: number | number[]; //Ширина полотна
-  thickness?: number | number[]; //Толщина
-  warranty: number; //  Гарантия
-  operatingTemperature: string; //Температура эксплуатации
-  price: number | number[]; //  Цена
-}
-
 export interface STBrand {
   brand: STBrandType;
   country: string;
@@ -34,6 +22,32 @@ export enum Unit {
   M2, // M2
   Things, // шт.
   Point, // точка
+}
+
+export interface STUnitPrice {
+  // name: string; // Название
+  type: StretchCeilingsType;
+  unit: Unit; // Ед.изм.
+  price: number | number[] | string; //  Цена
+}
+
+export interface UnitPrice {
+  name: string; // Название
+  unit: Unit; // Ед.изм.
+  price: number | number[] | string; //  Цена
+}
+
+export interface STPriceBrand {
+  brand: STBrandType;
+  group?: STPriceGroup;
+  type?: StretchCeilingsType;
+  size: number; //Площадь
+  width: number | number[]; //Ширина полотна
+  thickness?: number | number[]; //Толщина
+  warranty: number; //  Гарантия
+  operatingTemperature: string; //Температура эксплуатации
+  price: number | number[]; //  Цена
+  unit: Unit;
 }
 
 export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
@@ -102,19 +116,6 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     },
   ],
 ]);
-
-export interface STUnitPrice {
-  // name: string; // Название
-  type: StretchCeilingsType;
-  unit: Unit; // Ед.изм.
-  price: number | number[] | string; //  Цена
-}
-
-export interface UnitPrice {
-  name: string; // Название
-  unit: Unit; // Ед.изм.
-  price: number | number[] | string; //  Цена
-}
 
 // export const dataCategoryMap = new Map<STPriceGroup, string>([
 //   [STPriceGroup.PVC, 'ПВХ'],
