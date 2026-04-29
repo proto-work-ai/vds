@@ -584,7 +584,7 @@ export const stretchCeilingName: Partial<Record<StretchCeilingsType, string>> = 
   // С подсветкой
   [StretchCeilingsType.Floating]: 'Парящие',
   [StretchCeilingsType.Contour]: 'C контурной подсветкой',
-  // [StretchCeilingsType.LightLines]: 'Световые линии',
+  [StretchCeilingsType.LightLines]: 'Световые линии',
   [StretchCeilingsType.LightLinesSlott]: 'Световые линии SLOTT',
   [StretchCeilingsType.LightLinesFlexy]: 'Световые линии Flexy',
   [StretchCeilingsType.InternalLighting]: 'C подсветкой внутри',

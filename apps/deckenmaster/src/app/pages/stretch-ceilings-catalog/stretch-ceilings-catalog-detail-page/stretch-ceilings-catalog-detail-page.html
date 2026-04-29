@@ -59,6 +59,15 @@
   <router-outlet />
 </section>
 
+<!-- Price -->
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <header class="text-start flex flex-col gap-3 my-4">
+    <h3 class="text-md md:text-xl uppercase font-semibold">Цены на натяжные потолки с учетом установки</h3>
+  </header>
+
+  <app-price-list-table [tableRows]="filtered()"></app-price-list-table>
+</section>
+
 <!-- Version 2(Horizontal Slider)
 <section class="container mx-auto max-sm:px-5 md:my-8 my-6">
   <app-swiper-full-images [item]="item()" />

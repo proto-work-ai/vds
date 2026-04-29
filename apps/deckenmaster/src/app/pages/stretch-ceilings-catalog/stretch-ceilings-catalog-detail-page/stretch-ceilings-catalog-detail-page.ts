@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/component-selector */
-import { Component, computed, DestroyRef, effect, inject, PLATFORM_ID, signal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
@@ -14,9 +14,13 @@ import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs
 import { NavMenu } from '../../../modules/nav-menu/nav-menu';
 import { SwiperFullImages } from '../../../components/swiper-full-images/swiper-full-images';
 import { GallerizeImages } from '../../../components/gallerize-images/gallerize-images';
-import { injectCatalogPrice } from '../../../model/price-list-all';
+import { getCatalogMap, getCatalogMap2, injectCatalogPrice } from '../../../model/price-list-all';
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
-import { PriceCard } from "../../../modules/stretch-ceilings-catalog/price-card";
+import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
+import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
+import { injectRouteParam } from '../../../shared/inject-route-param';
+import { IStretchCeiling, STPriceGroup } from '../../../model/stretch-ceilings.data';
+import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
 // import { TuiResponsiveDialogService } from '@taiga-ui/addon-mobile';
 
 @Component({
@@ -33,7 +37,9 @@ import { PriceCard } from "../../../modules/stretch-ceilings-catalog/price-card"
     ApplicationMeasurementComponent,
     GallerizeImages,
     SwiperFullImages,
-    PriceCard
+    PriceCard,
+    PriceListBrandTable,
+    PriceListTable
 ],
   providers: [
     MenuDeferService,
@@ -48,10 +54,9 @@ import { PriceCard } from "../../../modules/stretch-ceilings-catalog/price-card"
 })
 export class StretchCeilingsCatalogDetailPage {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly meta = inject(Title);
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([]);
   protected readonly openPhoneSendModal = injectPhoneSendModal();
-  protected readonly item = injectStretchCeilingRouteByKey();
+  protected readonly item: WritableSignal<IStretchCeiling> = injectStretchCeilingRouteByKey();
   private readonly platformId = inject(PLATFORM_ID);
   protected get isPlatformBrowser() {
     return isPlatformBrowser(this.platformId);
@@ -66,6 +71,9 @@ export class StretchCeilingsCatalogDetailPage {
     return data?.[0];
   });
   protected readonly images = computed(() => this.item()?.images.map((src) => new ImageItem({ src, thumb: src })));
+  protected readonly filtered = computed(() => {
+    return getCatalogMap2(this.item().types);
+  });
 
   constructor() {
     const title = `Decken Master | ${this.item().title}`;
@@ -98,6 +106,6 @@ export class StretchCeilingsCatalogDetailPage {
   }
 
   protected formSubmit() {
-    this.openPhoneSendModal().pipe(takeUntilDestroyed(this.destroyRef)).subscribe();
+    this.openPhoneSendModal();
   }
 }

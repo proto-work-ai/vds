@@ -8,6 +8,7 @@ import {
 } from './stretch-ceilings.data';
 import { STUnitPrice } from './price-list.service';
 import { byDesignGroup, withBacklightGroup } from './by-design.group';
+import { map } from 'rxjs';
 
 const MatteMSD: STPriceBrand = {
   type: StretchCeilingsType.Matte,
@@ -260,21 +261,6 @@ const stretchCeilingCatalogMap = new Map<STPriceGroup, (STPriceBrand | STUnitPri
   // [STPriceGroup.ElectricalEquipment, [...electricalEquipmentGroup, ...powerSuppliesGroup]],
 ]);
 
-export function getCatalogMap() {
-  return (key: STPriceGroup | undefined) => {
-    if (!key || key < 0) {
-      key = STPriceGroup.PVC;
-    }
-    const items: (STPriceBrand | STUnitPrice)[] = structuredClone(stretchCeilingCatalogMap.get(key))!;
-    return items.map((item) => {
-      if (!('name' in item)) {
-        (item as any).name = stretchCeilingName[item.type!];
-      }
-      return item;
-    });
-  };
-}
-
 export const dataCategoryMap = new Map<STPriceGroup, string>(
   [...stretchCeilingCatalogMap.keys()].map((type) => [type, stretchCeilingGroupName[type]])
 );
@@ -304,4 +290,30 @@ export function injectCatalogPrice() {
     const items = list.filter((a) => types.includes(a.type!));
     return oderByPrice(items)[0];
   };
+}
+
+export function getCatalogMap() {
+  return (key: STPriceGroup | undefined) => {
+    if (!key || key < 0) {
+      key = STPriceGroup.PVC;
+    }
+    const items: (STPriceBrand | STUnitPrice)[] = structuredClone(stretchCeilingCatalogMap.get(key))!;
+    return items.map((item) => {
+      if (!('name' in item)) {
+        (item as any).name = stretchCeilingName[item.type!];
+      }
+      return item;
+    });
+  };
+}
+
+export function getCatalogMap2(types: StretchCeilingsType[]) {
+  const all = getCatalogAll();
+  const items: (STPriceBrand | STUnitPrice)[] = all.filter((a) => types.includes(a.type!));
+  return items.map((item) => {
+    if (!('name' in item)) {
+      (item as any).name = stretchCeilingName[item.type!];
+    }
+    return item;
+  });
 }

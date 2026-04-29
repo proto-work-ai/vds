@@ -135,7 +135,7 @@ export function injectPhoneSendModal() {
   const sendMessage = injectSendMessage();
 
   return () => {
-    return dialog
+    dialog
       .open<IFormData>(new PolymorpheusComponent(SendModal), {
         label: 'Оставить заявку',
         size: 's',
@@ -144,6 +144,7 @@ export function injectPhoneSendModal() {
         filter(Boolean),
         switchMap((data: IFormData) => sendMessage(data)),
         takeUntilDestroyed(destroyRef)
-      );
+      )
+      .subscribe();
   };
 }
