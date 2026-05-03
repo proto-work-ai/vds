@@ -14,7 +14,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { provideIcons, NgIcon } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { Navigation } from 'swiper/modules';
-import { IStretchCeiling } from '../../model/stretch-ceilings.data';
+import { IStretchCeiling } from '../../model/products.data';
+import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
 
 /*
   https://swiperjs.com/swiper-api
@@ -30,7 +31,7 @@ import { IStretchCeiling } from '../../model/stretch-ceilings.data';
     }),
   ],
   // encapsulation: ViewEncapsulation.None,
-  imports: [NgIcon],
+  imports: [NgIcon, IsPlatformBrowserDirective],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA], // Essential for <swiper-container>
 })
 export class SwiperFullImages {

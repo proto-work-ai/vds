@@ -1,17 +1,16 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { STBrandType, STPriceBrand, Unit, UnitPrice } from './price-list.service';
+import { STBrandType, STPriceBrand, Unit } from './price-list.service';
 import {
   STPriceGroup,
   stretchCeilingGroupName,
   stretchCeilingName,
-  StretchCeilingsType,
-} from './stretch-ceilings.data';
+  ProductType,
+} from './products.data';
 import { STUnitPrice } from './price-list.service';
 import { byDesignGroup, withBacklightGroup } from './by-design.group';
-import { map } from 'rxjs';
 
 const MatteMSD: STPriceBrand = {
-  type: StretchCeilingsType.Matte,
+  type: ProductType.Matte,
   brand: STBrandType.MSD,
   size: 30,
   width: 5,
@@ -23,7 +22,7 @@ const MatteMSD: STPriceBrand = {
 };
 
 const MatteColorMSD: STPriceBrand = {
-  type: StretchCeilingsType.MatteColor,
+  type: ProductType.MatteColor,
   brand: STBrandType.MSD,
   size: 30,
   width: 5,
@@ -35,7 +34,7 @@ const MatteColorMSD: STPriceBrand = {
 };
 
 const GlossyMSD: STPriceBrand = {
-  type: StretchCeilingsType.Glossy,
+  type: ProductType.Glossy,
   brand: STBrandType.MSD,
   size: 30,
   width: 5,
@@ -47,7 +46,7 @@ const GlossyMSD: STPriceBrand = {
 };
 
 const GlossyColorMSD: STPriceBrand = {
-  type: StretchCeilingsType.GlossyColor,
+  type: ProductType.GlossyColor,
   brand: STBrandType.MSD,
   size: 30,
   width: 5,
@@ -59,7 +58,7 @@ const GlossyColorMSD: STPriceBrand = {
 };
 
 const MattePongs: STPriceBrand = {
-  type: StretchCeilingsType.Matte,
+  type: ProductType.Matte,
   brand: STBrandType.Pongs,
   size: 30,
   width: 3.2,
@@ -71,7 +70,7 @@ const MattePongs: STPriceBrand = {
 };
 
 const MatteColorPongs: STPriceBrand = {
-  type: StretchCeilingsType.MatteColor,
+  type: ProductType.MatteColor,
   brand: STBrandType.Pongs,
   size: 30,
   width: 2,
@@ -83,7 +82,7 @@ const MatteColorPongs: STPriceBrand = {
 };
 
 const GlossyPongs: STPriceBrand = {
-  type: StretchCeilingsType.Glossy,
+  type: ProductType.Glossy,
   brand: STBrandType.Pongs,
   size: 30,
   width: 3.2,
@@ -95,7 +94,7 @@ const GlossyPongs: STPriceBrand = {
 };
 
 const GlossyColorPongs: STPriceBrand = {
-  type: StretchCeilingsType.GlossyColor,
+  type: ProductType.GlossyColor,
   brand: STBrandType.Pongs,
   size: 30,
   width: 2,
@@ -107,7 +106,7 @@ const GlossyColorPongs: STPriceBrand = {
 };
 
 const GalaxyGlossyColorMSD: STPriceBrand = {
-  type: StretchCeilingsType.GalaxyGlossyColor,
+  type: ProductType.GalaxyGlossyColor,
   brand: STBrandType.MSD,
   size: 30,
   width: 3.2,
@@ -119,7 +118,7 @@ const GalaxyGlossyColorMSD: STPriceBrand = {
 };
 
 const FabricDescor: STPriceBrand = {
-  type: StretchCeilingsType.Fabric,
+  type: ProductType.Fabric,
   brand: STBrandType.Descor,
   size: 30,
   width: 5,
@@ -131,7 +130,7 @@ const FabricDescor: STPriceBrand = {
 };
 
 const FabricClipso: STPriceBrand = {
-  type: StretchCeilingsType.Fabric,
+  type: ProductType.Fabric,
   brand: STBrandType.Clipso,
   size: 30,
   width: 5,
@@ -143,7 +142,7 @@ const FabricClipso: STPriceBrand = {
 };
 
 const FabricCerutti: STPriceBrand = {
-  type: StretchCeilingsType.Fabric,
+  type: ProductType.Fabric,
   brand: STBrandType.Cerutti,
   size: 30,
   width: 5,
@@ -156,7 +155,7 @@ const FabricCerutti: STPriceBrand = {
 
 const SatinMSD: STPriceBrand = {
   brand: STBrandType.MSD,
-  type: StretchCeilingsType.Satin,
+  type: ProductType.Satin,
   size: 30,
   width: 5,
   thickness: [0.16, 0.18],
@@ -169,7 +168,7 @@ const SatinMSD: STPriceBrand = {
 // MSD
 const SatinColorMSD: STPriceBrand = {
   brand: STBrandType.MSD,
-  type: StretchCeilingsType.SatinColor,
+  type: ProductType.SatinColor,
   size: 30,
   width: 5,
   thickness: [0.16, 0.18],
@@ -182,7 +181,7 @@ const SatinColorMSD: STPriceBrand = {
 // Pongs
 const SatinPongs: STPriceBrand = {
   brand: STBrandType.Pongs,
-  type: StretchCeilingsType.Satin,
+  type: ProductType.Satin,
   size: 30,
   width: 2,
   thickness: [0.16, 0.18],
@@ -195,7 +194,7 @@ const SatinPongs: STPriceBrand = {
 // Pongs
 const SatinColorPongs: STPriceBrand = {
   brand: STBrandType.Pongs,
-  type: StretchCeilingsType.SatinColor,
+  type: ProductType.SatinColor,
   size: 30,
   width: 2.7,
   thickness: [0.16, 0.18],
@@ -286,7 +285,7 @@ function oderByPrice(items: (STPriceBrand | STUnitPrice)[]) {
 export function injectCatalogPrice() {
   const list = getCatalogAll();
 
-  return (types: StretchCeilingsType[]) => {
+  return (types: ProductType[]) => {
     const items = list.filter((a) => types.includes(a.type!));
     return oderByPrice(items)[0];
   };
@@ -307,7 +306,7 @@ export function getCatalogMap() {
   };
 }
 
-export function getCatalogMap2(types: StretchCeilingsType[]) {
+export function getCatalogMap2(types: ProductType[]) {
   const all = getCatalogAll();
   const items: (STPriceBrand | STUnitPrice)[] = all.filter((a) => types.includes(a.type!));
   return items.map((item) => {

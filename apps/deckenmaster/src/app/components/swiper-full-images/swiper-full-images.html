@@ -12,33 +12,31 @@
   </swiper-container>
 </section> -->
 
-@if (this.isPlatformBrowser) {
-  <div #swiper class="swiper relative">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      @for (img of images(); track img) {
-        <div class="swiper-slide">
-          <figure class="-aspect-1.5/1 -w-150 rounded-lg overflow-hidden">
-            <img [attr.src]="img" alt="" class="block" />
-          </figure>
-        </div>
-      }
-    </div>
-
-    <!-- If we need pagination -->
-    <!-- <div class="swiper-pagination"></div> -->
-
-    <!-- If we need navigation buttons -->
-    <div class="swiper-button-prev btn-arrow left-0 top-1/2 absolute -translate-y-1/2 z-1 bg-white cursor-pointer m-1">
-      <ng-icon name="lucideChevronLeft" size="1.25em" strokeWidth="1px"></ng-icon>
-    </div>
-
-    <div class="swiper-button-next btn-arrow right-0 top-1/2 absolute -translate-y-1/2 z-1 bg-white cursor-pointer m-1">
-      <ng-icon name="lucideChevronRight" size="1.25em" strokeWidth="1px"></ng-icon>
-    </div>
-
-    <!-- If we need scrollbar -->
-    <!-- <div class="swiper-scrollbar"></div> -->
+<div #swiper *isPlatformBrowser class="swiper relative">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    @for (img of images(); track img) {
+      <div class="swiper-slide">
+        <figure class="-aspect-1.5/1 -w-150 rounded-lg overflow-hidden">
+          <img [attr.src]="img" alt="" class="block" />
+        </figure>
+      </div>
+    }
   </div>
-}
+
+  <!-- If we need pagination -->
+  <!-- <div class="swiper-pagination"></div> -->
+
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev btn-arrow left-0 top-1/2 absolute -translate-y-1/2 z-1 bg-white cursor-pointer m-1">
+    <ng-icon name="lucideChevronLeft" size="1.25em" strokeWidth="1px"></ng-icon>
+  </div>
+
+  <div class="swiper-button-next btn-arrow right-0 top-1/2 absolute -translate-y-1/2 z-1 bg-white cursor-pointer m-1">
+    <ng-icon name="lucideChevronRight" size="1.25em" strokeWidth="1px"></ng-icon>
+  </div>
+
+  <!-- If we need scrollbar -->
+  <!-- <div class="swiper-scrollbar"></div> -->
+</div>

@@ -28,7 +28,7 @@ import { PriceListBrandTable } from '../price-list-brand-table/price-list-brand-
 import { PriceListUnitTable } from '../price-list-unit-table/price-list-unit-table';
 import { additionalWorkPrice } from '../../../model/additional-work.group';
 import { electricalEquipmentList } from '../../../model/electrical-equipment.group';
-import { STPriceGroup } from '../../../model/stretch-ceilings.data';
+import { STPriceGroup } from '../../../model/products.data';
 
 @Component({
   selector: 'app-catalog-price-list',

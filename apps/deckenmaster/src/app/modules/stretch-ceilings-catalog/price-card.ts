@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { IStretchCeiling } from '../../model/stretch-ceilings.data';
+import { IStretchCeiling } from '../../model/products.data';
 import { injectCatalogPrice } from '../../model/price-list-all';
 import { Unit } from '../../model/price-list.service';
 
@@ -26,7 +26,6 @@ export function unitFormatter(unit: Unit) {
         <div class="flex gap-1 justify-end">
           <div class="text-sm">Цена:</div>
           <div class="text-sm">
-            от
             <span class="font-semibold">{{ price() }} </span>
             руб/{{ unitFormat() }}
           </div>
@@ -36,7 +35,6 @@ export function unitFormatter(unit: Unit) {
         <section class="flex flex-col gap-1">
           <div class="title">Цена</div>
           <div class="text-xl">
-            от
             <span class="font-semibold">{{ price() }} </span>
             руб/{{ unitFormat() }}
             <!-- <span class="asterisk">*</span> -->

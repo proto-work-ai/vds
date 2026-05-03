@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { IStretchCeiling } from '../../../model/stretch-ceilings.data';
+import { IStretchCeiling } from '../../../model/products.data';
 import { PriceCard } from '../price-card';
 
 @Component({

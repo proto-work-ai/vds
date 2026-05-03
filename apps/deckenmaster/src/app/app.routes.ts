@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { stretchCeilingAll } from './model/stretch-ceilings.data';
+import { stretchCeilingAll } from './model/products.data';
 
 export const routePath = {
   root: '',
@@ -8,6 +8,9 @@ export const routePath = {
   },
   price: {
     root: 'price',
+  },
+  services: {
+    root: 'services',
   },
 };
 
@@ -56,6 +59,11 @@ export const appRoutes: Route[] = [
   // },
   {
     path: `${routePath.price.root}`,
+    pathMatch: 'full',
+    loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
+  },
+  {
+    path: `${routePath.services.root}`,
     pathMatch: 'full',
     loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
   },

@@ -4,13 +4,20 @@ import { TuiTextfield } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
 import { FormStore } from '../../components/form-store/form-store.directive';
 import { markAsSubmit } from '@atlas/core';
-import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
 import { tap } from 'rxjs';
+import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
+
+export function ymAnyQuestions(): void {
+  const { ym } = window as any;
+  if (ym) {
+    ym(108545164, 'reachGoal', 'any-questions');
+  }
+}
 
 @Component({
-  selector: 'app-application-measurement',
-  templateUrl: './application-measurement.component.html',
-  styleUrls: ['./application-measurement.component.scss'],
+  selector: 'app-any-questions',
+  templateUrl: 'any-questions.html',
+  styleUrls: ['any-questions.scss'],
   imports: [
     TuiDataListWrapper,
     FormsModule,
@@ -21,8 +28,8 @@ import { tap } from 'rxjs';
     FormStore,
   ],
 })
-export class ApplicationMeasurementComponent {
-  private readonly sendForm = injectSendMessage(ymSubmitEvent);
+export class AnyQuestions {
+  private readonly sendForm = injectSendMessage(ymAnyQuestions);
   readonly title = input('Оставьте заявку на бесплатный замер');
 
   protected readonly form = new FormGroup({

@@ -17,9 +17,9 @@
 
   <div class="flex max-lg:flex-col bg-gray-light max-lg:bg-white">
     <section class="lg:w-4/7">
-      @if (isPlatformBrowser) {
-        <app-gallerize-images [item]="item()"></app-gallerize-images>
-      }
+
+        <app-gallerize-images *isPlatformBrowser [item]="item()"></app-gallerize-images>
+
     </section>
 
     <section class="flex-1 flex flex-col gap-3 p-5 gap-5">
@@ -67,41 +67,6 @@
 
   <app-price-list-table [tableRows]="filtered()"></app-price-list-table>
 </section>
-
-<!-- Version 2(Horizontal Slider)
-<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
-  <app-swiper-full-images [item]="item()" />
-</section>
-
-<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
-  <header class="text-center">
-    <h2 class="text-2xl md:text-3xl">{{ title() }}</h2>
-  </header>
-</section>
-
-<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
-  <div class="mt-auto flex max-sm:flex-col gap-3" style="background: #f7f7f7; border-radius: 10px; padding: 23px">
-    <section class="flex flex-col gap-2">
-      <div class="title">Цена</div>
-      <div class="font-semibold text-xl">
-        от {{ price() }} руб
-      </div>
-      <small> *Цена указана c установкой под ключ. </small>
-    </section>
-
-    <div class="sm:ms-auto flex flex-col gap-2 sm:w-100 sm:self-end">
-      <footer class="flex flex-col gap-2">
-        <button (click)="formSubmit()" class="max-md:w-full btn-primary btn-sm" type="submit">
-          <span class="px-10">Заказать</span>
-        </button>
-      </footer>
-    </div>
-  </div>
-
-  <router-outlet />
-</section> -->
-
-<app-any-questions></app-any-questions>
 
 <app-way-we-work id="way-we-work"></app-way-we-work>
 

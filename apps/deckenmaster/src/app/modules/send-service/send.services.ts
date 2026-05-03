@@ -21,6 +21,13 @@ export interface IDataSendItem {
   values: (string | number)[];
 }
 
+export function ymSubmitEvent(): void {
+  const { ym } = window as any;
+  if (ym) {
+    ym(108545164, 'reachGoal', 'form-submit');
+  }
+}
+
 export function buldDataSend(data: IFormData): IDataSendItem[] {
   const result: IDataSendItem[] = [];
 
@@ -112,7 +119,7 @@ export function getTestHtml() {
   return html;
 }
 
-export function injectSendMessage() {
+export function injectSendMessage(fn: () => void) {
   const http = inject(HttpClient);
   const destroyRef = inject(DestroyRef);
   const dialog = inject(TuiDialogService);
@@ -120,8 +127,8 @@ export function injectSendMessage() {
     const items = buldDataSend(data);
     const message = buldHtmlSend(items);
     return http.post('/api/send-message.php', { message }).pipe(
-      // return of(0).pipe(
       switchMap(() => {
+        fn();
         return dialog.open('Мы скоро с вами свяжемся.', { label: 'Ваша заявка успешно отправлена!', size: 's' });
       }),
       takeUntilDestroyed(destroyRef)
@@ -132,7 +139,7 @@ export function injectSendMessage() {
 export function injectPhoneSendModal() {
   const destroyRef = inject(DestroyRef);
   const dialog = inject(TuiDialogService);
-  const sendMessage = injectSendMessage();
+  const sendMessage = injectSendMessage(ymSubmitEvent);
 
   return () => {
     dialog

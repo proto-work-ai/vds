@@ -10,11 +10,11 @@ export class CeilingInstallationsComponent {
 
   protected readonly items = [
     {
-      title: 'Матовые натяжные потолки на кухню',
-      src: '/ceiling-installations/ceiling-installations-1.jpg',
+      title: 'Матовые натяжные потолки в зале',
+      src: '/ceiling-installations/ceiling-installations-7.jpg',
     },
     {
-      title: 'Матовый натяжной потолок в ванной',
+      title: 'Точечные светильники',
       src: '/ceiling-installations/ceiling-installations-5.jpg',
     },
     // {
@@ -22,7 +22,7 @@ export class CeilingInstallationsComponent {
     //   src: '/ceiling-installations/ceiling-installations-3.jpg',
     // },
     {
-      title: 'Матовые натяжные потолки в детской',
+      title: 'Световые линии в детской',
       src: '/ceiling-installations/ceiling-installations-4.jpg',
     },
     // {
@@ -38,7 +38,7 @@ export class CeilingInstallationsComponent {
     //   src: '/ceiling-installations/ceiling-installations-7.jpg',
     // },
     {
-      title: 'Матовые натяжные потолки в коридоре',
+      title: 'Световые линии в коридоре',
       src: '/ceiling-installations/ceiling-installations-8.jpg',
     },
   ] as const;

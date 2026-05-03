@@ -18,7 +18,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DataListOptionImports } from './data-list-options';
 import { distinctUntilChanged, of, pairwise, startWith, tap } from 'rxjs';
 import { FormStore } from '../../components/form-store/form-store.directive';
-import { IFormData, injectSendMessage } from '../send-service/send.services';
+import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -55,7 +55,7 @@ export class SafePipe implements PipeTransform {
 })
 export class PriceCalculationComponent {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly sendForm = injectSendMessage();
+  private readonly sendForm = injectSendMessage(ymSubmitEvent);
   readonly title = input('Расчет цены натяжного потолка с установкой');
 
   protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);

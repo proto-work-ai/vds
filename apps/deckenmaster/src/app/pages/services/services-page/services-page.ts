@@ -1,6 +1,7 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, computed, DestroyRef, effect, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 import { GalleryModule, ImageItem } from 'ng-gallery';
 import { Meta, Title } from '@angular/platform-browser';
@@ -18,14 +19,15 @@ import { injectPhoneSendModal } from '../../../modules/send-service/send.service
 import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
 import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
 import { IStretchCeiling } from '../../../model/products.data';
-import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
+import { PriceListTable } from '../../../modules/catalog-price/price-list-table/price-list-table';
+import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
 import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
-import { AnyQuestions } from '../../../components/any-questions/any-questions';
+// import { TuiResponsiveDialogService } from '@taiga-ui/addon-mobile';
 
 @Component({
-  selector: 'st-catalog-getail',
-  templateUrl: 'stretch-ceilings-catalog-detail-page.html',
-  styleUrls: ['stretch-ceilings-catalog-detail-page.scss'],
+  selector: 'st-services-page',
+  templateUrl: 'services-page.html',
+  styleUrls: ['services-page.scss'],
   imports: [
     FooterMenuComponent,
     BreadcrumbsHeader,
@@ -36,11 +38,10 @@ import { AnyQuestions } from '../../../components/any-questions/any-questions';
     ApplicationMeasurementComponent,
     GallerizeImages,
     PriceCard,
+    IsPlatformBrowserDirective,
     PriceListTable,
-    WayWeWorkComponent,
-    AnyQuestions,
     SwiperFullImages,
-    PriceListBrandTable,
+    WayWeWorkComponent
 ],
   providers: [
     MenuDeferService,
@@ -53,15 +54,11 @@ import { AnyQuestions } from '../../../components/any-questions/any-questions';
     id: 'main',
   },
 })
-export class StretchCeilingsCatalogDetailPage {
+export class ServicesPage {
   private readonly destroyRef = inject(DestroyRef);
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([]);
   protected readonly openPhoneSendModal = injectPhoneSendModal();
   protected readonly item: WritableSignal<IStretchCeiling> = injectStretchCeilingRouteByKey();
-  private readonly platformId = inject(PLATFORM_ID);
-  protected get isPlatformBrowser() {
-    return isPlatformBrowser(this.platformId);
-  }
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);
@@ -95,11 +92,7 @@ export class StretchCeilingsCatalogDetailPage {
             link: ['/'],
           },
           {
-            title: 'Каталог',
-            link: ['/catalog'],
-          },
-          {
-            title: item.title,
+            title: 'Услуги',
           },
         ]);
       }

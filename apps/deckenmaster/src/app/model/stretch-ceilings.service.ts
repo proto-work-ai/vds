@@ -3,12 +3,19 @@ import { DestroyRef, effect, inject, signal, Signal, WritableSignal } from '@ang
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { startWith, tap } from 'rxjs';
-import { IStretchCeiling, stretchCeilingAll, stretchCeilingGroupMap, stretchCeilingName, stretchCeilingsGroupName } from './stretch-ceilings.data';
+import {
+  IStretchCeiling,
+  stretchCeilingAll,
+  stretchCeilingGroupMap,
+  stretchCeilingName,
+  stretchCeilingsGroupName,
+} from './products.data';
 import { IAppMenuItem } from '../shared/menu';
+import { routePath } from '../app.routes';
 
 export function injectStretchCeilingsCatalog(): Signal<IStretchCeiling[]> {
   const catalog = signal<IStretchCeiling[]>([]);
-  import('./stretch-ceilings.data').then(({ stretchCeilingAll: stretchCeilings }) => catalog.set(stretchCeilings));
+  import('./products.data').then(({ stretchCeilingAll: stretchCeilings }) => catalog.set(stretchCeilings));
   return catalog.asReadonly();
 }
 
@@ -70,25 +77,49 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
   return menu;
 }
 
+const menuServices: IAppMenuItem = {
+  title: 'Услуги',
+  fragment: 'main',
+  children: [
+    {
+      title: 'Монтаж натяжного потолка',
+      link: ['/', routePath.services.root],
+      fragment: 'main',
+    },
+    {
+      title: 'Ремонт натяжных потолков',
+      link: ['/', routePath.services.root],
+      fragment: 'main',
+    },
+    {
+      title: 'Слив воды с натяжного потолка',
+      link: ['/', routePath.services.root],
+      fragment: 'main',
+    },
+  ],
+};
+
 export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuItem[]> {
   const navMenu = signal<IAppMenuItem[]>([
     {
       title: 'Каталог',
-      link: ['/catalog'],
+      link: ['/', routePath.catalog.root],
       fragment: 'main',
-      // children: injectStretchCeilingGroupMenu(['/', 'catalog']),
+      // children: injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
     },
 
-    ...injectStretchCeilingGroupMenu(['/', 'catalog']),
+    ...injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
+
+    // menuServices,
 
     {
       title: 'Цены',
-      link: ['/', 'price'],
+      link: ['/', routePath.price.root],
       fragment: 'main',
     },
     // {
     //   title: 'Контакты',
-    //   link: ['/', 'contacts'],
+    //   link: ['/', routePath.contacts.root],
     // },
   ]);
 
@@ -99,13 +130,15 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
   const navMenu = signal<IAppMenuItem[]>([
     {
       title: 'Каталог',
-      link: ['/', 'catalog'],
+      link: ['/', routePath.catalog.root],
       fragment: 'main',
     },
 
+    // menuServices,
+
     {
       title: 'Цены',
-      link: ['/', 'price'],
+      link: ['/', routePath.price.root],
       fragment: 'main',
     },
     // {

@@ -7,6 +7,7 @@ import { FooterMenuComponent } from '../../../modules/footer-menu/footer-menu.co
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
 import { NavMenu } from '../../../modules/nav-menu/nav-menu';
+import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
 
 @Component({
   selector: 'main',
@@ -19,7 +20,8 @@ import { NavMenu } from '../../../modules/nav-menu/nav-menu';
     FooterMenuComponent,
     BreadcrumbsHeader,
     NavMenu,
-  ],
+    WayWeWorkComponent
+],
   providers: [MenuDeferService],
   host: {
     'id': 'main',

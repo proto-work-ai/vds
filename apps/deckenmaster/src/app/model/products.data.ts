@@ -6,7 +6,7 @@ export interface IStretchCeiling {
   image: string;
   images: string[];
   brief: string;
-  types: StretchCeilingsType[];
+  types: ProductType[];
   detail: () => Promise<ComponentType<any>>;
 }
 
@@ -19,8 +19,8 @@ export enum StretchCeilingsGroup {
   // Fabric, // Тканевые(Тканевые,D-Premium,Clipso,Cerutti)
 }
 
-// Все типы потолков
-export enum StretchCeilingsType {
+// Все продукты
+export enum ProductType {
   // ПВХ
   // PVC = 1, // ПВХ
   Textured = 1, // Фактурные
@@ -57,7 +57,7 @@ export enum StretchCeilingsType {
   LightLines, // Световые линии
   LightLinesSlott, // Световые линии SLOTT*
   LightLinesFlexy, // Световые линии Flexy*
-  
+
   InternalLighting, // Потолки с подсветкой внутри
   // Lightbox, // Лайтбокс*
   // С точечными светильниками
@@ -68,7 +68,7 @@ export enum StretchCeilingsType {
   ShadowKRAAB, // Теневые,
   Gapless, // Бесщелевые KRAAB,
 
-  TwoTiered, // Двухуровневые без подсветки
+  TwoTiered, // Двухуровневые натяжные потолки
   TwoTieredWithBacklight, // Двухуровневые с подсветкой
   TwoTieredWithBacklightNiche, // Двухуровневые с подсветкой в нише
 
@@ -80,20 +80,31 @@ export enum StretchCeilingsType {
   DoubleVision, // Double Vision,
   Transparent, // Светопрозрачный,
   WithIlluminationCanvas, // С подсветкой через полотно,
+
+  InstallationSuspendedSeiling, // Монтаж натяжного потолка
+
+  RepairStretchCeilings, // Ремонт натяжных потолков
+
+  DrainingSuspendedCeiling, // Слив воды с натяжного потолка
+
+  // Демонтаж натяжного потолка
+  RemovingSlattedCeiling, // Демонтаж реечного потолка
+  RemovingProfile, // Демонтаж профиля
+  PreparingSubCeiling, // Подготовка чернового потолка работа
 }
 
 // Страницы по потолками
 export const stretchCeilingAll: IStretchCeiling[] = [
   {
     types: [
-      StretchCeilingsType.Matte,
+      ProductType.Matte,
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
-      StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Kitchen,
+      ProductType.Corridor,
+      ProductType.Bathroom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'matte-stretch-ceilings',
@@ -103,7 +114,7 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     detail: () =>
       import('./stretch-ceiling-detail/matte-stretch-ceilings/matte-stretch-ceilings').then((a) => a.Detail),
     image: '/catalog/image-2.jpg',
-    images: ['/catalog/image-2.jpg', '/catalog/image-3.jpg', '/catalog/image-4.jpg', '/catalog/image-1.jpg'],
+    images: ['/catalog/image-2.jpg', '/catalog/image-4.jpg', '/catalog/image-1.jpg'],
   },
 
   // {
@@ -129,18 +140,18 @@ export const stretchCeilingAll: IStretchCeiling[] = [
 
   {
     types: [
-      StretchCeilingsType.LightLines,
+      ProductType.LightLines,
 
       // Нужно сделат отдельную страницу по ним
-      StretchCeilingsType.LightLinesSlott, // Световые линии SLOTT*
-      StretchCeilingsType.LightLinesFlexy, // Световые линии Flexy*
+      ProductType.LightLinesSlott, // Световые линии SLOTT*
+      ProductType.LightLinesFlexy, // Световые линии Flexy*
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
+      ProductType.Kitchen,
+      ProductType.Corridor,
       //StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'light-lines',
@@ -161,16 +172,16 @@ export const stretchCeilingAll: IStretchCeiling[] = [
 
   {
     types: [
-      StretchCeilingsType.Matte,
+      ProductType.Matte,
 
-      StretchCeilingsType.Fabric,
+      ProductType.Fabric,
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
+      ProductType.Kitchen,
+      ProductType.Corridor,
       //StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'fabric-stretch-ceilings',
@@ -186,14 +197,14 @@ export const stretchCeilingAll: IStretchCeiling[] = [
   ////
   {
     types: [
-      StretchCeilingsType.Glossy,
+      ProductType.Glossy,
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
-      StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Kitchen,
+      ProductType.Corridor,
+      ProductType.Bathroom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'glossy-stretch-ceilings',
@@ -210,14 +221,14 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     types: [
       // StretchCeilingsType.Matte,
 
-      StretchCeilingsType.ShadowKRAAB,
+      ProductType.ShadowKRAAB,
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
-      StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Kitchen,
+      ProductType.Corridor,
+      ProductType.Bathroom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'shadow-stretch-ceilings',
@@ -226,20 +237,20 @@ export const stretchCeilingAll: IStretchCeiling[] = [
       'Это современная технология монтажа, создающая эффект парения полотна за счет небольшого зазора (5–7 мм) между стеной и потолком. Создает четкую черную теневую линию по периметру',
     detail: () =>
       import('./stretch-ceiling-detail/shadow-stretch-ceilings/shadow-stretch-ceilings').then((a) => a.Detail),
-    image: '/catalog/image-3.jpg',
-    images: ['/catalog/image-3.jpg', '/catalog/image-41.jpg', '/catalog/image-42.jpg'],
+    image: '/catalog/image-41.jpg',
+    images: ['/catalog/image-41.jpg', '/catalog/image-42.jpg', '/catalog/image-3.jpg'],
   },
 
   {
     types: [
-      StretchCeilingsType.Floating,
+      ProductType.Floating,
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
-      StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Kitchen,
+      ProductType.Corridor,
+      ProductType.Bathroom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'floating-suspended-ceiling',
@@ -284,14 +295,14 @@ export const stretchCeilingAll: IStretchCeiling[] = [
 
   {
     types: [
-      StretchCeilingsType.Satin,
+      ProductType.Satin,
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
-      StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Kitchen,
+      ProductType.Corridor,
+      ProductType.Bathroom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'satin-stretch-ceilings',
@@ -308,14 +319,14 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     types: [
       // StretchCeilingsType.Matte,
 
-      StretchCeilingsType.TwoTiered,
+      ProductType.TwoTiered,
 
-      StretchCeilingsType.Kitchen,
+      ProductType.Kitchen,
       // StretchCeilingsType.Corridor,
       //StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'two-level-stretch-ceilings',
@@ -354,14 +365,14 @@ export const stretchCeilingAll: IStretchCeiling[] = [
 
   {
     types: [
-      StretchCeilingsType.InternalLighting,
+      ProductType.InternalLighting,
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
-      StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Kitchen,
+      ProductType.Corridor,
+      ProductType.Bathroom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'ceilings-with-internal-lighting',
@@ -378,14 +389,14 @@ export const stretchCeilingAll: IStretchCeiling[] = [
 
   {
     types: [
-      StretchCeilingsType.Contour,
+      ProductType.Contour,
 
-      StretchCeilingsType.Kitchen,
-      StretchCeilingsType.Corridor,
+      ProductType.Kitchen,
+      ProductType.Corridor,
       //StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
-      StretchCeilingsType.LivingRoom,
+      ProductType.Bedroom,
+      ProductType.Nursery,
+      ProductType.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'ceilings-with-contour-lighting',
@@ -470,13 +481,13 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     types: [
       // StretchCeilingsType.Matte,
 
-      StretchCeilingsType.StarrySky,
+      ProductType.StarrySky,
 
       //StretchCeilingsType.Kitchen,
       //StretchCeilingsType.Corridor,
       //StretchCeilingsType.Bathroom,
-      StretchCeilingsType.Bedroom,
-      StretchCeilingsType.Nursery,
+      ProductType.Bedroom,
+      ProductType.Nursery,
       //StretchCeilingsType.LivingRoom,
       // StretchCeilingsType.House,
     ],
@@ -490,27 +501,21 @@ export const stretchCeilingAll: IStretchCeiling[] = [
   },
 ];
 
-// Потолки по тгруппам
-export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, StretchCeilingsType[]> = new Map([
+// Потолки по по группам
+export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, ProductType[]> = new Map([
   [
     StretchCeilingsGroup.ByTexture,
-    [
-      StretchCeilingsType.Matte,
-      StretchCeilingsType.Glossy,
-      StretchCeilingsType.Satin,
-      StretchCeilingsType.Textured,
-      StretchCeilingsType.Fabric,
-    ],
+    [ProductType.Matte, ProductType.Glossy, ProductType.Satin, ProductType.Textured, ProductType.Fabric],
   ],
   [
     StretchCeilingsGroup.WithBacklight,
     [
-      StretchCeilingsType.Floating,
+      ProductType.Floating,
       //StretchCeilingsType.LightLines,
-      StretchCeilingsType.Contour,
-      StretchCeilingsType.InternalLighting,
+      ProductType.Contour,
+      ProductType.InternalLighting,
 
-      StretchCeilingsType.LightLines,
+      ProductType.LightLines,
       // TODO потом добавить информацию по этим двум потолкам
       // StretchCeilingsType.LightLinesSlott,
       // StretchCeilingsType.LightLinesFlexy,
@@ -519,12 +524,12 @@ export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, StretchCeilingsTy
   [
     StretchCeilingsGroup.Premium,
     [
-      StretchCeilingsType.ShadowKRAAB,
-      StretchCeilingsType.Gapless,
-      StretchCeilingsType.WithPhotoPrinting,
-      StretchCeilingsType.TwoTiered,
-      StretchCeilingsType.MultiLevel,
-      StretchCeilingsType.StarrySky,
+      ProductType.ShadowKRAAB,
+      ProductType.Gapless,
+      ProductType.WithPhotoPrinting,
+      ProductType.TwoTiered,
+      ProductType.MultiLevel,
+      ProductType.StarrySky,
     ],
   ],
   // [
@@ -541,56 +546,56 @@ export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, StretchCeilingsTy
   // [ StretchCeilingsGroup.Fabric, [StretchCeilingsType.Fabric, StretchCeilingsType.DPremium, StretchCeilingsType.Clipso, StretchCeilingsType.Cerutti]],
 ] as const);
 
-export const stretchCeilingName: Partial<Record<StretchCeilingsType, string>> = {
+export const stretchCeilingName: Partial<Record<ProductType, string>> = {
   // ПВХ
-  [StretchCeilingsType.Matte]: 'Матовые',
-  [StretchCeilingsType.MatteColor]: 'Матовые цветной',
-  [StretchCeilingsType.Glossy]: 'Глянцевые цветной',
-  [StretchCeilingsType.GlossyColor]: 'Глянцевые',
-  [StretchCeilingsType.Satin]: 'Сатиновые',
-  [StretchCeilingsType.SatinColor]: 'Сатиновые цветной',
-  [StretchCeilingsType.Textured]: 'Фактурные',
+  [ProductType.Matte]: 'Матовые',
+  [ProductType.MatteColor]: 'Матовые цветной',
+  [ProductType.Glossy]: 'Глянцевые цветной',
+  [ProductType.GlossyColor]: 'Глянцевые',
+  [ProductType.Satin]: 'Сатиновые',
+  [ProductType.SatinColor]: 'Сатиновые цветной',
+  [ProductType.Textured]: 'Фактурные',
 
   // Тканевые
-  [StretchCeilingsType.Fabric]: 'Тканевые',
-  [StretchCeilingsType.DPremium]: 'D-Premium',
-  [StretchCeilingsType.Clipso]: 'Clipso',
-  [StretchCeilingsType.Cerutti]: 'Cerutti',
+  [ProductType.Fabric]: 'Тканевые',
+  [ProductType.DPremium]: 'D-Premium',
+  [ProductType.Clipso]: 'Clipso',
+  [ProductType.Cerutti]: 'Cerutti',
 
   // Премиум/Эксклюзивные потолки
-  [StretchCeilingsType.Gapless]: 'Бесщелевые',
+  [ProductType.Gapless]: 'Бесщелевые',
   // [StretchCeilingsType.WithPhotoPrinting]: 'С фотопечатью',
 
   // По типу помещений
-  [StretchCeilingsType.Kitchen]: 'На кухню',
-  [StretchCeilingsType.Corridor]: 'В коридор',
-  [StretchCeilingsType.Bathroom]: 'В ванную',
-  [StretchCeilingsType.Bedroom]: 'В спальню',
-  [StretchCeilingsType.Nursery]: 'В детскую',
-  [StretchCeilingsType.LivingRoom]: 'В гостиную',
+  [ProductType.Kitchen]: 'На кухню',
+  [ProductType.Corridor]: 'В коридор',
+  [ProductType.Bathroom]: 'В ванную',
+  [ProductType.Bedroom]: 'В спальню',
+  [ProductType.Nursery]: 'В детскую',
+  [ProductType.LivingRoom]: 'В гостиную',
   // [StretchCeilingsType.House]: 'В доме',
 
   // ByDesign[По конструкции]
-  [StretchCeilingsType.TwoTiered]: 'Двухуровневые без подсветки',
-  [StretchCeilingsType.TwoTieredWithBacklight]: 'с подсветкой',
-  [StretchCeilingsType.TwoTieredWithBacklightNiche]: 'Двухуровневые с подсветкой в нише',
-  [StretchCeilingsType.MultiLevel]: 'Многоуровневый натяжной потолок',
-  [StretchCeilingsType.CurvedTransition]: 'Криволинейный переход',
-  [StretchCeilingsType.DoubleVision]: 'Double Vision',
-  [StretchCeilingsType.ShadowKRAAB]: 'Теневые Euro Kraab',
-  [StretchCeilingsType.WithPhotoPrinting]: 'С фотопечатью',
-  [StretchCeilingsType.Acoustic]: 'Акустические',
+  [ProductType.TwoTiered]: 'Двухуровневые натяжные потолки',
+  [ProductType.TwoTieredWithBacklight]: 'с подсветкой',
+  [ProductType.TwoTieredWithBacklightNiche]: 'Двухуровневые с подсветкой в нише',
+  [ProductType.MultiLevel]: 'Многоуровневый натяжной потолок',
+  [ProductType.CurvedTransition]: 'Криволинейный переход',
+  [ProductType.DoubleVision]: 'Double Vision',
+  [ProductType.ShadowKRAAB]: 'Теневые',
+  [ProductType.WithPhotoPrinting]: 'С фотопечатью',
+  [ProductType.Acoustic]: 'Акустические',
 
   // С подсветкой
-  [StretchCeilingsType.Floating]: 'Парящие',
-  [StretchCeilingsType.Contour]: 'C контурной подсветкой',
-  [StretchCeilingsType.LightLines]: 'Световые линии',
-  [StretchCeilingsType.LightLinesSlott]: 'Световые линии SLOTT',
-  [StretchCeilingsType.LightLinesFlexy]: 'Световые линии Flexy',
-  [StretchCeilingsType.InternalLighting]: 'C подсветкой внутри',
-  [StretchCeilingsType.Transparent]: 'Светопрозрачный потоло',
-  [StretchCeilingsType.WithIlluminationCanvas]: 'С подсветкой через полотно',
-  [StretchCeilingsType.StarrySky]: 'Звездное небо',
+  [ProductType.Floating]: 'Парящие',
+  [ProductType.Contour]: 'C контурной подсветкой',
+  [ProductType.LightLines]: 'Световые линии',
+  [ProductType.LightLinesSlott]: 'Световые линии SLOTT',
+  [ProductType.LightLinesFlexy]: 'Световые линии Flexy',
+  [ProductType.InternalLighting]: 'C подсветкой внутри',
+  [ProductType.Transparent]: 'Светопрозрачный потоло',
+  [ProductType.WithIlluminationCanvas]: 'С подсветкой через полотно',
+  [ProductType.StarrySky]: 'Звездное небо',
 
   // [StretchCeilingsType.Lightbox]: 'Лайтбокс',
 } as const;
