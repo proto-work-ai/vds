@@ -14,7 +14,7 @@
     <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
       @for (item of filtered(); track item) {
         <a scrollLink [routerLink]="['/', routePath.catalog.root, item.key]" fragment="stretch-ceilings-catalog-detail">
-          <app-stretch-ceilings-catalog-card [item]="item" />
+          <app-stretch-ceilings-catalog-card [item]="item" [link]="true" />
         </a>
       }
     </div>

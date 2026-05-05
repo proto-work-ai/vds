@@ -28,10 +28,10 @@
   <ol class="grid lg:grid-cols-4 grid-cols-2 gap-6">
     @for (item of items(); track item) {
       <li class="flex items-center gap-3">
-        <div class="w-20">
+        <div class="w-15 sm:w-20">
           <img [src]="item.src" class="w-full block" [alt]="item.title" />
         </div>
-        <div class="flex-1">{{ item.title }}</div>
+        <div class="flex-1 max-sm:text-sm">{{ item.title }}</div>
       </li>
     }
   </ol>

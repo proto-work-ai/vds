@@ -162,10 +162,10 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     image: '/catalog/image-36.jpg',
     images: [
       '/catalog/image-36.jpg',
+      '/catalog/image-55.jpg',
       '/catalog/image-37.jpg',
       '/catalog/image-39.jpg',
       '/catalog/image-31.jpg',
-      '/catalog/image-26.jpg',
       '/catalog/image-34.jpg',
     ],
   },
@@ -190,8 +190,8 @@ export const stretchCeilingAll: IStretchCeiling[] = [
       'Экологичные, прочные и «дышащие» потолочные покрытия из полиэстера с полиуретановой пропиткой. Они имеют матовую фактуру, монтируются без нагрева («холодный монтаж»), устойчивы к перепадам температур и не имеют запаха.',
     detail: () =>
       import('./stretch-ceiling-detail/fabric-stretch-ceilings/fabric-stretch-ceilings').then((a) => a.Detail),
-    image: '/catalog/image-17.jpg',
-    images: ['/catalog/image-17.jpg', '/catalog/image-7.jpg'],
+    image: '/catalog/image-7.jpg',
+    images: ['/catalog/image-7.jpg', '/catalog/image-53.jpg', '/catalog/image-2.jpg', '/catalog/image-62.jpg'],
   },
 
   ////
@@ -214,7 +214,7 @@ export const stretchCeilingAll: IStretchCeiling[] = [
     detail: () =>
       import('./stretch-ceiling-detail/glossy-stretch-ceilings/glossy-stretch-ceilings').then((a) => a.Detail),
     image: '/catalog/image-12.jpg',
-    images: ['/catalog/image-12.jpg', '/catalog/image-16.jpg', '/catalog/image-18.jpg', '/catalog/image-14.jpg'],
+    images: ['/catalog/image-12.jpg', '/catalog/image-18.jpg', '/catalog/image-14.jpg'],
   },
 
   {
@@ -259,11 +259,10 @@ export const stretchCeilingAll: IStretchCeiling[] = [
       'Создают эффект «отрыва» полотна от стен благодаря скрытой светодиодной ленте по периметру. За счет специального профиля свет направлен на стену, формируя мягкий ореол, что визуально расширяет пространство.',
     detail: () =>
       import('./stretch-ceiling-detail/floating-suspended-ceiling/floating-suspended-ceiling').then((a) => a.Detail),
-    image: '/catalog/image-21.jpg',
+    image: '/catalog/image-23.jpg',
     images: [
-      '/catalog/image-21.jpg',
       '/catalog/image-23.jpg',
-      '/catalog/image-27.jpg',
+      '/catalog/image-21.jpg',
       '/catalog/image-28.jpg',
       '/catalog/image-29.jpg',
       '/catalog/image-30.jpg',
@@ -311,8 +310,8 @@ export const stretchCeilingAll: IStretchCeiling[] = [
       'ПВХ-пленка с особой фактурой, имитирующей ткань, которая занимает промежуточное место между матовыми и глянцевыми покрытиями. Они отличаются гладкой поверхностью, легким перламутровым блеском, мягким рассеиванием света, не создавая резких бликов',
     detail: () =>
       import('./stretch-ceiling-detail/satin-stretch-ceilings/satin-stretch-ceilings').then((a) => a.Detail),
-    image: '/catalog/image-7.jpg',
-    images: ['/catalog/image-7.jpg', '/catalog/image-11.jpg', '/catalog/image-9.jpg', '/catalog/image-13.jpg'],
+    image: '/catalog/image-11.jpg',
+    images: ['/catalog/image-11.jpg', '/catalog/image-9.jpg', '/catalog/image-13.jpg'],
   },
 
   {
@@ -335,8 +334,15 @@ export const stretchCeilingAll: IStretchCeiling[] = [
       'Конструктивная система из двух (или более) ярусов, расположенных на разной высоте. Они создают уникальный дизайн, скрывают коммуникации. Чаще всего изготавливаются с применением гипсокартонных коробов или специальных профилей',
     detail: () =>
       import('./stretch-ceiling-detail/two-level-stretch-ceilings/two-level-stretch-ceilings').then((a) => a.Detail),
-    image: '/catalog/image-29.jpg',
-    images: ['/catalog/image-29.jpg', '/catalog/image-24.jpg', '/catalog/image-30.jpg', '/catalog/image-20.jpg'],
+    image: '/catalog/image-56.jpg',
+    images: [
+      '/catalog/image-56.jpg',
+      '/catalog/image-54.jpg',
+      '/catalog/image-29.jpg',
+      '/catalog/image-24.jpg',
+      '/catalog/image-30.jpg',
+      '/catalog/image-20.jpg',
+    ],
   },
 
   // {
@@ -383,8 +389,8 @@ export const stretchCeilingAll: IStretchCeiling[] = [
       import('./stretch-ceiling-detail/ceilings-with-internal-lighting/ceilings-with-internal-lighting').then(
         (a) => a.Detail
       ),
-    image: '/catalog/image-43.jpg',
-    images: ['/catalog/image-43.jpg', '/catalog/image-44.jpg', '/catalog/image-45.jpg'],
+    image: '/catalog/image-61.jpg',
+    images: ['/catalog/image-61.jpg', '/catalog/image-43.jpg', '/catalog/image-44.jpg', '/catalog/image-45.jpg'],
   },
 
   {
@@ -407,8 +413,15 @@ export const stretchCeilingAll: IStretchCeiling[] = [
       import('./stretch-ceiling-detail/ceilings-with-contour-lighting/ceilings-with-contour-lighting').then(
         (a) => a.Detail
       ),
-    image: '/catalog/image-15.jpg',
-    images: ['/catalog/image-15.jpg', '/catalog/image-17.jpg', '/catalog/image-27.jpg'],
+    image: '/catalog/image-48.jpg',
+    images: [
+      '/catalog/image-48.jpg',
+      // '/catalog/image-27.jpg',
+      '/catalog/image-50.jpg',
+      '/catalog/image-49.jpg',
+      '/catalog/image-53.jpg',
+      // '/catalog/image-51.jpg',
+    ],
   },
 
   // {
@@ -576,7 +589,7 @@ export const stretchCeilingName: Partial<Record<ProductType, string>> = {
   // [StretchCeilingsType.House]: 'В доме',
 
   // ByDesign[По конструкции]
-  [ProductType.TwoTiered]: 'Двухуровневые натяжные потолки',
+  [ProductType.TwoTiered]: 'Двухуровневые',
   [ProductType.TwoTieredWithBacklight]: 'с подсветкой',
   [ProductType.TwoTieredWithBacklightNiche]: 'Двухуровневые с подсветкой в нише',
   [ProductType.MultiLevel]: 'Многоуровневый натяжной потолок',
@@ -601,8 +614,8 @@ export const stretchCeilingName: Partial<Record<ProductType, string>> = {
 } as const;
 
 export const stretchCeilingsGroupName = {
-  [StretchCeilingsGroup.ByTexture]: 'По фактуре',
   [StretchCeilingsGroup.WithBacklight]: 'С подсветкой',
+  [StretchCeilingsGroup.ByTexture]: 'По фактуре',
   [StretchCeilingsGroup.Premium]: 'Премиум', // Эксклюзивные потолки
   [StretchCeilingsGroup.ByPremises]: 'По типу помещений',
 } as const;

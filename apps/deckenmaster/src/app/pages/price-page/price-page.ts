@@ -1,5 +1,6 @@
 /* eslint-disable @angular-eslint/component-selector */
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { FooterMenuComponent } from '../../modules/footer-menu/footer-menu.component';
 import { ApplicationMeasurementComponent } from '../../modules/application-measurement/application-measurement.component';
 import { MainHeaderComponent } from '../../modules/main-header/main-header.component';
@@ -26,7 +27,7 @@ import { PriceList } from '../../modules/catalog-price/catalog-price-list/catalo
   ],
   providers: [MenuDeferService],
   host: {
-    'id': 'main',
+    id: 'main',
   },
 })
 export class PricePage {
@@ -39,4 +40,15 @@ export class PricePage {
       title: 'Цены',
     },
   ]);
+
+  constructor() {
+    const title = `Decken Master | Цены на натяжные потолки`;
+    inject(Title).setTitle(title);
+    inject(Meta).updateTag({ property: 'og:title', content: title });
+
+    inject(Meta).updateTag({
+      name: 'description',
+      content: `Цена на натяжные потолки в среднем составляет от 200 до 2000 рублей за 1м² с установкой. Расчет стоимости обычно включает полотно и монтаж.`,
+    });
+  }
 }

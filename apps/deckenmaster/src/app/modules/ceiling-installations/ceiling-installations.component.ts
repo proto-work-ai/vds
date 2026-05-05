@@ -14,7 +14,7 @@ export class CeilingInstallationsComponent {
       src: '/ceiling-installations/ceiling-installations-7.jpg',
     },
     {
-      title: 'Точечные светильники',
+      title: 'Точечные светильники в ванной',
       src: '/ceiling-installations/ceiling-installations-5.jpg',
     },
     // {

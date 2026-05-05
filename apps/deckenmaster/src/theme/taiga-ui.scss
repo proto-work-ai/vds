@@ -329,3 +329,8 @@ caption[tuiCaption] {
 table[tuiTable] td {
   background-color: transparent;
 }
+
+atlas-taiga-ui-table {
+  --tui-font-text-s: normal 0.625remvar (--tui-font-text);
+  --tui-font-text-m: normal 0.825rem var(--tui-font-text);
+}

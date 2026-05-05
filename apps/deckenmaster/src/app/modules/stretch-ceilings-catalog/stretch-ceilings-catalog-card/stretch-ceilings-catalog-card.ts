@@ -1,4 +1,6 @@
 import { Component, computed, input } from '@angular/core';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideChevronRight, lucideCircleArrowRight, lucideMoveRight } from '@ng-icons/lucide';
 import { IStretchCeiling } from '../../../model/products.data';
 import { PriceCard } from '../price-card';
 
@@ -6,10 +8,16 @@ import { PriceCard } from '../price-card';
   selector: 'app-stretch-ceilings-catalog-card',
   templateUrl: './stretch-ceilings-catalog-card.html',
   styleUrls: ['./stretch-ceilings-catalog-card.scss'],
-  imports: [PriceCard],
+  imports: [PriceCard, NgIcon],
+  providers: [provideIcons({ 
+    lucideCircleArrowRight,
+    lucideMoveRight,
+    lucideChevronRight,
+   })],
 })
 export class StretchCeilingsCatalogCard {
   readonly item = input.required<IStretchCeiling>();
+  readonly link = input<boolean>(false);
   protected readonly title = computed(() => this.item().title);
   protected readonly brief = computed(() => this.item().brief);
 }

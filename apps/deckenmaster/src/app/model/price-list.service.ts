@@ -116,14 +116,3 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     },
   ],
 ]);
-
-// export const dataCategoryMap = new Map<STPriceGroup, string>([
-//   [STPriceGroup.PVC, 'ПВХ'],
-//   [STPriceGroup.Fabric, 'Тканевые'],
-//   [STPriceGroup.WithBacklight, 'С подсветкой'],
-//   [STPriceGroup.ByDesign, 'Двухуровневые'],
-//   // [STPriceGroup.Exclusive, 'Эксклюзивные'],
-//   [STPriceGroup.AdditionalWork, 'Дополнительные работы'],
-//   [STPriceGroup.ElectricalEquipment, 'Электрооборудование'],
-//   [STPriceGroup.PowerSupplies, ' Блоки питания'],
-// ]);

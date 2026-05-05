@@ -9,11 +9,21 @@
     <footer class="flex flex-col gap-2">
       <h4 class="uppercase font-medium">{{ title() }}</h4>
 
-      <p class="text-sm">{{ brief() }}</p>
+      <p class="sm:text-sm">{{ brief() }}</p>
     </footer>
 
-    <section class="flex flex-col mt-auto w-full">
+    <section class="flex mt-auto w-full justify-between">
       <app-price-card size="s" [item]="item()"></app-price-card>
+
+      @if (link()) {
+        <div class="flex items-center justify-center text-sm">
+          Подробнее
+          <ng-icon name="lucideChevronRight" class="mt-[2px]"></ng-icon>
+          <!-- <ng-icon name="lucideMoveRight"></ng-icon> -->
+          <!-- <ng-icon name="lucideCircleArrowRight"></ng-icon> -->
+        </div>
+      }
+
       <!-- <div class="flex gap-1 justify-end">
         <div class="text-sm">Цена:</div>
         <div class="text-sm">

@@ -96,6 +96,11 @@ const menuServices: IAppMenuItem = {
       link: ['/', routePath.services.root],
       fragment: 'main',
     },
+    {
+      title: 'Заказать проект натяжного потолка',
+      link: ['/', routePath.services.root],
+      fragment: 'main',
+    },
   ],
 };
 
@@ -110,7 +115,7 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
 
     ...injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
 
-    // menuServices,
+   // menuServices,
 
     {
       title: 'Цены',
@@ -134,7 +139,7 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
       fragment: 'main',
     },
 
-    // menuServices,
+   // menuServices,
 
     {
       title: 'Цены',
