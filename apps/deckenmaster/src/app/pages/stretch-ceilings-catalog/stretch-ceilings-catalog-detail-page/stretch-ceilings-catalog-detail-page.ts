@@ -17,7 +17,7 @@ import { getCatalogMap2, injectCatalogPrice } from '../../../model/price-list-al
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
 import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
 import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
-import { IStretchCeiling } from '../../../model/products.data';
+import { IContentType } from '../../../model/products.data';
 import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
 import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
@@ -57,11 +57,8 @@ export class StretchCeilingsCatalogDetailPage {
   private readonly destroyRef = inject(DestroyRef);
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([]);
   protected readonly openPhoneSendModal = injectPhoneSendModal();
-  protected readonly item: WritableSignal<IStretchCeiling> = injectStretchCeilingRouteByKey();
-  private readonly platformId = inject(PLATFORM_ID);
-  protected get isPlatformBrowser() {
-    return isPlatformBrowser(this.platformId);
-  }
+  protected readonly item: WritableSignal<IContentType> = injectStretchCeilingRouteByKey();
+
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);

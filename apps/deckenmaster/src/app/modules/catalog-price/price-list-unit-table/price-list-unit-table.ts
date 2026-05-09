@@ -67,7 +67,8 @@ export class PriceListUnitTable {
       formatter: (row: any) => unitFormatter(row.unit),
     },
     {
-      title: 'Цена с установкой',
+      title: 'Цена',
+      // title: 'Цена с установкой',
       key: 'width',
       type: 'string',
       formatter: (row: any) => {

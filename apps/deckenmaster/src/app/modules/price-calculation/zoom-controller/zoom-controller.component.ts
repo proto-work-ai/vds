@@ -2,8 +2,8 @@ import { AsyncPipe } from '@angular/common';
 import { Component, forwardRef, input, signal } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { TUI_FALSE_HANDLER, tuiClamp } from '@taiga-ui/cdk';
-import { TuiButton, TuiHint, TuiTextfield } from '@taiga-ui/core';
-import { TuiInputNumber, TuiSlider } from '@taiga-ui/kit';
+import { TuiButton, TuiHint, TuiSlider, TuiTextfield } from '@taiga-ui/core';
+import { TuiInputNumber } from '@taiga-ui/kit';
 import { BehaviorSubject, distinctUntilChanged, map, of, switchMap, timer } from 'rxjs';
 
 @Component({

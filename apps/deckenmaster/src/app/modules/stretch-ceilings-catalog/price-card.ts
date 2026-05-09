@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { IStretchCeiling } from '../../model/products.data';
+import { IContentType } from '../../model/products.data';
 import { injectCatalogPrice } from '../../model/price-list-all';
 import { Unit } from '../../model/price-list.service';
 
@@ -13,6 +13,8 @@ export function unitFormatter(unit: Unit) {
       return 'точка';
     case Unit.LinearMeter:
       return 'м.пог.';
+    case Unit.Service:
+      return 'Разовая оплата';
     default:
       return '';
   }
@@ -47,14 +49,12 @@ export function unitFormatter(unit: Unit) {
 })
 export class PriceCard {
   readonly size = input.required<'s' | 'm' | 'l'>();
-  readonly item = input.required<IStretchCeiling>();
+  readonly item = input.required<IContentType>();
+  readonly itemPrice = input<number | undefined>(undefined);
+
   protected readonly minPrice = injectCatalogPrice();
 
-  private readonly dataType = computed(() => {
-    const types = this.item().types;
-    return this.minPrice(types);
-  });
-
-  protected readonly price = computed(() => this.dataType()?.[0]);
+  private readonly dataType = computed(() => this.minPrice(this.item().types));
+  protected readonly price = computed(() => this.itemPrice() ?? this.dataType()?.[0]);
   protected readonly unitFormat = computed(() => unitFormatter(this.dataType()?.[1].unit));
 }

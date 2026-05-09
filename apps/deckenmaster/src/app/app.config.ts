@@ -8,6 +8,7 @@ import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { appRoutes } from './app.routes';
+import { provideTaiga } from '@taiga-ui/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideEventPlugins(),
     provideHttpClient(),
-
+    provideTaiga(),
     tuiInputPhoneOptionsProvider({
       valueTransformer: {
         fromControlValue: (value) => `+${value}`,

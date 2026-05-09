@@ -7,7 +7,7 @@ import { lucidePhone } from '@ng-icons/lucide';
 import { NgTemplateOutlet } from '@angular/common';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
-import { injectFooterMenu, injectNavMenu } from '../../model/stretch-ceilings.service';
+import { injectFooterMenu } from '../../model/stretch-ceilings.service';
 
 @Component({
   selector: 'app-footer-menu',
@@ -34,9 +34,10 @@ export class FooterMenuComponent {
 
     result.push({
       title: 'Меню',
-      children: [...menu.slice(0, 2)],
+      children: [...menu.slice(0, 1), ...menu.slice(2, 3)],
     });
-    result.push(...menu.slice(2));
+
+    result.push(...menu.slice(3));
     return result;
   });
 }

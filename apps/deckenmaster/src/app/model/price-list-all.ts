@@ -3,7 +3,7 @@ import { STBrandType, STPriceBrand, Unit } from './price-list.service';
 import {
   STPriceGroup,
   stretchCeilingGroupName,
-  stretchCeilingName,
+  productName,
   ProductType,
 } from './products.data';
 import { STUnitPrice } from './price-list.service';
@@ -264,7 +264,7 @@ export const dataCategoryMap = new Map<STPriceGroup, string>(
   [...stretchCeilingCatalogMap.keys()].map((type) => [type, stretchCeilingGroupName[type]])
 );
 
-function getCatalogAll(): (STPriceBrand | STUnitPrice)[] {
+function getStretchCeilingAll(): (STPriceBrand | STUnitPrice)[] {
   return [...stretchCeilingCatalogMap.values()].flat();
 }
 
@@ -283,7 +283,7 @@ function oderByPrice(items: (STPriceBrand | STUnitPrice)[]) {
 }
 
 export function injectCatalogPrice() {
-  const list = getCatalogAll();
+  const list = getStretchCeilingAll();
 
   return (types: ProductType[]) => {
     const items = list.filter((a) => types.includes(a.type!));
@@ -299,7 +299,7 @@ export function getCatalogMap() {
     const items: (STPriceBrand | STUnitPrice)[] = structuredClone(stretchCeilingCatalogMap.get(key))!;
     return items.map((item) => {
       if (!('name' in item)) {
-        (item as any).name = stretchCeilingName[item.type!];
+        (item as any).name = productName[item.type!];
       }
       return item;
     });
@@ -307,11 +307,11 @@ export function getCatalogMap() {
 }
 
 export function getCatalogMap2(types: ProductType[]) {
-  const all = getCatalogAll();
+  const all = getStretchCeilingAll();
   const items: (STPriceBrand | STUnitPrice)[] = all.filter((a) => types.includes(a.type!));
   return items.map((item) => {
     if (!('name' in item)) {
-      (item as any).name = stretchCeilingName[item.type!];
+      (item as any).name = productName[item.type!];
     }
     return item;
   });

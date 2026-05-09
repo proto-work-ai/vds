@@ -4,7 +4,7 @@ import { TuiTextfield } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
 import { FormStore } from '../../components/form-store/form-store.directive';
 import { markAsSubmit } from '@atlas/core';
-import { tap } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
 
 export function ymAnyQuestions(): void {
@@ -39,7 +39,14 @@ export class AnyQuestions {
   protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
       this.sendForm(this.form.value as IFormData)
-        .pipe(tap(() => this.form.reset()))
+        .pipe(
+          finalize(() => {
+            this.form.patchValue({
+              phone: null,
+            });
+            this.form.markAsUntouched();
+          })
+        )
         .subscribe();
     }
   }

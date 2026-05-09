@@ -3,10 +3,13 @@ import { DestroyRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@taiga-ui/polymorpheus';
-import { filter, switchMap } from 'rxjs';
+import { filter, of, switchMap } from 'rxjs';
 import { SendModal } from './send.modal';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 export interface IFormData {
+  pageTitle?: string; // Страница заявки
   name?: string;
   phone?: string | number;
   type?: string;
@@ -28,8 +31,12 @@ export function ymSubmitEvent(): void {
   }
 }
 
-export function buldDataSend(data: IFormData): IDataSendItem[] {
+export function buldDataMessage(data: IFormData): IDataSendItem[] {
   const result: IDataSendItem[] = [];
+
+  if (data.pageTitle) {
+    result.push({ title: 'Страница заявки:', values: [data.pageTitle] });
+  }
 
   if (data.name || data.phone) {
     const values: string[] = [];
@@ -65,7 +72,7 @@ export function buldDataSend(data: IFormData): IDataSendItem[] {
   return result;
 }
 
-export function buldHtmlSend(items: IDataSendItem[]): string {
+export function buldHtmlMessage(items: IDataSendItem[]): string {
   const result = `
     <div style="display: flex; flex-direction: column; gap: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem;">
         ${items
@@ -96,7 +103,7 @@ export function buldHtmlSend(items: IDataSendItem[]): string {
 }
 
 export function getTestHtml() {
-  const items = buldDataSend({
+  const items = buldDataMessage({
     name: 'fgnfgn',
     phone: '9859936718',
     type: 'Матовый',
@@ -114,25 +121,43 @@ export function getTestHtml() {
     ],
   });
 
-  const html = buldHtmlSend(items);
+  const html = buldHtmlMessage(items);
   console.log(html);
   return html;
 }
 
 export function injectSendMessage(fn: () => void) {
+  const title = inject(Title);
   const http = inject(HttpClient);
   const destroyRef = inject(DestroyRef);
   const dialog = inject(TuiDialogService);
+  const isTest = inject(ActivatedRoute).snapshot.fragment === 'test';
+
   return (data: IFormData) => {
-    const items = buldDataSend(data);
-    const message = buldHtmlSend(items);
-    return http.post('/api/send-message.php', { message }).pipe(
-      switchMap(() => {
-        fn();
-        return dialog.open('Мы скоро с вами свяжемся.', { label: 'Ваша заявка успешно отправлена!', size: 's' });
-      }),
-      takeUntilDestroyed(destroyRef)
-    );
+    data.pageTitle ??= title.getTitle();
+    const items = buldDataMessage(data);
+    const message = buldHtmlMessage(items);
+
+    if (isTest) {
+      console.log('buldDataMessage', items);
+    }
+
+    return of(isTest)
+      .pipe(
+        switchMap((test) => {
+          if (test) {
+            return of(true);
+          }
+          return http.post('/api/send-message.php', { message });
+        })
+      )
+      .pipe(
+        switchMap(() => {
+          fn();
+          return dialog.open('Мы скоро с вами свяжемся.', { label: 'Ваша заявка успешно отправлена!', size: 's' });
+        }),
+        takeUntilDestroyed(destroyRef)
+      );
   };
 }
 

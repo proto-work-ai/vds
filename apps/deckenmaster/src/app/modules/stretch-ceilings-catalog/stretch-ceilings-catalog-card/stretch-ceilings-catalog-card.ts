@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideCircleArrowRight, lucideMoveRight } from '@ng-icons/lucide';
-import { IStretchCeiling } from '../../../model/products.data';
+import { IContentType } from '../../../model/products.data';
 import { PriceCard } from '../price-card';
 
 @Component({
@@ -16,7 +16,7 @@ import { PriceCard } from '../price-card';
    })],
 })
 export class StretchCeilingsCatalogCard {
-  readonly item = input.required<IStretchCeiling>();
+  readonly item = input.required<IContentType>();
   readonly link = input<boolean>(false);
   protected readonly title = computed(() => this.item().title);
   protected readonly brief = computed(() => this.item().brief);

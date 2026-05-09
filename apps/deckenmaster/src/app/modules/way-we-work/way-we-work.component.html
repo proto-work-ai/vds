@@ -2,7 +2,7 @@
   <header class="text-center flex flex-col gap-2 sm:gap-3">
     <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
 
-    <div class="md:w-175 mx-auto text-gray-500">Основной процесс включает замер, производство полотна и монтаж.</div>
+    <div class="md:w-175 mx-auto text-gray-500">{{ subTitle() }}</div>
   </header>
 
   <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
@@ -20,7 +20,7 @@
           <footer class="textr-center flex flex-col gap-2">
             <h4 class="uppercase font-medium">{{ item.title }}</h4>
 
-            <p class="text-sm">{{ item.text }}</p>
+            <p class="text-sm" [innerHTML]="item.text"></p>
           </footer>
         </div>
       </article>

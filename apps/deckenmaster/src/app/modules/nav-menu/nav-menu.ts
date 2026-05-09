@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideChevronDown,
@@ -57,6 +57,7 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
   ],
 })
 export class NavMenu {
+  readonly callSurveyor = input(true);
   protected readonly navMenu = injectNavMenu();
   protected readonly handler: TuiHandler<IAppMenuItem, readonly IAppMenuItem[]> = (item) => item.children || [];
   protected open = signal(false);

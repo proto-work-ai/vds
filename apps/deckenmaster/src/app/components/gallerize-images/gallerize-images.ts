@@ -2,21 +2,22 @@ import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, DestroyRef, inject, input 
 import { GallerizeDirective } from 'ng-gallery/lightbox';
 import { GalleryModule, ImageItem } from 'ng-gallery';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { IStretchCeiling } from '../../model/products.data';
-import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs';
+import { IContentType } from '../../model/products.data';
+import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
 
 @Component({
   selector: 'app-gallerize-images',
   templateUrl: 'gallerize-images.html',
   styleUrls: ['gallerize-images.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Essential for <swiper-container>
-  imports: [GallerizeDirective, GalleryModule],
+  imports: [GallerizeDirective, GalleryModule, IsPlatformBrowserDirective],
 })
 export class GallerizeImages {
   private destroyRef = inject(DestroyRef);
   private breakpointObserver = inject(BreakpointObserver);
-  public readonly item = input.required<IStretchCeiling>();
+  public readonly item = input.required<IContentType>();
   // protected readonly images = computed(() => this.item()?.images);
   protected readonly images = computed(() => this.item()?.images.map((src) => new ImageItem({ src, thumb: src })));
 

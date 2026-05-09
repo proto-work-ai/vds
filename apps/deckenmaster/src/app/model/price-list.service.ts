@@ -22,6 +22,7 @@ export enum Unit {
   M2, // M2
   Things, // шт.
   Point, // точка
+  Service, // услуга
 }
 
 export interface STUnitPrice {
@@ -33,6 +34,7 @@ export interface STUnitPrice {
 
 export interface UnitPrice {
   name: string; // Название
+  text?: string; // Описание
   unit: Unit; // Ед.изм.
   price: number | number[] | string; //  Цена
 }

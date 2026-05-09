@@ -4,30 +4,31 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { startWith, tap } from 'rxjs';
 import {
-  IStretchCeiling,
+  IContentType,
   stretchCeilingAll,
   stretchCeilingGroupMap,
-  stretchCeilingName,
+  productName,
   stretchCeilingsGroupName,
 } from './products.data';
 import { IAppMenuItem } from '../shared/menu';
 import { routePath } from '../app.routes';
+import { servicePages } from './service-pages';
 
-export function injectStretchCeilingsCatalog(): Signal<IStretchCeiling[]> {
-  const catalog = signal<IStretchCeiling[]>([]);
+export function injectStretchCeilingsCatalog(): Signal<IContentType[]> {
+  const catalog = signal<IContentType[]>([]);
   import('./products.data').then(({ stretchCeilingAll: stretchCeilings }) => catalog.set(stretchCeilings));
   return catalog.asReadonly();
 }
 
-export function injectStretchCeilingRouteByKey(): WritableSignal<IStretchCeiling> {
+export function injectStretchCeilingRouteByKey(): WritableSignal<IContentType> {
   const destroyRef = inject(DestroyRef);
   const route = inject(ActivatedRoute);
   const items = injectStretchCeilingsCatalog();
 
-  const item = signal<IStretchCeiling | undefined>(undefined);
+  const item = signal<IContentType | undefined>(undefined);
 
   if (route.snapshot.data) {
-    item.set(route.snapshot.data as IStretchCeiling);
+    item.set(route.snapshot.data as IContentType);
   } else {
     effect(() => {
       const list = items();
@@ -48,7 +49,7 @@ export function injectStretchCeilingRouteByKey(): WritableSignal<IStretchCeiling
     });
   }
 
-  return item as WritableSignal<IStretchCeiling>;
+  return item as WritableSignal<IContentType>;
 }
 
 export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IAppMenuItem[] {
@@ -66,7 +67,7 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
         .filter(([type, item]) => !!item)
         .map(([type, item]) => {
           return {
-            title: stretchCeilingName[type] ?? '',
+            title: productName[type] ?? '',
             link: patch.concat(item.key),
             queryParams: { type },
             fragment: 'main',
@@ -80,28 +81,13 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
 const menuServices: IAppMenuItem = {
   title: 'Услуги',
   fragment: 'main',
-  children: [
-    {
-      title: 'Монтаж натяжного потолка',
-      link: ['/', routePath.services.root],
+  children: servicePages.map(({ title, key }) => {
+    return {
+      title,
+      link: ['/', routePath.services.root, key],
       fragment: 'main',
-    },
-    {
-      title: 'Ремонт натяжных потолков',
-      link: ['/', routePath.services.root],
-      fragment: 'main',
-    },
-    {
-      title: 'Слив воды с натяжного потолка',
-      link: ['/', routePath.services.root],
-      fragment: 'main',
-    },
-    {
-      title: 'Заказать проект натяжного потолка',
-      link: ['/', routePath.services.root],
-      fragment: 'main',
-    },
-  ],
+    };
+  }),
 };
 
 export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuItem[]> {
@@ -115,7 +101,7 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
 
     ...injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
 
-   // menuServices,
+    menuServices,
 
     {
       title: 'Цены',
@@ -139,7 +125,7 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
       fragment: 'main',
     },
 
-   // menuServices,
+    menuServices,
 
     {
       title: 'Цены',

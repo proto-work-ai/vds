@@ -24,7 +24,7 @@ export class FormStore implements OnInit {
     if (this.formValue()) {
       const value = this.form.value ?? {};
       Object.assign(value, this.formValue());
-      this.form.setValue(value, { emitEvent: false });
+      this.form.patchValue(value, { emitEvent: false });
     }
 
     // if (this.form.value.rooms) {

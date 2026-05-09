@@ -5,7 +5,7 @@ import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit
 import { FormStore } from '../../components/form-store/form-store.directive';
 import { markAsSubmit } from '@atlas/core';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
-import { tap } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'app-application-measurement',
@@ -32,7 +32,14 @@ export class ApplicationMeasurementComponent {
   protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
       this.sendForm(this.form.value as IFormData)
-        .pipe(tap(() => this.form.reset()))
+        .pipe(
+          finalize(() => {
+            this.form.patchValue({
+              phone: null,
+            });
+            this.form.markAsUntouched();
+          })
+        )
         .subscribe();
     }
   }

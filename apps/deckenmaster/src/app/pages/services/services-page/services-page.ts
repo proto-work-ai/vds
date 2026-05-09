@@ -17,8 +17,7 @@ import { GallerizeImages } from '../../../components/gallerize-images/gallerize-
 import { getCatalogMap2, injectCatalogPrice } from '../../../model/price-list-all';
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
 import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
-import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
-import { IStretchCeiling } from '../../../model/products.data';
+import { IContentType } from '../../../model/products.data';
 import { PriceListTable } from '../../../modules/catalog-price/price-list-table/price-list-table';
 import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
 import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
@@ -58,7 +57,7 @@ export class ServicesPage {
   private readonly destroyRef = inject(DestroyRef);
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([]);
   protected readonly openPhoneSendModal = injectPhoneSendModal();
-  protected readonly item: WritableSignal<IStretchCeiling> = injectStretchCeilingRouteByKey();
+  protected readonly item: WritableSignal<IContentType> = injectStretchCeilingRouteByKey();
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);

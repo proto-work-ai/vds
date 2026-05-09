@@ -5,16 +5,11 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Directive({ selector: '[isPlatformBrowser]' })
 export class IsPlatformBrowserDirective {
-  private readonly platformId = inject(PLATFORM_ID);
-  private readonly containerRef = inject(ViewContainerRef);
-
-  private get isPlatformBrowser(): boolean {
-    return isPlatformBrowser(this.platformId);
-  }
-
   constructor() {
-    if (!this.isPlatformBrowser) {
-      this.containerRef.clear();
+    if (isPlatformBrowser(inject(PLATFORM_ID))) {
+      inject(ViewContainerRef).createEmbeddedView(inject(TemplateRef));
+    } else {
+      inject(ViewContainerRef).clear();
     }
   }
 }

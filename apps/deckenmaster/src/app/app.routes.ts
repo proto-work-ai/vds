@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
-import { stretchCeilingAll } from './model/products.data';
+import { stretchCeilingAll as stretchCeilingPages } from './model/products.data';
+import { servicePages } from './model/service-pages';
 
 export const routePath = {
   root: '',
@@ -14,7 +15,7 @@ export const routePath = {
   },
 };
 
-const stretchCeilingRoutes: Route[] = stretchCeilingAll.map((data) => {
+const stretchCeilingRoutes: Route[] = stretchCeilingPages.map((data) => {
   return {
     path: `${routePath.catalog.root}/${data.key}`,
     pathMatch: 'full',
@@ -23,6 +24,24 @@ const stretchCeilingRoutes: Route[] = stretchCeilingAll.map((data) => {
       import(
         './pages/stretch-ceilings-catalog/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
       ).then((a) => a.StretchCeilingsCatalogDetailPage),
+
+    children: [
+      {
+        path: ``,
+        data,
+        loadComponent: () => data.detail(),
+      },
+    ],
+  };
+});
+
+const servicesRoutes: Route[] = servicePages.map((data) => {
+  return {
+    path: `${routePath.services.root}/${data.key}`,
+    pathMatch: 'full',
+    data,
+    loadComponent: () =>
+      import('./pages/services/services-detail-page/services-detail-page').then((a) => a.ServicesDetailPpage),
 
     children: [
       {
@@ -62,11 +81,15 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
     loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
   },
-  {
-    path: `${routePath.services.root}`,
-    pathMatch: 'full',
-    loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
-  },
+
+  // {
+  //   path: `${routePath.services.root}`,
+  //   pathMatch: 'full',
+  //   loadComponent: () => import('./pages/services/services-page/services-page').then((a) => a.ServicesPage),
+  // },
+
+  ...servicesRoutes,
+
   {
     path: '**',
     redirectTo: '/',

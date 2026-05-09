@@ -8,11 +8,11 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [ "{options.outputPath}" ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/deckenmaster",
         "browser": "apps/deckenmaster/src/main.ts",
-        "polyfills": [ "zone.js" ],
+        "polyfills": ["zone.js"],
         "tsConfig": "apps/deckenmaster/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -32,9 +32,9 @@
           }
         ],
         "styles": [
-          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-          "node_modules/@taiga-ui/styles/taiga-ui-global.less",
+          "@taiga-ui/styles/taiga-ui-theme.less",
+          "@taiga-ui/styles/taiga-ui-fonts.less",
+          "@taiga-ui/addon-mobile/styles/taiga-ui-mobile.less",
           "apps/deckenmaster/src/styles.scss"
         ],
         "server": "apps/deckenmaster/src/main.server.ts",

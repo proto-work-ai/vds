@@ -6,9 +6,9 @@ import { Component, input, signal } from '@angular/core';
   styleUrls: ['./way-we-work.component.scss'],
 })
 export class WayWeWorkComponent {
-  readonly title = input('Этапы сотрудничества');
-
-  protected readonly items = signal([
+  readonly title = input('Этапы нашей работы');
+  readonly subTitle = input('Основной процесс включает замер, производство полотна и монтаж.');
+  readonly items = input<{ title: string; text: string }[]>([
     {
       title: 'Звонок или заявка на сайте ',
       text: 'Работа начинается с заявки по телефону или на сайте. Менеджер свяжется с Вами и ответит на все Ваши вопросы',

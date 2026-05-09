@@ -6,7 +6,7 @@ import { markAsSubmit } from '@atlas/core';
 import { type EmailJSResponseStatus } from '@emailjs/browser';
 import { FormStore } from '../../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../../send-service/send.services';
-import { tap } from 'rxjs';
+import { finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -19,7 +19,6 @@ import { tap } from 'rxjs';
     FormsModule,
     ReactiveFormsModule,
     TuiTextfield,
-    TuiInputRange,
     TuiInputSlider,
     TuiInputPhone,
     FormStore,
@@ -42,36 +41,17 @@ export class MainBannerFormComponent {
   protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
       this.sendForm(this.form.value as IFormData)
-        .pipe(tap(() => this.form.reset()))
-        .subscribe();
-    }
-  }
-
-  async formSubmit2(): Promise<void> {
-    const emailjs = await import('@emailjs/browser');
-    if (markAsSubmit(this.form)) {
-      const { phone, size, type } = this.form.value;
-      emailjs
-        .send(
-          'service_rb65i2f',
-          'template_930b9fq',
-          {
-            title: 'Title',
-            name: 'Name',
-            message: 'Message',
-          },
-          {
-            publicKey: 'l0W05iJ53rwm5kzzM',
-          }
+        .pipe(
+          finalize(() => {
+            this.form.setValue({
+              type: this.typeOptions()[0],
+              size: this.minRange(),
+              phone: null,
+            });
+            this.form.markAsUntouched();
+          })
         )
-        .then(
-          () => {
-            console.log('SUCCESS!');
-          },
-          (error) => {
-            console.log('FAILED...', (error as EmailJSResponseStatus).text);
-          }
-        );
+        .subscribe();
     }
   }
 }

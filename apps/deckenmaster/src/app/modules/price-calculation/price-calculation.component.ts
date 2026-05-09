@@ -16,9 +16,10 @@ import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DataListOptionImports } from './data-list-options';
-import { distinctUntilChanged, of, pairwise, startWith, tap } from 'rxjs';
+import { distinctUntilChanged, finalize, pairwise, startWith, tap } from 'rxjs';
 import { FormStore } from '../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
+import { TuiInput } from '@taiga-ui/core';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -38,7 +39,6 @@ export class SafePipe implements PipeTransform {
     TuiSelect,
     FormsModule,
     ReactiveFormsModule,
-    TuiInputRange,
     TuiInputSlider,
     TuiInputPhone,
     TuiTextarea,
@@ -46,6 +46,7 @@ export class SafePipe implements PipeTransform {
     ZoomControllerComponent,
     DataListOptionImports,
     FormStore,
+    TuiInput,
   ],
   providers: [
     provideNgIconLoader((name) => {
@@ -114,7 +115,20 @@ export class PriceCalculationComponent {
   protected formSubmit(): void {
     if (markAsSubmit(this.form)) {
       this.sendForm(this.form.value as IFormData)
-        .pipe(tap(() => this.form.reset()))
+        .pipe(
+          finalize(() => {
+            this.form.setValue({
+              size: this.minRange(),
+              type: this.typeOptions()[0],
+              rooms: [],
+              lightings: [],
+              name: null,
+              description: null,
+              phone: null,
+            });
+            this.form.markAsUntouched();
+          })
+        )
         .subscribe();
     }
   }

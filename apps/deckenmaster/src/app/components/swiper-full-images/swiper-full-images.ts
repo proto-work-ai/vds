@@ -7,14 +7,13 @@ import {
   viewChild,
   ElementRef,
   effect,
-  ViewEncapsulation,
 } from '@angular/core';
 import Swiper from 'swiper';
 import { isPlatformBrowser } from '@angular/common';
 import { provideIcons, NgIcon } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { Navigation } from 'swiper/modules';
-import { IStretchCeiling } from '../../model/products.data';
+import { IContentType } from '../../model/products.data';
 import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
 
 /*
@@ -36,7 +35,7 @@ import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
 })
 export class SwiperFullImages {
   protected swiperRef = viewChild<ElementRef>('swiper');
-  public readonly item = input.required<IStretchCeiling>();
+  public readonly item = input.required<IContentType>();
   protected readonly images = computed(() => this.item()?.images);
   protected swiper!: Swiper;
 

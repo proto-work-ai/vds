@@ -1,6 +1,6 @@
 import { ComponentType } from '@angular/cdk/portal';
 
-export interface IStretchCeiling {
+export interface IContentType {
   key: string;
   title: string;
   image: string;
@@ -81,6 +81,7 @@ export enum ProductType {
   Transparent, // Светопрозрачный,
   WithIlluminationCanvas, // С подсветкой через полотно,
 
+  // Services
   InstallationSuspendedSeiling, // Монтаж натяжного потолка
 
   RepairStretchCeilings, // Ремонт натяжных потолков
@@ -94,7 +95,7 @@ export enum ProductType {
 }
 
 // Страницы по потолками
-export const stretchCeilingAll: IStretchCeiling[] = [
+export const stretchCeilingAll: IContentType[] = [
   {
     types: [
       ProductType.Matte,
@@ -310,8 +311,8 @@ export const stretchCeilingAll: IStretchCeiling[] = [
       'ПВХ-пленка с особой фактурой, имитирующей ткань, которая занимает промежуточное место между матовыми и глянцевыми покрытиями. Они отличаются гладкой поверхностью, легким перламутровым блеском, мягким рассеиванием света, не создавая резких бликов',
     detail: () =>
       import('./stretch-ceiling-detail/satin-stretch-ceilings/satin-stretch-ceilings').then((a) => a.Detail),
-    image: '/catalog/image-11.jpg',
-    images: ['/catalog/image-11.jpg', '/catalog/image-9.jpg', '/catalog/image-13.jpg'],
+    image: '/catalog/image-13.jpg',
+    images: ['/catalog/image-13.jpg', '/catalog/image-11.jpg'],
   },
 
   {
@@ -559,7 +560,7 @@ export const stretchCeilingGroupMap: Map<StretchCeilingsGroup, ProductType[]> = 
   // [ StretchCeilingsGroup.Fabric, [StretchCeilingsType.Fabric, StretchCeilingsType.DPremium, StretchCeilingsType.Clipso, StretchCeilingsType.Cerutti]],
 ] as const);
 
-export const stretchCeilingName: Partial<Record<ProductType, string>> = {
+export const productName: Partial<Record<ProductType, string>> = {
   // ПВХ
   [ProductType.Matte]: 'Матовые',
   [ProductType.MatteColor]: 'Матовые цветной',
@@ -611,6 +612,15 @@ export const stretchCeilingName: Partial<Record<ProductType, string>> = {
   [ProductType.StarrySky]: 'Звездное небо',
 
   // [StretchCeilingsType.Lightbox]: 'Лайтбокс',
+
+  // Services
+  [ProductType.InstallationSuspendedSeiling]: 'Монтаж натяжного потолка',
+  [ProductType.RepairStretchCeilings]: 'Ремонт натяжных потолков',
+  [ProductType.DrainingSuspendedCeiling]: 'Слив воды с натяжного потолка',
+
+  [ProductType.RemovingSlattedCeiling]: 'Демонтаж реечного потолка',
+  [ProductType.RemovingProfile]: 'Демонтаж профиля',
+  [ProductType.PreparingSubCeiling]: 'Подготовка чернового потолка работа',
 } as const;
 
 export const stretchCeilingsGroupName = {

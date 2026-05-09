@@ -1,11 +1,16 @@
-<form [formStore]="'app-main-banner-form'" [formGroup]="form" class="text-white bg-gray textfield-no-border" (submit)="formSubmit()">
+<form
+  [formStore]="'app-main-banner-form'"
+  [formGroup]="form"
+  class="text-white bg-gray textfield-no-border"
+  (submit)="formSubmit()"
+>
   <div class="flex flex-col gap-6 p-5">
     <h3 class="text-xl">Рассчитайте стоимость</h3>
 
     <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
       <label tuiLabel>Тип потолка</label>
       <input tuiSelect formControlName="type" />
-      <tui-data-list-wrapper *tuiTextfieldDropdown new [items]="typeOptions()" />
+      <tui-data-list-wrapper *tuiDropdown new [items]="typeOptions()" />
     </tui-textfield>
 
     <section>
