@@ -26,7 +26,9 @@ export function unitFormatter(unit: Unit) {
     @switch (size()) {
       @case ('s') {
         <div class="flex gap-1 justify-end">
-          <div class="text-sm">Цена:</div>
+          @if (priceText()) {
+            <div class="text-sm">Цена:</div>
+          }
           <div class="text-sm">
             <span class="font-semibold">{{ price() }} </span>
             руб/{{ unitFormat() }}
@@ -35,7 +37,9 @@ export function unitFormatter(unit: Unit) {
       }
       @default {
         <section class="flex flex-col gap-1">
-          <div class="title">Цена</div>
+          @if (priceText()) {
+            <div class="text-sm">Цена:</div>
+          }
           <div class="text-xl">
             <span class="font-semibold">{{ price() }} </span>
             руб/{{ unitFormat() }}
@@ -48,6 +52,7 @@ export function unitFormatter(unit: Unit) {
   `,
 })
 export class PriceCard {
+  readonly priceText = input<boolean>(true);
   readonly size = input.required<'s' | 'm' | 'l'>();
   readonly item = input.required<IContentType>();
   readonly itemPrice = input<number | undefined>(undefined);

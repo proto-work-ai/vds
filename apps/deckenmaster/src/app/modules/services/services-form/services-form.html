@@ -2,11 +2,11 @@
   [formStore]="'draining-suspended-ceiling-form'"
   [formGroup]="form"
   (submit)="formSubmit()"
-  class="flex flex-col gap-3 px-5 pt-5 pb-2 shadow-xl border border-gray-100 rounded-lg"
+  class="flex flex-col gap-3 px-5 pt-5 pb-3 shadow-xl border border-gray-100 rounded-lg bg-white"
 >
-  <!-- <h3 class="text-lg font-medium text-center">Оставьте номер — мастер перезвонит в течение 5 минут.</h3> -->
+  <h3 class="text-2xl font-medium text-center">Оставьте номер телефона</h3>
 
-  <section class="flex max-sm:flex-col gap-3">
+  <section class="flex flex-col gap-3">
     <tui-textfield [tuiTextfieldCleaner]="false" class="flex-1">
       <label tuiLabel>Ваше имя</label>
       <input tuiInput formControlName="name" />
@@ -22,5 +22,5 @@
     </div>
   </section>
 
-  <small>*Оставьте номер — мастер перезвонит в течение 5 минут</small>
+  <small>*Мастер перезвонит в течение 5 минут</small>
 </form>
