@@ -1,4 +1,13 @@
-import { Component, computed, input, PLATFORM_ID, inject, viewChild, ElementRef, effect } from '@angular/core';
+import {
+  Component,
+  computed,
+  input,
+  PLATFORM_ID,
+  inject,
+  viewChild,
+  ElementRef,
+  effect,
+} from '@angular/core';
 import Swiper from 'swiper';
 import { isPlatformBrowser } from '@angular/common';
 import { provideIcons, NgIcon } from '@ng-icons/core';

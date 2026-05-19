@@ -1,6 +1,9 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { injectStretchCeilingGroupMenu, injectStretchCeilingsCatalog } from '../../../model/stretch-ceilings.service';
+import {
+  injectStretchCeilingGroupMenu,
+  injectStretchCeilingsCatalog,
+} from '../../../model/stretch-ceilings.service';
 import { StretchCeilingsCatalogCard } from '../stretch-ceilings-catalog-card/stretch-ceilings-catalog-card';
 import { routePath } from '../../../app.routes';
 import { provideIcons } from '@ng-icons/core';

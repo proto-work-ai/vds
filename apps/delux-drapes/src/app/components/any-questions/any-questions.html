@@ -12,10 +12,17 @@
 
     <section class="sm:mx-auto flex flex-col gap-2 sm:min-w-130 mx-4">
       <form [formStore]="'any-questions'" [formGroup]="form" class="grid grid-cols-2 gap-3" (submit)="formSubmit()">
-        <tui-textfield [tuiTextfieldCleaner]="false">
-          <label tuiLabel>Укажите телефон</label>
-          <input tuiInputPhone formControlName="phone" mask="+7 ### ###-##-##" />
-        </tui-textfield>
+        @defer {
+          <tui-textfield [tuiTextfieldCleaner]="false">
+            <label tuiLabel>Укажите телефон</label>
+            <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+          </tui-textfield>
+        } @placeholder {
+          <tui-textfield [tuiTextfieldCleaner]="false">
+            <label tuiLabel>Укажите телефон</label>
+            <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+          </tui-textfield>
+        }
 
         <button class="btn-primary btn-sm" type="submit">Отправить</button>
       </form>

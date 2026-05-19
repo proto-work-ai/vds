@@ -20,8 +20,7 @@ import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card'
 import { IContentType } from '../../../model/products.data';
 import { PriceListTable } from '../../../modules/catalog-price/price-list-table/price-list-table';
 import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
-import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.component';
-// import { TuiResponsiveDialogService } from '@taiga-ui/addon-mobile';
+import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
 
 @Component({
   selector: 'st-services-page',
@@ -41,7 +40,7 @@ import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.com
     PriceListTable,
     SwiperFullImages,
     WayWeWorkComponent,
-  ],
+],
   providers: [
     MenuDeferService,
     // {

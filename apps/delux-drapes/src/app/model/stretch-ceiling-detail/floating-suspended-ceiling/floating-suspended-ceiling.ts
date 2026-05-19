@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
   templateUrl: 'floating-suspended-ceiling.html',
   imports: [],
 })
-export class Detail {}
+export class Detail { }

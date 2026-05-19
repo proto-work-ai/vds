@@ -3,9 +3,10 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
 import { markAsSubmit } from '@atlas/core';
-import { finalize, tap } from 'rxjs';
+import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../send-service/send.services';
 import { FormStore } from '../../../components/form-store/form-store.directive';
+import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
 
 export function ymDrainingEvent(): void {
   const { ym } = window as any;
@@ -27,8 +28,9 @@ export function ymDrainingEvent(): void {
     TuiTextfield,
     TuiInputSlider,
     TuiInputPhone,
-    TuiInput,
     FormStore,
+    TuiInput,
+    IsPlatformBrowserDirective
   ],
 })
 export class ServicesForm {

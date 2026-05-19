@@ -5,7 +5,7 @@ import { drainingSuspendedPrice } from '../../service-pages';
 import { PriceListUnitTable } from '../../../modules/catalog-price/price-list-unit-table/price-list-unit-table';
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
-import { ServicesBanner } from '../../../modules/services/services-banner/services-banner';
+import { ServicesBanner } from "../../../modules/services/services-banner/services-banner";
 
 /*
   https://slivaem-vodu.ru/moskva

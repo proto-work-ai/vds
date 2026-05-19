@@ -12,10 +12,17 @@
       <input tuiInput formControlName="name" />
     </tui-textfield>
 
-    <tui-textfield [tuiTextfieldCleaner]="false" class="flex-1">
-      <label tuiLabel>Укажите телефон</label>
-      <input tuiInputPhone mask="+7 ### ###-##-##" formControlName="phone" />
-    </tui-textfield>
+    @defer {
+      <tui-textfield [tuiTextfieldCleaner]="false">
+        <label tuiLabel>Укажите телефон</label>
+        <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+      </tui-textfield>
+    } @placeholder {
+      <tui-textfield [tuiTextfieldCleaner]="false">
+        <label tuiLabel>Укажите телефон</label>
+        <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+      </tui-textfield>
+    }
 
     <div class="flex-1">
       <button class="btn-primary btn-sm w-full" type="submit">Отправить</button>

@@ -1,11 +1,11 @@
 import { Component, input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiTextfield } from '@taiga-ui/core';
+import { TuiTextfield, TuiInput } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
 import { FormStore } from '../../components/form-store/form-store.directive';
 import { markAsSubmit } from '@atlas/core';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
-import { finalize, tap } from 'rxjs';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-application-measurement',
@@ -19,6 +19,7 @@ import { finalize, tap } from 'rxjs';
     TuiInputSlider,
     TuiInputPhone,
     FormStore,
+    TuiInput,
   ],
 })
 export class ApplicationMeasurementComponent {

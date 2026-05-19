@@ -9,13 +9,11 @@ import { PriceCard } from '../price-card';
   templateUrl: './stretch-ceilings-catalog-card.html',
   styleUrls: ['./stretch-ceilings-catalog-card.scss'],
   imports: [PriceCard, NgIcon],
-  providers: [
-    provideIcons({
-      lucideCircleArrowRight,
-      lucideMoveRight,
-      lucideChevronRight,
-    }),
-  ],
+  providers: [provideIcons({ 
+    lucideCircleArrowRight,
+    lucideMoveRight,
+    lucideChevronRight,
+   })],
 })
 export class StretchCeilingsCatalogCard {
   readonly item = input.required<IContentType>();

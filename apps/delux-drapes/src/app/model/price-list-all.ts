@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { STBrandType, STPriceBrand, Unit } from './price-list.service';
-import { STPriceGroup, stretchCeilingGroupName, productName, ProductType } from './products.data';
+import {
+  STPriceGroup,
+  stretchCeilingGroupName,
+  productName,
+  ProductType,
+} from './products.data';
 import { STUnitPrice } from './price-list.service';
 import { byDesignGroup, withBacklightGroup } from './by-design.group';
 

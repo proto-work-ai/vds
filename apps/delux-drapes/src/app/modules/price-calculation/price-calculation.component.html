@@ -68,10 +68,17 @@
             <input tuiInput formControlName="name" />
           </tui-textfield>
 
-          <tui-textfield class="flex-1" [tuiTextfieldCleaner]="false">
-            <label tuiLabel>Укажите телефон</label>
-            <input tuiInputPhone formControlName="phone" mask="+7 ### ###-##-##" />
-          </tui-textfield>
+          @defer {
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Укажите телефон</label>
+              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+            </tui-textfield>
+          } @placeholder {
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Укажите телефон</label>
+              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+            </tui-textfield>
+          }
 
           <button class="btn-primary btn-sm max-md:w-full" type="submit">Расчитать цену</button>
         </div>

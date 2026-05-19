@@ -163,7 +163,7 @@ export class PriceListBrandTable {
 
   protected readonly columnsSM = computed(() => {
     const list = this.columns();
-    return [list[0], list[1], list[list.length - 1]];
+    return [list[0], list[1], list[list.length-1]];
   });
 
   readonly tableRows = input.required<any[]>();

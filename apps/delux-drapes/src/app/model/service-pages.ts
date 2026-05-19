@@ -118,8 +118,8 @@ export const servicePages: IContentType[] = [
     key: 'draining-suspended-ceiling',
     title: servicesPageMapName[ServicesPageType.DrainingSuspendedCeiling]!,
     brief: `Мы сливаем воду без проколов и повреждений — аккуратно. Мастер приезжает в среднем за 20–60 минут и аккуратно восстанавливает потолок после затопления.`,
-    // brief: `При затоплении необходимо отключить электричество,
-    // вызвать мастеров, которые удалят воду через отверстия светильников или край полотна,
+    // brief: `При затоплении необходимо отключить электричество, 
+    // вызвать мастеров, которые удалят воду через отверстия светильников или край полотна, 
     // а затем просушат его тепловой пушкой для восстановления формы.`,
     detail: () =>
       import('./services-detail/draining-suspended-ceiling/draining-suspended-ceiling').then((a) => a.Detail),

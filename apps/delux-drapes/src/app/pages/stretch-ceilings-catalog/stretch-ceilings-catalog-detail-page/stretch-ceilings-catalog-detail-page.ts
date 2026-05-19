@@ -18,8 +18,8 @@ import { injectPhoneSendModal } from '../../../modules/send-service/send.service
 import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
 import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
 import { IContentType } from '../../../model/products.data';
-import { PriceListTable } from '../../../modules/catalog-price/price-list-table/price-list-table';
-import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.component';
+import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
+import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
 
 @Component({
@@ -41,7 +41,7 @@ import { AnyQuestions } from '../../../components/any-questions/any-questions';
     AnyQuestions,
     SwiperFullImages,
     PriceListBrandTable,
-  ],
+],
   providers: [
     MenuDeferService,
     // {

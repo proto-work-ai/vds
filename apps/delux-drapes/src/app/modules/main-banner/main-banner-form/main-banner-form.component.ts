@@ -1,12 +1,12 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiTextfield } from '@taiga-ui/core';
-import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputRange, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
+import { TuiTextfield, TuiInput } from '@taiga-ui/core';
+import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
 import { markAsSubmit } from '@atlas/core';
-import { type EmailJSResponseStatus } from '@emailjs/browser';
 import { FormStore } from '../../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../../send-service/send.services';
-import { finalize, tap } from 'rxjs';
+import { finalize } from 'rxjs';
+import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -22,6 +22,8 @@ import { finalize, tap } from 'rxjs';
     TuiInputSlider,
     TuiInputPhone,
     FormStore,
+    TuiInput,
+    IsPlatformBrowserDirective
   ],
 })
 export class MainBannerFormComponent {

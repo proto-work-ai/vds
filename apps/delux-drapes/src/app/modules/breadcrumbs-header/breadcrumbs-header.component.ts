@@ -14,7 +14,15 @@ export interface IBreadcrumbItem {
   selector: 'app-breadcrumbs-header',
   templateUrl: 'breadcrumbs-header.component.html',
   styleUrls: ['breadcrumbs-header.component.scss'],
-  imports: [NgIcon, TuiDataList, TuiDropdown, TuiDataList, TuiDropdown, ScrollLink, RouterLink],
+  imports: [
+    NgIcon,
+    TuiDataList,
+    TuiDropdown,
+    TuiDataList,
+    TuiDropdown,
+    ScrollLink,
+    RouterLink,
+  ],
   providers: [
     provideIcons({
       lucideChevronRight,

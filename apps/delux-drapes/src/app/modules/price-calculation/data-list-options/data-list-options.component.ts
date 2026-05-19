@@ -17,7 +17,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 export class DataListOptionsComponent implements ControlValueAccessor {
   readonly items = input<any>([]);
 
-  readonly value = signal<any[]>([]);
+  readonly value = signal<any[]>([]);;
   protected disabled = signal(false);
 
   protected propagateChange(value: any) {}

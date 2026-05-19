@@ -1,11 +1,12 @@
 import { Component, input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiTextfield } from '@taiga-ui/core';
+import { TuiTextfield, TuiInput } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
 import { FormStore } from '../../components/form-store/form-store.directive';
 import { markAsSubmit } from '@atlas/core';
 import { finalize, tap } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
+import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
 
 export function ymAnyQuestions(): void {
   const { ym } = window as any;
@@ -26,6 +27,8 @@ export function ymAnyQuestions(): void {
     TuiInputSlider,
     TuiInputPhone,
     FormStore,
+    TuiInput,
+    IsPlatformBrowserDirective
   ],
 })
 export class AnyQuestions {

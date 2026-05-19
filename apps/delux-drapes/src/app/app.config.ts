@@ -31,8 +31,8 @@ export const appConfig: ApplicationConfig = {
         thumbs: true,
         autoHeight: true,
         imageSize: 'cover',
-        thumbPosition: 'bottom',
-      } satisfies GalleryConfig,
-    },
+        thumbPosition: 'bottom'
+      } satisfies GalleryConfig
+    }
   ],
 };

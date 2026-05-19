@@ -1,9 +1,5 @@
 <div class="flex gap-3">
-  <section
-    class="flex-1 zoom-controller px-3 rounded-sm"
-    (pointerdown)="onKeydown(true)"
-    (document:pointerup)="onKeydown(false)"
-  >
+  <section class="flex-1 zoom-controller px-3 rounded-sm" (pointerdown)="onKeydown(true)" (document:pointerup)="onKeydown(false)">
     <button
       appearance="icon"
       iconStart="@tui.minus"
