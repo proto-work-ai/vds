@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
-import { TuiButton, type TuiDialogContext, TuiTextfield, TuiTextfieldComponent } from '@taiga-ui/core';
+import { TuiButton, type TuiDialogContext, TuiTextfield, TuiTextfieldComponent, TuiInput } from '@taiga-ui/core';
 import { TuiInputPhone } from '@taiga-ui/kit';
 import { TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
-import { IFormData, injectSendMessage } from './send.services';
-import { tap } from 'rxjs';
+import { IFormData } from './send.services';
+import { IsPlatformBrowserDirective } from '../../components/is-platform-browser.directive';
 
 @Component({
   templateUrl: 'send.modal.html',
@@ -20,6 +20,8 @@ import { tap } from 'rxjs';
     TuiTextfield,
     TuiInputPhone,
     TuiAutoFocus,
+    TuiInput,
+    IsPlatformBrowserDirective
   ],
 })
 export class SendModal {

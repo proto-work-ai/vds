@@ -1,0 +1,11 @@
+<form [formGroup]="form" (submit)="formSubmit()" class="flex flex-col gap-5">
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <label tuiLabel>Укажите телефон</label>
+    <input tuiInputPhone tuiAutoFocus formControlName="phone" mask="+7 ### ###-##-##" />
+  </tui-textfield>
+
+  <footer class="flex gap-3 justify-end">
+    <button class="flex-1" tuiButton (click)="formCancel()" appearance="outline-grayscale">Отмена</button>
+    <button class="flex-1" tuiButton type="submit">Отправить</button>
+  </footer>
+</form>

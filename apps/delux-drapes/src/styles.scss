@@ -1,0 +1,28 @@
+@use 'sass:meta';
+
+html,
+body {
+  font-size: 14px;
+  --default-font-family: Manrope, sans-serif;
+  letter-spacing: 2%;
+  min-width: 400px;
+}
+
+/*
+  Fonts
+*/
+// @include meta.load-css('theme/fonts/rotonda/stylesheet.scss');
+// @include meta.load-css('fonts/akrobat/stylesheet.scss');
+// @include meta.load-css('fonts/proxima-nova/stylesheet.scss');
+@include meta.load-css('fonts/gilroy/stylesheet.scss');
+@include meta.load-css('fonts/manrope/stylesheet.scss');
+@include meta.load-css('fonts/montserrat/stylesheet.scss');
+
+/*
+  App Theme
+*/
+@include meta.load-css('theme/tailwind.scss');
+@include meta.load-css('theme/taiga-ui.scss');
+@include meta.load-css('theme/buttons.scss');
+@include meta.load-css('theme/app-theme.scss');
+@include meta.load-css('theme/fix.scss');

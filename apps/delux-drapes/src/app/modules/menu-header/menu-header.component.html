@@ -1,0 +1,34 @@
+<ol class="lg:container max-lg:px-3 mx-auto flex items-center py-2">
+  <li class="flex-1">
+    <nav class="flex max-md:hidden items-center gap-8">
+      @for (item of items(); track item) {
+        <a href="#{{ item.name }}" (click)="onClose()">{{ item.title }}</a>
+      }
+    </nav>
+
+    <div class="hidden max-md:flex">
+      <ng-icon class="cursor-pointer text-lg" name="lucideMenu" (click)="onOpen()"></ng-icon>
+    </div>
+  </li>
+
+  <li>
+    <a href="#measurement" class="btn-primary btn-xs">Вызвать замерщика</a>
+  </li>
+</ol>
+
+<tui-drawer *tuiPopup="open()" direction="start" class="drawer" [overlay]="true" (click.self)="onClose()">
+  <header class="sticky top-0">
+    <h2 tuiHeader>
+      <div tuiTitle>Меню</div>
+      <div tuiAccessories>
+        <ng-icon class="cursor-pointer text-lg" name="lucideX" (click)="onClose()"></ng-icon>
+      </div>
+    </h2>
+  </header>
+
+  <section class="flex flex-col gap-2">
+    @for (item of items(); track item) {
+      <a href="#{{ item.name }}" (click)="onClose()">{{ item.title }}</a>
+    }
+  </section>
+</tui-drawer>

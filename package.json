@@ -8,7 +8,8 @@
     "proto-api:dev": "npx nx run proto-api:serve --configuration=development",
     "supabase:start": "npx supabase start",
     "metadb:serve": "npx nx run metadb:serve --configuration=development",
-    "deckenmaster:serve": "npx nx run deckenmaster:serve --configuration=development"
+    "deckenmaster:serve": "npx nx run deckenmaster:serve --configuration=development",
+    "delux-drapes:serve": "npx nx run delux-drapes:serve --configuration=development "
   },
   "private": true,
   "dependencies": {
@@ -45,10 +46,10 @@
     "@taiga-ui/addon-table": "^5.0.0",
     "@taiga-ui/cdk": "^5.0.0",
     "@taiga-ui/core": "^5.0.0",
-    "@taiga-ui/event-plugins": "^4.7.0",
+    "@taiga-ui/event-plugins": "^5.0.0",
     "@taiga-ui/experimental": "^5.0.0",
     "@taiga-ui/icons": "^5.0.0",
-    "@taiga-ui/kit": "^5.0.0",
+    "@taiga-ui/kit": "^5.6.0",
     "@taiga-ui/layout": "^5.0.0",
     "@taiga-ui/polymorpheus": "^5.0.0",
     "@taiga-ui/styles": "^5.0.0",

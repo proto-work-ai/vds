@@ -16,10 +16,17 @@
           [formGroup]="form"
           (submit)="formSubmit()"
         >
-          <tui-textfield [tuiTextfieldCleaner]="false">
-            <label tuiLabel>Укажите телефон</label>
-            <input tuiInputPhone formControlName="phone" mask="+7 ### ###-##-##" />
-          </tui-textfield>
+          @defer {
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Укажите телефон</label>
+              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+            </tui-textfield>
+          } @placeholder {
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Укажите телефон</label>
+              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+            </tui-textfield>
+          }
 
           <button class="btn-primary btn-sm" type="submit">Оставить заявку</button>
         </form>

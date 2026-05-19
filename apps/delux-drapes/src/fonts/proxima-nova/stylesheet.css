@@ -1,0 +1,472 @@
+/*
+  Thin (Hairline)	100
+  Extra Light (Ultra Light)	200
+  Light	300
+  Normal (Regular)	400
+  Medium	500
+  Semi Bold (Demi Bold)	600
+  Bold	700
+  Extra Bold (Ultra Bold)	800
+  Black (Heavy)	900
+*/
+
+$font-path: '/futura-pt';
+
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('#{$font-path}/ProximaNovaCond-LightIt.eot');
+  src: local('Proxima Nova Condensed Light Italic'), local('ProximaNovaCond-LightIt'), '#{$font-path}/ProximaNovaCond-LightIt.eot?#iefix') format('embedded-opentype'), '#{$font-path}/ProximaNovaCond-LightIt.woff') format('woff'), '#{$font-path}/ProximaNovaCond-LightIt.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-LightIt.eot');
+	src: local('Proxima Nova Light Italic'), local('ProximaNova-LightIt'),
+		'#{$font-path}/ProximaNova-LightIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-LightIt.woff') format('woff'),
+		'#{$font-path}/ProximaNova-LightIt.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-Regular.eot');
+	src: local('Proxima Nova Condensed Regular'), local('ProximaNovaCond-Regular'),
+		'#{$font-path}/ProximaNovaCond-Regular.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-Regular.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-Extrabld.eot');
+	src: local('Proxima Nova Extrabold'), local('ProximaNova-Extrabld'),
+		'#{$font-path}/ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-Extrabld.woff') format('woff'),
+		'#{$font-path}/ProximaNova-Extrabld.ttf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-Black.eot');
+	src: local('Proxima Nova Condensed Black'), local('ProximaNovaCond-Black'),
+		'#{$font-path}/ProximaNovaCond-Black.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-Black.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-ExtrabldIt.eot');
+	src: local('Proxima Nova Condensed Extrabold Italic'), local('ProximaNovaCond-ExtrabldIt'),
+		'#{$font-path}/ProximaNovaCond-ExtrabldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-ExtrabldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-ExtrabldIt.ttf') format('truetype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-Regular.eot');
+	src: local('Proxima Nova Regular'), local('ProximaNova-Regular'),
+		'#{$font-path}/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-Regular.woff') format('woff'),
+		'#{$font-path}/ProximaNova-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-Semibold.eot');
+	src: local('Proxima Nova Semibold'), local('ProximaNova-Semibold'),
+		'#{$font-path}/ProximaNova-Semibold.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-Semibold.woff') format('woff'),
+		'#{$font-path}/ProximaNova-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-Thin.eot');
+	src: local('Proxima Nova Extra Condensed Thin'), local('ProximaNovaExCn-Thin'),
+		'#{$font-path}/ProximaNovaExCn-Thin.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-Thin.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-Semibold.eot');
+	src: local('Proxima Nova Condensed Semibold'), local('ProximaNovaCond-Semibold'),
+		'#{$font-path}/ProximaNovaCond-Semibold.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-Semibold.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-SemiboldIt.eot');
+	src: local('Proxima Nova Extra Condensed Semibold Italic'), local('ProximaNovaExCn-SemiboldIt'),
+		'#{$font-path}/ProximaNovaExCn-SemiboldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-SemiboldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-SemiboldIt.ttf') format('truetype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-Semibold.eot');
+	src: local('Proxima Nova Extra Condensed Semibold'), local('ProximaNovaExCn-Semibold'),
+		'#{$font-path}/ProximaNovaExCn-Semibold.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-Semibold.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-Semibold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-ThinIt.eot');
+	src: local('Proxima Nova Thin Italic'), local('ProximaNova-ThinIt'),
+		'#{$font-path}/ProximaNova-ThinIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-ThinIt.woff') format('woff'),
+		'#{$font-path}/ProximaNova-ThinIt.ttf') format('truetype');
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-Thin.eot');
+	src: local('Proxima Nova Condensed Thin'), local('ProximaNovaCond-Thin'),
+		'#{$font-path}/ProximaNovaCond-Thin.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-Thin.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-RegularIt.eot');
+	src: local('Proxima Nova Condensed Regular Italic'), local('ProximaNovaCond-RegularIt'),
+		'#{$font-path}/ProximaNovaCond-RegularIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-RegularIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-RegularIt.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-ThinIt.eot');
+	src: local('Proxima Nova Extra Condensed Thin Italic'), local('ProximaNovaExCn-ThinIt'),
+		'#{$font-path}/ProximaNovaExCn-ThinIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-ThinIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-ThinIt.ttf') format('truetype');
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-SemiboldIt.eot');
+	src: local('Proxima Nova Semibold Italic'), local('ProximaNova-SemiboldIt'),
+		'#{$font-path}/ProximaNova-SemiboldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-SemiboldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNova-SemiboldIt.ttf') format('truetype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-RegularIt.eot');
+	src: local('Proxima Nova Regular Italic'), local('ProximaNova-RegularIt'),
+		'#{$font-path}/ProximaNova-RegularIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-RegularIt.woff') format('woff'),
+		'#{$font-path}/ProximaNova-RegularIt.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-Extrabld.eot');
+	src: local('Proxima Nova Condensed Extrabold'), local('ProximaNovaCond-Extrabld'),
+		'#{$font-path}/ProximaNovaCond-Extrabld.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-Extrabld.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-Extrabld.ttf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-ExtrabldIt.eot');
+	src: local('Proxima Nova Extra Condensed Extrabold Italic'), local('ProximaNovaExCn-ExtrabldIt'),
+		'#{$font-path}/ProximaNovaExCn-ExtrabldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-ExtrabldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-ExtrabldIt.ttf') format('truetype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-BlackIt.eot');
+	src: local('Proxima Nova Extra Condensed Black Italic'), local('ProximaNovaExCn-BlackIt'),
+		'#{$font-path}/ProximaNovaExCn-BlackIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-BlackIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-BlackIt.ttf') format('truetype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-LightIt.eot');
+	src: local('Proxima Nova Extra Condensed Light Italic'), local('ProximaNovaExCn-LightIt'),
+		'#{$font-path}/ProximaNovaExCn-LightIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-LightIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-LightIt.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-ThinIt.eot');
+	src: local('Proxima Nova Condensed Thin Italic'), local('ProximaNovaCond-ThinIt'),
+		'#{$font-path}/ProximaNovaCond-ThinIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-ThinIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-ThinIt.ttf') format('truetype');
+	font-weight: 100;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-Light.eot');
+	src: local('Proxima Nova Extra Condensed Light'), local('ProximaNovaExCn-Light'),
+		'#{$font-path}/ProximaNovaExCn-Light.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-Light.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-BoldIt.eot');
+	src: local('Proxima Nova Condensed Bold Italic'), local('ProximaNovaCond-BoldIt'),
+		'#{$font-path}/ProximaNovaCond-BoldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-BoldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-BoldIt.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-Extrabld.eot');
+	src: local('Proxima Nova Extra Condensed Extrabold'), local('ProximaNovaExCn-Extrabld'),
+		'#{$font-path}/ProximaNovaExCn-Extrabld.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-Extrabld.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-Extrabld.ttf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-BoldIt.eot');
+	src: local('Proxima Nova Extra Condensed Bold Italic'), local('ProximaNovaExCn-BoldIt'),
+		'#{$font-path}/ProximaNovaExCn-BoldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-BoldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-BoldIt.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-Black.eot');
+	src: local('Proxima Nova Black'), local('ProximaNova-Black'),
+		'#{$font-path}/ProximaNova-Black.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-Black.woff') format('woff'),
+		'#{$font-path}/ProximaNova-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-Bold.eot');
+	src: local('Proxima Nova Bold'), local('ProximaNova-Bold'),
+		'#{$font-path}/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-Bold.woff') format('woff'),
+		'#{$font-path}/ProximaNova-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-Bold.eot');
+	src: local('Proxima Nova Extra Condensed Bold'), local('ProximaNovaExCn-Bold'),
+		'#{$font-path}/ProximaNovaExCn-Bold.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-Bold.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaT-Thin.eot');
+	src: local('Proxima Nova Thin'), local('ProximaNovaT-Thin'),
+		'#{$font-path}/ProximaNovaT-Thin.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaT-Thin.woff') format('woff'),
+		'#{$font-path}/ProximaNovaT-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-BoldIt.eot');
+	src: local('Proxima Nova Bold Italic'), local('ProximaNova-BoldIt'),
+		'#{$font-path}/ProximaNova-BoldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-BoldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNova-BoldIt.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-Bold.eot');
+	src: local('Proxima Nova Condensed Bold'), local('ProximaNovaCond-Bold'),
+		'#{$font-path}/ProximaNovaCond-Bold.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-Bold.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-Black.eot');
+	src: local('Proxima Nova Extra Condensed Black'), local('ProximaNovaExCn-Black'),
+		'#{$font-path}/ProximaNovaExCn-Black.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-Black.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-RegularIt.eot');
+	src: local('Proxima Nova Extra Condensed Regular Italic'), local('ProximaNovaExCn-RegularIt'),
+		'#{$font-path}/ProximaNovaExCn-RegularIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-RegularIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-RegularIt.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-Light.eot');
+	src: local('Proxima Nova Condensed Light'), local('ProximaNovaCond-Light'),
+		'#{$font-path}/ProximaNovaCond-Light.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-Light.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-ExtrabldIt.eot');
+	src: local('Proxima Nova Extrabold Italic'), local('ProximaNova-ExtrabldIt'),
+		'#{$font-path}/ProximaNova-ExtrabldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-ExtrabldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNova-ExtrabldIt.ttf') format('truetype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-BlackIt.eot');
+	src: local('Proxima Nova Condensed Black Italic'), local('ProximaNovaCond-BlackIt'),
+		'#{$font-path}/ProximaNovaCond-BlackIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-BlackIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-BlackIt.ttf') format('truetype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaExCn-Regular.eot');
+	src: local('Proxima Nova Extra Condensed Regular'), local('ProximaNovaExCn-Regular'),
+		'#{$font-path}/ProximaNovaExCn-Regular.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaExCn-Regular.woff') format('woff'),
+		'#{$font-path}/ProximaNovaExCn-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-Light.eot');
+	src: local('Proxima Nova Light'), local('ProximaNova-Light'),
+		'#{$font-path}/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-Light.woff') format('woff'),
+		'#{$font-path}/ProximaNova-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNovaCond-SemiboldIt.eot');
+	src: local('Proxima Nova Condensed Semibold Italic'), local('ProximaNovaCond-SemiboldIt'),
+		'#{$font-path}/ProximaNovaCond-SemiboldIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNovaCond-SemiboldIt.woff') format('woff'),
+		'#{$font-path}/ProximaNovaCond-SemiboldIt.ttf') format('truetype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Proxima Nova';
+	src: '#{$font-path}/ProximaNova-BlackIt.eot');
+	src: local('Proxima Nova Black Italic'), local('ProximaNova-BlackIt'),
+		'#{$font-path}/ProximaNova-BlackIt.eot?#iefix') format('embedded-opentype'),
+		'#{$font-path}/ProximaNova-BlackIt.woff') format('woff'),
+		'#{$font-path}/ProximaNova-BlackIt.ttf') format('truetype');
+	font-weight: 900;
+	font-style: italic;
+}

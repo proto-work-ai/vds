@@ -1,0 +1,58 @@
+<article class="flex flex-col bg-gray-light h-full max-md:max-w-100">
+  <figure class="w-full bg-image aspect-1.5/1" [style.background-image]="'url(' + item()?.image + ')'">
+    @if (item(); as item) {
+      <img class="hidden" [attr.src]="item.image" [attr.alt]="item.title" />
+    }
+  </figure>
+
+  <section class="p-3 flex flex-col gap-3 h-full">
+    <footer class="flex flex-col gap-2">
+      <h4 class="uppercase font-medium">{{ title() }}</h4>
+
+      <p class="sm:text-sm">{{ brief() }}</p>
+    </footer>
+
+    <section class="flex items-center mt-auto w-full justify-between">
+      <app-price-card size="s" [item]="item()" [priceText]="false"></app-price-card>
+
+      @if (link()) {
+        <div class="flex items-center justify-center text-sm">
+          Подробнее
+          <ng-icon name="lucideChevronRight" class="mt-[2px]"></ng-icon>
+          <!-- <ng-icon name="lucideMoveRight"></ng-icon> -->
+          <!-- <ng-icon name="lucideCircleArrowRight"></ng-icon> -->
+        </div>
+      }
+
+      <!-- @if (link()) {
+        <div class="flex justify-center text-sm">
+          <div class="flex size-8 items-center justify-center rounded-full text-white bg-gray-400">
+            <ng-icon name="lucideChevronRight" class="text-xl"></ng-icon>
+          </div>
+        </div>
+      } -->
+
+      <!-- <div class="flex gap-1 justify-end">
+        <div class="text-sm">Цена:</div>
+        <div class="text-sm">
+          от
+          <span class="font-semibold">{{ price() }} </span>
+          руб/м²
+        </div>
+      </div> -->
+
+      <!-- @if (link()) {
+        <footer style="background: #f9a81b">
+          <div class="flex items-center justify-center text-sm text-white py-1">
+            Подробнее
+            <div class="flex size-8 items-center justify-center rounded-full -bg-gray-400">
+              <ng-icon name="lucideCircleArrowRight" class="text-xl"></ng-icon>
+            </div>
+          </div>
+        </footer>
+      } -->
+    </section>
+  </section>
+</article>
+
+<!-- <small> *Цена указана c установкой под ключ. </small> -->

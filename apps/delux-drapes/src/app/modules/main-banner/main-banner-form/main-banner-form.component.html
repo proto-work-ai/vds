@@ -1,0 +1,38 @@
+<form
+  [formStore]="'app-main-banner-form'"
+  [formGroup]="form"
+  class="text-white bg-gray textfield-no-border"
+  (submit)="formSubmit()"
+>
+  <div class="flex flex-col gap-6 p-5">
+    <h3 class="text-xl">Рассчитайте стоимость</h3>
+
+    <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
+      <label tuiLabel>Тип потолка</label>
+      <input tuiSelect formControlName="type" />
+      <tui-data-list-wrapper *tuiDropdown new [items]="typeOptions()" />
+    </tui-textfield>
+
+    <section>
+      <tui-textfield>
+        <label tuiLabel>Укажите площадь</label>
+        <input tuiInputSlider postfix=" м²" [min]="minRange()" [max]="maxRange()" formControlName="size" />
+        <input tuiSlider type="range" />
+        <!-- <tui-icon tuiTooltip="Укажите площадь" /> -->
+      </tui-textfield>
+
+      <div class="flex justify-between px-5 pt-2">
+        @for (label of ticksLabels(); track label) {
+          <small>{{ label }}</small>
+        }
+      </div>
+    </section>
+
+    <tui-textfield [tuiTextfieldCleaner]="false">
+      <label tuiLabel>Укажите телефон</label>
+      <input tuiInputPhone formControlName="phone" mask="+7 ### ###-##-##" />
+    </tui-textfield>
+
+    <button class="btn-primary btn-sm" type="submit">Получить предложение</button>
+  </div>
+</form>

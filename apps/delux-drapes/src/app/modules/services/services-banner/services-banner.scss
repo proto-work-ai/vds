@@ -1,0 +1,19 @@
+.bg-banner {
+  background-image: url(/img/banner-2.jpg);
+  background-image: url(/img/banner-1.jpg);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-size: cover;
+}
+
+// .bg-services-banner {
+//   background-image: url(/services/services-banner.jpg);
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   overflow: hidden;
+// }
+
+.bg-circle {
+  z-index: 1;
+  position: relative;
+}

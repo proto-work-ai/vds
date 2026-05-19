@@ -1,0 +1,54 @@
+/* eslint-disable @angular-eslint/component-selector */
+import { Component, inject, signal } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { FooterMenuComponent } from '../../modules/footer-menu/footer-menu.component';
+import { ApplicationMeasurementComponent } from '../../modules/application-measurement/application-measurement.component';
+import { MainHeaderComponent } from '../../modules/main-header/main-header.component';
+import { PriceCalculationComponent } from '../../modules/price-calculation/price-calculation.component';
+import { MenuDeferDirective } from '../../components/menu-defer/menu-defer.directive';
+import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
+import { NavMenu } from '../../modules/nav-menu/nav-menu';
+import { BreadcrumbsHeader, IBreadcrumbItem } from '../../modules/breadcrumbs-header/breadcrumbs-header.component';
+import { PriceList } from '../../modules/catalog-price/catalog-price-list/catalog-price-list';
+
+@Component({
+  selector: 'main',
+  templateUrl: './price-page.html',
+  styleUrls: ['./price-page.scss'],
+  imports: [
+    FooterMenuComponent,
+    ApplicationMeasurementComponent,
+    PriceCalculationComponent,
+    MainHeaderComponent,
+    MenuDeferDirective,
+    NavMenu,
+    BreadcrumbsHeader,
+    PriceList,
+  ],
+  providers: [MenuDeferService],
+  host: {
+    id: 'main',
+  },
+})
+export class PricePage {
+  protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([
+    {
+      title: 'Главная',
+      link: ['/'],
+    },
+    {
+      title: 'Цены',
+    },
+  ]);
+
+  constructor() {
+    const title = `Decken Master | Цены на натяжные потолки`;
+    inject(Title).setTitle(title);
+    inject(Meta).updateTag({ property: 'og:title', content: title });
+
+    inject(Meta).updateTag({
+      name: 'description',
+      content: `Цена на натяжные потолки в среднем составляет от 200 до 2000 рублей за 1м² с установкой. Расчет стоимости обычно включает полотно и монтаж.`,
+    });
+  }
+}

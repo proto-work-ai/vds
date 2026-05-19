@@ -1,0 +1,42 @@
+<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+  <header class="text-center flex flex-col gap-2 sm:gap-3">
+    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
+
+    <div class="md:w-175 mx-auto text-gray-500">{{ subTitle() }}</div>
+  </header>
+
+  <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
+    @for (item of items(); track item; let index = $index) {
+      <article class="flex flex-col gap-4 -bg-gray-light">
+        <!-- <figure class="h-60 w-full bg-image -aspect-1/1" [style.background-image]="'url(' + item.src + ')'">
+          <img class="hidden" [attr.src]="item.src" [attr.alt]="item.title" />
+        </figure> -->
+
+        <header>
+          <div class="text-5xl">0{{ index + 1 }}/</div>
+        </header>
+
+        <div class="flex flex-col gap-4 bg-gray-light p-3 flex-1">
+          <footer class="textr-center flex flex-col gap-2">
+            <h4 class="uppercase font-medium">{{ item.title }}</h4>
+
+            <p class="text-sm" [innerHTML]="item.text"></p>
+          </footer>
+        </div>
+      </article>
+    }
+  </div>
+
+  <!-- <div class="way-we-work">
+    <div class="flex flex-col">
+      @for (item of items; track item; let odd = $odd; let index = $index) {
+        <article class="block-item">
+          <div class="w-1/2 px-8" [class.ms-auto]="odd" [attr.data-num]="index + 1">
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.text }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div> -->
+</div>

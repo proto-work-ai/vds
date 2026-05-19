@@ -1,0 +1,49 @@
+<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+  <header class="text-center flex flex-col gap-2 sm:gap-3">
+    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
+
+    <div class="md:w-175 mx-auto text-gray-500">
+      Цена на натяжные потолки в среднем составляет от 200 до 2000 рублей за 1м² с установкой. Расчет стоимости обычно
+      включает полотно и монтаж.
+    </div>
+  </header>
+
+  <section class="flex flex-col gap-5">
+    <app-price-list-route-filter [groups]="groups()"></app-price-list-route-filter>
+
+    @if (category() > 5) {
+      <app-price-list-unit-table [tableRows]="filtered()"></app-price-list-unit-table>
+    } @else {
+      <app-price-list-brand-table [tableRows]="filtered()"></app-price-list-brand-table>
+    }
+  </section>
+</div>
+
+<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+  <header class="text-center flex flex-col gap-2 sm:gap-3">
+    <h2 class="md:text-4xl text-2xl">Электрооборудование</h2>
+
+    <div class="md:w-175 mx-auto text-gray-500">
+      Комплекс элементов для освещения, которые монтируются до или во время установки натяжных/подвесных потолочных
+      систем.
+    </div>
+  </header>
+
+  <section class="flex flex-col gap-5">
+    <app-price-list-unit-table [tableRows]="electricalEquipments()"></app-price-list-unit-table>
+  </section>
+</div>
+
+<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+  <header class="text-center flex flex-col gap-2 sm:gap-3">
+    <h2 class="md:text-4xl text-2xl">Дополнительные работы</h2>
+
+    <div class="md:w-175 mx-auto text-gray-500">
+      Cтроительные или ремонтные работы, не учтенные в первоначальной проектной документации и смете.
+    </div>
+  </header>
+
+  <section class="flex flex-col gap-5">
+    <app-price-list-unit-table [tableRows]="additionalWork()"></app-price-list-unit-table>
+  </section>
+</div>
