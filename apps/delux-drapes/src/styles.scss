@@ -1,3 +1,7 @@
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
 @use 'sass:meta';
 
 html, body {
@@ -10,9 +14,7 @@ html, body {
 /*
   Fonts
 */
-// @include meta.load-css('theme/fonts/rotonda/stylesheet.scss');
-// @include meta.load-css('fonts/akrobat/stylesheet.scss');
-// @include meta.load-css('fonts/proxima-nova/stylesheet.scss');
+@include meta.load-css('fonts/proxima-nova/stylesheet.scss');
 @include meta.load-css('fonts/gilroy/stylesheet.scss');
 @include meta.load-css('fonts/manrope/stylesheet.scss');
 @include meta.load-css('fonts/montserrat/stylesheet.scss');

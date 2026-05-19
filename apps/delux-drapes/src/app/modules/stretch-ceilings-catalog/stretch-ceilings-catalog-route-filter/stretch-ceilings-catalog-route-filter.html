@@ -12,24 +12,43 @@
   </fieldset>
 </form> -->
 
-<tui-tabs-with-more
-  size="m"
-  [activeItemIndex]="activeItemIndex()"
-  (activeItemIndexChange)="indexChange($event)"
-  [moreContent]="moreTmp"
->
-  @for (group of groups(); track group) {
-    <button *tuiItem tuiTab type="button">
-      <span class="md:px-3 flex items-center gap-2"
-        >{{ group.title }}
+@defer {
+  <tui-tabs-with-more
+    [activeItemIndex]="activeItemIndex()"
+    (activeItemIndexChange)="indexChange($event)"
+    [moreContent]="moreTmp"
+  >
+    @for (group of groups(); track group) {
+      <button *tuiItem tuiTab type="button">
+        <span class="md:px-3 flex items-center gap-2"
+          >{{ group.title }}
 
-        @if (group.link) {
-          <ng-icon name="lucideSquareArrowOutUpRight"></ng-icon>
-        }
-      </span>
-    </button>
-  }
-</tui-tabs-with-more>
+          @if (group.link) {
+            <ng-icon name="lucideSquareArrowOutUpRight"></ng-icon>
+          }
+        </span>
+      </button>
+    }
+  </tui-tabs-with-more>
+} @placeholder {
+  <tui-tabs-with-more
+    [activeItemIndex]="activeItemIndex()"
+    (activeItemIndexChange)="indexChange($event)"
+    [moreContent]="moreTmp"
+  >
+    @for (group of groups(); track group) {
+      <button *tuiItem tuiTab type="button">
+        <span class="md:px-3 flex items-center gap-2"
+          >{{ group.title }}
+
+          @if (group.link) {
+            <ng-icon name="lucideSquareArrowOutUpRight"></ng-icon>
+          }
+        </span>
+      </button>
+    }
+  </tui-tabs-with-more>
+}
 
 <ng-template #moreTmp>
   <tui-icon aria-label="More" icon="@tui.ellipsis" />

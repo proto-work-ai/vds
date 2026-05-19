@@ -12,7 +12,6 @@
       "options": {
         "outputPath": "dist/apps/delux-drapes",
         "browser": "apps/delux-drapes/src/main.ts",
-        "polyfills": ["zone.js"],
         "tsConfig": "apps/delux-drapes/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [

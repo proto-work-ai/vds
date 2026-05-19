@@ -37,5 +37,11 @@
 
 # Tailwind
 https://nx.dev/docs/technologies/angular/generators
+nx show project [NAME]
+nx generate @nx/angular:application apps/[NAME] --prefix app --addTailwind true --ssr true --bundler esbuild
 npx nx g @nx/angular:setup-tailwind --project=[NAME]
-nx generate @nx/angular:application apps/deckenmaster2 --prefix app --addTailwind true
+
+
+
+# Commands
+nx g rm delux-drapes
