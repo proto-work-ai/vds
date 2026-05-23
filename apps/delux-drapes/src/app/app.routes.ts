@@ -68,25 +68,11 @@ export const appRoutes: Route[] = [
 
   ...stretchCeilingRoutes,
 
-  // {
-  //   path: `${routePath.catalog.root}/:key`,
-  //   pathMatch: 'full',
-  //   loadComponent: () =>
-  //     import(
-  //       './pages/stretch-ceilings-catalog/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
-  //     ).then((a) => a.StretchCeilingsCatalogDetailPage),
-  // },
   {
     path: `${routePath.price.root}`,
     pathMatch: 'full',
     loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
   },
-
-  // {
-  //   path: `${routePath.services.root}`,
-  //   pathMatch: 'full',
-  //   loadComponent: () => import('./pages/services/services-page/services-page').then((a) => a.ServicesPage),
-  // },
 
   ...servicesRoutes,
 
