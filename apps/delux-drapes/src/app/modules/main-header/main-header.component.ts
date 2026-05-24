@@ -2,16 +2,15 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TuiNumberFormatSettings, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputRange, TuiInputSlider } from '@taiga-ui/kit';
-import { MainBannerFormComponent } from './main-banner-form/main-banner-form.component';
 import { ScrollLink } from "../../components/scroll-link/scroll-link.directive";
 
 @Component({
-  selector: 'app-main-banner',
-  templateUrl: './main-banner.component.html',
-  styleUrls: ['./main-banner.component.scss'],
-  imports: [FormsModule, TuiTextfield, TuiInputRange, TuiInputSlider, MainBannerFormComponent, ScrollLink],
+  selector: 'app-main-header',
+  templateUrl: './main-header.component.html',
+  styleUrls: ['./main-header.component.scss'],
+  imports: [FormsModule, TuiTextfield, TuiInputRange, TuiInputSlider, ScrollLink],
 })
-export class MainBannerComponent {
+export class MainHeaderComponent {
   protected value = '';
 
   protected readonly numberFormat: Partial<TuiNumberFormatSettings> = {
