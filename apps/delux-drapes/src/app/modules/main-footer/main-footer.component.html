@@ -1,5 +1,5 @@
-<div class="container mx-auto">
-  <div class="bg-black">
+<div class="bg-black">
+<div class="container mx-auto my-8 flex flex-col gap-4">
     <div class="lg:container px-5 md:mx-auto text-white">
       <div class="flex max-lg:flex-col gap-6 pt-5 pb-4">
         <section class="flex lg:hidden">
@@ -75,9 +75,7 @@
         <section class="w-15 lg:block hidden">
           <ng-container [ngTemplateOutlet]="sociallaLink"></ng-container>
         </section>
-      </div>
-    </div>
-  </div>
+      </div></div>
 
   <ng-template #sociallaLink>
     <div class="flex gap-2">
@@ -90,4 +88,5 @@
       /></a>
     </div>
   </ng-template>
+</div>
 </div>

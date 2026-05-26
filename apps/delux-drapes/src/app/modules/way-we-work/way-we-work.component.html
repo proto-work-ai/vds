@@ -1,42 +1,70 @@
-<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+<div class="container mx-auto my-8 flex flex-col gap-4">
   <header class="text-center flex flex-col gap-2 sm:gap-3">
-    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
-
-    <div class="md:w-175 mx-auto text-gray-500">{{ subTitle() }}</div>
+    <h2 class="md:text-2xl text-xl">Как мы работаем</h2>
   </header>
 
-  <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
-    @for (item of items(); track item; let index = $index) {
-      <article class="flex flex-col gap-4 -bg-gray-light">
-        <!-- <figure class="h-60 w-full bg-image -aspect-1/1" [style.background-image]="'url(' + item.src + ')'">
-          <img class="hidden" [attr.src]="item.src" [attr.alt]="item.title" />
-        </figure> -->
+  <section class="flex flex-col gap-4">
+    <div class="flex flex-col gap-3">
+      <p>1) Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.</p>
+      <p>
+        2) На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором модели и рассчитаем
+        стоимость в разных ценовых категориях.
+      </p>
+      <p>3) Изготовим заказ на собственном производстве точно в срок, произведем монтаж.</p>
 
-        <header>
-          <div class="text-5xl">0{{ index + 1 }}/</div>
-        </header>
-
-        <div class="flex flex-col gap-4 bg-gray-light p-3 flex-1">
-          <footer class="textr-center flex flex-col gap-2">
-            <h4 class="uppercase font-medium">{{ item.title }}</h4>
-
-            <p class="text-sm" [innerHTML]="item.text"></p>
-          </footer>
-        </div>
-      </article>
-    }
-  </div>
-
-  <!-- <div class="way-we-work">
-    <div class="flex flex-col">
-      @for (item of items; track item; let odd = $odd; let index = $index) {
-        <article class="block-item">
-          <div class="w-1/2 px-8" [class.ms-auto]="odd" [attr.data-num]="index + 1">
-            <h4>{{ item.title }}</h4>
-            <p>{{ item.text }}</p>
-          </div>
-        </article>
-      }
+      <footer class="flex justify-center gap-3">
+        <button class="btn btn-primary btn-sm">Пригласить дизайнера</button>
+      </footer>
     </div>
-  </div> -->
+  </section>
+</div>
+
+<div class="bg-gray-100 py-1">
+  <div class="container mx-auto my-8 flex flex-col gap-4">
+  <header class="text-center flex flex-col gap-2 sm:gap-3">
+    <h2 class="md:text-2xl text-xl">Индивидуальный заказ, просто и понятно.</h2>
+  </header>
+
+  <section class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
+    <article class="flex flex-col gap-3 text-center items-center">
+      <ng-icon src="/icons/way-we-work-2.svg" class="text-6xl" />
+
+      <h4 class="font-semibold">Бесплатная услуга по разработке дизайна.</h4>
+
+      <p class="text-sm">Индивидуальный дизайн штор, соответствующих вашему уникальному стилю и пространству.</p>
+
+      <a class="mt-auto">Получить помощь в разработке дизайна</a>
+    </article>
+
+    <article class="flex flex-col gap-3 text-center items-center">
+      <ng-icon src="/icons/way-we-work-3.svg" class="text-6xl"  />
+
+      <h4 class="font-semibold">Создано вручную специально для вас</h4>
+
+      <p class="text-sm">Изготавливается на заказ опытными мастерами с учетом ваших точных потребностей.</p>
+
+      <a class="mt-auto">Настройте сейчас</a>
+    </article>
+
+    <article class="flex flex-col gap-3 text-center items-center">
+      <ng-icon src="/icons/way-we-work-4.svg" class="text-6xl"  />
+
+      <h4 class="font-semibold">Бесплатная доставка</h4>
+
+      <p class="text-sm">Наслаждайтесь быстрой и надежной доставкой каждого заказа без дополнительных сборов за доставку.</p>
+
+      <a class="mt-auto">Купить сейчас</a>
+    </article>
+
+    <article class="flex flex-col gap-3 text-center items-center">
+      <ng-icon src="/icons/way-we-work-1.svg" class="text-6xl"  />
+
+      <h4 class="font-semibold">Сотни бесплатных образцов цвета</h4>
+
+      <p class="text-sm">Высококачественные, экологически чистые материалы, подходящие к любому стилю интерьера.</p>
+
+      <a class="mt-auto">Заказать образцы</a>
+    </article>
+  </section>
+</div>
 </div>

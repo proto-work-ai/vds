@@ -7,7 +7,7 @@ import { TuiAccordion, TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiCheckbox, TuiTextfield } from '@taiga-ui/core';
 import { FormStore } from '../../components/form-store/form-store.directive';
-import { MAX_CONTACT, PERIOD_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '../../contacts';
+import { MAX_CONTACT, PERIOD_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT, VAR_YANDEX_KEY } from '../../contacts';
 import { injectFooterMenu } from '../../model/stretch-ceilings.service';
 import { MainHeaderComponent } from '../../modules/main-header/main-header.component';
 import { IsPlatformBrowserDirective } from '../../components/is-platform-browser.directive';
@@ -18,27 +18,61 @@ import { lucidePhone } from '@ng-icons/lucide';
 import { lucideMapPin } from '@ng-icons/lucide';
 import { YMapComponent, YMapDefaultSchemeLayerDirective } from 'angular-yandex-maps-v3';
 import { YMapProps } from '@yandex/ymaps3-types';
+import { PlaceAnOrder } from '../../modules/place-an-order/place-an-order.component';
+import { MainCatalog } from '../../modules/main-catalog/main-catalog.component';
+import { WayWeWorkComponent } from '../../modules/way-we-work/way-we-work.component';
+import { MainWorks } from '../../modules/main-works/main-works.component';
+import { MainForm } from '../../modules/main-form/main-form.component';
+import { MainCatalogAccessories } from '../../modules/main-catalog-accessories/main-catalog-accessories.component';
+import { MainPromotionsDiscounts } from '../../modules/main-promotions-discounts/main-promotions-discounts.component';
+import { MainPrice } from '../../modules/main-price/main-price.component';
+import { MainProduction } from '../../modules/main-production/main-production.component';
+import { MainFabric } from '../../modules/main-fabric/main-fabric.component';
+import { MainArticles } from '../../modules/main-articles/main-articles.component';
+import { MainTypesPremises } from '../../modules/main-types-premises/main-types-premises.component';
+import { MainTeam } from '../../modules/main-team/main-team.component';
+import { MainClients } from '../../modules/main-clients/main-clients.component';
+import { MainAbout } from '../../modules/main-about/main-about.component';
+import { MainQuestions } from '../../modules/main-questions/main-questions.component';
+import { MainToOrder } from '../../modules/main-to-order/main-to-order.component';
 
 @Component({
   selector: 'main',
   templateUrl: './main-page.html',
   styleUrls: ['./main-page.scss'],
   imports: [
-    MainHeaderComponent,
-    MainBannerComponent,
     TuiAccordion,
     ReactiveFormsModule,
     TuiTextfield,
     TuiTextarea,
-    TuiCheckbox,
-    FormStore,
+    TuiInputPhone,
     MainFooterComponent,
+    MainHeaderComponent,
+    MainBannerComponent,
+    PlaceAnOrder,
+    MainCatalog,
+    WayWeWorkComponent,
+    MainWorks,
+    MainForm,
+    MainCatalogAccessories,
+    MainPromotionsDiscounts,
+    MainPrice,
+    MainProduction,
+    MainFabric,
+    MainTypesPremises,
+    MainArticles,
+    MainTeam,
+    MainClients,
+    MainAbout,
+    MainQuestions,
+    MainToOrder,
     IsPlatformBrowserDirective,
     ScrollLink,
     NgIcon,
-    // YMapComponent,
-    // YMapDefaultSchemeLayerDirective,
-    TuiInputPhone,
+    YMapComponent,
+    YMapDefaultSchemeLayerDirective,
+    TuiCheckbox,
+    FormStore,
   ],
   providers: [
     provideIcons({
@@ -69,11 +103,10 @@ export class MainPage {
 
   protected readonly yandexMapOptions = signal<YMapProps>({
     location: {
-      // center: [-0.127696, 51.507351],
-      center: [55.489575, 37.338672],
-      zoom: 10,
+      center: [37.623082, 55.75254],
+      zoom: 9,
     },
-    theme: 'dark',
+    showScaleInCopyrights: true,
   });
 
   protected readonly footerMenu = computed(() => {

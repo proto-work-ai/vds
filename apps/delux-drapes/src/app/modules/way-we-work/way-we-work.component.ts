@@ -1,37 +1,43 @@
-import { Component, input, signal } from '@angular/core';
+/* eslint-disable @angular-eslint/directive-selector */
+import { HttpClient } from '@angular/common/http';
+import { Component, Directive, effect, inject, input, InputSignal } from '@angular/core';
+import { NgIcon } from '@ng-icons/core';
+import { tap } from 'rxjs';
+import { SIGNAL } from '@angular/core/primitives/signals';
+
+@Directive({ selector: 'ng-icon[src]' })
+export class NgIconSrc {
+  protected ngIcon = inject(NgIcon);
+  protected http = inject(HttpClient);
+
+  readonly src = input<string>();
+
+  constructor() {
+    effect(() => {
+      const srcUrl = this.src();
+      if (srcUrl) {
+        this.http
+          .get(srcUrl, { responseType: 'text' })
+          .pipe(
+            tap((svg) => {
+              this.applyValueToInputSignal(this.ngIcon.svg, svg);
+            })
+          )
+          .subscribe();
+      }
+    });
+  }
+
+  private applyValueToInputSignal<T>(signal: InputSignal<T>, value: T) {
+    const node = signal[SIGNAL];
+    node.applyValueToInputSignal(node, value);
+  }
+}
 
 @Component({
   selector: 'app-way-we-work',
   templateUrl: './way-we-work.component.html',
   styleUrls: ['./way-we-work.component.scss'],
+  imports: [NgIcon, NgIconSrc],
 })
-export class WayWeWorkComponent {
-  readonly title = input('Этапы нашей работы');
-  readonly subTitle = input('Основной процесс включает замер, производство полотна и монтаж.');
-  readonly items = input<{ title: string; text: string }[]>([
-    {
-      title: 'Звонок или заявка на сайте ',
-      text: 'Работа начинается с заявки по телефону или на сайте. Менеджер свяжется с Вами и ответит на все Ваши вопросы',
-    },
-    {
-      title: 'Бесплатный выезд замерщика ',
-      text: 'Услуга, позволяющая точно определить размеры без предварительной оплаты',
-    },
-    // {
-    //   title: 'Договор и 10% предоплата',
-    //   text: 'Для Вашего удобства,заключениедоговора  сразуна объекте',
-    // },
-    {
-      title: 'Производство полотна',
-      text: 'Полотно производится на заводах, затем нарезается по размерам заказчика',
-    },
-    {
-      title: 'Монтаж от 2-х часов',
-      text: 'Процесс включает подготовку стен, фиксацию профиля, установку закладных для светильников и монтаж полотна',
-    },
-    // {
-    //   title: 'Уборка на объекте ',
-    //   text: 'Звонок или заявка на сайте Бесплатный выезд замерщика Договор',
-    // },
-  ] as const);
-}
+export class WayWeWorkComponent {}

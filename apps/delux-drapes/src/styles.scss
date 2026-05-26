@@ -5,8 +5,11 @@
 @use 'sass:meta';
 
 html, body {
-  font-size: 14px;
+  --primari-color: #C5887B;
+  --primari-color-hover: #C5887B;
   --default-font-family: Manrope, sans-serif;
+  --default-font-family: Gilroy, sans-serif;
+  font-size: 14px;
   letter-spacing: 2%;
   min-width: 400px;
 }

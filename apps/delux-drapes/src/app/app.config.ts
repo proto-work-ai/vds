@@ -9,6 +9,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { appRoutes } from './app.routes';
 import { provideTaiga } from '@taiga-ui/core';
+import { provideYConfig, YConfig } from 'angular-yandex-maps-v3';
+import { VAR_YANDEX_KEY } from './contacts';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,8 +33,11 @@ export const appConfig: ApplicationConfig = {
         thumbs: true,
         autoHeight: true,
         imageSize: 'cover',
-        thumbPosition: 'bottom'
-      } satisfies GalleryConfig
-    }
+        thumbPosition: 'bottom',
+      } satisfies GalleryConfig,
+    },
+    provideYConfig({
+      apikey: VAR_YANDEX_KEY,
+    } satisfies YConfig),
   ],
 };

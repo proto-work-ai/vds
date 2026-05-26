@@ -39,8 +39,6 @@ $accent-color-hover: #f11d0d;
   --tui-text-primary: #333333;
   --tui-text-secondary: var(--tui-text-primary);
   --tui-border-width: 1px;
-  --primari-color: #f9a81b;
-  --primari-color-hover: #d08d18;
   --tui-border-normal: #e0e0e0;
   --tui-background-accent-1: var(--tui-border-normal);
   --tui-background-accent-1-hover: #cecece;
@@ -344,20 +342,4 @@ atlas-taiga-ui-table {
   --tui-font-text-m: normal 0.825rem var(--tui-font-text);
 }
 
-.accordion {
-  inline-size: 20rem;
-  border-radius: 0;
 
-  [tuiAccordion] {
-    border-block-start: 1px solid var(--tui-border-normal);
-    background: transparent !important;
-    mask-image: none;
-  }
-
-  tui-expand,
-  [tuiCell] {
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-    box-shadow: none;
-  }
-}

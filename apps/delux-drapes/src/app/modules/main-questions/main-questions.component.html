@@ -1,0 +1,54 @@
+<div class="container mx-auto my-8 flex flex-col gap-8">
+  <header class="text-center flex flex-col gap-2 sm:gap-3">
+    <h2 class="md:text-4xl text-2xl">Ответы на частые вопросы</h2>
+  </header>
+
+  <section>
+    <tui-accordion *isPlatformBrowser class="block accordion" [closeOthers]="false">
+      <button tuiAccordion tuiCell style="width: 100%">
+        <h4 class="text-sm sm:text-lg font-semibold">Можно ли самому проколоть пузырь в потолке?</h4>
+      </button>
+
+      <tui-expand>
+        <p class="sm:text-lg leading-7 py-2">
+          Нет. Прокол приводит к неконтролируемому потоку воды и затоплению комнаты. Правильный слив выполняется через
+          технологический узел или люстру с прогревом полотна.
+        </p>
+      </tui-expand>
+
+      <button tuiAccordion tuiCell style="width: 100%">
+        <h4 class="text-sm sm:text-lg font-semibold">Нужно ли снимать потолок после затопления?</h4>
+      </button>
+
+      <tui-expand>
+        <p class="sm:text-lg leading-7 py-2">
+          В 99% случаев полотно сохраняется полностью — достаточно аккуратно слить воду и вернуть натяжение. Полное
+          снятие требуется только при значительных повреждениях.
+        </p>
+      </tui-expand>
+
+      <button tuiAccordion tuiCell style="width: 100%">
+        <h4 class="text-sm sm:text-lg font-semibold">Сколько по времени занимает работа мастера?</h4>
+      </button>
+
+      <tui-expand>
+        <p class="sm:text-lg leading-7 py-2">
+          Слив воды занимает от 20 до 40 минут. При больших объёмах — до 1 часа. Точное время мастер назовёт после
+          осмотра.
+        </p>
+      </tui-expand>
+
+      <button tuiAccordion tuiCell style="width: 100%">
+        <h4 class="text-sm sm:text-lg font-semibold">Как мы востанваливаем потолок?</h4>
+      </button>
+
+      <tui-expand>
+        <p class="sm:text-lg leading-7 py-2">
+          После слива воды мы выравниваем полотно, прогреваем его тепловой пушкой и устраняем складки или провисы. В 9
+          из 10 случаев потолок полностью возвращается в исходное состояние — без следов и деформаций. Если после залива
+          требуется дополнительная просушка или обработка от запаха и сырости, мы выполняем это в рамках одной заявки.
+        </p>
+      </tui-expand>
+    </tui-accordion>
+  </section>
+</div>

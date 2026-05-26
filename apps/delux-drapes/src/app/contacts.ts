@@ -24,3 +24,11 @@ export const PERIOD_CONTACT = new InjectionToken<string>('PERIOD_CONTACT', {
     return `© 2020-${year > 2026 ? year : 2026}`;
   },
 });
+
+// export const VAR_YANDEX_KEY = 'c140a678-0e52-4677-a8f8-8bc7984d6e4d';
+export const VAR_YANDEX_KEY = 'd3092fef-1457-4d91-a52a-c98f2947e024';
+
+export const YANDEX_KEY = new InjectionToken<string>('YANDEX_KEY', {
+  providedIn: 'root',
+  factory: () => VAR_YANDEX_KEY,
+});
