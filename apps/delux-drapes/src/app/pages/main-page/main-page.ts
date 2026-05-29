@@ -8,7 +8,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { TuiCheckbox, TuiTextfield } from '@taiga-ui/core';
 import { FormStore } from '../../components/form-store/form-store.directive';
 import { MAX_CONTACT, PERIOD_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT, VAR_YANDEX_KEY } from '../../contacts';
-import { injectFooterMenu } from '../../model/stretch-ceilings.service';
+import { injectFooterMenu } from '../../model/catalog.service';
 import { MainHeaderComponent } from '../../modules/main-header/main-header.component';
 import { IsPlatformBrowserDirective } from '../../components/is-platform-browser.directive';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
@@ -35,6 +35,7 @@ import { MainClients } from '../../modules/main-clients/main-clients.component';
 import { MainAbout } from '../../modules/main-about/main-about.component';
 import { MainQuestions } from '../../modules/main-questions/main-questions.component';
 import { MainToOrder } from '../../modules/main-to-order/main-to-order.component';
+import { MainBannerForm } from '../../modules/main-banner-form/main-banner-form.component';
 
 @Component({
   selector: 'main',
@@ -61,7 +62,6 @@ import { MainToOrder } from '../../modules/main-to-order/main-to-order.component
     MainFabric,
     MainTypesPremises,
     MainArticles,
-    MainTeam,
     MainClients,
     MainAbout,
     MainQuestions,
@@ -73,6 +73,8 @@ import { MainToOrder } from '../../modules/main-to-order/main-to-order.component
     YMapDefaultSchemeLayerDirective,
     TuiCheckbox,
     FormStore,
+    // MainTeam,
+    MainBannerForm,
   ],
   providers: [
     provideIcons({

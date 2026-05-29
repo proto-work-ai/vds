@@ -7,18 +7,22 @@ import { MenuDeferDirective } from '../../components/menu-defer/menu-defer.direc
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../modules/breadcrumbs-header/breadcrumbs-header.component';
 import { PriceList } from '../../modules/catalog-price/catalog-price-list/catalog-price-list';
+import { MainHeaderComponent } from '../../modules/main-header/main-header.component';
+import { MainFooterComponent } from "../../modules/main-footer/main-footer.component";
 
 @Component({
   selector: 'main',
   templateUrl: './price-page.html',
   styleUrls: ['./price-page.scss'],
   imports: [
+    BreadcrumbsHeader,
+    PriceList,
+    MainHeaderComponent,
     ApplicationMeasurementComponent,
     PriceCalculationComponent,
     MenuDeferDirective,
-    BreadcrumbsHeader,
-    PriceList,
-  ],
+    MainFooterComponent
+],
   providers: [MenuDeferService],
   host: {
     id: 'main',

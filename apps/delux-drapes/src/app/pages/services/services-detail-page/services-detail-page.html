@@ -1,6 +1,6 @@
-<!-- <app-main-header />
+<app-main-header></app-main-header>
 
-<app-nav-menu [callSurveyor]="false" /> -->
+<app-main-banner-form></app-main-banner-form>
 
 <app-breadcrumbs-header [items]="breadcrumbs()" />
 
@@ -9,7 +9,7 @@
   name="stretch-ceilings-catalog-detail"
   class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6"
 >
-  <div class="flex max-lg:flex-col bg-gray-light max-lg:bg-white">
+  <div class="flex max-lg:flex-col bg-white-chocolate max-lg:bg-white">
     <section class="lg:w-4/7">
       <app-gallerize-images [item]="item()"></app-gallerize-images>
     </section>
@@ -27,7 +27,7 @@
         <app-price-card [item]="item()" [itemPrice]="1500" size="l" />
 
         <footer class="sm:ms-auto sm:self-end">
-          <button (click)="formSubmit()" class="btn-primary btn-sm max-sm:w-full" type="submit">
+          <button (click)="formSubmit()" class="btn-primary max-sm:w-full" type="submit">
             <span class="px-10">Заказать</span>
           </button>
         </footer>
@@ -39,7 +39,6 @@
 <section class="max-sm:px-5">
   <router-outlet />
 </section>
-
 
 <!-- Price -->
 <!-- <section class="container mx-auto max-sm:px-5 md:my-8 my-6">

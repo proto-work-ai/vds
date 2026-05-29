@@ -1,11 +1,17 @@
 import { Route } from '@angular/router';
-import { stretchCeilingAll as stretchCeilingPages } from './model/products.data';
 import { servicePages } from './model/service-pages';
+import { catalogPagesAll } from './model/catalog.data';
 
 export const routePath = {
   root: '',
   catalog: {
     root: 'catalog',
+  },
+  contact: {
+    root: 'contact',
+  },
+  about: {
+    root: 'about',
   },
   price: {
     root: 'price',
@@ -13,35 +19,17 @@ export const routePath = {
   services: {
     root: 'services',
   },
-};
+} as const;
 
-const stretchCeilingRoutes: Route[] = stretchCeilingPages.map((data) => {
+const catalogRoutes: Route[] = catalogPagesAll.map((data) => {
   return {
     path: `${routePath.catalog.root}/${data.key}`,
     pathMatch: 'full',
     data,
     loadComponent: () =>
       import(
-        './pages/stretch-ceilings-catalog/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
-      ).then((a) => a.StretchCeilingsCatalogDetailPage),
-
-    children: [
-      {
-        path: ``,
-        data,
-        loadComponent: () => data.detail(),
-      },
-    ],
-  };
-});
-
-const servicesRoutes: Route[] = servicePages.map((data) => {
-  return {
-    path: `${routePath.services.root}/${data.key}`,
-    pathMatch: 'full',
-    data,
-    loadComponent: () =>
-      import('./pages/services/services-detail-page/services-detail-page').then((a) => a.ServicesDetailPpage),
+        './pages/catalog/catalog-detail-page/catalog-detail-page'
+      ).then((a) => a.CatalogDetailPage),
 
     children: [
       {
@@ -59,14 +47,22 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/main-page/main-page').then((a) => a.MainPage),
   },
   {
+    path: routePath.contact.root,
+    loadComponent: () => import('./pages/contact/contact-page/contact-page').then((a) => a.СontactPage),
+  },
+  {
+    path: routePath.about.root,
+    loadComponent: () => import('./pages/about/about-page/about-page').then((a) => a.AboutPage),
+  },
+  {
     path: routePath.catalog.root,
     loadComponent: () =>
       import(
-        './pages/stretch-ceilings-catalog/stretch-ceilings-catalog-all-page/stretch-ceilings-catalog-all-page'
-      ).then((a) => a.StretchCeilingsCatalogsPage),
+        './pages/catalog/catalog-page/catalog-all-page'
+      ).then((a) => a.CatalogsPage),
   },
 
-  ...stretchCeilingRoutes,
+  ...catalogRoutes,
 
   {
     path: `${routePath.price.root}`,
@@ -74,7 +70,6 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
   },
 
-  ...servicesRoutes,
 
   {
     path: '**',

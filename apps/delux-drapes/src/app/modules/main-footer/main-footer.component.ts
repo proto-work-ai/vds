@@ -7,7 +7,7 @@ import { lucidePhone } from '@ng-icons/lucide';
 import { NgTemplateOutlet } from '@angular/common';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
-import { injectFooterMenu } from '../../model/stretch-ceilings.service';
+import { injectFooterMenu } from '../../model/catalog.service';
 
 @Component({
   selector: 'app-main-footer',

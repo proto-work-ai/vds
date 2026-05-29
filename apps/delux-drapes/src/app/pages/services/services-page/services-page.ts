@@ -3,7 +3,7 @@ import { Component, computed, DestroyRef, effect, inject, PLATFORM_ID, signal, W
 import { RouterOutlet } from '@angular/router';
 import { GalleryModule, ImageItem } from 'ng-gallery';
 import { Meta, Title } from '@angular/platform-browser';
-import { injectStretchCeilingRouteByKey } from '../../../model/stretch-ceilings.service';
+import { injectStretchCeilingRouteByKey } from '../../../model/catalog.service';
 import { ApplicationMeasurementComponent } from '../../../modules/application-measurement/application-measurement.component';
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
@@ -52,7 +52,7 @@ export class ServicesPage {
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);
-  protected readonly brief = computed(() => this.item().brief);
+  protected readonly brief = computed(() => this.item().text);
   protected readonly price = computed(() => {
     const types = this.item().types;
     const data = this.minPrice(types);

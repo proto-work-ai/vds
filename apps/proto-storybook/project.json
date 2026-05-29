@@ -26,6 +26,10 @@
           },
           {
             "glob": "**/*",
+            "input": "apps/proto-storybook/src/fonts"
+          },
+          {
+            "glob": "**/*",
             "input": "node_modules/@taiga-ui/icons/src",
             "output": "assets/taiga-ui/icons"
           }
@@ -140,6 +144,10 @@
           {
             "glob": "**/*",
             "input": "apps/proto-storybook/storybook-static"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/proto-storybook/src/fonts"
           },
           {
             "glob": "**/*",

@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser, JsonPipe } from '@angular/common';
 import { GalleryModule, ImageItem } from 'ng-gallery';
 import { Meta, Title } from '@angular/platform-browser';
-import { injectStretchCeilingRouteByKey } from '../../../model/stretch-ceilings.service';
+import { injectStretchCeilingRouteByKey } from '../../../model/catalog.service';
 import { ApplicationMeasurementComponent } from '../../../modules/application-measurement/application-measurement.component';
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
@@ -15,9 +15,13 @@ import { injectPhoneSendModal } from '../../../modules/send-service/send.service
 import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
 import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
 import { IContentType } from '../../../model/products.data';
-import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
-import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
+import { PriceListTable } from '../../../modules/catalog-price/price-list-table/price-list-table';
+import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.component';
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
+import { MainFooterComponent } from '../../../modules/main-footer/main-footer.component';
+import { MainHeaderComponent } from '../../../modules/main-header/main-header.component';
+import { MainBannerComponent } from '../../../modules/main-banner/main-banner.component';
+import { MainBannerForm } from '../../../modules/main-banner-form/main-banner-form.component';
 
 @Component({
   selector: 'app-services-detail-page',
@@ -36,7 +40,11 @@ import { AnyQuestions } from '../../../components/any-questions/any-questions';
     PriceListTable,
     WayWeWorkComponent,
     JsonPipe,
-],
+    MainBannerForm,
+    MainHeaderComponent,
+    MainBannerComponent,
+    MainFooterComponent,
+  ],
   providers: [
     MenuDeferService,
     // {
@@ -56,7 +64,7 @@ export class ServicesDetailPpage {
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);
-  protected readonly brief = computed(() => this.item().brief);
+  protected readonly brief = computed(() => this.item().text);
   protected readonly price = computed(() => {
     const types = this.item().types;
     const data = this.minPrice(types);

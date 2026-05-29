@@ -1,9 +1,9 @@
 import { Component, computed, input, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
-  injectStretchCeilingGroupMenu,
+  catalogGroupMenu,
   injectStretchCeilingsCatalog,
-} from '../../../model/stretch-ceilings.service';
+} from '../../../model/catalog.service';
 import { StretchCeilingsCatalogCard } from '../stretch-ceilings-catalog-card/stretch-ceilings-catalog-card';
 import { routePath } from '../../../app.routes';
 import { provideIcons } from '@ng-icons/core';
@@ -31,7 +31,7 @@ export class StretchCeilingsCatalogs {
   protected readonly routePath = routePath;
 
   protected readonly groups = signal<IAppMenuItem[]>([
-    ...injectStretchCeilingGroupMenu().slice(0, 3), // Все кромя "По типу"
+    ...catalogGroupMenu().slice(0, 3), // Все кромя "По типу"
     {
       title: 'Весь список',
       link: ['/catalog'],

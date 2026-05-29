@@ -1,5 +1,5 @@
 import { Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
-import { injectStretchCeilingGroupMenu, injectStretchCeilingsCatalog } from '../../../model/stretch-ceilings.service';
+import { catalogGroupMenu, injectStretchCeilingsCatalog } from '../../../model/catalog.service';
 import { StretchCeilingsCatalogCard } from '../stretch-ceilings-catalog-card/stretch-ceilings-catalog-card';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { routePath } from '../../../app.routes';
@@ -26,7 +26,7 @@ export class StretchCeilingsCatalogAll {
       title: 'Все виды',
       queryParams: {},
     },
-    ...injectStretchCeilingGroupMenu().slice(0, 3), // Все кромя "По типу"
+    ...catalogGroupMenu().slice(0, 3), // Все кромя "По типу"
   ]);
 
   private readonly items = injectStretchCeilingsCatalog();

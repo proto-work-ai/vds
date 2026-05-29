@@ -1,10 +1,10 @@
 .btn-primary {
-  --btn-border-radius: 100px;
-  --btn-padding-inline: 2rem;
-  --btn-font-size: 1rem;
-  --btn-line-height: 2.5rem;
   --btn-primari-color: var(--primari-color);
   --btn-primari-color-hover: var(--primari-color-hover);
+  --btn-border-radius: 4px;
+  --btn-padding-inline: 2rem;
+  --btn-font-size: 1rem;
+  --btn-line-height: 3rem;
 
   text-align: center;
   vertical-align: middle;
@@ -52,7 +52,7 @@
   &.btn-sm {
     --btn-padding-inline: 2rem;
     --btn-font-size: 1rem;
-    --btn-line-height: 2.5rem;
+    --btn-line-height: 2.75rem;
   }
 
   &.btn-shadow {

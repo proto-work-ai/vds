@@ -5,7 +5,7 @@ export interface IContentType {
   title: string;
   image: string;
   images: string[];
-  brief: string;
+  text: string;
   types: ProductType[];
   detail: () => Promise<ComponentType<any>>;
 }
@@ -94,8 +94,7 @@ export enum ProductType {
   PreparingSubCeiling, // Подготовка чернового потолка работа
 }
 
-// Страницы по потолками
-export const stretchCeilingAll: IContentType[] = [
+export const catalogPagesAll: IContentType[] = [
   {
     types: [
       ProductType.Matte,
@@ -110,7 +109,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'matte-stretch-ceilings',
     title: 'Матовые натяжные потолки',
-    brief:
+    text:
       'Классическое, гладкое покрытие без блеска и отражений, имитирующее идеально ровную побелку или гипсокартон. Они создают уют, не перегружают интерьер, обладают антистатическим эффектом, не выгорают и стоят дешевле глянцевых аналогов',
     detail: () =>
       import('./stretch-ceiling-detail/matte-stretch-ceilings/matte-stretch-ceilings').then((a) => a.Detail),
@@ -157,7 +156,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'light-lines',
     title: 'Световые линии',
-    brief:
+    text:
       'Современная система освещения, при которой светодиодная лента устанавливается в специальный алюминиевый профиль, встроенный вровень с натяжным потолком. Они создают непрерывные, четкие светящиеся полосы (прямые, ломаные или криволинейные)',
     detail: () => import('./stretch-ceiling-detail/light-lines/light-lines').then((a) => a.Detail),
     image: '/catalog/image-36.jpg',
@@ -187,7 +186,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'fabric-stretch-ceilings',
     title: 'Тканевые натяжные потолки',
-    brief:
+    text:
       'Экологичные, прочные и «дышащие» потолочные покрытия из полиэстера с полиуретановой пропиткой. Они имеют матовую фактуру, монтируются без нагрева («холодный монтаж»), устойчивы к перепадам температур и не имеют запаха.',
     detail: () =>
       import('./stretch-ceiling-detail/fabric-stretch-ceilings/fabric-stretch-ceilings').then((a) => a.Detail),
@@ -210,7 +209,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'glossy-stretch-ceilings',
     title: 'Глянцевые натяжные потолки',
-    brief:
+    text:
       'Это зеркальное покрытие с высоким коэффициентом отражения (до 90–95%), которое визуально удваивает высоту и освещенность комнаты. Они водонепроницаемы, прочны, скрывают дефекты чернового потолка и монтируются за несколько часов',
     detail: () =>
       import('./stretch-ceiling-detail/glossy-stretch-ceilings/glossy-stretch-ceilings').then((a) => a.Detail),
@@ -234,7 +233,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'shadow-stretch-ceilings',
     title: 'Теневые натяжные потолки',
-    brief:
+    text:
       'Это современная технология монтажа, создающая эффект парения полотна за счет небольшого зазора (5–7 мм) между стеной и потолком. Создает четкую черную теневую линию по периметру',
     detail: () =>
       import('./stretch-ceiling-detail/shadow-stretch-ceilings/shadow-stretch-ceilings').then((a) => a.Detail),
@@ -256,7 +255,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'floating-suspended-ceiling',
     title: 'Парящий натяжной потолок',
-    brief:
+    text:
       'Создают эффект «отрыва» полотна от стен благодаря скрытой светодиодной ленте по периметру. За счет специального профиля свет направлен на стену, формируя мягкий ореол, что визуально расширяет пространство.',
     detail: () =>
       import('./stretch-ceiling-detail/floating-suspended-ceiling/floating-suspended-ceiling').then((a) => a.Detail),
@@ -307,7 +306,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'satin-stretch-ceilings',
     title: 'Сатиновые натяжные потолки',
-    brief:
+    text:
       'ПВХ-пленка с особой фактурой, имитирующей ткань, которая занимает промежуточное место между матовыми и глянцевыми покрытиями. Они отличаются гладкой поверхностью, легким перламутровым блеском, мягким рассеиванием света, не создавая резких бликов',
     detail: () =>
       import('./stretch-ceiling-detail/satin-stretch-ceilings/satin-stretch-ceilings').then((a) => a.Detail),
@@ -331,7 +330,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'two-level-stretch-ceilings',
     title: 'Двухуровневые натяжные потолки',
-    brief:
+    text:
       'Конструктивная система из двух (или более) ярусов, расположенных на разной высоте. Они создают уникальный дизайн, скрывают коммуникации. Чаще всего изготавливаются с применением гипсокартонных коробов или специальных профилей',
     detail: () =>
       import('./stretch-ceiling-detail/two-level-stretch-ceilings/two-level-stretch-ceilings').then((a) => a.Detail),
@@ -384,7 +383,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'ceilings-with-internal-lighting',
     title: 'Потолки с подсветкой внутри',
-    brief:
+    text:
       'Это современное решение, где источник света размещается за полотном потолка. Светодиоды равномерно рассеиваются через полупрозрачную ткань или пленку, создавая мягкое, атмосферное освещение',
     detail: () =>
       import('./stretch-ceiling-detail/ceilings-with-internal-lighting/ceilings-with-internal-lighting').then(
@@ -408,7 +407,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'ceilings-with-contour-lighting',
     title: 'Потолки с контурной подсветкой',
-    brief:
+    text:
       'Вид натяжных потолков, где светодиодная лента устанавливается в специальный скрытый профиль по периметру. В отличие от [парящего потолка], контурный дает чёткую светящуюся линию, а не рассеянный свет',
     detail: () =>
       import('./stretch-ceiling-detail/ceilings-with-contour-lighting/ceilings-with-contour-lighting').then(
@@ -507,7 +506,7 @@ export const stretchCeilingAll: IContentType[] = [
     ],
     key: 'starry-sky-ceilings',
     title: 'Потолки "звездное небо"',
-    brief:
+    text:
       'Эффектный элемент декора, создающий иллюзию ночного неба с мерцающими звездами с помощью оптоволокна или светодиодов. Используется в спальнях, детских и кинотеатрах.',
     detail: () => import('./stretch-ceiling-detail/starry-sky-ceilings/starry-sky-ceilings').then((a) => a.Detail),
     image: '/catalog/image-22.jpg',

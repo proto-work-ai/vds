@@ -10,7 +10,7 @@
 
   <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4 mx-auto">
     @for (item of items; track item; let index = $index) {
-      <article class="flex flex-col bg-gray-light max-md:max-w-100">
+      <article class="flex flex-col bg-white-chocolate max-md:max-w-100">
         <figure class="w-full bg-image aspect-1.5/1" [style.background-image]="'url(' + item.src + ')'">
           <img class="hidden" [attr.src]="item.src" [attr.alt]="item.title" />
         </figure>

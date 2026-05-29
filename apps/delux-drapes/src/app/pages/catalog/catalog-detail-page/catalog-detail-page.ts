@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { GalleryModule, ImageItem } from 'ng-gallery';
 import { Meta, Title } from '@angular/platform-browser';
-import { injectStretchCeilingRouteByKey } from '../../../model/stretch-ceilings.service';
+import { injectStretchCeilingRouteByKey } from '../../../model/catalog.service';
 import { ApplicationMeasurementComponent } from '../../../modules/application-measurement/application-measurement.component';
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
@@ -15,39 +15,40 @@ import { injectPhoneSendModal } from '../../../modules/send-service/send.service
 import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
 import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
 import { IContentType } from '../../../model/products.data';
-import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
-import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
+import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.component';
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
+import { MainFooterComponent } from '../../../modules/main-footer/main-footer.component';
+import { MainHeaderComponent } from '../../../modules/main-header/main-header.component';
+import { MainBannerComponent } from '../../../modules/main-banner/main-banner.component';
+import { MainForm } from '../../../modules/main-form/main-form.component';
+import { MainQuestions } from '../../../modules/main-questions/main-questions.component';
 
 @Component({
   selector: 'st-catalog-getail',
-  templateUrl: 'stretch-ceilings-catalog-detail-page.html',
-  styleUrls: ['stretch-ceilings-catalog-detail-page.scss'],
+  templateUrl: 'catalog-detail-page.html',
+  styleUrls: ['catalog-detail-page.scss'],
   imports: [
     BreadcrumbsHeader,
     RouterOutlet,
     GalleryModule,
-    ApplicationMeasurementComponent,
     GallerizeImages,
     PriceCard,
-    PriceListTable,
     WayWeWorkComponent,
     AnyQuestions,
+    MainForm,
+    MainQuestions,
+    MainFooterComponent,
+    MainHeaderComponent,
+    MainBannerComponent,
     SwiperFullImages,
     PriceListBrandTable,
-],
-  providers: [
-    MenuDeferService,
-    // {
-    //   provide: TuiDialogService,
-    //   useExisting: TuiResponsiveDialogService,
-    // },
   ],
+  providers: [MenuDeferService],
   host: {
     id: 'main',
   },
 })
-export class StretchCeilingsCatalogDetailPage {
+export class CatalogDetailPage {
   private readonly destroyRef = inject(DestroyRef);
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([]);
   protected readonly openPhoneSendModal = injectPhoneSendModal();
@@ -56,7 +57,7 @@ export class StretchCeilingsCatalogDetailPage {
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);
-  protected readonly brief = computed(() => this.item().brief);
+  protected readonly brief = computed(() => this.item().text);
   protected readonly price = computed(() => {
     const types = this.item().types;
     const data = this.minPrice(types);

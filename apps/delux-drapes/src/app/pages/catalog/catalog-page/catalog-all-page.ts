@@ -8,8 +8,8 @@ import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.com
 
 @Component({
   selector: 'main',
-  templateUrl: 'stretch-ceilings-catalog-all-page.html',
-  styleUrls: ['stretch-ceilings-catalog-all-page.scss'],
+  templateUrl: 'catalog-all-page.html',
+  styleUrls: ['catalog-all-page.scss'],
   imports: [
     StretchCeilingsCatalogAll,
     ApplicationMeasurementComponent,
@@ -21,7 +21,7 @@ import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.com
     'id': 'main',
   },
 })
-export class StretchCeilingsCatalogsPage {
+export class CatalogsPage {
   protected readonly breadcrumbs = signal<IBreadcrumbItem[]>([
     {
       title: 'Главная',

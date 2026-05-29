@@ -3,20 +3,15 @@ import { DestroyRef, effect, inject, signal, Signal, WritableSignal } from '@ang
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { startWith, tap } from 'rxjs';
-import {
-  IContentType,
-  stretchCeilingAll,
-  stretchCeilingGroupMap,
-  productName,
-  stretchCeilingsGroupName,
-} from './products.data';
+import { IContentType, productName, stretchCeilingsGroupName } from './products.data';
 import { IAppMenuItem } from '../shared/menu';
 import { routePath } from '../app.routes';
 import { servicePages } from './service-pages';
+import { catalogPagesAll } from './catalog.data';
 
 export function injectStretchCeilingsCatalog(): Signal<IContentType[]> {
   const catalog = signal<IContentType[]>([]);
-  import('./products.data').then(({ stretchCeilingAll: stretchCeilings }) => catalog.set(stretchCeilings));
+  import('./products.data').then(({ catalogPagesAll: stretchCeilings }) => catalog.set(stretchCeilings));
   return catalog.asReadonly();
 }
 
@@ -52,15 +47,17 @@ export function injectStretchCeilingRouteByKey(): WritableSignal<IContentType> {
   return item as WritableSignal<IContentType>;
 }
 
-export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IAppMenuItem[] {
+export function catalogGroupMenu(patch: string | string[] = []): IAppMenuItem[] {
   patch = Array.isArray(patch) ? patch.concat() : [patch];
-  const menu = Array.from(stretchCeilingGroupMap, ([group, values]) => {
+
+  const menu = catalogPagesAll.map(({ title, text, key }) => {
     return {
-      title: stretchCeilingsGroupName[group],
-      queryParams: { group },
-      children: values
+      title: title,
+      link: patch.concat(key),
+      queryParams: { key },
+      children: []
         .map((type) => {
-          const item = stretchCeilingAll.find((a) => a.types.includes(type))!;
+          const item = catalogPagesAll.find((a) => a.types.includes(type))!;
           return [type, item] as const;
         })
         // Если нет в каталоге то не выводим
@@ -78,40 +75,32 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
   return menu;
 }
 
-const menuServices: IAppMenuItem = {
-  title: 'Услуги',
-  fragment: 'main',
-  children: servicePages.map(({ title, key }) => {
-    return {
-      title,
-      link: ['/', routePath.services.root, key],
-      fragment: 'main',
-    };
-  }),
-};
-
 export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuItem[]> {
   const navMenu = signal<IAppMenuItem[]>([
     {
       title: 'Каталог',
-      link: ['/', routePath.catalog.root],
-      fragment: 'main',
-      // children: injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
+      // link: ['/', routePath.catalog.root],
+      // fragment: 'main',
+      children: catalogGroupMenu(['/', routePath.catalog.root]),
     },
 
-    ...injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
-
-    menuServices,
+    // ...catalogGroupMenu(['/', routePath.catalog.root]),
 
     {
       title: 'Цены',
       link: ['/', routePath.price.root],
       fragment: 'main',
     },
-    // {
-    //   title: 'Контакты',
-    //   link: ['/', routePath.contacts.root],
-    // },
+
+    {
+      title: 'Контакты',
+      link: ['/', routePath.contact.root],
+    },
+
+    {
+      title: 'О нас',
+      link: ['/', routePath.about.root],
+    },
   ]);
 
   return navMenu.asReadonly();
@@ -125,19 +114,23 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
       fragment: 'main',
     },
 
-    menuServices,
-
     {
       title: 'Цены',
       link: ['/', routePath.price.root],
       fragment: 'main',
     },
-    // {
-    //   title: 'Контакты',
-    //   link: ['/', 'contacts'],
-    // },
 
-    ...injectStretchCeilingGroupMenu(['/', 'catalog']),
+    {
+      title: 'Контакты',
+      link: ['/', routePath.contact.root],
+    },
+
+    {
+      title: 'О нас',
+      link: ['/', routePath.about.root],
+    },
+
+    ...catalogGroupMenu(['/', 'catalog']),
   ]);
 
   return navMenu.asReadonly();

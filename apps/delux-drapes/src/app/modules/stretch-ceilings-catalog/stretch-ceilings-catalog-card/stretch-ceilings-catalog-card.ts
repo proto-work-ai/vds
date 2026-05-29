@@ -19,5 +19,5 @@ export class StretchCeilingsCatalogCard {
   readonly item = input.required<IContentType>();
   readonly link = input<boolean>(false);
   protected readonly title = computed(() => this.item().title);
-  protected readonly brief = computed(() => this.item().brief);
+  protected readonly brief = computed(() => this.item().text);
 }

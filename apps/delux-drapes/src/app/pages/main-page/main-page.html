@@ -1,18 +1,20 @@
 <app-main-header></app-main-header>
 
-<app-main-banner></app-main-banner>
+<app-main-banner-form></app-main-banner-form>
+
+<!-- <app-main-banner></app-main-banner> -->
+
+<!--Каталог Штор(Прямые шторы)-->
+<app-main-catalog></app-main-catalog>
 
 <!-- Как сделать заказ -->
 <app-place-an-order></app-place-an-order>
 
-<!--Шторы, жалюзи и карнизы на заказ-->
-<!-- <app-main-to-order></app-main-to-order> -->
-
-<!--Каталог(Прямые шторы)-->
-<app-main-catalog></app-main-catalog>
-
 <!--Как мы работаем-->
 <app-way-we-work></app-way-we-work>
+
+<!--Шторы, жалюзи и карнизы на заказ-->
+<!-- <app-main-to-order></app-main-to-order> -->
 
 <!--Наши работы-->
 <app-main-works></app-main-works>
@@ -26,9 +28,6 @@
 <!--Цены / стоимость-->
 <app-main-price></app-main-price>
 
-<!--Собственное производство-->
-<app-main-production></app-main-production>
-
 <!--Ткани-->
 <app-main-fabric></app-main-fabric>
 
@@ -38,14 +37,14 @@
 <!--Пошив штор для всех видов помещений-->
 <app-main-types-premises></app-main-types-premises>
 
-<!--Наша Команда-->
-<app-main-team></app-main-team>
-
 <!--Наши клиенты-->
-<app-main-clients></app-main-clients>
+<!-- <app-main-clients></app-main-clients> -->
+
+<!--Собственное производство-->
+<app-main-production></app-main-production>
 
 <!--О нас-->
-<app-main-about></app-main-about>
+<!-- <app-main-about></app-main-about> -->
 
 <!--Закажите выезд-->
 <app-main-form></app-main-form>
@@ -63,13 +62,13 @@
       <div class="flex-1">
         <ng-icon hlm size="sm" name="lucideMapPin"></ng-icon>
         <h5 class="font-medium">Телефон</h5>
-        <a href="tel:84958856548">+7 495 885 65 48</a>
+        <a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
       </div>
 
       <div class="flex-1">
         <ng-icon hlm size="sm" name="lucidePhone"></ng-icon>
         <h5 class="font-medium">Телефон</h5>
-        <a href="tel:84958856548">+7 495 885 65 48</a>
+        <a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
       </div>
 
       <div class="flex-1">
