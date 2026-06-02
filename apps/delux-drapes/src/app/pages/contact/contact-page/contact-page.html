@@ -4,22 +4,22 @@
 
 <div class="container mx-auto my-8 flex flex-col gap-4">
   <header class="text-center flex flex-col gap-2 sm:gap-3">
-    <h2 class="md:text-2xl text-xl">Контакты</h2>
+    <h2 class="md:text-4xl text-2xl">Контакты</h2>
   </header>
 
   <section class="flex flex-wrap gap-4">
     <div class="w-1/3 flex flex-col gap-3">
-      <h4 class="font-medium">Адрес</h4>
+      <h4 class="font-medium text-xl">Адрес</h4>
       <address>Москва, ул Нижняя Сыромятническая д 10с2 (этаж 6, помещение 624)</address>
     </div>
 
     <div class="w-1/3 flex flex-col gap-3">
-      <h4 class="font-medium">Метро</h4>
+      <h4 class="font-medium text-xl">Метро</h4>
       <p>Чкаловская — 860 м</p>
     </div>
 
     <div class="w-1/3 flex flex-col gap-3">
-      <h4 class="font-medium">График работы</h4>
+      <h4 class="font-medium text-xl">График работы</h4>
 
       <ul>
         <li>пн-чт : c 10.00 до 20.00</li>
@@ -28,7 +28,7 @@
     </div>
 
     <div class="w-1/3 flex flex-col gap-3">
-      <h4 class="font-medium">Телефон</h4>
+      <h4 class="font-medium text-xl">Телефон</h4>
 
       <ol>
         <li><a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>>/li></li>
@@ -37,7 +37,7 @@
     </div>
 
     <div class="w-1/3 flex flex-col gap-3">
-      <h4 class="font-medium">Социальные сети</h4>
+      <h4 class="font-medium text-xl">Социальные сети</h4>
 
       <div class="flex gap-2">
         <a class="max-sm:text-sm" href="https://t.me/{{ telegramContact }}" target="_blank" alt="Telegram"
@@ -51,7 +51,7 @@
     </div>
 
     <!-- <footer class="flex justify-center gap-3">
-      <button class="btn btn-primary">Пригласить дизайнера</button>
+      <button inviteModalClick class="btn btn-primary">Пригласить дизайнера</button>
     </footer> -->
   </section>
 </div>

@@ -8,6 +8,9 @@ export class ScrollService {
     element?.scrollIntoView({ behavior: 'smooth' });
   }
   scrollToElementBy(selector: string): void {
+    if (typeof selector !== 'string' || selector.length < 1) {
+      return;
+    }
     setTimeout(() => {
       const element = this.document.querySelector(selector)!;
       if (element) {

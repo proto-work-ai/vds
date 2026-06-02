@@ -1,0 +1,22 @@
+.bg-image {
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  transform: translateY(0%);
+  background-image: url(/images/welcome.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-pattern {
+  z-index: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: url(/patterns/pattern-1.jpg);
+  background: url(/patterns/pattern-2.jpg);
+  background-size: 200px;
+  opacity: 60%;
+  z-index: -1;
+}

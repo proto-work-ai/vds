@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, computed, DestroyRef, effect, inject, signal, WritableSignal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLinkWithHref, RouterLink } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 import { GalleryModule, ImageItem } from 'ng-gallery';
 import { Meta, Title } from '@angular/platform-browser';
@@ -22,27 +22,30 @@ import { MainHeaderComponent } from '../../../modules/main-header/main-header.co
 import { MainBannerComponent } from '../../../modules/main-banner/main-banner.component';
 import { MainForm } from '../../../modules/main-form/main-form.component';
 import { MainQuestions } from '../../../modules/main-questions/main-questions.component';
+import { InviteModalClick } from '../../../components/invite-designer/invite-designer-modal';
 
 @Component({
-  selector: 'st-catalog-getail',
+  selector: 'app-catalog-getail',
   templateUrl: 'catalog-detail-page.html',
   styleUrls: ['catalog-detail-page.scss'],
   imports: [
     BreadcrumbsHeader,
     RouterOutlet,
     GalleryModule,
-    GallerizeImages,
-    PriceCard,
     WayWeWorkComponent,
-    AnyQuestions,
     MainForm,
     MainQuestions,
     MainFooterComponent,
     MainHeaderComponent,
-    MainBannerComponent,
     SwiperFullImages,
+    InviteModalClick,
+    RouterLink,
+    MainBannerComponent,
+    AnyQuestions,
     PriceListBrandTable,
-  ],
+    GallerizeImages,
+    PriceCard,
+],
   providers: [MenuDeferService],
   host: {
     id: 'main',
@@ -57,15 +60,15 @@ export class CatalogDetailPage {
   protected readonly minPrice = injectCatalogPrice();
 
   protected readonly title = computed(() => this.item()?.title);
-  protected readonly brief = computed(() => this.item().text);
+  protected readonly text = computed(() => this.item().text);
   protected readonly price = computed(() => {
-    const types = this.item().types;
+    const types = this.item().types!;
     const data = this.minPrice(types);
     return data?.[0];
   });
-  protected readonly images = computed(() => this.item()?.images.map((src) => new ImageItem({ src, thumb: src })));
+  protected readonly images = computed(() => this.item()?.images!.map((src) => new ImageItem({ src, thumb: src })));
   protected readonly filtered = computed(() => {
-    return getCatalogMap2(this.item().types);
+    return getCatalogMap2(this.item().types!);
   });
 
   constructor() {
@@ -76,7 +79,7 @@ export class CatalogDetailPage {
     if (image) {
       inject(Meta).updateTag({ property: 'og:image', content: image });
     }
-    inject(Meta).updateTag({ name: 'description', content: this.brief() });
+    inject(Meta).updateTag({ name: 'description', content: this.text() } as any);
 
     effect(() => {
       const item = this.item();

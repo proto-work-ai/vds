@@ -15,9 +15,15 @@ import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { Navigation } from 'swiper/modules';
 import { IContentType } from '../../model/products.data';
 import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
+import { NgIconImports } from '../ng-icon-src.directive';
 
 /*
   https://swiperjs.com/swiper-api
+
+  Template:
+  <section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+    <app-swiper-full-images [item]="item()" />
+  </section>
 */
 @Component({
   selector: 'app-swiper-full-images',
@@ -30,7 +36,7 @@ import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
     }),
   ],
   // encapsulation: ViewEncapsulation.None,
-  imports: [NgIcon, IsPlatformBrowserDirective],
+  imports: [NgIconImports, IsPlatformBrowserDirective],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA], // Essential for <swiper-container>
 })
 export class SwiperFullImages {

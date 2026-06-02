@@ -1,3 +1,12 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'PF Regal Text Pro';
+}
+
 .badge {
   display: inline-block;
   border-radius: 40px;
@@ -40,10 +49,18 @@
   background-color: #eee5d6;
 }
 
-.bg-dark-knight {
-  background-color: rgb(20, 24, 52);
+.bg-you-love {
+  background-color: #f4f3ed;
 }
 
-.swiper-button-disabled {
-  display: none;
+.bg-cardboard {
+  background-color: #ae9769;
+}
+
+.text-cardboard {
+  color: #ae9769;
+}
+
+.bg-dark-knight {
+  background-color: rgb(20, 24, 52);
 }

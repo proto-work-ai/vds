@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
-import { TuiButton, type TuiDialogContext, TuiTextfield, TuiTextfieldComponent, TuiInput } from '@taiga-ui/core';
+import { TuiButton, type TuiDialogContext, TuiTextfield, TuiTextfieldComponent, TuiInput, TuiCheckbox } from '@taiga-ui/core';
 import { TuiInputPhone } from '@taiga-ui/kit';
 import { TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
@@ -21,6 +21,7 @@ import { IsPlatformBrowserDirective } from '../../components/is-platform-browser
     TuiInputPhone,
     TuiAutoFocus,
     TuiInput,
+    TuiCheckbox,
     IsPlatformBrowserDirective
   ],
 })

@@ -6,7 +6,7 @@ export interface MenuItem {
   hash?: string;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class MenuDeferService {
   #items = signal<MenuItem[]>([]);
 

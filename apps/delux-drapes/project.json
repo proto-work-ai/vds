@@ -25,7 +25,8 @@
           },
           {
             "glob": "**/*",
-            "input": "apps/delux-drapes/src/fonts"
+            "input": "apps/delux-drapes/src/fonts",
+            "output": "fonts"
           },
           {
             "glob": "**/*",

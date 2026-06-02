@@ -1,0 +1,53 @@
+<form [formGroup]="form" (submit)="formSubmit()" class="h-full flex gap-12">
+  <section class="flex-1 relative h-full">
+    <picture class="bg-image w-full h-full absolute"></picture>
+  </section>
+
+  <section class="flex-1">
+    <div class="w-100 h-full flex flex-col">
+      <header class="flex justify-end p-3 sticky top-0 z-80">
+        <a class="bg-you-love rounded-full p-1 cursor-pointer inline-block flex leading-0" (click)="modalClose()">
+          <ng-icon class="text-2xl text-gray-400 flex" name="lucideX" />
+        </a>
+      </header>
+
+      <div class="flex items-center h-full">
+        <section class="justify-self-center flex flex-col gap-6 pb-3">
+          <h3 class="font-semibold text-3xl">Оставьте заявку дизайнеру:</h3>
+
+          <tui-textfield [tuiTextfieldCleaner]="false">
+            <label tuiLabel>Введите имя</label>
+            <input tuiInput formControlName="name" tuiAutoFocus [maxlength]="100" />
+          </tui-textfield>
+
+          @defer {
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Укажите телефон</label>
+              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+            </tui-textfield>
+          } @placeholder {
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Укажите телефон</label>
+              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+            </tui-textfield>
+          }
+
+          <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
+            <label tuiLabel>Удобный тип связи</label>
+            <input tuiSelect formControlName="connectionType" />
+            <tui-data-list-wrapper *tuiDropdown new [items]="typeOptions()" />
+          </tui-textfield>
+          
+          <label tuiLabel class="text-sm">
+            <input tuiCheckbox type="checkbox" formControlName="checked" />
+            <small class="text-sm">
+              Я соглашаюсь с правилами по обработке <a class="cursor-pointer underline" >персональных данных</a>
+            </small>
+          </label>
+
+          <button class="btn-primary" type="submit">Отправить</button>
+        </section>
+      </div>
+    </div>
+  </section>
+</form>

@@ -59,7 +59,7 @@ export class PriceCard {
 
   protected readonly minPrice = injectCatalogPrice();
 
-  private readonly dataType = computed(() => this.minPrice(this.item().types));
+  private readonly dataType = computed(() => this.minPrice(this.item().types!));
   protected readonly price = computed(() => this.itemPrice() ?? this.dataType()?.[0]);
   protected readonly unitFormat = computed(() => unitFormatter(this.dataType()?.[1].unit));
 }

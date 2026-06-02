@@ -30,12 +30,24 @@ import { MainProduction } from '../../modules/main-production/main-production.co
 import { MainFabric } from '../../modules/main-fabric/main-fabric.component';
 import { MainArticles } from '../../modules/main-articles/main-articles.component';
 import { MainTypesPremises } from '../../modules/main-types-premises/main-types-premises.component';
-import { MainTeam } from '../../modules/main-team/main-team.component';
 import { MainClients } from '../../modules/main-clients/main-clients.component';
 import { MainAbout } from '../../modules/main-about/main-about.component';
 import { MainQuestions } from '../../modules/main-questions/main-questions.component';
 import { MainToOrder } from '../../modules/main-to-order/main-to-order.component';
+import { MainWelcome } from '../../modules/main-welcome/main-welcome';
 import { MainBannerForm } from '../../modules/main-banner-form/main-banner-form.component';
+import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { markAsSubmit } from '@atlas/core';
+import { finalize } from 'rxjs';
+import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
+import { PlaceAnOrderButto } from "../../modules/place-an-order-buttons/place-an-order-buttons";
+
+export function ymDrainingEvent(): void {
+  const { ym } = window as any;
+  if (ym) {
+    ym(108545164, 'reachGoal', 'draining-suspended-ceiling');
+  }
+}
 
 @Component({
   selector: 'main',
@@ -68,31 +80,33 @@ import { MainBannerForm } from '../../modules/main-banner-form/main-banner-form.
     MainToOrder,
     IsPlatformBrowserDirective,
     ScrollLink,
-    NgIcon,
+    NgIconImports,
     YMapComponent,
     YMapDefaultSchemeLayerDirective,
     TuiCheckbox,
     FormStore,
-    // MainTeam,
+    MainWelcome,
     MainBannerForm,
-  ],
+    PlaceAnOrderButto
+],
   providers: [
     provideIcons({
       lucideMapPin,
       lucidePhone,
       lucideMail,
     }),
-    MenuDeferService,
   ],
   host: {
     id: 'main',
   },
 })
 export class MainPage {
+  private readonly sendForm = injectSendMessage(ymDrainingEvent);
+  
   protected readonly form = new FormGroup({
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     description: new FormControl(undefined, []),
-    checked: new FormControl(undefined, []),
+    checked: new FormControl(undefined, [Validators.requiredTrue]),
   });
 
   protected readonly items = inject(MenuDeferService).items;
@@ -124,5 +138,16 @@ export class MainPage {
     return result;
   });
 
-  protected formSubmit(): void {}
+  protected formSubmit(): void {
+    if (markAsSubmit(this.form)) {
+      this.sendForm(this.form.value as IFormData)
+        .pipe(
+          finalize(() => {
+            this.form.setValue({} as any);
+            this.form.markAsUntouched();
+          })
+        )
+        .subscribe();
+    }
+  }
 }

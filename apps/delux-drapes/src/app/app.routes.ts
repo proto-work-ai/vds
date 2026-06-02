@@ -13,6 +13,9 @@ export const routePath = {
   about: {
     root: 'about',
   },
+  partner: {
+    root: 'partner',
+  },
   price: {
     root: 'price',
   },
@@ -35,7 +38,7 @@ const catalogRoutes: Route[] = catalogPagesAll.map((data) => {
       {
         path: ``,
         data,
-        loadComponent: () => data.detail(),
+        loadComponent: () => data.detail()!,
       },
     ],
   };
@@ -53,6 +56,10 @@ export const appRoutes: Route[] = [
   {
     path: routePath.about.root,
     loadComponent: () => import('./pages/about/about-page/about-page').then((a) => a.AboutPage),
+  },
+  {
+    path: routePath.partner.root,
+    loadComponent: () => import('./pages/partner/partner-page/partner-page').then((a) => a.PartnerPage),
   },
   {
     path: routePath.catalog.root,

@@ -54,7 +54,7 @@
         <div class="flex-1">
           <tui-textfield [tuiTextfieldCleaner]="false">
             <label tuiLabel>Введите текст</label>
-            <textarea tuiTextarea formControlName="description" [min]="4" [max]="4"></textarea>
+            <textarea tuiTextarea formControlName="description" [min]="2" [max]="4" [maxlength]=1000></textarea>
           </tui-textfield>
         </div>
       </fieldset>

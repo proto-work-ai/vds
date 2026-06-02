@@ -8,6 +8,7 @@ export interface IContentType {
   text: string;
   types: ProductType[];
   detail: () => Promise<ComponentType<any>>;
+  children?: Partial<IContentType>[];
 }
 
 export enum StretchCeilingsGroup {

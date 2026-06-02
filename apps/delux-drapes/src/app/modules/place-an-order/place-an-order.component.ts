@@ -5,6 +5,4 @@ import { Component, input, OnInit, signal } from '@angular/core';
   templateUrl: './place-an-order.component.html',
   styleUrls: ['./place-an-order.component.scss'],
 })
-export class PlaceAnOrder {
-  
-}
+export class PlaceAnOrder {}

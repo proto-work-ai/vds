@@ -9,7 +9,7 @@
   <section class="flex flex-col gap-3">
     <tui-textfield [tuiTextfieldCleaner]="false" class="flex-1">
       <label tuiLabel>Ваше имя</label>
-      <input tuiInput formControlName="name" />
+      <input tuiInput formControlName="name" [maxlength]="100" />
     </tui-textfield>
 
     @defer {

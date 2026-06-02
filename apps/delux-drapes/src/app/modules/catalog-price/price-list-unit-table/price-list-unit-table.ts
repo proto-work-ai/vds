@@ -20,6 +20,7 @@ import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import { TuiTree } from '@taiga-ui/kit';
 import { unitFormatter } from '../../stretch-ceilings-catalog/price-card';
+import { NgIconImports } from '../../../components/ng-icon-src.directive';
 
 @Component({
   selector: 'app-price-list-unit-table',
@@ -32,7 +33,7 @@ import { unitFormatter } from '../../stretch-ceilings-catalog/price-card';
     AtlasFormImports,
     AtlasDataTableComponents,
     AtlasTaigaUiTable,
-    NgIcon,
+    NgIconImports,
     AtlasDataTableToggleSize,
     AtlasTablePaginatePipe,
   ],

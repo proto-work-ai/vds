@@ -19,6 +19,7 @@ import { lucideChevronDown, lucideSquareArrowOutUpRight } from '@ng-icons/lucide
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
 import { injectScrollToElement } from '../../../components/scroll-link/scroll.service';
+import { NgIconImports } from '../../../components/ng-icon-src.directive';
 
 @Component({
   selector: 'app-sc-catalog-route-filter',
@@ -37,7 +38,7 @@ import { injectScrollToElement } from '../../../components/scroll-link/scroll.se
     TuiTabs,
     TuiTextfield,
     TuiIcon,
-    NgIcon,
+    NgIconImports,
     ScrollLink,
     RouterLink,
     TuiButton,

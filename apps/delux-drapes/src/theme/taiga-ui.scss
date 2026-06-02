@@ -105,17 +105,34 @@ tui-dialogs {
   --tui-duration: 200ms;
 }
 
-tui-dialog {
-  border-radius: 2px;
+tui-modal {
+  tui-dialog {
+    border-radius: 2px;
 
-  & > .t-content {
-    padding: 1rem;
-  }
+    & > .t-content {
+      padding: 1rem;
+    }
 
-  .t-heading.t-heading_closable {
-    font-weight: 400;
-    font-size: 20px;
-    margin-bottom: 14px;
+    .t-heading.t-heading_closable {
+      font-weight: 400;
+      font-size: 20px;
+      margin-bottom: 14px;
+    }
+
+    &[data-appearance='fullscreen'][data-size] {
+      --tui-width: 100%;
+      --tui-from: translateY(2rem);
+      padding: 0;
+
+      & > [tuiButtonX] {
+        display: none;
+      }
+
+      ng-component {
+        min-height: 100vh;
+        overflow: hidden;
+      }
+    }
   }
 }
 

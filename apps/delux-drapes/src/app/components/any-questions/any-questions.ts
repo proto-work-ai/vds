@@ -37,6 +37,7 @@ export class AnyQuestions {
 
   protected readonly form = new FormGroup({
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    checked: new FormControl(false, [Validators.requiredTrue]),
   });
 
   protected formSubmit(): void {
@@ -44,9 +45,7 @@ export class AnyQuestions {
       this.sendForm(this.form.value as IFormData)
         .pipe(
           finalize(() => {
-            this.form.patchValue({
-              phone: null,
-            });
+            this.form.setValue({} as any);
             this.form.markAsUntouched();
           })
         )

@@ -1,55 +1,79 @@
-<div class="max-lg:px-5 flex flex-col gap-4 border-b-1 border-gray-100">
-  <div class="flex max-md:flex-col overflow-hidden lg:h-150 bg-white-chocolate">
-    <section class="flex-1 flex items-bottom justify-center bg-circle max-md:order-2">
-      <div class="circle hidden md:block"></div>
-      <div class="circle-sm md:hidden"></div>
-      <!-- <figure class="aspect-1/1 min-h-100"></figure> -->
-    </section>
+<div class="max-lg:px-5 border-b-1 border-gray-100">
+  <div class="container mx-auto">
+    <div class="flex max-md:flex-col overflow-hidden lg:h-150 -bg-white-chocolate">
+      <section class="flex-1 flex items-bottom justify-center max-md:order-2">
+        <picture>
+          <img src="/images/image-12.jpg" /> 
+        </picture>
+      </section>
 
-    <section class="flex-1 -text-white">
-      <div class="md:p-10 p-5 flex flex-col gap-5 h-full">
-        <h3 class="text-4xl w-100 -uppercase">{{ title() }}</h3>
+      <section class="w-120 flex items-center">
+        <div class="p-5 flex flex-col gap-5 h-full ">
+          <h3 class="text-4xl -uppercase">{{ title() }}</h3>
 
-        <section class="flex flex-col gap-5 w-100">
-          <form
-            class="-textfield-no-border"
-            [formStore]="'main-application-measurement'"
-            [formGroup]="form"
-            (submit)="formSubmit()"
-          >
-            <section class="flex flex-col gap-6">
-              @defer {
+          <section class="flex flex-col gap-5">
+            <form
+              class="-textfield-no-border"
+              [formStore]="'main-application-measurement'"
+              [formGroup]="form"
+              (submit)="formSubmit()"
+            >
+              <section class="flex flex-col gap-4">
                 <tui-textfield [tuiTextfieldCleaner]="false">
-                  <label tuiLabel>Укажите телефон</label>
-                  <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+                  <label tuiLabel>Введите имя</label>
+                  <input tuiInput formControlName="name" [maxlength]="100" />
                 </tui-textfield>
-              } @placeholder {
-                <tui-textfield [tuiTextfieldCleaner]="false">
-                  <label tuiLabel>Укажите телефон</label>
-                  <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+
+                @defer {
+                  <tui-textfield [tuiTextfieldCleaner]="false">
+                    <label tuiLabel>Укажите телефон</label>
+                    <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+                  </tui-textfield>
+                } @placeholder {
+                  <tui-textfield [tuiTextfieldCleaner]="false">
+                    <label tuiLabel>Укажите телефон</label>
+                    <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+                  </tui-textfield>
+                }
+
+                <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
+                  <label tuiLabel>Удобный тип связи</label>
+                  <input tuiSelect formControlName="connectionType" />
+                  <tui-data-list-wrapper *tuiDropdown new [items]="typeOptions()" />
                 </tui-textfield>
-              }
 
-              <button class="btn-primary" type="submit">Пригласить замерщика</button>
-            </section>
-          </form>
+                <button class="btn-primary" type="submit">Отправить</button>
+              </section>
+            </form>
 
-          <ol class="list-disc ms-5 flex flex-col gap-1">
-            <li>Собственный цех и пошив «ПОД КЛЮЧ»</li>
-            <li>Подберем шторы под любой бюджет и стиль</li>
-            <!-- <li>Выезд и замер по Москве и Московской области</li> -->
-            <li>Опытные дизайнеры решают задачи любой сложности</li>
-            <!-- <li>Лидеры по отзывам Клиентов - гарантированное качество Индивидувльный пошив по вашим размерам</li> -->
-            <li>Безплатный выезд дизайнера</li>
-            <!-- <li>Установка карнизов и штор</li> -->
-            <li>Гарантия качества на все работы</li>
-          </ol>
-        </section>
+            <ul class="ms-5 flex flex-col gap-3 leading-6 text-lg">
+              <li class="flex items-center gap-3">
+                <div class="leading-0"><ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" /></div>
+                Собственный цех и пошив
+              </li>
+              <li class="flex items-center gap-3">
+                <div class="leading-0"><ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" /></div>
+                Подберем шторы под любой бюджет и стиль
+              </li>
+              <!-- <li>Выезд и замер по Москве и Московской области</li> -->
+              <!-- <li>Опытные дизайнеры решают задачи любой сложности</li> -->
+              <!-- <li>Лидеры по отзывам Клиентов - гарантированное качество Индивидувльный пошив по вашим размерам</li> -->
+              <li class="flex items-center gap-3">
+                <div class="leading-0"><ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" /></div>
+                Безплатный выезд дизайнера
+              </li>
+              <!-- <li>Установка карнизов и штор</li> -->
+              <li class="flex items-center gap-3">
+                <div class="leading-0"><ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" /></div>
+                Гарантия качества на все работы
+              </li>
+            </ul>
+          </section>
 
-        <!-- <div class="flex flex-col gap-3">
+          <!-- <div class="flex flex-col gap-3">
           <h3 class="uppercase text-xl">Почему важен замер</h3>
 
-          <ol class="list-disc ms-5 flex flex-col gap-1">
+          <ol class="list-disc flex flex-col gap-1">
             <li>Точность замера помещения</li>
             <li>Гарантия верной цены, с применением скидок</li>
             <li>Помощь в выборе материалов и дизайна</li>
@@ -57,7 +81,8 @@
             <li>В дальнейшем - безупречный монтаж</li>
           </ol>
         </div> -->
-      </div>
-    </section>
+        </div>
+      </section>
+    </div>
   </div>
 </div>

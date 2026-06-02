@@ -36,7 +36,7 @@ export class StretchCeilingsCatalogAll {
     const group = this.groupParam()!;
     const types = stretchCeilingGroupMap.get(+group);
     if (types) {
-      return items.filter((a) => new Set([...types, ...a.types]).size < types.length + a.types.length);
+      return items.filter((a) => new Set([...types, ...a.types!]).size < types.length + a.types!.length);
     } else {
       return items;
     }

@@ -28,7 +28,7 @@ import { IsPlatformBrowserDirective } from '../../../components/is-platform-brow
 })
 export class MainBannerFormComponent {
   private readonly sendForm = injectSendMessage(ymSubmitEvent);
-  protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);
+  protected readonly typeOptions = signal(['Звонок', 'Telegram', 'Max']);
 
   protected readonly minRange = signal(5);
   protected readonly maxRange = signal(150);
@@ -38,6 +38,7 @@ export class MainBannerFormComponent {
     type: new FormControl(this.typeOptions()[0]),
     size: new FormControl(this.minRange()),
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
+    checked: new FormControl(false, [Validators.requiredTrue]),
   });
 
   protected formSubmit(): void {
@@ -45,11 +46,7 @@ export class MainBannerFormComponent {
       this.sendForm(this.form.value as IFormData)
         .pipe(
           finalize(() => {
-            this.form.setValue({
-              type: this.typeOptions()[0],
-              size: this.minRange(),
-              phone: null,
-            });
+            this.form.setValue({} as any);
             this.form.markAsUntouched();
           })
         )

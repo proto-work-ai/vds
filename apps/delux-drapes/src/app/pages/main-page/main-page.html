@@ -2,10 +2,16 @@
 
 <app-main-banner-form></app-main-banner-form>
 
-<!-- <app-main-banner></app-main-banner> -->
+<!-- Добро пожаловать -->
+<app-main-welcome></app-main-welcome>
+
+<hr class="border-gray-400" />
 
 <!--Каталог Штор(Прямые шторы)-->
 <app-main-catalog></app-main-catalog>
+
+<!-- Как сделать заказ -->
+<app-place-an-order-buttons></app-place-an-order-buttons>
 
 <!-- Как сделать заказ -->
 <app-place-an-order></app-place-an-order>
@@ -16,26 +22,26 @@
 <!--Шторы, жалюзи и карнизы на заказ-->
 <!-- <app-main-to-order></app-main-to-order> -->
 
-<!--Наши работы-->
-<app-main-works></app-main-works>
+<!--TODO Наши работы-->
+<!-- <app-main-works></app-main-works> -->
 
-<!--Каталог карнизов и аксессуаров-->
-<app-main-catalog-accessories></app-main-catalog-accessories>
+<!--TODO Каталог карнизов и аксессуаров-->
+<!-- <app-main-catalog-accessories></app-main-catalog-accessories> -->
 
-<!--Акции / скидки-->
-<app-main-promotions-discounts></app-main-promotions-discounts>
+<!--TODO Акции / скидки-->
+<!-- <app-main-promotions-discounts></app-main-promotions-discounts> -->
 
 <!--Цены / стоимость-->
 <app-main-price></app-main-price>
 
-<!--Ткани-->
-<app-main-fabric></app-main-fabric>
+<!--TODO Ткани-->
+<!-- <app-main-fabric></app-main-fabric> -->
 
-<!--Полезные статьи-->
-<app-main-articles></app-main-articles>
+<!--TODO Полезные статьи-->
+<!-- <app-main-articles></app-main-articles> -->
 
-<!--Пошив штор для всех видов помещений-->
-<app-main-types-premises></app-main-types-premises>
+<!-- TODO Пошив штор для всех видов помещений-->
+<!-- <app-main-types-premises></app-main-types-premises> -->
 
 <!--Наши клиенты-->
 <!-- <app-main-clients></app-main-clients> -->
@@ -60,19 +66,19 @@
   <section class="flex flex-col gap-3">
     <header class="text-center flex gap-3">
       <div class="flex-1">
-        <ng-icon hlm size="sm" name="lucideMapPin"></ng-icon>
+        <ng-icon hlm size="sm" name="lucideMapPin"/>
         <h5 class="font-medium">Телефон</h5>
         <a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
       </div>
 
       <div class="flex-1">
-        <ng-icon hlm size="sm" name="lucidePhone"></ng-icon>
+        <ng-icon hlm size="sm" name="lucidePhone"/>
         <h5 class="font-medium">Телефон</h5>
         <a href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
       </div>
 
       <div class="flex-1">
-        <ng-icon hlm size="sm" name="lucideMail"></ng-icon>
+        <ng-icon hlm size="sm" name="lucideMail"/>
         <h5 class="font-medium">E-mail</h5>
         <a href="mailto:info@deluxdrapes.ru">info@deluxdrapes.ru</a>
       </div>

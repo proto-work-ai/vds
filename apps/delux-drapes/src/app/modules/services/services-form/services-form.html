@@ -9,7 +9,7 @@
   <section class="flex flex-col gap-3">
     <tui-textfield [tuiTextfieldCleaner]="false" class="flex-1">
       <label tuiLabel>Ваше имя</label>
-      <input tuiInput formControlName="name" />
+      <input tuiInput formControlName="name" [maxlength]="100" />
     </tui-textfield>
 
     @defer {
@@ -23,6 +23,13 @@
         <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
       </tui-textfield>
     }
+
+    <label tuiLabel class="text-sm">
+      <input tuiCheckbox type="checkbox" formControlName="checked" />
+      <small class="text-sm">
+        Я соглашаюсь с правилами по обработке <a class="cursor-pointer underline" >персональных данных</a>
+      </small>
+    </label>
 
     <div class="flex-1">
       <button class="btn-primary w-full" type="submit">Отправить</button>

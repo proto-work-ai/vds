@@ -21,6 +21,7 @@ import { ColumnAttributeTable } from '@atlas/core';
 import { TuiTree } from '@taiga-ui/kit';
 import { stretchCeilingBrandMap, STBrandType } from '../../../model/price-list.service';
 import { productName, ProductType } from '../../../model/products.data';
+import { NgIconImports } from '../../../components/ng-icon-src.directive';
 
 @Component({
   selector: 'app-column-brand-cell',
@@ -45,7 +46,7 @@ export class ColumnBrandCell {
     AtlasFormImports,
     AtlasDataTableComponents,
     AtlasTaigaUiTable,
-    NgIcon,
+    NgIconImports,
     AtlasDataTableToggleSize,
     AtlasTablePaginatePipe,
   ],

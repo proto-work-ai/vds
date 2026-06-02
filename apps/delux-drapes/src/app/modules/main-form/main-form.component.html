@@ -1,50 +1,86 @@
-<div class="container mx-auto flex flex-col gap-8 my-12">
-  <!-- <header class="text-center flex flex-col gap-2 sm:gap-3">
+<div class="bg-you-love">
+  <div class="container mx-auto flex flex-col gap-8 my-12 p-8 rounded-xl">
+    <!-- <header class="text-center flex flex-col gap-2 sm:gap-3">
     <h2 class="mx-auto md:text-2xl text-xl w-150">Закажите бесплатный выезд дизайнера-замерщика в любой район Москвы и МО</h2>
   </header> -->
 
-  <section class="mx-auto">
-    <div class="flex gap-8">
-      <div class="flex-1 flex flex-col gap-10">
-        <h3 class="font-medium text-5xl">Запишитесь на посещение шоурума и получите промокод на скидку 10%</h3>
+    <section class="mx-auto">
+      <div class="flex items-center gap-8">
+        <div class="flex-1 flex flex-col gap-8">
+          <h3 class="font-normal text-5xl">Запишитесь на посещение шоурума и получите скидку 10%</h3>
 
-        <p>Мы сохраним личный промокод за вашим телефоном. Сообщите промокод менеджерам по телефону или в шоуруме</p>
-      </div>
+          <ul class="list-disc flex flex-col gap-3 -leading-8 text-base">
+            <li class="flex items-center gap-3">
+              <div class="leading-0">
+                <ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" />
+              </div>
+              Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.
+            </li>
 
-      <div class="flex-1">
-        <form
-          [formStore]="'main-application-measurement'"
-          class="flex flex-col gap-8 -textfield-no-border"
-          [formGroup]="form"
-          (submit)="formSubmit()"
-        >
-          <tui-textfield [tuiTextfieldCleaner]="false">
-            <label tuiLabel>Укажите телефон</label>
-            <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
-          </tui-textfield>
+            <li class="flex items-center gap-3">
+              <div class="leading-0">
+                <ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" />
+              </div>
+              На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором модели и
+              рассчитаем стоимость в разных ценовых категориях.
+            </li>
 
-          <tui-textfield [tuiTextfieldCleaner]="false">
-            <label tuiLabel>Комментарий</label>
-            <textarea tuiTextarea formControlName="description"></textarea>
-          </tui-textfield>
+            <li class="flex items-center gap-3">
+              <div class="leading-0">
+                <ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" />
+              </div>
+              Изготовим заказ на собственном производстве точно в срок, произведем монтаж.
+            </li>
+          </ul>
+          <!-- <p>Мы сохраним личный промокод за вашим телефоном. Сообщите промокод менеджерам по телефону или в шоуруме</p> -->
+        </div>
 
-          <label tuiLabel class="text-sm">
+        <div class="flex-1">
+          <form
+            [formStore]="'main-application-measurement'"
+            class="flex flex-col gap-4 -textfield-no-border w-120"
+            [formGroup]="form"
+            (submit)="formSubmit()"
+          >
+            <h4 class="font-medium text-2xl text-center">
+              Оставьте Ваши контакты для связи.
+            </h4>
+
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Укажите телефон</label>
+              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+            </tui-textfield>
+
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Комментарий</label>
+              <textarea tuiTextarea formControlName="description" [min]="2" [maxlength]="1000"></textarea>
+            </tui-textfield>
+
+            <label tuiLabel class="text-sm">
+              <input tuiCheckbox type="checkbox" formControlName="checked" />
+              <small class="text-sm">
+                Я соглашаюсь с правилами по обработке <a class="cursor-pointer underline">персональных данных</a>
+              </small>
+            </label>
+
+            <!-- <label tuiLabel class="text-sm">
             <input tuiCheckbox type="checkbox" formControlName="checked" />
             <small class="text-sm">
               Я даю свое согласие на обработку персональных данных и соглашаюсь с условиями
               <a class="cursor-pointer">политики конфиденциальности</a>
             </small>
-          </label>
+          </label> -->
 
-          <footer>
-            <button class="btn btn-primary w-full">Заказать</button>
-<!-- 
-            <button size="l" tuiButton type="button" class="block w-full">Заказать</button>
+            <footer>
+              <button class="btn btn-primary w-full">Отправить</button>
+              <!-- 
+            <button size="l" tuiButton type="button" class="block w-full">Отправить</button>
 
-            <button size="m" tuiButton type="button" class="block w-full">Заказать</button> -->
-          </footer>
-        </form>
+            <button size="m" tuiButton type="button" class="block w-full">Отправить</button> -->
+            </footer>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 </div>

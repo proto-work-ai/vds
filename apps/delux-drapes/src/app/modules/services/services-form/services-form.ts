@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiInput, TuiTextfield } from '@taiga-ui/core';
-import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
+import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
+import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
 import { markAsSubmit } from '@atlas/core';
 import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../send-service/send.services';
@@ -20,7 +20,6 @@ export function ymDrainingEvent(): void {
   templateUrl: 'services-form.html',
   styleUrls: ['services-form.scss'],
   imports: [
-    TuiChevron,
     TuiDataListWrapper,
     TuiSelect,
     FormsModule,
@@ -30,6 +29,7 @@ export function ymDrainingEvent(): void {
     TuiInputPhone,
     FormStore,
     TuiInput,
+    TuiCheckbox,
     IsPlatformBrowserDirective
   ],
 })

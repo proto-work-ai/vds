@@ -4,6 +4,7 @@ import { lucideChevronRight } from '@ng-icons/lucide';
 import { TuiDataList, TuiDropdown } from '@taiga-ui/core';
 import { RouterLink } from '@angular/router';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
+import { NgIconImports } from '../../components/ng-icon-src.directive';
 
 export interface IBreadcrumbItem {
   title: string;
@@ -15,7 +16,7 @@ export interface IBreadcrumbItem {
   templateUrl: 'breadcrumbs-header.component.html',
   styleUrls: ['breadcrumbs-header.component.scss'],
   imports: [
-    NgIcon,
+    NgIconImports,
     TuiDataList,
     TuiDropdown,
     TuiDataList,

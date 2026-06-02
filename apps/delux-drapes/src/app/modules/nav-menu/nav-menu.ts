@@ -1,4 +1,5 @@
-import { Component, input, signal } from '@angular/core';
+/* eslint-disable @angular-eslint/directive-selector */
+import { Component, DestroyRef, Directive, HostListener, inject, input, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {
   lucideChevronDown,
@@ -11,7 +12,7 @@ import {
   lucideX,
   lucideChevronRight,
 } from '@ng-icons/lucide';
-import { TuiDataList, TuiDropdown, TuiIcon, TuiPopup, TuiTitle } from '@taiga-ui/core';
+import { TuiDataList, TuiDialogService, TuiDropdown, TuiIcon, TuiPopup, TuiTitle } from '@taiga-ui/core';
 import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -21,13 +22,15 @@ import { TuiDrawer, TuiTree } from '@taiga-ui/kit';
 import { IAppMenuItem } from '../../shared/menu';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 import { injectNavMenu } from '../../model/catalog.service';
+import { InviteModalClick } from '../../components/invite-designer/invite-designer-modal';
+import { NgIconImports } from '../../components/ng-icon-src.directive';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.html',
   styleUrl: 'nav-menu.scss',
   imports: [
-    NgIcon,
+    NgIconImports,
     TuiDataList,
     TuiDropdown,
     TuiDrawer,
@@ -41,6 +44,7 @@ import { injectNavMenu } from '../../model/catalog.service';
     HlmIconImports,
     RouterLinkActive,
     HlmNavigationMenuImports,
+    InviteModalClick,
   ],
   providers: [
     provideIcons({

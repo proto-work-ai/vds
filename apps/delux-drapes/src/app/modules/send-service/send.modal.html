@@ -10,6 +10,13 @@
       <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
     </tui-textfield>
   }
+  
+  <label tuiLabel class="text-sm">
+    <input tuiCheckbox type="checkbox" formControlName="checked" />
+    <small class="text-sm">
+      Я соглашаюсь с правилами по обработке <a class="cursor-pointer underline" >персональных данных</a>
+    </small>
+  </label>
 
   <footer class="flex gap-3 justify-end">
     <button class="flex-1" tuiButton (click)="formCancel()" appearance="outline-grayscale">Отмена</button>

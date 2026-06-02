@@ -13,10 +13,10 @@ export interface IFormData {
   name?: string;
   phone?: string | number;
   type?: string;
+  connectionType?: string;
+  city?: string;
   size?: number;
   description?: string;
-  rooms?: { id: number; title: string; icon: string }[];
-  lightings?: { id: number; title: string; icon: string }[];
 }
 
 export interface IDataSendItem {
@@ -53,16 +53,16 @@ export function buldDataMessage(data: IFormData): IDataSendItem[] {
     result.push({ title: 'Тип потолка:', values: [data.type] });
   }
 
+  if (data.connectionType) {
+    result.push({ title: 'Тип связи:', values: [data.connectionType] });
+  }
+
+  if (data.city) {
+    result.push({ title: 'Город:', values: [data.city] });
+  }
+
   if (data.size) {
     result.push({ title: 'Площадь:', values: [data.size + 'м²'] });
-  }
-
-  if (data.rooms?.length) {
-    result.push({ title: 'Тип комнаты:', values: data.rooms.map((a) => a.title) });
-  }
-
-  if (data.lightings?.length) {
-    result.push({ title: 'Освещение:', values: data.lightings.map((a) => a.title) });
   }
 
   if (data.description) {
@@ -108,17 +108,17 @@ export function getTestHtml() {
     phone: '9859936718',
     type: 'Матовый',
     size: 70,
-    description: 'fghnnnnnnnnnnnnn',
-    rooms: [
-      { id: 2, title: 'Гостинная', icon: 'room-2' },
-      { id: 3, title: 'Спальная', icon: 'room-3' },
-      { id: 4, title: 'Детская', icon: 'room-4' },
-      { id: 6, title: 'Туалет', icon: 'room-6' },
-    ],
-    lightings: [
-      { id: 1, title: 'Светильник', icon: 'lighting-1' },
-      { id: 2, title: 'Люстра', icon: 'lighting-2' },
-    ],
+    description: 'Description text',
+    // rooms: [
+    //   { id: 2, title: 'Гостинная', icon: 'room-2' },
+    //   { id: 3, title: 'Спальная', icon: 'room-3' },
+    //   { id: 4, title: 'Детская', icon: 'room-4' },
+    //   { id: 6, title: 'Туалет', icon: 'room-6' },
+    // ],
+    // lightings: [
+    //   { id: 1, title: 'Светильник', icon: 'lighting-1' },
+    //   { id: 2, title: 'Люстра', icon: 'lighting-2' },
+    // ],
   });
 
   const html = buldHtmlMessage(items);

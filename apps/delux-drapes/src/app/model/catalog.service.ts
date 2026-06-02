@@ -101,6 +101,11 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
       title: 'О нас',
       link: ['/', routePath.about.root],
     },
+
+    {
+      title: 'Стать партнером',
+      link: ['/', routePath.partner.root],
+    },
   ]);
 
   return navMenu.asReadonly();
@@ -128,6 +133,11 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
     {
       title: 'О нас',
       link: ['/', routePath.about.root],
+    },
+
+    {
+      title: 'Стать партнером',
+      link: ['/', routePath.partner.root],
     },
 
     ...catalogGroupMenu(['/', 'catalog']),

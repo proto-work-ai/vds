@@ -25,7 +25,6 @@ import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.com
     BreadcrumbsHeader,
     RouterOutlet,
     GalleryModule,
-    ApplicationMeasurementComponent,
     GallerizeImages,
     PriceCard,
     IsPlatformBrowserDirective,
@@ -34,7 +33,6 @@ import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.com
     WayWeWorkComponent,
 ],
   providers: [
-    MenuDeferService,
     // {
     //   provide: TuiDialogService,
     //   useExisting: TuiResponsiveDialogService,
@@ -54,13 +52,13 @@ export class ServicesPage {
   protected readonly title = computed(() => this.item()?.title);
   protected readonly brief = computed(() => this.item().text);
   protected readonly price = computed(() => {
-    const types = this.item().types;
+    const types = this.item().types!;
     const data = this.minPrice(types);
     return data?.[0];
   });
-  protected readonly images = computed(() => this.item()?.images.map((src) => new ImageItem({ src, thumb: src })));
+  protected readonly images = computed(() => this.item()?.images!.map((src) => new ImageItem({ src, thumb: src })));
   protected readonly filtered = computed(() => {
-    return getCatalogMap2(this.item().types);
+    return getCatalogMap2(this.item().types!);
   });
 
   constructor() {
@@ -71,7 +69,7 @@ export class ServicesPage {
     if (image) {
       inject(Meta).updateTag({ property: 'og:image', content: image });
     }
-    inject(Meta).updateTag({ name: 'description', content: this.brief() });
+    inject(Meta).updateTag({ name: 'description', content: this.brief() } as any);
 
     effect(() => {
       const item = this.item();

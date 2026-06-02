@@ -29,6 +29,7 @@ import { PriceListUnitTable } from '../price-list-unit-table/price-list-unit-tab
 import { additionalWorkPrice } from '../../../model/additional-work.group';
 import { electricalEquipmentList } from '../../../model/electrical-equipment.group';
 import { STPriceGroup } from '../../../model/products.data';
+import { NgIconImports } from '../../../components/ng-icon-src.directive';
 
 @Component({
   selector: 'app-catalog-price-list',
@@ -42,7 +43,7 @@ import { STPriceGroup } from '../../../model/products.data';
     HlmNavigationMenuImports,
     PriceListRouteFilter,
     JsonPipe,
-    NgIcon,
+    NgIconImports,
     TuiDrawer,
     TuiPopup,
     TuiTitle,

@@ -65,7 +65,7 @@
         <div class="flex-1 flex flex-wrap gap-3">
           <tui-textfield class="flex-1" [tuiTextfieldCleaner]="false">
             <label tuiLabel>Введите имя</label>
-            <input tuiInput formControlName="name" />
+            <input tuiInput formControlName="name" [maxlength]="100" />
           </tui-textfield>
 
           @defer {

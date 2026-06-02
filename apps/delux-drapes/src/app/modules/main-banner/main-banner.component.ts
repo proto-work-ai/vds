@@ -1,15 +1,22 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TuiNumberFormatSettings, TuiTextfield } from '@taiga-ui/core';
-import { TuiInputRange, TuiInputSlider } from '@taiga-ui/kit';
-import { MainBannerFormComponent } from './main-banner-form/main-banner-form.component';
-import { ScrollLink } from "../../components/scroll-link/scroll-link.directive";
+import { TuiInputSlider } from '@taiga-ui/kit';
+import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
+import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { provideIcons } from '@ng-icons/core';
+import { lucideCheckCircle, lucideCheckCircle2 } from '@ng-icons/lucide';
 
 @Component({
   selector: 'app-main-banner',
   templateUrl: './main-banner.component.html',
   styleUrls: ['./main-banner.component.scss'],
-  imports: [FormsModule, TuiTextfield, TuiInputRange, TuiInputSlider, MainBannerFormComponent, ScrollLink],
+  imports: [FormsModule, TuiTextfield, NgIconImports, TuiInputSlider, ScrollLink],
+  providers: [
+    provideIcons({
+      lucideCheckCircle,
+    }),
+  ],
 })
 export class MainBannerComponent {
   protected value = '';

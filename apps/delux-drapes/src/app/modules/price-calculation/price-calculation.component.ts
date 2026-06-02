@@ -59,7 +59,7 @@ export class PriceCalculationComponent {
   private readonly sendForm = injectSendMessage(ymSubmitEvent);
   readonly title = input('Расчет цены натяжного потолка с установкой');
 
-  protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);
+  protected readonly typeOptions = signal(['Звонок', 'Telegram', 'Max']);
 
   protected readonly minRange = signal(5);
   protected readonly maxRange = signal(150);
