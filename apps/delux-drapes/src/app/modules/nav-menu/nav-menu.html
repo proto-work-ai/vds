@@ -3,9 +3,9 @@
     <ol class="md:container mx-auto flex items-center gap-15 h-16">
       <li>
         <!-- <h1 class="text-4xl font-bold">Фабрика штор</h1> -->
-        <!-- <ng-icon src="/logo/logo-2.svg" /> -->
-        <!-- <a [routerLink]="['/']"><ng-icon src="/logo/logo-3.svg" /></a> -->
-        <a [routerLink]="['/']"><ng-icon class="text-6xl text-cardboard" src="/logo/logo-1.svg" /></a>
+        <!-- <ng-icon src="/logo/logo-02.svg" /> -->
+        <!-- <a [routerLink]="['/']"><ng-icon src="/logo/logo-03.svg" /></a> -->
+        <a [routerLink]="['/']"><ng-icon class="text-6xl text-cardboard" src="/logo/logo-01.svg" /></a>
       </li>
 
       <li class="flex-1">
@@ -85,15 +85,15 @@
         </nav>
 
         <div class="hidden max-md:flex">
-          <ng-icon class="cursor-pointer text-lg" name="lucideMenu" (click)="onOpen()"/>
+          <ng-icon class="cursor-pointer text-lg" name="lucideMenu" (click)="onOpen()" />
         </div>
       </li>
 
-      @if (callSurveyor()) {
+      <!-- @if (callSurveyor()) {
         <li>
           <a href="#" class="uppercase" inviteModalClick>Пригласить дизайнера</a>
         </li>
-      }
+      } -->
     </ol>
   </section>
 
@@ -104,7 +104,7 @@
           <span class="text-md font-normal uppercase">Меню</span>
         </div>
         <div tuiAccessories>
-          <ng-icon class="cursor-pointer text-lg" name="lucideX" (click)="onClose()"/>
+          <ng-icon class="cursor-pointer text-lg" name="lucideX" (click)="onClose()" />
         </div>
       </h2>
     </header>

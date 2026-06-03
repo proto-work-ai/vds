@@ -6,7 +6,7 @@ import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.se
 import { TuiAccordion, TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiCheckbox, TuiTextfield } from '@taiga-ui/core';
-import { FormStore } from '../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { MAX_CONTACT, PERIOD_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT, VAR_YANDEX_KEY } from '../../contacts';
 import { injectFooterMenu } from '../../model/catalog.service';
 import { MainHeaderComponent } from '../../modules/main-header/main-header.component';
@@ -41,6 +41,7 @@ import { markAsSubmit } from '@atlas/core';
 import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
 import { PlaceAnOrderButto } from "../../modules/place-an-order-buttons/place-an-order-buttons";
+import { MainInviteDesigner } from "../../modules/main-invite-designer/main-invite-designer";
 
 export function ymDrainingEvent(): void {
   const { ym } = window as any;
@@ -84,10 +85,11 @@ export function ymDrainingEvent(): void {
     YMapComponent,
     YMapDefaultSchemeLayerDirective,
     TuiCheckbox,
-    FormStore,
+    FormGroupStore,
     MainWelcome,
     MainBannerForm,
-    PlaceAnOrderButto
+    PlaceAnOrderButto,
+    MainInviteDesigner
 ],
   providers: [
     provideIcons({

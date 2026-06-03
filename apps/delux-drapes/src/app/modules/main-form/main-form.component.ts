@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiInput, TuiCheckbox, TuiButton } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiTextarea } from '@taiga-ui/kit';
-import { FormStore } from '../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { IsPlatformBrowserDirective } from '../../components/is-platform-browser.directive';
 import { MainQuestions } from '../main-questions/main-questions.component';
 import { AnyQuestions } from '../../components/any-questions/any-questions';
@@ -30,14 +30,14 @@ export function ymDrainingEvent(): void {
     ReactiveFormsModule,
     TuiInputSlider,
     TuiInputPhone,
-    FormStore,
+    FormGroupStore,
     TuiInput,
     TuiTextarea,
     TuiCheckbox,
+    NgIconImports,
     TuiButton,
     AnyQuestions,
     MainQuestions,
-    NgIconImports,
   ],
   providers: [
     provideIcons({

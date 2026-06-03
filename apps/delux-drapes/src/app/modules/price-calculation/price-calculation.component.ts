@@ -17,7 +17,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DataListOptionImports } from './data-list-options';
 import { distinctUntilChanged, finalize, pairwise, startWith, tap } from 'rxjs';
-import { FormStore } from '../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
 import { TuiInput } from '@taiga-ui/core';
 
@@ -45,7 +45,7 @@ export class SafePipe implements PipeTransform {
     TuiTextfield,
     ZoomControllerComponent,
     DataListOptionImports,
-    FormStore,
+    FormGroupStore,
     TuiInput,
   ],
   providers: [

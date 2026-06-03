@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiInput, TuiNumberFormatSettings, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
 import { ServicesForm } from '../services-form/services-form';
-import { FormStore } from '../../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../../components/form-store/form-store.directive';
 
 @Component({
   selector: 'app-services-banner',
@@ -22,7 +22,7 @@ import { FormStore } from '../../../components/form-store/form-store.directive';
     TuiInputSlider,
     TuiInputPhone,
     TuiInput,
-    FormStore,
+    FormGroupStore,
   ],
 })
 export class ServicesBanner {

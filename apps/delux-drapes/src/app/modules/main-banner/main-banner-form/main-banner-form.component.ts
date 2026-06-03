@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { TuiTextfield, TuiInput } from '@taiga-ui/core';
 import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
 import { markAsSubmit } from '@atlas/core';
-import { FormStore } from '../../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../../send-service/send.services';
 import { finalize } from 'rxjs';
 import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
@@ -21,7 +21,7 @@ import { IsPlatformBrowserDirective } from '../../../components/is-platform-brow
     TuiTextfield,
     TuiInputSlider,
     TuiInputPhone,
-    FormStore,
+    FormGroupStore,
     TuiInput,
     IsPlatformBrowserDirective
   ],

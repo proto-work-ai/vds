@@ -2,7 +2,7 @@ import { Component, input } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiTextfield, TuiInput } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
-import { FormStore } from '../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { markAsSubmit } from '@atlas/core';
 import { finalize, tap } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
@@ -26,7 +26,7 @@ export function ymAnyQuestions(): void {
     TuiTextfield,
     TuiInputSlider,
     TuiInputPhone,
-    FormStore,
+    FormGroupStore,
     TuiInput,
     IsPlatformBrowserDirective
   ],

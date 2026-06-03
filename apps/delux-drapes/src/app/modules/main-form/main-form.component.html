@@ -1,25 +1,25 @@
 <div class="bg-you-love">
-  <div class="container mx-auto flex flex-col gap-8 my-12 p-8 rounded-xl">
+  <div class="container mx-auto flex flex-col gap-6 mt-12 p-8">
     <!-- <header class="text-center flex flex-col gap-2 sm:gap-3">
     <h2 class="mx-auto md:text-2xl text-xl w-150">Закажите бесплатный выезд дизайнера-замерщика в любой район Москвы и МО</h2>
   </header> -->
 
     <section class="mx-auto">
-      <div class="flex items-center gap-8">
-        <div class="flex-1 flex flex-col gap-8">
+      <div class="flex items-center gap-6">
+        <div class="flex-1 flex flex-col gap-6">
           <h3 class="font-normal text-5xl">Запишитесь на посещение шоурума и получите скидку 10%</h3>
 
           <ul class="list-disc flex flex-col gap-3 -leading-8 text-base">
             <li class="flex items-center gap-3">
               <div class="leading-0">
-                <ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" />
+                <ng-icon src="/icons/check-1.svg" class="text-cardboard text-2xl" />
               </div>
               Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.
             </li>
 
             <li class="flex items-center gap-3">
               <div class="leading-0">
-                <ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" />
+                <ng-icon src="/icons/check-1.svg" class="text-cardboard text-2xl" />
               </div>
               На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором модели и
               рассчитаем стоимость в разных ценовых категориях.
@@ -27,7 +27,7 @@
 
             <li class="flex items-center gap-3">
               <div class="leading-0">
-                <ng-icon name="lucideCheckCircle" class="text-cardboard text-2xl" />
+                <ng-icon src="/icons/check-1.svg" class="text-cardboard text-2xl" />
               </div>
               Изготовим заказ на собственном производстве точно в срок, произведем монтаж.
             </li>
@@ -37,13 +37,13 @@
 
         <div class="flex-1">
           <form
-            [formStore]="'main-application-measurement'"
-            class="flex flex-col gap-4 -textfield-no-border w-120"
+            class="flex flex-col gap-4 -textfield-no-border w-100"
             [formGroup]="form"
+            [formGroupStore]="'main-form'"
             (submit)="formSubmit()"
           >
-            <h4 class="font-medium text-2xl text-center">
-              Оставьте Ваши контакты для связи.
+            <h4 class="font-medium text-3xl text-center">
+              Шторы, жалюзи и карнизы на заказ
             </h4>
 
             <tui-textfield [tuiTextfieldCleaner]="false">

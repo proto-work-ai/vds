@@ -11,7 +11,7 @@
     <!-- <h2 class="md:text-2xl text-center">Остались вопросы? Оставьте номер телефона для консультации.</h2> -->
 
     <section class="sm:mx-auto flex flex-col gap-2 sm:min-w-130 mx-4">
-      <form [formStore]="'any-questions'" [formGroup]="form" class="grid grid-cols-2 gap-3" (submit)="formSubmit()">
+      <form [formGroupStore]="'any-questions'" [formGroup]="form" class="grid grid-cols-2 gap-3" (submit)="formSubmit()">
         @defer {
           <tui-textfield [tuiTextfieldCleaner]="false">
             <label tuiLabel>Укажите телефон</label>

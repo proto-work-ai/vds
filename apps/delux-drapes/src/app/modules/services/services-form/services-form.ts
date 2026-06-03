@@ -5,7 +5,7 @@ import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@t
 import { markAsSubmit } from '@atlas/core';
 import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../send-service/send.services';
-import { FormStore } from '../../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../../components/form-store/form-store.directive';
 import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
 
 export function ymDrainingEvent(): void {
@@ -27,7 +27,7 @@ export function ymDrainingEvent(): void {
     TuiTextfield,
     TuiInputSlider,
     TuiInputPhone,
-    FormStore,
+    FormGroupStore,
     TuiInput,
     TuiCheckbox,
     IsPlatformBrowserDirective

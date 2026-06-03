@@ -2,13 +2,13 @@ import { Component, input, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiTextfield, TuiInput, TuiCheckbox } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
-import { FormStore } from '../../components/form-store/form-store.directive';
-import { markAsSubmit } from '@atlas/core';
-import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
-import { finalize } from 'rxjs';
-import { NgIconImports } from '../../components/ng-icon-src.directive';
-import { lucideCheckCircle, lucideCheckCircle2 } from '@ng-icons/lucide';
+import { lucideCheckCircle } from '@ng-icons/lucide';
 import { provideIcons } from '@ng-icons/core';
+import { markAsSubmit } from '@atlas/core';
+import { finalize } from 'rxjs';
+import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
+import { FormGroupStore } from '../../components/form-store/form-store.directive';
+import { NgIconImports } from '../../components/ng-icon-src.directive';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -22,7 +22,7 @@ import { provideIcons } from '@ng-icons/core';
     TuiInputSlider,
     TuiInputPhone,
     TuiCheckbox,
-    FormStore,
+    FormGroupStore,
     TuiInput,
     TuiSelect,
     NgIconImports,

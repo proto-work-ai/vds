@@ -32,7 +32,7 @@
 </section> -->
 
 <section class="container mx-auto my-8 flex flex-col gap-4">
-  <div class="flex gap-8 items-center">
+  <div class="flex gap-6 items-center">
     <div class="flex-1">
       <picture>
         <img src="/images/image-6.jpg" />
@@ -90,14 +90,12 @@
   <header class="text-center flex flex-col gap-2 sm:gap-3">
     <h3 class="md:text-4xl text-2xl">Стать партнером</h3>
 
-    <p>Для вступления в программу заполните анкету:</p>
+    <p>Для вступления в программу заполните анкету</p>
   </header>
-
-  <section class="flex flex-wrap gap-4"></section>
 
   <section class="mx-auto">
     <form
-      [formStore]="'main-application-measurement'"
+      [formGroupStore]="'main-application-measurement'"
       class="flex flex-col gap-4 -textfield-no-border w-120"
       [formGroup]="form"
       (submit)="formSubmit()"

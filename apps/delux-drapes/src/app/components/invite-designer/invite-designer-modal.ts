@@ -7,7 +7,7 @@ import { injectContext, PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { AtlasFormImports } from '@atlas/form';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
-import { FormStore } from '../form-store/form-store.directive';
+import { FormGroupStore } from '../form-store/form-store.directive';
 import { provideIcons } from '@ng-icons/core';
 import { lucideDelete, lucideX } from '@ng-icons/lucide';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -52,7 +52,7 @@ export class InviteModalClick {
     TuiTextfield,
     TuiInputSlider,
     TuiInputPhone,
-    FormStore,
+    FormGroupStore,
     TuiInput,
     TuiSelect,
     TuiAutoFocus,

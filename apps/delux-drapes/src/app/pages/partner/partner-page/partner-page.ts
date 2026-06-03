@@ -9,7 +9,7 @@ import { MainHeaderComponent } from '../../../modules/main-header/main-header.co
 import { MainFooterComponent } from '../../../modules/main-footer/main-footer.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiTextarea } from '@taiga-ui/kit';
-import { FormStore } from '../../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../../components/form-store/form-store.directive';
 import { TuiCheckbox, TuiInput } from '@taiga-ui/core';
 import { markAsSubmit } from '@atlas/core';
 import { IFormData, injectSendMessage } from '../../../modules/send-service/send.services';
@@ -35,7 +35,7 @@ export function ymPartner(): void {
     ReactiveFormsModule,
     TuiInputSlider,
     TuiInputPhone,
-    FormStore,
+    FormGroupStore,
     TuiInput,
     TuiTextarea,
     TuiCheckbox,

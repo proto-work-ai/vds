@@ -34,6 +34,16 @@ export const catalogPagesAll: IContentType[] = [
   {
     types: [ProductType.Matte],
     key: '5',
+    title: 'Льняные шторы',
+    text: 'Для стандартных, мансардных и треугольных окон.',
+    detail: () =>
+      import('./stretch-ceiling-detail/matte-stretch-ceilings/matte-stretch-ceilings').then((a) => a.Detail),
+    image: '/catalog/image-5.jpg',
+    images: ['/catalog/image-2.jpg', '/catalog/image-4.jpg', '/catalog/image-1.jpg'],
+  },
+  {
+    types: [ProductType.Matte],
+    key: '5',
     title: 'Шторы плиссе',
     text: 'Для стандартных, мансардных и треугольных окон.',
     detail: () =>

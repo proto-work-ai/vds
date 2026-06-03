@@ -2,16 +2,17 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TuiNumberFormatSettings, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputSlider } from '@taiga-ui/kit';
+import { provideIcons } from '@ng-icons/core';
+import { lucideCheckCircle } from '@ng-icons/lucide';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 import { NgIconImports } from '../../components/ng-icon-src.directive';
-import { provideIcons } from '@ng-icons/core';
-import { lucideCheckCircle, lucideCheckCircle2 } from '@ng-icons/lucide';
+import { InviteModalClick } from '../../components/invite-designer/invite-designer-modal';
 
 @Component({
   selector: 'app-main-banner',
   templateUrl: './main-banner.component.html',
   styleUrls: ['./main-banner.component.scss'],
-  imports: [FormsModule, TuiTextfield, NgIconImports, TuiInputSlider, ScrollLink],
+  imports: [FormsModule, TuiTextfield, NgIconImports, TuiInputSlider, InviteModalClick],
   providers: [
     provideIcons({
       lucideCheckCircle,
