@@ -6,20 +6,20 @@ import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
 
-@Directive({ selector: 'form[formStore]' })
+@Directive({ selector: 'form[formGroupStore]' })
 export class FormStore implements OnInit {
   private readonly injector = inject(Injector);
   private readonly destroyRef = inject(DestroyRef);
   private readonly formGroup = inject(FormGroupDirective);
   private formValue?: ReturnType<typeof injectLocalStorageValue>;
-  formStore = input.required<string>();
+  protected formGroupStore = input.required<string>();
 
   private get form(): FormGroup {
     return this.formGroup.form;
   }
 
   ngOnInit(): void {
-    this.formValue = injectLocalStorageValue(this.formStore(), undefined, this.injector);
+    this.formValue = injectLocalStorageValue(this.formGroupStore(), undefined, this.injector);
 
     if (this.formValue()) {
       const value = this.form.value ?? {};
