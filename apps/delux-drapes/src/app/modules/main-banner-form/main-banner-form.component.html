@@ -1,17 +1,19 @@
-<div class="max-lg:px-5 border-b-1 border-gray-100">
+<div class="relative">
+  <div class="bg-image"></div>
+
   <div class="container mx-auto">
-    <div class="flex max-md:flex-col overflow-hidden lg:h-150 -bg-white-chocolate">
-      <section class="flex-1 flex items-bottom justify-center max-md:order-2">
+    <div class="flex max-md:flex-col gap-3 justify-center">
+      <!-- <section class="flex-1 flex items-bottom justify-center max-md:order-2">
         <picture>
           <img src="/images/image-12.jpg" /> 
         </picture>
-      </section>
+      </section> -->
 
-      <section class="w-120 flex items-center">
-        <div class="p-5 flex flex-col gap-5 h-full ">
-          <h3 class="text-4xl -uppercase">{{ title() }}</h3>
+      <section class=" flex items-center">
+        <div class="p-5 py-8 flex flex-col gap-5 h-full ">
+          <h3 class="text-3xl text-center">Оставьте заявку дизайнеру:</h3>
 
-          <section class="flex flex-col gap-5">
+          <section class="flex flex-col gap-5 w-120">
             <form
               class="-textfield-no-border"
               [formGroupStore]="'main-application-measurement'"
@@ -47,7 +49,7 @@
             </form>
 
             <ul class="ms-5 flex flex-col gap-3 leading-6 text-lg">
-              <li class="flex items-center gap-3">
+              <!-- <li class="flex items-center gap-3">
                 <div class="leading-0"><ng-icon src="/icons/check-1.svg" class="text-cardboard text-2xl" /></div>
                 Собственный цех и пошив
               </li>
@@ -55,18 +57,18 @@
                 <div class="leading-0"><ng-icon src="/icons/check-1.svg" class="text-cardboard text-2xl" /></div>
                 Подберем шторы под любой бюджет и стиль
               </li>
-              <!-- <li>Выезд и замер по Москве и Московской области</li> -->
-              <!-- <li>Опытные дизайнеры решают задачи любой сложности</li> -->
-              <!-- <li>Лидеры по отзывам Клиентов - гарантированное качество Индивидувльный пошив по вашим размерам</li> -->
               <li class="flex items-center gap-3">
                 <div class="leading-0"><ng-icon src="/icons/check-1.svg" class="text-cardboard text-2xl" /></div>
                 Безплатный выезд дизайнера
-              </li>
+              </li> -->
               <!-- <li>Установка карнизов и штор</li> -->
-              <li class="flex items-center gap-3">
+              <!-- <li class="flex items-center gap-3">
                 <div class="leading-0"><ng-icon src="/icons/check-1.svg" class="text-cardboard text-2xl" /></div>
                 Гарантия качества на все работы
-              </li>
+              </li> -->
+              <!-- <li>Выезд и замер по Москве и Московской области</li> -->
+              <!-- <li>Опытные дизайнеры решают задачи любой сложности</li> -->
+              <!-- <li>Лидеры по отзывам Клиентов - гарантированное качество Индивидувльный пошив по вашим размерам</li> -->
             </ul>
           </section>
 

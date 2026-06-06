@@ -3,7 +3,7 @@ import { IContentType, ProductType } from './products.data';
 export const catalogPagesAll: IContentType[] = [
   {
     types: [ProductType.Matte],
-    key: '2',
+    key: '1',
     title: 'Римские шторы',
     text: 'Из плотных и легких тканей для прямых и скошенных окон.',
     detail: () =>
@@ -13,7 +13,7 @@ export const catalogPagesAll: IContentType[] = [
   },
   {
     types: [ProductType.Matte],
-    key: '1',
+    key: '2',
     title: 'Прямые шторы',
     text: 'Красивые рисунки и однотонные ткани для стандартных, скошенных и арочных окон.',
     detail: () =>
@@ -33,7 +33,7 @@ export const catalogPagesAll: IContentType[] = [
   },
   {
     types: [ProductType.Matte],
-    key: '5',
+    key: '4',
     title: 'Льняные шторы',
     text: 'Для стандартных, мансардных и треугольных окон.',
     detail: () =>
@@ -73,7 +73,7 @@ export const catalogPagesAll: IContentType[] = [
   // },
   { // https://www.decortier.ru/karnizy/?filter[tip-karniza][]=decor&page=2
     types: [ProductType.Matte],
-    key: '8',
+    key: '7',
     title: 'Карнизы для штор',
     text: 'Декоративные и профильные.',
     detail: () => import('./stretch-ceiling-detail/matte-stretch-ceilings/matte-stretch-ceilings').then((a) => a.Detail),

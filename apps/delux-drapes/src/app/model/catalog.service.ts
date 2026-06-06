@@ -86,15 +86,15 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
 
     // ...catalogGroupMenu(['/', routePath.catalog.root]),
 
-    {
-      title: 'Цены',
-      link: ['/', routePath.price.root],
-      fragment: 'main',
-    },
+    // {
+    //   title: 'Цены',
+    //   link: ['/', routePath.price.root],
+    //   fragment: 'main',
+    // },
 
     {
-      title: 'Контакты',
-      link: ['/', routePath.contact.root],
+      title: 'Стать партнером',
+      link: ['/', routePath.partner.root],
     },
 
     {
@@ -103,8 +103,8 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
     },
 
     {
-      title: 'Стать партнером',
-      link: ['/', routePath.partner.root],
+      title: 'Контакты',
+      link: ['/', routePath.contact.root],
     },
   ]);
 
@@ -119,15 +119,15 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
       fragment: 'main',
     },
 
-    {
-      title: 'Цены',
-      link: ['/', routePath.price.root],
-      fragment: 'main',
-    },
+    // {
+    //   title: 'Цены',
+    //   link: ['/', routePath.price.root],
+    //   fragment: 'main',
+    // },
 
     {
-      title: 'Контакты',
-      link: ['/', routePath.contact.root],
+      title: 'Стать партнером',
+      link: ['/', routePath.partner.root],
     },
 
     {
@@ -136,8 +136,8 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
     },
 
     {
-      title: 'Стать партнером',
-      link: ['/', routePath.partner.root],
+      title: 'Контакты',
+      link: ['/', routePath.contact.root],
     },
 
     ...catalogGroupMenu(['/', 'catalog']),

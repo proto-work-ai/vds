@@ -35,7 +35,6 @@ import { NgIconImports } from '../../components/ng-icon-src.directive';
 })
 export class MainBannerForm {
   private readonly sendForm = injectSendMessage(ymSubmitEvent);
-  readonly title = input('Шторы, жалюзи и карнизы на заказ');
 
   protected readonly typeOptions = signal(['Звонок', 'Telegram', 'Max']);
 
