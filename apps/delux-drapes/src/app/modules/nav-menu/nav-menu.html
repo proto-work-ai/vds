@@ -1,6 +1,6 @@
 <div class="-text-lg">
   <section class="border-b-1 border-gray-200 max-lg:px-3">
-    <ol class="md:container mx-auto flex items-center gap-15 h-16">
+    <ol class="lg:container mx-auto flex items-center gap-15 h-16">
       <li>
         <!-- <h1 class="text-4xl font-bold">Фабрика штор</h1> -->
         <!-- <ng-icon src="/logo/logo-02.svg" /> -->
@@ -9,7 +9,7 @@
       </li>
 
       <li class="flex-1">
-        <nav hlmNavigationMenu openOn="hover" class="flex max-md:hidden">
+        <nav hlmNavigationMenu openOn="hover" class="flex max-lg:hidden">
           <ul hlmNavigationMenuList class="flex-wrap gap-5">
             @for (item of navMenu(); track item; let index = $index) {
               <li hlmNavigationMenuItem class="hidden md:flex">
@@ -84,8 +84,24 @@
           </ul>
         </nav>
 
-        <div class="hidden max-md:flex">
+        <div class="hidden max-lg:flex">
           <ng-icon class="cursor-pointer text-lg" name="lucideMenu" (click)="onOpen()" />
+        </div>
+      </li>
+
+      <li class="flex gap-4 items-center">
+        <a
+          [attr.href]="addressLink"
+          target="_blank"
+          class="underline decoration-dashed flex gap-1 items-center cursor-pointer"
+        >
+          <ng-icon name="lucideNavigation" class="text-xl" />
+          <address>{{ address }}</address>
+        </a>
+
+        <div class="flex items-center gap-1">
+          <ng-icon name="lucideClock4" />
+          10:00 - 21:00 / Без выходных
         </div>
       </li>
 

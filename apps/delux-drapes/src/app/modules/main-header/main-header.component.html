@@ -1,26 +1,36 @@
-<div class="border-b-1 border-gray-200">
+<div class="border-b-1 border-gray-200 bg-judge-gray text-white">
   <header class="container mx-auto py-2 flex flex-col gap-3 text-sm">
-    <section class="flex">
-      <div class="flex-1">
+    <section class="flex gap-4">
+      <!-- <div class="flex-1">
         БЦ «Орбита»
         <address>г. Москва, ул. Кулакова, д. 20 стр. 1А.</address>
         <a class="cursor-pointer font-medium">Схема проезда</a>
-      </div>
+      </div> -->
 
-      <div class="flex-1">
-        <div>          Режим работы:        </div>
+      <!-- <div class="flex-1">
+        <div>Режим работы:</div>
         <div>10:00 - 21:00 / Без выходных</div>
         <span  class="font-medium">ПО ПРЕДВАРИТЕЛЬНОЙ ЗАПИСИ</span>        
+      </div> -->
+
+      <div class="flex-1 flex gap-2 items-center">
+        <ng-icon name="lucideMail" class="text-lg" />
+        <a class="text-base" href="mailto:{{ emailContact }}">{{ emailContact }}</a>
       </div>
 
-      <div class="flex-1">
-        <div>Напишите нам:</div>
-        <a class="font-medium text-base" href="mailto:info@deluxdrapes.ru">info@deluxdrapes.ru</a>
-      </div>
-
-      <div class="flex-1">
-        <div>Заказать обратный звонок</div>
+      <div class="flex gap-2 items-center">
+        <ng-icon name="lucidePhone" class="text-lg" />
         <a class="font-medium text-base" href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
+      </div>
+
+      <div class="flex gap-3">
+        <a class="max-sm:text-sm" href="https://t.me/{{ telegramContact }}" target="_blank" alt="Telegram"
+          ><img class="w-6 block text-white" src="/icons/telegram.svg" alt="Logotip"
+        /></a>
+
+        <a class="max-sm:text-sm" [href]="maxContact" target="_blank"
+          ><img class="w-6 block" title="Max" src="/icons/max.svg" alt="Max"
+        /></a>
       </div>
     </section>
   </header>
@@ -39,4 +49,3 @@
 </div> -->
 
 <app-nav-menu />
-

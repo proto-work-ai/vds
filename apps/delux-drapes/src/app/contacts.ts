@@ -1,5 +1,20 @@
 import { InjectionToken } from '@angular/core';
 
+export const ADDRESS = new InjectionToken<string>('ADDRESS', {
+  providedIn: 'root',
+  factory: () => 'Москва, район Троицк, Кварцевая улица, 3, корп. 2',
+});
+
+export const ADDRESS_LINK = new InjectionToken<string>('ADDRESS_LINK', {
+  providedIn: 'root',
+  factory: () => 'https://yandex.ru/maps/-/CDQG4AYV',
+});
+
+export const EMAIL_CONTACT = new InjectionToken<string>('EMAIL_CONTACT', {
+  providedIn: 'root',
+  factory: () => 'info@deluxdrapes.ru',
+});
+
 export const TELEGRAM_CONTACT = new InjectionToken<string>('TELEGRAM_CONTACT', {
   providedIn: 'root',
   factory: () => '@andreevav1',
@@ -13,8 +28,7 @@ export const MAX_CONTACT = new InjectionToken<string>('MAX_CONTACT', {
 
 export const PHONE_CONTACT = new InjectionToken<string>('PHONE_CONTACT', {
   providedIn: 'root',
-  // factory: () => '9859936718',
-  factory: () => '9040148649',
+  factory: () => '9255946117',
 });
 
 export const PERIOD_CONTACT = new InjectionToken<string>('PERIOD_CONTACT', {
@@ -32,3 +46,9 @@ export const YANDEX_KEY = new InjectionToken<string>('YANDEX_KEY', {
   providedIn: 'root',
   factory: () => VAR_YANDEX_KEY,
 });
+
+export const COMPANY_NAME = new InjectionToken<string>('COMPANY_NAME', {
+  providedIn: 'root',
+  factory: () => `ООО «DeluxDrapes»`,
+});
+

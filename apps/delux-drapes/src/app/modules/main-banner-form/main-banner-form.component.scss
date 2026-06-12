@@ -8,14 +8,15 @@ figure {
 }
 
 .bg-image {
-  z-index: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: #f4f3ed;
+  background-image: url(/img-full/img-2.jpg);
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  overflow: hidden;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
   z-index: -1;
 }

@@ -1,11 +1,17 @@
 import { Component, computed, inject } from '@angular/core';
 import { PhoneFormatPipe } from '@atlas/core';
-import { MAX_CONTACT, PERIOD_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '../../contacts';
+import {
+  COMPANY_NAME,
+  EMAIL_CONTACT,
+  MAX_CONTACT,
+  PERIOD_CONTACT,
+  PHONE_CONTACT,
+  TELEGRAM_CONTACT,
+} from '../../contacts';
 import { RouterLink } from '@angular/router';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import { lucidePhone } from '@ng-icons/lucide';
 import { NgTemplateOutlet } from '@angular/common';
-import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 import { injectFooterMenu } from '../../model/catalog.service';
 import { NgIconImports } from '../../components/ng-icon-src.directive';
@@ -22,20 +28,21 @@ import { NgIconImports } from '../../components/ng-icon-src.directive';
   ],
 })
 export class MainFooterComponent {
-  protected readonly items = inject(MenuDeferService).items;
   protected readonly telegramContact = inject(TELEGRAM_CONTACT);
   protected readonly maxContact = inject(MAX_CONTACT);
   protected readonly phoneContact = inject(PHONE_CONTACT);
   protected readonly periodContact = inject(PERIOD_CONTACT);
+  protected readonly emailContact = inject(EMAIL_CONTACT);
+  protected readonly companyName = inject(COMPANY_NAME);
 
   private readonly navMenu = injectFooterMenu();
   protected readonly footerMenu = computed(() => {
-    const menu = this.navMenu();
     const result = [];
+    const menu = this.navMenu();
 
     result.push({
       title: 'Меню',
-      children: [...menu.slice(0, 1), ...menu.slice(2, 3)],
+      children: [...menu.slice(0, 3)],
     });
 
     result.push(...menu.slice(3));

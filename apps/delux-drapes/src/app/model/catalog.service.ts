@@ -114,18 +114,6 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
 export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenuItem[]> {
   const navMenu = signal<IAppMenuItem[]>([
     {
-      title: 'Каталог',
-      link: ['/', routePath.catalog.root],
-      fragment: 'main',
-    },
-
-    // {
-    //   title: 'Цены',
-    //   link: ['/', routePath.price.root],
-    //   fragment: 'main',
-    // },
-
-    {
       title: 'Стать партнером',
       link: ['/', routePath.partner.root],
     },
@@ -140,7 +128,10 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
       link: ['/', routePath.contact.root],
     },
 
-    ...catalogGroupMenu(['/', 'catalog']),
+    {
+      title: 'Каталог',
+      children: catalogGroupMenu(['/', routePath.catalog.root]),
+    },
   ]);
 
   return navMenu.asReadonly();

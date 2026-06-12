@@ -1,6 +1,6 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiTextfield, TuiInput, TuiCheckbox } from '@taiga-ui/core';
+import { TuiTextfield, TuiInput } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
 import { lucideCheckCircle } from '@ng-icons/lucide';
 import { provideIcons } from '@ng-icons/core';
@@ -9,6 +9,7 @@ import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
 import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { NgxParallax } from '../../components/parallax.directive';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -21,11 +22,11 @@ import { NgIconImports } from '../../components/ng-icon-src.directive';
     TuiTextfield,
     TuiInputSlider,
     TuiInputPhone,
-    TuiCheckbox,
     FormGroupStore,
     TuiInput,
     TuiSelect,
     NgIconImports,
+    NgxParallax,
   ],
   providers: [
     provideIcons({

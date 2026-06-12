@@ -11,8 +11,11 @@ import {
   lucideMenu,
   lucideX,
   lucideChevronRight,
+  lucideClock4,
+  lucideMap,
+  lucideNavigation,
 } from '@ng-icons/lucide';
-import { TuiDataList, TuiDialogService, TuiDropdown, TuiIcon, TuiPopup, TuiTitle } from '@taiga-ui/core';
+import { TuiDataList, TuiDropdown, TuiIcon, TuiPopup, TuiTitle } from '@taiga-ui/core';
 import { HlmNavigationMenuImports } from '@spartan-ng/helm/navigation-menu';
 import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { RouterLink, RouterLinkActive } from '@angular/router';
@@ -24,6 +27,7 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 import { injectNavMenu } from '../../model/catalog.service';
 import { InviteModalClick } from '../../components/invite-designer/invite-designer-modal';
 import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { ADDRESS, ADDRESS_LINK } from '../../contacts';
 
 @Component({
   selector: 'app-nav-menu',
@@ -57,10 +61,15 @@ import { NgIconImports } from '../../components/ng-icon-src.directive';
       lucideMenu,
       lucideX,
       lucideChevronRight,
+      lucideClock4,
+      lucideMap,
+      lucideNavigation,
     }),
   ],
 })
 export class NavMenu {
+  protected readonly address = inject(ADDRESS);
+  protected readonly addressLink = inject(ADDRESS_LINK);
   readonly callSurveyor = input(true);
   protected readonly navMenu = injectNavMenu();
   protected readonly handler: TuiHandler<IAppMenuItem, readonly IAppMenuItem[]> = (item) => item.children || [];
