@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiInput, TuiTextfield } from '@taiga-ui/core';
-import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
 import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../send-service/send.services';
-import { FormStore } from '../../../components/form-store/form-store.directive';
-import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
+import { FormImports } from '../../../components/form';
 
 export function ymDrainingEvent(): void {
   const { ym } = window as any;
@@ -19,19 +16,7 @@ export function ymDrainingEvent(): void {
   selector: 'app-services-form',
   templateUrl: 'services-form.html',
   styleUrls: ['services-form.scss'],
-  imports: [
-    TuiChevron,
-    TuiDataListWrapper,
-    TuiSelect,
-    FormsModule,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInputSlider,
-    TuiInputPhone,
-    FormStore,
-    TuiInput,
-    IsPlatformBrowserDirective
-  ],
+  imports: [FormImports],
 })
 export class ServicesForm {
   private readonly sendForm = injectSendMessage(ymDrainingEvent);

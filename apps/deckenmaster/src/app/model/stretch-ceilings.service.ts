@@ -7,16 +7,16 @@ import {
   IContentType,
   stretchCeilingAll,
   stretchCeilingGroupMap,
-  productName,
+  productTypeName,
   stretchCeilingsGroupName,
-} from './products.data';
+} from './stretch-ceiling';
 import { IAppMenuItem } from '../shared/menu';
 import { routePath } from '../app.routes';
 import { servicePages } from './service-pages';
 
 export function injectStretchCeilingsCatalog(): Signal<IContentType[]> {
   const catalog = signal<IContentType[]>([]);
-  import('./products.data').then(({ stretchCeilingAll: stretchCeilings }) => catalog.set(stretchCeilings));
+  import('./stretch-ceiling').then(({ stretchCeilingAll: stretchCeilings }) => catalog.set(stretchCeilings));
   return catalog.asReadonly();
 }
 
@@ -67,7 +67,7 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
         .filter(([type, item]) => !!item)
         .map(([type, item]) => {
           return {
-            title: productName[type] ?? '',
+            title: productTypeName[type] ?? '',
             link: patch.concat(item.key),
             queryParams: { type },
             fragment: 'main',

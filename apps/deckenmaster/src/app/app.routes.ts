@@ -1,9 +1,12 @@
 import { Route } from '@angular/router';
-import { stretchCeilingAll as stretchCeilingPages } from './model/products.data';
+import { stretchCeilingAll as stretchCeilingPages } from './model/stretch-ceiling';
 import { servicePages } from './model/service-pages';
 
 export const routePath = {
   root: '',
+  privacyPolicy : {
+    root: 'privacy-policy',
+  },
   catalog: {
     root: 'catalog',
   },
@@ -22,7 +25,7 @@ const stretchCeilingRoutes: Route[] = stretchCeilingPages.map((data) => {
     data,
     loadComponent: () =>
       import(
-        './pages/stretch-ceilings-catalog/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
+        './pages/stretch-ceilings/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
       ).then((a) => a.StretchCeilingsCatalogDetailPage),
 
     children: [
@@ -59,10 +62,18 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/main-page/main-page').then((a) => a.MainPage),
   },
   {
+    path: routePath.privacyPolicy.root,
+    loadComponent: () =>
+      import(
+        './pages/privacy-policy/privacy-policy-page'
+      ).then((a) => a.PrivacyPolicyPage),
+  },
+
+  {
     path: routePath.catalog.root,
     loadComponent: () =>
       import(
-        './pages/stretch-ceilings-catalog/stretch-ceilings-catalog-all-page/stretch-ceilings-catalog-all-page'
+        './pages/stretch-ceilings/stretch-ceilings-catalog-all-page/stretch-ceilings-catalog-all-page'
       ).then((a) => a.StretchCeilingsCatalogsPage),
   },
 
@@ -73,7 +84,7 @@ export const appRoutes: Route[] = [
   //   pathMatch: 'full',
   //   loadComponent: () =>
   //     import(
-  //       './pages/stretch-ceilings-catalog/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
+  //       './pages/stretch-ceilings/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
   //     ).then((a) => a.StretchCeilingsCatalogDetailPage),
   // },
   {

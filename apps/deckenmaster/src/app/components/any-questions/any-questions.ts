@@ -1,12 +1,9 @@
 import { Component, input } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiTextfield, TuiInput } from '@taiga-ui/core';
-import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
+import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
-import { finalize, tap } from 'rxjs';
-import { FormStore } from '../../components/form-store/form-store.directive';
+import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
-import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
+import { FormImports } from '../form';
 
 export function ymAnyQuestions(): void {
   const { ym } = window as any;
@@ -19,17 +16,7 @@ export function ymAnyQuestions(): void {
   selector: 'app-any-questions',
   templateUrl: 'any-questions.html',
   styleUrls: ['any-questions.scss'],
-  imports: [
-    TuiDataListWrapper,
-    FormsModule,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInputSlider,
-    TuiInputPhone,
-    FormStore,
-    TuiInput,
-    IsPlatformBrowserDirective
-  ],
+  imports: [FormImports],
 })
 export class AnyQuestions {
   private readonly sendForm = injectSendMessage(ymAnyQuestions);

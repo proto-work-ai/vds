@@ -1,5 +1,4 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
-import { stretchCeilingAll } from './model/products.data';
 
 export const serverRoutes: ServerRoute[] = [
   // {

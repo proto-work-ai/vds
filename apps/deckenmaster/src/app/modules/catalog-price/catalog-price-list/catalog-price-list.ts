@@ -22,13 +22,13 @@ import { routePath } from '../../../app.routes';
 import { IAppMenuItem } from '../../../shared/menu';
 import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
 import { injectRouteParam } from '../../../shared/inject-route-param';
-import { dataCategoryMap, getCatalogMap } from '../../../model/price-list-all';
+import { dataCategoryMap, injectCatalogMap } from '../../../model/price-list-all';
 import { PriceListRouteFilter } from '../price-list-route-filter/price-list-route-filter';
 import { PriceListBrandTable } from '../price-list-brand-table/price-list-brand-table';
 import { PriceListUnitTable } from '../price-list-unit-table/price-list-unit-table';
 import { additionalWorkPrice } from '../../../model/additional-work.group';
 import { electricalEquipmentList } from '../../../model/electrical-equipment.group';
-import { STPriceGroup } from '../../../model/products.data';
+import { STPriceGroup } from '../../../model/stretch-ceiling';
 
 @Component({
   selector: 'app-catalog-price-list',
@@ -79,7 +79,7 @@ export class PriceList {
     })
   );
 
-  protected readonly catalogMap = getCatalogMap();
+  protected readonly catalogMap = injectCatalogMap();
   private readonly routeCategory = injectRouteParam('category');
   protected readonly category = computed(() => {
     return this.routeCategory() != null ? +this.routeCategory()! : -1;

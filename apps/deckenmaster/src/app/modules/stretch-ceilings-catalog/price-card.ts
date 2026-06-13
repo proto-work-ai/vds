@@ -1,5 +1,5 @@
 import { Component, computed, input } from '@angular/core';
-import { IContentType } from '../../model/products.data';
+import { IContentType } from '../../model/stretch-ceiling';
 import { injectCatalogPrice } from '../../model/price-list-all';
 import { Unit } from '../../model/price-list.service';
 

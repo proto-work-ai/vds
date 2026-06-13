@@ -1,21 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { STUnitPrice, Unit, UnitPrice } from './price-list.service';
-import { IContentType, ProductType } from './products.data';
-
-// Services
-export const withBacklightGroup: STUnitPrice[] = [
-  // Монтаж натяжного потолка
-  { type: ProductType.InstallationSuspendedSeiling, unit: Unit.LinearMeter, price: 2200 },
-  // Ремонт натяжных потолков
-  { type: ProductType.RepairStretchCeilings, unit: Unit.LinearMeter, price: 2200 },
-  // Слив воды с натяжного потолка
-  { type: ProductType.DrainingSuspendedCeiling, unit: Unit.LinearMeter, price: [1500] },
-
-  // Демонтаж натяжного потолка
-  { type: ProductType.RemovingSlattedCeiling, unit: Unit.LinearMeter, price: 500 }, // Демонтаж реечного потолка
-  { type: ProductType.RemovingProfile, unit: Unit.LinearMeter, price: 1000 }, // Демонтаж профиля
-  { type: ProductType.PreparingSubCeiling, unit: Unit.LinearMeter, price: 100 }, // Подготовка чернового потолка работа
-] as const;
+import { Unit, UnitPrice } from './price-list.service';
+import { IContentType, ProductType } from './stretch-ceiling';
 
 export const drainingSuspendedPrice: UnitPrice[] = [
   {

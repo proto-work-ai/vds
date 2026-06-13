@@ -1,26 +1,15 @@
 import { Component, input } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiTextfield, TuiInput } from '@taiga-ui/core';
-import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
-import { FormStore } from '../../components/form-store/form-store.directive';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
 import { finalize } from 'rxjs';
+import { FormImports } from '../../components/form';
 
 @Component({
   selector: 'app-application-measurement',
   templateUrl: './application-measurement.component.html',
   styleUrls: ['./application-measurement.component.scss'],
-  imports: [
-    TuiDataListWrapper,
-    FormsModule,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInputSlider,
-    TuiInputPhone,
-    FormStore,
-    TuiInput,
-  ],
+  imports: [FormImports],
 })
 export class ApplicationMeasurementComponent {
   private readonly sendForm = injectSendMessage(ymSubmitEvent);

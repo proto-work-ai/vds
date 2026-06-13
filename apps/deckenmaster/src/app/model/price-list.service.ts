@@ -1,4 +1,4 @@
-import { STPriceGroup, ProductType } from './products.data';
+import { STPriceGroup, ProductType } from './stretch-ceiling';
 
 export enum STBrandType {
   Bauf = 1,

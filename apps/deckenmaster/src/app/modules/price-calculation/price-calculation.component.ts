@@ -17,9 +17,10 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DataListOptionImports } from './data-list-options';
 import { distinctUntilChanged, finalize, pairwise, startWith, tap } from 'rxjs';
-import { FormStore } from '../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
 import { TuiInput } from '@taiga-ui/core';
+import { FormImports } from '../../components/form';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -35,18 +36,9 @@ export class SafePipe implements PipeTransform {
   templateUrl: './price-calculation.component.html',
   styleUrls: ['./price-calculation.component.scss'],
   imports: [
-    TuiDataListWrapper,
-    TuiSelect,
-    FormsModule,
-    ReactiveFormsModule,
-    TuiInputSlider,
-    TuiInputPhone,
-    TuiTextarea,
-    TuiTextfield,
     ZoomControllerComponent,
     DataListOptionImports,
-    FormStore,
-    TuiInput,
+    FormImports,
   ],
   providers: [
     provideNgIconLoader((name) => {

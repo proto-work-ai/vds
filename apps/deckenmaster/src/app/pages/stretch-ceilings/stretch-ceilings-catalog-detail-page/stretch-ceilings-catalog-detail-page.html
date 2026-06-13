@@ -1,0 +1,108 @@
+<app-main-header />
+
+<app-nav-menu />
+
+<app-breadcrumbs-header [items]="breadcrumbs()" />
+
+<section
+  id="stretch-ceilings-catalog-detail"
+  name="stretch-ceilings-catalog-detail"
+  class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6"
+>
+  <!-- <header class="text-center flex flex-col gap-2 sm:gap-3">
+    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
+
+    <div class="md:w-180 mx-auto text-gray-500">{{ brief() }}</div>
+  </header> -->
+
+  <div class="flex max-lg:flex-col bg-gray-light max-lg:bg-white">
+    <section class="lg:w-4/7">
+      <app-gallerize-images id="catalog-getail" [item]="item()"></app-gallerize-images>
+    </section>
+
+    <section class="flex-1 flex flex-col gap-3 p-5 gap-5">
+      <header>
+        <h2 class="text-2xl md:text-3xl">{{ title() }}</h2>
+      </header>
+
+      <p>
+        {{ brief() }}
+      </p>
+
+      <!-- <section class="flex flex-col gap-3">
+        <h4 class="text-xl">Преимущества</h4>
+
+        <ul class="list-disc ms-5 flex flex-col gap-1">
+          <li>Низкая цена</li>
+          <li>Антистатическая поверхность</li>
+          <li>Устойчивость к влаге</li>
+          <li>Широкий цветовой диапазон</li>
+        </ul>
+      </section> -->
+
+      <div class="mt-auto flex max-sm:flex-col gap-3">
+        <app-price-card [item]="item()" size="l" />
+
+        <footer class="sm:ms-auto sm:self-end">
+          <button (click)="formSubmit()" class="btn-primary btn-sm max-sm:w-full" type="submit">
+            <span class="px-10">Заказать</span>
+          </button>
+        </footer>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <router-outlet />
+</section>
+
+<!-- Price -->
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <header class="text-start flex flex-col gap-3 my-4">
+    <h3 class="text-md md:text-xl uppercase font-semibold">Цены на натяжные потолки с учетом установки</h3>
+  </header>
+
+  <app-price-list-table [tableRows]="filtered()"></app-price-list-table>
+</section>
+
+<!-- Version 2(Horizontal Slider)
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <app-swiper-full-images [item]="item()" />
+</section>
+
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <header class="text-center">
+    <h2 class="text-2xl md:text-3xl">{{ title() }}</h2>
+  </header>
+</section>
+
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <div class="mt-auto flex max-sm:flex-col gap-3" style="background: #f7f7f7; border-radius: 10px; padding: 23px">
+    <section class="flex flex-col gap-2">
+      <div class="title">Цена</div>
+      <div class="font-semibold text-xl">
+        от {{ price() }} руб
+      </div>
+      <small> *Цена указана c установкой под ключ. </small>
+    </section>
+
+    <div class="sm:ms-auto flex flex-col gap-2 sm:w-100 sm:self-end">
+      <footer class="flex flex-col gap-2">
+        <button (click)="formSubmit()" class="max-md:w-full btn-primary btn-sm" type="submit">
+          <span class="px-10">Заказать</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+
+  <router-outlet />
+</section> -->
+
+<app-any-questions></app-any-questions>
+
+<app-way-we-work id="way-we-work"></app-way-we-work>
+
+<app-application-measurement id="measurement" />
+
+<app-footer-menu />

@@ -4,7 +4,7 @@ import { GalleryModule, ImageItem } from 'ng-gallery';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
-import { IContentType } from '../../model/products.data';
+import { IContentType } from '../../model/stretch-ceiling';
 import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
 
 @Component({
@@ -17,6 +17,7 @@ import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
 export class GallerizeImages {
   private destroyRef = inject(DestroyRef);
   private breakpointObserver = inject(BreakpointObserver);
+  public readonly id = input.required<string>();
   public readonly item = input.required<IContentType>();
   // protected readonly images = computed(() => this.item()?.images);
   protected readonly images = computed(() => this.item()?.images.map((src) => new ImageItem({ src, thumb: src })));

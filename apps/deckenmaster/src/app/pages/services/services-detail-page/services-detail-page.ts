@@ -17,7 +17,7 @@ import { getCatalogMap2, injectCatalogPrice } from '../../../model/price-list-al
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
 import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
 import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
-import { IContentType } from '../../../model/products.data';
+import { IContentType } from '../../../model/stretch-ceiling';
 import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
 import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
 import { AnyQuestions } from '../../../components/any-questions/any-questions';

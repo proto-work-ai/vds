@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { productName, ProductType } from '../model/products.data';
+import { productTypeName, ProductType } from '../model/stretch-ceiling';
 
 @Pipe({ name: 'stretchCeilingsType' })
 export class StretchCeilingsTypePipe implements PipeTransform {
   transform(type: ProductType): string {
-    return productName[type] ?? '';
+    return productTypeName[type] ?? '';
   }
 }

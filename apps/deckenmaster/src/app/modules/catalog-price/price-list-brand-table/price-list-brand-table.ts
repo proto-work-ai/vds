@@ -20,7 +20,7 @@ import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import { TuiTree } from '@taiga-ui/kit';
 import { stretchCeilingBrandMap, STBrandType } from '../../../model/price-list.service';
-import { productName, ProductType } from '../../../model/products.data';
+import { productTypeName, ProductType } from '../../../model/stretch-ceiling';
 
 @Component({
   selector: 'app-column-brand-cell',
@@ -86,10 +86,10 @@ export class PriceListBrandTable {
       type: 'string',
       formatter: (row: any) => {
         const type = row.type as ProductType;
-        if (!productName[type]) {
+        if (!productTypeName[type]) {
           debugger;
         }
-        return productName[type]!;
+        return productTypeName[type]!;
       },
     },
     // {

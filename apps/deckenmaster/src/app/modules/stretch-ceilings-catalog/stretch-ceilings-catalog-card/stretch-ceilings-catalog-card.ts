@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronRight, lucideCircleArrowRight, lucideMoveRight } from '@ng-icons/lucide';
-import { IContentType } from '../../../model/products.data';
+import { IContentType } from '../../../model/stretch-ceiling';
 import { PriceCard } from '../price-card';
 
 @Component({

@@ -1,28 +1,15 @@
 import { Component, signal } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TuiInput, TuiNumberFormatSettings, TuiTextfield } from '@taiga-ui/core';
-import { TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit';
+import { TuiNumberFormatSettings } from '@taiga-ui/core';
 import { ServicesForm } from '../services-form/services-form';
-import { FormStore } from '../../../components/form-store/form-store.directive';
+import { FormImports } from '../../../components/form';
 
 @Component({
   selector: 'app-services-banner',
   templateUrl: './services-banner.html',
   styleUrls: ['./services-banner.scss'],
   imports: [
-    FormsModule,
-    TuiTextfield,
-    FormsModule,
-    TuiInputSlider,
     ServicesForm,
-    TuiInput,
-    FormsModule,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInputSlider,
-    TuiInputPhone,
-    TuiInput,
-    FormStore,
+    FormImports,
   ],
 })
 export class ServicesBanner {

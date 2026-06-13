@@ -1,13 +1,8 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { STBrandType, STPriceBrand, Unit } from './price-list.service';
-import {
-  STPriceGroup,
-  stretchCeilingGroupName,
-  productName,
-  ProductType,
-} from './products.data';
+import { STPriceGroup, stretchCeilingGroupName, productTypeName, ProductType } from './stretch-ceiling';
 import { STUnitPrice } from './price-list.service';
-import { byDesignGroup, withBacklightGroup } from './by-design.group';
+import { byDesignGroup, withBacklightGroup } from './stretch-ceiling/by-design.group';
 
 const MatteMSD: STPriceBrand = {
   type: ProductType.Matte,
@@ -236,13 +231,13 @@ const stretchCeilingCatalogMap = new Map<STPriceGroup, (STPriceBrand | STUnitPri
   ],
 
   // Fabric (материал)
-  [STPriceGroup.Fabric, [FabricDescor]],
+  [STPriceGroup.Fabric, [FabricDescor, FabricClipso, FabricCerutti]],
 
   // Satin (материал)
   [STPriceGroup.Satin, [SatinMSD, SatinColorMSD, SatinPongs, SatinColorPongs]],
 
   // Matte (тип поверхности)
-  [STPriceGroup.Matte, [MatteMSD, MatteColorMSD, MattePongs, MatteColorPongs, FabricDescor]],
+  [STPriceGroup.Matte, [MatteMSD, MatteColorMSD, MattePongs, MatteColorPongs]],
 
   // Glossy (тип поверхности)
   [STPriceGroup.Glossy, [GlossyMSD, GlossyColorMSD, GlossyPongs, GlossyColorPongs]],
@@ -250,7 +245,7 @@ const stretchCeilingCatalogMap = new Map<STPriceGroup, (STPriceBrand | STUnitPri
   // Textured[Фактурные] (тип поверхности)
   // [STPriceGroup.Textured, []],
 
-  // WithBacklight[с подсветкой]
+  // WithBacklight[С подсветкой]
   [STPriceGroup.WithBacklight, withBacklightGroup],
 
   // ByDesign[По конструкции]
@@ -291,7 +286,7 @@ export function injectCatalogPrice() {
   };
 }
 
-export function getCatalogMap() {
+export function injectCatalogMap() {
   return (key: STPriceGroup | undefined) => {
     if (!key || key < 0) {
       key = STPriceGroup.PVC;
@@ -299,7 +294,7 @@ export function getCatalogMap() {
     const items: (STPriceBrand | STUnitPrice)[] = structuredClone(stretchCeilingCatalogMap.get(key))!;
     return items.map((item) => {
       if (!('name' in item)) {
-        (item as any).name = productName[item.type!];
+        (item as any).name = productTypeName[item.type!];
       }
       return item;
     });
@@ -311,7 +306,7 @@ export function getCatalogMap2(types: ProductType[]) {
   const items: (STPriceBrand | STUnitPrice)[] = all.filter((a) => types.includes(a.type!));
   return items.map((item) => {
     if (!('name' in item)) {
-      (item as any).name = productName[item.type!];
+      (item as any).name = productTypeName[item.type!];
     }
     return item;
   });

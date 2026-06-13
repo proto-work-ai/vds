@@ -7,7 +7,7 @@ import { injectRouteParam } from '../../../shared/inject-route-param';
 import { SCCatalogRouteFilter } from '../stretch-ceilings-catalog-route-filter/stretch-ceilings-catalog-route-filter';
 import { IAppMenuItem } from '../../../shared/menu';
 import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
-import { stretchCeilingGroupMap } from '../../../model/products.data';
+import { stretchCeilingGroupMap } from '../../../model/stretch-ceiling';
 
 @Component({
   selector: 'app-stretch-ceilings-catalog-all',

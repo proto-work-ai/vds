@@ -3,28 +3,17 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { TuiTextfield, TuiInput } from '@taiga-ui/core';
 import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
 import { markAsSubmit } from '@atlas/core';
-import { FormStore } from '../../../components/form-store/form-store.directive';
+import { FormGroupStore } from '../../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../../send-service/send.services';
 import { finalize } from 'rxjs';
 import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
+import { FormImports } from '../../../components/form';
 
 @Component({
   selector: 'app-main-banner-form',
   templateUrl: './main-banner-form.component.html',
   styleUrls: ['./main-banner-form.component.scss'],
-  imports: [
-    TuiChevron,
-    TuiDataListWrapper,
-    TuiSelect,
-    FormsModule,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInputSlider,
-    TuiInputPhone,
-    FormStore,
-    TuiInput,
-    IsPlatformBrowserDirective
-  ],
+  imports: [FormImports],
 })
 export class MainBannerFormComponent {
   private readonly sendForm = injectSendMessage(ymSubmitEvent);

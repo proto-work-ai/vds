@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { provideIcons, NgIcon } from '@ng-icons/core';
 import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { Navigation } from 'swiper/modules';
-import { IContentType } from '../../model/products.data';
+import { IContentType } from '../../model/stretch-ceiling';
 import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
 
 /*
