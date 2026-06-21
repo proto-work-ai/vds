@@ -1,8 +1,6 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, inject, signal } from '@angular/core';
-import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
-import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.component';
 import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
 import { MAX_CONTACT, PERIOD_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '../../../contacts';
 import { MainHeaderComponent } from '../../../modules/main-header/main-header.component';
@@ -16,7 +14,9 @@ import { IFormData, injectSendMessage } from '../../../modules/send-service/send
 import { finalize } from 'rxjs';
 import { provideIcons } from '@ng-icons/core';
 import { NgIconImports } from '../../../components/ng-icon-src.directive';
-import { lucideCheckCircle, lucideCheckCircle2 } from '@ng-icons/lucide';
+import { lucideCheckCircle } from '@ng-icons/lucide';
+import { FormImports } from '../../../components/form';
+
 export function ymPartner(): void {
   const { ym } = window as any;
   if (ym) {
@@ -42,6 +42,7 @@ export function ymPartner(): void {
     MainHeaderComponent,
     MainFooterComponent,
     NgIconImports,
+    FormImports
   ],
   providers: [
     provideIcons({

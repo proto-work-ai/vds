@@ -19,9 +19,8 @@
         }      
         $message = wordwrap($message, 70);
 
-        // var_dump($message);
-        // var_dump(mail('saida181014@gmail.com', 'Заявка c сайта(nirstroy.ru)', $message));
-        // mail('saida181014@gmail.com', 'Заявка c сайта(nirstroy.ru)', $message);
+
+        // mail('info@shtorivdom.ru', 'Заявка c сайта(nirstroy.ru)', $message);
         var_dump(mail('andrey.asp2010@gmail.com', 'Заявка c сайта', $message));
     } else  {
         echo 'NO POST';

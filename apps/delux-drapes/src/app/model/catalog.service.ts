@@ -3,15 +3,14 @@ import { DestroyRef, effect, inject, signal, Signal, WritableSignal } from '@ang
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { startWith, tap } from 'rxjs';
-import { IContentType, productName, stretchCeilingsGroupName } from './products.data';
 import { IAppMenuItem } from '../shared/menu';
 import { routePath } from '../app.routes';
-import { servicePages } from './service-pages';
-import { catalogPagesAll } from './catalog.data';
+import { IContentType, productName } from './products.data';
+import { catalogPagesAll } from './catalog/catalog.data';
 
 export function injectStretchCeilingsCatalog(): Signal<IContentType[]> {
   const catalog = signal<IContentType[]>([]);
-  import('./products.data').then(({ catalogPagesAll: stretchCeilings }) => catalog.set(stretchCeilings));
+  import('./catalog/catalog.data').then(({ catalogPagesAll }) => catalog.set(catalogPagesAll));
   return catalog.asReadonly();
 }
 

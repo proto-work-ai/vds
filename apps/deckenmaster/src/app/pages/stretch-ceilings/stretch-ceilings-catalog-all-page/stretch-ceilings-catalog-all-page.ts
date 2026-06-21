@@ -12,7 +12,6 @@ import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.com
 @Component({
   selector: 'main',
   templateUrl: 'stretch-ceilings-catalog-all-page.html',
-  styleUrls: ['stretch-ceilings-catalog-all-page.scss'],
   imports: [
     StretchCeilingsCatalogAll,
     MainHeaderComponent,

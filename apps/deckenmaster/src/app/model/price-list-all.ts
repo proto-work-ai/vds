@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { STBrandType, STPriceBrand, Unit } from './price-list.service';
+import { STBrandType, STPriceBrand, PriceUnit } from './price-list.service';
 import { STPriceGroup, stretchCeilingGroupName, productTypeName, ProductType } from './stretch-ceiling';
 import { STUnitPrice } from './price-list.service';
 import { byDesignGroup, withBacklightGroup } from './stretch-ceiling/by-design.group';
@@ -13,7 +13,7 @@ const MatteMSD: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
   price: 600,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const MatteColorMSD: STPriceBrand = {
@@ -25,7 +25,7 @@ const MatteColorMSD: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
   price: 700,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const GlossyMSD: STPriceBrand = {
@@ -37,7 +37,7 @@ const GlossyMSD: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
   price: 600,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const GlossyColorMSD: STPriceBrand = {
@@ -49,7 +49,7 @@ const GlossyColorMSD: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
   price: 750,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const MattePongs: STPriceBrand = {
@@ -61,7 +61,7 @@ const MattePongs: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
   price: 800,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const MatteColorPongs: STPriceBrand = {
@@ -73,7 +73,7 @@ const MatteColorPongs: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от +0 до +60 °С',
   price: 100,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const GlossyPongs: STPriceBrand = {
@@ -85,7 +85,7 @@ const GlossyPongs: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
   price: 800,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const GlossyColorPongs: STPriceBrand = {
@@ -97,7 +97,7 @@ const GlossyColorPongs: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от 0 до +60 °С',
   price: 600,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const GalaxyGlossyColorMSD: STPriceBrand = {
@@ -109,7 +109,7 @@ const GalaxyGlossyColorMSD: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
   price: 900,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const FabricDescor: STPriceBrand = {
@@ -121,7 +121,7 @@ const FabricDescor: STPriceBrand = {
   warranty: 7,
   operatingTemperature: 'от -30 до +50 °С',
   price: 1400,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const FabricClipso: STPriceBrand = {
@@ -133,7 +133,7 @@ const FabricClipso: STPriceBrand = {
   warranty: 7,
   operatingTemperature: 'от +3 до +60 °С',
   price: 4500,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const FabricCerutti: STPriceBrand = {
@@ -145,7 +145,7 @@ const FabricCerutti: STPriceBrand = {
   warranty: 7,
   operatingTemperature: 'от +3 до +60 °С',
   price: 4500,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const SatinMSD: STPriceBrand = {
@@ -157,7 +157,7 @@ const SatinMSD: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от 0 до +60 °С',
   price: 500,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 // MSD
@@ -170,7 +170,7 @@ const SatinColorMSD: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от 0 до +60 °С',
   price: 700,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 // Pongs
@@ -183,7 +183,7 @@ const SatinPongs: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от 0 до +60 °С',
   price: 800,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 // Pongs
@@ -196,7 +196,7 @@ const SatinColorPongs: STPriceBrand = {
   warranty: 15,
   operatingTemperature: 'от 0 до +60 °С',
   price: 1000,
-  unit: Unit.M2,
+  unit: PriceUnit.M2,
 };
 
 const stretchCeilingCatalogMap = new Map<STPriceGroup, (STPriceBrand | STUnitPrice)[]>([

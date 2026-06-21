@@ -1,17 +1,15 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiInput, TuiCheckbox, TuiButton } from '@taiga-ui/core';
+import { TuiInput, TuiCheckbox } from '@taiga-ui/core';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiTextarea } from '@taiga-ui/kit';
-import { FormGroupStore } from '../../components/form-store/form-store.directive';
-import { IsPlatformBrowserDirective } from '../../components/is-platform-browser.directive';
-import { MainQuestions } from '../main-questions/main-questions.component';
-import { AnyQuestions } from '../../components/any-questions/any-questions';
+import { provideIcons } from '@ng-icons/core';
+import { lucideCheckCircle } from '@ng-icons/lucide';
 import { markAsSubmit } from '@atlas/core';
 import { finalize } from 'rxjs';
+import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage } from '../send-service/send.services';
 import { NgIconImports } from '../../components/ng-icon-src.directive';
-import { provideIcons } from '@ng-icons/core';
-import { lucideCheckCircle, lucideCheckCircle2 } from '@ng-icons/lucide';
+import { FormImports } from '../../components/form';
 
 export function ymDrainingEvent(): void {
   const { ym } = window as any;
@@ -35,9 +33,7 @@ export function ymDrainingEvent(): void {
     TuiTextarea,
     TuiCheckbox,
     NgIconImports,
-    TuiButton,
-    AnyQuestions,
-    MainQuestions,
+    FormImports,
   ],
   providers: [
     provideIcons({

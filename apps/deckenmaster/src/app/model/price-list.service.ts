@@ -17,7 +17,7 @@ export interface STBrand {
   image: string;
 }
 
-export enum Unit {
+export enum PriceUnit {
   LinearMeter = 1, // м.пог.
   M2, // M2
   Things, // шт.
@@ -28,14 +28,14 @@ export enum Unit {
 export interface STUnitPrice {
   // name: string; // Название
   type: ProductType;
-  unit: Unit; // Ед.изм.
+  unit: PriceUnit; // Ед.изм.
   price: number | number[] | string; //  Цена
 }
 
 export interface UnitPrice {
   name: string; // Название
   text?: string; // Описание
-  unit: Unit; // Ед.изм.
+  unit: PriceUnit; // Ед.изм.
   price: number | number[] | string; //  Цена
 }
 
@@ -49,7 +49,7 @@ export interface STPriceBrand {
   warranty: number; //  Гарантия
   operatingTemperature: string; //Температура эксплуатации
   price: number | number[]; //  Цена
-  unit: Unit;
+  unit: PriceUnit;
 }
 
 export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([

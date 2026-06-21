@@ -1,9 +1,10 @@
 h1,
 h2,
-h3,
-h4,
-h5,
-h6 {
+h3
+// h4,
+// h5,
+// h6
+{
   font-family: 'PF Regal Text Pro';
 }
 
@@ -26,7 +27,7 @@ h6 {
 }
 
 .bg-image {
-  display: inline-block;
+  // display: inline-block;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-x: center;
@@ -70,5 +71,9 @@ h6 {
 }
 
 .bg-judge-gray {
-  background-color: #4F4338;
+  background-color: #4f4338;
+}
+
+.t-scrollbar {
+  box-shadow: none !important;
 }

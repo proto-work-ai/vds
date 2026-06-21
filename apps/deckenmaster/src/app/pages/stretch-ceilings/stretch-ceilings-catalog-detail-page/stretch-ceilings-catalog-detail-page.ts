@@ -24,7 +24,6 @@ import { AnyQuestions } from '../../../components/any-questions/any-questions';
 @Component({
   selector: 'st-catalog-getail',
   templateUrl: 'stretch-ceilings-catalog-detail-page.html',
-  styleUrls: ['stretch-ceilings-catalog-detail-page.scss'],
   imports: [
     FooterMenuComponent,
     BreadcrumbsHeader,

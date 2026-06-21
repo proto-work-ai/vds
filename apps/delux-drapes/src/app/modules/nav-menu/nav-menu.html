@@ -1,14 +1,14 @@
 <div class="-text-lg">
   <section class="border-b-1 border-gray-200 max-lg:px-3">
-    <ol class="lg:container mx-auto flex items-center gap-15 h-16">
-      <li>
-        <!-- <h1 class="text-4xl font-bold">Фабрика штор</h1> -->
+    <ol class="md:container md:mx-auto flex items-center gap-3 h-16">
+      <li class="leading-0">
+        <!-- <h1 class="text-4xl font-bold">Shtorivdom</h1> -->
         <!-- <ng-icon src="/logo/logo-02.svg" /> -->
         <!-- <a [routerLink]="['/']"><ng-icon src="/logo/logo-03.svg" /></a> -->
-        <a [routerLink]="['/']"><ng-icon class="text-6xl text-cardboard" src="/logo/logo-07.svg" /></a>
+        <a [routerLink]="['/']"><ng-icon class="text-4xl text-cardboard" src="/logo/logo-main.svg" /></a>
       </li>
 
-      <li class="flex-1">
+      <li>
         <nav hlmNavigationMenu openOn="hover" class="flex max-lg:hidden">
           <ul hlmNavigationMenuList class="flex-wrap gap-5">
             @for (item of navMenu(); track item; let index = $index) {
@@ -70,7 +70,7 @@
                           }
                         </ul>
                         <!-- @if (index === 0) {
-                        <a hlmNavigationMenuLink routerLinkActive="font-medium" [routerLink]="['/', 'catalog']" class="flex items-center mt-2">
+                        <a hlmNavigationMenuLink ="font-medium" [routerLink]="['/', 'catalog']" class="flex items-center mt-2">
                           Весь каталог
                           <ng-icon strokewidth="1px" name="lucideChevronRight" class="text-gray-500" />
                         </a>
@@ -89,19 +89,23 @@
         </div>
       </li>
 
-      <li class="flex gap-4 items-center">
+      <li class="ms-auto flex gap-4 items-center">
         <a
           [attr.href]="addressLink"
           target="_blank"
-          class="underline decoration-dashed flex gap-1 items-center cursor-pointer"
+          class="flex-1 underline decoration-dashed flex gap-1 items-center cursor-pointer"
         >
-          <ng-icon name="lucideNavigation" class="text-xl" />
-          <address>{{ address }}</address>
+          <div class="leading-0">
+            <ng-icon name="lucideNavigation" />
+          </div>
+          <address class="max-md:text-sm">{{ address }}</address>
         </a>
 
-        <div class="flex items-center gap-1">
-          <ng-icon name="lucideClock4" />
-          10:00 - 21:00 / Без выходных
+        <div class="flex items-center gap-1 max-md:text-sm">
+          <div class="leading-0">
+            <ng-icon name="lucideClock4" />
+          </div>
+          10:00 - 20:00 / Без выходных
         </div>
       </li>
 

@@ -21,3 +21,14 @@
     display: none !important;
   }
 }
+
+::ng-deep {
+  app-swiper-full-images {
+    .swiper-button-prev,
+    .swiper-button-next {
+      .swiper-navigation-icon {
+        display: none;
+      }
+    }
+  }
+}

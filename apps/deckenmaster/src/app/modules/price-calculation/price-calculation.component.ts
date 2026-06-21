@@ -1,26 +1,15 @@
 import { Component, DestroyRef, inject, input, Pipe, PipeTransform, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
-import { TuiTextfield } from '@taiga-ui/core';
-import {
-  TuiDataListWrapper,
-  TuiInputPhone,
-  TuiInputRange,
-  TuiInputSlider,
-  TuiSelect,
-  TuiTextarea,
-} from '@taiga-ui/kit';
-import { ZoomControllerComponent } from './zoom-controller/zoom-controller.component';
+import { ZoomController } from './zoom-controller/zoom-controller.component';
 import { provideNgIconLoader, withCaching } from '@ng-icons/core';
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { FormImports } from '../../components/form';
+import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
 import { DataListOptionImports } from './data-list-options';
 import { distinctUntilChanged, finalize, pairwise, startWith, tap } from 'rxjs';
-import { FormGroupStore } from '../../components/form-store/form-store.directive';
-import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
-import { TuiInput } from '@taiga-ui/core';
-import { FormImports } from '../../components/form';
 
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
@@ -35,11 +24,7 @@ export class SafePipe implements PipeTransform {
   selector: 'app-price-calculation',
   templateUrl: './price-calculation.component.html',
   styleUrls: ['./price-calculation.component.scss'],
-  imports: [
-    ZoomControllerComponent,
-    DataListOptionImports,
-    FormImports,
-  ],
+  imports: [ZoomController, DataListOptionImports, FormImports],
   providers: [
     provideNgIconLoader((name) => {
       return inject(HttpClient).get(`/price-calculation/${name}.svg`, { responseType: 'text' });

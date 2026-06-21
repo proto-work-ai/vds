@@ -17,6 +17,8 @@ export interface IFormData {
   city?: string;
   size?: number;
   description?: string;
+  theme?: string;
+  email?: string;
 }
 
 export interface IDataSendItem {
@@ -47,6 +49,14 @@ export function buldDataMessage(data: IFormData): IDataSendItem[] {
       values.push('+7' + data.phone);
     }
     result.push({ title: 'Контакты:', values });
+  }
+
+  if (data.email) {
+    result.push({ title: 'Email:', values: [data.email] });
+  }
+
+  if (data.theme) {
+    result.push({ title: 'Тема сообщения:', values: [data.theme] });
   }
 
   if (data.type) {

@@ -27,7 +27,8 @@
     <label tuiLabel class="text-sm">
       <input tuiCheckbox type="checkbox" formControlName="checked" />
       <small class="text-sm">
-        Я соглашаюсь с правилами по обработке <a class="cursor-pointer underline" >персональных данных</a>
+        Я соглашаюсь с правилами по обработке
+        <a class="cursor-pointer underline" [routerLink]="['/privacy-policy']" target="_blank">персональных данных</a>
       </small>
     </label>
 

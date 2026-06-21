@@ -1,19 +1,19 @@
 import { Component, computed, input } from '@angular/core';
 import { IContentType } from '../../model/stretch-ceiling';
 import { injectCatalogPrice } from '../../model/price-list-all';
-import { Unit } from '../../model/price-list.service';
+import { PriceUnit } from '../../model/price-list.service';
 
-export function unitFormatter(unit: Unit) {
+export function unitFormatter(unit: PriceUnit) {
   switch (unit) {
-    case Unit.M2:
+    case PriceUnit.M2:
       return 'м²';
-    case Unit.Things:
+    case PriceUnit.Things:
       return 'шт.';
-    case Unit.Point:
+    case PriceUnit.Point:
       return 'точка';
-    case Unit.LinearMeter:
+    case PriceUnit.LinearMeter:
       return 'м.пог.';
-    case Unit.Service:
+    case PriceUnit.Service:
       return 'Разовая оплата';
     default:
       return '';

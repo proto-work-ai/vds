@@ -2,15 +2,12 @@
 
 <app-breadcrumbs-header [items]="breadcrumbs()" />
 
-<div class="container mx-auto my-8 flex flex-col gap-6">
+<div id="catalog-detail" class="container mx-auto my-8 flex flex-col gap-6">
   <header class="text-center flex flex-col gap-2 sm:gap-3">
-    <h2 class="md:text-4xl text-2xl">{{ title() }}</h2>
+    <h2 class="md:text-4xl text-3xl">{{ title() }}</h2>
 
     @if (text()) {
-      <div class="md:w-175 mx-auto text-gray-500">
-        От классики до сложных дизайнерских решений. Гарантируем быстрое производство, профессиональный монтаж,
-        бесплатный замер.
-      </div>
+      <div class="md:w-175 mx-auto text-gray-500">{{ text() }}</div>
     }
   </header>
 
@@ -27,6 +24,12 @@
 
 <section class="container mx-auto max-sm:px-5 md:my-8 my-6">
   <app-swiper-full-images [item]="item()" />
+</section>
+
+<section class="container mx-auto flex gap-4 items-center rounded-xl bg-you-love p-5">
+  <div class="flex-1">Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.</div>
+
+  <button inviteModalClick class="btn btn-primary">Пригласить дизайнера</button>
 </section>
 
 <!-- <div class="bg-white-chocolate">
@@ -74,6 +77,12 @@
  </ul>
 </section> -->
 
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <router-outlet />
+</section>
+
+<app-place-an-order />
+
 <app-way-we-work id="way-we-work"></app-way-we-work>
 
 <!-- <section class="container mx-auto max-sm:px-5 md:my-8 my-6">
@@ -81,7 +90,7 @@
 </section> -->
 
 <!--Закажите выезд-->
-<app-main-form></app-main-form>
+<app-main-banner-form />
 
 <!--Ответы на вопросы-->
 <app-main-questions></app-main-questions>

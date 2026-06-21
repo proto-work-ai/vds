@@ -1,7 +1,7 @@
 /* eslint-disable @angular-eslint/directive-selector */
 /* eslint-disable @angular-eslint/component-selector */
 import { Directive, inject, Injector, input, OnInit, DestroyRef } from '@angular/core';
-import { injectLocalStorageValue } from '@atlas/core';
+import { injectLocalStorage } from '@atlas/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs';
@@ -11,7 +11,7 @@ export class FormGroupStore implements OnInit {
   private readonly injector = inject(Injector);
   private readonly destroyRef = inject(DestroyRef);
   private readonly formGroup = inject(FormGroupDirective);
-  private formValue?: ReturnType<typeof injectLocalStorageValue>;
+  private formValue?: ReturnType<typeof injectLocalStorage>;
   readonly formGroupStore = input.required<string>();
 
   private get form(): FormGroup {
@@ -19,7 +19,7 @@ export class FormGroupStore implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formValue = injectLocalStorageValue(this.formGroupStore(), undefined, this.injector);
+    this.formValue = injectLocalStorage(this.formGroupStore(), { injector: this.injector });
 
     if (this.formValue()) {
       const value = this.form.value ?? {};

@@ -7,6 +7,7 @@ import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../send-service/send.services';
 import { FormGroupStore } from '../../../components/form-store/form-store.directive';
 import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
+import { FormImports } from '../../../components/form';
 
 export function ymDrainingEvent(): void {
   const { ym } = window as any;
@@ -30,7 +31,7 @@ export function ymDrainingEvent(): void {
     FormGroupStore,
     TuiInput,
     TuiCheckbox,
-    IsPlatformBrowserDirective
+    FormImports
   ],
 })
 export class ServicesForm {

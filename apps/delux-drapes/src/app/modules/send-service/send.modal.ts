@@ -1,28 +1,31 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
-import { TuiAutoFocus } from '@taiga-ui/cdk';
-import { TuiButton, type TuiDialogContext, TuiTextfield, TuiTextfieldComponent, TuiInput, TuiCheckbox } from '@taiga-ui/core';
+import {
+  TuiButton,
+  type TuiDialogContext,
+  TuiTextfield,
+  TuiTextfieldComponent,
+  TuiInput,
+  TuiCheckbox,
+} from '@taiga-ui/core';
 import { TuiInputPhone } from '@taiga-ui/kit';
-import { TuiForm } from '@taiga-ui/layout';
 import { injectContext } from '@taiga-ui/polymorpheus';
 import { IFormData } from './send.services';
-import { IsPlatformBrowserDirective } from '../../components/is-platform-browser.directive';
+import { FormImports } from '../../components/form';
 
 @Component({
   templateUrl: 'send.modal.html',
   imports: [
     ReactiveFormsModule,
     TuiButton,
-    TuiForm,
     TuiTextfieldComponent,
     FormsModule,
     TuiTextfield,
     TuiInputPhone,
-    TuiAutoFocus,
     TuiInput,
     TuiCheckbox,
-    IsPlatformBrowserDirective
+    FormImports,
   ],
 })
 export class SendModal {

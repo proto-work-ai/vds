@@ -18,7 +18,7 @@ export class ScrollService {
       } else {
         setTimeout(() => {
           this.scrollToElement(this.document.querySelector(selector)!);
-        }, 1000);
+        }, 500);
       }
     });
   }

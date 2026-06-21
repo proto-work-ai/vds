@@ -1,4 +1,4 @@
-import { DataListOptionComponent } from './data-list-option.component';
-import { DataListOptionsComponent } from './data-list-options.component';
+import { DataListOption } from './data-list-option.component';
+import { DataListOptions } from './data-list-options.component';
 
-export const DataListOptionImports = [DataListOptionsComponent, DataListOptionComponent];
+export const DataListOptionImports = [DataListOptions, DataListOption];

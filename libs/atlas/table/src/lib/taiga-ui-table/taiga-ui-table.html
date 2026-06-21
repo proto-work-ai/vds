@@ -1,6 +1,6 @@
 @if (columns().length) {
   <table
-    tuiTable    
+    tuiTable
     class="w-full"
     [size]="size()"
     [direction]="columnDirection()"
@@ -24,13 +24,11 @@
 
     @if (data()?.length && data(); as data) {
       <tbody tuiTbody [data]="data">
-        @for (row of data; track $index;let even = $even) {
+        @for (row of data; track $index; let even = $even) {
           <tr [class.bg-gray-100]="even">
             @for (column of columns(); track column) {
               @if (column.formatter) {
-                <td tuiTd>
-                  {{ column.formatter(row) }}
-                </td>
+                <td tuiTd [innerHTML]="column.formatter(row)"></td>
               } @else {
                 @switch (column.type) {
                   @case ('html') {

@@ -4,7 +4,7 @@ import { servicePages } from './model/service-pages';
 
 export const routePath = {
   root: '',
-  privacyPolicy : {
+  privacyPolicy: {
     root: 'privacy-policy',
   },
   catalog: {
@@ -16,7 +16,16 @@ export const routePath = {
   services: {
     root: 'services',
   },
-};
+  orders: {
+    root: 'orders',
+    orderEdit: {
+      root: 'order/edit',
+    },
+    orderDetail: {
+      root: 'order/detail',
+    },
+  },
+} as const;
 
 const stretchCeilingRoutes: Route[] = stretchCeilingPages.map((data) => {
   return {
@@ -24,9 +33,9 @@ const stretchCeilingRoutes: Route[] = stretchCeilingPages.map((data) => {
     pathMatch: 'full',
     data,
     loadComponent: () =>
-      import(
-        './pages/stretch-ceilings/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
-      ).then((a) => a.StretchCeilingsCatalogDetailPage),
+      import('./pages/stretch-ceilings/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page').then(
+        (a) => a.StretchCeilingsCatalogDetailPage
+      ),
 
     children: [
       {
@@ -61,20 +70,18 @@ export const appRoutes: Route[] = [
     path: '',
     loadComponent: () => import('./pages/main-page/main-page').then((a) => a.MainPage),
   },
+
   {
     path: routePath.privacyPolicy.root,
-    loadComponent: () =>
-      import(
-        './pages/privacy-policy/privacy-policy-page'
-      ).then((a) => a.PrivacyPolicyPage),
+    loadComponent: () => import('./pages/privacy-policy/privacy-policy-page').then((a) => a.PrivacyPolicyPage),
   },
 
   {
     path: routePath.catalog.root,
     loadComponent: () =>
-      import(
-        './pages/stretch-ceilings/stretch-ceilings-catalog-all-page/stretch-ceilings-catalog-all-page'
-      ).then((a) => a.StretchCeilingsCatalogsPage),
+      import('./pages/stretch-ceilings/stretch-ceilings-catalog-all-page/stretch-ceilings-catalog-all-page').then(
+        (a) => a.StretchCeilingsCatalogsPage
+      ),
   },
 
   ...stretchCeilingRoutes,
@@ -100,6 +107,21 @@ export const appRoutes: Route[] = [
   // },
 
   ...servicesRoutes,
+
+  {
+    path: `${routePath.orders.root}`,
+    loadComponent: () => import('./pages/order/orders-page/orders-page').then((a) => a.OrdersPage),
+  },
+
+  {
+    path: `${routePath.orders.orderEdit.root}/:key`,
+    loadComponent: () => import('./pages/order/order-edit-page/order-edit-page').then((a) => a.OrderEditPage),
+  },
+
+  {
+    path: `${routePath.orders.orderDetail.root}`,
+    loadComponent: () => import('./pages/order/order-detail-page/order-detail-page').then((a) => a.OrderDetailPage),
+  },
 
   {
     path: '**',

@@ -1,11 +1,9 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, computed, DestroyRef, effect, inject, signal, WritableSignal } from '@angular/core';
-import { RouterOutlet, RouterLinkWithHref, RouterLink } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { GalleryModule, ImageItem } from 'ng-gallery';
 import { Meta, Title } from '@angular/platform-browser';
 import { injectStretchCeilingRouteByKey } from '../../../model/catalog.service';
-import { ApplicationMeasurementComponent } from '../../../modules/application-measurement/application-measurement.component';
 import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
 import { SwiperFullImages } from '../../../components/swiper-full-images/swiper-full-images';
@@ -23,6 +21,8 @@ import { MainBannerComponent } from '../../../modules/main-banner/main-banner.co
 import { MainForm } from '../../../modules/main-form/main-form.component';
 import { MainQuestions } from '../../../modules/main-questions/main-questions.component';
 import { InviteModalClick } from '../../../components/invite-designer/invite-designer-modal';
+import { PlaceAnOrder } from "../../../modules/place-an-order/place-an-order.component";
+import { MainBannerForm } from "../../../modules/main-banner-form/main-banner-form.component";
 
 @Component({
   selector: 'app-catalog-getail',
@@ -30,7 +30,6 @@ import { InviteModalClick } from '../../../components/invite-designer/invite-des
   styleUrls: ['catalog-detail-page.scss'],
   imports: [
     BreadcrumbsHeader,
-    RouterOutlet,
     GalleryModule,
     WayWeWorkComponent,
     MainForm,
@@ -38,6 +37,7 @@ import { InviteModalClick } from '../../../components/invite-designer/invite-des
     MainFooterComponent,
     MainHeaderComponent,
     SwiperFullImages,
+    RouterOutlet,
     InviteModalClick,
     RouterLink,
     MainBannerComponent,
@@ -45,6 +45,8 @@ import { InviteModalClick } from '../../../components/invite-designer/invite-des
     PriceListBrandTable,
     GallerizeImages,
     PriceCard,
+    PlaceAnOrder,
+    MainBannerForm
 ],
   providers: [MenuDeferService],
   host: {
@@ -89,10 +91,10 @@ export class CatalogDetailPage {
             title: 'Главная',
             link: ['/'],
           },
-          {
-            title: 'Каталог',
-            link: ['/catalog'],
-          },
+          // {
+          //   title: 'Каталог',
+          //   link: ['/catalog'],
+          // },
           {
             title: item.title,
           },

@@ -1,9 +1,11 @@
 import { Route } from '@angular/router';
-import { servicePages } from './model/service-pages';
-import { catalogPagesAll } from './model/catalog.data';
+import { catalogPagesAll } from './model/catalog/catalog.data';
 
 export const routePath = {
   root: '',
+  privacyPolicy: {
+    root: 'privacy-policy',
+  },
   catalog: {
     root: 'catalog',
   },
@@ -49,6 +51,12 @@ export const appRoutes: Route[] = [
     path: '',
     loadComponent: () => import('./pages/main-page/main-page').then((a) => a.MainPage),
   },
+
+  {
+    path: routePath.privacyPolicy.root,
+    loadComponent: () => import('./pages/privacy-policy/privacy-policy-page').then((a) => a.PrivacyPolicyPage),
+  },
+
   {
     path: routePath.contact.root,
     loadComponent: () => import('./pages/contact/contact-page/contact-page').then((a) => a.СontactPage),

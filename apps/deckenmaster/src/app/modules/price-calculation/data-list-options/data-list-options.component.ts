@@ -9,12 +9,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => DataListOptionsComponent),
+      useExisting: forwardRef(() => DataListOptions),
       multi: true,
     },
   ],
 })
-export class DataListOptionsComponent implements ControlValueAccessor {
+export class DataListOptions implements ControlValueAccessor {
   readonly items = input<any>([]);
 
   readonly value = signal<any[]>([]);;

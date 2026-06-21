@@ -1,13 +1,12 @@
 /* eslint-disable @angular-eslint/directive-selector */
 import { ChangeDetectionStrategy, Component, DestroyRef, Directive, HostListener, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
 import { TuiCheckbox, TuiDialogContext, TuiDialogService, TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { injectContext, PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
 import { AtlasFormImports } from '@atlas/form';
 import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
-import { FormGroupStore } from '../form-store/form-store.directive';
 import { provideIcons } from '@ng-icons/core';
 import { lucideDelete, lucideX } from '@ng-icons/lucide';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -15,6 +14,7 @@ import { NgIconImports } from '../ng-icon-src.directive';
 import { markAsSubmit } from '@atlas/core';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
 import { finalize } from 'rxjs';
+import { FormImports } from '../form';
 
 export function ymInviteEvent(): void {
   const { ym } = window as any;
@@ -52,12 +52,12 @@ export class InviteModalClick {
     TuiTextfield,
     TuiInputSlider,
     TuiInputPhone,
-    FormGroupStore,
     TuiInput,
     TuiSelect,
     TuiAutoFocus,
     NgIconImports,
     TuiCheckbox,
+    FormImports
   ],
   providers: [
     provideIcons({

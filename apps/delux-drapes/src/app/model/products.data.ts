@@ -135,7 +135,7 @@ export const catalogPagesAll: IContentType[] = [
   //   brief:
   //     'Это эластичное полотно из поливинилхлорида, которое натягивается под нагревом (тепловой пушкой) на каркас, образуя идеально ровную поверхность',
   //   detail: () => import('./stretch-ceilings/pvc-stretch-ceilings/pvc-stretch-ceilings').then((a) => a.Detail),
-  //   image: '/img/work-types-4.jpg',
+  //   image: '/images/work-types-4.jpg',
   //   images: [],
   // },
 
@@ -366,7 +366,7 @@ export const catalogPagesAll: IContentType[] = [
   //     'Конструкции из двух и более ярусов (обычно натяжных или гипсокартонных), расположенных на разной высоте. Они зонируют пространство, скрывают проводку/трубы, но требуют высоких потолков (от 2.7–3 м).',
   //   detail: () =>
   //     import('./stretch-ceilings/multi-level-stretch-ceilings/multi-level-stretch-ceilings').then((a) => a.Detail),
-  //   image: '/img/work-types-4.jpg',
+  //   image: '/images/work-types-4.jpg',
   //   images: ['/catalog/', '/catalog/', '/catalog/', '/catalog/'],
   // },
 
@@ -443,7 +443,7 @@ export const catalogPagesAll: IContentType[] = [
   //     'ПВХ-пленки с объемным рельефом или узором, имитирующие натуральные материалы (кожу, камень, дерево, текстиль). Они создают «живой» 3D-эффект, позволяют реализовать оригинальный дизайн',
   //   detail: () =>
   //     import('./stretch-ceilings/textured-stretch-ceilings/textured-stretch-ceilings').then((a) => a.Detail),
-  //   image: '/img/work-types-4.jpg',
+  //   image: '/images/work-types-4.jpg',
   //   images: ['/catalog/', '/catalog/', '/catalog/', '/catalog/'],
   // },
 
@@ -465,7 +465,7 @@ export const catalogPagesAll: IContentType[] = [
   //     'Премиальная демпферная система алюминиевых профилей для натяжных потолков, позволяющая создавать четкие, безщелевые световые ниши, черные трековые линии (например, ProektPro) и многоуровневые конструкции',
   //   detail: () =>
   //     import('./stretch-ceilings/textured-stretch-ceilings/textured-stretch-ceilings').then((a) => a.Detail),
-  //   image: '/img/work-types-1.jpg',
+  //   image: '/images/work-types-1.jpg',
   //   images: ['/catalog/', '/catalog/', '/catalog/', '/catalog/'],
   // },
 
@@ -487,7 +487,7 @@ export const catalogPagesAll: IContentType[] = [
   //     'Премиальная демпферная система алюминиевых профилей для натяжных потолков, позволяющая создавать четкие, безщелевые световые ниши, черные трековые линии (например, ProektPro) и многоуровневые конструкции',
   //   detail: () =>
   //     import('./stretch-ceilings/textured-stretch-ceilings/textured-stretch-ceilings').then((a) => a.Detail),
-  //   image: '/img/work-types-1.jpg',
+  //   image: '/images/work-types-1.jpg',
   //   images: ['/catalog/', '/catalog/', '/catalog/', '/catalog/'],
   // },
 

@@ -14,12 +14,12 @@ import { BehaviorSubject, distinctUntilChanged, map, of, switchMap, timer } from
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => ZoomControllerComponent),
+      useExisting: forwardRef(() => ZoomController),
       multi: true,
     },
   ],
 })
-export class ZoomControllerComponent implements ControlValueAccessor {
+export class ZoomController implements ControlValueAccessor {
   readonly step = input(1);
   readonly min = input(1);
   readonly max = input(150);

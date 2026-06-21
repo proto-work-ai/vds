@@ -7,10 +7,11 @@ import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.se
 import { NavMenu } from '../../modules/nav-menu/nav-menu';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../modules/breadcrumbs-header/breadcrumbs-header.component';
 
+
 @Component({
   selector: 'main',
   templateUrl: './privacy-policy-page.html',
-  imports: [FooterMenuComponent, MainHeaderComponent, NavMenu, BreadcrumbsHeader],
+  imports: [MainHeaderComponent, NavMenu, BreadcrumbsHeader, FooterMenuComponent],
   providers: [MenuDeferService],
   host: {
     id: 'main',

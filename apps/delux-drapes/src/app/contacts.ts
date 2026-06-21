@@ -2,7 +2,7 @@ import { InjectionToken } from '@angular/core';
 
 export const ADDRESS = new InjectionToken<string>('ADDRESS', {
   providedIn: 'root',
-  factory: () => 'Москва, район Троицк, Кварцевая улица, 3, корп. 2',
+  factory: () => 'Район Троицк, Кварцевая улица, 3, корп. 2',
 });
 
 export const ADDRESS_LINK = new InjectionToken<string>('ADDRESS_LINK', {
@@ -12,7 +12,7 @@ export const ADDRESS_LINK = new InjectionToken<string>('ADDRESS_LINK', {
 
 export const EMAIL_CONTACT = new InjectionToken<string>('EMAIL_CONTACT', {
   providedIn: 'root',
-  factory: () => 'info@deluxdrapes.ru',
+  factory: () => 'info@shtorivdom.ru',
 });
 
 export const TELEGRAM_CONTACT = new InjectionToken<string>('TELEGRAM_CONTACT', {
@@ -49,6 +49,6 @@ export const YANDEX_KEY = new InjectionToken<string>('YANDEX_KEY', {
 
 export const COMPANY_NAME = new InjectionToken<string>('COMPANY_NAME', {
   providedIn: 'root',
-  factory: () => `ООО «DeluxDrapes»`,
+  factory: () => `ООО «Shtorivdom»`,
 });
 

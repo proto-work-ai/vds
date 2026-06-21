@@ -61,8 +61,8 @@ export class SwiperFullImages {
             slidesPerView: 2,
             // slidesPerView: "auto",
             navigation: {
-              nextEl: '.swiper-button-next',
               prevEl: '.swiper-button-prev',
+              nextEl: '.swiper-button-next',
             },
             breakpoints: {
               400: {

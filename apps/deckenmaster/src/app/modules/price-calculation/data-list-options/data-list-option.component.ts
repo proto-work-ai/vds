@@ -2,7 +2,7 @@
 import { Component, computed, HostListener, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIcon } from '@ng-icons/core';
-import { DataListOptionsComponent } from './data-list-options.component';
+import { DataListOptions } from './data-list-options.component';
 
 @Component({
   selector: 'data-list-option',
@@ -10,13 +10,17 @@ import { DataListOptionsComponent } from './data-list-options.component';
   styleUrl: 'data-list-option.component.scss',
   imports: [FormsModule, NgIcon],
 })
-export class DataListOptionComponent {
-  private readonly parent = inject(DataListOptionsComponent);
+export class DataListOption {
+  private readonly parent = inject(DataListOptions, { optional: true });
   readonly icon = input<string | undefined>(undefined);
   readonly value = input<unknown>(undefined);
 
   protected readonly selected = computed(() => {
-    return this.match(this.value(), this.parent?.value());
+    if (this.parent) {
+      return this.match(this.value(), this.parent?.value());
+    } else {
+      return true;
+    }
   });
 
   @HostListener('click') onSelectedItem(): void {

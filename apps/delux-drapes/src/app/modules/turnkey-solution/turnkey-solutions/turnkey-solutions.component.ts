@@ -13,42 +13,5 @@ import { TurnkeySolutionCard } from '../turnkey-solution-card/turnkey-solution-c
 export class TurnkeySolutionsComponent {
   readonly title = input('Готовые решения под ключ');
 
-  protected readonly items = signal([
-    {
-      title: 'Потолок в ванной',
-      size: '4м²',
-      color: 'Белый',
-      canvas: 'MSD',
-      texture: 'Глянец',
-      price: 5_000,
-      src: '/img/turnkey-solutions-1.jpg',
-    },
-    {
-      title: 'Потолок в коридоре',
-      size: '4м²',
-      color: 'Белый',
-      canvas: 'MSD',
-      texture: 'Глянец',
-      price: 5_000,
-      src: '/img/turnkey-solutions-2.jpg',
-    },
-    {
-      title: 'Потолок на кухне',
-      size: '4м²',
-      color: 'Белый',
-      canvas: 'MSD',
-      texture: 'Глянец',
-      price: 5_000,
-      src: '/img/turnkey-solutions-3.jpg',
-    },
-    {
-      title: 'Потолок в коридоре',
-      size: '4м²',
-      color: 'Белый',
-      canvas: 'MSD',
-      texture: 'Глянец',
-      price: 5_000,
-      src: '/img/turnkey-solutions-4.jpg',
-    },
-  ] as const);
+  protected readonly items = signal([ ] as const);
 }
