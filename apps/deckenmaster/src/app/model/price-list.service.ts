@@ -18,7 +18,7 @@ export interface STBrand {
 }
 
 export enum PriceUnit {
-  LinearMeter = 1, // м.пог.
+  LM = 1, // м.пог.
   M2, // M2
   Things, // шт.
   Point, // точка
@@ -37,6 +37,7 @@ export interface UnitPrice {
   text?: string; // Описание
   unit: PriceUnit; // Ед.изм.
   price: number | number[] | string; //  Цена
+  image?: string;
 }
 
 export interface STPriceBrand {

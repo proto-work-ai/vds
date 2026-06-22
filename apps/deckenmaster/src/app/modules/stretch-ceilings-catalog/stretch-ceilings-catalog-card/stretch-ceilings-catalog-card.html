@@ -1,7 +1,7 @@
 <article class="flex flex-col bg-gray-light h-full max-md:max-w-100">
-  <figure class="w-full bg-image aspect-1.5/1" [style.background-image]="'url(' + item()?.image + ')'">
-    @if (item(); as item) {
-      <img class="hidden" [attr.src]="item.image" [attr.alt]="item.title" />
+  <figure class="w-full bg-image aspect-1.5/1" [style.background-image]="'url(' + image() + ')'">
+    @if (image(); as image) {
+      <img class="hidden" [attr.src]="image" [attr.alt]="title()" />
     }
   </figure>
 

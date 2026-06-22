@@ -127,7 +127,7 @@ export class OrdersPage {
           key: '34346',
           name: 'Слив воды с натяжного потолка',
           unit: PriceUnit.M2,
-          price: 2500,
+          price: 2490,
         };
       })
   );

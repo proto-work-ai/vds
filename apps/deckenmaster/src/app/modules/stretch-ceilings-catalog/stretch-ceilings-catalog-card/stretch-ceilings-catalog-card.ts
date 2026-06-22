@@ -20,4 +20,5 @@ export class StretchCeilingsCatalogCard {
   readonly link = input<boolean>(false);
   protected readonly title = computed(() => this.item().title);
   protected readonly brief = computed(() => this.item().brief);
+  protected readonly image = computed(() => this.item().image);
 }

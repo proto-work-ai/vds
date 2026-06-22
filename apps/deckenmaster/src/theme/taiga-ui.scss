@@ -11,11 +11,11 @@ $accent-color-hover: #f11d0d;
   --tui-padding-s: 0.625rem;
   --tui-padding-m: 0.75rem;
   --tui-padding-l: 1rem;
-  --tui-radius-xs: 2px;
-  --tui-radius-s: 2px;
-  --tui-radius-m: 2px;
-  --tui-radius-l: 2px;
-  --tui-radius-xl: 2px;
+  --tui-radius-xs: 4px;
+  --tui-radius-s: 4px;
+  --tui-radius-m: 4px;
+  --tui-radius-l: 4px;
+  --tui-radius-xl: 4px;
   --tui-font-text-xl: normal 1.1875rem var(--tui-font-text);
   --tui-font-text-l: normal 1rem var(--tui-font-text);
   --tui-font-text-m: normal 1rem var(--tui-font-text);
@@ -340,7 +340,11 @@ table[tuiTable] td {
   --t-padding: 0 1rem;
 }
 
-atlas-taiga-ui-table {
-  --tui-font-text-s: normal 0.625remvar (--tui-font-text);
-  --tui-font-text-m: normal 0.825rem var(--tui-font-text);
+[tuiAccordion] {
+  height: 3.75rem !important;
+  &,
+  & > * {
+    line-height: 1.2rem !important;
+    white-space: break-spaces !important;
+  }
 }

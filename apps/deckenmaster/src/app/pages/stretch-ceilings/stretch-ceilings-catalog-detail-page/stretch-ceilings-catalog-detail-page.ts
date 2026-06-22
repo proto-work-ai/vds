@@ -71,6 +71,13 @@ export class StretchCeilingsCatalogDetailPage {
     return getCatalogMap2(this.item().types);
   });
 
+  protected readonly items = signal([
+    { title: 'Бесплатный выезд замерщика', src: '/icons/banner-icon-1.svg' },
+    { title: 'Экологично', src: '/icons/banner-icon-2.svg' },
+    { title: 'Изготовление за 1 день, установка за 2 часа', src: '/icons/banner-icon-3.svg' },
+    { title: '3 года гарантии на материалы', src: '/icons/banner-icon-4.svg' },
+  ]);
+
   constructor() {
     const title = `Decken Master | ${this.item().title}`;
     inject(Title).setTitle(title);

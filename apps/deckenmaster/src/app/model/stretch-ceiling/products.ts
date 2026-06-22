@@ -327,13 +327,13 @@ export const stretchCeilingAll: IContentType[] = [
       'Вид натяжных потолков, где светодиодная лента устанавливается в специальный скрытый профиль по периметру. В отличие от "парящего потолка", контурный дает чёткую светящуюся линию, а не рассеянный свет',
     detail: () =>
       import('./details/ceilings-with-contour-lighting/ceilings-with-contour-lighting').then((a) => a.Detail),
-    image: '/catalog/image-48.jpg',
+    image: '/catalog/image-49.jpg',
     images: [
-      '/catalog/image-48.jpg',
+      '/catalog/image-49.jpg',
       // '/catalog/image-27.jpg',
       '/catalog/image-50.jpg',
-      '/catalog/image-49.jpg',
       '/catalog/image-53.jpg',
+      // '/catalog/image-48.jpg',
       // '/catalog/image-51.jpg',
     ],
   },

@@ -11,7 +11,7 @@ export function unitFormatter(unit: PriceUnit) {
       return 'шт.';
     case PriceUnit.Point:
       return 'точка';
-    case PriceUnit.LinearMeter:
+    case PriceUnit.LM:
       return 'м.пог.';
     case PriceUnit.Service:
       return 'Разовая оплата';

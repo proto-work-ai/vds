@@ -7,7 +7,7 @@ export const drainingSuspendedPrice: UnitPrice[] = [
     name: 'Слив воды с натяжного потолка',
     text: ' Без проколов и повреждений полотна. Выезд мастера по Москве за 20–40 минут. Выдаём документы для УК и страховой. ',
     unit: PriceUnit.M2,
-    price: [2500],
+    price: [2490],
   },
   // {
   //   name: 'Срочный слив воды с натяжного потолка',
@@ -21,17 +21,11 @@ export const drainingSuspendedPrice: UnitPrice[] = [
   //   unit: Unit.M2,
   //   price: 800,
   // },
-  {
-    name: 'Ремонт натяжного потолка',
-    text: ' Локальный ремонт после потопа: убираем заломы и морщины, восстанавливаем ровную поверхность и внешний вид полотна. ',
-    unit: PriceUnit.M2,
-    price: [2500],
-  },
   // {
   //   name: 'Вскрытие полотна натяжного потолка',
   //   text: ' Аккуратное вскрытие участка потолка с последующей установкой обратно. Маскируем следы работ, сохраняем эстетику интерьера. ',
   //   unit: Unit.M2,
-  //   price: [2500],
+  //   price: [2490],
   // },
   {
     name: 'Ночной выезд мастера',
@@ -39,6 +33,54 @@ export const drainingSuspendedPrice: UnitPrice[] = [
     unit: PriceUnit.Service,
     price: [5000],
   },
+
+  {
+    name: 'Ремонт натяжного потолка',
+    text: ' Локальный ремонт после потопа: убираем заломы и морщины, восстанавливаем ровную поверхность и внешний вид полотна. ',
+    unit: PriceUnit.M2,
+    price: [2490],
+  },
+];
+export const repairServicePrice: UnitPrice[] = [
+  { name: 'Ремонт натяжного потолка ПВХ (порез, дыра, разрыв, трещина, ожог)', unit: PriceUnit.Service, price: 2490 },
+  { name: 'Частичный демонтаж натяжного потолка ПВХ', unit: PriceUnit.Service, price: 2490 },
+  { name: 'Устранение провисания полотна натяжного потолка ', unit: PriceUnit.Service, price: 2490 },
+  { name: 'Бесследное устранение пореза, разрыва, ожога, прокола', unit: PriceUnit.Service, price: 3000 },
+  { name: 'Демонтаж натяжного потолка без сохранения', unit: PriceUnit.M2, price: 200 },
+  { name: 'Демонтаж профиля натяжного потолка', unit: PriceUnit.LM, price: 200 },
+  { name: 'Демонтаж натяжного потолка ПВХ с сохранением', unit: PriceUnit.M2, price: 250 },
+  { name: 'Монтаж полотна на место ПВХ  ', unit: PriceUnit.M2, price: 300 },
+  { name: 'Монтаж люстры на ваш потолок ', unit: PriceUnit.Things, price: 700 },
+
+  { name: 'Монтаж светильников на уже установленный натяжной потолок ПВХ', unit: PriceUnit.Things, price: 700 },
+  { name: 'Ремонт электрики в натяжном потолке ПВХ ', unit: PriceUnit.Service, price: 3000 },
+  { name: 'Сборка вашей люстры (метал, пластик, стекло) ', unit: PriceUnit.Service, price: 1000 },
+
+  { name: 'Замена потолочного плинтуса (вставка, уголок, ТL-образная) ', unit: PriceUnit.LM, price: 250 },
+
+  {
+    name: 'Замена лампочек освещения в светильниках, люстрах (светодиодные,галоген)',
+    unit: PriceUnit.Things,
+    price: 150,
+  },
+  { name: 'Замена трансформатора, контроллера в потолке  ', unit: PriceUnit.Things, price: 2490 },
+
+  { name: 'Замена каждого последующего трансформатора рядом стоящих ', unit: PriceUnit.Things, price: 500 },
+
+  { name: 'Замена светодиодной ленты с демонтажем полотна ', unit: PriceUnit.LM, price: 400 },
+  { name: 'Замена полотна натяжного потолка ПВХ ', unit: PriceUnit.M2, price: 500 },
+
+  { name: 'Замена светодиодной ленты (парящий профиль) ', unit: PriceUnit.LM, price: 250 },
+
+  { name: 'Удаление штукатурки из натяжного потолка', unit: PriceUnit.Service, price: 2000 },
+  { name: 'Установка термоусадочного кольца на потолок ПВХ (от 40 до 300мм) ', unit: PriceUnit.Things, price: 300 },
+
+  { name: 'Установка воздушно-приточного клапана (вытяжка 48-100-135мм)', unit: PriceUnit.Things, price: 600 },
+  /*
+    Антисептическая обработка пространства потолка от плесени (антигрибок)    290 ₽/м2
+    Слив воды с натяжного потолка ПВХ                                         2 490 ₽  
+    Повторный слив воды с натяжного потолка ПВХ                               2 000 ₽
+  */
 ];
 
 // Pages
@@ -51,9 +93,9 @@ export const enum ServicesPageType {
 
 // Page Titles
 export const servicesPageMapName: Partial<Record<ServicesPageType, string>> = {
-  [ServicesPageType.InstallationSuspendedSeiling]: 'Монтаж натяжного потолка',
-  [ServicesPageType.RepairStretchCeilings]: 'Ремонт натяжных потолков',
   [ServicesPageType.DrainingSuspendedCeiling]: 'Слив воды с натяжного потолка',
+  [ServicesPageType.RepairStretchCeilings]: 'Ремонт натяжных потолков',
+  [ServicesPageType.InstallationSuspendedSeiling]: 'Монтаж натяжного потолка',
   [ServicesPageType.RemovingSlattedCeiling]: 'Демонтаж натяжного потолка',
 } as const;
 
@@ -70,6 +112,30 @@ export const servicesPageProductsMap: Map<ServicesPageType, ProductType[]> = new
 
 // Page Content
 export const servicePages: IContentType[] = [
+  {
+    types: servicesPageProductsMap.get(ServicesPageType.DrainingSuspendedCeiling)!,
+    key: 'draining-suspended-ceiling',
+    title: servicesPageMapName[ServicesPageType.DrainingSuspendedCeiling]!,
+    brief: `Мы сливаем воду без проколов и повреждений — аккуратно. Мастер приезжает в среднем за 20–60 минут и аккуратно восстанавливает потолок после затопления.`,
+    // brief: `При затоплении необходимо отключить электричество,
+    // вызвать мастеров, которые удалят воду через отверстия светильников или край полотна,
+    // а затем просушат его тепловой пушкой для восстановления формы.`,
+    detail: () =>
+      import('./services-detail/draining-suspended-ceiling/draining-suspended-ceiling').then((a) => a.Detail),
+    image: '/services/services-banner.jpg',
+    images: ['/services/services-banner.jpg'],
+  },
+
+  {
+    types: servicesPageProductsMap.get(ServicesPageType.RepairStretchCeilings)!,
+    key: 'repair-stretch-ceilings',
+    title: servicesPageMapName[ServicesPageType.RepairStretchCeilings]!,
+    brief: `Профессиональное удаление порезов, дыр, ожогов, трещин, проколов, пятен на натяжном потолке. Слив воды с потолка. Замена полотна. Ремонт электрики в потолке.`,
+    detail: () => import('./services-detail/repair-stretch-ceilings/repair-stretch-ceilings').then((a) => a.Detail),
+    image: '/services/services-banner.jpg',
+    images: ['/services/services-banner.jpg'],
+  },
+
   // {
   //   types: servicesPageProductsMap.get(ServicesPageType.InstallationSuspendedSeiling)!,
   //   key: 'installation-suspended-seiling',
@@ -77,15 +143,6 @@ export const servicePages: IContentType[] = [
   //   brief: '',
   //   detail: () =>
   //     import('./services-detail/installation-suspended-seiling/installation-suspended-seiling').then((a) => a.Detail),
-  //   image: '/catalog/image-2.jpg',
-  //   images: ['/catalog/image-2.jpg'],
-  // },
-  // {
-  //   types: servicesPageProductsMap.get(ServicesPageType.RepairStretchCeilings)!,
-  //   key: 'repair-stretch-ceilings',
-  //   title: servicesPageMapName[ServicesPageType.RepairStretchCeilings]!,
-  //   brief: '',
-  //   detail: () => import('./services-detail/repair-stretch-ceilings/repair-stretch-ceilings').then((a) => a.Detail),
   //   image: '/catalog/image-2.jpg',
   //   images: ['/catalog/image-2.jpg'],
   // },
@@ -98,17 +155,4 @@ export const servicePages: IContentType[] = [
   //   image: '/catalog/image-2.jpg',
   //   images: ['/catalog/image-2.jpg'],
   // },
-  {
-    types: servicesPageProductsMap.get(ServicesPageType.DrainingSuspendedCeiling)!,
-    key: 'draining-suspended-ceiling',
-    title: servicesPageMapName[ServicesPageType.DrainingSuspendedCeiling]!,
-    brief: `Мы сливаем воду без проколов и повреждений — аккуратно. Мастер приезжает в среднем за 20–60 минут и аккуратно восстанавливает потолок после затопления.`,
-    // brief: `При затоплении необходимо отключить электричество, 
-    // вызвать мастеров, которые удалят воду через отверстия светильников или край полотна, 
-    // а затем просушат его тепловой пушкой для восстановления формы.`,
-    detail: () =>
-      import('./services-detail/draining-suspended-ceiling/draining-suspended-ceiling').then((a) => a.Detail),
-    image: '/services/services-banner.jpg',
-    images: ['/services/services-banner.jpg'],
-  },
 ] as const;

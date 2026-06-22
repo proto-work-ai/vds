@@ -54,7 +54,6 @@ const servicesRoutes: Route[] = servicePages.map((data) => {
     data,
     loadComponent: () =>
       import('./pages/services/services-detail-page/services-detail-page').then((a) => a.ServicesDetailPpage),
-
     children: [
       {
         path: ``,
@@ -113,15 +112,15 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/order/orders-page/orders-page').then((a) => a.OrdersPage),
   },
 
-  {
-    path: `${routePath.orders.orderEdit.root}/:key`,
-    loadComponent: () => import('./pages/order/order-edit-page/order-edit-page').then((a) => a.OrderEditPage),
-  },
+  // {
+  //   path: `${routePath.orders.orderEdit.root}/:key`,
+  //   loadComponent: () => import('./pages/order/order-edit-page/order-edit-page').then((a) => a.OrderEditPage),
+  // },
 
-  {
-    path: `${routePath.orders.orderDetail.root}`,
-    loadComponent: () => import('./pages/order/order-detail-page/order-detail-page').then((a) => a.OrderDetailPage),
-  },
+  // {
+  //   path: `${routePath.orders.orderDetail.root}`,
+  //   loadComponent: () => import('./pages/order/order-detail-page/order-detail-page').then((a) => a.OrderDetailPage),
+  // },
 
   {
     path: '**',
