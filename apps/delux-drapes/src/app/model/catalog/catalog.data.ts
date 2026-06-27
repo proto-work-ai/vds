@@ -7,14 +7,14 @@ export const catalogPagesAll: IContentType[] = [
     title: 'Шторы блэкаут',
     text: 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме',
     detail: () => import('./catalog-detail/blackout-curtains/blackout-curtains').then((a) => a.Detail),
-    image: '/catalog/blackout-curtains/image-1.jpg',
+    image: '/catalog/blackout-curtains/image-5.jpg',
     images: [
-      '/catalog/blackout-curtains/image-1.jpg',
-      '/catalog/blackout-curtains/image-3.jpg',
-
-      '/catalog/blackout-curtains/image-4.jpg',
-      '/catalog/blackout-curtains/image-2.jpg',
       '/catalog/blackout-curtains/image-5.jpg',
+      '/catalog/blackout-curtains/image-4.jpg',
+      '/catalog/blackout-curtains/image-3.jpg',
+      '/catalog/blackout-curtains/image-1.jpg',
+
+      '/catalog/blackout-curtains/image-2.jpg',
       '/catalog/blackout-curtains/image-6.jpg',
 
       '/catalog/blackout-curtains/image-7.jpg',
@@ -22,8 +22,8 @@ export const catalogPagesAll: IContentType[] = [
       '/catalog/blackout-curtains/image-9.jpg',
 
       '/catalog/blackout-curtains/image-10.jpg',
-      '/catalog/blackout-curtains/image-11.jpg',
-      '/catalog/blackout-curtains/image-12.jpg',
+      //'/catalog/blackout-curtains/image-11.jpg',
+      // '/catalog/blackout-curtains/image-12.jpg',
       '/catalog/blackout-curtains/image-13.jpg',
     ],
   },
@@ -48,9 +48,9 @@ export const catalogPagesAll: IContentType[] = [
     title: 'Рулонные шторы',
     text: 'Крепление на проем, в проем или раму окна.',
     detail: () => import('./catalog-detail/roller-blinds/roller-blinds').then((a) => a.Detail),
-    image: '/catalog/roller-blinds/image-1.jpg',
+    image: '/catalog/roller-blinds/image-2.jpg',
     images: [
-      '/catalog/roller-blinds/image-1.jpg',
+      // '/catalog/roller-blinds/image-1.jpg',
       '/catalog/roller-blinds/image-2.jpg',
       '/catalog/roller-blinds/image-3.jpg',
 
@@ -72,11 +72,11 @@ export const catalogPagesAll: IContentType[] = [
     title: 'Льняные шторы',
     text: 'Для стандартных, мансардных и треугольных окон.',
     detail: () => import('./catalog-detail/linen-curtains/linen-curtains').then((a) => a.Detail),
-    image: '/catalog/linen-curtains/image-1.jpg',
+    image: '/catalog/linen-curtains/image-3.jpg',
     images: [
+      '/catalog/linen-curtains/image-3.jpg',
       '/catalog/linen-curtains/image-1.jpg',
       '/catalog/linen-curtains/image-2.jpg',
-      '/catalog/linen-curtains/image-3.jpg',
 
       '/catalog/linen-curtains/image-4.jpg',
       '/catalog/linen-curtains/image-5.jpg',
@@ -113,29 +113,6 @@ export const catalogPagesAll: IContentType[] = [
   },
 
   {
-    types: [],
-    key: 'blinds',
-    title: 'Жалюзи',
-    text: 'Стильные, практичные.',
-    detail: () => import('./catalog-detail/blinds/blinds').then((a) => a.Detail),
-    image: '/catalog/blinds/image-1.jpg',
-    images: [
-      '/catalog/blinds/image-1.jpg',
-      '/catalog/blinds/image-2.jpg',
-      '/catalog/blinds/image-3.jpg',
-
-      '/catalog/blinds/image-4.jpg',
-      '/catalog/blinds/image-5.jpg',
-      '/catalog/blinds/image-6.jpg',
-
-      '/catalog/blinds/image-7.jpg',
-      '/catalog/blinds/image-8.jpg',
-      '/catalog/blinds/image-9.jpg',
-      '/catalog/blinds/image-10.jpg',
-    ],
-  },
-
-  {
     // https://www.curtarra.com/collections/all/products/john-custom-curtain-rods?variant=50688084705591
     // https://www.decortier.ru/karnizy/?filter[tip-karniza][]=decor&page=2
     types: [],
@@ -147,7 +124,7 @@ export const catalogPagesAll: IContentType[] = [
     images: [
       // '/catalog/curtain-rods/image-1.jpg',
       // '/catalog/curtain-rods/image-2.jpg',
-      '/catalog/curtain-rods/image-3.jpg',
+      // '/catalog/curtain-rods/image-3.jpg',
       '/catalog/curtain-rods/image-4.jpg',
       '/catalog/curtain-rods/image-5.jpg',
       '/catalog/curtain-rods/image-6.jpg',
@@ -202,6 +179,28 @@ export const catalogPagesAll: IContentType[] = [
         title: 'Карниз JAZZ nickel matt',
         image: '/catalog/catalog-9.webp',
       },
+    ],
+  },
+
+  {
+    types: [],
+    key: 'blinds',
+    title: 'Жалюзи',
+    text: 'Стильные, практичные.',
+    detail: () => import('./catalog-detail/blinds/blinds').then((a) => a.Detail),
+    image: '/catalog/blinds/image-1.jpg',
+    images: [
+      '/catalog/blinds/image-10.jpg',
+      '/catalog/blinds/image-9.jpg',
+      '/catalog/blinds/image-1.jpg',
+      '/catalog/blinds/image-3.jpg',
+
+      '/catalog/blinds/image-4.jpg',
+      '/catalog/blinds/image-5.jpg',
+      '/catalog/blinds/image-6.jpg',
+
+      '/catalog/blinds/image-7.jpg',
+      '/catalog/blinds/image-8.jpg',
     ],
   },
 

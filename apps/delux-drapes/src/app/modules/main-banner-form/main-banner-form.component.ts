@@ -9,7 +9,7 @@ import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../send-service/send.services';
 import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { NgIconImports } from '../../components/ng-icon-src.directive';
-import { NgxParallax } from '../../components/parallax.directive';
+import { FormImports } from '../../components/form';
 
 @Component({
   selector: 'app-main-banner-form',
@@ -26,7 +26,7 @@ import { NgxParallax } from '../../components/parallax.directive';
     TuiInput,
     TuiSelect,
     NgIconImports,
-    NgxParallax,
+    FormImports,
   ],
   providers: [
     provideIcons({
@@ -43,7 +43,7 @@ export class MainBannerForm {
     name: new FormControl(undefined, [Validators.required, Validators.minLength(1)]),
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     connectionType: new FormControl(this.typeOptions()[0], []),
-    checked: new FormControl(false, [Validators.requiredTrue]),
+    checked: new FormControl(true, [Validators.requiredTrue]),
   });
 
   protected formSubmit(): void {

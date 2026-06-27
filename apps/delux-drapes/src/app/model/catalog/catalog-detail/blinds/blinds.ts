@@ -1,7 +1,8 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
+import { TuiTable } from '@taiga-ui/addon-table';
 
 @Component({
   templateUrl: 'blinds.html',
-  imports: [],
+  imports: [TuiTable],
 })
-export class Detail { }
+export class Detail {}

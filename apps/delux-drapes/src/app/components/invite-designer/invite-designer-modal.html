@@ -1,4 +1,4 @@
-<form [formGroup]="form" (submit)="formSubmit()" class="h-full flex gap-6 md:gap-8">
+<div class="h-full flex gap-6 md:gap-8">
   <section class="flex-1 relative h-full max-md:hidden">
     <picture class="bg-image w-full h-full absolute"></picture>
   </section>
@@ -14,7 +14,7 @@
       </header>
 
       <div class="flex items-center h-full">
-        <section class="flex-1 justify-self-center flex flex-col gap-6 pb-3">
+        <form class="flex-1 justify-self-center flex flex-col gap-6 pb-3" [formGroup]="form" (submit)="formSubmit()">
           <h3 class="font-semibold text-3xl text-center">Оставьте заявку дизайнеру:</h3>
 
           <tui-textfield [tuiTextfieldCleaner]="false">
@@ -51,8 +51,8 @@
           </label>
 
           <button class="btn-primary" type="submit">Отправить</button>
-        </section>
+        </form>
       </div>
     </div>
   </section>
-</form>
+</div>

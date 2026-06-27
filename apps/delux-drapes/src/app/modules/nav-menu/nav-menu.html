@@ -1,11 +1,13 @@
 <div class="-text-lg">
   <section class="border-b-1 border-gray-200 max-lg:px-3">
-    <ol class="md:container md:mx-auto flex items-center gap-3 h-16">
+    <ol class="md:container md:mx-auto flex items-center gap-2 h-16">
       <li class="leading-0">
         <!-- <h1 class="text-4xl font-bold">Shtorivdom</h1> -->
         <!-- <ng-icon src="/logo/logo-02.svg" /> -->
         <!-- <a [routerLink]="['/']"><ng-icon src="/logo/logo-03.svg" /></a> -->
-        <a [routerLink]="['/']"><ng-icon class="text-4xl text-cardboard" src="/logo/logo-main.svg" /></a>
+        <a [routerLink]="['/']">
+          <img src="/logo/shtorivdom.svg" style="width: 9rem;" />
+        </a>
       </li>
 
       <li>
@@ -98,7 +100,7 @@
           <div class="leading-0">
             <ng-icon name="lucideNavigation" />
           </div>
-          <address class="max-md:text-sm">{{ address }}</address>
+          <address class="max-md:text-sm truncate">{{ address }}</address>
         </a>
 
         <div class="flex items-center gap-1 max-md:text-sm">

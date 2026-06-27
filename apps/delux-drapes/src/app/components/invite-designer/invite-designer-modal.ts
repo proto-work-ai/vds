@@ -45,18 +45,6 @@ export class InviteModalClick {
   styleUrl: 'invite-designer-modal.scss',
   imports: [
     HlmButtonImports,
-    TuiTextfield,
-    AtlasFormImports,
-    TuiDataListWrapper,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInputSlider,
-    TuiInputPhone,
-    TuiInput,
-    TuiSelect,
-    TuiAutoFocus,
-    NgIconImports,
-    TuiCheckbox,
     FormImports
   ],
   providers: [
@@ -77,7 +65,7 @@ export class InviteDesignerModal {
     name: new FormControl(undefined, [Validators.required, Validators.minLength(1)]),
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     connectionType: new FormControl(this.typeOptions()[0], []),
-    checked: new FormControl(false, [Validators.requiredTrue]),
+    checked: new FormControl(true, [Validators.requiredTrue]),
   });
 
   protected modalClose(result = false): void {

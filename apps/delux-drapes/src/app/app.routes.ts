@@ -69,22 +69,21 @@ export const appRoutes: Route[] = [
     path: routePath.partner.root,
     loadComponent: () => import('./pages/partner/partner-page/partner-page').then((a) => a.PartnerPage),
   },
-  {
-    path: routePath.catalog.root,
-    loadComponent: () =>
-      import(
-        './pages/catalog/catalog-page/catalog-all-page'
-      ).then((a) => a.CatalogsPage),
-  },
+  // {
+  //   path: routePath.catalog.root,
+  //   loadComponent: () =>
+  //     import(
+  //       './pages/catalog/catalog-page/catalog-all-page'
+  //     ).then((a) => a.CatalogsPage),
+  // },
 
   ...catalogRoutes,
 
-  {
-    path: `${routePath.price.root}`,
-    pathMatch: 'full',
-    loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
-  },
-
+  // {
+  //   path: `${routePath.price.root}`,
+  //   pathMatch: 'full',
+  //   loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
+  // },
 
   {
     path: '**',

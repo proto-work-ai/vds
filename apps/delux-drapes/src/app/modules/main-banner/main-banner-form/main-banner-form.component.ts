@@ -38,7 +38,7 @@ export class MainBannerFormComponent {
     type: new FormControl(this.typeOptions()[0]),
     size: new FormControl(this.minRange()),
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-    checked: new FormControl(false, [Validators.requiredTrue]),
+    checked: new FormControl(true, [Validators.requiredTrue]),
   });
 
   protected formSubmit(): void {

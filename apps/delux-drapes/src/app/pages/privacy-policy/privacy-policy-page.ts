@@ -28,7 +28,7 @@ export class PrivacyPolicyPage {
   ]);
 
   constructor() {
-    const title = `Decken Master | Политика конфиденциальности`;
+    const title = `Shtorivdom | Политика конфиденциальности`;
     inject(Title).setTitle(title);
     inject(Meta).updateTag({ property: 'og:title', content: title });
 

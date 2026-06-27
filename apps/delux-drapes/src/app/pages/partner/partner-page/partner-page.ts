@@ -72,7 +72,7 @@ export class PartnerPage {
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     description: new FormControl(''),
     city: new FormControl(undefined),
-    checked: new FormControl(false, [Validators.requiredTrue]),
+    checked: new FormControl(true, [Validators.requiredTrue]),
   });
 
   private readonly sendForm = injectSendMessage(ymPartner);

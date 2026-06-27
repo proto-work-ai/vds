@@ -11,7 +11,6 @@
         // Additional headers (optional)
         // $headers .= 'From: <sender@example.com>' . "\r\n";
 
-        mail('ryslan69khatyev95@gmail.com', 'Заявка c сайта', $message, $headers);
         mail('info@shtorivdom.ru', 'Заявка c сайта', $message, $headers);
         mail('andrey.asp2010@gmail.com', 'Заявка c сайта', $message, $headers);
     } else  {

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StretchCeilingsGroup, stretchCeilingsGroupName } from '../model/products.data';
+import { StretchCeilingsGroup, stretchCeilingsGroupName } from '../../model/products.data';
 
 @Pipe({ name: 'stretchCceilingsGroup' })
 export class StretchCeilingsGroupPipe implements PipeTransform {

@@ -65,21 +65,21 @@
 
     thead tr:first-child {
       th:first-child {
-        border-top-left-radius: 0.5rem;
+        border-top-left-radius: 0.25rem;
       }
 
       th:last-child {
-        border-top-right-radius: 0.5rem;
+        border-top-right-radius: 0.25rem;
       }
     }
 
     tbody tr:last-child {
       td:first-child {
-        border-bottom-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.25rem;
       }
 
       td:last-child {
-        border-bottom-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.25rem;
       }
     }
   }
@@ -361,4 +361,18 @@ table[tuiTable] td {
 atlas-taiga-ui-table {
   --tui-font-text-s: normal 0.625remvar (--tui-font-text);
   --tui-font-text-m: normal 0.825rem var(--tui-font-text);
+}
+
+[tuiAppearance][data-appearance='outline-grayscale']:is([data-mode~='invalid'], .tui-invalid, :invalid):not(
+    [data-mode~='readonly'],
+    [data-mode~='valid'],
+    [data-state='disabled'],
+    :disabled,
+    ._disabled
+  ) {
+  box-shadow: inset 0 0 0 1px rgb(228 69 18);
+}
+
+table[tuiTable] {
+  --tui-border-normal: #ccc;
 }

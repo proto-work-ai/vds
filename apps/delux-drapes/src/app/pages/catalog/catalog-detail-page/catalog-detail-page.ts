@@ -8,9 +8,7 @@ import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
 import { SwiperFullImages } from '../../../components/swiper-full-images/swiper-full-images';
 import { GallerizeImages } from '../../../components/gallerize-images/gallerize-images';
-import { getCatalogMap2, injectCatalogPrice } from '../../../model/price-list-all';
 import { injectPhoneSendModal } from '../../../modules/send-service/send.services';
-import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
 import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
 import { IContentType } from '../../../model/products.data';
 import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.component';
@@ -32,21 +30,20 @@ import { MainBannerForm } from "../../../modules/main-banner-form/main-banner-fo
     BreadcrumbsHeader,
     GalleryModule,
     WayWeWorkComponent,
-    MainForm,
     MainQuestions,
     MainFooterComponent,
     MainHeaderComponent,
     SwiperFullImages,
     RouterOutlet,
     InviteModalClick,
+    PlaceAnOrder,
+    MainBannerForm,
+    MainForm,
     RouterLink,
     MainBannerComponent,
     AnyQuestions,
     PriceListBrandTable,
     GallerizeImages,
-    PriceCard,
-    PlaceAnOrder,
-    MainBannerForm
 ],
   providers: [MenuDeferService],
   host: {
@@ -59,22 +56,13 @@ export class CatalogDetailPage {
   protected readonly openPhoneSendModal = injectPhoneSendModal();
   protected readonly item: WritableSignal<IContentType> = injectStretchCeilingRouteByKey();
 
-  protected readonly minPrice = injectCatalogPrice();
-
   protected readonly title = computed(() => this.item()?.title);
   protected readonly text = computed(() => this.item().text);
-  protected readonly price = computed(() => {
-    const types = this.item().types!;
-    const data = this.minPrice(types);
-    return data?.[0];
-  });
+
   protected readonly images = computed(() => this.item()?.images!.map((src) => new ImageItem({ src, thumb: src })));
-  protected readonly filtered = computed(() => {
-    return getCatalogMap2(this.item().types!);
-  });
 
   constructor() {
-    const title = `Decken Master | ${this.item().title}`;
+    const title = `Shtorivdom | ${this.item().title}`;
     inject(Title).setTitle(title);
     inject(Meta).updateTag({ property: 'og:title', content: title });
     const image = this.item()?.images?.[0];

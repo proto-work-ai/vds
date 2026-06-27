@@ -28,7 +28,7 @@ export class ApplicationMeasurementComponent {
 
   protected readonly form = new FormGroup({
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
-    checked: new FormControl(false, [Validators.requiredTrue]),
+    checked: new FormControl(true, [Validators.requiredTrue]),
   });
 
   protected formSubmit(): void {

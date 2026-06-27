@@ -46,7 +46,7 @@ export class MainForm {
   protected readonly form = new FormGroup({
     phone: new FormControl(''),
     description: new FormControl(''),
-    checked: new FormControl(false, [Validators.requiredTrue]),
+    checked: new FormControl(true, [Validators.requiredTrue]),
   });
 
   protected formSubmit(): void {
