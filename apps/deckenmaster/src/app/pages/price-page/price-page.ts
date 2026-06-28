@@ -18,12 +18,12 @@ import { PriceList } from '../../modules/catalog-price/catalog-price-list/catalo
   imports: [
     FooterMenuComponent,
     ApplicationMeasurementComponent,
-    PriceCalculationComponent,
     MainHeaderComponent,
-    MenuDeferDirective,
     NavMenu,
     BreadcrumbsHeader,
     PriceList,
+    PriceCalculationComponent,
+    MenuDeferDirective,
   ],
   providers: [MenuDeferService],
   host: {

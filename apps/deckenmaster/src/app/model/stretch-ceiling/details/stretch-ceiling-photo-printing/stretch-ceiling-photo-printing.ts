@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { IContentType } from '../../common';
 import { GalleryModule, ImageItem } from 'ng-gallery';
@@ -12,7 +12,6 @@ import { map } from 'rxjs';
   imports: [GallerizeDirective, GalleryModule, IsPlatformBrowserDirective],
 })
 export class Detail {
-  private destroyRef = inject(DestroyRef);
   private breakpointObserver = inject(BreakpointObserver);
   public readonly item = input.required<IContentType>();
   // protected readonly images = computed(() => this.item()?.images);

@@ -20,9 +20,9 @@
         $message = wordwrap($message, 70);
 
         // var_dump($message);
-        // var_dump(mail('saida181014@gmail.com', 'Заявка c сайта(nirstroy.ru)', $message));
-        // mail('saida181014@gmail.com', 'Заявка c сайта(nirstroy.ru)', $message);
-        var_dump(mail('andrey.asp2010@gmail.com', 'Заявка c сайта', $message));
+        // var_dump(mail('andrey.asp2010@gmail.com', 'Заявка c сайта(deckenmaster.ru)', $message));
+        // mail('andrey.asp2010@gmail.com', 'Заявка c сайта(deckenmaster.ru)', $message);
+        mail('andrey.asp2010@gmail.com', 'Заявка c сайта', $message, $headers);
     } else  {
         echo 'NO POST';
     }    

@@ -20,7 +20,7 @@
         $message = wordwrap($message, 70);
 
 
-        mail('info@shtorivdom.ru', 'Заявка c сайта(nirstroy.ru)', $message);
+        mail('info@shtorivdom.ru', 'Заявка c сайта(shtorivdom.ru)', $message);
         var_dump(mail('andrey.asp2010@gmail.com', 'Заявка c сайта', $message));
     } else  {
         echo 'NO POST';

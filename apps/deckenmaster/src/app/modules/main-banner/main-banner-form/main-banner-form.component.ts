@@ -1,12 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiTextfield, TuiInput } from '@taiga-ui/core';
-import { TuiChevron, TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
-import { FormGroupStore } from '../../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage, ymSubmitEvent } from '../../send-service/send.services';
 import { finalize } from 'rxjs';
-import { IsPlatformBrowserDirective } from '../../../components/is-platform-browser.directive';
 import { FormImports } from '../../../components/form';
 
 @Component({

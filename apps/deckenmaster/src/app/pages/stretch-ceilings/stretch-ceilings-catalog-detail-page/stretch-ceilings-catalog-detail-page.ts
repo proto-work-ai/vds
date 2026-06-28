@@ -20,6 +20,7 @@ import { IContentType } from '../../../model/stretch-ceiling';
 import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
 import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
+import { SocialButtons } from "../../../components/social-buttons/social-buttons";
 
 @Component({
   selector: 'st-catalog-getail',
@@ -39,6 +40,7 @@ import { AnyQuestions } from '../../../components/any-questions/any-questions';
     AnyQuestions,
     SwiperFullImages,
     PriceListBrandTable,
+    SocialButtons
 ],
   providers: [
     MenuDeferService,

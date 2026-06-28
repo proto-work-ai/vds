@@ -1,0 +1,17 @@
+<!-- Cookie banner -->
+<div class="cookie p-4 pt-8">
+  <button (click)="hideCookieBanner()" class="cookie-close" type="button" aria-label="Закрыть уведомление">×</button>
+
+  <div class="cookie-text">
+    Продолжая использовать сайт и/или нажимая кнопку «Согласен» вы соглашаетесь с условиями использования cookie,
+
+    <a [routerLink]="['/privacy-policy']" rel="noopener">Политикой обработки персональных данных</a>, выражаете
+
+    <a [routerLink]="['/soglasie-na-obrabotku-personalnyh-dannyh']" rel="noopener">согласие на их обработку</a>
+
+    и их возможную передачу третьим лицам. Со всеми условиями вы можете ознакомиться по ссылке, приведенной в этом
+    сообщении.
+  </div>
+
+  <button class="btn btn-primary" type="button" (click)="hideCookieBanner()">Согласен</button>
+</div>

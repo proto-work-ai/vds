@@ -6,6 +6,9 @@ export const routePath = {
   privacyPolicy: {
     root: 'privacy-policy',
   },
+  soglasie: {
+    root: 'soglasie-na-obrabotku-personalnyh-dannyh',
+  },
   catalog: {
     root: 'catalog',
   },
@@ -55,6 +58,11 @@ export const appRoutes: Route[] = [
   {
     path: routePath.privacyPolicy.root,
     loadComponent: () => import('./pages/privacy-policy/privacy-policy-page').then((a) => a.PrivacyPolicyPage),
+  },
+
+  {
+    path: routePath.soglasie.root,
+    loadComponent: () => import('./pages/soglasie-na-obrabotku-personalnyh-dannyh/soglasie-na-obrabotku-personalnyh-dannyh').then((a) => a.PrivacyPolicyPage),
   },
 
   {

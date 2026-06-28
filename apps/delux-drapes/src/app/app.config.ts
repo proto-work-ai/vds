@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideEventPlugins } from '@taiga-ui/event-plugins';
@@ -11,6 +11,7 @@ import { appRoutes } from './app.routes';
 import { provideTaiga } from '@taiga-ui/core';
 import { provideYConfig, YConfig } from 'angular-yandex-maps-v3';
 import { VAR_YANDEX_KEY } from './contacts';
+import { CookieAcceptedService } from './shared/cookie-accepted/cookie-accepted.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -39,5 +40,6 @@ export const appConfig: ApplicationConfig = {
     provideYConfig({
       apikey: VAR_YANDEX_KEY,
     } satisfies YConfig),
+    provideAppInitializer(() => inject(CookieAcceptedService) as any),
   ],
 };

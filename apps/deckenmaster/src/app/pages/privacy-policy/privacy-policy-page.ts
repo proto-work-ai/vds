@@ -1,17 +1,17 @@
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, inject, signal } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 import { FooterMenuComponent } from '../../modules/footer-menu/footer-menu.component';
 import { MainHeaderComponent } from '../../modules/main-header/main-header.component';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
-import { NavMenu } from '../../modules/nav-menu/nav-menu';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../modules/breadcrumbs-header/breadcrumbs-header.component';
 
 
 @Component({
   selector: 'main',
   templateUrl: './privacy-policy-page.html',
-  imports: [MainHeaderComponent, NavMenu, BreadcrumbsHeader, FooterMenuComponent],
+  imports: [MainHeaderComponent, RouterLink, BreadcrumbsHeader, FooterMenuComponent],
   providers: [MenuDeferService],
   host: {
     id: 'main',

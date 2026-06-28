@@ -68,21 +68,21 @@ $accent-color-hover: #f11d0d;
 
     thead tr:first-child {
       th:first-child {
-        border-top-left-radius: 0.5rem;
+        border-top-left-radius: 0.25rem;
       }
 
       th:last-child {
-        border-top-right-radius: 0.5rem;
+        border-top-right-radius: 0.25rem;
       }
     }
 
     tbody tr:last-child {
       td:first-child {
-        border-bottom-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.25rem;
       }
 
       td:last-child {
-        border-bottom-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.25rem;
       }
     }
   }

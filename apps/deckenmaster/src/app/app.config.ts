@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideEventPlugins } from '@taiga-ui/event-plugins';
@@ -9,6 +9,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { appRoutes } from './app.routes';
 import { provideTaiga } from '@taiga-ui/core';
+import { CookieAcceptedService } from '@atlas/form';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -31,8 +32,9 @@ export const appConfig: ApplicationConfig = {
         thumbs: true,
         autoHeight: true,
         imageSize: 'cover',
-        thumbPosition: 'bottom'
-      } satisfies GalleryConfig
-    }
+        thumbPosition: 'bottom',
+      } satisfies GalleryConfig,
+    },
+    provideAppInitializer(() => inject(CookieAcceptedService) as any),
   ],
 };
