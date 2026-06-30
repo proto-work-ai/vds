@@ -72,6 +72,8 @@
   <router-outlet />
 </section>
 
+<app-social-buttons />
+
 <!-- Price -->
 <section class="container mx-auto max-sm:px-5 md:my-8 my-6">
   <header class="text-start flex flex-col gap-3 my-4">
@@ -80,6 +82,14 @@
 
   <app-price-list-table [tableRows]="filtered()"></app-price-list-table>
 </section>
+
+<app-any-questions></app-any-questions>
+
+<app-way-we-work id="way-we-work"></app-way-we-work>
+
+<app-application-measurement id="measurement" />
+
+<app-footer-menu />
 
 <!-- Version 2(Horizontal Slider)
 <section class="container mx-auto max-sm:px-5 md:my-8 my-6">
@@ -113,11 +123,3 @@
 
   <router-outlet />
 </section> -->
-
-<app-any-questions></app-any-questions>
-
-<app-way-we-work id="way-we-work"></app-way-we-work>
-
-<app-application-measurement id="measurement" />
-
-<app-footer-menu />

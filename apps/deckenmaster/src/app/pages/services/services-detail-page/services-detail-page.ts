@@ -1,7 +1,7 @@
 /* eslint-disable @angular-eslint/component-selector */
-import { Component, computed, DestroyRef, effect, inject, PLATFORM_ID, signal, WritableSignal } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject, signal, WritableSignal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { isPlatformBrowser, JsonPipe } from '@angular/common';
+import { JsonPipe } from '@angular/common';
 import { GalleryModule, ImageItem } from 'ng-gallery';
 import { Meta, Title } from '@angular/platform-browser';
 import { injectStretchCeilingRouteByKey } from '../../../model/stretch-ceilings.service';
@@ -21,6 +21,7 @@ import { IContentType } from '../../../model/stretch-ceiling';
 import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
 import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
+import { SocialButtons } from "../../../components/social-buttons/social-buttons";
 
 @Component({
   selector: 'app-services-detail-page',
@@ -42,6 +43,7 @@ import { AnyQuestions } from '../../../components/any-questions/any-questions';
     PriceListTable,
     WayWeWorkComponent,
     JsonPipe,
+    SocialButtons
 ],
   providers: [
     MenuDeferService,

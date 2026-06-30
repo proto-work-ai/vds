@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { STBrandType, STPriceBrand, PriceUnit } from './price-list.service';
-import { STPriceGroup, stretchCeilingGroupName, productTypeName, ProductType } from './stretch-ceiling';
+import { STPriceGroup, stretchCeilingGroupName, productTypeName, ProductTag } from './stretch-ceiling';
 import { STUnitPrice } from './price-list.service';
 import { byDesignGroup, withBacklightGroup } from './stretch-ceiling/by-design.group';
 
 const MatteMSD: STPriceBrand = {
-  type: ProductType.Matte,
+  type: ProductTag.Matte,
   brand: STBrandType.MSD,
   size: 30,
   width: 5,
@@ -17,7 +17,7 @@ const MatteMSD: STPriceBrand = {
 };
 
 const MatteColorMSD: STPriceBrand = {
-  type: ProductType.MatteColor,
+  type: ProductTag.MatteColor,
   brand: STBrandType.MSD,
   size: 30,
   width: 5,
@@ -29,7 +29,7 @@ const MatteColorMSD: STPriceBrand = {
 };
 
 const GlossyMSD: STPriceBrand = {
-  type: ProductType.Glossy,
+  type: ProductTag.Glossy,
   brand: STBrandType.MSD,
   size: 30,
   width: 5,
@@ -41,7 +41,7 @@ const GlossyMSD: STPriceBrand = {
 };
 
 const GlossyColorMSD: STPriceBrand = {
-  type: ProductType.GlossyColor,
+  type: ProductTag.GlossyColor,
   brand: STBrandType.MSD,
   size: 30,
   width: 5,
@@ -53,7 +53,7 @@ const GlossyColorMSD: STPriceBrand = {
 };
 
 const MattePongs: STPriceBrand = {
-  type: ProductType.Matte,
+  type: ProductTag.Matte,
   brand: STBrandType.Pongs,
   size: 30,
   width: 3.2,
@@ -65,7 +65,7 @@ const MattePongs: STPriceBrand = {
 };
 
 const MatteColorPongs: STPriceBrand = {
-  type: ProductType.MatteColor,
+  type: ProductTag.MatteColor,
   brand: STBrandType.Pongs,
   size: 30,
   width: 2,
@@ -77,7 +77,7 @@ const MatteColorPongs: STPriceBrand = {
 };
 
 const GlossyPongs: STPriceBrand = {
-  type: ProductType.Glossy,
+  type: ProductTag.Glossy,
   brand: STBrandType.Pongs,
   size: 30,
   width: 3.2,
@@ -89,7 +89,7 @@ const GlossyPongs: STPriceBrand = {
 };
 
 const GlossyColorPongs: STPriceBrand = {
-  type: ProductType.GlossyColor,
+  type: ProductTag.GlossyColor,
   brand: STBrandType.Pongs,
   size: 30,
   width: 2,
@@ -101,7 +101,7 @@ const GlossyColorPongs: STPriceBrand = {
 };
 
 const GalaxyGlossyColorMSD: STPriceBrand = {
-  type: ProductType.GalaxyGlossyColor,
+  type: ProductTag.GalaxyGlossyColor,
   brand: STBrandType.MSD,
   size: 30,
   width: 3.2,
@@ -113,7 +113,7 @@ const GalaxyGlossyColorMSD: STPriceBrand = {
 };
 
 const FabricDescor: STPriceBrand = {
-  type: ProductType.Fabric,
+  type: ProductTag.Fabric,
   brand: STBrandType.Descor,
   size: 30,
   width: 5,
@@ -125,7 +125,7 @@ const FabricDescor: STPriceBrand = {
 };
 
 const FabricClipso: STPriceBrand = {
-  type: ProductType.Fabric,
+  type: ProductTag.Fabric,
   brand: STBrandType.Clipso,
   size: 30,
   width: 5,
@@ -137,7 +137,7 @@ const FabricClipso: STPriceBrand = {
 };
 
 const FabricCerutti: STPriceBrand = {
-  type: ProductType.Fabric,
+  type: ProductTag.Fabric,
   brand: STBrandType.Cerutti,
   size: 30,
   width: 5,
@@ -150,7 +150,7 @@ const FabricCerutti: STPriceBrand = {
 
 const SatinMSD: STPriceBrand = {
   brand: STBrandType.MSD,
-  type: ProductType.Satin,
+  type: ProductTag.Satin,
   size: 30,
   width: 5,
   thickness: [0.16, 0.18],
@@ -163,7 +163,7 @@ const SatinMSD: STPriceBrand = {
 // MSD
 const SatinColorMSD: STPriceBrand = {
   brand: STBrandType.MSD,
-  type: ProductType.SatinColor,
+  type: ProductTag.SatinColor,
   size: 30,
   width: 5,
   thickness: [0.16, 0.18],
@@ -176,7 +176,7 @@ const SatinColorMSD: STPriceBrand = {
 // Pongs
 const SatinPongs: STPriceBrand = {
   brand: STBrandType.Pongs,
-  type: ProductType.Satin,
+  type: ProductTag.Satin,
   size: 30,
   width: 2,
   thickness: [0.16, 0.18],
@@ -189,7 +189,7 @@ const SatinPongs: STPriceBrand = {
 // Pongs
 const SatinColorPongs: STPriceBrand = {
   brand: STBrandType.Pongs,
-  type: ProductType.SatinColor,
+  type: ProductTag.SatinColor,
   size: 30,
   width: 2.7,
   thickness: [0.16, 0.18],
@@ -280,7 +280,7 @@ function oderByPrice(items: (STPriceBrand | STUnitPrice)[]) {
 export function injectCatalogPrice() {
   const list = getStretchCeilingAll();
 
-  return (types: ProductType[]) => {
+  return (types: ProductTag[]) => {
     const items = list.filter((a) => types.includes(a.type!));
     return oderByPrice(items)[0];
   };
@@ -301,7 +301,7 @@ export function injectCatalogMap() {
   };
 }
 
-export function getCatalogMap2(types: ProductType[]) {
+export function getCatalogMap2(types: ProductTag[]) {
   const all = getStretchCeilingAll();
   const items: (STPriceBrand | STUnitPrice)[] = all.filter((a) => types.includes(a.type!));
   return items.map((item) => {

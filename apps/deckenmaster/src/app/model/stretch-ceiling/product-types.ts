@@ -1,5 +1,5 @@
 // Все продукты
-export enum ProductType {
+export enum ProductTag {
   // ПВХ
   // PVC = 1, // ПВХ
   Textured = 1, // Фактурные
@@ -73,62 +73,62 @@ export enum ProductType {
   PreparingSubCeiling, // Подготовка чернового потолка работа
 }
 
-export const productTypeName: Partial<Record<ProductType, string>> = {
+export const productTypeName: Partial<Record<ProductTag, string>> = {
   // ПВХ
-  [ProductType.Matte]: 'Матовые',
-  [ProductType.MatteColor]: 'Матовые цветной',
-  [ProductType.Glossy]: 'Глянцевые цветной',
-  [ProductType.GlossyColor]: 'Глянцевые',
-  [ProductType.Satin]: 'Сатиновые',
-  [ProductType.SatinColor]: 'Сатиновые цветной',
-  [ProductType.Textured]: 'Фактурные',
+  [ProductTag.Matte]: 'Матовые',
+  [ProductTag.MatteColor]: 'Матовые цветной',
+  [ProductTag.Glossy]: 'Глянцевые',
+  [ProductTag.GlossyColor]: 'Глянцевые цветной',
+  [ProductTag.Satin]: 'Сатиновые',
+  [ProductTag.SatinColor]: 'Сатиновые цветной',
+  [ProductTag.Textured]: 'Фактурные',
 
   // Тканевые
-  [ProductType.Fabric]: 'Тканевые',
-  [ProductType.DPremium]: 'D-Premium',
-  [ProductType.Clipso]: 'Clipso',
-  [ProductType.Cerutti]: 'Cerutti',
+  [ProductTag.Fabric]: 'Тканевые',
+  [ProductTag.DPremium]: 'D-Premium',
+  [ProductTag.Clipso]: 'Clipso',
+  [ProductTag.Cerutti]: 'Cerutti',
 
   // Премиум/Эксклюзивные потолки
-  [ProductType.Gapless]: 'Бесщелевые',
-  [ProductType.PhotoPrinting]: 'С фотопечатью',
+  [ProductTag.Gapless]: 'Бесщелевые',
+  [ProductTag.PhotoPrinting]: 'С фотопечатью',
 
   // По типу помещений
-  [ProductType.Kitchen]: 'На кухню',
-  [ProductType.Corridor]: 'В коридор',
-  [ProductType.Bathroom]: 'В ванную',
-  [ProductType.Bedroom]: 'В спальню',
-  [ProductType.Nursery]: 'В детскую',
-  [ProductType.LivingRoom]: 'В гостиную',
+  [ProductTag.Kitchen]: 'На кухню',
+  [ProductTag.Corridor]: 'В коридор',
+  [ProductTag.Bathroom]: 'В ванную',
+  [ProductTag.Bedroom]: 'В спальню',
+  [ProductTag.Nursery]: 'В детскую',
+  [ProductTag.LivingRoom]: 'В гостиную',
   // [StretchCeilingsType.House]: 'В доме',
 
   // ByDesign[По конструкции]
-  [ProductType.TwoTiered]: 'Двухуровневые',
-  [ProductType.TwoTieredWithBacklight]: 'С подсветкой',
-  [ProductType.TwoTieredWithBacklightNiche]: 'Двухуровневые с подсветкой в нише',
-  [ProductType.MultiLevel]: 'Многоуровневый натяжной потолок',
-  [ProductType.CurvedTransition]: 'Криволинейный переход',
-  [ProductType.DoubleVision]: 'Double Vision',
-  [ProductType.ShadowKRAAB]: 'Теневые',
-  [ProductType.Acoustic]: 'Акустические',
+  [ProductTag.TwoTiered]: 'Двухуровневые',
+  [ProductTag.TwoTieredWithBacklight]: 'С подсветкой',
+  [ProductTag.TwoTieredWithBacklightNiche]: 'Двухуровневые с подсветкой в нише',
+  [ProductTag.MultiLevel]: 'Многоуровневый натяжной потолок',
+  [ProductTag.CurvedTransition]: 'Криволинейный переход',
+  [ProductTag.DoubleVision]: 'Double Vision',
+  [ProductTag.ShadowKRAAB]: 'Теневые',
+  [ProductTag.Acoustic]: 'Акустические',
 
   // С подсветкой
-  [ProductType.Floating]: 'Парящие',
-  [ProductType.Contour]: 'C контурной подсветкой',
-  [ProductType.LightLines]: 'Световые линии',
-  [ProductType.LightLinesSlott]: 'Световые линии SLOTT',
-  [ProductType.LightLinesFlexy]: 'Световые линии Flexy',
-  [ProductType.InternalLighting]: 'C подсветкой внутри',
-  [ProductType.Transparent]: 'Светопрозрачный потоло',
-  [ProductType.WithIlluminationCanvas]: 'С подсветкой через полотно',
-  [ProductType.StarrySky]: 'Звездное небо',
+  [ProductTag.Floating]: 'Парящие',
+  [ProductTag.Contour]: 'C контурной подсветкой',
+  [ProductTag.LightLines]: 'Световые линии',
+  [ProductTag.LightLinesSlott]: 'Световые линии SLOTT',
+  [ProductTag.LightLinesFlexy]: 'Световые линии Flexy',
+  [ProductTag.InternalLighting]: 'C подсветкой внутри',
+  [ProductTag.Transparent]: 'Светопрозрачный потоло',
+  [ProductTag.WithIlluminationCanvas]: 'С подсветкой через полотно',
+  [ProductTag.StarrySky]: 'Звездное небо',
 
   // [StretchCeilingsType.Lightbox]: 'Лайтбокс',
 
   // Services
-  [ProductType.DrainingSuspendedCeiling]: 'Слив воды с натяжного потолка',
-  [ProductType.RepairStretchCeilings]: 'Ремонт натяжных потолков',
-  [ProductType.InstallationSuspendedSeiling]: 'Монтаж натяжного потолка',
+  [ProductTag.DrainingSuspendedCeiling]: 'Слив воды с натяжного потолка',
+  [ProductTag.RepairStretchCeilings]: 'Ремонт натяжных потолков',
+  [ProductTag.InstallationSuspendedSeiling]: 'Монтаж натяжного потолка',
 
   // [ProductType.RemovingSlattedCeiling]: 'Демонтаж реечного потолка',
   // [ProductType.RemovingProfile]: 'Демонтаж профиля',

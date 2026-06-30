@@ -1,4 +1,4 @@
-import { STPriceGroup, ProductType } from './stretch-ceiling';
+import { STPriceGroup, ProductTag } from './stretch-ceiling';
 
 export enum STBrandType {
   Bauf = 1,
@@ -27,7 +27,7 @@ export enum PriceUnit {
 
 export interface STUnitPrice {
   // name: string; // Название
-  type: ProductType;
+  type: ProductTag;
   unit: PriceUnit; // Ед.изм.
   price: number | number[] | string; //  Цена
 }
@@ -43,7 +43,7 @@ export interface UnitPrice {
 export interface STPriceBrand {
   brand: STBrandType;
   group?: STPriceGroup;
-  type?: ProductType;
+  type?: ProductTag;
   size: number; //Площадь
   width: number | number[]; //Ширина полотна
   thickness?: number | number[]; //Толщина

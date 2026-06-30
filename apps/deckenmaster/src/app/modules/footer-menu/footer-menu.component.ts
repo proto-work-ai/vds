@@ -34,10 +34,10 @@ export class FooterMenuComponent {
 
     result.push({
       title: 'Меню',
-      children: [...menu.slice(0, 1), ...menu.slice(2, 3)],
+      children: [...menu.slice(0, 1), ...menu.slice(2, 4)],
     });
 
-    result.push(...menu.slice(3));
-    return result;
+    result.push(...menu.slice(4));
+    return result.reverse();
   });
 }

@@ -1,18 +1,18 @@
 import { IContentType } from './common';
-import { ProductType } from './product-types';
+import { ProductTag } from './product-types';
 
 // Страницы по потолками
 export const stretchCeilingAll: IContentType[] = [
   {
     types: [
-      ProductType.Matte,
+      ProductTag.Matte,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
-      ProductType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
+      ProductTag.Bathroom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'matte-stretch-ceilings',
@@ -56,18 +56,18 @@ export const stretchCeilingAll: IContentType[] = [
 
   {
     types: [
-      ProductType.LightLines,
+      ProductTag.LightLines,
 
       // Нужно сделат отдельную страницу по ним
-      ProductType.LightLinesSlott, // Световые линии SLOTT*
-      ProductType.LightLinesFlexy, // Световые линии Flexy*
+      ProductTag.LightLinesSlott, // Световые линии SLOTT*
+      ProductTag.LightLinesFlexy, // Световые линии Flexy*
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
       //StretchCeilingsType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'light-lines',
@@ -95,15 +95,15 @@ export const stretchCeilingAll: IContentType[] = [
 
   {
     types: [
-      ProductType.Fabric,
+      ProductTag.Fabric,
       // ProductType.Matte,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
       //StretchCeilingsType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'fabric-stretch-ceilings',
@@ -122,16 +122,16 @@ export const stretchCeilingAll: IContentType[] = [
   ////
   {
     types: [
-      ProductType.Glossy,
-      ProductType.GlossyColor,
+      ProductTag.Glossy,
+      ProductTag.GlossyColor,
       // ProductType.GalaxyGlossyColor,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
-      ProductType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
+      ProductTag.Bathroom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'glossy-stretch-ceilings',
@@ -148,14 +148,14 @@ export const stretchCeilingAll: IContentType[] = [
 
   {
     types: [
-      ProductType.ShadowKRAAB,
+      ProductTag.ShadowKRAAB,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
-      ProductType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
+      ProductTag.Bathroom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'shadow-stretch-ceilings',
@@ -174,14 +174,14 @@ export const stretchCeilingAll: IContentType[] = [
 
   {
     types: [
-      ProductType.Satin,
+      ProductTag.Satin,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
-      ProductType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
+      ProductTag.Bathroom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'satin-stretch-ceilings',
@@ -195,14 +195,14 @@ export const stretchCeilingAll: IContentType[] = [
 
   {
     types: [
-      ProductType.Floating,
+      ProductTag.Floating,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
-      ProductType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
+      ProductTag.Bathroom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'floating-suspended-ceiling',
@@ -247,14 +247,14 @@ export const stretchCeilingAll: IContentType[] = [
     types: [
       // StretchCeilingsType.Matte,
 
-      ProductType.TwoTiered,
+      ProductTag.TwoTiered,
 
-      ProductType.Kitchen,
+      ProductTag.Kitchen,
       // StretchCeilingsType.Corridor,
       //StretchCeilingsType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'two-level-stretch-ceilings',
@@ -301,14 +301,14 @@ export const stretchCeilingAll: IContentType[] = [
 
   {
     types: [
-      ProductType.InternalLighting,
+      ProductTag.InternalLighting,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
-      ProductType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
+      ProductTag.Bathroom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'ceilings-with-internal-lighting',
@@ -328,14 +328,14 @@ export const stretchCeilingAll: IContentType[] = [
 
   {
     types: [
-      ProductType.Contour,
+      ProductTag.Contour,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
       //StretchCeilingsType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'ceilings-with-contour-lighting',
@@ -423,13 +423,13 @@ export const stretchCeilingAll: IContentType[] = [
     types: [
       // StretchCeilingsType.Matte,
 
-      ProductType.StarrySky,
+      ProductTag.StarrySky,
 
       //StretchCeilingsType.Kitchen,
       //StretchCeilingsType.Corridor,
       //StretchCeilingsType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
       //StretchCeilingsType.LivingRoom,
       // StretchCeilingsType.House,
     ],
@@ -448,16 +448,16 @@ export const stretchCeilingAll: IContentType[] = [
   */
   {
     types: [
-      ProductType.PhotoPrinting,
+      ProductTag.PhotoPrinting,
       // ProductType.Matte,
       // ProductType.Glossy,
 
-      ProductType.Kitchen,
-      ProductType.Corridor,
-      ProductType.Bathroom,
-      ProductType.Bedroom,
-      ProductType.Nursery,
-      ProductType.LivingRoom,
+      ProductTag.Kitchen,
+      ProductTag.Corridor,
+      ProductTag.Bathroom,
+      ProductTag.Bedroom,
+      ProductTag.Nursery,
+      ProductTag.LivingRoom,
       // StretchCeilingsType.House,
     ],
     key: 'stretch-ceiling-photo-printing',

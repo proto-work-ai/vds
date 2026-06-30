@@ -120,7 +120,7 @@ export const catalogPagesAll: IContentType[] = [
     title: 'Карнизы для штор',
     text: 'Декоративные и профильные.',
     detail: () => import('./catalog-detail/curtain-rods/curtain-rods').then((a) => a.Detail),
-    image: '/catalog/curtain-rods/image-3.jpg',
+    image: '/catalog/curtain-rods/image-1.jpg',
     images: [
       // '/catalog/curtain-rods/image-1.jpg',
       // '/catalog/curtain-rods/image-2.jpg',

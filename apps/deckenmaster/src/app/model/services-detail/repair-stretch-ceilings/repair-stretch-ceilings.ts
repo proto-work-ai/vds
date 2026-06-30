@@ -9,6 +9,7 @@ import { FormImports } from '../../../components/form';
 import { UnitPrice } from '../../price-list.service';
 import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { SocialButtons } from "../../../components/social-buttons/social-buttons";
 
 /*
   https://sanremo62.ru/ceiling/articles/remont_potolkov
@@ -25,7 +26,8 @@ import { Meta, Title } from '@angular/platform-browser';
     ServicesForm,
     FormImports,
     WayWeWorkComponent,
-  ],
+    SocialButtons
+],
 })
 export class Detail {
   constructor() {

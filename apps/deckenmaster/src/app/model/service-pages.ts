@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { PriceUnit, UnitPrice } from './price-list.service';
-import { IContentType, ProductType } from './stretch-ceiling';
+import { IContentType, ProductTag } from './stretch-ceiling';
 
 export const drainingSuspendedPrice: UnitPrice[] = [
   {
@@ -9,7 +9,22 @@ export const drainingSuspendedPrice: UnitPrice[] = [
     unit: PriceUnit.M2,
     price: [2490],
   },
-  // {
+
+  {
+    name: 'Ремонт натяжного потолка',
+    text: ' Локальный ремонт после потопа: убираем заломы и морщины, восстанавливаем ровную поверхность и внешний вид полотна. ',
+    unit: PriceUnit.M2,
+    price: [2490],
+  },
+
+  {
+    name: 'Ночной выезд мастера',
+    text: ' Приезжаем ночью и в выходные, когда затопило вне рабочего времени. Полный комплекс работ по сливу воды и защите интерьера. ',
+    unit: PriceUnit.Service,
+    price: [5000],
+  },
+
+  // { TODO пока нет лицензии
   //   name: 'Срочный слив воды с натяжного потолка',
   //   text: ' Приоритетный выезд мастера 24/7 по Москве и области. Приезжаем как можно быстрее, делаем слив и базовую просушку за один визит. ',
   //   unit: Unit.Service,
@@ -27,20 +42,8 @@ export const drainingSuspendedPrice: UnitPrice[] = [
   //   unit: Unit.M2,
   //   price: [2490],
   // },
-  {
-    name: 'Ночной выезд мастера',
-    text: ' Приезжаем ночью и в выходные, когда затопило вне рабочего времени. Полный комплекс работ по сливу воды и защите интерьера. ',
-    unit: PriceUnit.Service,
-    price: [5000],
-  },
-
-  {
-    name: 'Ремонт натяжного потолка',
-    text: ' Локальный ремонт после потопа: убираем заломы и морщины, восстанавливаем ровную поверхность и внешний вид полотна. ',
-    unit: PriceUnit.M2,
-    price: [2490],
-  },
 ];
+
 export const repairServicePrice: UnitPrice[] = [
   { name: 'Ремонт натяжного потолка ПВХ (порез, дыра, разрыв, трещина, ожог)', unit: PriceUnit.Service, price: 2490 },
   { name: 'Частичный демонтаж натяжного потолка ПВХ', unit: PriceUnit.Service, price: 2490 },
@@ -100,32 +103,18 @@ export const servicesPageMapName: Partial<Record<ServicesPageType, string>> = {
 } as const;
 
 // Page Products
-export const servicesPageProductsMap: Map<ServicesPageType, ProductType[]> = new Map([
-  [ServicesPageType.InstallationSuspendedSeiling, [ProductType.InstallationSuspendedSeiling]],
-  [ServicesPageType.RepairStretchCeilings, [ProductType.RepairStretchCeilings]],
-  [ServicesPageType.DrainingSuspendedCeiling, [ProductType.DrainingSuspendedCeiling]],
+export const servicesPageProductsMap: Map<ServicesPageType, ProductTag[]> = new Map([
+  [ServicesPageType.InstallationSuspendedSeiling, [ProductTag.InstallationSuspendedSeiling]],
+  [ServicesPageType.RepairStretchCeilings, [ProductTag.RepairStretchCeilings]],
+  [ServicesPageType.DrainingSuspendedCeiling, [ProductTag.DrainingSuspendedCeiling]],
   [
     ServicesPageType.RemovingSlattedCeiling,
-    [ProductType.RemovingSlattedCeiling, ProductType.RemovingProfile, ProductType.PreparingSubCeiling],
+    [ProductTag.RemovingSlattedCeiling, ProductTag.RemovingProfile, ProductTag.PreparingSubCeiling],
   ],
 ] as const);
 
 // Page Content
 export const servicePages: IContentType[] = [
-  {
-    types: servicesPageProductsMap.get(ServicesPageType.DrainingSuspendedCeiling)!,
-    key: 'draining-suspended-ceiling',
-    title: servicesPageMapName[ServicesPageType.DrainingSuspendedCeiling]!,
-    brief: `Мы сливаем воду без проколов и повреждений — аккуратно. Мастер приезжает в среднем за 20–60 минут и аккуратно восстанавливает потолок после затопления.`,
-    // brief: `При затоплении необходимо отключить электричество,
-    // вызвать мастеров, которые удалят воду через отверстия светильников или край полотна,
-    // а затем просушат его тепловой пушкой для восстановления формы.`,
-    detail: () =>
-      import('./services-detail/draining-suspended-ceiling/draining-suspended-ceiling').then((a) => a.Detail),
-    image: '/services/services-banner.jpg',
-    images: ['/services/services-banner.jpg'],
-  },
-
   {
     types: servicesPageProductsMap.get(ServicesPageType.RepairStretchCeilings)!,
     key: 'repair-stretch-ceilings',
@@ -155,4 +144,18 @@ export const servicePages: IContentType[] = [
   //   image: '/catalog/image-2.jpg',
   //   images: ['/catalog/image-2.jpg'],
   // },
+
+  {
+    types: servicesPageProductsMap.get(ServicesPageType.DrainingSuspendedCeiling)!,
+    key: 'draining-suspended-ceiling',
+    title: servicesPageMapName[ServicesPageType.DrainingSuspendedCeiling]!,
+    brief: `Мы сливаем воду без проколов и повреждений — аккуратно. Мастер приезжает в среднем за 20–60 минут и аккуратно восстанавливает потолок после затопления.`,
+    // brief: `При затоплении необходимо отключить электричество,
+    // вызвать мастеров, которые удалят воду через отверстия светильников или край полотна,
+    // а затем просушат его тепловой пушкой для восстановления формы.`,
+    detail: () =>
+      import('./services-detail/draining-suspended-ceiling/draining-suspended-ceiling').then((a) => a.Detail),
+    image: '/services/services-banner.jpg',
+    images: ['/services/services-banner.jpg'],
+  },
 ] as const;

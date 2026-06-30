@@ -10,6 +10,9 @@ export const routePath = {
   soglasie: {
     root: 'soglasie-na-obrabotku-personalnyh-dannyh',
   },
+  calculator: {
+    root: 'calculator',
+  },
   catalog: {
     root: 'catalog',
   },
@@ -81,6 +84,11 @@ export const appRoutes: Route[] = [
   {
     path: routePath.soglasie.root,
     loadComponent: () => import('./pages/soglasie-na-obrabotku-personalnyh-dannyh/soglasie-na-obrabotku-personalnyh-dannyh').then((a) => a.PrivacyPolicyPage),
+  },
+
+  {
+    path: routePath.calculator.root,
+    loadComponent: () => import('./pages/calculator/calculator-page').then((a) => a.CalculatorPage),
   },
 
   {

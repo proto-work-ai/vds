@@ -5,13 +5,14 @@ import { drainingSuspendedPrice } from '../../service-pages';
 import { PriceListUnitTable } from '../../../modules/catalog-price/price-list-unit-table/price-list-unit-table';
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
 import { ServicesBanner } from "../../../modules/services/services-banner/services-banner";
+import { SocialButtons } from "../../../components/social-buttons/social-buttons";
 
 /*
   https://slivaem-vodu.ru/moskva
 */
 @Component({
   templateUrl: 'draining-suspended-ceiling.html',
-  imports: [TuiAccordion, IsPlatformBrowserDirective, PriceListUnitTable, AnyQuestions, ServicesBanner],
+  imports: [TuiAccordion, IsPlatformBrowserDirective, PriceListUnitTable, AnyQuestions, ServicesBanner, SocialButtons],
 })
 export class Detail {
   protected readonly drainingSuspendedPrice = signal(drainingSuspendedPrice);

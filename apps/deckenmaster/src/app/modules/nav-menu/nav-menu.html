@@ -8,7 +8,7 @@
               @if (item.link) {
                 <a hlmNavigationMenuLink routerLinkActive="font-semibold" [routerLink]="item.link">{{ item.title }}</a>
               } @else {
-                <button hlmNavigationMenuTrigger class="px-0">
+                <button hlmNavigationMenuTrigger class="px-0 flex justify-between">
                   {{ item.title }}
 
                   @if (item.children?.length) {
@@ -21,30 +21,43 @@
 
                 @if (item.children?.length; as count) {
                   <hlm-navigation-menu-content *hlmNavigationMenuPortal class="shadow bg-white grid-cols-3">
-                    <div class="p-2">
-                      <ul class="grid gap-1 min-w-40">
+                    <nav hlmNavigationMenu orientation="vertical">
+                      <ul hlmNavigationMenuList class="flex-wrap">
                         @for (child of item.children; track $index) {
-                          <li class="flex flex-col gap-0">
+                          <li hlmNavigationMenuItem class="w-full">
                             @if (child.children?.length) {
-                              <div class="leading-none font-medium py-1 uppercase">{{ child.title }}</div>
+                              <button hlmNavigationMenuTrigger class="w-full flex justify-between">
+                                {{ child.title }}
+                                <ng-icon
+                                  name="lucideChevronDown"
+                                  class="relative top-px ml-1 size-3 transition duration-300 group-data-[state=open]:rotate-180"
+                                />
+                              </button>
 
-                              @for (sub of child.children; track sub) {
-                                <a
-                                  hlmNavigationMenuLink
-                                  routerLinkActive="font-semibold"
-                                  [routerLink]="sub.link"
-                                  [queryParams]="sub.queryParams ?? {}"
-                                  class="leading-none text-md py-1 text-gray-500"
-                                >
-                                  {{ sub.title }}
-                                </a>
-                              }
+                              <hlm-navigation-menu-content *hlmNavigationMenuPortal>
+                                <ul>
+                                  @for (sub of child.children; track sub) {
+                                    <li>
+                                      <a
+                                        hlmNavigationMenuLink
+                                        routerLinkActive="font-semibold"
+                                        [routerLink]="sub.link"
+                                        [queryParams]="sub.queryParams ?? {}"
+                                        class="leading-none p-2"
+                                      >
+                                        {{ sub.title }}
+                                      </a>
+                                    </li>
+                                  }
+                                </ul>
+                              </hlm-navigation-menu-content>
                             } @else {
                               <a
                                 hlmNavigationMenuLink
                                 routerLinkActive="font-semibold"
                                 [routerLink]="child.link"
                                 [queryParams]="child.queryParams ?? {}"
+                                class="leading-none p-2"
                               >
                                 <div class="flex flex-col gap-1">
                                   @if (child.title) {
@@ -65,7 +78,7 @@
                           <ng-icon strokewidth="1px" name="lucideChevronRight" class="text-gray-500" />
                         </a>
                       } -->
-                    </div>
+                    </nav>
                   </hlm-navigation-menu-content>
                 }
               }
@@ -79,7 +92,7 @@
       </div>
     </li>
 
-    @if(callSurveyor()) {
+    @if (callSurveyor()) {
       <li>
         <a href="#measurement" class="btn-primary btn-xs">Вызвать замерщика</a>
       </li>
@@ -90,8 +103,8 @@
 <tui-drawer *tuiPopup="open()" direction="start" class="drawer" [overlay]="true" (click.self)="onClose()">
   <header class="sticky top-0">
     <h2 tuiHeader class="flex items-center">
-      <div tuiTitle class="font-normal text-sm uppercase">
-        <span class="text-md font-normal uppercase">Меню</span>
+      <div tuiTitle class="font-normal text-sm">
+        <span class="text-md font-normal">Меню</span>
       </div>
       <div tuiAccessories>
         <ng-icon class="cursor-pointer text-lg" name="lucideX" (click)="onClose()"></ng-icon>

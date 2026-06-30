@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
 import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';

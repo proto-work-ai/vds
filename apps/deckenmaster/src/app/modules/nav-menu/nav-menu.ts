@@ -18,6 +18,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 import { type TuiHandler } from '@taiga-ui/cdk';
 import { TuiHeader } from '@taiga-ui/layout';
 import { TuiDrawer, TuiTree } from '@taiga-ui/kit';
+import { NgTemplateOutlet } from '@angular/common';
 import { injectNavMenu } from '../../model/stretch-ceilings.service';
 import { IAppMenuItem } from '../../shared/menu';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
@@ -41,6 +42,7 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
     HlmIconImports,
     RouterLinkActive,
     HlmNavigationMenuImports,
+    NgTemplateOutlet,
   ],
   providers: [
     provideIcons({

@@ -17,6 +17,7 @@ export interface IFormData {
   description?: string;
   rooms?: { id: number; title: string; icon: string }[];
   lightings?: { id: number; title: string; icon: string }[];
+  сurtainRods?: number;
 }
 
 export interface IDataSendItem {
@@ -47,6 +48,10 @@ export function buldDataMessage(data: IFormData): IDataSendItem[] {
       values.push('+7' + data.phone);
     }
     result.push({ title: 'Контакты:', values });
+  }
+
+  if (data.сurtainRods) {
+    result.push({ title: 'Карнизы для штор:', values: [data.сurtainRods] });
   }
 
   if (data.type) {

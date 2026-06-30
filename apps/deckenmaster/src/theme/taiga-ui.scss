@@ -25,8 +25,7 @@ $accent-color-hover: #f11d0d;
   --tui-font-text-ui-m: normal 1rem var(--tui-font-text);
   --tui-font-text-ui-s: normal 0.8125rem var(--tui-font-text);
   --tui-font-text-ui-xs: normal 0.6875rem var(--tui-font-text);
-  --tui-typography-body-s: normal calc(var(--tui-font-offset) + 1rem) / calc(20 / 14)
-    var(--tui-typography-family-text);
+  --tui-typography-body-s: normal calc(var(--tui-font-offset) + 1rem) / calc(20 / 14) var(--tui-typography-family-text);
   --tui-text-action: rgba(0, 0, 0, 0.87);
   --tui-font-heading-4: 20px;
   --tui-font-heading-1: 500 calc(var(--tui-font-offset) + 3.125rem) / calc(50 / 56) var(--tui-font-heading);
@@ -59,6 +58,14 @@ $accent-color-hover: #f11d0d;
     --tui-background-accent-1: var(--primari-color);
     --tui-background-accent-1-hover: var(--primari-color-hover);
     font-weight: 500;
+  }
+
+  tui-segmented {
+    --tui-radius-xs: 0.25rem;
+    --tui-radius-s: 0.5rem;
+    --tui-radius-m: 0.625rem;
+    --tui-radius-l: 0.75rem;
+    --tui-radius-xl: 1.5rem;
   }
 
   table[tuitable] {

@@ -1,5 +1,5 @@
 import { ComponentType } from '@angular/cdk/portal';
-import { ProductType } from './product-types';
+import { ProductTag } from './product-types';
 
 export interface IContentType {
   key: string;
@@ -7,6 +7,6 @@ export interface IContentType {
   image: string;
   images: string[];
   brief: string;
-  types: ProductType[];
+  types: ProductTag[];
   detail: () => Promise<ComponentType<any>>;
 }

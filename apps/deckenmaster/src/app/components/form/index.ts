@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TuiTextfield, TuiInput, TuiSlider } from '@taiga-ui/core';
+import { TuiTextfield, TuiInput, TuiSlider, TuiButton, TuiHint } from '@taiga-ui/core';
 import {
   TuiChevron,
   TuiDataListWrapper,
@@ -15,6 +15,7 @@ import { ZoomController } from '../../modules/price-calculation/zoom-controller/
 import { DataListOptions } from '../../modules/price-calculation/data-list-options/data-list-options.component';
 import { DataListOption } from '../../modules/price-calculation/data-list-options/data-list-option.component';
 import { RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 export { FormGroupStore };
 
@@ -37,4 +38,8 @@ export const FormImports = [
   TuiSlider,
   TuiInputNumber,
   RouterLink,
+
+  AsyncPipe,
+  TuiButton,
+  TuiHint,
 ] as const;
