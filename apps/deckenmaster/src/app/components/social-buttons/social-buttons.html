@@ -1,5 +1,5 @@
-<div class="-bg-gray-light py-5 --md:my-8 --my-6">
-  <div class="mx-auto flex justify-center gap-5">
+<div class="my-6">
+  <section class="max-md:hidden mx-auto flex justify-center gap-5">
     <a class="btn-primary btn-sm" href="https://t.me/{{ telegramContact }}" target="_blank">
       <span class="flex gap-2">
         <img class="w-6 max-sm:w-5 max-sm:w-5 block text-white" src="/icons/telegram-light.svg" alt="Telegram" />
@@ -13,5 +13,19 @@
         Написать в MAX
       </span>
     </a>
-  </div>
+  </section>
+
+  <section class="md:hidden mx-auto flex justify-center gap-5">
+    <a class="flex flex-col items-center gap-2" href="https://t.me/{{ telegramContact }}" target="_blank">
+      <img class="w-10 block" title="Telegram" src="/icons/telegram.svg" alt="Telegram" />
+
+       <small>Написать в Телеграм</small>
+    </a>
+
+    <a class="flex flex-col items-center gap-2" [href]="maxContact" target="_blank">
+      <img class="w-10 block" title="Max" src="/icons/max.svg" alt="Max" />
+
+      <small>Написать в MAX</small>
+    </a>
+  </section>
 </div>

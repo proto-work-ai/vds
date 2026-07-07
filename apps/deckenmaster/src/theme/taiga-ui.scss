@@ -1,13 +1,14 @@
 $accent-color: #f44336;
 $accent-color-hover: #f11d0d;
 
-:root {
+:root,
+[tuiTheme='light'] {
   --tui-text-secondary: inherit;
   --tui-font-text: var(--default-font-family);
-  --tui-height-xs: 1rem;
-  --tui-height-s: 1.75rem;
-  --tui-height-m: 2.5rem;
-  --tui-height-l: 3rem;
+  // --tui-height-xs: 1rem;
+  // --tui-height-s: 1.75rem;
+  // --tui-height-m: 2.5rem;
+  // --tui-height-l: 3rem;
   --tui-padding-s: 0.625rem;
   --tui-padding-m: 0.75rem;
   --tui-padding-l: 1rem;
@@ -42,15 +43,25 @@ $accent-color-hover: #f11d0d;
   --primari-color: #f9a81b;
   --primari-color-hover: #d08d18;
   --tui-border-normal: #e0e0e0;
-  --tui-background-accent-1: var(--tui-border-normal);
-  --tui-background-accent-1-hover: #cecece;
-  --tui-background-accent-1: var(--tui-border-normal);
+  // --tui-background-accent-1: var(--primari-color);
+  // --tui-background-accent-1-pressed: var(--primari-color);
   --tui-text-primary: #000;
+
+  [tuiAppearance][type='checkbox'] {
+    --tui-background-accent-1-hover: #f2a317;
+  }
+
+  [tuiAppearance][data-appearance=textfield]:focus-visible:not([data-focus=true]) {
+  }
 
   tui-tabs {
     --t-color: var(--primari-color) !important;
     justify-content: center;
-    width: 100%;
+    // width: 100%;
+  }
+
+  tui-tabs-with-more {
+    justify-content: center;
   }
 
   [tuiButton],
@@ -110,11 +121,9 @@ $accent-color-hover: #f11d0d;
     --t-shadow: 0px 0.1rem 0.3rem rgb(0 0 0 / 10%);
   }
 
-  [tuiAppearance][data-appearance='textfield']:is(a, button, select, textarea, input, label, .tui-interactive):not(
-      :disabled
-    ):hover:not(:disabled):not([data-state]) {
-    --t-shadow: 0px 0.1rem 0.3rem rgb(0 0 0 / 15%);
-  }
+    [tuiAppearance][data-appearance='textfield']:is(a, button, select, textarea, input, label, .tui-interactive):not( :disabled ):hover:not(:disabled):not([data-state]) {
+      --t-shadow: 0px 0.1rem 0.3rem rgb(0 0 0 / 15%);
+    }
 
   [tuiTheme='light'] [tuiAppearance][data-appearance='textfield'],
   [tuiTheme='light'][tuiAppearance][data-appearance='textfield'] {
@@ -221,7 +230,7 @@ tui-dialog {
 
   input[type='checkbox']:not(:checked) {
     box-shadow: none;
-    border: 2px solid rgba(0, 0, 0, 0.54);
+    border: 2px solid var(--primari-color);
     outline: none !important;
   }
 }
@@ -255,6 +264,10 @@ tui-textfield {
   tui-error {
     display: none !important;
   }
+
+  // [type='range'] {
+  //   padding: 0.7rem;
+  // }
 
   &.tui-invalid {
     [tuiappearance] {

@@ -22,6 +22,7 @@ import { NgTemplateOutlet } from '@angular/common';
 import { injectNavMenu } from '../../model/stretch-ceilings.service';
 import { IAppMenuItem } from '../../shared/menu';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
+import { ConsultationModalClick } from '../../components/consultation-modal/consultation-modal';
 
 @Component({
   selector: 'app-nav-menu',
@@ -35,14 +36,15 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
     TuiPopup,
     TuiTitle,
     TuiHeader,
-    ScrollLink,
     RouterLink,
     TuiTree,
     TuiIcon,
     HlmIconImports,
     RouterLinkActive,
     HlmNavigationMenuImports,
+    ScrollLink,
     NgTemplateOutlet,
+    ConsultationModalClick,
   ],
   providers: [
     provideIcons({
@@ -59,7 +61,6 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
   ],
 })
 export class NavMenu {
-  readonly callSurveyor = input(true);
   protected readonly navMenu = injectNavMenu();
   protected readonly handler: TuiHandler<IAppMenuItem, readonly IAppMenuItem[]> = (item) => item.children || [];
   protected open = signal(false);

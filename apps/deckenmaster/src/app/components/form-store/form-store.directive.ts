@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/directive-selector */
 /* eslint-disable @angular-eslint/component-selector */
-import { Directive, inject, Injector, input, OnInit, DestroyRef } from '@angular/core';
+import { Directive, inject, Injector, input, OnInit, DestroyRef, ChangeDetectorRef } from '@angular/core';
 import { injectLocalStorage } from '@atlas/core';
 import { FormGroup, FormGroupDirective } from '@angular/forms';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -10,8 +10,9 @@ import { tap } from 'rxjs';
 export class FormGroupStore implements OnInit {
   private readonly injector = inject(Injector);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly cdr = inject(ChangeDetectorRef);
   private readonly formGroup = inject(FormGroupDirective);
-  private value?: ReturnType<typeof injectLocalStorage>;
+  private value!: ReturnType<typeof injectLocalStorage>;
   public readonly formGroupStore = input.required<string>();
 
   private get form(): FormGroup {
@@ -24,11 +25,9 @@ export class FormGroupStore implements OnInit {
     if (this.value()) {
       const value = this.form.value ?? {};
       Object.assign(value, this.value());
-      this.form.patchValue(value, { emitEvent: false });
+      this.form.patchValue(value);
+      this.cdr.detectChanges();
     }
-    // if (this.form.value.rooms) {
-    //   console.log(this.form.value);
-    // }
 
     this.form.valueChanges
       .pipe(

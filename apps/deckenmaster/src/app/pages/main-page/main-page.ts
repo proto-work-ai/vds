@@ -12,27 +12,35 @@ import { MenuDeferDirective } from '../../components/menu-defer/menu-defer.direc
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { MenuHeaderComponent } from '../../modules/menu-header/menu-header.component';
 import { NavMenu } from '../../modules/nav-menu/nav-menu';
+import { CeilingCalculator } from "../../components/ceiling-calculator/ceiling-calculator";
+import { FromToComponent } from "../../modules/from-to/from-to.component";
+import { TurnkeySolutionsComponent } from "../../modules/turnkey-solution/turnkey-solutions/turnkey-solutions.component";
+import { LeaveRequestComponent } from "../../modules/leave-request/leave-request.component";
 
 @Component({
   selector: 'main',
   templateUrl: './main-page.html',
   styleUrls: ['./main-page.scss'],
   imports: [
-    // FromToComponent,
-    // TurnkeySolutionsComponent,
-    // LeaveRequestComponent,
     BannerComponent,
     FooterMenuComponent,
     WayWeWorkComponent,
     CeilingInstallationsComponent,
     ApplicationMeasurementComponent,
-    PriceCalculationComponent,
     MainHeaderComponent,
-    MenuDeferDirective,
     StretchCeilingsCatalogs,
-    MenuHeaderComponent,
     NavMenu,
-  ],
+    CeilingCalculator,
+    FromToComponent,
+    PriceCalculationComponent,
+    MenuDeferDirective,
+    MenuHeaderComponent,
+    TurnkeySolutionsComponent,
+    LeaveRequestComponent,
+    // FromToComponent,
+    // TurnkeySolutionsComponent,
+    // LeaveRequestComponent,
+],
   providers: [MenuDeferService],
   host: {
     id: 'main',

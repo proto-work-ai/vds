@@ -18,6 +18,9 @@ export interface IFormData {
   rooms?: { id: number; title: string; icon: string }[];
   lightings?: { id: number; title: string; icon: string }[];
   сurtainRods?: number;
+  profile?: number;
+  lighting?: number;
+  perimeter?: number;
 }
 
 export interface IDataSendItem {
@@ -48,6 +51,18 @@ export function buldDataMessage(data: IFormData): IDataSendItem[] {
       values.push('+7' + data.phone);
     }
     result.push({ title: 'Контакты:', values });
+  }
+
+  if (data.perimeter) {
+    result.push({ title: 'Периметр помещений:', values: [data.perimeter] });
+  }
+
+  if (data.lighting) {
+    result.push({ title: 'Люстры или светильники:', values: [data.lighting] });
+  }
+
+  if (data.profile) {
+    result.push({ title: 'Стеновой профиль:', values: [data.profile] });
   }
 
   if (data.сurtainRods) {

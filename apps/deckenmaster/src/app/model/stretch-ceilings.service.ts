@@ -69,7 +69,7 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
           return {
             title: productTypeName[type] ?? '',
             link: patch.concat(item.key),
-            queryParams: { type },
+            // queryParams: { type },
             fragment: 'main',
           } satisfies IAppMenuItem;
         }),

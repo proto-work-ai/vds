@@ -6,12 +6,12 @@ import { FooterMenuComponent } from '../../modules/footer-menu/footer-menu.compo
 import { MainHeaderComponent } from '../../modules/main-header/main-header.component';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../modules/breadcrumbs-header/breadcrumbs-header.component';
-
+import { NavMenu } from "../../modules/nav-menu/nav-menu";
 
 @Component({
   selector: 'main',
   templateUrl: './privacy-policy-page.html',
-  imports: [MainHeaderComponent, RouterLink, BreadcrumbsHeader, FooterMenuComponent],
+  imports: [MainHeaderComponent, RouterLink, BreadcrumbsHeader, FooterMenuComponent, NavMenu],
   providers: [MenuDeferService],
   host: {
     id: 'main',

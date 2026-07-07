@@ -2,7 +2,7 @@
   <div class="lg:container max-lg:px-3 mx-auto">
     <section class="flex flex-col gap-5 max-sm:px-5">
       <header class="text-center flex flex-col gap-2 sm:gap-3">
-        <h2 class="lg:text-4xl text-2xl">{{ title() }}</h2>
+        <h2 class="lg:text-4xl text-2xl">Расчет цены натяжного потолка с установкой</h2>
 
         <div class="md:w-175 mx-auto text-gray-500">
           Cтоимость зависит от выбранных материалов и технических расчетов
@@ -63,22 +63,15 @@
         <div class="lg:w-50 lg:text-end font-medium">Контакты:</div>
 
         <div class="flex-1 flex flex-wrap gap-3">
-          <tui-textfield class="flex-1" [tuiTextfieldCleaner]="false">
+          <!-- <tui-textfield class="flex-1" [tuiTextfieldCleaner]="false">
             <label tuiLabel>Введите имя</label>
             <input tuiInput formControlName="name" [maxlength]="100" />
-          </tui-textfield>
+          </tui-textfield> -->
 
-          @defer {
-            <tui-textfield [tuiTextfieldCleaner]="false">
-              <label tuiLabel>Укажите телефон</label>
-              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
-            </tui-textfield>
-          } @placeholder {
-            <tui-textfield [tuiTextfieldCleaner]="false">
-              <label tuiLabel>Укажите телефон</label>
-              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
-            </tui-textfield>
-          }
+          <tui-textfield *defer [tuiTextfieldCleaner]="false">
+            <label tuiLabel>Укажите телефон</label>
+            <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+          </tui-textfield>
 
           <button class="btn-primary btn-sm max-md:w-full" type="submit">Расчитать цену</button>
         </div>

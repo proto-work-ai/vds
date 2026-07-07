@@ -19,31 +19,16 @@ import { lucideChevronDown, lucideSquareArrowOutUpRight } from '@ng-icons/lucide
 import { HlmIcon } from '@spartan-ng/helm/icon';
 import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
 import { injectScrollToElement } from '../../../components/scroll-link/scroll.service';
+import { FormImports } from '../../../components/form';
 
 @Component({
   selector: 'app-sc-catalog-route-filter',
   templateUrl: 'stretch-ceilings-catalog-route-filter.html',
   styleUrl: 'stretch-ceilings-catalog-route-filter.scss',
   imports: [
-    TuiDataListWrapper,
-    TuiSelect,
-    FormsModule,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInputRange,
-    TuiInputSlider,
-    FormsModule,
-    TuiInputNumber,
     TuiTabs,
-    TuiTextfield,
     TuiIcon,
-    NgIcon,
-    ScrollLink,
-    RouterLink,
-    TuiButton,
-    TuiNumberFormat,
-    TuiChevron,
-    HlmIcon,
+    FormImports,
   ],
   providers: [
     provideIcons({

@@ -48,7 +48,11 @@
   tui-tabs {
     --t-color: var(--primari-color) !important;
     justify-content: center;
-    width: 100%;
+    // width: 100%;
+  }
+
+  tui-tabs-with-more {
+    justify-content: center;
   }
 
   [tuiButton],

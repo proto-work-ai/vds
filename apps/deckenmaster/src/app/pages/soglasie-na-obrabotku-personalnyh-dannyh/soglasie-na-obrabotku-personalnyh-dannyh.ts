@@ -5,11 +5,12 @@ import { MainHeaderComponent } from '../../modules/main-header/main-header.compo
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../modules/breadcrumbs-header/breadcrumbs-header.component';
 import { FooterMenuComponent } from "../../modules/footer-menu/footer-menu.component";
+import { NavMenu } from "../../modules/nav-menu/nav-menu";
 
 @Component({
   selector: 'main',
   templateUrl: './soglasie-na-obrabotku-personalnyh-dannyh.html',
-  imports: [MainHeaderComponent, BreadcrumbsHeader, FooterMenuComponent],
+  imports: [MainHeaderComponent, BreadcrumbsHeader, FooterMenuComponent, NavMenu],
   providers: [MenuDeferService],
   host: {
     id: 'main',
@@ -27,7 +28,7 @@ export class PrivacyPolicyPage {
   ]);
 
   constructor() {
-    const title = `Shtorivdom | Согласие на обработку персональных данных`;
+    const title = `DeckenMaster | Согласие на обработку персональных данных`;
     inject(Title).setTitle(title);
     inject(Meta).updateTag({ property: 'og:title', content: title });
 

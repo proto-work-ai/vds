@@ -1,13 +1,13 @@
 import { Component, computed, DestroyRef, inject, input, signal } from '@angular/core';
-import { injectStretchCeilingGroupMenu, injectStretchCeilingsCatalog } from '../../../model/stretch-ceilings.service';
-import { StretchCeilingsCatalogCard } from '../stretch-ceilings-catalog-card/stretch-ceilings-catalog-card';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { injectStretchCeilingGroupMenu, injectStretchCeilingsCatalog } from '../../../model/stretch-ceilings.service';
 import { routePath } from '../../../app.routes';
 import { injectRouteParam } from '../../../shared/inject-route-param';
-import { SCCatalogRouteFilter } from '../stretch-ceilings-catalog-route-filter/stretch-ceilings-catalog-route-filter';
 import { IAppMenuItem } from '../../../shared/menu';
 import { ScrollLink } from '../../../components/scroll-link/scroll-link.directive';
 import { stretchCeilingGroupMap } from '../../../model/stretch-ceiling';
+import { StretchCeilingsCatalogCard } from '../stretch-ceilings-catalog-card/stretch-ceilings-catalog-card';
+import { SCCatalogRouteFilter } from '../stretch-ceilings-catalog-route-filter/stretch-ceilings-catalog-route-filter';
 
 @Component({
   selector: 'app-stretch-ceilings-catalog-all',

@@ -6,10 +6,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { tuiInputPhoneOptionsProvider } from '@taiga-ui/kit';
 import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
 import { provideAnimations } from '@angular/platform-browser/animations';
-
-import { appRoutes } from './app.routes';
 import { provideTaiga } from '@taiga-ui/core';
 import { CookieAcceptedService } from '@atlas/form';
+import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [

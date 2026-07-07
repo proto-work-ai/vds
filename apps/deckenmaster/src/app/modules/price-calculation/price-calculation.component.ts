@@ -23,7 +23,6 @@ export class SafePipe implements PipeTransform {
 @Component({
   selector: 'app-price-calculation',
   templateUrl: './price-calculation.component.html',
-  styleUrls: ['./price-calculation.component.scss'],
   imports: [ZoomController, DataListOptionImports, FormImports],
   providers: [
     provideNgIconLoader((name) => {
@@ -34,7 +33,6 @@ export class SafePipe implements PipeTransform {
 export class PriceCalculationComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly sendForm = injectSendMessage(ymSubmitEvent);
-  readonly title = input('Расчет цены натяжного потолка с установкой');
 
   protected readonly typeOptions = signal(['Матовый', 'Тканевый', 'Глянцевый', 'Сатиновый']);
 
@@ -43,7 +41,7 @@ export class PriceCalculationComponent {
   protected readonly ticksLabels = signal([this.minRange(), 50, 75, 100, this.maxRange()].map((a) => a + 'м²'));
 
   protected readonly form = new FormGroup({
-    name: new FormControl(undefined, [Validators.required]),
+    // name: new FormControl(undefined, [Validators.required]),
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     type: new FormControl(this.typeOptions()[0]),
     size: new FormControl(this.minRange()),
@@ -99,9 +97,9 @@ export class PriceCalculationComponent {
               type: this.typeOptions()[0],
               rooms: [],
               lightings: [],
-              name: null,
               description: null,
               phone: null,
+              // name: null,
             });
             this.form.markAsUntouched();
           })

@@ -144,7 +144,7 @@ export class PriceListBrandTable {
     // { title: 'Температура эксплуатации, °С', key: 'operatingTemperature', type: 'string' },
     { title: 'Гарантия', key: 'warranty', type: 'string', formatter: ({ warranty }: any) => `${warranty} лет` },
     {
-      title: 'Цена за м² <div class="text-sm">с установкой</div>',
+      title: 'Цена за м²',
       key: 'price',
       type: 'string',
       formatter: (row: any) => {

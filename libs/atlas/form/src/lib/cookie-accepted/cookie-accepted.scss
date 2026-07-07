@@ -1,10 +1,9 @@
 .cookie {
   position: fixed;
-  left: 50%;
-  bottom: 24px;
-  transform: translateX(-50%);
+  right: 0;
+  bottom: 0rem;
   z-index: 99999;
-  width: min(1240px, calc(100% - 32px));
+  width: 460px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,7 +12,7 @@
   color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 16px 45px rgba(0, 0, 0, 0.28);
-  font-family: Gilroy, Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+  margin: 10px;
 }
 
 .cookie[hidden] {
@@ -21,30 +20,28 @@
 }
 
 .cookie-text {
-  max-width: 960px;
-  font-size: 15px;
-  line-height: 1.45;
-  font-weight: 500;
-}
+  font-size: 0.8rem;
+  line-height: 1.25;
 
-.cookie-text a {
-  color: #f3bf10;
-  text-decoration: none;
-  font-weight: 600;
-}
+  a {
+    color: #f3bf10;
+    text-decoration: none;
+    font-weight: 600;
 
-.cookie-text a:hover {
-  text-decoration: underline;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .cookie-close {
-  position: absolute;
-  top: 12px;
-  right: 14px;
+  top: 2px;
+  right: 8px;
   width: 24px;
   height: 24px;
   padding: 0;
   border: 0;
+  position: absolute;
   background: transparent;
   color: rgba(255, 255, 255, 0.65);
   font-size: 30px;
@@ -60,26 +57,17 @@
 
 @media (max-width: 768px) {
   .cookie {
-    bottom: 12px;
     width: calc(100% - 20px);
     flex-direction: column;
     align-items: stretch;
     gap: 16px;
-    padding: 42px 16px 18px;
     border-radius: 10px;
   }
 
   .cookie-text {
     max-width: none;
-    font-size: 13px;
+    font-size: 0.8rem;
     line-height: 1.4;
-  }
-
-  .cookie-btn {
-    width: 100%;
-    min-width: 0;
-    padding: 13px 18px;
-    font-size: 17px;
   }
 
   .cookie-close {

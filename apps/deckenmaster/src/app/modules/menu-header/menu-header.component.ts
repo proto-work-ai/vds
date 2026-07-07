@@ -6,6 +6,7 @@ import { TuiDrawer } from '@taiga-ui/kit';
 import { TuiHeader } from '@taiga-ui/layout';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
+import { ConsultationModalClick } from '../../components/consultation-modal/consultation-modal';
 
 @Component({
   selector: 'app-menu-header',
@@ -22,6 +23,7 @@ import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
     TuiTitle,
     TuiHeader,
     ScrollLink,
+    ConsultationModalClick,
   ],
   providers: [
     provideIcons({

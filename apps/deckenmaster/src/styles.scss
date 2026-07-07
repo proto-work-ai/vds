@@ -1,10 +1,18 @@
 @use 'sass:meta';
 
-html, body {
+html,
+body {
   font-size: 14px;
   --default-font-family: Manrope, sans-serif;
   letter-spacing: 2%;
-  min-width: 400px;
+  min-width: 320px;
+}
+
+@media (max-width: 400px) {
+  html,
+  body {
+    font-size: 12px;
+  }
 }
 
 /*

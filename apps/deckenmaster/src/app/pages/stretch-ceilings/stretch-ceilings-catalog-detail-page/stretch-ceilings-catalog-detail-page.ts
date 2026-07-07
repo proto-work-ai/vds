@@ -38,9 +38,9 @@ import { SocialButtons } from "../../../components/social-buttons/social-buttons
     PriceListTable,
     WayWeWorkComponent,
     AnyQuestions,
+    SocialButtons,
     SwiperFullImages,
     PriceListBrandTable,
-    SocialButtons
 ],
   providers: [
     MenuDeferService,
