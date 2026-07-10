@@ -96,7 +96,14 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
       title: 'Каталог',
       // link: ['/', routePath.catalog.root],
       fragment: 'main',
-      children: injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
+      children: [
+        {
+          title: 'Материал полотна',
+          link: ['/', routePath.materials.root],
+          fragment: 'main',
+        },
+        ...injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
+      ],
     },
 
     // ...injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
@@ -114,6 +121,7 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
       link: ['/', routePath.price.root],
       fragment: 'main',
     },
+
     // {
     //   title: 'Контакты',
     //   link: ['/', routePath.contacts.root],
@@ -132,7 +140,7 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
     },
 
     menuServices,
-    
+
     {
       title: 'Калькулятор',
       link: ['/', routePath.calculator.root],

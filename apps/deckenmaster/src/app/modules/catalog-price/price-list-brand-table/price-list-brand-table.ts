@@ -19,8 +19,9 @@ import { AtlasTaigaUiTable } from '@atlas/table';
 import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import { TuiTree } from '@taiga-ui/kit';
-import { stretchCeilingBrandMap, STBrandType } from '../../../model/price-list.service';
+import { STBrandType } from '../../../model/price-list.service';
 import { productTypeName, ProductTag } from '../../../model/stretch-ceiling';
+import { stretchCeilingBrandMap } from '../../../model/ceiling-materials';
 
 @Component({
   selector: 'app-column-brand-cell',

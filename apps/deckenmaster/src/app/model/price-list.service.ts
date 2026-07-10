@@ -40,10 +40,13 @@ export interface UnitPrice {
   image?: string;
 }
 
-export interface STPriceBrand {
+export interface CeilingMaterialBrand {
   brand: STBrandType;
   group?: STPriceGroup;
-  type?: ProductTag;
+  title?: string;
+  country?: string;
+  image?: string;
+  type?: ProductTag | ProductTag[];
   size: number; //Площадь
   width: number | number[]; //Ширина полотна
   thickness?: number | number[]; //Толщина
@@ -51,71 +54,6 @@ export interface STPriceBrand {
   operatingTemperature: string; //Температура эксплуатации
   price: number | number[]; //  Цена
   unit: PriceUnit;
+  description?: string;
 }
 
-export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
-  [
-    STBrandType.Bauf,
-    {
-      brand: STBrandType.Bauf,
-      country: 'Китай',
-      image: '/brands/bauf-logo.png',
-    },
-  ],
-  [
-    STBrandType.Limfer,
-    {
-      brand: STBrandType.Limfer,
-      country: 'Германия',
-      image: '/brands/lumfer-logo.png',
-    },
-  ],
-  [
-    STBrandType.MSD,
-    {
-      brand: STBrandType.MSD,
-      country: 'Китай',
-      image: '/brands/msd-logo.png',
-    },
-  ],
-  [
-    STBrandType.Pongs,
-    {
-      brand: STBrandType.Pongs,
-      country: 'Германия',
-      image: '/brands/pongs-logo.png',
-    },
-  ],
-  [
-    STBrandType.Teqtum,
-    {
-      brand: STBrandType.Teqtum,
-      country: 'Китай',
-      image: '/brands/teqtun-logo.png',
-    },
-  ],
-  [
-    STBrandType.Cerutti,
-    {
-      brand: STBrandType.Cerutti,
-      country: 'Италия',
-      image: '/brands/cerutti.png',
-    },
-  ],
-  [
-    STBrandType.Clipso,
-    {
-      brand: STBrandType.Clipso,
-      country: 'Франция',
-      image: '/brands/clipso.png',
-    },
-  ],
-  [
-    STBrandType.Descor,
-    {
-      brand: STBrandType.Descor,
-      country: 'Германия',
-      image: '/brands/descor.png',
-    },
-  ],
-]);
