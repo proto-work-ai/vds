@@ -42,9 +42,9 @@ import { ConsultationModalClick } from '../../components/consultation-modal/cons
     HlmIconImports,
     RouterLinkActive,
     HlmNavigationMenuImports,
+    ConsultationModalClick,
     ScrollLink,
     NgTemplateOutlet,
-    ConsultationModalClick,
   ],
   providers: [
     provideIcons({

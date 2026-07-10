@@ -31,7 +31,7 @@ import { SocialButtons } from "../../../components/social-buttons/social-buttons
 })
 export class Detail {
   constructor() {
-    const title = `Decken Master | Ремонт натяжного потолка в Москве`;
+    const title = `DeckenMaster | Ремонт натяжного потолка в Москве`;
     inject(Title).setTitle(title);
     inject(Meta).updateTag({ property: 'og:title', content: title });
 

@@ -69,7 +69,6 @@ import { STPriceGroup } from '../../../model/stretch-ceiling';
 })
 export class PriceList {
   protected readonly routePath = routePath;
-  protected readonly title = signal('Цены на натяжные потолки');
   protected readonly groups = signal<Pick<IAppMenuItem, 'title' | 'queryParams'>[]>(
     Array.from(dataCategoryMap, ([category, name]) => {
       return {

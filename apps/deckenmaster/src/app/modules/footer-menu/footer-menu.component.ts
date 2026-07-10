@@ -8,12 +8,13 @@ import { NgTemplateOutlet } from '@angular/common';
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 import { injectFooterMenu } from '../../model/stretch-ceilings.service';
+import { PhoneContact } from '../../components/phone-contact.componnent';
 
 @Component({
   selector: 'app-footer-menu',
   templateUrl: './footer-menu.component.html',
   styleUrls: ['./footer-menu.component.scss'],
-  imports: [NgIcon, PhoneFormatPipe, RouterLink, NgTemplateOutlet, ScrollLink],
+  imports: [NgIcon, PhoneFormatPipe, RouterLink, NgTemplateOutlet, ScrollLink, PhoneContact],
   providers: [
     provideIcons({
       lucidePhone,

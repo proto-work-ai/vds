@@ -17,7 +17,7 @@
 
           <div class="flex items-center gap-2">
             <ng-icon name="lucidePhone" class="text-white" />
-            <a class="max-sm:text-sm" href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
+            <a [phoneContact]="phoneContact">{{ phoneContact | phoneFormat }}</a>
           </div>
 
           <a class="max-sm:text-sm" href="mailto:info@deckenmaster.ru">{{ 'info@deckenmaster.ru' }}</a>
@@ -79,13 +79,13 @@
 </div>
 
 <ng-template #sociallaLink>
-  <div class="flex gap-2">
+  <div class="flex gap-4">
     <a class="max-sm:text-sm" href="https://t.me/{{ telegramContact }}" target="_blank" alt="Telegram"
-      ><img class="w-6 block text-white" src="/icons/telegram.svg" alt="Logotip"
+      ><img class="w-7 block text-white" src="/icons/telegram.svg" alt="Logotip"
     /></a>
 
     <a class="max-sm:text-sm" [href]="maxContact" target="_blank"
-      ><img class="w-6 block" title="Max" src="/icons/max.svg" alt="Max"
+      ><img class="w-7 block" title="Max" src="/icons/max.svg" alt="Max"
     /></a>
   </div>
 </ng-template>

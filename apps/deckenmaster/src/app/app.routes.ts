@@ -4,6 +4,9 @@ import { servicePages } from './model/service-pages';
 
 export const routePath = {
   root: '',
+  materials: {
+    root: 'ceiling-materials',
+  },
   privacyPolicy: {
     root: 'privacy-policy',
   },
@@ -76,14 +79,22 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/main-page/main-page').then((a) => a.MainPage),
   },
 
-  {
-    path: routePath.privacyPolicy.root,
-    loadComponent: () => import('./pages/privacy-policy/privacy-policy-page').then((a) => a.PrivacyPolicyPage),
-  },
+  // {
+  //   path: routePath.materials.root,
+  //   loadComponent: () => import('./pages/ceiling-materials/ceiling-materials-page').then((a) => a.CeilingMaterialsPage),
+  // },
 
   {
     path: routePath.soglasie.root,
-    loadComponent: () => import('./pages/soglasie-na-obrabotku-personalnyh-dannyh/soglasie-na-obrabotku-personalnyh-dannyh').then((a) => a.PrivacyPolicyPage),
+    loadComponent: () =>
+      import('./pages/soglasie-na-obrabotku-personalnyh-dannyh/soglasie-na-obrabotku-personalnyh-dannyh').then(
+        (a) => a.PrivacyPolicyPage
+      ),
+  },
+
+  {
+    path: routePath.privacyPolicy.root,
+    loadComponent: () => import('./pages/privacy-policy/privacy-policy-page').then((a) => a.PrivacyPolicyPage),
   },
 
   {

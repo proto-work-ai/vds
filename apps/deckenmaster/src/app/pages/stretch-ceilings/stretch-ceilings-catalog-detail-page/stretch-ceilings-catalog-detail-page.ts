@@ -21,6 +21,7 @@ import { PriceListTable } from "../../../modules/catalog-price/price-list-table/
 import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
 import { SocialButtons } from "../../../components/social-buttons/social-buttons";
+import { CeilingCalculator } from "../../../components/ceiling-calculator/ceiling-calculator";
 
 @Component({
   selector: 'st-catalog-getail',
@@ -41,6 +42,7 @@ import { SocialButtons } from "../../../components/social-buttons/social-buttons
     SocialButtons,
     SwiperFullImages,
     PriceListBrandTable,
+    CeilingCalculator
 ],
   providers: [
     MenuDeferService,
@@ -81,7 +83,7 @@ export class StretchCeilingsCatalogDetailPage {
   ]);
 
   constructor() {
-    const title = `Decken Master | ${this.item().title}`;
+    const title = `DeckenMaster | ${this.item().title}`;
     inject(Title).setTitle(title);
     inject(Meta).updateTag({ property: 'og:title', content: title });
     const image = this.item()?.images?.[0];

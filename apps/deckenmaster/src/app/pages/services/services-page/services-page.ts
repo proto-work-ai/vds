@@ -72,7 +72,7 @@ export class ServicesPage {
   });
 
   constructor() {
-    const title = `Decken Master | ${this.item().title}`;
+    const title = `DeckenMaster | ${this.item().title}`;
     inject(Title).setTitle(title);
     inject(Meta).updateTag({ property: 'og:title', content: title });
     const image = this.item()?.images?.[0];

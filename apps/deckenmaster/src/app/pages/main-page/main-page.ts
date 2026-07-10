@@ -12,10 +12,11 @@ import { MenuDeferDirective } from '../../components/menu-defer/menu-defer.direc
 import { MenuDeferService } from '../../components/menu-defer/menu-defer-host.service';
 import { MenuHeaderComponent } from '../../modules/menu-header/menu-header.component';
 import { NavMenu } from '../../modules/nav-menu/nav-menu';
-import { CeilingCalculator } from "../../components/ceiling-calculator/ceiling-calculator";
-import { FromToComponent } from "../../modules/from-to/from-to.component";
-import { TurnkeySolutionsComponent } from "../../modules/turnkey-solution/turnkey-solutions/turnkey-solutions.component";
-import { LeaveRequestComponent } from "../../modules/leave-request/leave-request.component";
+import { CeilingCalculator } from '../../components/ceiling-calculator/ceiling-calculator';
+import { FromToComponent } from '../../modules/from-to/from-to.component';
+import { TurnkeySolutionsComponent } from '../../modules/turnkey-solution/turnkey-solutions/turnkey-solutions.component';
+import { LeaveRequestComponent } from '../../modules/leave-request/leave-request.component';
+import { setMeta } from '@atlas/core';
 
 @Component({
   selector: 'main',
@@ -40,10 +41,17 @@ import { LeaveRequestComponent } from "../../modules/leave-request/leave-request
     // FromToComponent,
     // TurnkeySolutionsComponent,
     // LeaveRequestComponent,
-],
+  ],
   providers: [MenuDeferService],
   host: {
     id: 'main',
   },
 })
-export class MainPage {}
+export class MainPage {
+  constructor() {
+    setMeta({
+      title: `DeckenMaster | Натяжные потолки купить недорого в Москве с установкой, заказать потолок`,
+      description: `Натяжные потолки любых видов и сложности. Поможем с выбором идеального варианта! Качественные материалы. Опытные мастера!`,
+    });
+  }
+}

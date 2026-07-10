@@ -42,7 +42,7 @@ export class PricePage {
   ]);
 
   constructor() {
-    const title = `Decken Master | Цены на натяжные потолки`;
+    const title = `DeckenMaster | Цены на натяжные потолки`;
     inject(Title).setTitle(title);
     inject(Meta).updateTag({ property: 'og:title', content: title });
 
