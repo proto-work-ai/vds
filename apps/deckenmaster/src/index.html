@@ -31,7 +31,7 @@
   <body>
     <app-root></app-root>
     <script type="text/javascript">
-      if (location.hostname !== 'localhost') {
+      if (!['localhost', '127.0.0.1'].includes(location.hostname)) {
         (function (m, e, t, r, i, k, a) {
           m[i] =
             m[i] ||

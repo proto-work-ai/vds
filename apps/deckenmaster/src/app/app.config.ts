@@ -8,10 +8,15 @@ import { GALLERY_CONFIG, GalleryConfig } from 'ng-gallery';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideTaiga } from '@taiga-ui/core';
 import { CookieAcceptedService } from '@atlas/form';
+import { LocationStrategy, TrailingSlashPathLocationStrategy } from '@angular/common';
 import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    /*
+      Cерверы (например, Apache или Nginx) рассматривают пути с завершающими косыми чертами как каталоги, соответствующие каталогу index.html
+    */
+    { provide: LocationStrategy, useClass: TrailingSlashPathLocationStrategy },
     provideClientHydration(withEventReplay()),
     provideBrowserGlobalErrorListeners(),
     provideRouter(appRoutes),
