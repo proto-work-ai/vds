@@ -19,7 +19,7 @@ export class Detail {
     return ' '
       .repeat(65)
       .split('')
-      .map((_, index) => `/catalog/stretch-ceiling-photo-printing/images/${index + 1}.jpg`)
+      .map((_, index) => `/img/catalog/stretch-ceiling-photo-printing/images/${index + 1}.jpg`)
       .map((src) => new ImageItem({ src, thumb: src }));
   });
 

@@ -132,8 +132,8 @@ export const servicePages: IContentType[] = [
   //   brief: '',
   //   detail: () =>
   //     import('./services-detail/installation-suspended-seiling/installation-suspended-seiling').then((a) => a.Detail),
-  //   image: '/catalog/image-2.jpg',
-  //   images: ['/catalog/image-2.jpg'],
+  //   image: '/img/catalog/image-2.jpg',
+  //   images: ['/img/catalog/image-2.jpg'],
   // },
   // {
   //   types: servicesPageProductsMap.get(ServicesPageType.RemovingSlattedCeiling)!,
@@ -141,8 +141,8 @@ export const servicePages: IContentType[] = [
   //   title: servicesPageMapName[ServicesPageType.RemovingSlattedCeiling]!,
   //   brief: '',
   //   detail: () => import('./services-detail/removing-slatted-ceiling/removing-slatted-ceiling').then((a) => a.Detail),
-  //   image: '/catalog/image-2.jpg',
-  //   images: ['/catalog/image-2.jpg'],
+  //   image: '/img/catalog/image-2.jpg',
+  //   images: ['/img/catalog/image-2.jpg'],
   // },
 
   {

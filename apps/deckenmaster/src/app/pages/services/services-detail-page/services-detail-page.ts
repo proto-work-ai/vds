@@ -95,7 +95,7 @@ export class ServicesDetailPpage {
           },
           // {
           //   title: 'Услуги',
-          //   link: ['/catalog'],
+          //   link: ['/', routePath.catalog.root],
           // },
           {
             title: item.title,

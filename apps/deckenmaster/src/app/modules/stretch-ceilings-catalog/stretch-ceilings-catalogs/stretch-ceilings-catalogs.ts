@@ -34,7 +34,7 @@ export class StretchCeilingsCatalogs {
     ...injectStretchCeilingGroupMenu().slice(0, 3), // Все кромя "По типу"
     {
       title: 'Весь список',
-      link: ['/catalog'],
+      link: ['/', routePath.catalog.root],
       fragment: 'main',
       queryParams: {},
     },

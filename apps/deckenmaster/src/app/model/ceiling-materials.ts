@@ -15,7 +15,7 @@ const MatteMSD: CeilingMaterialBrand = {
   price: 600,
   unit: PriceUnit.M2,
   country: 'Китай',
-  image: '/catalog/brands/msd-logo.png',
+  image: '/img/brands/msd-logo.png',
 };
 
 // MSD
@@ -31,7 +31,7 @@ const MattePremiumMSD: CeilingMaterialBrand = {
   price: 800,
   unit: PriceUnit.M2,
   country: 'Китай',
-  image: '/catalog/brands/msd-logo.png',
+  image: '/img/brands/msd-logo.png',
 };
 
 const EvolutionMSD: CeilingMaterialBrand = {
@@ -46,7 +46,7 @@ const EvolutionMSD: CeilingMaterialBrand = {
   price: 800,
   unit: PriceUnit.M2,
   country: 'Китай',
-  image: '/catalog/brands/msd-logo.png',
+  image: '/img/brands/msd-logo.png',
 };
 
 const ColdStretchMSD: CeilingMaterialBrand = {
@@ -61,7 +61,7 @@ const ColdStretchMSD: CeilingMaterialBrand = {
   price: 800,
   unit: PriceUnit.M2,
   country: 'Китай',
-  image: '/catalog/brands/msd-logo.png',
+  image: '/img/brands/msd-logo.png',
   description: 'Без нагрева',
 };
 
@@ -78,7 +78,7 @@ const MatteBauf205: CeilingMaterialBrand = {
   price: 900,
   unit: PriceUnit.M2,
   country: 'Китай',
-  image: '/catalog/brands/bauf-logo.png',
+  image: '/img/brands/bauf-logo.png',
 };
 
 // Bauf
@@ -94,7 +94,7 @@ const MatteBauf230: CeilingMaterialBrand = {
   price: 1000,
   unit: PriceUnit.M2,
   country: 'Китай',
-  image: '/catalog/brands/bauf-logo.png',
+  image: '/img/brands/bauf-logo.png',
 };
 
 // Bauf
@@ -110,7 +110,7 @@ const MatteBauf270: CeilingMaterialBrand = {
   price: 1100,
   unit: PriceUnit.M2,
   country: 'Китай',
-  image: '/catalog/brands/bauf-logo.png',
+  image: '/img/brands/bauf-logo.png',
 };
 
 // MSD
@@ -126,7 +126,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   price: 700,
 //   unit: PriceUnit.M2,
 //   country: 'Китай',
-//   image: '/catalog/brands/msd-logo.png',
+//   image: '/img/brands/msd-logo.png',
 // };
 
 // MSD
@@ -142,7 +142,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   price: 600,
 //   unit: PriceUnit.M2,
 //   country: 'Китай',
-//   image: '/catalog/brands/msd-logo.png',
+//   image: '/img/brands/msd-logo.png',
 // };
 
 // MSD
@@ -158,7 +158,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   price: 750,
 //   unit: PriceUnit.M2,
 //   country: 'Китай',
-//   image: '/catalog/brands/msd-logo.png',
+//   image: '/img/brands/msd-logo.png',
 // };
 
 // MSD
@@ -216,7 +216,7 @@ const MattePongs: CeilingMaterialBrand = {
   price: 800,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/pongs-logo.png',
+  image: '/img/brands/pongs-logo.png',
 };
 
 // Pongs
@@ -232,7 +232,7 @@ const MatteColorPongs: CeilingMaterialBrand = {
   price: 100,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/pongs-logo.png',
+  image: '/img/brands/pongs-logo.png',
 };
 
 // Pongs
@@ -248,7 +248,7 @@ const GlossyPongs: CeilingMaterialBrand = {
   price: 800,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/pongs-logo.png',
+  image: '/img/brands/pongs-logo.png',
 };
 
 // Pongs
@@ -264,7 +264,7 @@ const GlossyColorPongs: CeilingMaterialBrand = {
   price: 600,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/pongs-logo.png',
+  image: '/img/brands/pongs-logo.png',
 };
 
 // Pongs
@@ -280,7 +280,7 @@ const SatinPongs: CeilingMaterialBrand = {
   price: 800,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/pongs-logo.png',
+  image: '/img/brands/pongs-logo.png',
 };
 
 // Pongs
@@ -296,7 +296,7 @@ const SatinColorPongs: CeilingMaterialBrand = {
   price: 1000,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/pongs-logo.png',
+  image: '/img/brands/pongs-logo.png',
 };
 
 // Descor
@@ -312,7 +312,7 @@ const FabricDescor: CeilingMaterialBrand = {
   price: 1400,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/descor.png',
+  image: '/img/brands/descor.png',
 };
 
 // Clipso
@@ -328,7 +328,7 @@ const FabricClipso: CeilingMaterialBrand = {
   price: 4500,
   unit: PriceUnit.M2,
   country: 'Франция',
-  image: '/catalog/brands/clipso.png',
+  image: '/img/brands/clipso.png',
 };
 
 // Cerutti
@@ -344,7 +344,7 @@ const FabricCerutti: CeilingMaterialBrand = {
   price: 4500,
   unit: PriceUnit.M2,
   country: 'Италия',
-  image: '/catalog/brands/cerutti.png',
+  image: '/img/brands/cerutti.png',
 };
 
 const MatteTeqtum: CeilingMaterialBrand = {
@@ -359,7 +359,7 @@ const MatteTeqtum: CeilingMaterialBrand = {
   price: 1200,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/lumfer-logo.png',
+  image: '/img/brands/lumfer-logo.png',
   description: 'Не горючий',
 };
 
@@ -376,7 +376,7 @@ const MatteLimfer: CeilingMaterialBrand = {
   price: 1200,
   unit: PriceUnit.M2,
   country: 'Германия',
-  image: '/catalog/brands/lumfer-logo.png',
+  image: '/img/brands/lumfer-logo.png',
   description: 'Лучшие показатели',
 };
 
@@ -473,6 +473,6 @@ export const stretchCeilingBrandMap = Array.from(stretchCeilingMaterials, ([type
 //   {
 //     brand: STBrandType.Teqtum,
 //     country: 'Китай',
-//     image: '/catalog/brands/teqtun-logo.png',
+//     image: '/img/brands/teqtun-logo.png',
 //   },
 // ],

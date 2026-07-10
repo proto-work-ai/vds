@@ -63,7 +63,7 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     {
       brand: STBrandType.Bauf,
       country: 'Китай',
-      image: '/brands/bauf-logo.png',
+      image: '/img/brands/bauf-logo.png',
     },
   ],
   [
@@ -71,7 +71,7 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     {
       brand: STBrandType.Limfer,
       country: 'Германия',
-      image: '/brands/lumfer-logo.png',
+      image: '/img/brands/lumfer-logo.png',
     },
   ],
   [
@@ -79,7 +79,7 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     {
       brand: STBrandType.MSD,
       country: 'Китай',
-      image: '/brands/msd-logo.png',
+      image: '/img/brands/msd-logo.png',
     },
   ],
   [
@@ -87,7 +87,7 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     {
       brand: STBrandType.Pongs,
       country: 'Германия',
-      image: '/brands/pongs-logo.png',
+      image: '/img/brands/pongs-logo.png',
     },
   ],
   [
@@ -95,7 +95,7 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     {
       brand: STBrandType.Teqtum,
       country: 'Китай',
-      image: '/brands/teqtun-logo.png',
+      image: '/img/brands/teqtun-logo.png',
     },
   ],
   [
@@ -103,7 +103,7 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     {
       brand: STBrandType.Cerutti,
       country: 'Италия',
-      image: '/brands/cerutti.png',
+      image: '/img/brands/cerutti.png',
     },
   ],
   [
@@ -111,7 +111,7 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     {
       brand: STBrandType.Clipso,
       country: 'Франция',
-      image: '/brands/clipso.png',
+      image: '/img/brands/clipso.png',
     },
   ],
   [
@@ -119,7 +119,7 @@ export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([
     {
       brand: STBrandType.Descor,
       country: 'Германия',
-      image: '/brands/descor.png',
+      image: '/img/brands/descor.png',
     },
   ],
 ]);

@@ -22,6 +22,7 @@ import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.com
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
 import { SocialButtons } from "../../../components/social-buttons/social-buttons";
 import { CeilingCalculator } from "../../../components/ceiling-calculator/ceiling-calculator";
+import { routePath } from '../../../app.routes';
 
 @Component({
   selector: 'st-catalog-getail',
@@ -102,7 +103,7 @@ export class StretchCeilingsCatalogDetailPage {
           },
           {
             title: 'Каталог',
-            link: ['/catalog'],
+            link: ['/', routePath.catalog.root],
           },
           {
             title: item.title,
