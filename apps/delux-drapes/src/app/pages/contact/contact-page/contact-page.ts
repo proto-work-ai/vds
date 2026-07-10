@@ -41,7 +41,7 @@ export function ymPartner(): void {
     FormImports,
     WayWeWorkComponent,
   ],
-  providers: [MenuDeferService],
+  // providers: [MenuDeferService],
   host: { id: 'main' },
 })
 export class СontactPage {

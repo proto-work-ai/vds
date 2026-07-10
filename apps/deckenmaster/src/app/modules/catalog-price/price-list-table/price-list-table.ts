@@ -5,7 +5,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { TuiTree } from '@taiga-ui/kit';
 import { PriceListBrandTable } from '../price-list-brand-table/price-list-brand-table';
 import { PriceListUnitTable } from '../price-list-unit-table/price-list-unit-table';
-import { STPriceBrand, STUnitPrice } from '../../../model/price-list.service';
+import { CeilingMaterialBrand, STUnitPrice } from '../../../model/price-list.service';
 
 @Component({
   selector: 'app-price-list-table',
@@ -22,17 +22,17 @@ import { STPriceBrand, STUnitPrice } from '../../../model/price-list.service';
   ],
 })
 export class PriceListTable {
-  readonly tableRows = input.required<(STPriceBrand | STUnitPrice)[]>();
+  readonly tableRows = input.required<(CeilingMaterialBrand | STUnitPrice)[]>();
   protected readonly filteredBrand = computed(() => {
     return this.tableRows()
-      .map((a) => a as STPriceBrand)
+      .map((a) => a as CeilingMaterialBrand)
       .filter((a) => !!a.brand)
       .filter((user, index, self) => index === self.findIndex((u) => u.type === user.type && u.brand === user.brand));
   });
 
   protected readonly filteredUnit = computed(() => {
     return this.tableRows()
-      .filter((a) => !(a as STPriceBrand).brand)
+      .filter((a) => !(a as CeilingMaterialBrand).brand)
       .filter((user, index, self) => index === self.findIndex((u) => u.type === user.type));
   });
 }

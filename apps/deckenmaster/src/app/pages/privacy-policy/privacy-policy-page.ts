@@ -12,7 +12,7 @@ import { NavMenu } from "../../modules/nav-menu/nav-menu";
   selector: 'main',
   templateUrl: './privacy-policy-page.html',
   imports: [MainHeaderComponent, RouterLink, BreadcrumbsHeader, FooterMenuComponent, NavMenu],
-  providers: [MenuDeferService],
+  // providers: [MenuDeferService],
   host: {
     id: 'main',
   },

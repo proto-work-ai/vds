@@ -45,7 +45,7 @@ import { CeilingCalculator } from "../../../components/ceiling-calculator/ceilin
     CeilingCalculator
 ],
   providers: [
-    MenuDeferService,
+    // MenuDeferService,
     // {
     //   provide: TuiDialogService,
     //   useExisting: TuiResponsiveDialogService,

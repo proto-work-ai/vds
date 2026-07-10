@@ -40,7 +40,7 @@ export interface UnitPrice {
   image?: string;
 }
 
-export interface STPriceBrand {
+export interface CeilingMaterialBrand {
   brand: STBrandType;
   group?: STPriceGroup;
   type?: ProductTag;
@@ -51,6 +51,10 @@ export interface STPriceBrand {
   operatingTemperature: string; //Температура эксплуатации
   price: number | number[]; //  Цена
   unit: PriceUnit;
+  country?: string;
+  image?: string;
+  title?: string;
+  description?: string;
 }
 
 export const stretchCeilingBrandMap = new Map<STBrandType, STBrand>([

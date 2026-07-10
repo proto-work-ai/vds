@@ -84,6 +84,18 @@ export const appRoutes: Route[] = [
   //   loadComponent: () => import('./pages/ceiling-materials/ceiling-materials-page').then((a) => a.CeilingMaterialsPage),
   // },
 
+  ...servicesRoutes,
+
+  ...stretchCeilingRoutes,
+
+  {
+    path: routePath.catalog.root,
+    loadComponent: () =>
+      import('./pages/stretch-ceilings/stretch-ceilings-catalog-all-page/stretch-ceilings-catalog-all-page').then(
+        (a) => a.StretchCeilingsCatalogsPage
+      ),
+  },
+
   {
     path: routePath.soglasie.root,
     loadComponent: () =>
@@ -103,24 +115,6 @@ export const appRoutes: Route[] = [
   },
 
   {
-    path: routePath.catalog.root,
-    loadComponent: () =>
-      import('./pages/stretch-ceilings/stretch-ceilings-catalog-all-page/stretch-ceilings-catalog-all-page').then(
-        (a) => a.StretchCeilingsCatalogsPage
-      ),
-  },
-
-  ...stretchCeilingRoutes,
-
-  // {
-  //   path: `${routePath.catalog.root}/:key`,
-  //   pathMatch: 'full',
-  //   loadComponent: () =>
-  //     import(
-  //       './pages/stretch-ceilings/stretch-ceilings-catalog-detail-page/stretch-ceilings-catalog-detail-page'
-  //     ).then((a) => a.StretchCeilingsCatalogDetailPage),
-  // },
-  {
     path: `${routePath.price.root}`,
     pathMatch: 'full',
     loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
@@ -131,8 +125,6 @@ export const appRoutes: Route[] = [
   //   pathMatch: 'full',
   //   loadComponent: () => import('./pages/services/services-page/services-page').then((a) => a.ServicesPage),
   // },
-
-  ...servicesRoutes,
 
   {
     path: `${routePath.orders.root}`,

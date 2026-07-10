@@ -25,7 +25,7 @@ import { PriceList } from '../../modules/catalog-price/catalog-price-list/catalo
     PriceCalculationComponent,
     MenuDeferDirective,
   ],
-  providers: [MenuDeferService],
+  // providers: [MenuDeferService],
   host: {
     id: 'main',
   },

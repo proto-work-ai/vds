@@ -42,7 +42,7 @@ import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.com
     WayWeWorkComponent,
 ],
   providers: [
-    MenuDeferService,
+    // MenuDeferService,
     // {
     //   provide: TuiDialogService,
     //   useExisting: TuiResponsiveDialogService,

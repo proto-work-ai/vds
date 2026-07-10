@@ -19,8 +19,8 @@ import { MainBannerComponent } from '../../../modules/main-banner/main-banner.co
 import { MainForm } from '../../../modules/main-form/main-form.component';
 import { MainQuestions } from '../../../modules/main-questions/main-questions.component';
 import { InviteModalClick } from '../../../components/invite-designer/invite-designer-modal';
-import { PlaceAnOrder } from "../../../modules/place-an-order/place-an-order.component";
-import { MainBannerForm } from "../../../modules/main-banner-form/main-banner-form.component";
+import { PlaceAnOrder } from '../../../modules/place-an-order/place-an-order.component';
+import { MainBannerForm } from '../../../modules/main-banner-form/main-banner-form.component';
 
 @Component({
   selector: 'app-catalog-getail',
@@ -44,8 +44,8 @@ import { MainBannerForm } from "../../../modules/main-banner-form/main-banner-fo
     AnyQuestions,
     PriceListBrandTable,
     GallerizeImages,
-],
-  providers: [MenuDeferService],
+  ],
+  // providers: [MenuDeferService],
   host: {
     id: 'main',
   },

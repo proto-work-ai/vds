@@ -11,7 +11,7 @@ import { NavMenu } from "../../modules/nav-menu/nav-menu";
   selector: 'main',
   templateUrl: './soglasie-na-obrabotku-personalnyh-dannyh.html',
   imports: [MainHeaderComponent, BreadcrumbsHeader, FooterMenuComponent, NavMenu],
-  providers: [MenuDeferService],
+  //providers: [MenuDeferService],
   host: {
     id: 'main',
   },

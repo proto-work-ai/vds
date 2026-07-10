@@ -11,7 +11,7 @@ import { MainFooterComponent } from '../../modules/main-footer/main-footer.compo
   selector: 'main',
   templateUrl: './privacy-policy-page.html',
   imports: [MainHeaderComponent, RouterLink, BreadcrumbsHeader, MainFooterComponent],
-  providers: [MenuDeferService],
+  // providers: [MenuDeferService],
   host: {
     id: 'main',
   },

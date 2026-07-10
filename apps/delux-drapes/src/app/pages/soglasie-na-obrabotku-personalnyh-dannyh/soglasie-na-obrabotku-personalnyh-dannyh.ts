@@ -11,7 +11,7 @@ import { MainFooterComponent } from "../../modules/main-footer/main-footer.compo
   selector: 'main',
   templateUrl: './soglasie-na-obrabotku-personalnyh-dannyh.html',
   imports: [MainHeaderComponent, BreadcrumbsHeader, MainFooterComponent, NavMenu],
-  providers: [MenuDeferService],
+  // providers: [MenuDeferService],
   host: {
     id: 'main',
   },

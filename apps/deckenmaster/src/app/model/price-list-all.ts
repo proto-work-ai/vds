@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { STBrandType, STPriceBrand, PriceUnit } from './price-list.service';
+import { STBrandType, CeilingMaterialBrand, PriceUnit } from './price-list.service';
 import { STPriceGroup, stretchCeilingGroupName, productTypeName, ProductTag } from './stretch-ceiling';
 import { STUnitPrice } from './price-list.service';
 import { byDesignGroup, withBacklightGroup } from './stretch-ceiling/by-design.group';
 
-const MatteMSD: STPriceBrand = {
+const MatteMSD: CeilingMaterialBrand = {
   type: ProductTag.Matte,
   brand: STBrandType.MSD,
   size: 30,
@@ -16,7 +16,7 @@ const MatteMSD: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const MatteColorMSD: STPriceBrand = {
+const MatteColorMSD: CeilingMaterialBrand = {
   type: ProductTag.MatteColor,
   brand: STBrandType.MSD,
   size: 30,
@@ -28,7 +28,7 @@ const MatteColorMSD: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const GlossyMSD: STPriceBrand = {
+const GlossyMSD: CeilingMaterialBrand = {
   type: ProductTag.Glossy,
   brand: STBrandType.MSD,
   size: 30,
@@ -40,7 +40,7 @@ const GlossyMSD: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const GlossyColorMSD: STPriceBrand = {
+const GlossyColorMSD: CeilingMaterialBrand = {
   type: ProductTag.GlossyColor,
   brand: STBrandType.MSD,
   size: 30,
@@ -52,7 +52,7 @@ const GlossyColorMSD: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const MattePongs: STPriceBrand = {
+const MattePongs: CeilingMaterialBrand = {
   type: ProductTag.Matte,
   brand: STBrandType.Pongs,
   size: 30,
@@ -64,7 +64,7 @@ const MattePongs: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const MatteColorPongs: STPriceBrand = {
+const MatteColorPongs: CeilingMaterialBrand = {
   type: ProductTag.MatteColor,
   brand: STBrandType.Pongs,
   size: 30,
@@ -76,7 +76,7 @@ const MatteColorPongs: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const GlossyPongs: STPriceBrand = {
+const GlossyPongs: CeilingMaterialBrand = {
   type: ProductTag.Glossy,
   brand: STBrandType.Pongs,
   size: 30,
@@ -88,7 +88,7 @@ const GlossyPongs: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const GlossyColorPongs: STPriceBrand = {
+const GlossyColorPongs: CeilingMaterialBrand = {
   type: ProductTag.GlossyColor,
   brand: STBrandType.Pongs,
   size: 30,
@@ -100,7 +100,7 @@ const GlossyColorPongs: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const GalaxyGlossyColorMSD: STPriceBrand = {
+const GalaxyGlossyColorMSD: CeilingMaterialBrand = {
   type: ProductTag.GalaxyGlossyColor,
   brand: STBrandType.MSD,
   size: 30,
@@ -112,7 +112,7 @@ const GalaxyGlossyColorMSD: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const FabricDescor: STPriceBrand = {
+const FabricDescor: CeilingMaterialBrand = {
   type: ProductTag.Fabric,
   brand: STBrandType.Descor,
   size: 30,
@@ -124,7 +124,7 @@ const FabricDescor: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const FabricClipso: STPriceBrand = {
+const FabricClipso: CeilingMaterialBrand = {
   type: ProductTag.Fabric,
   brand: STBrandType.Clipso,
   size: 30,
@@ -136,7 +136,7 @@ const FabricClipso: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const FabricCerutti: STPriceBrand = {
+const FabricCerutti: CeilingMaterialBrand = {
   type: ProductTag.Fabric,
   brand: STBrandType.Cerutti,
   size: 30,
@@ -148,7 +148,7 @@ const FabricCerutti: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const SatinMSD: STPriceBrand = {
+const SatinMSD: CeilingMaterialBrand = {
   brand: STBrandType.MSD,
   type: ProductTag.Satin,
   size: 30,
@@ -161,7 +161,7 @@ const SatinMSD: STPriceBrand = {
 };
 
 // MSD
-const SatinColorMSD: STPriceBrand = {
+const SatinColorMSD: CeilingMaterialBrand = {
   brand: STBrandType.MSD,
   type: ProductTag.SatinColor,
   size: 30,
@@ -174,7 +174,7 @@ const SatinColorMSD: STPriceBrand = {
 };
 
 // Pongs
-const SatinPongs: STPriceBrand = {
+const SatinPongs: CeilingMaterialBrand = {
   brand: STBrandType.Pongs,
   type: ProductTag.Satin,
   size: 30,
@@ -187,7 +187,7 @@ const SatinPongs: STPriceBrand = {
 };
 
 // Pongs
-const SatinColorPongs: STPriceBrand = {
+const SatinColorPongs: CeilingMaterialBrand = {
   brand: STBrandType.Pongs,
   type: ProductTag.SatinColor,
   size: 30,
@@ -199,7 +199,7 @@ const SatinColorPongs: STPriceBrand = {
   unit: PriceUnit.M2,
 };
 
-const stretchCeilingCatalogMap = new Map<STPriceGroup, (STPriceBrand | STUnitPrice)[]>([
+const stretchCeilingCatalogMap = new Map<STPriceGroup, (CeilingMaterialBrand | STUnitPrice)[]>([
   // PVC (материал)
   [
     STPriceGroup.PVC,
@@ -259,11 +259,11 @@ export const dataCategoryMap = new Map<STPriceGroup, string>(
   [...stretchCeilingCatalogMap.keys()].map((type) => [type, stretchCeilingGroupName[type]])
 );
 
-function getStretchCeilingAll(): (STPriceBrand | STUnitPrice)[] {
+function getStretchCeilingAll(): (CeilingMaterialBrand | STUnitPrice)[] {
   return [...stretchCeilingCatalogMap.values()].flat();
 }
 
-function oderByPrice(items: (STPriceBrand | STUnitPrice)[]) {
+function oderByPrice(items: (CeilingMaterialBrand | STUnitPrice)[]) {
   return items
     .filter((a) => typeof a.price !== 'string')
     .map((a) => {
@@ -291,7 +291,7 @@ export function injectCatalogMap() {
     if (!key || key < 0) {
       key = STPriceGroup.PVC;
     }
-    const items: (STPriceBrand | STUnitPrice)[] = structuredClone(stretchCeilingCatalogMap.get(key))!;
+    const items: (CeilingMaterialBrand | STUnitPrice)[] = structuredClone(stretchCeilingCatalogMap.get(key))!;
     return items.map((item) => {
       if (!('name' in item)) {
         (item as any).name = productTypeName[item.type!];
@@ -303,7 +303,7 @@ export function injectCatalogMap() {
 
 export function getCatalogMap2(types: ProductTag[]) {
   const all = getStretchCeilingAll();
-  const items: (STPriceBrand | STUnitPrice)[] = all.filter((a) => types.includes(a.type!));
+  const items: (CeilingMaterialBrand | STUnitPrice)[] = all.filter((a) => types.includes(a.type!));
   return items.map((item) => {
     if (!('name' in item)) {
       (item as any).name = productTypeName[item.type!];

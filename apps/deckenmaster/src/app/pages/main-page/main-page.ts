@@ -42,7 +42,7 @@ import { setMeta } from '@atlas/core';
     // TurnkeySolutionsComponent,
     // LeaveRequestComponent,
   ],
-  providers: [MenuDeferService],
+  // providers: [MenuDeferService],
   host: {
     id: 'main',
   },

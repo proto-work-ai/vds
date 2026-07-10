@@ -15,7 +15,7 @@ import { MainFooterComponent } from "../../../modules/main-footer/main-footer.co
   templateUrl: 'about-page.html',
   styleUrls: ['about-page.scss'],
   imports: [ScrollLink, BreadcrumbsHeader, WayWeWorkComponent, MainHeaderComponent, MainForm, MainAbout, MainFooterComponent],
-  providers: [MenuDeferService],
+  // providers: [MenuDeferService],
   host: { id: 'main' },
 })
 export class AboutPage {

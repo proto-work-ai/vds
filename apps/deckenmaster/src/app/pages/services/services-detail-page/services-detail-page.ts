@@ -46,7 +46,7 @@ import { SocialButtons } from "../../../components/social-buttons/social-buttons
     SocialButtons
 ],
   providers: [
-    MenuDeferService,
+    // MenuDeferService,
     // {
     //   provide: TuiDialogService,
     //   useExisting: TuiResponsiveDialogService,
