@@ -41,6 +41,8 @@ import { STPriceGroup } from '../../../model/stretch-ceiling';
     HlmIconImports,
     HlmNavigationMenuImports,
     PriceListRouteFilter,
+    PriceListBrandTable,
+    PriceListUnitTable,
     JsonPipe,
     NgIcon,
     TuiDrawer,
@@ -50,8 +52,6 @@ import { STPriceGroup } from '../../../model/stretch-ceiling';
     RouterLink,
     TuiIcon,
     ScrollLink,
-    PriceListBrandTable,
-    PriceListUnitTable,
   ],
   providers: [
     provideIcons({

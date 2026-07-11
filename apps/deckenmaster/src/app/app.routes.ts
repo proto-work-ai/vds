@@ -78,11 +78,6 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/main-page/main-page').then((a) => a.MainPage),
   },
 
-  // {
-  //   path: routePath.materials.root,
-  //   loadComponent: () => import('./pages/ceiling-materials/ceiling-materials-page').then((a) => a.CeilingMaterialsPage),
-  // },
-
   ...servicesRoutes,
 
   ...catalogDetailRoutes,
@@ -119,16 +114,21 @@ export const appRoutes: Route[] = [
     loadComponent: () => import('./pages/price-page/price-page').then((a) => a.PricePage),
   },
 
+  {
+    path: `${routePath.orders.root}`,
+    loadComponent: () => import('./pages/order/orders-page/orders-page').then((a) => a.OrdersPage),
+  },
+
+  {
+    path: routePath.materials.root,
+    loadComponent: () => import('./pages/ceiling-materials/ceiling-materials-page').then((a) => a.CeilingMaterialsPage),
+  },
+
   // {
   //   path: `${routePath.services.root}`,
   //   pathMatch: 'full',
   //   loadComponent: () => import('./pages/services/services-page/services-page').then((a) => a.ServicesPage),
   // },
-
-  {
-    path: `${routePath.orders.root}`,
-    loadComponent: () => import('./pages/order/orders-page/orders-page').then((a) => a.OrdersPage),
-  },
 
   // {
   //   path: `${routePath.orders.orderEdit.root}/:key`,

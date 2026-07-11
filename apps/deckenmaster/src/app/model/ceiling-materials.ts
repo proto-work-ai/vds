@@ -1,117 +1,150 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { STBrandType, CeilingMaterialBrand, PriceUnit, STBrand } from './price-list.service';
+import { STBrandType, CeilingMaterialBrand, PriceUnit } from './price-list.service';
 import { STPriceGroup, ProductTag } from './stretch-ceiling';
 
 // MSD
-const MatteMSD: CeilingMaterialBrand = {
-  brand: STBrandType.MSD,
-  type: ProductTag.Matte,
-  title: 'MSD Classic',
-  size: 30,
-  width: 5,
-  thickness: [0.13, 0.15],
-  warranty: 7,
-  operatingTemperature: 'от +3 до +60 °С',
-  price: 600,
-  unit: PriceUnit.M2,
-  country: 'Китай',
-  image: '/img/brands/msd-logo.png',
-};
+const MaterialMSD = [ProductTag.Matte, ProductTag.Glossy, ProductTag.Satin].map((type) => {
+  return {
+    brand: STBrandType.MSD,
+    type,
+    title: 'MSD Classic',
+    size: 30,
+    width: 5,
+    thickness: [0.13, 0.15],
+    warranty: 7,
+    operatingTemperature: 'от +3 до +60 °С',
+    price: [600],
+    unit: PriceUnit.M2,
+    country: 'Китай',
+    image: '/img/brands/msd-logo.png',
+  } satisfies CeilingMaterialBrand;
+});
 
 // MSD
-const MattePremiumMSD: CeilingMaterialBrand = {
-  brand: STBrandType.MSD,
-  type: ProductTag.Matte,
-  title: 'MSD Premium',
-  size: 30,
-  width: 5,
-  thickness: [0.18, 0.21],
-  warranty: 10,
-  operatingTemperature: 'от +3 до +60 °С',
-  price: 800,
-  unit: PriceUnit.M2,
-  country: 'Китай',
-  image: '/img/brands/msd-logo.png',
-};
+const MattePremiumMSD = [ProductTag.Matte, ProductTag.Glossy, ProductTag.Satin].map((type) => {
+  return {
+    brand: STBrandType.MSD,
+    type,
+    title: 'MSD Premium',
+    size: 30,
+    width: 5,
+    thickness: [0.18, 0.21],
+    warranty: 10,
+    operatingTemperature: 'от +3 до +60 °С',
+    price: [800],
+    unit: PriceUnit.M2,
+    country: 'Китай',
+    image: '/img/brands/msd-logo.png',
+  } satisfies CeilingMaterialBrand;
+});
 
-const EvolutionMSD: CeilingMaterialBrand = {
-  brand: STBrandType.MSD,
-  type: ProductTag.Matte,
-  title: 'MSD Evolution',
-  size: 30,
-  width: 5,
-  thickness: [0.19, 0.22],
-  warranty: 15,
-  operatingTemperature: 'от +3 до +60 °С',
-  price: 800,
-  unit: PriceUnit.M2,
-  country: 'Китай',
-  image: '/img/brands/msd-logo.png',
-};
+const EvolutionMSD = [ProductTag.Matte, ProductTag.Glossy, ProductTag.Satin].map((type) => {
+  return {
+    brand: STBrandType.MSD,
+    type,
+    title: 'MSD Evolution',
+    size: 30,
+    width: 5,
+    thickness: [0.19, 0.22],
+    warranty: 15,
+    operatingTemperature: 'от +3 до +60 °С',
+    price: [800],
+    unit: PriceUnit.M2,
+    country: 'Китай',
+    image: '/img/brands/msd-logo.png',
+  } satisfies CeilingMaterialBrand;
+});
 
-const ColdStretchMSD: CeilingMaterialBrand = {
-  brand: STBrandType.MSD,
-  type: ProductTag.Matte,
-  title: 'Cold Stretch',
-  size: 30,
-  width: 5,
-  thickness: [0.19, 0.22],
-  warranty: 15,
-  operatingTemperature: 'от +3 до +60 °С',
-  price: 800,
-  unit: PriceUnit.M2,
-  country: 'Китай',
-  image: '/img/brands/msd-logo.png',
-  description: 'Без нагрева',
-};
-
-// Bauf
-const MatteBauf205: CeilingMaterialBrand = {
-  brand: STBrandType.Bauf,
-  type: ProductTag.Matte,
-  title: 'Bauf 205',
-  size: 30,
-  width: 5,
-  thickness: [0.21],
-  warranty: 15,
-  operatingTemperature: 'от 0 до +60 °С',
-  price: 900,
-  unit: PriceUnit.M2,
-  country: 'Китай',
-  image: '/img/brands/bauf-logo.png',
-};
+const ColdStretchMSD = [ProductTag.Matte, ProductTag.Glossy, ProductTag.Satin].map((type) => {
+  return {
+    brand: STBrandType.MSD,
+    type,
+    title: 'Cold Stretch',
+    size: 30,
+    width: 5,
+    thickness: [0.19, 0.22],
+    warranty: 15,
+    operatingTemperature: 'от +3 до +60 °С',
+    price: [800],
+    unit: PriceUnit.M2,
+    country: 'Китай',
+    image: '/img/brands/msd-logo.png',
+    description: 'Монтаж без нагрева',
+  } satisfies CeilingMaterialBrand;
+});
 
 // Bauf
-const MatteBauf230: CeilingMaterialBrand = {
-  brand: STBrandType.Bauf,
-  type: ProductTag.Matte,
-  title: 'Bauf 230',
-  size: 30,
-  width: 5,
-  thickness: [0.23],
-  warranty: 15,
-  operatingTemperature: 'от 0 до +60 °С',
-  price: 1000,
-  unit: PriceUnit.M2,
-  country: 'Китай',
-  image: '/img/brands/bauf-logo.png',
-};
+const MatteBauf205 = [ProductTag.Matte, ProductTag.Glossy, ProductTag.Satin].map((type) => {
+  return {
+    brand: STBrandType.Bauf,
+    type,
+    title: 'Bauf 205',
+    size: 30,
+    width: 5,
+    thickness: [0.21],
+    warranty: 15,
+    operatingTemperature: 'от 0 до +60 °С',
+    price: [900],
+    unit: PriceUnit.M2,
+    country: 'Германия',
+    image: '/img/brands/bauf-logo.png',
+  } satisfies CeilingMaterialBrand;
+});
 
 // Bauf
-const MatteBauf270: CeilingMaterialBrand = {
-  brand: STBrandType.Bauf,
-  type: ProductTag.Matte,
-  title: 'Bauf 270',
-  size: 30,
-  width: 5,
-  thickness: [0.27],
-  warranty: 15,
-  operatingTemperature: 'от 0 до +60 °С',
-  price: 1100,
-  unit: PriceUnit.M2,
-  country: 'Китай',
-  image: '/img/brands/bauf-logo.png',
-};
+const MatteBauf230 = [ProductTag.Matte, ProductTag.Glossy, ProductTag.Satin].map((type) => {
+  return {
+    brand: STBrandType.Bauf,
+    type,
+    title: 'Bauf 230',
+    size: 30,
+    width: 5,
+    thickness: [0.23],
+    warranty: 15,
+    operatingTemperature: 'от 0 до +60 °С',
+    price: [1000],
+    unit: PriceUnit.M2,
+    country: 'Германия',
+    image: '/img/brands/bauf-logo.png',
+  } satisfies CeilingMaterialBrand;
+});
+
+// Bauf
+const MatteBauf270 = [ProductTag.Matte, ProductTag.Glossy, ProductTag.Satin].map((type) => {
+  return {
+    brand: STBrandType.Bauf,
+    type,
+    title: 'Bauf 270',
+    size: 30,
+    width: 5,
+    thickness: [0.27],
+    warranty: 15,
+    operatingTemperature: 'от 0 до +60 °С',
+    price: [1100],
+    unit: PriceUnit.M2,
+    country: 'Германия',
+    image: '/img/brands/bauf-logo.png',
+  } satisfies CeilingMaterialBrand;
+});
+
+// Limfer
+const MatteLimfer = [ProductTag.Matte, ProductTag.Glossy, ProductTag.Satin].map((type) => {
+  return {
+    brand: STBrandType.Limfer,
+    type,
+    title: 'Lumfer',
+    size: 30,
+    width: 2,
+    thickness: [0.34],
+    warranty: 20,
+    operatingTemperature: 'от 0 до +60 °С',
+    price: 1200,
+    unit: PriceUnit.M2,
+    country: 'Германия',
+    image: '/img/brands/lumfer-logo.png',
+    description: 'Лучшие показатели',
+  } satisfies CeilingMaterialBrand;
+});
 
 // MSD
 // const MatteColorMSD: CeilingMaterialBrand = {
@@ -123,7 +156,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   thickness: [0.16, 0.18],
 //   warranty: 15,
 //   operatingTemperature: 'от +3 до +60 °С',
-//   price: 700,
+//   price: [700],
 //   unit: PriceUnit.M2,
 //   country: 'Китай',
 //   image: '/img/brands/msd-logo.png',
@@ -139,7 +172,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   thickness: [0.16, 0.18],
 //   warranty: 15,
 //   operatingTemperature: 'от +3 до +60 °С',
-//   price: 600,
+//   price: [600],
 //   unit: PriceUnit.M2,
 //   country: 'Китай',
 //   image: '/img/brands/msd-logo.png',
@@ -155,7 +188,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   thickness: [0.16, 0.18],
 //   warranty: 15,
 //   operatingTemperature: 'от +3 до +60 °С',
-//   price: 750,
+//   price: [750],
 //   unit: PriceUnit.M2,
 //   country: 'Китай',
 //   image: '/img/brands/msd-logo.png',
@@ -171,7 +204,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   thickness: [0.16, 0.18],
 //   warranty: 15,
 //   operatingTemperature: 'от +3 до +60 °С',
-//   price: 900,
+//   price: [900],
 //   unit: PriceUnit.M2,
 // };
 
@@ -185,7 +218,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   thickness: [0.16, 0.18],
 //   warranty: 15,
 //   operatingTemperature: 'от 0 до +60 °С',
-//   price: 500,
+//   price: [500],
 //   unit: PriceUnit.M2,
 // };
 
@@ -199,7 +232,7 @@ const MatteBauf270: CeilingMaterialBrand = {
 //   thickness: [0.16, 0.18],
 //   warranty: 15,
 //   operatingTemperature: 'от 0 до +60 °С',
-//   price: 700,
+//   price: [700],
 //   unit: PriceUnit.M2,
 // };
 
@@ -213,7 +246,7 @@ const MattePongs: CeilingMaterialBrand = {
   thickness: [0.16, 0.18],
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
-  price: 800,
+  price: [800],
   unit: PriceUnit.M2,
   country: 'Германия',
   image: '/img/brands/pongs-logo.png',
@@ -229,7 +262,7 @@ const MatteColorPongs: CeilingMaterialBrand = {
   thickness: [0.16, 0.18],
   warranty: 15,
   operatingTemperature: 'от +0 до +60 °С',
-  price: 100,
+  price: [600],
   unit: PriceUnit.M2,
   country: 'Германия',
   image: '/img/brands/pongs-logo.png',
@@ -245,7 +278,7 @@ const GlossyPongs: CeilingMaterialBrand = {
   thickness: [0.16, 0.18],
   warranty: 15,
   operatingTemperature: 'от +3 до +60 °С',
-  price: 800,
+  price: [800],
   unit: PriceUnit.M2,
   country: 'Германия',
   image: '/img/brands/pongs-logo.png',
@@ -261,7 +294,7 @@ const GlossyColorPongs: CeilingMaterialBrand = {
   thickness: [0.16, 0.18],
   warranty: 15,
   operatingTemperature: 'от 0 до +60 °С',
-  price: 600,
+  price: [600],
   unit: PriceUnit.M2,
   country: 'Германия',
   image: '/img/brands/pongs-logo.png',
@@ -277,7 +310,7 @@ const SatinPongs: CeilingMaterialBrand = {
   thickness: [0.16, 0.18],
   warranty: 15,
   operatingTemperature: 'от 0 до +60 °С',
-  price: 800,
+  price: [800],
   unit: PriceUnit.M2,
   country: 'Германия',
   image: '/img/brands/pongs-logo.png',
@@ -293,7 +326,7 @@ const SatinColorPongs: CeilingMaterialBrand = {
   thickness: [0.16, 0.18],
   warranty: 15,
   operatingTemperature: 'от 0 до +60 °С',
-  price: 1000,
+  price: [1000],
   unit: PriceUnit.M2,
   country: 'Германия',
   image: '/img/brands/pongs-logo.png',
@@ -363,61 +396,26 @@ const MatteTeqtum: CeilingMaterialBrand = {
   description: 'Не горючий',
 };
 
-// Limfer
-const MatteLimfer: CeilingMaterialBrand = {
-  brand: STBrandType.Limfer,
-  type: ProductTag.Matte,
-  title: 'Lumfer',
-  size: 30,
-  width: 2,
-  thickness: [0.34],
-  warranty: 20,
-  operatingTemperature: 'от 0 до +60 °С',
-  price: 1200,
-  unit: PriceUnit.M2,
-  country: 'Германия',
-  image: '/img/brands/lumfer-logo.png',
-  description: 'Лучшие показатели',
-};
-
 export const stretchCeilingMaterials = new Map<STPriceGroup, CeilingMaterialBrand[]>([
   // PVC (материал)
   [
     STPriceGroup.PVC,
     [
-      MatteMSD,
-      MattePremiumMSD,
-      EvolutionMSD,
-      ColdStretchMSD,
+      ...MaterialMSD,
+      ...MattePremiumMSD,
+      ...EvolutionMSD,
+      ...ColdStretchMSD,
 
-      MatteBauf205,
-      MatteBauf230,
-      MatteBauf270,
+      ...MatteBauf205,
+      ...MatteBauf230,
+      ...MatteBauf270,
 
       MattePongs,
       MatteColorPongs,
       GlossyPongs,
-    ],
-  ],
 
-  // Fabric (материал)
-  [STPriceGroup.Fabric, [FabricDescor, FabricClipso, FabricCerutti]],
-
-  // Satin (материал)
-  [
-    STPriceGroup.Satin,
-    [
-      MatteMSD,
-      MattePremiumMSD,
-      EvolutionMSD,
-      ColdStretchMSD,
-
-      MatteBauf205,
-      MatteBauf230,
-      MatteBauf270,
-
-      SatinPongs,
-      SatinColorPongs,
+      MatteTeqtum,
+      ...MatteLimfer,
     ],
   ],
 
@@ -425,17 +423,20 @@ export const stretchCeilingMaterials = new Map<STPriceGroup, CeilingMaterialBran
   [
     STPriceGroup.Matte,
     [
-      MatteMSD,
-      MattePremiumMSD,
-      EvolutionMSD,
-      ColdStretchMSD,
+      MaterialMSD[0],
+      MattePremiumMSD[0],
+      EvolutionMSD[0],
+      ColdStretchMSD[0],
 
-      MatteBauf205,
-      MatteBauf230,
-      MatteBauf270,
+      MatteBauf205[0],
+      MatteBauf230[0],
+      MatteBauf270[0],
 
       MattePongs,
       MatteColorPongs,
+
+      MatteTeqtum,
+      MatteLimfer[0],
     ],
   ],
 
@@ -443,27 +444,51 @@ export const stretchCeilingMaterials = new Map<STPriceGroup, CeilingMaterialBran
   [
     STPriceGroup.Glossy,
     [
-      MatteMSD,
-      MattePremiumMSD,
-      EvolutionMSD,
-      ColdStretchMSD,
+      MaterialMSD[1],
+      MattePremiumMSD[1],
+      EvolutionMSD[1],
+      ColdStretchMSD[1],
 
-      MatteBauf205,
-      MatteBauf230,
-      MatteBauf270,
+      MatteBauf205[1],
+      MatteBauf230[1],
+      MatteBauf270[1],
+
       GlossyPongs,
       GlossyColorPongs,
+      MatteLimfer[1],
     ],
   ],
+  // Satin (материал)
+  [
+    STPriceGroup.Satin,
+    [
+      MaterialMSD[2],
+      MattePremiumMSD[2],
+      EvolutionMSD[2],
+      ColdStretchMSD[2],
+
+      MatteBauf205[2],
+      MatteBauf230[2],
+      MatteBauf270[2],
+
+      SatinPongs,
+      SatinColorPongs,
+      MatteLimfer[2],
+    ],
+  ],
+
+  // Fabric (материал)
+  [STPriceGroup.Fabric, [FabricDescor, FabricClipso, FabricCerutti]],
 ]);
 
 export const stretchCeilingBrandMap = Array.from(stretchCeilingMaterials, ([type, list]) => list)
   .flat()
-  .reduce((map, { brand, country, image }) => {
+  .reduce((map, { brand, country, image, title }) => {
     map.set(brand, {
       brand,
       country,
       image,
+      title,
     });
     return map;
   }, new Map());

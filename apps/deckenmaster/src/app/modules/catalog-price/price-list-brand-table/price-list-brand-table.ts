@@ -13,24 +13,34 @@ import {
 } from '@ng-icons/lucide';
 import { TuiDataList, TuiDropdown } from '@taiga-ui/core';
 import { AtlasFormImports } from '@atlas/form';
-import { AtlasDataTableComponents, TABLE_CELL_DATA } from '@atlas/table';
+import { AtlasDataTableComponents, TABLE_ROW } from '@atlas/table';
 import { AtlasDataTableToggleSize } from '@atlas/table';
 import { AtlasTaigaUiTable } from '@atlas/table';
 import { AtlasTablePaginatePipe } from '@atlas/table';
 import { ColumnAttributeTable } from '@atlas/core';
 import { TuiTree } from '@taiga-ui/kit';
-import { stretchCeilingBrandMap, STBrandType } from '../../../model/price-list.service';
+import { CeilingMaterialBrand, STBrandType } from '../../../model/price-list.service';
 import { productTypeName, ProductTag } from '../../../model/stretch-ceiling';
 
 @Component({
   selector: 'app-column-brand-cell',
   imports: [],
-  template: ` <img [attr.src]="image" class="w-20" /> `,
+  template: `
+    <div class="flex items-center gap-2">
+      <img [attr.src]="image" class="w-10 md:w-14" />
+      {{ title }}
+    </div>
+  `,
 })
 export class ColumnBrandCell {
-  protected readonly brandType = inject<STBrandType>(TABLE_CELL_DATA);
-  protected get image(): string {
-    return stretchCeilingBrandMap.get(this.brandType)?.image!;
+  protected readonly rowData = inject<CeilingMaterialBrand>(TABLE_ROW);
+
+  protected get image() {
+    return this.rowData?.image;
+  }
+
+  protected get title() {
+    return this.rowData?.title;
   }
 }
 
@@ -163,7 +173,7 @@ export class PriceListBrandTable {
 
   protected readonly columnsSM = computed(() => {
     const list = this.columns();
-    return [list[0], list[1], list[list.length-1]];
+    return [list[0], list[1], list[list.length - 1]];
   });
 
   readonly tableRows = input.required<any[]>();

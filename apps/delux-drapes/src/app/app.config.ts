@@ -11,10 +11,15 @@ import { appRoutes } from './app.routes';
 import { provideTaiga } from '@taiga-ui/core';
 import { provideYConfig, YConfig } from 'angular-yandex-maps-v3';
 import { VAR_YANDEX_KEY } from './contacts';
-import { CookieAcceptedService } from './shared/cookie-accepted/cookie-accepted.service';
+import { LocationStrategy, TrailingSlashPathLocationStrategy } from '@angular/common';
+import { CookieAcceptedService } from '@atlas/form';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    /*
+      Cерверы (например, Apache или Nginx) рассматривают пути с завершающими косыми чертами как каталоги, соответствующие каталогу index.html
+    */
+    { provide: LocationStrategy, useClass: TrailingSlashPathLocationStrategy },
     provideClientHydration(withEventReplay()),
     provideBrowserGlobalErrorListeners(),
     provideRouter(appRoutes),

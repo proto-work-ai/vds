@@ -18,14 +18,14 @@ export function ymInviteEvent(): void {
   }
 }
 
-@Directive({ selector: '[consultationModalClick]' })
-export class ConsultationModalClick {
+@Directive({ selector: '[leaveRequestModalClick]' })
+export class LeaveRequestModalClick {
   private readonly destroyRef = inject(DestroyRef);
   private readonly dialogService = inject(TuiDialogService);
 
   @HostListener('click') protected onInvite(): void {
     this.dialogService
-      .open<string>(new PolymorpheusComponent(ConsultationModal), {
+      .open<string>(new PolymorpheusComponent(LeaveRequestModal), {
         size: 's',
         // appearance: 'fullscreen',
         data: {},
@@ -36,8 +36,8 @@ export class ConsultationModalClick {
 }
 
 @Component({
-  styleUrl: 'consultation-modal.scss',
-  templateUrl: 'consultation-modal.html',
+  styleUrl: 'leave-request-modal.scss',
+  templateUrl: 'leave-request-modal.html',
   imports: [FormImports],
   providers: [
     provideIcons({
@@ -47,7 +47,7 @@ export class ConsultationModalClick {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConsultationModal {
+export class LeaveRequestModal {
   private readonly sendForm = injectSendMessage(ymInviteEvent);
   protected readonly context = injectContext<TuiDialogContext<boolean, any>>();
   protected readonly destroyRef = inject(DestroyRef);

@@ -3,7 +3,7 @@
     <div class="flex max-lg:flex-col gap-6 pt-5 pb-4">
       <section class="flex lg:hidden">
         <div class="flex-1 min-w-15">
-          <a [routerLink]="['/']"><img class="w-6" src="/logo/logo-icon-light.svg" alt="Logotip" /></a>
+          <a [routerLink]="['/']"><img class="w-8" src="/logo/logo-icon-light.svg" alt="Logotip" /></a>
         </div>
 
         <div>
@@ -71,7 +71,7 @@
         </nav>
       </div>
 
-      <section class="w-15 lg:block hidden">
+      <section class="lg:block hidden">
         <ng-container [ngTemplateOutlet]="sociallaLink"></ng-container>
       </section>
     </div>
@@ -81,11 +81,11 @@
 <ng-template #sociallaLink>
   <div class="flex gap-4">
     <a class="max-sm:text-sm" href="https://t.me/{{ telegramContact }}" target="_blank" alt="Telegram"
-      ><img class="w-7 block text-white" src="/icons/telegram.svg" alt="Logotip"
+      ><img class="w-9 block text-white" src="/icons/telegram.svg" alt="Logotip"
     /></a>
 
     <a class="max-sm:text-sm" [href]="maxContact" target="_blank"
-      ><img class="w-7 block" title="Max" src="/icons/max.svg" alt="Max"
+      ><img class="w-9 block" title="Max" src="/icons/max.svg" alt="Max"
     /></a>
   </div>
 </ng-template>

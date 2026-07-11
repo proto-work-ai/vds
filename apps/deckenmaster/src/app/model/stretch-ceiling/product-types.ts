@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { Pipe, PipeTransform } from '@angular/core';
+
 // Все продукты
 export enum ProductTag {
   // ПВХ
@@ -134,3 +137,42 @@ export const productTypeName: Partial<Record<ProductTag, string>> = {
   // [ProductType.RemovingProfile]: 'Демонтаж профиля',
   // [ProductType.PreparingSubCeiling]: 'Подготовка чернового потолка работа',
 } as const;
+
+@Pipe({ name: 'productTagName' })
+export class ProductTagNamePipe implements PipeTransform {
+  transform(type?: ProductTag) {
+    return type && productTypeName[type];
+  }
+}
+
+@Pipe({ name: 'thicknessFormat' })
+export class ThicknessFormatPipe implements PipeTransform {
+  private format(thickness: number | number[]): string {
+    if (Array.isArray(thickness)) {
+      if (thickness.length > 1) {
+        return `от ${thickness[0]} до ${thickness[1]}`;
+      } else if (thickness.length === 1) {
+        return `от ${thickness}`;
+      }
+    }
+    return thickness + '';
+  }
+
+  transform(thickness: number | number[], unit = false): string {
+    return this.format(thickness) + (unit ? ' мм' : '');
+  }
+}
+
+@Pipe({ name: 'priceFormat' })
+export class PriceFormatPipe implements PipeTransform {
+  transform(price: number | number[]) {
+    if (Array.isArray(price)) {
+      if (price.length > 1) {
+        return `от ${price[0]} до ${price[1]} руб`;
+      } else if (price.length === 1) {
+        return `от ${price} руб`;
+      }
+    }
+    return `${price} руб`;
+  }
+}

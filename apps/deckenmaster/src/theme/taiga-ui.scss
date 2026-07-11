@@ -48,10 +48,9 @@ $accent-color-hover: #f11d0d;
   --tui-text-primary: #000;
 
   [tuiAppearance][type='checkbox'] {
-    --tui-background-accent-1-hover: #f2a317;
-  }
-
-  [tuiAppearance][data-appearance=textfield]:focus-visible:not([data-focus=true]) {
+    --tui-background-accent-1: var(--primari-color);
+    --tui-background-accent-1-hover: var(--primari-color-hover);
+    --tui-background-accent-1-pressed: var(--primari-color);
   }
 
   tui-tabs {

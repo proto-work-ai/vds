@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, input, signal, effect } from '@angular/core';
+import { Component, DestroyRef, inject, input, signal, effect, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiButton, TuiIcon, TuiNumberFormat, TuiTextfield } from '@taiga-ui/core';
 import {
@@ -13,6 +13,8 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { IAppMenuItem } from '../../../shared/menu';
 import { injectRouteParam } from '../../../shared/inject-route-param';
+import { startWith, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-price-list-route-filter',
@@ -24,7 +26,6 @@ import { injectRouteParam } from '../../../shared/inject-route-param';
     FormsModule,
     ReactiveFormsModule,
     TuiTextfield,
-    TuiInputRange,
     TuiInputSlider,
     FormsModule,
     TuiInputNumber,
@@ -37,25 +38,32 @@ import { injectRouteParam } from '../../../shared/inject-route-param';
     TuiChevron,
   ],
 })
-export class PriceListRouteFilter {
+export class PriceListRouteFilter implements OnInit {
   protected readonly destroyRef = inject(DestroyRef);
   protected readonly route = inject(ActivatedRoute);
   protected readonly router = inject(Router);
   protected readonly routeCategory = injectRouteParam('category');
-  public readonly groups = input.required<Pick<IAppMenuItem, 'title' | 'queryParams' | 'link' | 'fragment'>[]>();
   protected readonly activeItemIndex = signal<number>(0);
 
-  constructor() {
-    effect(() => {
-      const groups = this.groups();
-      const category = this.routeCategory();
-      if (category) {
-        const index = groups.findIndex((a) => a?.queryParams?.['category'] == category);
-        if (index >= 0) {
-          this.activeItemIndex.set(index);
-        }
-      }
-    });
+  public readonly groups = input.required<Pick<IAppMenuItem, 'title' | 'queryParams' | 'link' | 'fragment'>[]>();
+  public readonly queryParam = input<string>('category');
+
+  ngOnInit() {
+    this.route.queryParams
+      .pipe(
+        startWith(this.route.snapshot.queryParams),
+        tap((params) => {
+          const index = this.groups()
+            .map((a) => a?.queryParams)
+            .findIndex((param) => params[this.queryParam()] == param?.[this.queryParam()]);
+
+          if (index >= 0) {
+            this.activeItemIndex.set(index);
+          }
+        }),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe();
   }
 
   protected indexChange(index: number): void {

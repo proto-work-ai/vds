@@ -49,6 +49,10 @@
     // --btn-push-size: 1.5px;
   }
 
+  &.rounded-none {
+    --btn-border-radius: 0;
+  }
+
   &.btn-shadow {
     --btn-push-size: 4px;
     top: calc(var(--btn-push-size) * -1);
@@ -106,7 +110,7 @@
     line-height: var(--btn-line-height);
     // box-shadow: 0px var(--btn-push-size) 0px var(--btn-primari-color-hover);
   }
-  
+
   &:active,
   &:hover {
     background: var(--primari-color-hover);
@@ -133,6 +137,10 @@
     --btn-border-radius: 2px;
     --btn-line-height: 3rem;
     // --btn-push-size: 1.5px;
+  }
+
+  &.rounded-none {
+    --btn-border-radius: 0;
   }
 
   &.btn-shadow {

@@ -1,5 +1,5 @@
 <form class="flex-1 justify-self-center flex flex-col gap-6 pb-3" [formGroup]="form" (submit)="formSubmit()">
-  <h3 class="font-semibold text-2xl md:text-3xl text-center">Заказать консультацию</h3>
+  <h3 class="font-semibold text-2xl md:text-3xl text-center">Оставьте заявку</h3>
 
   <tui-textfield [tuiTextfieldCleaner]="false">
     <label tuiLabel>Введите имя</label>
@@ -11,11 +11,11 @@
     <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
   </tui-textfield>
 
-  <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
+  <!-- <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
     <label tuiLabel>Удобный тип связи</label>
     <input tuiSelect formControlName="connectionType" />
     <tui-data-list-wrapper *tuiDropdown new [items]="typeOptions()" />
-  </tui-textfield>
+  </tui-textfield> -->
 
   <label tuiLabel class="text-sm">
     <input tuiCheckbox type="checkbox" formControlName="checked" />
