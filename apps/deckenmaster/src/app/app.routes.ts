@@ -7,6 +7,9 @@ export const routePath = {
   materials: {
     root: 'ceiling-materials',
   },
+  events: {
+    root: 'ceiling-events',
+  },
   privacyPolicy: {
     root: 'privacy-policy',
   },
@@ -122,6 +125,11 @@ export const appRoutes: Route[] = [
   {
     path: routePath.materials.root,
     loadComponent: () => import('./pages/ceiling-materials/ceiling-materials-page').then((a) => a.CeilingMaterialsPage),
+  },
+
+  {
+    path: routePath.events.root,
+    loadComponent: () => import('./pages/events/events-page').then((a) => a.EventsPage),
   },
 
   // {

@@ -122,6 +122,12 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
     },
 
     // {
+    //   title: 'Акции',
+    //   link: ['/', routePath.events.root],
+    //   fragment: 'main',
+    // },
+
+    // {
     //   title: 'Контакты',
     //   link: ['/', routePath.contacts.root],
     // },

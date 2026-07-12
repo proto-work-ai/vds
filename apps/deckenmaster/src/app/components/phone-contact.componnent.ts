@@ -1,14 +1,5 @@
 import { isPlatformBrowser } from '@angular/common';
-import {
-  Component,
-  Directive,
-  ElementRef,
-  inject,
-  input,
-  PLATFORM_ID,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { inject, input, Component, Directive, ElementRef, HostListener, PLATFORM_ID } from '@angular/core';
 import { PhoneFormatPipe } from '@atlas/core';
 
 @Component({
@@ -17,25 +8,34 @@ import { PhoneFormatPipe } from '@atlas/core';
 })
 export class PhoneContactComponent {
   public phone!: string;
-
-  ngOnInit() {
-    setTimeout(() => {}, 2_000);
-  }
 }
 
-@Directive({ selector: 'a[phoneContact]' })
+@Directive({ selector: 'a[phoneContact],button[phoneContact]' })
 export class PhoneContactDirective {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly elementRef: ElementRef<HTMLAnchorElement> = inject(ElementRef<HTMLAnchorElement>);
   public readonly phone = input.required<string>({ alias: 'phoneContact' });
+  // private readonly viewContainerRef = inject(ViewContainerRef);
 
-  ngOnInit() {
-    if (this.isBrowser) {
-      setTimeout(() => {
-        this.elementRef.nativeElement.setAttribute('href', `tel:+7${this.phone()}`);
-      }, 200);
-    }
+  constructor() {
+    this.elementRef.nativeElement.classList.add('cursor-pointer');
   }
+
+  @HostListener('click') onClick() {
+    const node = document.createElement('a');
+    node.setAttribute('href', `tel:+7${this.phone()}`);
+    node.click();
+  }
+
+  //ngOnInit() {
+  //const componentRef = this.viewContainerRef.createComponent(PhoneContactComponent);
+  //componentRef.instance.phone = this.phone();
+  // if (this.isBrowser) {
+  //   setTimeout(() => {
+  //     this.elementRef.nativeElement.setAttribute('href', `tel:+7${this.phone()}`);
+  //   }, 200);
+  // }
+  //}
 }
 
 export const PhoneContact = [PhoneContactDirective] as const;
