@@ -15,11 +15,11 @@
         <li class="flex-1"></li>
 
         <li class="flex gap-4">
-          <a href="https://t.me/{{ telegramContact }}" target="_blank" title="Telegram"
+          <a [hrefContact]="'https://t.me/' + telegramContact" target="_blank" title="Telegram"
             ><img class="w-7 block text-white" src="/icons/telegram.svg" alt="Telegram"
           /></a>
 
-          <a [href]="maxContact" target="_blank"
+          <a [hrefContact]="maxContact" target="_blank"
             ><img class="w-7 block" title="Max" src="/icons/max.svg" alt="Max"
           /></a>
         </li>
@@ -29,7 +29,7 @@
 
           <div class="flex items-center gap-2">
             <ng-icon name="lucidePhone" class="text-white" />
-            <a [phoneContact]="phoneContact">{{ phoneContact | phoneFormat }}</a>
+            <a [hrefContact]="'tel:+7' + phoneContact">{{ phoneContact | phoneFormat }}</a>
           </div>
         </li>
       </ol>

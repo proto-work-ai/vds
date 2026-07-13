@@ -1,24 +1,10 @@
-<!-- <section class="-bg-black -overflow-hidden">
-  <swiper-container class="swiper-overflow-visible" watch-slides-progress="true" slides-per-view="2">
-    @for (img of images(); track img) {
-      <swiper-slide class="w-100">
-        <figure class="-bg-image -aspect-1.5/1 w-150">
-          <img [attr.src]="img" alt="" class="block" />
-        </figure>
-      </swiper-slide>
-    }
-    <swiper-button-prev />
-    <swiper-button-next />
-  </swiper-container>
-</section> -->
-
 <div #swiper *isPlatformBrowser class="swiper relative">
   <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
+  <div class="swiper-wrapper" [photoGalleryGroup]="{arrowEl: true, indexIndicatorSep: ' - '}">
     <!-- Slides -->
     @for (img of images(); track img) {
       <div class="swiper-slide">
-        <figure class="-aspect-1.5/1 -w-150 rounded-lg overflow-hidden">
+        <figure class="rounded-lg overflow-hidden" [photoGallery]="img">
           <img [attr.src]="img" alt="" class="block" />
         </figure>
       </div>

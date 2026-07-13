@@ -17,7 +17,29 @@
 }
 
 ::ng-deep {
+  app-swiper-full-images {
+    .swiper-button-prev,
+    .swiper-button-next {
+      .swiper-navigation-icon {
+        display: none;
+      }
+    }
+  }
+
   .swiper-button-disabled {
     display: none !important;
+  }
+
+  .pswp__button--arrow--right,
+  .pswp__button--arrow--left {
+    background: none !important;
+  }
+
+  .lightbox-wrapper .pswp__button--arrow--left:before {
+    background-position: -138px -43px !important;
+  }
+
+  .lightbox-wrapper .pswp__button--arrow--right:before {
+    background-position: -95px -43px !important;
   }
 }

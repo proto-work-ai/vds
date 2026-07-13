@@ -10,12 +10,29 @@ export class PhoneContactComponent {
   public phone!: string;
 }
 
-@Directive({ selector: 'a[phoneContact],button[phoneContact]' })
-export class PhoneContactDirective {
+// @Directive({ selector: 'a[phoneContact],button[phoneContact]' })
+// export class PhoneContactDirective {
+//   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
+//   private readonly elementRef: ElementRef<HTMLAnchorElement> = inject(ElementRef<HTMLAnchorElement>);
+//   public readonly phone = input.required<string>({ alias: 'phoneContact' });
+//   // private readonly viewContainerRef = inject(ViewContainerRef);
+
+//   constructor() {
+//     this.elementRef.nativeElement.classList.add('cursor-pointer');
+//   }
+
+//   @HostListener('click') onClick() {
+//     const node = document.createElement('a');
+//     node.setAttribute('href', `tel:+7${this.phone()}`);
+//     node.click();
+//   }
+// }
+
+@Directive({ selector: 'a[hrefContact],button[hrefContact]' })
+export class HrefContactDirective {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly elementRef: ElementRef<HTMLAnchorElement> = inject(ElementRef<HTMLAnchorElement>);
-  public readonly phone = input.required<string>({ alias: 'phoneContact' });
-  // private readonly viewContainerRef = inject(ViewContainerRef);
+  public readonly href = input.required<string>({ alias: 'hrefContact' });
 
   constructor() {
     this.elementRef.nativeElement.classList.add('cursor-pointer');
@@ -23,19 +40,9 @@ export class PhoneContactDirective {
 
   @HostListener('click') onClick() {
     const node = document.createElement('a');
-    node.setAttribute('href', `tel:+7${this.phone()}`);
+    node.setAttribute('href', this.href());
     node.click();
   }
-
-  //ngOnInit() {
-  //const componentRef = this.viewContainerRef.createComponent(PhoneContactComponent);
-  //componentRef.instance.phone = this.phone();
-  // if (this.isBrowser) {
-  //   setTimeout(() => {
-  //     this.elementRef.nativeElement.setAttribute('href', `tel:+7${this.phone()}`);
-  //   }, 200);
-  // }
-  //}
 }
 
-export const PhoneContact = [PhoneContactDirective] as const;
+export const HrefContact = [HrefContactDirective] as const;

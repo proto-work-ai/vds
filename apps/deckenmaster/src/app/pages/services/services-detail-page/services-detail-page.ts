@@ -8,7 +8,6 @@ import { injectStretchCeilingRouteByKey } from '../../../model/stretch-ceilings.
 import { MainHeaderComponent } from '../../../modules/main-header/main-header.component';
 import { ApplicationMeasurementComponent } from '../../../modules/application-measurement/application-measurement.component';
 import { FooterMenuComponent } from '../../../modules/footer-menu/footer-menu.component';
-import { MenuDeferService } from '../../../components/menu-defer/menu-defer-host.service';
 import { BreadcrumbsHeader, IBreadcrumbItem } from '../../../modules/breadcrumbs-header/breadcrumbs-header.component';
 import { NavMenu } from '../../../modules/nav-menu/nav-menu';
 import { SwiperFullImages } from '../../../components/swiper-full-images/swiper-full-images';

@@ -2,8 +2,9 @@
 
 html,
 body {
-  font-size: 14px;
   --default-font-family: Manrope, sans-serif;
+  color-scheme: only light; /* Prevents browsers from forcing an automatic dark mode overlay */
+  font-size: 14px;
   letter-spacing: 2%;
   min-width: 320px;
 }

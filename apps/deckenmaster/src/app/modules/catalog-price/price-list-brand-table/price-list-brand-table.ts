@@ -27,7 +27,7 @@ import { productTypeName, ProductTag } from '../../../model/stretch-ceiling';
   imports: [],
   template: `
     <div class="flex items-center gap-2">
-      <img [attr.src]="image" class="w-10 md:w-14" />
+      <img [attr.src]="image" class="w-8 md:w-10" />
       {{ title }}
     </div>
   `,

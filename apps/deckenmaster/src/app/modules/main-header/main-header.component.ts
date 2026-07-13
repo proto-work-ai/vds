@@ -6,7 +6,7 @@ import { PhoneFormatPipe } from '@atlas/core';
 import { TuiDataList, TuiDropdown } from '@taiga-ui/core';
 import { MAX_CONTACT, PHONE_CONTACT, TELEGRAM_CONTACT } from '../../contacts';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
-import { PhoneContact } from '../../components/phone-contact.componnent';
+import { HrefContact } from '../../components/phone-contact.componnent';
 
 @Component({
   selector: 'app-main-header',
@@ -21,8 +21,8 @@ import { PhoneContact } from '../../components/phone-contact.componnent';
     TuiDataList,
     TuiDropdown,
     RouterLink,
+    HrefContact,
     ScrollLink,
-    PhoneContact,
   ],
   providers: [
     provideIcons({

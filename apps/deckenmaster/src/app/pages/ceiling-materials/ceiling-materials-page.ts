@@ -11,11 +11,12 @@ import { SocialButtons } from "../../components/social-buttons/social-buttons";
 import { stretchCeilingMaterials } from '../../model/ceiling-materials';
 import { CeilingInstallationsComponent } from "../../modules/ceiling-materials/ceiling-installations.component";
 import { CeilingCalculator } from "../../components/ceiling-calculator/ceiling-calculator";
+import { CeilingCertificatesComponent } from "../../modules/ceiling-certificates/ceiling-certificates";
 
 @Component({
   selector: 'main',
   templateUrl: './ceiling-materials-page.html',
-  imports: [MainHeaderComponent, BreadcrumbsHeader, FooterMenuComponent, NavMenu, WayWeWorkComponent, ApplicationMeasurementComponent, SocialButtons, CeilingInstallationsComponent, CeilingCalculator],
+  imports: [MainHeaderComponent, BreadcrumbsHeader, FooterMenuComponent, NavMenu, WayWeWorkComponent, ApplicationMeasurementComponent, SocialButtons, CeilingInstallationsComponent, CeilingCalculator, CeilingCertificatesComponent],
   host: {
     id: 'main',
   },

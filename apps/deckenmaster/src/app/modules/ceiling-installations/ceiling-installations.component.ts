@@ -11,35 +11,35 @@ export class CeilingInstallationsComponent {
   protected readonly items = [
     {
       title: 'Матовые натяжные потолки в зале',
-      src: '/ceiling-installations/ceiling-installations-7.jpg',
+      src: '/img/ceiling-installations/ceiling-installations-7.jpg',
     },
     {
       title: 'Точечные светильники в ванной',
-      src: '/ceiling-installations/ceiling-installations-5.jpg',
+      src: '/img/ceiling-installations/ceiling-installations-5.jpg',
     },
     // {
     //   title: 'Глянцевый натяжной потолок в спальне',
-    //   src: '/ceiling-installations/ceiling-installations-3.jpg',
+    //   src: '/img/ceiling-installations/ceiling-installations-3.jpg',
     // },
     {
       title: 'Световые линии в детской',
-      src: '/ceiling-installations/ceiling-installations-4.jpg',
+      src: '/img/ceiling-installations/ceiling-installations-4.jpg',
     },
     // {
     //   title: '',
-    //   src: '/ceiling-installations/ceiling-installations-2.jpg',
+    //   src: '/img/ceiling-installations/ceiling-installations-2.jpg',
     // },
     // {
     //   title: '',
-    //   src: '/ceiling-installations/ceiling-installations-6.jpg',
+    //   src: '/img/ceiling-installations/ceiling-installations-6.jpg',
     // },
     // {
     //   title: 'Матовые натяжные потолки в зале',
-    //   src: '/ceiling-installations/ceiling-installations-7.jpg',
+    //   src: '/img/ceiling-installations/ceiling-installations-7.jpg',
     // },
     {
       title: 'Световые линии в коридоре',
-      src: '/ceiling-installations/ceiling-installations-8.jpg',
+      src: '/img/ceiling-installations/ceiling-installations-8.jpg',
     },
   ] as const;
 }
