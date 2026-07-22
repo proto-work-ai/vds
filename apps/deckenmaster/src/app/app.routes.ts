@@ -75,7 +75,7 @@ const servicesRoutes: Route[] = servicePages.map((data) => {
   };
 });
 
-export const appRoutes: Route[] = [
+export const appRoutes = [
   {
     path: '',
     loadComponent: () => import('./pages/main-page/main-page').then((a) => a.MainPage),
@@ -152,4 +152,4 @@ export const appRoutes: Route[] = [
     path: '**',
     redirectTo: '/',
   },
-];
+] satisfies Route[];

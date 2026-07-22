@@ -129,7 +129,7 @@ export class CeilingCalculator {
   protected readonly ticksLabels = signal([this.minRange(), 50, 75, 100, this.maxRange()].map((a) => a + 'м²'));
 
   protected readonly form = new FormGroup({
-    // name: new FormControl(undefined, [Validators.required]),
+    name: new FormControl(undefined, [Validators.required]),
     phone: new FormControl(undefined, [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     type: new FormControl(this.typeOptions()[0].id),
     size: new FormControl(this.minRange()),
@@ -187,7 +187,7 @@ export class CeilingCalculator {
         .pipe(
           finalize(() => {
             this.form.setValue({
-              // name: null,
+              name: null,
               rooms: [],
               lightings: [],
               description: null,

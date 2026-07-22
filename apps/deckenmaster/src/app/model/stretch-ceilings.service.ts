@@ -78,7 +78,7 @@ export function injectStretchCeilingGroupMenu(patch: string | string[] = []): IA
   return menu;
 }
 
-const menuServices: IAppMenuItem = {
+const services: IAppMenuItem = {
   title: 'Услуги',
   fragment: 'main',
   children: servicePages.map(({ title, key }) => {
@@ -101,7 +101,7 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
 
     // ...injectStretchCeilingGroupMenu(['/', routePath.catalog.root]),
 
-    menuServices,
+    services,
 
     {
       title: 'Калькулятор',
@@ -121,11 +121,11 @@ export function injectNavMenu(patch: string | string[] = []): Signal<IAppMenuIte
       fragment: 'main',
     },
 
-    // {
-    //   title: 'Акции',
-    //   link: ['/', routePath.events.root],
-    //   fragment: 'main',
-    // },
+    {
+      title: 'Акции',
+      link: ['/', routePath.events.root],
+      fragment: 'main',
+    },
 
     // {
     //   title: 'Контакты',
@@ -144,7 +144,7 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
       fragment: 'main',
     },
 
-    menuServices,
+    services,
 
     {
       title: 'Калькулятор',
@@ -157,6 +157,13 @@ export function injectFooterMenu(patch: string | string[] = []): Signal<IAppMenu
       link: ['/', routePath.price.root],
       fragment: 'main',
     },
+
+    {
+      title: 'Акции',
+      link: ['/', routePath.events.root],
+      fragment: 'main',
+    },
+
     // {
     //   title: 'Контакты',
     //   link: ['/', 'contacts'],
