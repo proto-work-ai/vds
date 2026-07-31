@@ -29,7 +29,7 @@ export const stretchCeilingAll: IContentType[] = [
       '/img/catalog/matte-stretch-ceilings/image-6.png',
       '/img/catalog/matte-stretch-ceilings/image-7.png',
       '/img/catalog/matte-stretch-ceilings/image-8.png',
-      '/img/catalog/matte-stretch-ceilings/image-9.png'
+      '/img/catalog/matte-stretch-ceilings/image-9.png',
     ],
   },
 
@@ -140,10 +140,7 @@ export const stretchCeilingAll: IContentType[] = [
       'Это зеркальное покрытие с высоким коэффициентом отражения (до 90–95%), которое визуально удваивает высоту и освещенность комнаты. Они водонепроницаемы, прочны, скрывают дефекты чернового потолка и монтируются за несколько часов',
     detail: () => import('./details/glossy-stretch-ceilings/glossy-stretch-ceilings').then((a) => a.Detail),
     image: '/img/catalog/glossy-stretch-ceilings/image-1.jpg',
-    images: [
-      '/img/catalog/glossy-stretch-ceilings/image-1.jpg',
-      '/img/catalog/glossy-stretch-ceilings/image-2.jpg',
-    ],
+    images: ['/img/catalog/glossy-stretch-ceilings/image-1.jpg', '/img/catalog/glossy-stretch-ceilings/image-2.jpg'],
   },
 
   {
@@ -190,7 +187,10 @@ export const stretchCeilingAll: IContentType[] = [
       'ПВХ-пленка с особой фактурой, имитирующей ткань, которая занимает промежуточное место между матовыми и глянцевыми покрытиями. Они отличаются гладкой поверхностью, легким перламутровым блеском, мягким рассеиванием света, не создавая резких бликов',
     detail: () => import('./details/satin-stretch-ceilings/satin-stretch-ceilings').then((a) => a.Detail),
     image: '/img/catalog/satin-stretch-ceilings/image-1.jpg',
-    images: ['/img/catalog/satin-stretch-ceilings/image-1.jpg', '/img/catalog/satin-stretch-ceilings/image-2.jpg'],
+    images: [
+      '/img/catalog/satin-stretch-ceilings/image-1.jpg',
+      '/img/catalog/satin-stretch-ceilings/image-3.jpg',
+    ],
   },
 
   {
@@ -350,6 +350,7 @@ export const stretchCeilingAll: IContentType[] = [
       '/img/catalog/ceilings-with-contour-lighting/image-2.jpg',
       '/img/catalog/ceilings-with-contour-lighting/image-3.jpg',
       '/img/catalog/ceilings-with-contour-lighting/image-4.jpg',
+      '/img/catalog/ceilings-with-contour-lighting/image-5.jpg',
     ],
   },
 

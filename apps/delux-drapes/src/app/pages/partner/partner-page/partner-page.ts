@@ -13,7 +13,7 @@ import { markAsSubmit } from '@atlas/core';
 import { IFormData, injectSendMessage } from '../../../modules/send-service/send.services';
 import { finalize } from 'rxjs';
 import { provideIcons } from '@ng-icons/core';
-import { NgIconImports } from '../../../components/ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 import { lucideCheckCircle } from '@ng-icons/lucide';
 import { FormImports } from '../../../components/form';
 

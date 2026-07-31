@@ -14,7 +14,7 @@ import { lucidePhone } from '@ng-icons/lucide';
 import { NgTemplateOutlet } from '@angular/common';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 import { injectFooterMenu } from '../../model/catalog.service';
-import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 
 @Component({
   selector: 'app-main-footer',

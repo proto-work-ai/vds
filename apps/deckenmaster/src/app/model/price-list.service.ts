@@ -43,10 +43,10 @@ export interface UnitPrice {
 export interface CeilingMaterialBrand {
   brand: STBrandType;
   group?: STPriceGroup;
-  title?: string;
+  title: string;
   country?: string;
   image?: string;
-  type?: ProductTag;
+  type: ProductTag;
   size: number; //Площадь
   width: number | number[]; //Ширина полотна
   thickness: number | number[]; //Толщина

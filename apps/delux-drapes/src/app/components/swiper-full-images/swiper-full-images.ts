@@ -15,7 +15,7 @@ import { lucideChevronLeft, lucideChevronRight } from '@ng-icons/lucide';
 import { Navigation } from 'swiper/modules';
 import { IContentType } from '../../model/products.data';
 import { IsPlatformBrowserDirective } from '../is-platform-browser.directive';
-import { NgIconImports } from '../ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 
 /*
   https://swiperjs.com/swiper-api

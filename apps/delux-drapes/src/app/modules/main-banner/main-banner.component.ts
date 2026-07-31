@@ -4,7 +4,7 @@ import { TuiNumberFormatSettings, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputSlider } from '@taiga-ui/kit';
 import { provideIcons } from '@ng-icons/core';
 import { lucideCheckCircle } from '@ng-icons/lucide';
-import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 import { InviteModalClick } from '../../components/invite-designer/invite-designer-modal';
 import { NgxParallax } from '../../components/parallax.directive';
 

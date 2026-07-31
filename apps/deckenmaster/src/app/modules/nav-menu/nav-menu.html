@@ -118,33 +118,31 @@
     </nav>
 
     <ng-template #menuItem let-value let-node="node">
-      <div [style.opacity]="1 / node.level">
-        @if (value.link) {
-          <a
-            routerLinkActive="font-semibold"
-            class="py-1 block"
-            [routerLink]="value.link"
-            [queryParams]="value.queryParams ?? {}"
-            (click)="onClose()"
-          >
-            @if (value.icon) {
-              <tui-icon class="t-icon" [icon]="value.icon" />
-            }
-            {{ value.title }}
-          </a>
-        } @else {
-          <span class="py-1 block">
-            @if (value.icon) {
-              <tui-icon class="t-icon" [icon]="value.icon" />
-            }
-            {{ value.title }}
-          </span>
-        }
-      </div>
+      @if (value.link) {
+        <a
+          routerLinkActive="font-semibold"
+          class="py-1 block"
+          [routerLink]="value.link"
+          [queryParams]="value.queryParams ?? {}"
+          (click)="onClose()"
+        >
+          @if (value.icon) {
+            <tui-icon class="t-icon" [icon]="value.icon" />
+          }
+          {{ value.title }}
+        </a>
+      } @else {
+        <span class="py-1 block">
+          @if (value.icon) {
+            <tui-icon class="t-icon" [icon]="value.icon" />
+          }
+          {{ value.title }}
+        </span>
+      }
     </ng-template>
   </section>
 </tui-drawer>
 
 <!-- <section class="flex justify-start mt-4">
     <a routerLinkActive="font-semibold" [routerLink]="['/', 'catalog']" class="flex items-center" (click)="onClose()"> Весь каталог </a>
-  </section> -->
+</section> -->

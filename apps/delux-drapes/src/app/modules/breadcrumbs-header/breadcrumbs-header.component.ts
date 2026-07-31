@@ -1,10 +1,10 @@
 import { Component, input, signal } from '@angular/core';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import { lucideChevronRight } from '@ng-icons/lucide';
 import { TuiDataList, TuiDropdown } from '@taiga-ui/core';
 import { RouterLink } from '@angular/router';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
-import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 
 export interface IBreadcrumbItem {
   title: string;

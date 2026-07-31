@@ -17,6 +17,7 @@ import { FromToComponent } from '../../modules/from-to/from-to.component';
 import { TurnkeySolutionsComponent } from '../../modules/turnkey-solution/turnkey-solutions/turnkey-solutions.component';
 import { LeaveRequestComponent } from '../../modules/leave-request/leave-request.component';
 import { setMeta } from '@atlas/core';
+import { PhotosWorksComponent } from "../../modules/photos-works/photos-works";
 
 @Component({
   selector: 'main',
@@ -38,10 +39,8 @@ import { setMeta } from '@atlas/core';
     MenuHeaderComponent,
     TurnkeySolutionsComponent,
     LeaveRequestComponent,
-    // FromToComponent,
-    // TurnkeySolutionsComponent,
-    // LeaveRequestComponent,
-  ],
+    PhotosWorksComponent
+],
   // providers: [MenuDeferService],
   host: {
     id: 'main',

@@ -48,7 +48,7 @@
                   <ng-icon
                     class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl"
                     strokeWidth="1"
-                    name="lucideStar"
+                    src="/icons/medal.svg"
                     style="color: #cf0953"
                   />
                 </picture>
@@ -57,7 +57,14 @@
               </li>
 
               <li class="flex justify-between">
-                <span class="text-gray-400">Материал:</span> {{ item.type | productTagName }}
+                <span class="text-gray-400">Материал:</span>
+
+                <div class="text-end">
+                  @for (type of item.types ?? [item.type]; let last = $last; track type) {
+                    {{ type | productTagName }}
+                    {{ last ? '' : ', ' }}
+                  }
+                </div>
               </li>
 
               <li class="flex justify-between">

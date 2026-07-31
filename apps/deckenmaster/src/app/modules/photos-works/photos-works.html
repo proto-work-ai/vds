@@ -1,0 +1,14 @@
+<div class="container mx-auto flex flex-col gap-5 max-sm:px-5 md:my-8 my-6">
+  <header class="text-center flex flex-col gap-2 sm:gap-3">
+    <h2 class="md:text-4xl text-2xl">Фото работ</h2>
+
+    <div class="md:w-175 mx-auto text-gray-500">
+      Фотографии могут рассказать больше, чем тексты. Поэтому мы пополняем галерею реализованными проектами, примерами
+      натяжных потолков в интерьере.
+    </div>
+  </header>
+</div>
+
+<section class="container mx-auto max-sm:px-5 md:my-8 my-6">
+  <app-swiper-full-images [images]="images()" />
+</section>

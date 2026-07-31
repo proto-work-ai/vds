@@ -12,11 +12,12 @@ import { stretchCeilingMaterials } from '../../model/ceiling-materials';
 import { CeilingInstallationsComponent } from "../../modules/ceiling-materials/ceiling-installations.component";
 import { CeilingCalculator } from "../../components/ceiling-calculator/ceiling-calculator";
 import { CeilingCertificatesComponent } from "../../modules/ceiling-certificates/ceiling-certificates";
+import { PhotosWorksComponent } from "../../modules/photos-works/photos-works";
 
 @Component({
   selector: 'main',
   templateUrl: './ceiling-materials-page.html',
-  imports: [MainHeaderComponent, BreadcrumbsHeader, FooterMenuComponent, NavMenu, WayWeWorkComponent, ApplicationMeasurementComponent, SocialButtons, CeilingInstallationsComponent, CeilingCalculator, CeilingCertificatesComponent],
+  imports: [MainHeaderComponent, BreadcrumbsHeader, FooterMenuComponent, NavMenu, WayWeWorkComponent, ApplicationMeasurementComponent, SocialButtons, CeilingInstallationsComponent, CeilingCalculator, CeilingCertificatesComponent, PhotosWorksComponent],
   host: {
     id: 'main',
   },
@@ -31,8 +32,6 @@ export class CeilingMaterialsPage {
       title: 'Материалы полотна для натяжных потолков',
     },
   ]);
-
-  protected readonly stretchCeilingMaterials = stretchCeilingMaterials;
 
   constructor() {
     setMeta({

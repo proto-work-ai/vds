@@ -26,7 +26,7 @@ import { IAppMenuItem } from '../../shared/menu';
 import { ScrollLink } from '../../components/scroll-link/scroll-link.directive';
 import { injectNavMenu } from '../../model/catalog.service';
 import { InviteModalClick } from '../../components/invite-designer/invite-designer-modal';
-import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 import { ADDRESS, ADDRESS_LINK } from '../../contacts';
 
 @Component({

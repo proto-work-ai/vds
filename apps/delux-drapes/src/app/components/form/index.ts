@@ -14,7 +14,7 @@ import { FormGroupStore } from '../form-store/form-store.directive';
 import { RouterLink } from '@angular/router';
 import { AtlasFormImports } from '@atlas/form';
 import { TuiAutoFocus } from '@taiga-ui/cdk';
-import { NgIconImports } from '../ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 
 export { FormGroupStore };
 

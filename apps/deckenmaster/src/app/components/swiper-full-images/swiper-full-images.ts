@@ -55,15 +55,19 @@ export class SwiperFullImages implements OnInit {
               prevEl: '.swiper-button-prev',
             },
             breakpoints: {
+              300: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
               400: {
-                slidesPerView: 3,
+                slidesPerView: 2,
                 spaceBetween: 30,
               },
               600: {
-                slidesPerView: 4,
+                slidesPerView: 3,
               },
               800: {
-                slidesPerView: 5,
+                slidesPerView: 4,
               },
             },
           });

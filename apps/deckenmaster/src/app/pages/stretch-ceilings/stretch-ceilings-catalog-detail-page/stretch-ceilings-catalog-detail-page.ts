@@ -16,16 +16,17 @@ import { injectPhoneSendModal } from '../../../modules/send-service/send.service
 import { PriceCard } from '../../../modules/stretch-ceilings-catalog/price-card';
 import { PriceListBrandTable } from '../../../modules/catalog-price/price-list-brand-table/price-list-brand-table';
 import { IContentType } from '../../../model/stretch-ceiling';
-import { PriceListTable } from "../../../modules/catalog-price/price-list-table/price-list-table";
-import { WayWeWorkComponent } from "../../../modules/way-we-work/way-we-work.component";
+import { PriceListTable } from '../../../modules/catalog-price/price-list-table/price-list-table';
+import { WayWeWorkComponent } from '../../../modules/way-we-work/way-we-work.component';
 import { AnyQuestions } from '../../../components/any-questions/any-questions';
-import { SocialButtons } from "../../../components/social-buttons/social-buttons";
-import { CeilingCalculator } from "../../../components/ceiling-calculator/ceiling-calculator";
+import { SocialButtons } from '../../../components/social-buttons/social-buttons';
+import { CeilingCalculator } from '../../../components/ceiling-calculator/ceiling-calculator';
 import { routePath } from '../../../app.routes';
-import { CeilingCertificatesComponent } from "../../../modules/ceiling-certificates/ceiling-certificates";
+import { CeilingCertificatesComponent } from '../../../modules/ceiling-certificates/ceiling-certificates';
+import { PhotosWorksComponent } from '../../../modules/photos-works/photos-works';
 
 @Component({
-  selector: 'st-catalog-getail',
+  selector: 'app-catalog-getail',
   templateUrl: 'stretch-ceilings-catalog-detail-page.html',
   imports: [
     FooterMenuComponent,
@@ -41,17 +42,8 @@ import { CeilingCertificatesComponent } from "../../../modules/ceiling-certifica
     WayWeWorkComponent,
     SocialButtons,
     CeilingCalculator,
-    AnyQuestions,
-    SwiperFullImages,
-    PriceListBrandTable,
-    CeilingCertificatesComponent
-],
-  providers: [
-    // MenuDeferService,
-    // {
-    //   provide: TuiDialogService,
-    //   useExisting: TuiResponsiveDialogService,
-    // },
+    CeilingCertificatesComponent,
+    PhotosWorksComponent,
   ],
   host: {
     id: 'main',

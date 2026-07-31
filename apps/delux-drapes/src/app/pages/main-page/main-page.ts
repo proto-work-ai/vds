@@ -36,7 +36,7 @@ import { MainQuestions } from '../../modules/main-questions/main-questions.compo
 import { MainToOrder } from '../../modules/main-to-order/main-to-order.component';
 import { MainWelcome } from '../../modules/main-welcome/main-welcome';
 import { MainBannerForm } from '../../modules/main-banner-form/main-banner-form.component';
-import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 import { markAsSubmit } from '@atlas/core';
 import { finalize } from 'rxjs';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';

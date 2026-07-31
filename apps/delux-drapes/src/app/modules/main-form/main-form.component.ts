@@ -8,7 +8,7 @@ import { markAsSubmit } from '@atlas/core';
 import { finalize } from 'rxjs';
 import { FormGroupStore } from '../../components/form-store/form-store.directive';
 import { IFormData, injectSendMessage } from '../send-service/send.services';
-import { NgIconImports } from '../../components/ng-icon-src.directive';
+import { NgIconImports } from '@atlas/core';
 import { FormImports } from '../../components/form';
 
 export function ymDrainingEvent(): void {

@@ -25,13 +25,16 @@ import {
   stretchCeilingGroupName,
   ThicknessFormatPipe,
   PriceFormatPipe,
+  ProductTag,
 } from '../../model/stretch-ceiling';
+import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
+import { NgIconSrc } from '@atlas/core';
+import { LeaveRequestModalClick } from '../../components/leave-request-modal/leave-request-modal';
 import { stretchCeilingMaterials } from '../../model/ceiling-materials';
 import { IAppMenuItem } from '../../shared/menu';
 import { routePath } from '../../app.routes';
 import { FormImports } from '../../components/form';
-import { IsActiveMatchOptions, RouterLink, RouterLinkActive } from '@angular/router';
-import { LeaveRequestModalClick } from '../../components/leave-request-modal/leave-request-modal';
+import { CeilingMaterialBrand } from '../../model/price-list.service';
 
 @Component({
   selector: 'app-ceiling-materials',
@@ -52,6 +55,7 @@ import { LeaveRequestModalClick } from '../../components/leave-request-modal/lea
     RouterLink,
     RouterLinkActive,
     LeaveRequestModalClick,
+    NgIconSrc,
   ],
   providers: [
     provideIcons({
@@ -97,7 +101,7 @@ export class CeilingInstallationsComponent {
 
   protected readonly groupFiltered = computed(() => {
     const items = stretchCeilingMaterials.get(this.group());
-    return items ?? [...stretchCeilingMaterials.values()].flat();
+    return items ?? [...new Set([...stretchCeilingMaterials.values()].flat())];
   });
 
   protected readonly countryList = computed(() => {
@@ -139,6 +143,19 @@ export class CeilingInstallationsComponent {
       const item = countryes[countryIndex as unknown as number];
       list = list.filter((a) => a.country === item.title);
     }
-    return list;
+    //return list;
+    return this.getByGroups(list);
   });
+
+  protected getByGroups(list: CeilingMaterialBrand[]) {
+    const map = new Map<string, CeilingMaterialBrand & { types: ProductTag[] }>();
+    list.forEach((item) => {
+      if (map.has(item.title)) {
+        map.get(item.title)!.types.push(item.type);
+      } else {
+        map.set(item.title, { ...item, types: [item.type!] });
+      }
+    });
+    return [...map.values()];
+  }
 }

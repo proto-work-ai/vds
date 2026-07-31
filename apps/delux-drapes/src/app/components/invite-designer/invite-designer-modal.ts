@@ -1,16 +1,12 @@
 /* eslint-disable @angular-eslint/directive-selector */
 import { ChangeDetectionStrategy, Component, DestroyRef, Directive, HostListener, inject, signal } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { TuiAutoFocus } from '@taiga-ui/cdk';
-import { TuiCheckbox, TuiDialogContext, TuiDialogService, TuiInput, TuiTextfield } from '@taiga-ui/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
 import { injectContext, PolymorpheusComponent } from '@taiga-ui/polymorpheus';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
-import { AtlasFormImports } from '@atlas/form';
-import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider, TuiSelect } from '@taiga-ui/kit';
 import { provideIcons } from '@ng-icons/core';
 import { lucideDelete, lucideX } from '@ng-icons/lucide';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgIconImports } from '../ng-icon-src.directive';
 import { markAsSubmit } from '@atlas/core';
 import { IFormData, injectSendMessage } from '../../modules/send-service/send.services';
 import { finalize } from 'rxjs';

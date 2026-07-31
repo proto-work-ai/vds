@@ -150,6 +150,6 @@ export const appRoutes = [
 
   {
     path: '**',
-    redirectTo: '/',
+    redirectTo: '',
   },
 ] satisfies Route[];

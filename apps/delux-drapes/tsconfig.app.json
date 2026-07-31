@@ -4,6 +4,6 @@
     "outDir": "../../dist/out-tsc",
     "types": ["node"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "../../libs/atlas/core/src/lib/ng-icon-src.directive.ts"],
   "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]
 }
