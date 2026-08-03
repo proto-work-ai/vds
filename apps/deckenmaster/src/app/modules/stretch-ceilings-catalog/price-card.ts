@@ -27,9 +27,9 @@ export function unitFormatter(unit: PriceUnit) {
       @case ('s') {
         <div class="flex gap-1 justify-end">
           @if (priceText()) {
-            <div class="text-sm">Цена:</div>
+            <div class="-text-sm">Цена:</div>
           }
-          <div class="text-sm">
+          <div class="-text-lg">
             <span class="font-semibold">{{ price() }} </span>
             руб/{{ unitFormat() }}
           </div>
