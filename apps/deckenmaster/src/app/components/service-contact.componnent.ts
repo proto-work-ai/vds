@@ -2,6 +2,13 @@ import { isPlatformBrowser } from '@angular/common';
 import { inject, input, Component, Directive, ElementRef, HostListener, PLATFORM_ID } from '@angular/core';
 import { PhoneFormatPipe } from '@atlas/core';
 
+export function ymServiceEvent(): void {
+  const { ym } = window as any;
+  if (ym) {
+    ym(108545164, 'reachGoal', 'service-event');
+  }
+}
+
 @Component({
   template: `<a class="max-sm:text-sm" href="tel:+7{{ phone }}">{{ phone | phoneFormat }}</a>`,
   imports: [PhoneFormatPipe],
@@ -29,7 +36,7 @@ export class PhoneContactComponent {
 // }
 
 @Directive({ selector: 'a[hrefContact],button[hrefContact]' })
-export class HrefContactDirective {
+export class ServiceContactDirective {
   private readonly isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
   private readonly elementRef: ElementRef<HTMLAnchorElement> = inject(ElementRef<HTMLAnchorElement>);
   public readonly href = input.required<string>({ alias: 'hrefContact' });
@@ -42,7 +49,8 @@ export class HrefContactDirective {
     const node = document.createElement('a');
     node.setAttribute('href', this.href());
     node.click();
+    ymServiceEvent();
   }
 }
 
-export const HrefContact = [HrefContactDirective] as const;
+export const ServiceContact = [ServiceContactDirective] as const;
