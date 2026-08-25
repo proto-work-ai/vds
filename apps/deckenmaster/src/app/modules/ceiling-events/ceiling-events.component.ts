@@ -29,7 +29,7 @@ export class CeilingEventsComponent {
       image: '/img/events/1.jpg',
     },
     {
-      title: 'Скидкана простые потолки ПВХ 10% ',
+      title: 'Скидка на простые потолки ПВХ 10% ',
       description: 'При заказе монтажа во всей квартире',
       image: '/img/events/2.jpg',
     },

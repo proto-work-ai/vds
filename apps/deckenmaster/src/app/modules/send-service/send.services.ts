@@ -130,8 +130,8 @@ export function getTestHtml() {
     size: 70,
     description: 'fghnnnnnnnnnnnnn',
     rooms: [
-      { id: 2, title: 'Гостинная', icon: 'room-2' },
-      { id: 3, title: 'Спальная', icon: 'room-3' },
+      { id: 2, title: 'Гостиная', icon: 'room-2' },
+      { id: 3, title: 'Спальня', icon: 'room-3' },
       { id: 4, title: 'Детская', icon: 'room-4' },
       { id: 6, title: 'Туалет', icon: 'room-6' },
     ],

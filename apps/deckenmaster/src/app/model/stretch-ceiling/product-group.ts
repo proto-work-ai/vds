@@ -13,9 +13,9 @@ export enum StretchCeilingsGroup {
 export const stretchCeilingsGroupName = {
   [StretchCeilingsGroup.WithBacklight]: 'С подсветкой',
   [StretchCeilingsGroup.ByTexture]: 'По фактуре', // По текстуре
-  [StretchCeilingsGroup.InstallationMethod]: ' По cпособу установки',
-  [StretchCeilingsGroup.Premium]: 'Эксклюзивные дизайн', // Премиум
-  [StretchCeilingsGroup.ByPremises]: 'По типу помещений', // Пока нет этова раздела
+  [StretchCeilingsGroup.InstallationMethod]: 'По способу установки',
+  [StretchCeilingsGroup.Premium]: 'Эксклюзивный дизайн', // Премиум
+  [StretchCeilingsGroup.ByPremises]: 'По типу помещений', // Пока нет этого раздела
 } as const;
 
 // Потолки по по группам

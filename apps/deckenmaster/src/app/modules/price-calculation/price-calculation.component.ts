@@ -53,8 +53,8 @@ export class PriceCalculationComponent {
 
   protected readonly rooms = signal([
     { id: 1, title: 'Вся квартира', icon: 'room-1' },
-    { id: 2, title: 'Гостинная', icon: 'room-2' },
-    { id: 3, title: 'Спальная', icon: 'room-3' },
+    { id: 2, title: 'Гостиная', icon: 'room-2' },
+    { id: 3, title: 'Спальня', icon: 'room-3' },
     { id: 4, title: 'Детская', icon: 'room-4' },
     { id: 5, title: 'Ванная', icon: 'room-5' },
     { id: 6, title: 'Туалет', icon: 'room-6' },

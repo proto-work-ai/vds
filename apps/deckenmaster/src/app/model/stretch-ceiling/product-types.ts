@@ -122,7 +122,7 @@ export const productTypeName: Partial<Record<ProductTag, string>> = {
   [ProductTag.LightLinesSlott]: 'Световые линии SLOTT',
   [ProductTag.LightLinesFlexy]: 'Световые линии Flexy',
   [ProductTag.InternalLighting]: 'C подсветкой внутри',
-  [ProductTag.Transparent]: 'Светопрозрачный потоло',
+  [ProductTag.Transparent]: 'Светопрозрачный потолок',
   [ProductTag.WithIlluminationCanvas]: 'С подсветкой через полотно',
   [ProductTag.StarrySky]: 'Звездное небо',
 
