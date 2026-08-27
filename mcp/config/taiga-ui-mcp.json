@@ -1,0 +1,175 @@
+{
+  "$schema": "https://taiga-ui.dev/schema/taiga-ui-mcp.json",
+  "projectName": "proto.cms",
+  "version": "5.7.0",
+  "style": "css",
+  "theme": "dark",
+  "cssVariables": true,
+  "packages": {
+    "core": {
+      "name": "@taiga-ui/core",
+      "components": [
+        "button",
+        "icon",
+        "root",
+        "textfield",
+        "progress",
+        "scrollbar",
+        "notification",
+        "dropdown",
+        "tooltip",
+        "popup",
+        "modal",
+        "focusable",
+        "let",
+        "error",
+        "hint",
+        "input",
+        "label",
+        "option",
+        "optgroup"
+      ]
+    },
+    "kit": {
+      "name": "@taiga-ui/kit",
+      "components": [
+        "accordion",
+        "action-bar",
+        "avatar",
+        "badge",
+        "badge-notification",
+        "badged-content",
+        "block",
+        "breadcrumbs",
+        "button-loading",
+        "calendar-month",
+        "calendar-range",
+        "chip",
+        "combo-box",
+        "comment",
+        "compass",
+        "confirm",
+        "copy",
+        "counter",
+        "data-list-wrapper",
+        "drawer",
+        "files",
+        "filter",
+        "fullscreen",
+        "input-chip",
+        "input-color",
+        "input-date",
+        "input-date-multi",
+        "input-date-range",
+        "input-date-time",
+        "input-number",
+        "input-password",
+        "input-phone-international",
+        "input-range",
+        "input-slider",
+        "input-time",
+        "input-token",
+        "island",
+        "kbd",
+        "link",
+        "loader",
+        "multi-select",
+        "pagination",
+        "radio",
+        "radio-group",
+        "range",
+        "rating",
+        "scroll-controls",
+        "select",
+        "sheets",
+        "sidebar",
+        "slider",
+        "spinner",
+        "stepper",
+        "switcher",
+        "tab",
+        "tabs",
+        "tag",
+        "textarea",
+        "thumbnail",
+        "thumbnail-card",
+        "tile",
+        "tiles",
+        "time",
+        "toggle",
+        "tree",
+        "tree-item",
+        "tree-item-content"
+      ]
+    },
+    "layout": {
+      "name": "@taiga-ui/layout",
+      "components": [
+        "header",
+        "footer",
+        "aside",
+        "mobile-sidebar",
+        "sidebar"
+      ]
+    },
+    "table": {
+      "name": "@taiga-ui/addon-table",
+      "components": [
+        "table",
+        "table-head",
+        "table-body",
+        "table-row",
+        "table-cell",
+        "table-pagination"
+      ]
+    },
+    "icons": {
+      "name": "@taiga-ui/icons",
+      "components": [
+        "tui-icon"
+      ]
+    },
+    "mobile": {
+      "name": "@taiga-ui/addon-mobile",
+      "components": [
+        "mobile-aware",
+        "mobile-dropdown"
+      ]
+    },
+    "cdk": {
+      "name": "@taiga-ui/cdk",
+      "components": [
+        "let",
+        "repeat",
+        "focusable",
+        "focusvisible",
+        "focustrap",
+        "focuswithin",
+        "prevent-scroll"
+      ]
+    }
+  },
+  "importAlias": "@taiga-ui",
+  "designTokens": {
+    "colors": {
+      "primary": "#3b82f6",
+      "secondary": "#8b5cf6",
+      "success": "#10b981",
+      "warning": "#f59e0b",
+      "error": "#ef4444",
+      "info": "#06b6d4"
+    },
+    "radius": {
+      "xs": "0.125rem",
+      "sm": "0.25rem",
+      "md": "0.5rem",
+      "lg": "0.75rem",
+      "xl": "1rem"
+    }
+  },
+  "preset": {
+    "palette": "default",
+    "appearance": "light-and-dark",
+    "animations": true
+  }
+}
