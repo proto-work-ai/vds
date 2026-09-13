@@ -1,0 +1,164 @@
+{
+  "name": "shtorivdom-storybook",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/shtorivdom-storybook/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/shtorivdom-storybook",
+        "browser": "apps/shtorivdom-storybook/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "apps/shtorivdom-storybook/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/shtorivdom-storybook/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/shtorivdom-storybook/src/fonts"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          }
+        ],
+        "styles": [
+          "libs/fonts/font-awesome/font-awesome.scss",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/shtorivdom-storybook/src/styles.scss"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "shtorivdom-storybook:build:production"
+        },
+        "development": {
+          "buildTarget": "shtorivdom-storybook:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "shtorivdom-storybook:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "shtorivdom-storybook:build",
+        "port": 4200,
+        "staticFilePath": "dist/apps/shtorivdom-storybook/browser",
+        "spa": true
+      }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/shtorivdom-storybook/.storybook",
+        "browserTarget": "shtorivdom-storybook:build-storybook",
+        "compodoc": false,
+        "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/shtorivdom-storybook/src/styles.scss"
+        ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/shtorivdom-storybook",
+        "configDir": "apps/shtorivdom-storybook/.storybook",
+        "browserTarget": "shtorivdom-storybook:build-storybook",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "shtorivdom-storybook:build-storybook",
+        "staticFilePath": "dist/storybook/shtorivdom-storybook",
+        "spa": true,
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/shtorivdom-storybook/storybook-static"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/shtorivdom-storybook/src/fonts"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          }
+        ]
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "shtorivdom-storybook:build-storybook:ci"
+        }
+      }
+    }
+  }
+}

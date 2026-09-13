@@ -14,7 +14,6 @@ import {
   WritableSignal,
   effect,
   ElementRef,
-  Renderer2,
   Signal,
 } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
@@ -22,7 +21,7 @@ import { filter, Observable, skip, Subject, Subscription, switchMap, tap } from 
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { PagePagination, PaginationOptions } from '@atlas/core';
 import { ServicePaginateFn } from '@atlas/core';
-import { TuiDataListComponent, TuiTextfieldComponent } from '@taiga-ui/core';
+import { TuiDataListComponent } from '@taiga-ui/core';
 
 /*
   export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
@@ -36,7 +35,6 @@ import { TuiDataListComponent, TuiTextfieldComponent } from '@taiga-ui/core';
 @Directive({ selector: '[virtualScrollHost]' })
 export class VirtualScrollHost {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly render = inject(Renderer2);
   private readonly scrollViewport = contentChild(CdkVirtualScrollViewport);
   private readonly elementRef: Signal<ElementRef<HTMLElement> | undefined> = contentChild(TuiDataListComponent, {
     read: ElementRef,

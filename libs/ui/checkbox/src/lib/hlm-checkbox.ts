@@ -1,15 +1,5 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
-import {
-  booleanAttribute,
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  forwardRef,
-  input,
-  linkedSignal,
-  model,
-  output,
-} from '@angular/core';
+import { booleanAttribute, Component, computed, forwardRef, input, linkedSignal, model, output } from '@angular/core';
 import { type ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideCheck } from '@ng-icons/lucide';
@@ -55,9 +45,7 @@ export const HLM_CHECKBOX_VALUE_ACCESSOR = {
       (touched)="propagateTouched?.()"
     >
       @if (checked() || indeterminate()) {
-        <span
-          class="flex items-center justify-center text-current transition-none"
-        >
+        <span class="flex items-center justify-center text-current transition-none">
           <ng-icon hlm size="14px" name="lucideCheck" />
         </span>
       }
@@ -71,8 +59,8 @@ export class HlmCheckbox implements ControlValueAccessor {
     hlm(
       'border-input dark:bg-input/30 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground dark:data-[state=checked]:bg-primary data-[state=checked]:border-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive peer size-4 shrink-0 cursor-default rounded-[4px] border shadow-xs transition-shadow outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
       this.userClass(),
-      this._disabled() ? 'cursor-not-allowed opacity-50' : '',
-    ),
+      this._disabled() ? 'cursor-not-allowed opacity-50' : ''
+    )
   );
 
   /** Used to set the id on the underlying brn element. */

@@ -9,7 +9,7 @@ import {
 import { Component, inject } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiError, TuiLabel, TuiTextfield } from '@taiga-ui/core';
-import { AttributeControlPipe } from "../pipes/attribute-control.pipe";
+import { AttributeControlPipe } from '../pipes/attribute-control.pipe';
 import { TuiFieldErrorPipe, TuiTextarea } from '@taiga-ui/kit';
 import { AsyncPipe } from '@angular/common';
 import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
@@ -17,12 +17,12 @@ import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
 @Component({
   selector: 'atlas-form-field-textfield',
   template: `
-        <tui-textfield>
-          <label tuiLabel>{{attribute.title}}</label>
-          <textarea tuiTextarea [formControl]="attribute | metaAttributeControl"></textarea>
-        </tui-textfield>
-      <tui-error  [formControl]="attribute | metaAttributeControl" [error]="[] | tuiFieldError | async" />
-    `,
+    <tui-textfield>
+      <label tuiLabel>{{ attribute.title }}</label>
+      <textarea tuiTextarea [formControl]="attribute | metaAttributeControl"></textarea>
+    </tui-textfield>
+    <tui-error [formControl]="attribute | metaAttributeControl" [error]="[] | tuiFieldError | async" />
+  `,
   imports: [
     ReactiveFormsModule,
     FormsModule,
@@ -46,8 +46,8 @@ import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
     }),
   ],
   host: {
-    class: 'contents'
-  }
+    class: 'contents',
+  },
 })
 export class FormFieldTextarea {
   protected readonly attribute = inject(FORM_META_ATTRIBUTE);

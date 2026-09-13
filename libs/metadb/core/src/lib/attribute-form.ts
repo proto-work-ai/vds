@@ -47,7 +47,7 @@ export interface IFieldColorConfig {
 export interface IFieldCustomConfig {
   type: FieldTypeEnum.CUSTOM;
   component: ComponentType<unknown>;
-  data?: any
+  data?: any;
 }
 
 export type FormField =

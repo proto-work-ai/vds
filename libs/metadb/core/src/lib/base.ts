@@ -264,7 +264,9 @@ export const enum EntityAttributeType {
 }
 
 export const isAttributeRelation = (type?: EntityAttributeType | string) =>
-  [EntityAttributeType.ONE_TO_ONE, EntityAttributeType.ONE_TO_MANY, EntityAttributeType.MANY_TO_MANY].includes(type as EntityAttributeType);
+  [EntityAttributeType.ONE_TO_ONE, EntityAttributeType.ONE_TO_MANY, EntityAttributeType.MANY_TO_MANY].includes(
+    type as EntityAttributeType
+  );
 
 export const isParentRelation = (type: EntityAttributeType) =>
   [EntityAttributeType.PARENT, EntityAttributeType.PARENT_MANY].includes(type);

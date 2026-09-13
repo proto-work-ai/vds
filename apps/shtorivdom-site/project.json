@@ -1,0 +1,103 @@
+{
+  "name": "shtorivdom-site",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "apps/shtorivdom-site/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular/build:application",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/shtorivdom-site",
+        "browser": "apps/shtorivdom-site/src/main.ts",
+        "polyfills": [
+          "zone.js",
+          "@angular/localize/init"
+        ],
+        "tsConfig": "apps/shtorivdom-site/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "apps/shtorivdom-site/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          },
+          {
+            "glob": "**/*",
+            "input": "apps/shtorivdom-site/api",
+            "output": "api"
+          }
+        ],
+        "styles": [
+          "@taiga-ui/styles/taiga-ui-theme.less",
+          "@taiga-ui/addon-mobile/styles/taiga-ui-mobile.less",
+          "lato-font/css/lato-font.css",
+          "@fontsource/playfair-display/cyrillic-400.css",
+          "@fontsource/playfair-display/cyrillic-700.css",
+          "@fontsource/playfair-display/latin-400.css",
+          "@fontsource/playfair-display/latin-700.css",
+          "apps/shtorivdom-site/src/styles.scss"
+        ],
+        "server": "apps/shtorivdom-site/src/main.server.ts",
+        "ssr": {
+          "entry": "apps/shtorivdom-site/src/server.ts"
+        },
+        "outputMode": "server"
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "1500kb",
+              "maximumError": "2mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "shtorivdom-site:build:production"
+        },
+        "development": {
+          "buildTarget": "shtorivdom-site:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "shtorivdom-site:build",
+        "staticFilePath": "dist/apps/shtorivdom-site/browser",
+        "spa": true
+      }
+    }
+  }
+}

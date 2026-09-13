@@ -1,5 +1,5 @@
 /* eslint-disable no-fallthrough */
-import { EntityAttributeType, FieldTypeEnum } from "./base";
+import { EntityAttributeType, FieldTypeEnum } from './base';
 
 export function getFormFieldType(type: EntityAttributeType): FieldTypeEnum {
   switch (type) {

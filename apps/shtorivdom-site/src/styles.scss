@@ -1,0 +1,35 @@
+@use 'sass:meta';
+
+html,
+body {
+  font-size: 14px;
+  letter-spacing: 2%;
+  min-width: 320px;
+}
+
+// Шрифты подключены в project.json: Lato 2.0 (lato-font) и Playfair Display (@fontsource) — оба с кириллицей.
+:root {
+  --primari-color: #ae9769;
+  --primari-color-hover: #b69e6f;
+  --default-font-family: Lato, sans-serif;
+  --heading-font-family: 'Playfair Display', Georgia, serif;
+}
+
+// Taiga UI по умолчанию ставит Manrope через свои переменные — переопределяем.
+:root,
+tui-root,
+[tuiTheme] {
+  --tui-typography-family-text: var(--default-font-family);
+  --tui-typography-family-display: var(--heading-font-family);
+  --tui-font-text: var(--default-font-family);
+}
+
+body {
+  font-family: var(--default-font-family);
+}
+
+@include meta.load-css('theme/tailwind.scss');
+@include meta.load-css('theme/taiga-ui.scss');
+@include meta.load-css('theme/buttons.scss');
+@include meta.load-css('theme/app-theme.scss');
+@include meta.load-css('theme/fix.scss');

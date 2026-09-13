@@ -6,31 +6,45 @@ import { ColumnTableChecked } from '../attribute/column-table-checked';
 
 @Pipe({ name: 'tableCellPortal' })
 export class TableCellPortalPipe<T = unknown> implements PipeTransform {
-    private readonly injector = inject(Injector);
-    private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly injector = inject(Injector);
+  private readonly viewContainerRef = inject(ViewContainerRef);
 
-    transform(row: Record<string, unknown>, column: ColumnAttributeTable) {
-        switch (column.type) {
-            case 'template':
-                return new TemplatePortal(column.cellContent as TemplateRef<unknown>, this.viewContainerRef, row, this.createIngector(row, column));
-            case 'component':
-                return new ComponentPortal(column.cellContent as ComponentType<unknown>, this.viewContainerRef, this.createIngector(row, column));
-            case 'boolean':
-                return new ComponentPortal((column.cellContent as ComponentType<unknown>) ?? ColumnTableChecked, this.viewContainerRef, this.createIngector(row, column));
-            case 'element':
-                return new DomPortal(column.cellContent as ElementRef<HTMLElement>);
-            default:
-                return '';
-        }
+  transform(row: Record<string, unknown>, column: ColumnAttributeTable) {
+    switch (column.type) {
+      case 'template':
+        return new TemplatePortal(
+          column.cellContent as TemplateRef<unknown>,
+          this.viewContainerRef,
+          row,
+          this.createIngector(row, column)
+        );
+      case 'component':
+        return new ComponentPortal(
+          column.cellContent as ComponentType<unknown>,
+          this.viewContainerRef,
+          this.createIngector(row, column)
+        );
+      case 'boolean':
+        return new ComponentPortal(
+          (column.cellContent as ComponentType<unknown>) ?? ColumnTableChecked,
+          this.viewContainerRef,
+          this.createIngector(row, column)
+        );
+      case 'element':
+        return new DomPortal(column.cellContent as ElementRef<HTMLElement>);
+      default:
+        return '';
     }
+  }
 
-    private createIngector(row: Record<string, unknown>, column: ColumnAttributeTable): Injector {
-        return Injector.create({
-            parent: this.injector, providers: [
-                tableRowProvider(row),
-                tableColumnContextProvider(column.cellContentContext),
-                tableRowDataProvider(row?.[column.key]),
-            ]
-        })
-    }
+  private createIngector(row: Record<string, unknown>, column: ColumnAttributeTable): Injector {
+    return Injector.create({
+      parent: this.injector,
+      providers: [
+        tableRowProvider(row),
+        tableColumnContextProvider(column.cellContentContext),
+        tableRowDataProvider(row?.[column.key]),
+      ],
+    });
+  }
 }

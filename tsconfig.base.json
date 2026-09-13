@@ -45,7 +45,6 @@
       "@metadb/core": ["libs/metadb/core/src/index.ts"],
       "@atlas/core": ["libs/atlas/core/src/index.ts"],
       "@atlas/table": ["libs/atlas/table/src/index.ts"],
-      "@metadb/prisma": ["libs/metadb/prisma/src/index.ts"],
       "@atlas/form": ["libs/atlas/form/src/index.ts"],
       "@spartan-ng/helm/navigation-menu": ["libs/ui/navigation-menu/src/index.ts"]
     }

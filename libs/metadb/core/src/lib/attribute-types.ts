@@ -20,7 +20,7 @@ import {
   ATTRIBUTE_RELATION_COUNT,
   ATTRIBUTE_TEXTAREA,
   ATTRIBUTE_ONE_TO_MANY,
-  ATTRIBUTE_MANY_TO_MANY
+  ATTRIBUTE_MANY_TO_MANY,
 } from './base';
 
 export interface IAttributeType {
@@ -29,13 +29,10 @@ export interface IAttributeType {
   icon: string;
 }
 
-export const ATTRIBUTE_TYPE_LIST = new InjectionToken<IAttributeType[]>(
-  'ATTRIBUTE_TYPE_LIST',
-  {
-    providedIn: 'root',
-    factory: () => ATTRIBUTE_TYPES
-  }
-);
+export const ATTRIBUTE_TYPE_LIST = new InjectionToken<IAttributeType[]>('ATTRIBUTE_TYPE_LIST', {
+  providedIn: 'root',
+  factory: () => ATTRIBUTE_TYPES,
+});
 
 export const ATTRIBUTE_TYPES: IAttributeType[] = [
   { title: 'Text', type: ATTRIBUTE_STRING, icon: 'attribute-text' },
@@ -59,7 +56,7 @@ export const ATTRIBUTE_TYPES: IAttributeType[] = [
   { title: 'One To One', type: ATTRIBUTE_ONE_TO_ONE, icon: 'attribute-one-to-one' },
   { title: 'One To Many', type: ATTRIBUTE_ONE_TO_MANY, icon: 'attribute-one-to-many' },
   { title: 'Many To Many', type: ATTRIBUTE_MANY_TO_MANY, icon: 'attribute-many-to-many' },
-  { title: 'Id', type: ATTRIBUTE_ID, icon: 'attribute-uuid' }
+  { title: 'Id', type: ATTRIBUTE_ID, icon: 'attribute-uuid' },
 ];
 
 export const FILTER_ATTRIBUTES: IAttributeType[] = [
@@ -93,5 +90,5 @@ export const TYPE_VALUE_LABEL_SET = {
   [EntityAttributeType.STRING]: 'String',
   [EntityAttributeType.MEMO]: 'Текст',
   [EntityAttributeType.MEDIA]: 'File',
-  [EntityAttributeType.JSON]: 'JSON'
+  [EntityAttributeType.JSON]: 'JSON',
 };

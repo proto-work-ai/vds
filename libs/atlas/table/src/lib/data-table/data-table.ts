@@ -8,14 +8,13 @@ import {
   signal,
   OnInit,
   inject,
-  DestroyRef,
   Directive,
   computed,
   ViewContainerRef,
   TemplateRef,
 } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgIcon, provideIcons } from '@ng-icons/core';
+import { provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { BrnSelectImports } from '@spartan-ng/brain/select';
 import { HlmButtonImports } from '@spartan-ng/helm/button';
@@ -77,7 +76,6 @@ export class DataTableHeader {}
   styleUrls: ['./data-table.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    NgIcon,
     FlexRenderDirective,
     FormsModule,
     HlmDropdownMenuImports,
@@ -96,7 +94,6 @@ export class DataTableHeader {}
   },
 })
 export class AtlasDataTableComponent implements OnInit {
-  private readonly destroyRef = inject(DestroyRef);
   protected readonly headerTemplate = contentChild(DataTableHeader, {
     read: TemplateRef,
   });
@@ -104,16 +101,12 @@ export class AtlasDataTableComponent implements OnInit {
 
   protected readonly tableHeaderPortal = computed(() => {
     const header = this.headerTemplate();
-    return header
-      ? new TemplatePortal(header, this.viewContainerRef)
-      : undefined;
+    return header ? new TemplatePortal(header, this.viewContainerRef) : undefined;
   });
 
   // protected readonly selectedColumn = new FormControl<string[]>([]);
   protected filterChanged(event: Event) {
-    this.table
-      .getColumn('email')
-      ?.setFilterValue((event.target as HTMLInputElement).value);
+    this.table.getColumn('email')?.setFilterValue((event.target as HTMLInputElement).value);
   }
 
   protected readonly columns: ColumnDef<Person>[] = [
@@ -129,13 +122,11 @@ export class AtlasDataTableComponent implements OnInit {
       id: 'status',
       header: 'Status',
       enableSorting: false,
-      cell: (info) =>
-        `<span class="capitalize">${info.getValue<string>()}</span>`,
+      cell: (info) => `<span class="capitalize">${info.getValue<string>()}</span>`,
     },
     {
       id: 'firstName',
-      header: () =>
-        flexRenderComponent(TableHeadSortButton, { inputs: { header: '' } }),
+      header: () => flexRenderComponent(TableHeadSortButton, { inputs: { header: '' } }),
       accessorKey: 'firstName',
       cell: (info) => `<div class="lowercase">${info.getValue<string>()}</div>`,
     },
@@ -188,28 +179,20 @@ export class AtlasDataTableComponent implements OnInit {
     data: this.data(),
     columns: this.columns,
     onSortingChange: (updater) => {
-      updater instanceof Function
-        ? this._sorting.update(updater)
-        : this._sorting.set(updater);
+      updater instanceof Function ? this._sorting.update(updater) : this._sorting.set(updater);
     },
     onColumnFiltersChange: (updater) => {
-      updater instanceof Function
-        ? this._columnFilters.update(updater)
-        : this._columnFilters.set(updater);
+      updater instanceof Function ? this._columnFilters.update(updater) : this._columnFilters.set(updater);
     },
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: (updater) => {
-      updater instanceof Function
-        ? this._columnVisibility.update(updater)
-        : this._columnVisibility.set(updater);
+      updater instanceof Function ? this._columnVisibility.update(updater) : this._columnVisibility.set(updater);
     },
     onRowSelectionChange: (updater) => {
-      updater instanceof Function
-        ? this._rowSelection.update(updater)
-        : this._rowSelection.set(updater);
+      updater instanceof Function ? this._rowSelection.update(updater) : this._rowSelection.set(updater);
     },
     state: {
       sorting: this._sorting(),
@@ -261,7 +244,4 @@ export class AtlasDataTableComponent implements OnInit {
   }
 }
 
-export const AtlasDataTableComponents = [
-  AtlasDataTableComponent,
-  DataTableHeader,
-];
+export const AtlasDataTableComponents = [AtlasDataTableComponent, DataTableHeader];

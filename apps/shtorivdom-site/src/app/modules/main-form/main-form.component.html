@@ -1,0 +1,70 @@
+<div class="bg-you-love">
+  <div class="container mx-auto flex flex-col gap-6 mt-12 p-8 max-md:px-3">
+    <section class="mx-auto">
+      <div class="flex max-lg:flex-col items-center gap-6">
+        <div class="flex-1 flex flex-col gap-6">
+          <h3 class="font-normal lg:text-5xl text-4xl max-lg:text-center">
+            Запишитесь на посещение шоурума и получите скидку 10%
+          </h3>
+
+          <ul class="list-disc flex flex-col gap-3 -leading-8 text-base">
+            <li class="flex items-center gap-3">
+              <div class="leading-0">
+                <ng-icon src="/icons/check-1.svg" class="text-cardboard text-xl md:text-2xl" />
+              </div>
+              Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.
+            </li>
+
+            <li class="flex items-center gap-3">
+              <div class="leading-0">
+                <ng-icon src="/icons/check-1.svg" class="text-cardboard text-xl md:text-2xl" />
+              </div>
+              На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором модели и
+              рассчитаем стоимость в разных ценовых категориях.
+            </li>
+
+            <li class="flex items-center gap-3">
+              <div class="leading-0">
+                <ng-icon src="/icons/check-1.svg" class="text-cardboard text-xl md:text-2xl" />
+              </div>
+              Изготовим заказ на собственном производстве точно в срок, произведем монтаж.
+            </li>
+          </ul>
+        </div>
+
+        <div class="flex-1">
+          <form
+            class="flex flex-col gap-4 -textfield-no-border w-120"
+            [formGroup]="form"
+            [formGroupStore]="'main-form'"
+            (submit)="formSubmit()"
+          >
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Укажите телефон</label>
+              <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+            </tui-textfield>
+
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Комментарий</label>
+              <textarea tuiTextarea formControlName="description" [min]="2" [maxlength]="1000"></textarea>
+            </tui-textfield>
+
+            <label tuiLabel class="text-sm">
+              <input tuiCheckbox type="checkbox" formControlName="checked" />
+              <small class="text-sm">
+                Я соглашаюсь с правилами по обработке
+                <a class="cursor-pointer underline" [routerLink]="['/privacy-policy']" target="_blank"
+                  >персональных данных</a
+                >
+              </small>
+            </label>
+
+            <footer>
+              <button class="btn btn-primary w-full">Отправить</button>
+            </footer>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

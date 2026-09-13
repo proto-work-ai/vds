@@ -1,9 +1,0 @@
-<section class="flex flex-col gap-3">
-  @if (filteredBrand().length > 0) {
-    <app-price-list-brand-table [tableRows]="filteredBrand()"></app-price-list-brand-table>
-  }
-
-  @if (filteredUnit().length > 0) {
-    <app-price-list-unit-table [tableRows]="filteredUnit()"></app-price-list-unit-table>
-  }
-</section>

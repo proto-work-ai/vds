@@ -1,10 +1,5 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core'
-import {
-  type HeaderContext,
-  injectFlexRenderContext,
-  type Table,
-  CellContext,
-} from '@tanstack/angular-table'
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { type HeaderContext, injectFlexRenderContext, type Table, CellContext } from '@tanstack/angular-table';
 
 @Component({
   template: `
@@ -25,12 +20,12 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ExpandableHeaderCell<T> {
-  readonly context = injectFlexRenderContext<HeaderContext<T, unknown>>()
+  readonly context = injectFlexRenderContext<HeaderContext<T, unknown>>();
 
-  readonly label = input.required<string>()
+  readonly label = input.required<string>();
 
   get table() {
-    return this.context.table as Table<T>
+    return this.context.table as Table<T>;
   }
 }
 
@@ -69,9 +64,9 @@ export class ExpandableHeaderCell<T> {
   `,
 })
 export class ExpandableCell<T> {
-  readonly context = injectFlexRenderContext<CellContext<T, unknown>>()
+  readonly context = injectFlexRenderContext<CellContext<T, unknown>>();
 
   get row() {
-    return this.context.row
+    return this.context.row;
   }
 }

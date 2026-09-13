@@ -1,11 +1,4 @@
-import {
-  EmbeddedViewRef,
-  inject,
-  NgZone,
-  Renderer2,
-  TemplateRef,
-  ViewContainerRef
-} from '@angular/core';
+import { EmbeddedViewRef, inject, NgZone, Renderer2, TemplateRef, ViewContainerRef } from '@angular/core';
 
 export class RenderData {
   model: unknown;
@@ -42,5 +35,5 @@ export function injectRenderTemplate() {
 
     childView.detectChanges();
     return childView.rootNodes;
-  }
+  };
 }

@@ -1,0 +1,86 @@
+<div class="-bg-black">
+  <div class="container mx-auto flex flex-col gap-4 border-t-1 border-gray-200">
+    <div class="px-5 -text-white">
+      <div class="flex max-lg:flex-col gap-6 pt-5 pb-4">
+        <section class="flex lg:hidden">
+          <div>
+            <ng-container [ngTemplateOutlet]="sociallaLink"></ng-container>
+          </div>
+        </section>
+
+        <div class="flex max-lg:flex-col gap-3">
+          <section class="lg:w-70 flex flex-col gap-3">
+            <div class="leading-none font-medium py-1 uppercase text-sm">Контакты</div>
+
+            <div class="flex items-center gap-2">
+              <ng-icon name="lucidePhone" />
+              <a class="max-sm:text-sm" href="tel:+7{{ phoneContact }}">{{ phoneContact | phoneFormat }}</a>
+            </div>
+
+            <a class="max-sm:text-sm" href="mailto:{{ emailContact }}">{{ emailContact }}</a>
+
+            <div class="text-xs">{{ periodContact }}. {{ companyName }}</div>
+          </section>
+
+          <nav class="flex-1">
+            <ul class="flex max-lg:flex-col flex-wrap gap-5">
+              @for (child of footerMenu(); track $index) {
+                <li class="flex flex-col flex-wrap gap-2">
+                  @if (child.children?.length) {
+                    <div class="leading-none font-medium py-1 uppercase text-sm">{{ child.title }}</div>
+
+                    <section class="flex lg:flex-col flex-wrap gap-2">
+                      @for (sub of child.children; track sub) {
+                        <a
+                          scrollLink
+                          [routerLink]="sub.link"
+                          [queryParams]="sub.queryParams ?? {}"
+                          [fragment]="sub.fragment"
+                          class="truncate leading-none text-sm py-1"
+                        >
+                          {{ sub.title }}
+                        </a>
+                      }
+                    </section>
+                  } @else {
+                    <a
+                      scrollLink
+                      [routerLink]="child.link"
+                      [queryParams]="child.queryParams ?? {}"
+                      [fragment]="child.fragment"
+                    >
+                      <div class="flex flex-col gap-1 text-sm">
+                        @if (child.title) {
+                          <div class="leading-none font-medium">{{ child.title }}</div>
+                        }
+                        @if (child.description) {
+                          <div class="text-muted-foreground line-clamp-2">{{ child.description }}</div>
+                        }
+                      </div>
+                    </a>
+                  }
+                </li>
+              }
+            </ul>
+          </nav>
+        </div>
+
+        <section class="ms-auto w-30 lg:block hidden">
+          <ng-container [ngTemplateOutlet]="sociallaLink"></ng-container>
+        </section>
+      </div>
+    </div>
+
+    <ng-template #sociallaLink>
+      <div class="flex gap-2">
+        <a class="max-sm:text-sm" href="https://t.me/{{ telegramContact }}" target="_blank" alt="Telegram"
+          ><img class="w-8 block text-white" src="/icons/telegram.svg" alt="Logotip"
+        /></a>
+
+        <a class="max-sm:text-sm" [href]="maxContact" target="_blank"
+          ><img class="w-8 block" title="Max" src="/icons/max.svg" alt="Max"
+        /></a>
+      </div>
+    </ng-template>
+  </div>
+</div>

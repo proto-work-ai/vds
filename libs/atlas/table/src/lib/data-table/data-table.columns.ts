@@ -1,9 +1,6 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { ColumnDef, flexRenderComponent } from '@tanstack/angular-table';
-import {
-  TableHeadSelection,
-  TableRowSelection,
-} from './selection-column';
+import { TableHeadSelection, TableRowSelection } from './selection-column';
 import { TableHeadSortButton } from './sort-header-button';
 import { ActionDropdown } from './action-dropdown';
 
@@ -20,14 +17,12 @@ export const dataTableColumns: ColumnDef<any>[] = [
     id: 'status',
     header: 'Status',
     enableSorting: false,
-    cell: (info) =>
-      `<span class="capitalize">${info.getValue<string>()}</span>`,
+    cell: (info) => `<span class="capitalize">${info.getValue<string>()}</span>`,
   },
   {
     accessorKey: 'email',
     id: 'email',
-    header: () =>
-      flexRenderComponent(TableHeadSortButton, { inputs: { header: '' } }),
+    header: () => flexRenderComponent(TableHeadSortButton, { inputs: { header: '' } }),
     cell: (info) => `<div class="lowercase">${info.getValue<string>()}</div>`,
   },
   {

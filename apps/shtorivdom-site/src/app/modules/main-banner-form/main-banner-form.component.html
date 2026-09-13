@@ -1,0 +1,61 @@
+<div class="relative">
+  <div class="bg-image"></div>
+
+  <div class="container mx-auto">
+    <div class="flex max-md:flex-col gap-3 justify-center py-8">
+      <section class="flex items-center mx-auto">
+        <div class="p-5 py-8 flex flex-col gap-5 h-full bg-white rounded-lg">
+          <h3 class="text-3xl text-center">Оставьте заявку дизайнеру:</h3>
+
+          <section class="flex flex-col gap-5 w-120">
+            <form
+              class="-textfield-no-border"
+              [formGroupStore]="'main-application-measurement'"
+              [formGroup]="form"
+              (submit)="formSubmit()"
+            >
+              <section class="flex flex-col gap-4">
+                <tui-textfield [tuiTextfieldCleaner]="false">
+                  <label tuiLabel>Введите имя</label>
+                  <input tuiInput formControlName="name" [maxlength]="100" />
+                </tui-textfield>
+
+                @defer {
+                  <tui-textfield [tuiTextfieldCleaner]="false">
+                    <label tuiLabel>Укажите телефон</label>
+                    <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+                  </tui-textfield>
+                } @placeholder {
+                  <tui-textfield [tuiTextfieldCleaner]="false">
+                    <label tuiLabel>Укажите телефон</label>
+                    <input tuiInputPhone formControlName="phone" mask="+7(###)###-##-##" />
+                  </tui-textfield>
+                }
+
+                <tui-textfield tuiChevron [tuiTextfieldCleaner]="false">
+                  <label tuiLabel>Удобный тип связи</label>
+                  <input tuiSelect formControlName="connectionType" />
+                  <tui-data-list-wrapper *tuiDropdown new [items]="typeOptions()" />
+                </tui-textfield>
+
+                <label tuiLabel class="text-sm">
+                  <input tuiCheckbox type="checkbox" formControlName="checked" />
+                  <small class="text-sm">
+                    Я соглашаюсь с правилами по обработке
+                    <a class="cursor-pointer underline" [routerLink]="['/privacy-policy']" target="_blank"
+                      >персональных данных</a
+                    >
+                  </small>
+                </label>
+
+                <button class="btn-primary" type="submit">Отправить</button>
+              </section>
+            </form>
+
+            <ul class="ms-5 flex flex-col gap-3 leading-6 text-lg"></ul>
+          </section>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

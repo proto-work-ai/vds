@@ -20,12 +20,12 @@ import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
 @Component({
   selector: 'atlas-form-field-checked',
   template: `
-      <label tuiLabel class="flex items-center">
-        <input tuiCheckbox type="checkbox" size="m" [formControl]="attribute | metaAttributeControl"/>
-        {{attribute.title}}
-      </label>
-      <tui-error  [formControl]="attribute | metaAttributeControl" [error]="[] | tuiFieldError | async" />
-    `,
+    <label tuiLabel class="flex items-center">
+      <input tuiCheckbox type="checkbox" size="m" [formControl]="attribute | metaAttributeControl" />
+      {{ attribute.title }}
+    </label>
+    <tui-error [formControl]="attribute | metaAttributeControl" [error]="[] | tuiFieldError | async" />
+  `,
   imports: [
     FormsModule,
     ReactiveFormsModule,
@@ -46,8 +46,8 @@ import { FORM_META_ATTRIBUTE } from '../pipes/field-attribute-portal.pipe';
     }),
   ],
   host: {
-    class: 'contents'
-  }
+    class: 'contents',
+  },
 })
 export class FormFieldChecked {
   protected readonly attribute = inject(FORM_META_ATTRIBUTE);

@@ -1,7 +1,23 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { PipeTransform, inject, Pipe, ViewContainerRef, Injector, InjectionToken, ValueProvider } from '@angular/core';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ATTRIBUTE_UPDATED_AT, ATTRIBUTE_CREATED_AT, ATTRIBUTE_DATE, ATTRIBUTE_DATETIME, ATTRIBUTE_TEXTAREA, ATTRIBUTE_BOOLEAN, ATTRIBUTE_STRING, ATTRIBUTE_RICHTEXT, ATTRIBUTE_YEAR, ATTRIBUTE_TIME, ATTRIBUTE_TINYINT, ATTRIBUTE_SMALLINT, ATTRIBUTE_INT, ATTRIBUTE_BIGINT, ATTRIBUTE_NUMBER } from '@metadb/core';
+import {
+  ATTRIBUTE_UPDATED_AT,
+  ATTRIBUTE_CREATED_AT,
+  ATTRIBUTE_DATE,
+  ATTRIBUTE_DATETIME,
+  ATTRIBUTE_TEXTAREA,
+  ATTRIBUTE_BOOLEAN,
+  ATTRIBUTE_STRING,
+  ATTRIBUTE_RICHTEXT,
+  ATTRIBUTE_YEAR,
+  ATTRIBUTE_TIME,
+  ATTRIBUTE_TINYINT,
+  ATTRIBUTE_SMALLINT,
+  ATTRIBUTE_INT,
+  ATTRIBUTE_BIGINT,
+  ATTRIBUTE_NUMBER,
+} from '@metadb/core';
 import { FormFieldChecked } from '../form-fields/form-field-checked';
 import { FormFieldTextarea } from '../form-fields/form-field-textarea';
 import { FormFieldTextfield } from '../form-fields/form-field-textfield';
@@ -15,7 +31,7 @@ export const FORM_META_ATTRIBUTE = new InjectionToken<MetaAttribute>('FORM_META_
 export function formMetaAttributeProvider(value: unknown): ValueProvider {
   return {
     provide: FORM_META_ATTRIBUTE,
-    useValue: value
+    useValue: value,
   };
 }
 
@@ -23,7 +39,7 @@ export const FORM_DATA = new InjectionToken<MetaAttribute>('FORM_DATA');
 export function formDataProvider(value: unknown): ValueProvider {
   return {
     provide: FORM_DATA,
-    useValue: value
+    useValue: value,
   };
 }
 
@@ -61,10 +77,8 @@ export class FieldAttributePortalPipe<T = unknown> implements PipeTransform {
 
   private createIngector(attr: MetaAttribute, model: unknown): Injector {
     return Injector.create({
-      parent: this.injector, providers: [
-        formMetaAttributeProvider(attr),
-        formDataProvider(model),
-      ]
-    })
+      parent: this.injector,
+      providers: [formMetaAttributeProvider(attr), formDataProvider(model)],
+    });
   }
 }

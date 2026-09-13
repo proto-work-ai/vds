@@ -2,16 +2,15 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, computed, input, output, model, signal } from '@angular/core';
-import { AsyncPipe, DatePipe, JsonPipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TuiComparator, TuiSortChange, TuiTable } from '@taiga-ui/addon-table';
-import { TuiButton, TuiFormatNumberPipe, TuiTextfield } from '@taiga-ui/core';
+import { TuiButton, TuiTextfield } from '@taiga-ui/core';
 import { TuiButtonSelect, TuiDataListWrapper, TuiPagination } from '@taiga-ui/kit';
 import { TuiContext, TuiStringHandler } from '@taiga-ui/cdk/types';
 import { PortalModule } from '@angular/cdk/portal';
 import { ColumnAttributeTable, PagePagination, PaginationOptions } from '@atlas/core';
 import { TableCellPortalPipe } from './table-cell-portal';
-import { RouterLink } from '@angular/router';
 import { TuiDay, tuiDefaultSort } from '@taiga-ui/cdk';
 import { sortBy } from '@atlas/form';
 
@@ -44,10 +43,6 @@ interface Item {
     TuiTextfield,
     PortalModule,
     TableCellPortalPipe,
-    TuiFormatNumberPipe,
-    AsyncPipe,
-    RouterLink,
-    JsonPipe,
   ],
   host: {
     ['ngSkipHydration']: 'true',

@@ -1,13 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @angular-eslint/component-selector */
-import {
-  ChangeDetectionStrategy,
-  Component,
-  signal,
-  inject,
-  DestroyRef,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideMaximize, lucideMinimize } from '@ng-icons/lucide';
@@ -18,14 +12,12 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import { FlexRenderDirective } from '@tanstack/angular-table';
 
 @Component({
   selector: 'atlas-data-table-toggle-size',
   styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
-    FlexRenderDirective,
     FormsModule,
     HlmDropdownMenuImports,
     HlmButtonImports,
@@ -45,17 +37,11 @@ import { FlexRenderDirective } from '@tanstack/angular-table';
   ],
   template: `
     <button hlmBtn size="icon" variant="outline" (click)="clickToggle()">
-      <ng-icon
-        hlm
-        size="sm"
-        [name]="toggleMaximize() ? 'lucideMinimize' : 'lucideMaximize'"
-      ></ng-icon>
+      <ng-icon hlm size="sm" [name]="toggleMaximize() ? 'lucideMinimize' : 'lucideMaximize'"></ng-icon>
     </button>
   `,
 })
 export class AtlasDataTableToggleSize {
-  private readonly destroyRef = inject(DestroyRef);
-
   protected readonly toggleMaximize = signal(false);
 
   protected clickToggle() {

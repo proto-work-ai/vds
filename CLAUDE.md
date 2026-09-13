@@ -1,48 +1,47 @@
-# proto.cms — project context
+# shtorivdom — сайт салона штор на заказ
 
-Nx monorepo with Nx Cloud enabled (`nxCloudId` in `nx.json`). Multiple apps
-live in one workspace: `apps/proto` (Angular frontend), `apps/proto-api`
-(NestJS + Prisma), and three apparently separate products —
-`apps/deckenmaster`, `apps/delux-drapes`, `apps/metadb` — plus
-`apps/proto-storybook`. Verify which apps actually share code before
-assuming a `libs/*` change is proto-only.
+Отвечай пользователю по-русски.
 
-## Versions
+Nx-монорепозиторий с одним продуктом — сайтом shtorivdom.ru (пошив штор,
+жалюзи, карнизы; Москва и область).
 
-Angular ~21.2 (`@angular/build`, `@angular/cli` 21.2.7), TypeScript ~5.9.
+## Приложения
 
-## Libraries
+- `apps/shtorivdom-site` — сайт на Angular 21 с SSR и пререндером
+  (`outputMode: server`). Taiga UI 5.13 + Tailwind 4.
+- `apps/shtorivdom-site/api/*.php` — отправка заявок с форм на почту.
+  **PHP не трогаем без отдельной просьбы.**
+- `apps/shtorivdom-storybook` — Storybook для компонентов `libs/ui` и
+  `libs/atlas`. К сайту напрямую не относится.
 
-`libs/atlas` is split into real Nx sub-libraries: `libs/atlas/core`,
-`libs/atlas/form`, `libs/atlas/table` — each with its own `src/index.ts` and
-`tsconfig.base.json` path entry. `libs/ui` is one folder per
-`@spartan-ng/helm/*` component (alert, button, dialog, sidebar, table,
-select, etc.) — this is a shadcn-style component library via Spartan NG, not
-a vendored Material/ng-zorro fork. There's also `libs/metadb/core` and
-`libs/fonts`.
+## Библиотеки
 
-This repo shares library naming with a separate, older sibling codebase
-(`C:\git\proto.git`) but has diverged substantially — do not assume any
-finding, bug, or convention from that repo applies here without re-verifying
-against this repo's actual current code.
+- `libs/atlas/{core,form,table}` — общие утилиты, формы, таблицы (Taiga UI).
+- `libs/ui/*` — компоненты Spartan NG (`@spartan-ng/helm/*`), версия brain
+  зафиксирована `0.0.1-alpha.643` — на 1.x API несовместим.
+- `libs/metadb/core`, `libs/fonts`.
 
-## Building and verifying
+## Команды
 
 ```bash
-npx nx build proto --configuration development
-npx nx build proto-api
+npm run site:serve          # http://localhost:4200
+npm run site:build          # продакшен-сборка
+npm run site:start          # запустить собранный SSR-сервер
+npm run storybook:serve     # http://localhost:4400
+npm run sitemap             # sitemap.xml и robots.txt
 ```
 
-Check `npx nx show project <name>` / `npx nx graph` for real dependency
-edges before assuming a `libs/*` change only affects one app — this
-workspace has several apps sharing the same library tree.
+## Грабли
 
-## Status of this file
+- Версии Angular держать одинаковыми (~21.2.x) у всех `@angular/*`, иначе
+  `npm install` падает на peer-зависимостях.
+- Taiga UI зафиксирован `~5.13.0`: в 5.23 другие экспорты.
+- Цены — `model/price-list.service.ts` (`curtainPriceMap` по `key` страницы
+  каталога). Цифры ориентировочные, ждут реального прайса.
+- Шрифты: Lato 2.0 (`lato-font`, текст) и Playfair Display
+  (`@fontsource/playfair-display`, заголовки), оба с кириллицей; подключены в
+  `styles` в `project.json`. У Lato из Google Fonts кириллицы нет.
+- Правила владельца — скилл `shtorivdom-owner-rules`.
+- Предупреждения NG8113 (импорт не используется в шаблоне) убирать сразу.
 
-This is a starter document written from a first structural pass, not a deep
-audit — versions, app list, and library layout above were verified directly;
-anything not listed here (strict-mode status, known dead code, seeding/
-Docker workflow, vendored-fork boundaries, circular-dependency clusters)
-has not been investigated in this repo yet. Extend this file with real
-findings as they're made, rather than assuming parity with the sibling
-`proto.git` repo's much more extensively documented CLAUDE.md.
+Чек-лист перед сдачей правки — [REVIEW.md](REVIEW.md).

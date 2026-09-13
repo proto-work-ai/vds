@@ -19,7 +19,7 @@ import {
   OPERATOR_NOT_IN,
   OPERATOR_START_WITH,
 } from './operators';
-import { MetaAttributeType, EntityAttributeType, VALUE_KEY_SET } from './base';
+import { MetaAttributeType, VALUE_KEY_SET } from './base';
 
 interface WhereFilter {
   // String
@@ -65,9 +65,7 @@ export interface IFilterField {
   condition?: ConditionOperatorType;
 }
 
-export type FilterWhere = Partial<
-  Record<'every' | 'some' | 'none', Record<string, WhereFilter>>
->;
+export type FilterWhere = Partial<Record<'every' | 'some' | 'none', Record<string, WhereFilter>>>;
 
 /*
 where: {
@@ -117,7 +115,7 @@ export function bindFieldWhere(filters: IFilterField[]) {
     group: 'some' | 'none',
     { name, type }: { name: string; type: MetaAttributeType },
     condition: ConditionOperatorType,
-    conditionValue: any,
+    conditionValue: any
   ) {
     if (!value[group]) {
       value[group] = {};

@@ -1,13 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @angular-eslint/component-selector */
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  DestroyRef,
-  input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, DestroyRef, input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
@@ -18,9 +12,7 @@ import { HlmIconImports } from '@spartan-ng/helm/icon';
 import { HlmInputImports } from '@spartan-ng/helm/input';
 import { HlmSelectImports } from '@spartan-ng/helm/select';
 import { HlmTableImports } from '@spartan-ng/helm/table';
-import {
-  FlexRenderDirective,
-} from '@tanstack/angular-table';
+import { FlexRenderDirective } from '@tanstack/angular-table';
 import { AtlasDataTableComponent } from '../data-table/data-table';
 
 @Component({
@@ -42,12 +34,7 @@ import { AtlasDataTableComponent } from '../data-table/data-table';
   ],
   providers: [provideIcons({ lucideChevronDown })],
   template: `
-    <input
-      hlmInput
-      class="w-full md:w-80"
-      placeholder="Filter emails..."
-      (input)="filterChanged($event)"
-    />
+    <input hlmInput class="w-full md:w-80" placeholder="Filter emails..." (input)="filterChanged($event)" />
   `,
 })
 export class AtlasDataTableFilter {
@@ -61,8 +48,6 @@ export class AtlasDataTableFilter {
   readonly columnName = input.required<string>();
 
   protected filterChanged(event: Event) {
-    this.table
-      .getColumn(this.columnName())
-      ?.setFilterValue((event.target as HTMLInputElement).value);
+    this.table.getColumn(this.columnName())?.setFilterValue((event.target as HTMLInputElement).value);
   }
 }

@@ -1,7 +1,7 @@
 /* eslint-disable @nx/enforce-module-boundaries */
 import { DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Observable, Subject, switchMap, distinctUntilChanged, shareReplay, tap, of, delay } from 'rxjs';
+import { Observable, Subject, switchMap, distinctUntilChanged, shareReplay, of, delay } from 'rxjs';
 import { IPaginationResult, PaginationOptions } from './service-pagination';
 
 export type ISearchFn<P = unknown, R = unknown> = (params: P) => Observable<R>;

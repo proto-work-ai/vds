@@ -1,16 +1,16 @@
 export type IRecord = Record<string, any>;
 
-export const EntityType  = {
+export const EntityType = {
   COMPONENT: 'COMPONENT',
   MEDIA: 'MEDIA',
   PAGE: 'PAGE',
   USER: 'USER',
   ROLE: 'ROLE',
   USER_ADMIN: 'USER_ADMIN',
-  ROLE_ENTITY: 'ROLE_ENTITY'
+  ROLE_ENTITY: 'ROLE_ENTITY',
 };
 
-export type EntityType = (typeof EntityType)[keyof typeof EntityType]
+export type EntityType = (typeof EntityType)[keyof typeof EntityType];
 
 export class IUser {
   id?: string;
@@ -60,12 +60,7 @@ export class IRolePermission {
   ids!: string[];
 }
 
-export type PermissionEntityKey =
-  | 'create'
-  | 'read'
-  | 'update'
-  | 'delete'
-  | 'publish';
+export type PermissionEntityKey = 'create' | 'read' | 'update' | 'delete' | 'publish';
 
 export const ENTITY_PERMISSIONS: {
   title: string;
@@ -75,15 +70,10 @@ export const ENTITY_PERMISSIONS: {
   { title: 'Read', name: 'read' },
   { title: 'Update', name: 'update' },
   { title: 'Delete', name: 'delete' },
-  { title: 'Publish', name: 'publish' }
+  { title: 'Publish', name: 'publish' },
 ];
 
-export type PermissionApiKey =
-  | 'create'
-  | 'delete'
-  | 'find'
-  | 'findOne'
-  | 'update';
+export type PermissionApiKey = 'create' | 'delete' | 'find' | 'findOne' | 'update';
 
 export const API_PERMISSIONS: {
   title: string;
@@ -95,5 +85,5 @@ export const API_PERMISSIONS: {
   { title: 'Update', name: 'update', method: 'put', params: ':id' },
   { title: 'Find', name: 'find', method: 'get', params: '' },
   { title: 'Find One', name: 'findOne', method: 'get', params: ':id' },
-  { title: 'Delete', name: 'delete', method: 'delete', params: ':id' }
+  { title: 'Delete', name: 'delete', method: 'delete', params: ':id' },
 ];

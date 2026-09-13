@@ -8,7 +8,7 @@ export class PhoneFormatPipe implements PipeTransform {
     }
 
     // Remove all non-numeric characters
-    const cleaned = (value+'').replace(/\D/g, '');
+    const cleaned = (value + '').replace(/\D/g, '');
 
     // Check if the input is a valid 10-digit number
     const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);

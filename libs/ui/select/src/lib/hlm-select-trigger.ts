@@ -1,12 +1,5 @@
 /* eslint-disable @nx/enforce-module-boundaries */
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  contentChild,
-  inject,
-  input,
-} from '@angular/core';
+import { Component, computed, contentChild, inject, input } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import { lucideChevronDown } from '@ng-icons/lucide';
 import { BrnSelect, BrnSelectTrigger } from '@spartan-ng/brain/select';
@@ -27,7 +20,7 @@ export const selectTriggerVariants = cva(
     defaultVariants: {
       error: 'auto',
     },
-  },
+  }
 );
 
 @Component({
@@ -35,24 +28,12 @@ export const selectTriggerVariants = cva(
   imports: [BrnSelectTrigger, NgIcon, HlmIcon],
   providers: [provideIcons({ lucideChevronDown })],
   template: `
-    <button
-      [class]="_computedClass()"
-      #button
-      hlmInput
-      brnSelectTrigger
-      type="button"
-      [attr.data-size]="size()"
-    >
+    <button [class]="_computedClass()" #button hlmInput brnSelectTrigger type="button" [attr.data-size]="size()">
       <ng-content />
       @if (_icon()) {
         <ng-content select="ng-icon" />
       } @else {
-        <ng-icon
-          hlm
-          size="sm"
-          class="ml-2 flex-none"
-          name="lucideChevronDown"
-        />
+        <ng-icon hlm size="sm" class="ml-2 flex-none" name="lucideChevronDown" />
       }
     </button>
   `,
@@ -63,9 +44,6 @@ export class HlmSelectTrigger {
   public readonly userClass = input<ClassValue>('', { alias: 'class' });
   public readonly size = input<'default' | 'sm'>('default');
   protected readonly _computedClass = computed(() =>
-    hlm(
-      selectTriggerVariants({ error: this._brnSelect?.errorState() }),
-      this.userClass(),
-    ),
+    hlm(selectTriggerVariants({ error: this._brnSelect?.errorState() }), this.userClass())
   );
 }

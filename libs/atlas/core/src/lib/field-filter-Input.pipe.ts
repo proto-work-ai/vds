@@ -1,32 +1,11 @@
 /* eslint-disable @angular-eslint/directive-selector */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @angular-eslint/no-input-rename */
-import {
-  DestroyRef,
-  Directive,
-  effect,
-  inject,
-  input,
-  Pipe,
-  PipeTransform,
-  signal,
-  untracked
-} from '@angular/core';
-import {
-  TuiTextfieldComponent,
-} from '@taiga-ui/core';
+import { DestroyRef, Directive, effect, inject, input, Pipe, PipeTransform, signal, untracked } from '@angular/core';
+import { TuiTextfieldComponent } from '@taiga-ui/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  tap,
-  Subject,
-  switchMap,
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  of,
-} from 'rxjs';
+import { tap, Subject, switchMap, debounceTime, distinctUntilChanged, filter, of } from 'rxjs';
 import { ISearchFn } from './service-search';
-
 
 @Pipe({ name: 'fieldFilterByInput', pure: false })
 export class FieldFilterByInput implements PipeTransform {

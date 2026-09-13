@@ -2,11 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'sortBy' })
 export class SortByPipe implements PipeTransform {
-  transform<T extends Record<string, unknown>>(
-    items: T[],
-    key: keyof T,
-    direction = 1
-  ): T[] {
+  transform<T extends Record<string, unknown>>(items: T[], key: keyof T, direction = 1): T[] {
     return items.sort(sortBy(key, direction));
   }
 }
@@ -25,5 +21,5 @@ export function sortBy<T extends Record<string, unknown>>(key: keyof T, directio
     }
 
     return 0;
-  }
+  };
 }

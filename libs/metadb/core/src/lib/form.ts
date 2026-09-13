@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 import { EventEmitter } from '@angular/core';
 
-export type OnClickCallback<T> = (
-  instance: T
-) => (false | void | {}) | Promise<false | void | {}>;
+export type OnClickCallback<T> = (instance: T) => (false | void | {}) | Promise<false | void | {}>;
 
 export class SelectOptionItem<T = string> {
   title?: string;
@@ -14,9 +12,7 @@ export class SelectOptionItem<T = string> {
   disabled?: boolean;
   data?: any;
   group?: string | { title: string; name: string };
-  public onClick?:
-    | EventEmitter<SelectOptionItem>
-    | OnClickCallback<SelectOptionItem>;
+  public onClick?: EventEmitter<SelectOptionItem> | OnClickCallback<SelectOptionItem>;
 
   children?: SelectOptionItem<T>[];
 }
