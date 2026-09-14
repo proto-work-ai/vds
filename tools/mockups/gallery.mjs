@@ -2,27 +2,27 @@
 
    node tools/mockups/gallery.mjs
 
-   Читает mockups/tailwind/site-N/index.html.assets.json (их пишет to-tailwind.mjs)
+   Читает mockups/landing-N/index.html.assets.json (их пишет to-tailwind.mjs)
    и собирает:
-   - mockups/tailwind/images/index.html — карточки картинок: превью, название файла,
+   - mockups/images/index.html — карточки картинок: превью, название файла,
      alt и текст рядом, сайт-источник; по клику — полная версия в лайтбоксе;
-   - mockups/tailwind/icons/index.html — карточки иконок (inline SVG): название,
+   - mockups/icons/index.html — карточки иконок (inline SVG): название,
      текст рядом, сайт; по клику — крупная версия в лайтбоксе.
    Страницы лежат в папках, как и переводы: сервер макетов открывает
-   `/tailwind/images/` со слешем, и относительные пути должны считаться от папки.
+   `/images/` со слешем, и относительные пути должны считаться от папки.
    Одинаковые картинки и иконки с разных сайтов объединяются в одну карточку.
-   Лайтбокс — общий скрипт mockups/tailwind/shared/lightbox.js. */
+   Лайтбокс — общий скрипт mockups/shared/lightbox.js. */
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync } from 'node:fs';
 import path from 'node:path';
 
-const ROOT = 'mockups/tailwind';
+const ROOT = 'mockups';
 const sites = readdirSync(ROOT)
-  .filter((d) => /^site-\d+$/.test(d) && existsSync(path.join(ROOT, d, 'index.html.assets.json')))
-  .sort((a, b) => Number(a.slice(5)) - Number(b.slice(5)));
+  .filter((d) => /^landing-\d+$/.test(d) && existsSync(path.join(ROOT, d, 'index.html.assets.json')))
+  .sort((a, b) => Number(a.slice(8)) - Number(b.slice(8)));
 
 const esc = (s = '') => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-// Путь картинки относительно страницы галереи (mockups/tailwind/images/).
+// Путь картинки относительно страницы галереи (mockups/images/).
 const fromGallery = (site, src) => {
   if (!src || /^(https?:|data:|\/\/)/.test(src)) return src;
   return path.posix.normalize(`../${site}/${src}`);
@@ -64,7 +64,7 @@ for (const site of sites) {
   }
 }
 
-const siteLabel = (s) => `Сайт ${s.slice(5)}`;
+const siteLabel = (s) => `Лендинг ${s.slice(8)}`;
 const shell = (title, subtitle, cards) => `<!doctype html>
 <html lang="ru">
   <head>
@@ -81,7 +81,7 @@ const shell = (title, subtitle, cards) => `<!doctype html>
           <p class="text-[14px] text-stone-500">${subtitle}</p>
         </div>
         <nav class="flex gap-2 text-[14px]">
-          <a href="../../" class="rounded-lg px-3 py-2 hover:bg-stone-100">Карта макетов</a>
+          <a href="../" class="rounded-lg px-3 py-2 hover:bg-stone-100">Карта макетов</a>
           <a href="../images/" class="rounded-lg px-3 py-2 hover:bg-stone-100">Картинки</a>
           <a href="../icons/" class="rounded-lg px-3 py-2 hover:bg-stone-100">Иконки</a>
         </nav>

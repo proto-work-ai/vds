@@ -1,4 +1,4 @@
-/* Проверка страниц-галерей картинок и иконок (mockups/tailwind/images.html, icons.html).
+/* Проверка страниц-галерей картинок и иконок (mockups/images.html, icons.html).
 
    node tools/mockups/check-gallery.mjs [baseUrl]
 
@@ -8,7 +8,7 @@
    Escape закрывает. Печатает ✓/✗ по каждому пункту. */
 import { withBrowser } from './snapshot.mjs';
 
-const base = (process.argv[2] ?? 'http://localhost:4320/tailwind/').replace(/\/?$/, '/');
+const base = (process.argv[2] ?? 'http://localhost:4320/').replace(/\/?$/, '/');
 const results = [];
 const check = (name, ok, detail = '') => results.push({ name, ok, detail });
 

@@ -1,4 +1,4 @@
-/* Проверка лендинга «Карина» (mockups/tailwind/site-10) против макета template-01.jpg.
+/* Проверка лендинга «Карина» (mockups/landing-10) против макета template-01.jpg.
 
    node tools/mockups/check-karina.mjs [outDir]
 
@@ -10,7 +10,7 @@ import path from 'node:path';
 import { withBrowser } from './snapshot.mjs';
 
 const BASE = 'http://localhost:4320';
-const URL_ = `${BASE}/tailwind/site-10/`;
+const URL_ = `${BASE}/landing-10/`;
 const out = process.argv[2] ?? path.join(process.cwd(), 'tmp', 'check-karina');
 mkdirSync(out, { recursive: true });
 

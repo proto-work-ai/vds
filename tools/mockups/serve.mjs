@@ -1,22 +1,10 @@
-/* Сервер макетов одной командой: npm run mockups.
-
-   Карта макетов (mockups/) — http://localhost:4320/. Оригиналы Figma Sites
-   выбирают страницу по адресу в браузере, поэтому из подпапки открываются пустыми;
-   менять их нельзя — каждый из них тот же процесс раздаёт с корня своего порта
-   (4321, 4325…). Оригиналы Figma Make (2, 3, 7) и переводы открываются из подпапок карты. */
+/* Сервер макетов: npm run mockups — http://localhost:4320/ раздаёт папку mockups/. */
 import { createServer } from 'node:http';
 import { createReadStream, statSync } from 'node:fs';
 import path from 'node:path';
 
 const ROOT = path.resolve('mockups');
-const SERVERS = [
-  [4320, ''],
-  [4321, 'landing-original'],
-  [4325, 'landing-original-5'],
-  [4326, 'landing-original-6'],
-  [4328, 'landing-original-8'],
-  [4329, 'landing-original-9'],
-];
+const SERVERS = [[4320, '']];
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',

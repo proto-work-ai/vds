@@ -12,10 +12,10 @@ const base = 'http://localhost:4320/';
 const urls = process.argv.slice(2).length
   ? process.argv.slice(2)
   : [
-      ...readdirSync('mockups/tailwind')
-        .filter((d) => /^site-\d+$/.test(d))
-        .map((d) => `${base}tailwind/${d}/`),
-      `${base}tailwind/images/`,
+      ...readdirSync('mockups')
+        .filter((d) => /^landing-\d+$/.test(d))
+        .map((d) => `${base}${d}/`),
+      `${base}images/`,
     ];
 
 const broken = new Map();
