@@ -17,7 +17,8 @@
     "sitemap": "node tools/build-sitemap.mjs",
     "mockups": "npx --yes serve mockups -l 4320 --no-clipboard",
     "mockups:original": "npx --yes serve mockups/landing-original -l 4321 --no-clipboard",
-    "mockups:original-2": "npx --yes serve mockups/landing-original-2 -l 4322 --no-clipboard"
+    "mockups:original-2": "npx --yes serve mockups/landing-original-2 -l 4322 --no-clipboard",
+    "mockups:original-3": "npx --yes serve mockups/landing-original-3 -l 4323 --no-clipboard"
   },
   "private": true,
   "dependencies": {
