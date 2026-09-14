@@ -14,7 +14,8 @@
     "storybook:serve": "npx nx run shtorivdom-storybook:storybook",
     "storybook:build": "npx nx run shtorivdom-storybook:build-storybook",
     "storybook:static": "npx nx run shtorivdom-storybook:static-storybook",
-    "sitemap": "node tools/build-sitemap.mjs"
+    "sitemap": "node tools/build-sitemap.mjs",
+    "mockups": "npx --yes serve mockups -l 4320 --no-clipboard"
   },
   "private": true,
   "dependencies": {

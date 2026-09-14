@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shtorivdom — шторы на заказ в Москве</title>
+    <meta
+      name="description"
+      content="Макет редизайна: пошив штор на заказ, жалюзи и карнизы. Бесплатный выезд дизайнера."
+    />
+    <link rel="icon" href="../assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="../assets/theme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.469.0/dist/umd/lucide.min.js"></script>
+  </head>
+  <body class="font-sans text-navy bg-cream">
+    <!-- Шапка: фиксированная, прозрачная над первым экраном -->
+    <nav class="fixed inset-x-0 top-0 z-50 bg-navy/95 backdrop-blur">
+      <div class="container flex h-[73px] items-center justify-between">
+        <a href="#top" class="font-serif text-[22px] font-bold tracking-[0.04em] text-cream" title="На главную">
+          Shtorivdom <span class="font-normal text-gold">шторы</span>
+        </a>
+        <div class="hidden items-center gap-8 lg:flex">
+          <a href="#services" class="text-[12px] font-bold uppercase tracking-[0.12em] text-cream hover:text-gold"
+            >Каталог</a
+          >
+          <a href="#gallery" class="text-[12px] font-bold uppercase tracking-[0.12em] text-cream hover:text-gold"
+            >Работы</a
+          >
+          <a href="#pricing" class="text-[12px] font-bold uppercase tracking-[0.12em] text-cream hover:text-gold"
+            >Цены</a
+          >
+          <a href="#why" class="text-[12px] font-bold uppercase tracking-[0.12em] text-cream hover:text-gold">О нас</a>
+          <a href="#contact" class="text-[12px] font-bold uppercase tracking-[0.12em] text-cream hover:text-gold"
+            >Контакты</a
+          >
+          <a
+            href="#contact"
+            class="rounded-[2px] bg-gold px-[22px] py-[10px] text-[12px] font-bold uppercase tracking-[0.1em] text-navy hover:bg-gold-soft"
+            >Вызвать дизайнера</a
+          >
+        </div>
+        <button type="button" class="p-2 text-cream lg:hidden" title="Меню">
+          <i data-lucide="menu" class="h-6 w-6"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Первый экран -->
+    <section id="top" class="relative flex min-h-[720px] items-center overflow-hidden bg-navy">
+      <img
+        src="../assets/img/hero.jpg"
+        alt="Шторы блэкаут в интерьере гостиной"
+        class="absolute inset-0 h-full w-full object-cover"
+      />
+      <div
+        class="absolute inset-0 bg-[linear-gradient(135deg,rgb(26_39_68/0.93)_0%,rgb(26_39_68/0.6)_50%,rgb(26_39_68/0.4)_100%)]"
+      ></div>
+      <div class="container relative pt-[120px] pb-[80px]">
+        <div class="max-w-[680px]">
+          <p class="mb-5 text-[12px] font-bold uppercase tracking-[0.25em] text-gold">
+            Салон штор в Москве и Подмосковье
+          </p>
+          <h1 class="mb-6 font-serif text-[40px] leading-[1.1] font-bold text-cream sm:text-[56px] lg:text-[68px]">
+            Шторы под ключ.
+            <em class="block text-gold">Уют в каждом окне.</em>
+          </h1>
+          <p class="mb-10 max-w-[520px] text-[16px] leading-[1.7] font-light text-cream/85 sm:text-[18px]">
+            Подберём ткань, снимем замеры и сошьём шторы в собственном цеху. Дизайнер приезжает бесплатно — с образцами
+            тканей и каталогами карнизов.
+          </p>
+          <div class="flex flex-col gap-4 sm:flex-row">
+            <a
+              href="#contact"
+              class="rounded-[2px] bg-gold px-9 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-navy hover:bg-gold-soft"
+              >Пригласить дизайнера</a
+            >
+            <a
+              href="#services"
+              class="rounded-[2px] border border-cream/40 px-9 py-4 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-cream hover:border-gold hover:text-gold"
+              >Смотреть каталог</a
+            >
+          </div>
+          <div class="mt-16 grid grid-cols-3 gap-6 border-t border-cream/15 pt-8">
+            <div>
+              <div class="font-serif text-[28px] font-bold text-gold sm:text-[36px]">3000+</div>
+              <div class="mt-1 text-[10px] font-bold uppercase tracking-[0.15em] text-cream/60 sm:text-[12px]">
+                Тканей и карнизов
+              </div>
+            </div>
+            <div>
+              <div class="font-serif text-[28px] font-bold text-gold sm:text-[36px]">10 000+</div>
+              <div class="mt-1 text-[10px] font-bold uppercase tracking-[0.15em] text-cream/60 sm:text-[12px]">
+                Проектов
+              </div>
+            </div>
+            <div>
+              <div class="font-serif text-[28px] font-bold text-gold sm:text-[36px]">15 лет</div>
+              <div class="mt-1 text-[10px] font-bold uppercase tracking-[0.15em] text-cream/60 sm:text-[12px]">
+                Шьём шторы
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        href="#why"
+        class="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
+        title="Листать вниз"
+      >
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-cream/50">Листать</span>
+        <span class="h-12 w-px bg-[linear-gradient(rgb(201_168_76),transparent)]"></span>
+      </a>
+    </section>
+
+    <!-- Почему мы -->
+    <section id="why" class="bg-navy px-0 py-[96px]">
+      <div class="container">
+        <div class="mb-16 text-center">
+          <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.25em] text-gold">Почему выбирают нас</p>
+          <h2
+            class="mx-auto max-w-[760px] font-serif text-[28px] leading-[1.2] font-bold text-cream sm:text-[36px] lg:text-[44px]"
+          >
+            Студия, где шторы шьют <em class="text-gold">по вашим окнам</em>
+          </h2>
+          <div class="my-4 flex items-center justify-center gap-3">
+            <span class="h-px w-10 bg-gold"></span><span class="h-1.5 w-1.5 rotate-45 bg-gold"></span
+            ><span class="h-px w-10 bg-gold"></span>
+          </div>
+          <p class="mx-auto max-w-[620px] text-[16px] leading-[1.7] font-light text-cream/70">
+            Работаем по Москве и области. От первого замера до последнего крючка на карнизе — одна команда и один
+            ответственный.
+          </p>
+        </div>
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded-[4px] border border-gold/20 bg-cream/5 px-8 py-10">
+            <i data-lucide="ruler" class="mb-4 h-9 w-9 text-gold"></i>
+            <h3 class="mb-3 font-serif text-[20px] font-semibold text-cream">Точный замер</h3>
+            <p class="text-[14px] leading-[1.7] font-light text-cream/65">
+              Дизайнер измеряет каждое окно на месте — без щелей и лишней длины.
+            </p>
+          </div>
+          <div class="rounded-[4px] border border-gold/20 bg-cream/5 px-8 py-10">
+            <i data-lucide="scissors" class="mb-4 h-9 w-9 text-gold"></i>
+            <h3 class="mb-3 font-serif text-[20px] font-semibold text-cream">Свой швейный цех</h3>
+            <p class="text-[14px] leading-[1.7] font-light text-cream/65">
+              Шьём под надзором технолога и проверяем каждое изделие перед выдачей.
+            </p>
+          </div>
+          <div class="rounded-[4px] border border-gold/20 bg-cream/5 px-8 py-10">
+            <i data-lucide="swatch-book" class="mb-4 h-9 w-9 text-gold"></i>
+            <h3 class="mb-3 font-serif text-[20px] font-semibold text-cream">Сотни образцов</h3>
+            <p class="text-[14px] leading-[1.7] font-light text-cream/65">
+              Привозим ткани с собой: трогаете и сравниваете при своём освещении.
+            </p>
+          </div>
+          <div class="rounded-[4px] border border-gold/20 bg-cream/5 px-8 py-10">
+            <i data-lucide="shield-check" class="mb-4 h-9 w-9 text-gold"></i>
+            <h3 class="mb-3 font-serif text-[20px] font-semibold text-cream">Монтаж и гарантия</h3>
+            <p class="text-[14px] leading-[1.7] font-light text-cream/65">
+              Вешаем карнизы и шторы сами и отвечаем за результат гарантией.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Каталог -->
+    <section id="services" class="bg-cream py-[96px]">
+      <div class="container">
+        <div class="mb-16 text-center">
+          <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.25em] text-gold">Каталог</p>
+          <h2
+            class="mx-auto max-w-[760px] font-serif text-[28px] leading-[1.2] font-bold sm:text-[36px] lg:text-[44px]"
+          >
+            Шторы, жалюзи и карнизы <em class="text-gold">под любое окно</em>
+          </h2>
+          <div class="my-4 flex items-center justify-center gap-3">
+            <span class="h-px w-10 bg-gold"></span><span class="h-1.5 w-1.5 rotate-45 bg-gold"></span
+            ><span class="h-px w-10 bg-gold"></span>
+          </div>
+          <p class="mx-auto max-w-[620px] text-[16px] leading-[1.7] font-light text-slate">
+            В цену входят выезд дизайнера, замер, пошив и монтаж. Точная сумма — после выбора ткани.
+          </p>
+        </div>
+        <div class="grid gap-7 md:grid-cols-2">
+          <!-- Карточка: фото с подписью и ценой поверх, текст под фото -->
+          <article class="overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-card">
+            <div class="relative h-[240px]">
+              <img src="../assets/img/service-blackout.jpg" alt="Шторы блэкаут" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-[linear-gradient(to_top,rgb(26_39_68/0.85)_0%,transparent_55%)]"></div>
+              <div class="absolute inset-x-6 bottom-5 flex items-end justify-between gap-3">
+                <span class="font-serif text-[20px] font-bold text-cream">Шторы блэкаут</span>
+                <span class="shrink-0 rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold text-gold"
+                  >от 2 500 ₽/м.пог.</span
+                >
+              </div>
+            </div>
+            <div class="px-6 pt-6 pb-5">
+              <p class="mb-4 text-[14px] leading-[1.7] font-light text-slate">
+                Не пропускают свет и глушат шум улицы — для спален и детских.
+              </p>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-gold"
+                >Подробнее <i data-lucide="arrow-down" class="h-3.5 w-3.5"></i
+              ></a>
+            </div>
+          </article>
+          <article class="overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-card">
+            <div class="relative h-[240px]">
+              <img src="../assets/img/service-roman.jpg" alt="Римские шторы" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-[linear-gradient(to_top,rgb(26_39_68/0.85)_0%,transparent_55%)]"></div>
+              <div class="absolute inset-x-6 bottom-5 flex items-end justify-between gap-3">
+                <span class="font-serif text-[20px] font-bold text-cream">Римские шторы</span>
+                <span class="shrink-0 rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold text-gold"
+                  >от 4 500 ₽/м²</span
+                >
+              </div>
+            </div>
+            <div class="px-6 pt-6 pb-5">
+              <p class="mb-4 text-[14px] leading-[1.7] font-light text-slate">
+                Складываются ровными складками, подходят для прямых и скошенных окон.
+              </p>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-gold"
+                >Подробнее <i data-lucide="arrow-down" class="h-3.5 w-3.5"></i
+              ></a>
+            </div>
+          </article>
+          <article class="overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-card">
+            <div class="relative h-[240px]">
+              <img src="../assets/img/service-roller.jpg" alt="Рулонные шторы" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-[linear-gradient(to_top,rgb(26_39_68/0.85)_0%,transparent_55%)]"></div>
+              <div class="absolute inset-x-6 bottom-5 flex items-end justify-between gap-3">
+                <span class="font-serif text-[20px] font-bold text-cream">Рулонные шторы</span>
+                <span class="shrink-0 rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold text-gold"
+                  >от 2 200 ₽/м²</span
+                >
+              </div>
+            </div>
+            <div class="px-6 pt-6 pb-5">
+              <p class="mb-4 text-[14px] leading-[1.7] font-light text-slate">
+                Крепятся на проём или прямо на створку, не занимают подоконник.
+              </p>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-gold"
+                >Подробнее <i data-lucide="arrow-down" class="h-3.5 w-3.5"></i
+              ></a>
+            </div>
+          </article>
+          <article class="overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-card">
+            <div class="relative h-[240px]">
+              <img src="../assets/img/service-linen.jpg" alt="Льняные шторы" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-[linear-gradient(to_top,rgb(26_39_68/0.85)_0%,transparent_55%)]"></div>
+              <div class="absolute inset-x-6 bottom-5 flex items-end justify-between gap-3">
+                <span class="font-serif text-[20px] font-bold text-cream">Льняные шторы</span>
+                <span class="shrink-0 rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold text-gold"
+                  >от 2 800 ₽/м.пог.</span
+                >
+              </div>
+            </div>
+            <div class="px-6 pt-6 pb-5">
+              <p class="mb-4 text-[14px] leading-[1.7] font-light text-slate">
+                Натуральная фактура и мягкий рассеянный свет в гостиной.
+              </p>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-gold"
+                >Подробнее <i data-lucide="arrow-down" class="h-3.5 w-3.5"></i
+              ></a>
+            </div>
+          </article>
+          <article class="overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-card">
+            <div class="relative h-[240px]">
+              <img src="../assets/img/service-pleated.jpg" alt="Шторы плиссе" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-[linear-gradient(to_top,rgb(26_39_68/0.85)_0%,transparent_55%)]"></div>
+              <div class="absolute inset-x-6 bottom-5 flex items-end justify-between gap-3">
+                <span class="font-serif text-[20px] font-bold text-cream">Шторы плиссе</span>
+                <span class="shrink-0 rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold text-gold"
+                  >от 3 500 ₽/м²</span
+                >
+              </div>
+            </div>
+            <div class="px-6 pt-6 pb-5">
+              <p class="mb-4 text-[14px] leading-[1.7] font-light text-slate">
+                Для мансардных, треугольных и арочных окон нестандартной формы.
+              </p>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-gold"
+                >Подробнее <i data-lucide="arrow-down" class="h-3.5 w-3.5"></i
+              ></a>
+            </div>
+          </article>
+          <article class="overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-card">
+            <div class="relative h-[240px]">
+              <img src="../assets/img/service-rods.jpg" alt="Карнизы для штор" class="h-full w-full object-cover" />
+              <div class="absolute inset-0 bg-[linear-gradient(to_top,rgb(26_39_68/0.85)_0%,transparent_55%)]"></div>
+              <div class="absolute inset-x-6 bottom-5 flex items-end justify-between gap-3">
+                <span class="font-serif text-[20px] font-bold text-cream">Карнизы</span>
+                <span class="shrink-0 rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold text-gold"
+                  >от 900 ₽/м.пог.</span
+                >
+              </div>
+            </div>
+            <div class="px-6 pt-6 pb-5">
+              <p class="mb-4 text-[14px] leading-[1.7] font-light text-slate">
+                Декоративные, профильные и электрокарнизы — подберём под ткань и потолок.
+              </p>
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-gold"
+                >Подробнее <i data-lucide="arrow-down" class="h-3.5 w-3.5"></i
+              ></a>
+            </div>
+          </article>
+        </div>
+        <div class="mt-14 text-center">
+          <a
+            href="#contact"
+            class="inline-block rounded-[2px] bg-navy px-12 py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-cream hover:bg-navy-deep"
+            >Записаться на бесплатный выезд</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Наши работы -->
+    <section id="gallery" class="bg-sand py-[96px]">
+      <div class="container">
+        <div class="mb-16 text-center">
+          <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.25em] text-gold">Наши работы</p>
+          <h2 class="font-serif text-[28px] leading-[1.2] font-bold sm:text-[36px] lg:text-[44px]">
+            Реальные квартиры. <em class="text-gold">Готовые шторы.</em>
+          </h2>
+          <div class="my-4 flex items-center justify-center gap-3">
+            <span class="h-px w-10 bg-gold"></span><span class="h-1.5 w-1.5 rotate-45 bg-gold"></span
+            ><span class="h-px w-10 bg-gold"></span>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
+          <figure class="group relative h-[240px] overflow-hidden rounded-[4px] bg-navy sm:h-[386px]">
+            <img
+              src="../assets/img/gallery-1.jpg"
+              alt="Шторы в гостиной"
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <figcaption
+              class="absolute inset-0 flex items-end bg-[linear-gradient(to_top,rgb(26_39_68/0.7)_0%,transparent_60%)] p-5 font-serif text-[16px] font-semibold text-cream sm:text-[18px]"
+            >
+              Гостиная
+            </figcaption>
+          </figure>
+          <figure class="group relative h-[240px] overflow-hidden rounded-[4px] bg-navy sm:h-[386px]">
+            <img
+              src="../assets/img/gallery-2.jpg"
+              alt="Римские шторы на кухне"
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <figcaption
+              class="absolute inset-0 flex items-end bg-[linear-gradient(to_top,rgb(26_39_68/0.7)_0%,transparent_60%)] p-5 font-serif text-[16px] font-semibold text-cream sm:text-[18px]"
+            >
+              Кухня
+            </figcaption>
+          </figure>
+          <figure class="group relative h-[240px] overflow-hidden rounded-[4px] bg-navy sm:h-[386px]">
+            <img
+              src="../assets/img/gallery-3.jpg"
+              alt="Льняные шторы в спальне"
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <figcaption
+              class="absolute inset-0 flex items-end bg-[linear-gradient(to_top,rgb(26_39_68/0.7)_0%,transparent_60%)] p-5 font-serif text-[16px] font-semibold text-cream sm:text-[18px]"
+            >
+              Спальня
+            </figcaption>
+          </figure>
+          <figure class="group relative h-[240px] overflow-hidden rounded-[4px] bg-navy sm:h-[386px]">
+            <img
+              src="../assets/img/gallery-4.jpg"
+              alt="Плиссе на мансардном окне"
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <figcaption
+              class="absolute inset-0 flex items-end bg-[linear-gradient(to_top,rgb(26_39_68/0.7)_0%,transparent_60%)] p-5 font-serif text-[16px] font-semibold text-cream sm:text-[18px]"
+            >
+              Мансарда
+            </figcaption>
+          </figure>
+          <figure class="group relative h-[240px] overflow-hidden rounded-[4px] bg-navy sm:h-[386px]">
+            <img
+              src="../assets/img/gallery-5.jpg"
+              alt="Жалюзи в кабинете"
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <figcaption
+              class="absolute inset-0 flex items-end bg-[linear-gradient(to_top,rgb(26_39_68/0.7)_0%,transparent_60%)] p-5 font-serif text-[16px] font-semibold text-cream sm:text-[18px]"
+            >
+              Кабинет
+            </figcaption>
+          </figure>
+          <figure class="group relative h-[240px] overflow-hidden rounded-[4px] bg-navy sm:h-[386px]">
+            <img
+              src="../assets/img/gallery-6.jpg"
+              alt="Рулонные шторы в детской"
+              class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+            />
+            <figcaption
+              class="absolute inset-0 flex items-end bg-[linear-gradient(to_top,rgb(26_39_68/0.7)_0%,transparent_60%)] p-5 font-serif text-[16px] font-semibold text-cream sm:text-[18px]"
+            >
+              Детская
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Пакеты: цены ориентировочные, заменить на прайс салона -->
+    <section id="pricing" class="bg-cream py-[96px]">
+      <div class="container max-w-[1100px]">
+        <div class="mb-16 text-center">
+          <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.25em] text-gold">Стоимость</p>
+          <h2 class="font-serif text-[28px] leading-[1.2] font-bold sm:text-[36px] lg:text-[44px]">
+            Понятные пакеты. <em class="text-gold">Без доплат.</em>
+          </h2>
+          <div class="my-4 flex items-center justify-center gap-3">
+            <span class="h-px w-10 bg-gold"></span><span class="h-1.5 w-1.5 rotate-45 bg-gold"></span
+            ><span class="h-px w-10 bg-gold"></span>
+          </div>
+          <p class="mx-auto max-w-[620px] text-[16px] leading-[1.7] font-light text-slate">
+            Во всех пакетах — бесплатный замер и монтаж. Цены ориентировочные, итог — после выбора ткани.
+          </p>
+        </div>
+        <div class="grid items-center gap-6 lg:grid-cols-3">
+          <div class="rounded-[4px] border border-navy/10 bg-cream px-8 py-9">
+            <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.2em] text-gold">Базовый</p>
+            <div class="font-serif text-[52px] leading-none font-bold">2 200 ₽</div>
+            <p class="mt-1 mb-7 text-[12px] tracking-[0.05em]">за окно</p>
+            <ul class="mb-8 space-y-3 text-[14px] font-light text-slate">
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Рулонные шторы или жалюзи
+              </li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>3 варианта ткани</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Замер на дому</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Монтаж</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Гарантия 1 год</li>
+            </ul>
+            <a
+              href="#contact"
+              class="block rounded-[2px] border border-navy py-3.5 text-center text-[12px] font-bold uppercase tracking-[0.12em] hover:bg-navy hover:text-cream"
+              >Выбрать</a
+            >
+          </div>
+          <div class="relative rounded-[4px] border-2 border-gold bg-navy px-9 py-11 text-cream shadow-featured">
+            <span
+              class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-[2px] bg-gold px-4 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-navy"
+              >Чаще выбирают</span
+            >
+            <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.2em] text-gold">Оптимальный</p>
+            <div class="font-serif text-[52px] leading-none font-bold">4 500 ₽</div>
+            <p class="mt-1 mb-7 text-[12px] tracking-[0.05em] text-cream/60">за окно</p>
+            <ul class="mb-8 space-y-3 text-[14px] font-light text-cream/80">
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Портьеры, римские или льняные шторы
+              </li>
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Сотни тканей на выбор
+              </li>
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Консультация дизайнера
+              </li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Пошив и монтаж</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Гарантия 3 года</li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Карниз в подарок</li>
+            </ul>
+            <a
+              href="#contact"
+              class="block rounded-[2px] bg-gold py-3.5 text-center text-[12px] font-bold uppercase tracking-[0.12em] text-navy hover:bg-gold-soft"
+              >Выбрать оптимальный</a
+            >
+          </div>
+          <div class="rounded-[4px] border border-navy/10 bg-gold-soft px-8 py-9">
+            <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.2em] text-gold">Премиум</p>
+            <div class="font-serif text-[52px] leading-none font-bold">8 000 ₽+</div>
+            <p class="mt-1 mb-7 text-[12px] tracking-[0.05em]">за окно</p>
+            <ul class="mb-8 space-y-3 text-[14px] font-light text-slate">
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Электрокарнизы и умный дом
+              </li>
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Итальянские и немецкие ткани
+              </li>
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Дизайн-проект окон
+              </li>
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Ведение проекта под ключ
+              </li>
+              <li class="flex gap-3"><i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Гарантия 5 лет</li>
+              <li class="flex gap-3">
+                <i data-lucide="check" class="h-4 w-4 shrink-0 text-gold"></i>Сервисный выезд раз в год
+              </li>
+            </ul>
+            <a
+              href="#contact"
+              class="block rounded-[2px] border border-navy py-3.5 text-center text-[12px] font-bold uppercase tracking-[0.12em] hover:bg-navy hover:text-cream"
+              >Выбрать премиум</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Отзыв: текст-заглушка, заменить на настоящий отзыв клиента -->
+    <section class="bg-navy py-[96px]">
+      <div class="container max-w-[900px] text-center">
+        <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.25em] text-gold">Отзывы</p>
+        <h2 class="mb-12 font-serif text-[28px] leading-[1.2] font-bold text-cream sm:text-[36px] lg:text-[44px]">
+          Что говорят <em class="text-gold">наши клиенты</em>
+        </h2>
+        <div class="relative">
+          <i data-lucide="quote" class="mx-auto mb-6 h-12 w-12 text-gold/40"></i>
+          <p
+            class="mb-8 font-serif text-[18px] leading-[1.7] text-cream/85 italic sm:text-[22px]"
+            title="Заглушка: вставить реальный отзыв"
+          >
+            Здесь будет отзыв клиента: какие шторы заказывали, как прошёл замер и монтаж, что понравилось в результате.
+          </p>
+          <div class="mb-4 flex justify-center gap-1 text-gold">
+            <i data-lucide="star" class="h-4 w-4 fill-current"></i
+            ><i data-lucide="star" class="h-4 w-4 fill-current"></i
+            ><i data-lucide="star" class="h-4 w-4 fill-current"></i
+            ><i data-lucide="star" class="h-4 w-4 fill-current"></i
+            ><i data-lucide="star" class="h-4 w-4 fill-current"></i>
+          </div>
+          <p class="font-serif text-[18px] font-semibold text-cream">Имя клиента</p>
+          <p class="text-[12px] tracking-[0.05em] text-cream/50">Район · Вид штор</p>
+          <div class="mt-8 flex justify-center gap-2">
+            <span class="h-2 w-6 rounded-full bg-gold"></span><span class="h-2 w-2 rounded-full bg-cream/30"></span
+            ><span class="h-2 w-2 rounded-full bg-cream/30"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Заявка -->
+    <section id="contact" class="bg-sand py-[96px]">
+      <div class="container max-w-[1100px]">
+        <div class="grid gap-16 lg:grid-cols-2">
+          <div>
+            <p class="mb-3 text-[12px] font-bold uppercase tracking-[0.25em] text-gold">Заявка</p>
+            <h2 class="mb-5 font-serif text-[28px] leading-[1.2] font-bold sm:text-[36px]">
+              Готовы обновить <em class="text-gold">ваши окна?</em>
+            </h2>
+            <p class="mb-10 text-[16px] leading-[1.7] font-light text-slate">
+              Оставьте заявку — перезвоним в течение рабочего дня и договоримся о бесплатном выезде дизайнера. Ни к чему
+              не обязывает.
+            </p>
+            <div class="space-y-6">
+              <div class="flex gap-4">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-[4px] bg-navy text-gold"
+                  ><i data-lucide="phone" class="h-5 w-5"></i
+                ></span>
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-gold">Телефон</p>
+                  <p class="font-serif text-[18px] font-semibold">+7 (925) 594-61-17</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-[4px] bg-navy text-gold"
+                  ><i data-lucide="mail" class="h-5 w-5"></i
+                ></span>
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-gold">Почта</p>
+                  <p class="font-serif text-[18px] font-semibold">info@shtorivdom.ru</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-[4px] bg-navy text-gold"
+                  ><i data-lucide="map-pin" class="h-5 w-5"></i
+                ></span>
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-gold">Адрес салона</p>
+                  <p class="font-serif text-[18px] font-semibold">Троицк, Кварцевая улица, 3, корп. 2</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <span class="flex h-11 w-11 shrink-0 items-center justify-center rounded-[4px] bg-navy text-gold"
+                  ><i data-lucide="clock" class="h-5 w-5"></i
+                ></span>
+                <div>
+                  <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-gold">Режим работы</p>
+                  <p class="font-serif text-[18px] font-semibold">10:00–20:00, без выходных</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[4px] border border-navy/6 bg-white px-6 py-10 shadow-form sm:px-10 sm:py-12">
+            <form class="space-y-5" onsubmit="return false">
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="block">
+                  <span class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em]">Имя *</span>
+                  <input
+                    class="w-full rounded-[2px] border border-navy/18 px-4 py-3 text-[14px] outline-hidden focus:border-gold"
+                    placeholder="Анна"
+                  />
+                </label>
+                <label class="block">
+                  <span class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em]">Телефон *</span>
+                  <input
+                    class="w-full rounded-[2px] border border-navy/18 px-4 py-3 text-[14px] outline-hidden focus:border-gold"
+                    placeholder="+7 (___) ___-__-__"
+                  />
+                </label>
+              </div>
+              <div class="grid gap-5 sm:grid-cols-2">
+                <label class="block">
+                  <span class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em]">Почта</span>
+                  <input
+                    class="w-full rounded-[2px] border border-navy/18 px-4 py-3 text-[14px] outline-hidden focus:border-gold"
+                    placeholder="anna@mail.ru"
+                  />
+                </label>
+                <label class="block">
+                  <span class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em]">Город</span>
+                  <input
+                    class="w-full rounded-[2px] border border-navy/18 px-4 py-3 text-[14px] outline-hidden focus:border-gold"
+                    placeholder="Москва"
+                  />
+                </label>
+              </div>
+              <label class="block">
+                <span class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em]">Что интересует</span>
+                <select
+                  class="w-full rounded-[2px] border border-navy/18 bg-white px-4 py-3 text-[14px] outline-hidden focus:border-gold"
+                >
+                  <option>Выберите вид штор</option>
+                  <option>Шторы блэкаут</option>
+                  <option>Римские шторы</option>
+                  <option>Рулонные шторы</option>
+                  <option>Льняные шторы</option>
+                  <option>Шторы плиссе</option>
+                  <option>Жалюзи</option>
+                  <option>Карнизы</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em]">Расскажите о задаче</span>
+                <textarea
+                  rows="4"
+                  class="w-full rounded-[2px] border border-navy/18 px-4 py-3 text-[14px] outline-hidden focus:border-gold"
+                  placeholder="Сколько окон, какие комнаты, есть ли карнизы"
+                ></textarea>
+              </label>
+              <button
+                type="submit"
+                class="w-full rounded-[2px] bg-navy py-4 text-[12px] font-bold uppercase tracking-[0.12em] text-cream hover:bg-navy-deep"
+              >
+                Пригласить дизайнера бесплатно →
+              </button>
+              <p class="text-center text-[12px] font-light text-slate/70">
+                Нажимая кнопку, вы соглашаетесь с обработкой персональных данных. Звоним только по заявке.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Подвал -->
+    <footer class="bg-navy-deep pt-14 pb-8">
+      <div class="container">
+        <div class="grid gap-10 border-b border-cream/10 pb-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <a href="#top" class="font-serif text-[22px] font-bold text-cream"
+              >Shtorivdom <span class="font-normal text-gold">шторы</span></a
+            >
+            <p class="mt-4 max-w-[280px] text-[14px] leading-[1.7] font-light text-cream/55">
+              Салон штор в Москве и Подмосковье: пошив на заказ, карнизы, монтаж под ключ.
+            </p>
+          </div>
+          <div>
+            <p class="mb-5 text-[12px] font-bold uppercase tracking-[0.15em] text-gold">Каталог</p>
+            <ul class="space-y-2.5 text-[14px] font-light text-cream/60">
+              <li><a href="#services" class="hover:text-gold">Шторы блэкаут</a></li>
+              <li><a href="#services" class="hover:text-gold">Римские шторы</a></li>
+              <li><a href="#services" class="hover:text-gold">Рулонные шторы</a></li>
+              <li><a href="#services" class="hover:text-gold">Льняные шторы</a></li>
+              <li><a href="#services" class="hover:text-gold">Плиссе и жалюзи</a></li>
+              <li><a href="#services" class="hover:text-gold">Карнизы</a></li>
+            </ul>
+          </div>
+          <div>
+            <p class="mb-5 text-[12px] font-bold uppercase tracking-[0.15em] text-gold">Где работаем</p>
+            <ul class="space-y-2.5 text-[14px] font-light text-cream/60">
+              <li>Москва</li>
+              <li>Новая Москва</li>
+              <li>Троицк</li>
+              <li>Подольск</li>
+              <li>Московская область</li>
+            </ul>
+          </div>
+          <div>
+            <p class="mb-5 text-[12px] font-bold uppercase tracking-[0.15em] text-gold">Контакты</p>
+            <ul class="space-y-2.5 text-[14px] font-light text-cream/60">
+              <li>+7 (925) 594-61-17</li>
+              <li>info@shtorivdom.ru</li>
+              <li>10:00–20:00, без выходных</li>
+            </ul>
+            <a
+              href="#contact"
+              class="mt-6 inline-block rounded-[2px] bg-gold px-6 py-3 text-[12px] font-bold uppercase tracking-[0.1em] text-navy hover:bg-gold-soft"
+              >Вызвать дизайнера</a
+            >
+          </div>
+        </div>
+        <div class="flex flex-col gap-3 pt-8 text-[12px] text-cream/40 sm:flex-row sm:justify-between">
+          <p>© 2020–2026 Shtorivdom</p>
+          <p>Политика конфиденциальности · Согласие на обработку данных</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>

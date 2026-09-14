@@ -16,6 +16,14 @@
         "trailingComma": "none",
         "bracketSpacing": false
       }
+    },
+    {
+      "files": "mockups/**/*.html",
+      "options": {
+        "parser": "html",
+        "htmlWhitespaceSensitivity": "css",
+        "bracketSpacing": true
+      }
     }
   ]
 }

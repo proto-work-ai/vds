@@ -69,3 +69,16 @@ description: Правила Андрея для проекта shtorivdom (са�
 ## Коммиты
 
 - Один коммит в конце работы, без push.
+
+## Макеты
+
+- Макеты редизайна — `mockups/` (по образцу DesignPad): HTML + Tailwind 4
+  (браузерная сборка) + Lucide. Запуск: `npm run mockups` → http://localhost:4320.
+- Тема — `mockups/assets/theme.css` (палитра navy/gold/cream, шрифты Lato и
+  Playfair Display). После правки: `node mockups/assets/build-theme.mjs`,
+  `theme.js` руками не править.
+- Один экран — один файл, у каждого карточка в `mockups/index.html`.
+- Картинки — только свои (`mockups/assets/img`, копии из `apps/shtorivdom-site/public`).
+- Референс редизайна — лендинг Figma Make: копируем структуру, сетки, отступы,
+  цвета и шрифты; тексты, фото, цены и контакты — shtorivdom. Отзывы — заглушки,
+  пока нет настоящих.
