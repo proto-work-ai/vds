@@ -450,7 +450,7 @@ const Ye = [
   ]
 ], Ge = u("zap", Ye), c = "#B8955D", Ue = "971500000000", k = "#1E1E1E", C = "#F8F6F2", _ = "#E7DED2", d = { fontFamily: "'Playfair Display', Georgia, serif" }, s = { fontFamily: "'DM Sans', system-ui, sans-serif" };
 function S(a, r, l) {
-  return `https://images.unsplash.com/photo-${a}?w=${r}&h=${l}&fit=crop&auto=format`;
+  return `/_images/photo-${a}.jpg`;
 }
 function h({
   children: a,
@@ -1433,7 +1433,7 @@ function mt() {
               /* @__PURE__ */ e(
                 "img",
                 {
-                  src: `https://images.unsplash.com/photo-${l.avatar}?w=80&h=80&fit=crop&auto=format`,
+                  src: `/_images/photo-${l.avatar}.jpg`,
                   alt: l.name,
                   className: "w-12 h-12 rounded-full object-cover"
                 }
