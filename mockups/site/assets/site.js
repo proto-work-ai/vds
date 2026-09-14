@@ -200,6 +200,59 @@
     input.value = mask(input.value);
     input.classList.remove('is-error');
   }));
+  // Письма заявок: assets/email.js подгружается рядом с site.js (window.ShtorivdomEmail).
+  // Режим проверки — адрес с #test (как на сайте) или ?test: письмо в console и окно предпросмотра.
+  const isTest = location.hash === '#test' || new URLSearchParams(location.search).has('test');
+  const emailScript = document.createElement('script');
+  emailScript.src = new URL('email.js', document.currentScript?.src ?? location.href).href;
+  document.head.appendChild(emailScript);
+
+  // Тип письма по форме: data-lead-form="kind" → анкета партнёра → первый экран → карниз из каталога → контакты → заказ
+  const leadKind = (form, data) =>
+    form.dataset.leadForm ||
+    (form.id === 'form-partner' ? 'partner'
+      : form.closest('#hero-form') ? 'designer'
+      : data.model ? 'curtain-rod'
+      : page.startsWith('contact') ? 'contact'
+      : 'order');
+
+  /** Заглушка отправки. На сайте здесь POST на серверный скрипт, например:
+      fetch('/api/send-message.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subject, message: html, text, clientEmail, clientSubject, clientMessage }) })
+      Скрипт только отправляет: mail() в салон и, если есть clientEmail, подтверждение клиенту. */
+  const sendLead = ({ subject, html, text, clientEmail, client }) => {
+    if (!isTest) return Promise.resolve(true);
+    console.log('[заявка] письмо в салон:', subject, '\n' + text, '\n', html);
+    if (client) console.log('[заявка] письмо клиенту ' + clientEmail + ':', client.subject, '\n' + client.text);
+    previewLead(subject, html);
+    return Promise.resolve(true);
+  };
+  const previewLead = (subject, html) => {
+    const box = document.createElement('div');
+    box.setAttribute('data-email-preview', '');
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-label', 'Предпросмотр письма');
+    box.style.cssText = 'position:fixed;inset:0;z-index:1000;background:rgb(8 22 41/.7);display:flex;align-items:center;justify-content:center;padding:16px';
+    box.innerHTML = '<div style="background:#f5f0e8;border-radius:4px;width:min(660px,100%);height:min(90vh,900px);display:flex;flex-direction:column;overflow:hidden"><div style="display:flex;gap:12px;align-items:center;padding:10px 14px;background:#0d223d;color:#fff;font-size:14px"><b style="flex:1"></b><button type="button" style="color:#c9a84c;font-weight:700">Закрыть ✕</button></div><iframe title="Письмо" style="flex:1;border:0;width:100%;background:#fff"></iframe></div>';
+    $('b', box).textContent = 'Тест: ' + subject;
+    $('iframe', box).srcdoc = html;
+    const close = () => box.remove();
+    $('button', box).addEventListener('click', close);
+    box.addEventListener('click', (e) => e.target === box && close());
+    document.body.appendChild(box);
+    $('button', box).focus();
+  };
+  const submitLead = (form) => {
+    const api = window.ShtorivdomEmail;
+    if (!api) return console.warn('email.js не загрузился — письмо не собрано');
+    const v = (n) => form.elements[n]?.value?.trim() || undefined;
+    const data = { name: v('name'), phone: v('phone'), email: v('email'), theme: v('theme'), city: v('city'), description: v('comment'), model: form.dataset.orderModel };
+    const kind = leadKind(form, data);
+    const lead = api.buildLeadEmail(kind, data, { pageTitle: document.title, pageUrl: location.href.split('#')[0], sentAt: new Date() });
+    const client = api.buildClientEmail(kind, data);
+    return sendLead({ ...lead, clientEmail: client ? data.email : undefined, client });
+  };
+
   $$('[data-lead-form]').forEach((form) => {
     const phone = $('[data-phone]', form);
     const consent = $('[data-consent]', form);
@@ -216,6 +269,7 @@
       $('[data-phone-wrap]', form)?.classList.toggle('!border-[#c0392b]', badPhone);
       if (badPhone) return phone.focus();
       if (badConsent) return consent.focus();
+      submitLead(form); // письмо собирается до замены формы на «Спасибо»
       const done = document.createElement('div');
       done.className = 'form-done py-8 text-center';
       done.setAttribute('role', 'status');

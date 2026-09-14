@@ -234,7 +234,7 @@ const modelsGrid = () => `
   </div>
 </section>`;
 
-// Блоки главной (не дублируем тексты): «Как сделать заказ?» и «Вопросы-ответы».
+// Блоки главной (не дублируем тексты): «Как сделать заказ?» и «Вопросы и ответы».
 const index = read('pages/index.html');
 const stepsHtml = (() => {
   const start = index.indexOf('<div class="reveal reveal-soft mt-20 mb-14 text-center sm:mt-28">');

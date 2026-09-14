@@ -34,7 +34,7 @@ export const PERIOD_CONTACT = new InjectionToken<string>('PERIOD_CONTACT', {
   providedIn: 'root',
   factory: () => {
     const year = new Date().getFullYear();
-    return `© 2020-${year > 2026 ? year : 2026}`;
+    return `© 2020–${year > 2026 ? year : 2026}`;
   },
 });
 

@@ -53,14 +53,14 @@ const minOf = (item) => item.prices.reduce((m, r) => (Math.min(...[].concat(r[1]
 const PAGES = [
   { path: '', src: 'pages/index.html', title: 'Шторы на заказ в Москве — пошив и дизайн штор | Shtorivdom',
     description: 'Пошив штор на заказ в Москве и Подмосковье: римские, рулонные, льняные шторы, блэкаут, плиссе, жалюзи и карнизы. Бесплатный выезд дизайнера с образцами тканей.' },
-  { path: 'catalog/', h1: 'Каталог Штор', lead: 'Вся продукция изготавливается по индивидуальным размерам из качественных материалов.', title: 'Каталог штор | Shtorivdom', extra: 'catalog' },
+  { path: 'catalog/', h1: 'Каталог штор', lead: 'Вся продукция изготавливается по индивидуальным размерам из качественных материалов.', title: 'Каталог штор | Shtorivdom', extra: 'catalog' },
   ...CATALOG.map((c) => ({ path: `catalog/${c.key}/`, h1: c.title, lead: c.text, title: `${c.title} на заказ в Москве | Shtorivdom`,
     description: `${c.title} на заказ: ${c.text} Бесплатный выезд дизайнера с образцами.`, crumb: ['Каталог', 'catalog/'] })),
   { path: 'price/', h1: 'Цены / стоимость', title: 'Цены | Shtorivdom', extra: 'prices' },
   { path: 'services/', h1: 'Услуги', title: 'Услуги | Shtorivdom' },
   { path: 'about/', h1: 'О нас', lead: 'Более 15 лет мы создаем уникальные текстильные интерьеры', title: 'О салоне штор Shtorivdom — более 15 лет пошива штор',
     description: 'Дизайн-студия Shtorivdom: собственный швейный цех, 3000+ тканей и карнизов, более 10 000 реализованных проектов штор в Москве и области.' },
-  { path: 'partner/', h1: 'Cтать партнером', title: 'Сотрудничество с салоном штор Shtorivdom',
+  { path: 'partner/', h1: 'Стать партнером', title: 'Сотрудничество с салоном штор Shtorivdom',
     description: 'Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров.' },
   { path: 'contact/', h1: 'Контакты', title: 'Контакты салона штор Shtorivdom — адрес, телефон',
     description: 'Салон штор Shtorivdom: Троицк, Кварцевая улица, 3, корп. 2. Работаем без выходных с 10:00 до 20:00. Телефон +7 (925) 594-61-17.' },
@@ -103,7 +103,7 @@ const catalogCards = (root) => CATALOG.map((c, i) => {
             <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">${c.text}</p>
             <div class="svc-more" data-svc-more>
               <ul class="mb-4">
-                ${c.prices.map((r) => `<li class="flex items-baseline gap-2.5 py-1.5 text-[14px]"><span class="font-bold text-gold">✓</span><span class="flex-1">${r[0]}</span><span class="font-bold whitespace-nowrap">от ${priceText(r[1])} ₽/${r[2]}</span></li>`).join('\n                ')}
+                ${c.prices.map((r) => `<li class="flex items-baseline gap-2.5 py-1.5 text-[14px]"><span class="font-bold text-gold">✓</span><span class="flex-1">${r[0]}</span><span class="font-bold whitespace-nowrap">${Array.isArray(r[1]) ? '' : 'от '}${priceText(r[1])} ₽/${r[2]}</span></li>`).join('\n                ')}
               </ul>
               <a href="${root}catalog/${c.key}/" class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold">Перейти в раздел →</a>
             </div>

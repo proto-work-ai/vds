@@ -61,7 +61,7 @@ export class PartnerPage {
       link: ['/'],
     },
     {
-      title: 'Cтать партнером',
+      title: 'Стать партнером',
     },
   ] as const);
 

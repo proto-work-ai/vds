@@ -109,5 +109,6 @@
   $$('[data-order]').forEach((a) => a.addEventListener('click', () => {
     const field = $('#lead-comment');
     if (field && !field.value) field.value = `Интересует: ${a.dataset.order}`;
+    if (field?.form) field.form.dataset.orderModel = a.dataset.order; // письмо «Заказ карниза» (site.js → email.js)
   }));
 })();
