@@ -23,7 +23,8 @@
     "mockups:original-5": "npx --yes serve mockups/landing-original-5 -l 4325 --no-clipboard",
     "mockups:original-6": "npx --yes serve mockups/landing-original-6 -l 4326 --no-clipboard",
     "mockups:original-7": "npx --yes serve mockups/landing-original-7 -l 4327 --no-clipboard",
-    "mockups:original-8": "npx --yes serve mockups/landing-original-8 -l 4328 --no-clipboard"
+    "mockups:original-8": "npx --yes serve mockups/landing-original-8 -l 4328 --no-clipboard",
+    "mockups:original-9": "npx --yes serve mockups/landing-original-9 -l 4329 --no-clipboard"
   },
   "private": true,
   "dependencies": {
