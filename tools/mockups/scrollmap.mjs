@@ -23,7 +23,8 @@ const READ = `(() => {
   const out = {};
   for (const el of document.querySelectorAll('[data-i]')) {
     const s = el.style;
-    if (s.transform || s.opacity) out[el.getAttribute('data-i')] = [s.transform || '', s.opacity || ''];
+    // opacity framer-motion ведёт через WAAPI: инлайн-значение отстаёт — берём computed.
+    if (s.transform || s.opacity) out[el.getAttribute('data-i')] = [s.transform || '', s.opacity ? getComputedStyle(el).opacity : ''];
   }
   return out;
 })()`;

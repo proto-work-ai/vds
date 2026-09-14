@@ -53,6 +53,30 @@
   const ICON_MENU = '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>';
   const ICON_X = '<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>';
 
+  // ---------- появление при прокрутке ----------
+  // Как FadeUp оригинала: useInView({ once: true, margin: '-80px' }). Элемент получает
+  // конечные классы, как только пересёк окно, суженное на 80px. Длительность, задержка и
+  // кривая — в классе перехода; после окончания он снимается (framer не оставляет transition).
+  const inview = $$('[data-inview]');
+  const warm = document.createElement('div');
+  warm.hidden = true;
+  warm.className = inview.map((el) => el.dataset.inview).join(' ');
+  document.body.appendChild(warm);
+  const reveal = (el) => {
+    const t = el.dataset.inview.split(/\s+/).find((c) => c.startsWith('[transition:'));
+    el.className = el.dataset.inview;
+    el.removeAttribute('data-inview');
+    const m = t && t.match(/_([\d.]+)s_cubic-bezier\([^)]*\)_([\d.]+)s,/);
+    if (m) setTimeout(() => el.classList.remove(t), (Number(m[1]) + Number(m[2])) * 1000 + 100);
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && (io.unobserve(e.target), reveal(e.target))),
+      { rootMargin: '-80px' }
+    );
+    inview.forEach((el) => io.observe(el));
+  } else inview.forEach(reveal);
+
   // ---------- мобильное меню ----------
   const nav = $('nav');
   const toggle = nav && $$('button', nav).find((b) => $('svg.lucide-menu', b));

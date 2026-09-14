@@ -139,12 +139,8 @@
       clearInterval(timer);
       timer = setInterval(() => render((index + 1) % DATA.hero.length), 6000);
     };
-    [...(dots?.children ?? [])].forEach((dot, k) =>
-      dot.addEventListener('click', () => {
-        render(k);
-        start();
-      })
-    );
+    // В оригинале клик по точке не перезапускает интервал.
+    [...(dots?.children ?? [])].forEach((dot, k) => dot.addEventListener('click', () => render(k)));
     render(0);
     start();
   }
@@ -153,12 +149,8 @@
   const testimonials = $$('section').find((s) => $('blockquote', s));
   if (testimonials && DATA?.testimonials?.length) {
     const items = DATA.testimonials;
-    const quote = $('blockquote', testimonials);
-    const card = quote.parentElement;
-    const person = card.lastElementChild;
-    const avatar = $('img', person);
-    const [name, role] = [...(person.lastElementChild?.children ?? [])];
-    const groups = [...card.parentElement.children].filter((el) => el.tagName === 'DIV' && [...el.children].length === items.length && [...el.children].every((c) => c.tagName === 'BUTTON'));
+    const cardRef = { current: $('blockquote', testimonials).parentElement };
+    const groups = [...cardRef.current.parentElement.children].filter((el) => el.tagName === 'DIV' && [...el.children].length === items.length && [...el.children].every((c) => c.tagName === 'BUTTON'));
     const dots = groups.find((g) => !$('img', g));
     const thumbs = groups.find((g) => $('img', g));
     const DOT_ON = ['[width:32px]', '[background:rgb(191,_155,_48)]'];
@@ -171,30 +163,36 @@
     const render = (i) => {
       index = i;
       const t = items[i];
-      // Карточка перерисовывается целиком — анимация fadeInUp проигрывается заново.
-      const nextQuote = quote.cloneNode(true);
-      nextQuote.textContent = `"${t.quote}"`;
-      $('blockquote', testimonials).replaceWith(nextQuote);
+      // У карточки в React key = счётчик смен: она монтируется заново и fadeIn 0.7 с
+      // проигрывается снова. Повторяем заменой узла на копию.
+      const next = cardRef.current.cloneNode(true);
+      $('blockquote', next).textContent = `"${t.quote}"`;
+      const person = next.lastElementChild;
+      const avatar = $('img', person);
       if (avatar) {
         avatar.src = t.img;
         avatar.alt = t.name;
       }
+      const [name, role] = [...(person.lastElementChild?.children ?? [])];
       if (name) name.textContent = t.name;
       if (role) role.textContent = t.role;
-      [...(dots?.children ?? [])].forEach((d, k) => swap(d, k === i ? DOT_OFF : DOT_ON, k === i ? DOT_ON : DOT_OFF));
-      [...(thumbs?.children ?? [])].forEach((d, k) => swap(d, k === i ? THUMB_OFF : THUMB_ON, k === i ? THUMB_ON : THUMB_OFF));
+      cardRef.current.replaceWith(next);
+      cardRef.current = next;
+      const sync = (d, from, to) => {
+        swap(d, from, to);
+        // У части кнопок в разметке остался data-reveal из снимка — держим его в согласии.
+        if (d.hasAttribute('data-reveal')) d.dataset.reveal = d.className;
+      };
+      [...(dots?.children ?? [])].forEach((d, k) => sync(d, k === i ? DOT_OFF : DOT_ON, k === i ? DOT_ON : DOT_OFF));
+      [...(thumbs?.children ?? [])].forEach((d, k) => sync(d, k === i ? THUMB_OFF : THUMB_ON, k === i ? THUMB_ON : THUMB_OFF));
     };
     const start = () => {
       clearInterval(timer);
       timer = setInterval(() => render((index + 1) % items.length), 5000);
     };
+    // В оригинале клик не перезапускает интервал.
     for (const group of [dots, thumbs]) {
-      [...(group?.children ?? [])].forEach((btn, k) =>
-        btn.addEventListener('click', () => {
-          render(k);
-          start();
-        })
-      );
+      [...(group?.children ?? [])].forEach((btn, k) => btn.addEventListener('click', () => render(k)));
     }
     render(0);
     start();
@@ -252,10 +250,24 @@
   });
 
   // ---------- «наверх» ----------
-  for (const b of $$('footer button, section:last-of-type button')) {
-    if (/^[↑⬆]$/.test(b.textContent.trim()) || /top/i.test(b.getAttribute('aria-label') ?? '')) {
-      b.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    }
+  const toTop = $('button[title="Back to top"]');
+  if (toTop) {
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    // Правка макета: на телефоне (<768px) кнопка перекрывала цифры первого экрана —
+    // показываем её, только когда первый экран прокручен. Десктоп — как в оригинале.
+    const phone = window.matchMedia('(max-width: 767px)');
+    const update = () => {
+      toTop.hidden = phone.matches && window.scrollY < window.innerHeight * 0.8;
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    phone.addEventListener('change', update);
+  }
+
+  // ---------- поля формы: рамка при фокусе (Contact.tsx) ----------
+  for (const field of $$('#contact input, #contact select, #contact textarea')) {
+    field.addEventListener('focus', () => (field.style.borderColor = '#BF9B30'));
+    field.addEventListener('blur', () => (field.style.borderColor = 'rgba(191,155,48,0.2)'));
   }
 
   // ---------- галерея ----------

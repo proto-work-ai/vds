@@ -7,9 +7,8 @@
    Значения анимаций взяты из кода оригинала. Параллакс первого экрана делает конвертер. */
 (() => {
   // Данные и классы — в начале: const не поднимается, обработчики ниже их используют.
-  // framer-motion по умолчанию: tween с ease "easeInOut" = cubic-bezier(0.42,0,0.58,1),
-  // а "easeOut" = cubic-bezier(0,0,0.58,1).
-  const MENU_TRANSITION = '[transition:height_0.35s_cubic-bezier(0.42,0,0.58,1),opacity_0.35s_cubic-bezier(0.42,0,0.58,1)]';
+  // framer-motion: при заданной duration без ease tween идёт с "easeOut" = cubic-bezier(0,0,0.58,1).
+  const MENU_TRANSITION = '[transition:height_0.35s_cubic-bezier(0,0,0.58,1),opacity_0.35s_cubic-bezier(0,0,0.58,1)]';
   // Высота «auto» анимируется в CSS только с interpolate-size — так же, как framer
   // измеряет панель и тянет высоту до её реального размера.
   const MENU_AUTO = '[interpolate-size:allow-keywords]';
@@ -37,6 +36,30 @@
   preload.hidden = true;
   preload.className = [MENU_TRANSITION, MENU_AUTO, ...MENU_OPEN, SLIDE_TRANSITION, ...SLIDE_OFF, DOT_ON, DOT_OFF].join(' ');
   document.body.appendChild(preload);
+
+  // ---------- появление при прокрутке ----------
+  // Как обёртка оригинала: useInView({ once: true, margin: '-80px' }). Элемент получает
+  // конечные классы, как только пересёк окно, суженное на 80px. Длительность, задержка и
+  // кривая — в классе перехода; после окончания он снимается (framer не оставляет transition).
+  const inview = $$('[data-inview]');
+  const warm = document.createElement('div');
+  warm.hidden = true;
+  warm.className = inview.map((el) => el.dataset.inview).join(' ');
+  document.body.appendChild(warm);
+  const reveal = (el) => {
+    const t = el.dataset.inview.split(/\s+/).find((c) => c.startsWith('[transition:'));
+    el.className = el.dataset.inview;
+    el.removeAttribute('data-inview');
+    const m = t && t.match(/_([\d.]+)s_cubic-bezier\([^)]*\)_([\d.]+)s,/);
+    if (m) setTimeout(() => el.classList.remove(t), (Number(m[1]) + Number(m[2])) * 1000 + 100);
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && (io.unobserve(e.target), reveal(e.target))),
+      { rootMargin: '-80px' }
+    );
+    inview.forEach((el) => io.observe(el));
+  } else inview.forEach(reveal);
 
   // ---------- мобильное меню ----------
   const burger = $('nav button[aria-label="Toggle menu"]');

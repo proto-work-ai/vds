@@ -1,7 +1,24 @@
 /* Перевод снимка отрисованной страницы в статичный HTML на Tailwind 4.
 
    node tools/mockups/to-tailwind.mjs --snap <dir> --css <site.css> --out <file.html>
-        [--root <путь к папке оригинала от out>] [--hover <hover.json>] [--title <текст>]
+        [--root <путь или http-адрес папки оригинала>] [--hover <hover.json>]
+        [--timeline <timeline.json>] [--scroll <scroll.json>] [--motion <motion.json>]
+        [--shared <адрес page.js>] [--script <доп. скрипт>] [--title <текст>]
+
+   Флаги:
+   --snap      папка снимка snapshot.mjs (initial.html, final.html);
+   --css       CSS сайта; --out — итоговый HTML;
+   --root      префикс для адресов /assets/… (относительный путь или http://…);
+   --hover     hover.json из hover.mjs: hover:/group-hover: и переходы с замеренной
+               длительностью (если у узла нет своего transition);
+   --timeline  timeline.json из timeline.mjs: слайдеры, вступительные оверлеи;
+   --scroll    scroll.json из scrollmap.mjs: параллакс;
+   --motion    motion.json из motion.mjs: анимации загрузки → @keyframes + [animation:…],
+               появления → [transition:opacity_Xs_ease-out_Ds,transform_Xs_ease-out_Ds]
+               с замеренными длительностью и задержкой (без него — 0.6s без задержки);
+   --shared    адрес общего скрипта (по умолчанию ../shared/page.js);
+   --script    дополнительный скрипт страницы;
+   --title     заголовок страницы.
 
    Вход — снимок tools/mockups/snapshot.mjs (initial.html, final.html) и CSS
    сайта. Что делает:
@@ -155,6 +172,37 @@ const finalDoc = parse(readFileSync(path.join(SNAP, 'final.html'), 'utf8'));
 const initialDoc = parse(readFileSync(path.join(SNAP, 'initial.html'), 'utf8'));
 const siteCss = readFileSync(CSS, 'utf8');
 const hover = HOVER && existsSync(HOVER) ? JSON.parse(readFileSync(HOVER, 'utf8')) : {};
+const MOTION = arg('motion');
+const motion = MOTION && existsSync(MOTION) ? JSON.parse(readFileSync(MOTION, 'utf8')) : { load: {}, reveal: {} };
+const secs = (ms) => `${+(ms / 1000).toFixed(3)}s`;
+
+// Анимации загрузки (motion.load) → @keyframes и класс [animation:…].
+const keyframesCss = [];
+const loadAnimClass = new Map(); // data-i → класс
+for (const [id, m] of Object.entries(motion.load ?? {})) {
+  const name = `mo-load-${id}`;
+  const frames = m.keyframes
+    .map(([pct, st]) => `  ${pct}% { ${Object.entries(st).map(([p, v]) => `${p}: ${v};`).join(' ')} }`)
+    .join('\n');
+  keyframesCss.push(`@keyframes ${name} {\n${frames}\n}`);
+  const parts = [name, secs(m.dur), m.easing, secs(m.delay), ...(m.kind === 'loop' ? ['infinite'] : []), 'both'];
+  loadAnimClass.set(id, `[animation:${parts.join('_')}]`);
+}
+
+// Переходы для hover: узел → { props, dur } по замерам hover.mjs.
+const hoverTransition = new Map();
+for (const [hid, h] of Object.entries(hover)) {
+  const changes = { ...(h.self ? { [hid]: h.self } : {}), ...(h.children ?? {}) };
+  for (const [nid, style] of Object.entries(changes)) {
+    const t = h.timing?.[nid];
+    if (!t || t.dur < 50) continue;
+    const cur = hoverTransition.get(nid) ?? { props: new Set(), dur: 0, delay: 0 };
+    splitDecls(style).forEach(([p]) => cur.props.add(p));
+    cur.dur = Math.max(cur.dur, Math.round(t.dur / 50) * 50 || t.dur);
+    hoverTransition.set(nid, cur);
+  }
+}
+const pendingClasses = new Map(); // data-i → классы, дописываемые узлу при его обработке
 
 const initialById = new Map();
 for (const n of walk(initialDoc)) {
@@ -271,6 +319,9 @@ const scrollMapPath = arg('scroll');
 const scrollMap = scrollMapPath && existsSync(scrollMapPath) ? JSON.parse(readFileSync(scrollMapPath, 'utf8')) : {};
 const parallaxById = new Map();
 for (const [id, series] of Object.entries(scrollMap)) {
+  // motion.mjs видел у узла одно появление на одном шаге прокрутки — это не параллакс
+  // (карта прокрутки могла поймать его посреди перехода).
+  if (motion.reveal?.[id]) continue;
   const opacities = new Set(series.map((p) => p.opacity));
   if (opacities.size > 1) continue; // скачок прозрачности — это появление, а не параллакс
   const points = series.map((p) => [p.y, ...parseTransform(p.transform)]);
@@ -288,6 +339,9 @@ let timeline;
 const assets = { images: [], icons: [] };
 let revealCount = 0;
 let hoverCount = 0;
+let loadCount = 0;
+let timedRevealCount = 0;
+let hoverTransitionCount = 0;
 
 // Снимок живого сайта оставляет адреса вида https://<имя>.figma.site/assets/… — файл лежит в папке оригинала.
 const absUrl = (u) => {
@@ -382,6 +436,26 @@ for (const n of [...walk(body)]) {
   // берём их начальное состояние, не делаем «появлением» и оставляем номер для JS.
   timeline ??= arg('timeline') && existsSync(arg('timeline')) ? JSON.parse(readFileSync(arg('timeline'), 'utf8')) : {};
   const timed = id && (timeline.changed?.[id] || timeline.removed?.some((r) => r.id === id));
+  const loadAnim = id && loadAnimClass.get(id);
+  const pinnedNode = () =>
+    /position:\s*(fixed|sticky)/.test(orig.style + (init?.style ?? '')) ||
+    /(^|\s)(fixed|sticky)(\s|$)/.test(orig.cls + ' ' + (init?.cls ?? '')) ||
+    hasPinnedAncestor(n);
+  if (loadAnim) {
+    // Анимация при загрузке: конечное состояние + CSS-анимация с fill-mode both.
+    finalClasses.push(loadAnim);
+    classes = finalClasses;
+    if (init && (init.cls !== orig.cls || init.style !== orig.style) && pinnedNode()) {
+      // Закреплённая шапка: вид сверху/после прокрутки, анимация в обоих.
+      const initClasses = [...expand(init.cls.split(/\s+/).filter(Boolean)), ...styleToClasses(init.style), loadAnim];
+      classes = initClasses;
+      setAttr(n, 'data-scrolled', finalClasses.join(' '));
+      setAttr(n, 'data-top', initClasses.join(' '));
+      finalClasses.forEach((c) => revealClasses.add(c));
+      initClasses.forEach((c) => revealClasses.add(c));
+    }
+    loadCount++;
+  } else
   if (id && parallaxById.has(id)) {
     if (init) classes = [...expand(init.cls.split(/\s+/).filter(Boolean)), ...styleToClasses(init.style)].filter((c) => !/^\[transform:/.test(c));
     setAttr(n, 'data-parallax', JSON.stringify(parallaxById.get(id)));
@@ -398,16 +472,21 @@ for (const n of [...walk(body)]) {
     // запускает анимацию из CSS сайта и своего перехода не требует.
     const inlineMotion = init.cls === orig.cls && /(opacity|transform|translate)/.test(init.style + orig.style);
     if (!hasTransition && inlineMotion) {
-      initClasses.push('[transition:opacity_0.6s_ease-out,transform_0.6s_ease-out]');
-      finalClasses.push('[transition:opacity_0.6s_ease-out,transform_0.6s_ease-out]');
-      setAttr(n, 'data-reveal-transition', '');
+      // Длительность и задержка — по замеру motion.mjs; кривая tween framer-motion
+      // по умолчанию — easeOut (0,0,.58,1) = CSS ease-out.
+      const m = motion.reveal?.[id];
+      const tr = m
+        ? `[transition:opacity_${secs(m.dur)}_ease-out_${secs(m.delay)},transform_${secs(m.dur)}_ease-out_${secs(m.delay)}]`
+        : '[transition:opacity_0.6s_ease-out,transform_0.6s_ease-out]';
+      initClasses.push(tr);
+      finalClasses.push(tr);
+      // Значение — класс и время, после которого он снимается (см. скрипт в конце страницы).
+      setAttr(n, 'data-reveal-transition', m ? `${tr} ${m.dur + m.delay + 100}` : '');
+      if (m) timedRevealCount++;
     }
     classes = initClasses;
     // Фиксированная/липкая шапка меняется от прокрутки, а не от появления в экране.
-    const pinned =
-      /position:\s*(fixed|sticky)/.test(orig.style + init.style) ||
-      /(^|\s)(fixed|sticky)(\s|$)/.test(orig.cls + ' ' + init.cls) ||
-      hasPinnedAncestor(n);
+    const pinned = pinnedNode();
     setAttr(n, pinned ? 'data-scrolled' : 'data-reveal', finalClasses.join(' '));
     setAttr(n, pinned ? 'data-top' : 'data-initial', initClasses.join(' '));
     finalClasses.forEach((c) => revealClasses.add(c));
@@ -416,17 +495,33 @@ for (const n of [...walk(body)]) {
   }
 
   // Hover из JS-обработчиков.
+  // Наведение на элемент меняет потомков → group-hover от него (group/hN на нём).
   const h = id && hover[id];
   if (h) {
-    const group = `group/h${id}`;
-    classes.push(group, ...styleToClasses(h.self ?? '', 'hover:'));
+    const hasChildren = Object.keys(h.children ?? {}).length > 0;
+    classes.push(...(hasChildren ? [`group/h${id}`] : []), ...styleToClasses(h.self ?? '', 'hover:'));
     for (const [childId, style] of Object.entries(h.children ?? {})) {
-      const child = find(body, (x) => x.attrs && attr(x, 'data-i') === childId);
-      if (!child) continue;
-      const cur = attr(child, 'class') ?? '';
-      setAttr(child, 'class', `${cur} ${styleToClasses(style, `group-hover/h${id}:`).join(' ')}`.trim());
+      // Дописываются, когда обход дойдёт до потомка, — поверх его итоговых классов.
+      pendingClasses.set(childId, [...(pendingClasses.get(childId) ?? []), ...styleToClasses(style, `group-hover/h${id}:`)]);
     }
     hoverCount++;
+  }
+  if (id && pendingClasses.has(id)) classes.push(...pendingClasses.get(id));
+  // Переход для hover из JS: замеренная длительность, если своего transition нет.
+  const ht = id && hoverTransition.get(id);
+  // Переход появления снимается после появления и в счёт не идёт.
+  const revealTr = (attr(n, 'data-reveal-transition') ?? '').split(' ')[0] || '[transition:opacity_0.6s_ease-out,transform_0.6s_ease-out]';
+  if (ht && !loadAnim && !classes.some((c) => /^\[transition[:-]/.test(c) && c !== revealTr)) {
+    const tr = `[transition:${[...ht.props].map((p) => `${p}_${secs(ht.dur)}_ease-out`).join(',')}]`;
+    classes.push(tr);
+    // Появление пишет data-reveal/data-initial раньше — переход нужен и в конечном состоянии.
+    if (attr(n, 'data-reveal')) setAttr(n, 'data-reveal', `${attr(n, 'data-reveal')} ${tr}`);
+    if (attr(n, 'data-scrolled')) {
+      setAttr(n, 'data-scrolled', `${attr(n, 'data-scrolled')} ${tr}`);
+      setAttr(n, 'data-top', `${attr(n, 'data-top')} ${tr}`);
+    }
+    revealClasses.add(tr);
+    hoverTransitionCount++;
   }
 
   setAttr(n, 'class', classes.length ? classes.join(' ') : null);
@@ -491,6 +586,7 @@ const page = `<!doctype html>
 ${baseCss.replace(IMPORT_RE, '')}
 }
 ${topLevelCss}
+${keyframesCss.join('\n')}
 @layer components {
 ${layeredCss}
 ${leftoverCss.join('\n')}
@@ -499,6 +595,22 @@ ${leftoverCss.join('\n')}
   </head>
   <body class="${bodyClass}">
 ${body.childNodes.map((c) => serialize({ nodeName: '#document-fragment', childNodes: [c] })).join('')}
+    ${
+      timedRevealCount
+        ? `<script>
+      // Переход появления с замеренными длительностью/задержкой (data-reveal-transition="класс мс"):
+      // общий page.js снимает только переход по умолчанию — свой снимаем здесь.
+      new MutationObserver((list) => {
+        for (const m of list) {
+          const el = m.target;
+          const [cls, ms] = (el.getAttribute('data-reveal-transition') || '').split(' ');
+          if (!ms || el.hasAttribute('data-reveal')) continue;
+          setTimeout(() => el.classList.remove(cls), Number(ms));
+        }
+      }).observe(document.body, { subtree: true, attributeFilter: ['data-reveal'] });
+    </script>`
+        : ''
+    }
     <script src="${arg('shared', '../shared/page.js')}"></script>
     ${arg('script') ? `<script src="${arg('script')}"></script>` : ''}
   </body>
@@ -508,5 +620,5 @@ ${body.childNodes.map((c) => serialize({ nodeName: '#document-fragment', childNo
 writeFileSync(OUT, page);
 writeFileSync(`${OUT}.assets.json`, JSON.stringify(assets, null, 2));
 console.log(
-  `${path.basename(path.dirname(OUT))}: параллакс ${parallaxCount}, элементов с появлением ${revealCount}, с hover ${hoverCount}, картинок ${assets.images.length}, иконок ${assets.icons.length}, классов из <style> ${classRules.size}, остаток CSS ${leftoverCss.length} правил`
+  `${path.basename(path.dirname(OUT))}: параллакс ${parallaxCount}, элементов с появлением ${revealCount} (по замеру ${timedRevealCount}), анимаций загрузки ${loadCount}, с hover ${hoverCount} (переходов ${hoverTransitionCount}), картинок ${assets.images.length}, иконок ${assets.icons.length}, классов из <style> ${classRules.size}, остаток CSS ${leftoverCss.length} правил`
 );

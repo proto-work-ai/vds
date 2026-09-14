@@ -27,6 +27,24 @@
   const COUNTERS = [15, 5000, 12000];
   // Умолчание framer-motion для opacity/height без явного transition.
   const FM_EASE = 'cubic-bezier(0.25, 0.1, 0.35, 1)';
+  // Кривая tween framer-motion, когда transition задан без ease: easeOut.
+  const FM_EASE_OUT = 'cubic-bezier(0, 0, 0.58, 1)';
+  // Умолчание framer-motion для x/y без transition: пружина stiffness 500, damping 25, restSpeed 10.
+  // Считаем её кадрами (шаг 10 мс) — WAAPI пружин не умеет.
+  const springFrames = (from, to) => {
+    const k = 500, c = 25, d0 = to - from;
+    const w0 = Math.sqrt(k), z = c / (2 * w0), wd = w0 * Math.sqrt(1 - z * z);
+    const x = (t) => to - Math.exp(-z * w0 * t) * (((z * w0 * d0) / wd) * Math.sin(wd * t) + d0 * Math.cos(wd * t));
+    const frames = [];
+    let t = 0;
+    for (; t < 2; t += 0.01) {
+      const v = (x(t + 0.001) - x(t)) / 0.001;
+      frames.push({ transform: `translateY(${x(t).toFixed(3)}px)` });
+      if (t > 0 && Math.abs(v) <= 10 && Math.abs(to - x(t)) <= 0.5) break;
+    }
+    frames.push({ transform: to ? `translateY(${to}px)` : 'none' });
+    return { frames, duration: Math.round(t * 1000) + 10 };
+  };
 
   const ICON = (paths, cls) =>
     `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${cls}">${paths}</svg>`;
@@ -98,9 +116,10 @@
     const intro = fromHtml(INTRO_HTML);
     root.prepend(intro);
     // Логотип: initial {opacity 0, y 16} → animate, transition 0.6 с, задержка 0.1.
-    $('[data-logo]', intro).animate(
+    const logo = $('[data-logo]', intro);
+    logo.animate(
       [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }],
-      { duration: 600, delay: 100, easing: 'ease-in-out', fill: 'backwards' }
+      { duration: 600, delay: 100, easing: FM_EASE_OUT, fill: 'backwards' }
     );
     // Через 700 мс t = true: шторки уезжают, 1.3 с, ease [0.76, 0, 0.24, 1], задержка 0.15.
     for (const panel of $$('[data-panel]', intro)) {
@@ -111,15 +130,20 @@
         fill: 'forwards',
       });
     }
-    // Через 2300 мс n = true: заставка исчезает (exit opacity 0 за 0.5 с) и удаляется.
+    // Через 2300 мс n = true: заставка исчезает (exit opacity 0 за 0.5 с, easeOut) и удаляется.
+    // exit логотипа в оригинале не виден (замер: opacity остаётся 1) — гаснет весь оверлей, но
+    // AnimatePresence ждёт и exit логотипа (0.6 с + задержка 0.1): узел уходит через 0.7 с.
     setTimeout(() => {
-      intro.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, easing: 'ease-in-out', fill: 'forwards' }).onfinish = () => intro.remove();
+      intro.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, easing: FM_EASE_OUT, fill: 'forwards' });
+      setTimeout(() => intro.remove(), 700);
     }, 2300);
   }
 
   // ---------- текст первого экрана ----------
   const heroText = $('section#home h1')?.parentElement;
   // Пока n = false, блок невидим и сдвинут на 44px; появляется в момент ухода заставки.
+  // В разметке у блока style="opacity:0" — чтобы текст не мелькнул до запуска скрипта.
+  if (heroText) heroText.style.opacity = '';
   heroText?.animate([{ opacity: 0, transform: 'translateY(44px)' }, { opacity: 1, transform: 'none' }], {
     duration: 1100,
     delay: 2300 + 200,
@@ -144,16 +168,20 @@
       const first = backShown === null;
       backShown = c;
       if (first && !c) return;
-      // AnimatePresence: появление и уход — opacity и сдвиг на 8px.
-      const frames = [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'none' }];
+      // AnimatePresence: появление и уход — opacity (tween 0.3 с) и сдвиг на 8px (пружина).
       backTop.getAnimations().forEach((a) => a.cancel());
-      if (c) {
-        backTop.hidden = false;
-        backTop.animate(frames, { duration: 300, easing: FM_EASE });
-      } else {
-        backTop.animate(frames.reverse(), { duration: 300, easing: FM_EASE, fill: 'forwards' }).onfinish = () => {
-          if (!backShown) backTop.hidden = true;
-        };
+      const fade = [{ opacity: c ? 0 : 1 }, { opacity: c ? 1 : 0 }];
+      const spring = springFrames(c ? 8 : 0, c ? 0 : 8);
+      if (c) backTop.hidden = false;
+      const a = backTop.animate(fade, { duration: 300, easing: FM_EASE, fill: c ? 'none' : 'forwards' });
+      const b = backTop.animate(spring.frames, { duration: spring.duration, fill: c ? 'none' : 'forwards' });
+      if (!c) {
+        Promise.all([a.finished, b.finished]).then(() => {
+          if (!backShown) {
+            backTop.hidden = true;
+            backTop.getAnimations().forEach((x) => x.cancel());
+          }
+        }, () => {});
       }
     }
   };

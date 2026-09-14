@@ -1,4 +1,5 @@
-/* Сервер макетов: npm run mockups — http://localhost:4320/ раздаёт папку mockups/. */
+/* Сервер макетов: npm run mockups — http://localhost:4320/ раздаёт папку mockups/.
+   Прототип сайта: npm run mockups:site — собрать (site-build.mjs) и открыть http://localhost:4320/site/. */
 import { createServer } from 'node:http';
 import { createReadStream, statSync } from 'node:fs';
 import path from 'node:path';

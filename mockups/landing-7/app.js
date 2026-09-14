@@ -10,9 +10,11 @@
   // Данные и классы — в начале: const не поднимается, обработчики ниже их используют.
   const PAGE_COUNT_FALLBACK = 10;
   const PDF_FILE = 'SAN-Travels-Kerala-Luxury-Brochure.pdf';
-  // Те же версии, что вшиты в сборку оригинала (jsPDF 4.2.1; html2canvas 1.x без oklch).
+  // jsPDF — та же версия, что в сборке оригинала (4.2.1). html2canvas 1.4.1 из оригинала падает на
+  // цветах oklab/oklch, которые генерирует браузерный Tailwind 4 (text-white/30 и т.п.), — PDF молча
+  // не создавался. html2canvas-pro — тот же API (window.html2canvas) с поддержкой этих цветов.
   const JSPDF_URL = 'https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js';
-  const HTML2CANVAS_URL = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+  const HTML2CANVAS_URL = 'https://cdn.jsdelivr.net/npm/html2canvas-pro@1.5.11/dist/html2canvas-pro.min.js';
 
   const TAB_ON = ['[background:rgba(201,_168,_76,_0.15)]', '[border:1px_solid_rgba(201,_168,_76,_0.5)]', '[color:rgb(201,_168,_76)]'];
   const TAB_OFF = ['[background:transparent]', '[border:1px_solid_transparent]', '[color:rgba(255,_255,_255,_0.35)]'];
@@ -169,11 +171,17 @@
 
   let busy = false;
   let overlay = null;
+  // Спиннер один на всю генерацию: в оригинале React сохраняет тот же <span>, и вращение
+  // не начинается заново на каждом проценте.
+  let spinner = null;
   const setProgress = (pct) => {
     if (download && busy) {
-      const spinner = document.createElement('span');
-      spinner.className = SPINNER;
-      download.replaceChildren(spinner, `${pct}%`);
+      if (!spinner) {
+        spinner = document.createElement('span');
+        spinner.className = SPINNER;
+        download.replaceChildren(spinner, '');
+      }
+      spinner.nextSibling.textContent = `${pct}%`;
     }
     if (!overlay) return;
     overlay.querySelector('[data-percent]').textContent = `${pct}%`;
@@ -198,6 +206,7 @@
       overlay?.remove();
       overlay = null;
       download.replaceChildren('⬇ Download PDF');
+      spinner = null;
     }
   };
 

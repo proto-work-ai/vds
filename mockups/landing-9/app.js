@@ -187,6 +187,17 @@
   };
   bindBooking();
 
+  // ---------- шапка: порог 64px ----------
+  // Общий shared/page.js переключает вид после 60px, оригинал 9 — после 64px.
+  // Этот обработчик подписан позже и в промежутке 61–64px возвращает вид «наверху».
+  const scrolledEls = $$('[data-scrolled]');
+  const keepTop = () => {
+    if (window.scrollY > 60 && window.scrollY <= 64) for (const el of scrolledEls) el.className = el.dataset.top;
+    else if (window.scrollY > 64) for (const el of scrolledEls) if (el.className !== el.dataset.scrolled) el.className = el.dataset.scrolled;
+  };
+  keepTop();
+  window.addEventListener('scroll', keepTop, { passive: true });
+
   // ---------- мобильное меню ----------
   const nav = $('nav');
   const toggle = $('button[aria-label="Toggle menu"]');

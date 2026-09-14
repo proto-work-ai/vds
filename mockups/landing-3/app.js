@@ -54,6 +54,29 @@
   preload.className = [...BURGER_OPEN, MENU_CLASS, MENU_LINK_CLASS].join(' ');
   document.body.appendChild(preload);
 
+  // ---------- вступление (DoorIntro.tsx, App.tsx) ----------
+  // 700 мс — двери открываются, «Est. 2008» убирается, вылетают искры;
+  // 4200 мс — оверлей убирается (data-remove-after) и страница проявляется за 0.8 с.
+  const doors = $$('[data-door]');
+  const DOOR_OPEN = doors.map((d) => `[transform:rotateY(${d.dataset.door})]`);
+  const doorWarm = document.createElement('div');
+  doorWarm.hidden = true;
+  doorWarm.className = [...DOOR_OPEN, '[transform:rotateY(0deg)]', '[opacity:1]'].join(' ');
+  document.body.appendChild(doorWarm);
+  setTimeout(() => {
+    doors.forEach((d, k) => swap(d, ['[transform:rotateY(0deg)]'], [DOOR_OPEN[k]]));
+    $('[data-intro-est]')?.remove();
+    $$('[data-intro-particle]').forEach((p) => p.removeAttribute('hidden'));
+  }, 700);
+  const introContent = $('[data-intro-content]');
+  setTimeout(() => introContent && swap(introContent, ['[opacity:0]'], ['[opacity:1]']), 4200);
+
+  // ---------- поля формы: рамка при фокусе (CTASection.tsx) ----------
+  for (const input of $$('#contact input')) {
+    input.addEventListener('focus', () => (input.style.borderColor = 'rgba(212,175,55,0.7)'));
+    input.addEventListener('blur', () => (input.style.borderColor = 'rgba(212,175,55,0.25)'));
+  }
+
   // ---------- мобильное меню ----------
   const nav = $('nav');
   const burger = nav && $('button[aria-label="Toggle menu"]', nav);
