@@ -1,0 +1,35 @@
+{
+  "images": [
+    {
+      "src": "https://images.unsplash.com/photo-1704040686510-b747ff423ebb?w=600&h=700&fit=crop&auto=format",
+      "alt": "Draping Living Room",
+      "text": "Draping Living Room"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1613685703237-6628de38ddb7?w=600&h=700&fit=crop&auto=format",
+      "alt": "Minimalist Roller Shades",
+      "text": "Minimalist Roller Shades"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1643949914872-317d6047f107?w=600&h=700&fit=crop&auto=format",
+      "alt": "Layered Drapery",
+      "text": "Layered Drapery"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1704040686428-7534b262d0d8?w=600&h=700&fit=crop&auto=format",
+      "alt": "Sunlit Lounge",
+      "text": "Sunlit Lounge"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1667584523543-d1d9cc828a15?w=600&h=700&fit=crop&auto=format",
+      "alt": "Classic Drapery",
+      "text": "Classic Drapery"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1712940806345-ea8ce290956e?w=600&h=700&fit=crop&auto=format",
+      "alt": "Modern Bedroom Blinds",
+      "text": "Modern Bedroom Blinds"
+    }
+  ],
+  "icons": []
+}

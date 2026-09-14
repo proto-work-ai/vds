@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Карина — салон штор (по макету)</title>
+  <!-- Макет: mockups/template-01.jpg (1920×4879) и template-02.jpg -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif&family=Montserrat:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-gold: #deb072;
+      --color-gold-soft: #f3e3cc;
+      --color-ink: #111111;
+      --color-mute: #6f6f6f;
+      --font-serif: 'PT Serif', 'Palatino Linotype', Georgia, serif;
+      --font-sans: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+    @layer components {
+      /* Кнопка с полупрозрачным «ореолом», как в макете */
+      .btn {
+        @apply inline-flex items-center justify-center rounded-full bg-gold px-10 text-[13px] font-normal uppercase whitespace-nowrap text-white transition duration-200 cursor-pointer;
+        height: 50px;
+        box-shadow: 0 0 0 5px var(--color-gold-soft);
+      }
+      .btn:hover { @apply -translate-y-0.5; background: #cf9c58; box-shadow: 0 0 0 7px var(--color-gold-soft), 0 10px 24px rgb(222 176 114 / .35); }
+      .arrow {
+        @apply grid place-items-center rounded-full bg-white text-ink transition cursor-pointer;
+        box-shadow: 0 6px 22px rgb(0 0 0 / .09);
+      }
+      .arrow:hover { @apply bg-gold text-white; }
+      .line { @apply block h-px w-20 bg-gold; }
+      /* Плавное появление при прокрутке */
+      [data-reveal] { opacity: 0; transform: translateY(30px); transition: opacity .7s ease-out, transform .7s ease-out; }
+      [data-reveal].is-shown { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body class="overflow-x-hidden bg-white font-sans text-ink antialiased">
+
+<!-- ============ Шапка + первый экран ============ -->
+<section class="relative overflow-hidden">
+  <img src="images/bg-hero-l.jpg" alt="" class="pointer-events-none absolute left-0 top-0 hidden h-[720px] w-[450px] object-cover object-left lg:block" />
+  <img src="images/bg-hero-r.jpg" alt="" class="pointer-events-none absolute right-0 top-0 hidden h-[720px] w-[430px] object-cover lg:block" />
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-white"></div>
+
+  <div class="relative mx-auto max-w-[1000px] px-4 lg:px-0">
+    <header class="grid grid-cols-2 items-start gap-y-4 pt-8 sm:grid-cols-3" data-reveal>
+      <div class="order-2 flex flex-col items-center text-center text-[15px] leading-[22px] sm:order-1">
+        <img src="images/ico-pin-c.png" alt="" class="mb-3 h-[40px] mt-[6px]" />
+        <p>пр. Кабанбай батыра<br />(р-н Цирка) 16 ВП7</p>
+      </div>
+      <a href="#" class="order-1 col-span-2 mx-auto -mt-2 sm:order-2 sm:col-span-1" aria-label="Карина — The Curtain Boutique">
+        <svg role="img" aria-label="КАРИНА — The Curtain Boutique" viewBox="0 0 250 120" class="w-[250px] h-auto" xmlns="http://www.w3.org/2000/svg">
+            <g fill="#deb072">
+              <path d="M125 6 c3 0 5 2.4 5 5.2 c0 2 -1.2 3.6 -2.8 4.4 l7.6 15.8 l11 -9.6 c-1 -1 -1.6 -2.3 -1.6 -3.8 c0 -2.9 2.3 -5.2 5.2 -5.2 s5.2 2.3 5.2 5.2 c0 2.6 -1.9 4.8 -4.4 5.1 l-4.8 22.9 c-6.6 -2.6 -13.3 -3.8 -20.4 -3.8 s-13.8 1.2 -20.4 3.8 l-4.8 -22.9 c-2.5 -.3 -4.4 -2.5 -4.4 -5.1 c0 -2.9 2.3 -5.2 5.2 -5.2 s5.2 2.3 5.2 5.2 c0 1.5 -.6 2.8 -1.6 3.8 l11 9.6 l7.6 -15.8 c-1.6 -.8 -2.8 -2.4 -2.8 -4.4 c0 -2.8 2.2 -5.2 5 -5.2 z"/>
+              <path d="M103.5 44.5 c6.8 -2.8 14 -4.2 21.5 -4.2 s14.7 1.4 21.5 4.2 l-1 5.2 c-6.6 -2.5 -13.4 -3.7 -20.5 -3.7 s-13.9 1.2 -20.5 3.7 z"/>
+              <circle cx="125" cy="34" r="4.2" fill="#fff"/>
+              <circle cx="4" cy="84" r="2.6"/><circle cx="246" cy="84" r="2.6"/>
+            </g>
+            <text x="125" y="96" text-anchor="middle" fill="#deb072" font-family="PT Serif, Georgia, serif" font-size="42" letter-spacing="3">КАРИНА</text>
+            <text x="125" y="115" text-anchor="middle" fill="#deb072" font-family="PT Serif, Georgia, serif" font-size="10.5" letter-spacing=".6">THE CURTAIN BOUTIQUE</text>
+          </svg>
+      </a>
+      <div class="order-3 flex flex-col items-center text-center text-[15px] leading-[22px]">
+        <img src="images/ico-phone-c.png" alt="" class="mb-3 h-[40px] mt-[6px]" />
+        <p><a href="tel:+77172784876" class="hover:text-gold">+7 (7172) 78-48-76</a><br /><a href="tel:+77013593907" class="hover:text-gold">+7 (701) 359-3907</a></p>
+      </div>
+    </header>
+
+    <div class="flex flex-col-reverse items-center gap-10 pb-16 pt-10 lg:flex-row lg:justify-between lg:gap-0 lg:pb-[40px] lg:pt-[26px]">
+      <div class="w-full lg:pt-[40px]" data-reveal>
+        <h1 class="font-serif text-[40px] font-normal leading-[1.08] sm:text-[58px]">
+          <span class="text-gold">Красивые шторы</span><br />на заказ в Астане
+        </h1>
+        <p class="mt-8 text-[17px] leading-[22px] text-mute">Пошив качественных штор для квартир,<br class="hidden sm:inline" /> котеджей и офисов под ключ</p>
+        <button type="button" data-scroll-form class="btn mt-14 w-full sm:w-[308px]">Рассчитать стоимость штор</button>
+      </div>
+      <div class="relative shrink-0 lg:mr-[-10px]" data-reveal>
+        <div class="grid size-[300px] place-items-center rounded-full border-2 border-gold-soft sm:size-[496px]">
+          <img src="images/hero.jpg" alt="Спальня с изумрудными шторами" class="size-[276px] rounded-full object-cover sm:size-[468px]" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Преимущества ============ -->
+<section class="mx-auto max-w-[1000px] px-4 lg:px-0 lg:pt-[20px]">
+  <ul class="grid grid-cols-2 gap-y-10 text-center text-[16px] leading-[21px] text-mute lg:grid-cols-4">
+    <li class="flex flex-col items-center gap-7 lg:-ml-[50px]" data-reveal><img src="images/adv-1.png" alt="" class="size-[140px]  transition hover:scale-105" />Широкий ассортимент тканей<br />в наличии и на заказ</li>
+    <li class="flex flex-col items-center gap-7 lg:-ml-[30px]" data-reveal><img src="images/adv-2.png" alt="" class="size-[140px]  transition hover:scale-105" />Контроль качества<br />пошива изделий</li>
+    <li class="flex flex-col items-center gap-7 lg:-ml-[25px]" data-reveal><img src="images/adv-3.png" alt="" class="size-[140px]  transition hover:scale-105" />Изготовление<br />в короткие сроки</li>
+    <li class="flex flex-col items-center gap-7 lg:ml-[25px]" data-reveal><img src="images/adv-4.png" alt="" class="size-[140px]  transition hover:scale-105" />Подберем комплект штор<br />под любой бюджет</li>
+  </ul>
+</section>
+
+<!-- ============ Наши услуги ============ -->
+<section class="relative mt-[110px]">
+  <div class="mx-auto flex max-w-[1000px] flex-col gap-8 px-4 lg:flex-row lg:gap-0 lg:px-0">
+    <div class="shrink-0 lg:w-[318px] lg:pt-[30px]" data-reveal>
+      <h2 class="flex items-end gap-6 font-serif text-[44px] font-normal leading-[1.05] sm:text-[52px]">Наши<br />услуги <span class="line mb-4"></span></h2>
+      <div class="mt-9 flex gap-3">
+        <button type="button" class="arrow size-[72px]" data-prev="services" aria-label="Назад"><svg width="18" height="32" viewBox="0 0 18 32" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 1 2 16l14 15"/></svg></button>
+        <button type="button" class="arrow size-[72px]" data-next="services" aria-label="Вперёд"><svg width="18" height="32" viewBox="0 0 18 32" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 1 14 15L2 31"/></svg></button>
+      </div>
+    </div>
+    <!-- Лента выходит за правый край контейнера, как в макете -->
+    <div class="relative min-w-0 flex-1 lg:mr-[calc(500px-50vw)]" data-reveal>
+      <div id="services" class="flex snap-x snap-mandatory gap-0 overflow-x-auto scroll-smooth pb-4 [scrollbar-width:none]">
+        <!-- карточки размножает app.js, чтобы лента листалась по кругу -->
+        <a href="#form" data-card class="group flex w-[277px] shrink-0 snap-start flex-col items-center text-center">
+          <span class="relative block size-[220px] overflow-hidden rounded-full"><img src="images/srv-1.jpg" alt="" class="size-full object-cover transition duration-500 group-hover:scale-110" /></span>
+          <span class="mt-8 font-serif text-[27px] font-normal leading-none">Тюль</span>
+          <span class="mt-2 font-serif text-[21px] font-normal text-mute">от 1500 тг./п.м.</span>
+          <span class="mt-5 text-[13px] uppercase text-gold opacity-0 transition group-hover:opacity-100">Заказать</span>
+        </a>
+        <a href="#form" data-card class="group flex w-[277px] shrink-0 snap-start flex-col items-center text-center">
+          <span class="relative block size-[220px] overflow-hidden rounded-full"><img src="images/srv-2.jpg" alt="" class="size-full object-cover transition duration-500 group-hover:scale-110" /></span>
+          <span class="mt-8 font-serif text-[27px] font-normal leading-none">Шторы</span>
+          <span class="mt-2 font-serif text-[21px] font-normal text-mute">от 2000 тг./п.м.</span>
+          <span class="mt-5 text-[13px] uppercase text-gold opacity-0 transition group-hover:opacity-100">Заказать</span>
+        </a>
+        <a href="#form" data-card class="group flex w-[277px] shrink-0 snap-start flex-col items-center text-center">
+          <span class="relative block size-[220px] overflow-hidden rounded-full"><img src="images/srv-3.jpg" alt="" class="size-full object-cover transition duration-500 group-hover:scale-110" /></span>
+          <span class="mt-8 font-serif text-[27px] font-normal leading-none">Роллшторы</span>
+          <span class="mt-2 font-serif text-[21px] font-normal text-mute">от 9000 тг./п.м.</span>
+          <span class="mt-5 text-[13px] uppercase text-gold opacity-0 transition group-hover:opacity-100">Заказать</span>
+        </a>
+        <a href="#form" data-card class="group flex w-[277px] shrink-0 snap-start flex-col items-center text-center">
+          <span class="relative block size-[220px] overflow-hidden rounded-full"><img src="images/srv-4.jpg" alt="" class="size-full object-cover transition duration-500 group-hover:scale-110" /></span>
+          <span class="mt-8 font-serif text-[27px] font-normal leading-[0.95]">Жалюзи<br />горизонтальные</span>
+          <span class="mt-2 font-serif text-[21px] font-normal text-mute">от 7000 тг./п.м.</span>
+          <span class="mt-5 text-[13px] uppercase text-gold opacity-0 transition group-hover:opacity-100">Заказать</span>
+        </a>
+      </div>
+      <!-- правый край ленты растворяется -->
+      <div class="pointer-events-none absolute inset-y-0 right-0 hidden w-[260px] bg-gradient-to-r from-transparent to-white/90 lg:block"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Наши проекты ============ -->
+<section class="relative overflow-hidden pt-[100px]">
+  <img src="images/bg-proj-l.jpg" alt="" class="pointer-events-none absolute left-0 top-[70px] hidden h-[880px] w-[440px] object-cover lg:block" />
+  <img src="images/bg-proj-r.jpg" alt="" class="pointer-events-none absolute right-0 top-[70px] hidden h-[880px] w-[430px] object-cover lg:block" />
+  <div class="relative mx-auto max-w-[1000px] px-4 text-center lg:px-0">
+    <div data-reveal>
+      <h2 class="font-serif text-[36px] font-normal leading-[1.05] sm:text-[48px]">
+        <span class="flex items-center justify-center gap-9"><span class="line hidden sm:block"></span><span class="text-gold">Изготовление штор на заказ</span><span class="line hidden sm:block"></span></span>
+        любой сложности
+      </h2>
+      <p class="mt-5 text-[15px] text-mute">наши проекты</p>
+    </div>
+    <div class="relative mt-[66px]" data-reveal>
+      <button type="button" class="arrow absolute -left-[134px] top-1/2 z-10 hidden size-20 -translate-y-1/2 lg:grid" data-prev="projects" aria-label="Назад"><svg width="18" height="32" viewBox="0 0 18 32" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 1 2 16l14 15"/></svg></button>
+      <button type="button" class="arrow absolute -right-[132px] top-1/2 z-10 hidden size-20 -translate-y-1/2 lg:grid" data-next="projects" aria-label="Вперёд"><svg width="18" height="32" viewBox="0 0 18 32" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 1 14 15L2 31"/></svg></button>
+      <!-- Каждая «страница» — сетка 4×2; на телефоне 2×4 -->
+      <div id="projects" class="flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none]">
+        <div data-page class="grid w-full shrink-0 snap-start grid-cols-2 lg:grid-cols-4">
+          <a href="images/p1.jpg" data-lightbox class="group relative block aspect-square overflow-hidden"><img src="images/p1.jpg" alt="Проект 1" class="size-full object-cover transition duration-500 group-hover:scale-105" /><span class="absolute inset-[10%] border-2 border-white opacity-0 transition group-hover:opacity-100"></span></a>
+          <a href="images/p2.jpg" data-lightbox class="group relative block aspect-square overflow-hidden"><img src="images/p2.jpg" alt="Проект 2" class="size-full object-cover transition duration-500 group-hover:scale-105" /><span class="absolute inset-[10%] border-2 border-white opacity-0 transition group-hover:opacity-100"></span></a>
+          <a href="images/p3.jpg" data-lightbox class="group relative block aspect-square overflow-hidden"><img src="images/p3.jpg" alt="Проект 3" class="size-full object-cover transition duration-500 group-hover:scale-105" /><span class="absolute inset-[10%] border-2 border-white opacity-0 transition group-hover:opacity-100"></span></a>
+          <a href="images/p4.jpg" data-lightbox class="group relative block aspect-square overflow-hidden"><img src="images/p4.jpg" alt="Проект 4" class="size-full object-cover transition duration-500 group-hover:scale-105" /><span class="absolute inset-[10%] border-2 border-white opacity-0 transition group-hover:opacity-100"></span></a>
+          <a href="images/p5.jpg" data-lightbox class="group relative block aspect-square overflow-hidden"><img src="images/p5.jpg" alt="Проект 5" class="size-full object-cover transition duration-500 group-hover:scale-105" /><span class="absolute inset-[10%] border-2 border-white opacity-0 transition group-hover:opacity-100"></span></a>
+          <a href="images/p6.jpg" data-lightbox class="group relative block aspect-square overflow-hidden"><img src="images/p6.jpg" alt="Проект 6" class="size-full object-cover transition duration-500 group-hover:scale-105" /><span class="absolute inset-[10%] border-2 border-white opacity-0 transition group-hover:opacity-100"></span></a>
+          <a href="images/p7.jpg" data-lightbox class="group relative block aspect-square overflow-hidden"><img src="images/p7.jpg" alt="Проект 7" class="size-full object-cover transition duration-500 group-hover:scale-105" /><span class="absolute inset-[10%] border-2 border-white opacity-0 transition group-hover:opacity-100"></span></a>
+          <a href="images/p8.jpg" data-lightbox class="group relative block aspect-square overflow-hidden"><img src="images/p8.jpg" alt="Проект 8" class="size-full object-cover transition duration-500 group-hover:scale-105" /><span class="absolute inset-[10%] border-2 border-white opacity-0 transition group-hover:opacity-100"></span></a>
+        </div>
+      </div>
+      <div class="mt-6 flex justify-center gap-3 lg:hidden">
+        <button type="button" class="arrow size-14" data-prev="projects" aria-label="Назад"><svg width="14" height="26" viewBox="0 0 18 32" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 1 2 16l14 15"/></svg></button>
+        <button type="button" class="arrow size-14" data-next="projects" aria-label="Вперёд"><svg width="14" height="26" viewBox="0 0 18 32" fill="none" stroke="currentColor" stroke-width="2"><path d="m2 1 14 15L2 31"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Как мы работаем ============ -->
+<section class="mx-auto mt-[48px] max-w-[1000px] px-4 lg:px-0">
+  <h2 class="text-center font-serif text-[40px] font-normal sm:text-[48px]" data-reveal>Как мы работаем</h2>
+  <ol class="mt-10 grid grid-cols-2 gap-y-10 text-center text-[16px] leading-[21px] text-mute lg:grid-cols-4">
+    <li class="relative flex flex-col items-center lg:-ml-[50px]" data-reveal>
+      <span class="grid size-[134px] place-items-center rounded-full border border-gold-soft"><span class="flex size-[110px] items-end justify-center overflow-hidden rounded-full bg-gold font-serif text-[128px] font-normal leading-[0.62] tracking-[-0.1em] indent-[-0.12em] text-white">01</span></span>
+      <span class="pointer-events-none absolute left-[calc(50%+86px)] top-[66px] hidden w-[86px] border-t-2 border-dotted border-gold lg:block"></span>
+      <p class="mt-6">Оставляете заявку<br />у нас на сайте</p>
+    </li>
+    <li class="relative flex flex-col items-center lg:-ml-[30px]" data-reveal>
+      <span class="grid size-[134px] place-items-center rounded-full border border-gold-soft"><span class="flex size-[110px] items-end justify-center overflow-hidden rounded-full bg-gold font-serif text-[128px] font-normal leading-[0.62] tracking-[-0.1em] indent-[-0.12em] text-white">02</span></span>
+      <span class="pointer-events-none absolute left-[calc(50%+83px)] top-[66px] hidden w-[86px] border-t-2 border-dotted border-gold lg:block"></span>
+      <p class="mt-6">Консультация по телефону<br />или встреча в нашем салоне</p>
+    </li>
+    <li class="relative flex flex-col items-center lg:-ml-[25px]" data-reveal>
+      <span class="grid size-[134px] place-items-center rounded-full border border-gold-soft"><span class="flex size-[110px] items-end justify-center overflow-hidden rounded-full bg-gold font-serif text-[128px] font-normal leading-[0.62] tracking-[-0.1em] indent-[-0.12em] text-white">03</span></span>
+      <span class="pointer-events-none absolute left-[calc(50%+86px)] top-[66px] hidden w-[86px] border-t-2 border-dotted border-gold lg:block"></span>
+      <p class="mt-6">Делаем замер,<br />составляем смету</p>
+    </li>
+    <li class="relative flex flex-col items-center lg:ml-[25px]" data-reveal>
+      <span class="grid size-[134px] place-items-center rounded-full border border-gold-soft"><span class="flex size-[110px] items-end justify-center overflow-hidden rounded-full bg-gold font-serif text-[128px] font-normal leading-[0.62] tracking-[-0.1em] indent-[-0.12em] text-white">04</span></span>
+      <p class="mt-6">Изготовление штор,<br />монтаж и навес</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ Оставьте заявку ============ -->
+<section id="form" class="mx-auto mt-[65px] max-w-[1000px] scroll-mt-10 px-4 lg:px-0">
+  <div class="flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:gap-0">
+    <!-- Фото девушки в круге: голова выходит за круг, как в макете -->
+    <div class="relative shrink-0 lg:-ml-[57px] lg:mt-[36px]" data-reveal>
+      <div class="relative size-[330px] sm:size-[512px]">
+        <span class="absolute inset-0 rounded-full border border-gold-soft"></span>
+        <span class="absolute left-[10.5%] top-[14.5%] size-[79%] overflow-hidden rounded-full bg-[linear-gradient(90deg,#6f5f52_0%,#b8a898_14%,#e8e0d6_30%,#f4efe9_60%,#d9cfc4_80%,#8f7f70_100%)]">
+          <span class="absolute inset-[9%] rounded-full border-2 border-white/80"></span>
+        </span>
+        <!-- две копии фото: целиком внутри круга и верхняя треть (голова) поверх края круга -->
+        <span class="absolute left-[10.5%] top-[14.5%] size-[79%] overflow-hidden rounded-full">
+          <img src="images/girl.png" alt="Специалист салона" class="absolute left-[4.4%] top-[-26%] w-[91%] max-w-none" />
+        </span>
+        <img src="images/girl.png" alt="" aria-hidden="true" class="absolute left-[14%] top-[-6%] w-[72%] max-w-none [clip-path:inset(0_0_86%_0)]" />
+      </div>
+    </div>
+    <div class="w-full lg:ml-[62px] lg:max-w-[560px]">
+      <div data-reveal>
+        <h2 class="relative font-serif text-[36px] font-normal leading-[1.05] sm:text-[48px]">
+          <span class="line absolute -left-[122px] top-[26px] hidden lg:block"></span>
+          Оставьте заявку,<br />и получите <span class="text-gold">пошив<br />штор в подарок!</span>
+        </h2>
+        <p class="mt-10 max-w-[500px] text-[16px] leading-[22px] text-mute">После отправки заявки, с вами свяжется наш специалист, который проконсультирует вас по вопросам свввязанным с пошивом, материалами и диайну.</p>
+        <p class="mt-6 flex items-center gap-4 font-serif text-[22px] font-normal sm:whitespace-nowrap"><img src="images/ico-clock.png" alt="" class="size-10 " />Длительность консультации: ± 15 минут</p>
+      </div>
+      <form id="lead" class="mt-[70px] max-w-[430px]" novalidate data-reveal>
+        <label class="flex items-center gap-3 border-b border-gold pb-4">
+          <img src="images/ico-phone-s.png" alt="" class="size-[26px] " />
+          <input name="phone" type="tel" required placeholder="Введите ваш номер телефона" class="w-full bg-transparent text-[16px] text-ink outline-none placeholder:text-mute" />
+        </label>
+        <p data-error class="mt-2 hidden text-[13px] text-red-600">Введите номер телефона</p>
+        <button type="submit" class="btn mt-8 w-full sm:w-[274px]">Заказать консультацию</button>
+        <p data-thanks class="mt-6 hidden font-serif text-[26px] font-normal text-gold">Спасибо!</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Партнёры ============ -->
+<section class="mx-auto mt-[80px] max-w-[1000px] px-4 lg:px-0">
+  <h2 class="flex items-center justify-center gap-14 font-serif text-[40px] font-normal sm:text-[48px]" data-reveal><span class="line hidden sm:block"></span>Наши партнеры<span class="line hidden sm:block"></span></h2>
+  <div class="mt-[40px] grid grid-cols-2 items-center gap-y-2 lg:-mx-[5px] lg:grid-cols-[255px_265px_260px_210px]" data-reveal>
+    <img src="images/l1.png" alt="Dekorgips" class="mx-auto  grayscale transition hover:opacity-70 lg:mx-0" />
+    <img src="images/l2.png" alt="Interior Hall" class="mx-auto  transition hover:opacity-70 lg:mx-0" />
+    <img src="images/l3.png" alt="Janus Italia" class="mx-auto  transition hover:opacity-70 lg:mx-0" />
+    <img src="images/l4.png" alt="Le Porte di Barausse" class="mx-auto  transition hover:opacity-70 lg:mx-0" />
+  </div>
+  <div class="grid grid-cols-2 items-center gap-y-2 lg:-mx-[5px] lg:grid-cols-[275px_245px_260px_235px]" data-reveal>
+    <img src="images/l5.png" alt="Janus Italia" class="mx-auto  transition hover:opacity-70 lg:mx-0" />
+    <img src="images/l6.png" alt="Le Porte di Barausse" class="mx-auto  transition hover:opacity-70 lg:mx-0" />
+    <img src="images/l7.png" alt="Dekorgips" class="mx-auto  transition hover:opacity-70 lg:mx-0" />
+    <img src="images/l8.png" alt="Interior Hall" class="mx-auto  transition hover:opacity-70 lg:mx-0" />
+  </div>
+</section>
+
+<!-- ============ О салоне ============ -->
+<section class="relative mt-[35px] overflow-hidden py-[70px]">
+  <img src="images/bg-info-l.jpg" alt="" class="pointer-events-none absolute left-0 top-0 hidden h-[700px] w-[455px] object-cover lg:block" />
+  <img src="images/bg-info-r.jpg" alt="" class="pointer-events-none absolute right-0 top-0 hidden h-[700px] w-[470px] object-cover lg:block" />
+  <div class="relative mx-auto flex max-w-[1000px] flex-col gap-10 px-4 lg:flex-row lg:gap-[64px] lg:px-0">
+    <img src="images/info.jpg" alt="Интерьер салона" class="w-full shrink-0 object-cover sm:w-[351px]" data-reveal />
+    <div class="lg:pt-[28px]" data-reveal>
+      <h2 class="font-serif text-[36px] font-normal leading-[1.05] sm:text-[48px]"><span class="text-gold">Немного информации</span><br />о нашем салоне</h2>
+      <div class="mt-9 max-w-[570px] space-y-[20px] text-[17px] leading-[22px] text-mute">
+        <p>Салон штор "Карина". Около 20 лет работы на Казахстанском рынке текстиля и штор для дома и офиса.</p>
+        <p>Мы изготавливаем шторы и тюли на заказ, а так же занимаемся пошивом подушек, покрывал, скатертей и чехлов для мебели.</p>
+        <p>Заказывая шторы у нас, вы получаете возможность выбрать из оргомного количества материалов в наличии и на заказ, профессиональный пошив, качественный и чистый монтаж.</p>
+        <p>Оставьте заявку на бесплатную консультацию и наши специалисты помогут выбрать лучшее решение для вашего дома или офиса!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Контакты ============ -->
+<section class="relative mt-[15px]">
+  <h2 class="px-4 text-center font-serif text-[40px] font-normal sm:text-[54px]" data-reveal>Мы рады <span class="text-gold">каждому клиенту!</span></h2>
+  <div class="mt-[46px] flex flex-col gap-10 lg:flex-row">
+    <div class="px-4 lg:w-[783px] lg:shrink-0 lg:pl-[460px] lg:pr-0 lg:pt-[32px]" data-reveal>
+      <h3 class="font-serif text-[27px] font-normal leading-[29px]">Салон красивых штор<br /><span class="text-gold">"Карина"</span></h3>
+      <p class="mt-10 flex items-center gap-4 text-[16px] leading-[22px]"><img src="images/ico-phone-c.png" alt="" class="w-[40px] " /><span><a href="tel:+77172506765" class="hover:text-gold">+7 (7172) 50 67 65</a><br /><a href="tel:+77012207545" class="hover:text-gold">+7 (701) 220 75 45</a></span></p>
+      <p class="mt-6 flex items-center gap-4 text-[16px] leading-[22px]"><img src="images/ico-pin-c.png" alt="" class="w-[35px] pr-[0px] " /><span class="pl-[5px]">пр. Кабанбай батыра<br />(р-н Цирка) 16 ВП7</span></p>
+      <button type="button" data-scroll-form class="btn mt-12 w-full sm:w-[204px]">Задать вопрос</button>
+    </div>
+    <img src="images/map.jpg" alt="Карта: проспект Кабанбай Батыра 16" class="h-[260px] w-full min-w-0 object-cover object-left sm:h-[385px]" data-reveal />
+  </div>
+</section>
+
+<!-- ============ Подвал ============ -->
+<footer class="mx-auto flex max-w-[1000px] flex-wrap items-center justify-between gap-4 px-4 py-6 text-[14px] lg:px-0">
+  <p>Copyright © 2018 Салон штор "Карина"</p>
+  <a href="#" class="group flex items-center gap-4 leading-[18px] hover:text-gold">Перейти<br />в Instagram<img src="images/insta.png" alt="Instagram" class="size-12  transition group-hover:scale-110" /></a>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
