@@ -2,20 +2,20 @@
 <!-- Партнёрам. Текст и поля анкеты — pages/partner/partner-page.html; фото image-6.jpg оттуда же.
      Анкета заменяет общую форму заявки (id="lead", чтобы кнопка «Заявка» в шапке вела сюда). -->
 <main>
-<section class="bg-navy pt-[120px] pb-14 text-cream sm:pt-[150px] sm:pb-20">
+<section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
   <div class="wrap">
-    <nav class="mb-6 flex flex-wrap items-center gap-2 text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
-    <h1 class="rise text-[34px] leading-[1.15] font-bold sm:text-[52px]">{{h1}}</h1>
-    <p class="rise mt-4 max-w-[640px] text-[17px] leading-[1.7] font-light text-cream/75" style="--d:.1s">Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров.</p>
+    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
+    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>
+    <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75" style="--d:.1s">Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров.</p>
     <a href="#lead" class="rise btn-gold mt-8" style="--d:.2s">Стать партнером</a>
   </div>
 </section>
 
 <!-- ============ Программа лояльности — landing-6 «Where Artistry Meets Architecture» (фото с рамкой + список) ============ -->
-<section class="bg-cream py-20 sm:py-28">
+<section class="bg-white py-20 sm:py-28">
   <div class="wrap grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
-    <div class="reveal relative">
-      <div class="absolute -inset-3 border border-gold/30 sm:-inset-5"></div>
+    <div class="relative">
+      <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
       <img src="{{root}}assets/img/partner/image-6.jpg" alt="Шторы в интерьере — проект партнёра" loading="lazy" class="relative h-[300px] w-full object-cover sm:h-[520px]" />
     </div>
     <div class="reveal" style="--d:.1s">
@@ -41,9 +41,8 @@
       <p class="eyebrow">Анкета</p>
       <h2 class="h2 mb-5">Стать <span class="text-gold italic">партнером</span></h2>
       <p class="mb-10 text-[16px] leading-[1.8] font-light text-slate">Для вступления в программу заполните анкету</p>
-      <div class="w-[150px] text-navy"><!-- @logo-2 --></div>
-      <ul class="mt-10 flex flex-col gap-3 text-[16px]">
-        <li><a href="tel:+79255946117" class="font-bold hover:text-gold">+7 (925) 594-61-17</a></li>
+      <ul class="flex flex-col gap-3 text-[16px]">
+        <li><a href="tel:+79255946117" class="font-serif text-[24px] font-bold hover:text-gold">+7 (925) 594-61-17</a></li>
         <li><a href="mailto:info@shtorivdom.ru" class="hover:text-gold">info@shtorivdom.ru</a></li>
       </ul>
     </div>
@@ -75,7 +74,7 @@
           </label>
           <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">Нужно согласие на обработку персональных данных</p>
         </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-start">Отправить</button>
+        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
       </form>
     </div>
   </div>

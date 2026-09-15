@@ -45,118 +45,10 @@
       }
     }
   </script>
+  <link rel="preload" href="../../shared/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="../../shared/fonts/lato-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="../../shared/fonts.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <style type="text/tailwindcss">
-/* Тема прототипа сайта Shtorivdom. Сборщик вставляет этот файл в каждую страницу
-   как <style type="text/tailwindcss"> (браузерный Tailwind не подключает внешние
-   файлы с @theme). Правка здесь → node tools/mockups/site-build.mjs. */
-@theme {
-  --font-sans: 'Lato', system-ui, sans-serif;
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --color-navy: #0d223d;
-  --color-navy-deep: #081629;
-  --color-gold: #c9a84c;
-  --color-gold-soft: #f0e6c8;
-  --color-cream: #f5f0e8;
-  --color-sand: #e8e2d6;
-  --color-slate: #2d3748;
-}
-
-@layer base {
-  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-  body { font-family: var(--font-sans); color: var(--color-navy); background: var(--color-cream); overflow-x: hidden; }
-  h1, h2, h3 { font-family: var(--font-serif); }
-  button:not(:disabled), summary, [role='button'] { cursor: pointer; }
-}
-
-@layer components {
-  /* Контейнер секций: 1200px, поля 20/32px */
-  .wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 20px; }
-  @media (width >= 640px) { .wrap { padding-inline: 32px; } }
-
-  /* Надзаголовок и ромб-разделитель — landing-1 */
-  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--color-gold); margin-bottom: 12px; }
-  .h2 { font-family: var(--font-serif); font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 1.2; }
-  .divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px 0; }
-  .divider::before, .divider::after { content: ''; width: 40px; height: 1px; background: var(--color-gold); }
-  .divider > i { width: 6px; height: 6px; background: var(--color-gold); transform: rotate(45deg); }
-
-  .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-gold); color: var(--color-navy); font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: opacity .2s; }
-  .btn-gold:hover { opacity: .85; }
-  .btn-line { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgb(255 255 255 / .35); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: border-color .3s; }
-  .btn-line:hover { border-color: rgb(255 255 255 / .7); }
-
-  /* Появление при прокрутке: landing-1 (40px, 0.7s) и landing-9 (.reveal-soft: 28px, 0.85s) */
-  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease-out var(--d, 0s), transform .7s ease-out var(--d, 0s); }
-  .reveal-soft { transform: translateY(28px); transition-duration: .85s; }
-  .reveal.is-in { opacity: 1; transform: none; }
-
-  /* Шапка — landing-1: выезд сверху 0.6s, прозрачная наверху, тёмная после 60px */
-  .site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: transparent; border-bottom: 1px solid transparent; transition: background .4s, border-color .4s; animation: hdr-drop .6s ease-out backwards; }
-  .site-header.is-solid { background: var(--color-navy); border-bottom-color: rgb(201 168 76 / .3); }
-  @keyframes hdr-drop { from { transform: translateY(-80px); } }
-  .nav-link { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--color-cream); transition: color .2s; white-space: nowrap; }
-  .nav-link:hover, .nav-link[aria-current='page'] { color: var(--color-gold); }
-  .dropdown { position: absolute; top: 100%; left: -20px; min-width: 240px; padding: 10px 0; background: var(--color-navy); border: 1px solid rgb(201 168 76 / .25); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
-  .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown, .has-dropdown.is-open .dropdown { opacity: 1; visibility: visible; transform: none; }
-  .dropdown a { display: block; padding: 9px 20px; font-size: 14px; color: var(--color-cream); transition: color .2s, background .2s; }
-  .dropdown a:hover { color: var(--color-gold); background: rgb(255 255 255 / .04); }
-  .burger span { display: block; width: 24px; height: 2px; background: var(--color-cream); transition: transform .3s, opacity .3s; }
-  .burger span + span { margin-top: 5px; }
-  .burger[aria-expanded='true'] span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
-  .burger[aria-expanded='true'] span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-  .mobile-panel { background: var(--color-navy); border-top: 1px solid rgb(201 168 76 / .2); overflow: hidden; height: 0; opacity: 0; transition: height .3s ease-out, opacity .3s ease-out; }
-  .mobile-panel.is-open { opacity: 1; }
-  .mobile-panel a, .mobile-panel .m-toggle { display: flex; width: 100%; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-cream); padding: 12px 0; border-bottom: 1px solid rgb(255 255 255 / .07); }
-  .mobile-panel .m-sub a { text-transform: none; letter-spacing: 0; font-weight: 400; padding-left: 16px; }
-  .m-sub { overflow: hidden; height: 0; transition: height .3s ease-out; }
-  .m-toggle[aria-expanded='true'] svg { transform: rotate(180deg); }
-  .m-toggle svg { transition: transform .3s; }
-
-  /* Карточки каталога — landing-1 Services */
-  .svc-card { background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid rgb(13 34 61 / .08); box-shadow: 0 2px 20px rgb(13 34 61 / .06); cursor: pointer; transition: transform .25s ease-out; }
-  .svc-card:hover { transform: translateY(-4px); }
-  .svc-more { overflow: hidden; height: 0; opacity: 0; transition: height .3s ease-out, opacity .3s ease-out; }
-  .svc-more.is-open { opacity: 1; }
-
-  /* Галерея — landing-1 Real Homes: триггер — карточка */
-  .work img { transition: transform .4s ease-out; }
-  .work:hover img { transform: scale(1.06); }
-  .work .cap { opacity: 0; transition: opacity .3s ease-out; }
-  .work:hover .cap, .work:focus-visible .cap { opacity: 1; }
-  @media (hover: none) { .work .cap { opacity: 1; } }
-
-  /* Тарифы — landing-1 Pricing */
-  .tier { border-radius: 4px; position: relative; overflow: hidden; transition: transform .25s ease-out; }
-  .tier:hover { transform: translateY(-6px); }
-
-  /* Слайдер отзывов — landing-9 */
-  .dot { height: 8px; width: 8px; border-radius: 4px; background: var(--color-sand); transition: all .3s; }
-  .dot.is-on { width: 22px; background: var(--color-gold); }
-  .slide { transition: opacity .4s ease-out, transform .4s ease-out; }
-  .slide.is-out { opacity: 0; transform: translateX(-30px); }
-
-  /* FAQ — landing-8 */
-  .faq-a { overflow: hidden; height: 0; transition: height .28s ease-in-out; }
-  .faq-icon .minus { display: none; }
-  [aria-expanded='true'] .faq-icon .minus { display: block; }
-  [aria-expanded='true'] .faq-icon .plus { display: none; }
-
-  /* Поля форм */
-  .field { width: 100%; font-size: 15px; color: var(--color-navy); background: #fff; border: 1px solid rgb(13 34 61 / .18); border-radius: 2px; padding: 13px 16px; outline: none; transition: border-color .2s; }
-  .field:focus { border-color: var(--color-gold); }
-  .field.is-error { border-color: #c0392b; }
-  .field-label { display: block; margin-bottom: 8px; font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
-  .form-done { opacity: 0; transform: scale(.95); transition: opacity .4s ease-out, transform .4s ease-out; }
-  .form-done.is-in { opacity: 1; transform: none; }
-
-  @keyframes hero-rise { from { opacity: 0; transform: translateY(40px); } }
-  .rise { animation: hero-rise .9s ease-out backwards; animation-delay: var(--d, 0s); }
-}
-
-  </style>
+  <link rel="stylesheet" href="../assets/site.css" />
 </head>
 <body data-page="about/" data-header="solid">
 <header class="site-header" data-header>
@@ -218,18 +110,18 @@
 <!-- О нас. Текущий сайт: pages/about = main-about + main-form. Цифры — main-welcome, преимущества — way-we-work,
      этапы — place-an-order. Фото: image-13.jpg (main-about), image-8/9.jpg (public/images текущего сайта). -->
 <main>
-<section class="bg-navy pt-[120px] pb-14 text-cream sm:pt-[150px] sm:pb-20">
+<section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
   <div class="wrap">
-    <nav class="mb-6 flex flex-wrap items-center gap-2 text-[14px] text-cream/60" aria-label="Хлебные крошки"><a href="../" class="hover:text-gold">Главная</a></nav>
-    <h1 class="rise text-[34px] leading-[1.15] font-bold sm:text-[52px]">О нас</h1>
-    <p class="rise mt-4 max-w-[640px] text-[17px] leading-[1.7] font-light text-cream/75" style="--d:.1s">Более 15 лет мы создаем уникальные текстильные интерьеры</p>
+    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><a href="../" class="hover:text-gold">Главная</a></nav>
+    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">О нас</h1>
+    <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75" style="--d:.1s">Более 15 лет мы создаем уникальные текстильные интерьеры</p>
   </div>
 </section>
 
 <!-- ============ О компании — landing-8 «Crafting Beautiful Interiors» (коллаж + текст + цифры). Тексты main-about ============ -->
 <section class="bg-cream py-20 sm:py-28">
   <div class="wrap grid items-center gap-16 lg:grid-cols-2">
-    <div class="reveal relative pb-6 sm:pb-0">
+    <div class="relative pb-6 sm:pb-0">
       <div class="absolute -top-5 -right-5 hidden size-44 bg-gold/10 sm:block"></div>
       <div class="relative z-10 mr-10 sm:mr-16"><img src="../assets/img/about/image-13.jpg" alt="Шторы на заказ в интерьере" loading="lazy" class="h-[380px] w-full object-cover shadow-2xl sm:h-[540px]" /></div>
       <div class="absolute right-0 bottom-10 z-20 w-[140px] border-4 border-white shadow-2xl sm:w-[200px]"><img src="../assets/img/about/image-8.jpg" alt="Шторы в интерьере" loading="lazy" class="h-[150px] w-full object-cover sm:h-[210px]" /></div>
@@ -238,7 +130,7 @@
         <span class="mt-1 text-center text-[11px] tracking-[.2em] text-white/85 uppercase">лет</span>
       </div>
     </div>
-    <div class="reveal" style="--d:.1s">
+    <div>
       <div class="mb-5 flex items-center gap-3"><span class="h-px w-9 bg-gold"></span><span class="text-[12px] tracking-[.38em] text-gold uppercase">О нас</span></div>
       <p class="mb-6 font-serif text-[clamp(22px,2.6vw,30px)] leading-snug">Компания успешно работает на рынке более 15 лет. За это время мы выполнили более 10 000 проектов.</p>
       <div class="space-y-4 text-[16px] leading-relaxed font-light text-slate">
@@ -252,12 +144,12 @@
 </section>
 
 <!-- ============ Цифры — landing-8 счётчики, тексты main-welcome ============ -->
-<section class="bg-navy py-14 text-cream sm:py-20">
+<section class="bg-navy py-8 text-cream sm:py-10">
   <div class="wrap">
-    <ol class="grid grid-cols-1 gap-10 text-center sm:grid-cols-3">
-      <li class="reveal"><div class="font-serif text-[48px] leading-none text-gold" data-count="3000" data-suffix="+">3000+</div><p class="mx-auto mt-3 max-w-[220px] text-[15px] leading-snug text-cream/70">Тканей, карнизов и аксессуаров в наличии</p></li>
-      <li class="reveal" style="--d:.1s"><div class="font-serif text-[48px] leading-none text-gold" data-count="10000" data-suffix="+">10 000+</div><p class="mx-auto mt-3 max-w-[220px] text-[15px] leading-snug text-cream/70">Реализованных дизайн-проектов</p></li>
-      <li class="reveal" style="--d:.2s"><div class="font-serif text-[48px] leading-none text-gold" data-count="1000" data-suffix="+">1 000+</div><p class="mx-auto mt-3 max-w-[220px] text-[15px] leading-snug text-cream/70">Постоянных клиентов</p></li>
+    <ol class="grid grid-cols-3 gap-3 text-center sm:gap-6">
+      <li class="reveal"><div class="font-serif text-[22px] leading-none whitespace-nowrap text-gold min-[375px]:text-[26px] sm:text-[48px]" data-count="3000" data-suffix="+">3 000+</div><p class="mx-auto mt-2 max-w-[280px] text-[12px] sm:text-[15px] leading-snug text-cream/70">Тканей, карнизов и аксессуаров в наличии</p></li>
+      <li class="reveal" style="--d:.1s"><div class="font-serif text-[22px] leading-none whitespace-nowrap text-gold min-[375px]:text-[26px] sm:text-[48px]" data-count="10000" data-suffix="+">10 000+</div><p class="mx-auto mt-2 max-w-[280px] text-[12px] sm:text-[15px] leading-snug text-cream/70">Реализованных дизайн-проектов</p></li>
+      <li class="reveal" style="--d:.2s"><div class="font-serif text-[22px] leading-none whitespace-nowrap text-gold min-[375px]:text-[26px] sm:text-[48px]" data-count="1000" data-suffix="+">1 000+</div><p class="mx-auto mt-2 max-w-[280px] text-[12px] sm:text-[15px] leading-snug text-cream/70">Постоянных клиентов</p></li>
     </ol>
   </div>
 </section>
@@ -265,18 +157,18 @@
 <!-- ============ Преимущества — landing-6 «Where Artistry Meets Architecture» (фото + список). Тексты way-we-work ============ -->
 <section class="bg-white py-20 sm:py-28">
   <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
-    <div class="reveal order-2 lg:order-1">
+    <div class="order-2 lg:order-1">
       <div class="mb-4 flex items-center gap-3"><span class="h-px w-8 bg-gold"></span><span class="text-[12px] tracking-[.28em] text-gold uppercase">Почему мы</span></div>
       <h2 class="mb-10 text-[clamp(30px,4vw,46px)] leading-[1.12]">Более 15 лет мы создаем <em class="text-gold">уникальные текстильные интерьеры</em></h2>
       <ul class="grid gap-8 sm:grid-cols-2">
-        <li class="reveal"><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><h3 class="mb-2 text-[19px]">Сотни бесплатных образцов тканей</h3><p class="text-[15px] leading-relaxed font-light text-slate">Высококачественные, экологически чистые материалы, подходящие к любому стилю интерьера.</p></li>
-        <li class="reveal" style="--d:.08s"><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span><h3 class="mb-2 text-[19px]">Бесплатная услуга по разработке дизайна.</h3><p class="text-[15px] leading-relaxed font-light text-slate">Индивидуальный дизайн штор, соответствующих вашему уникальному стилю и пространству.</p></li>
-        <li class="reveal" style="--d:.16s"><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M12 2v2"/></svg></span><h3 class="mb-2 text-[19px]">Создано вручную специально для вас</h3><p class="text-[15px] leading-relaxed font-light text-slate">Изготавливается на заказ опытными мастерами с учетом ваших точных потребностей.</p></li>
-        <li class="reveal" style="--d:.24s"><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span><h3 class="mb-2 text-[19px]">Бесплатная доставка</h3><p class="text-[15px] leading-relaxed font-light text-slate">Наслаждайтесь быстрой и надежной доставкой каждого заказа без дополнительных сборов за доставку.</p></li>
+        <li><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><h3 class="mb-2 text-[19px]">Сотни бесплатных образцов тканей</h3><p class="text-[15px] leading-relaxed font-light text-slate">Высококачественные, экологически чистые материалы, подходящие к любому стилю интерьера.</p></li>
+        <li><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span><h3 class="mb-2 text-[19px]">Бесплатная услуга по разработке дизайна.</h3><p class="text-[15px] leading-relaxed font-light text-slate">Индивидуальный дизайн штор, соответствующих вашему уникальному стилю и пространству.</p></li>
+        <li><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M12 2v2"/></svg></span><h3 class="mb-2 text-[19px]">Создано вручную специально для вас</h3><p class="text-[15px] leading-relaxed font-light text-slate">Изготавливается на заказ опытными мастерами с учетом ваших точных потребностей.</p></li>
+        <li><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span><h3 class="mb-2 text-[19px]">Бесплатная доставка</h3><p class="text-[15px] leading-relaxed font-light text-slate">Наслаждайтесь быстрой и надежной доставкой каждого заказа без дополнительных сборов за доставку.</p></li>
       </ul>
     </div>
-    <div class="reveal relative order-1 lg:order-2" style="--d:.1s">
-      <div class="absolute -inset-3 border border-gold/30 sm:-inset-5"></div>
+    <div class="relative order-1 lg:order-2">
+      <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
       <img src="../assets/img/about/image-9.jpg" alt="Гостиная со шторами" loading="lazy" class="relative h-[300px] w-full object-cover sm:h-[520px]" />
     </div>
   </div>
@@ -344,7 +236,7 @@
           </label>
           <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">Нужно согласие на обработку персональных данных</p>
         </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-start">Отправить</button>
+        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
       </form>
     </div>
   </div>
@@ -368,11 +260,7 @@
 <path d="M160.161 131.02C160.161 134.843 160.099 136.602 159.978 138.271C159.887 139.394 159.554 139.849 159.007 139.94C158.765 140.001 158.492 140.031 158.097 140.061C157.642 140.061 157.49 140.153 157.49 140.365C157.49 140.577 157.703 140.668 158.127 140.668C159.766 140.668 161.192 140.577 162.526 140.577C163.437 140.577 167.017 140.76 168.14 140.76C174.178 140.76 177.333 137.422 177.333 134.054C177.333 130.383 174.633 128.441 171.447 127.47C173.45 126.438 175.149 124.861 175.149 122.403C175.149 120.705 173.935 117.731 167.533 117.731C166.35 117.731 164.56 117.822 162.557 117.822C161.07 117.822 159.554 117.731 157.703 117.731C157.339 117.731 157.096 117.791 157.096 118.034C157.096 118.186 157.187 118.307 157.642 118.338C157.976 118.368 158.401 118.398 158.765 118.429C159.645 118.52 160.069 119.005 160.099 120.249C160.13 121.22 160.161 122.07 160.161 126.53V131.02ZM165.409 120.098C165.409 119.673 165.53 119.612 165.713 119.551C165.955 119.46 166.32 119.399 166.805 119.399C169.202 119.399 170.416 121.463 170.416 123.921C170.416 125.225 170.051 126.287 169.414 126.803C168.989 127.167 168.291 127.288 167.593 127.288C167.169 127.288 166.168 127.258 165.682 127.167C165.53 127.137 165.409 127.106 165.409 126.864V120.098ZM165.409 129.23C165.409 129.078 165.47 129.017 165.591 129.017C165.895 128.987 166.623 128.987 167.108 129.017C168.049 129.078 169.111 129.381 169.93 130.171C171.326 131.475 171.72 133.265 171.72 134.843C171.72 137.877 169.839 138.969 168.261 138.969C167.655 138.969 166.926 138.878 166.259 138.483C165.652 138.18 165.53 137.786 165.47 136.815C165.379 135.268 165.409 133.144 165.409 131.688V129.23Z" fill="currentColor"/>
 <path d="M196.572 138.21C194.964 138.21 193.811 138.21 193.235 138.119C193.083 138.089 192.961 138.089 192.961 137.907C192.961 137.664 193.447 136.693 197.3 126.165C197.361 126.044 197.422 126.044 197.482 126.165C199.151 130.291 200.729 134.478 202.003 137.725C202.124 137.998 202.094 138.089 201.912 138.119C201.609 138.18 201.001 138.21 198.726 138.21H196.572ZM204.369 140.577C205.917 140.577 207.04 140.637 208.192 140.728C209.861 140.85 210.528 141.487 210.62 143.095C210.62 143.52 210.711 143.823 210.954 143.823C211.135 143.823 211.287 143.672 211.287 143.095C211.287 141.396 211.651 139.06 211.803 138.241C211.894 137.816 211.803 137.725 211.53 137.785C210.711 137.937 209.861 137.998 208.587 137.998C208.314 137.998 208.101 137.876 207.92 137.512C205.401 131.808 200.789 120.613 199.758 118.337C199.485 117.821 199.272 117.306 198.938 117.306C198.544 117.306 198.301 117.639 197.634 119.157L190.109 137.543C189.927 137.907 189.806 138.028 189.564 138.028C189.078 138.028 187.986 137.998 187.318 137.876C187.136 137.876 187.015 137.876 187.015 138.18C187.015 138.817 187.197 140.577 187.227 143.035C187.227 143.732 187.379 143.823 187.561 143.823C187.804 143.823 187.864 143.52 187.895 143.125C188.046 141.548 188.41 140.759 190.837 140.668C191.536 140.637 192.961 140.577 194.509 140.577H204.369ZM225.092 141.092C233.041 141.092 237.835 135.691 237.835 128.623C237.835 122.464 233.011 117.306 225.305 117.306C216.385 117.306 212.319 123.222 212.319 129.29C212.319 134.661 216.142 141.092 225.092 141.092ZM226.002 139.15C220.784 139.15 218.387 133.659 218.387 127.924C218.387 120.734 221.512 119.187 224.303 119.187C229.673 119.187 231.767 124.921 231.767 129.958C231.767 138.332 227.883 139.15 226.002 139.15ZM265.597 118.428C265.506 117.67 265.324 117.245 265.02 117.245C264.717 117.245 264.474 117.548 263.989 118.337L255.675 133.022L246.998 118.489C246.361 117.548 246.149 117.245 245.815 117.245C245.511 117.245 245.299 117.518 245.177 118.428L242.416 137.087C242.113 139.09 241.81 139.788 240.93 139.97C240.596 140.03 240.263 140.03 240.019 140.061C239.595 140.061 239.413 140.182 239.413 140.365C239.413 140.668 239.776 140.668 240.08 140.668C241.203 140.668 242.629 140.577 243.57 140.577C244.479 140.577 246.149 140.668 247.483 140.668C247.969 140.668 248.09 140.577 248.09 140.334C248.09 140.152 247.999 140.061 247.544 140.061C247.15 140.03 246.877 140 246.422 139.909C245.663 139.757 245.359 139.393 245.359 138.514C245.359 138.058 245.359 137.391 245.481 136.086L246.361 127.531C246.937 128.562 248.272 131.05 248.788 131.93C249.941 133.871 251.792 137.33 252.853 139.029C253.703 140.364 253.885 140.668 254.219 140.668C254.461 140.668 254.644 140.485 255.463 138.938L261.713 127.227L262.805 138.089C262.926 139.454 262.896 139.636 262.41 139.818C262.198 139.878 262.077 140 262.077 140.121C262.077 140.273 262.199 140.456 262.775 140.485C266.233 140.668 268.691 140.668 271.209 140.668C271.695 140.668 271.938 140.607 271.938 140.365C271.938 140.152 271.756 140.061 271.361 140.061C270.967 140.03 270.239 139.97 269.632 139.788C268.631 139.485 268.327 138.726 268.084 136.754L265.597 118.428Z" fill="currentColor"/>
 </svg></a>
-        <p class="mt-5 mb-6 max-w-[280px] text-[14px] leading-[1.75] font-light text-white/50">Дизайн-студия по пошиву штор и текстиля в Москве и Подмосковье</p>
-        <div class="flex gap-2.5">
-          <a href="https://t.me/andreevav1" target="_blank" rel="noopener" class="grid size-10 place-items-center border border-gold/25 transition-colors hover:border-gold" aria-label="Telegram"><img src="../assets/img/telegram.svg" alt="" class="size-5" /></a>
-          <a href="https://max.ru/u/f9LHodD0cOIMeP9lespjPt8cxagsm7ObEGSeElhYDRMQhW9vFT_lt7I30J0" target="_blank" rel="noopener" class="grid size-10 place-items-center border border-gold/25 transition-colors hover:border-gold" aria-label="Max"><img src="../assets/img/max.svg" alt="" class="size-5" /></a>
-        </div>
+        <p class="mt-5 max-w-[280px] text-[14px] leading-[1.75] font-light text-white/50">Дизайн-студия по пошиву штор и текстиля в Москве и Подмосковье</p>
       </div>
       <div>
         <h4 class="mb-5 text-[12px] font-normal tracking-[.32em] text-gold uppercase">Меню</h4>
@@ -391,6 +279,10 @@
           <a href="mailto:info@shtorivdom.ru" class="transition-colors hover:text-gold">info@shtorivdom.ru</a>
           <p>Троицк, Кварцевая улица, 3, корп. 2</p>
           <p>10:00–20:00 / Без выходных</p>
+        <div class="mt-1 flex gap-2.5">
+          <a href="https://t.me/andreevav1" target="_blank" rel="noopener" class="grid size-10 place-items-center border border-gold/25 transition-colors hover:border-gold" aria-label="Telegram"><img src="../assets/img/telegram.svg" alt="" class="size-5" /></a>
+          <a href="https://max.ru/u/f9LHodD0cOIMeP9lespjPt8cxagsm7ObEGSeElhYDRMQhW9vFT_lt7I30J0" target="_blank" rel="noopener" class="grid size-10 place-items-center border border-gold/25 transition-colors hover:border-gold" aria-label="Max"><img src="../assets/img/max.svg" alt="" class="size-5" /></a>
+        </div>
         </div>
       </div>
     </div>
@@ -400,6 +292,8 @@
     </div>
   </div>
 </footer>
+<!-- Кнопка «наверх» — landing-8: появляется после 600px прокрутки -->
+<button type="button" class="to-top" data-to-top aria-label="Наверх"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
 
 
 <script src="../assets/site.js"></script>

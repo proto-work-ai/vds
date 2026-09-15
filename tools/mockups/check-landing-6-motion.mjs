@@ -125,7 +125,10 @@ const dist = (a, b) => {
   return Math.sqrt(s);
 };
 function analyze(track) {
-  const pts = track.filter(([, v]) => v != null).map(([t, v]) => [t, nums(v), v]);
+  const raw = track.filter(([, v]) => v != null).map(([t, v]) => [t, nums(v), v]);
+  // framer-motion на финише WAAPI-анимации снимает её раньше, чем пишет итоговый стиль: один кадр
+  // getComputedStyle отдаёт initial между двумя кадрами с итогом — одиночный выброс отбрасываем.
+  const pts = raw.filter((q, i) => i === 0 || i === raw.length - 1 || !(dist(raw[i - 1][1], raw[i + 1][1]) < 1e-3 && dist(q[1], raw[i - 1][1]) > 0.05));
   if (!pts.length) return { missing: true };
   const v0 = pts[0][1];
   const vEnd = pts[pts.length - 1][1];
@@ -173,7 +176,9 @@ async function session(url, width, load, fn) {
       source: `window.__errs=[];addEventListener('error',e=>{__errs.push(String((e.target&&(e.target.src||e.target.href))||e.message))},true);
         const __ce=console.error;console.error=(...a)=>{__errs.push(a.join(' '));__ce(...a)};
         ${REC}
-        window.__load = __rec(${JSON.stringify(load)}, 3600);`,
+        window.__load = __rec(${JSON.stringify(load)}, 5200);`,
+        // 3600 мс не хватало: React оригинала монтируется позже HTML перевода, и запись обрывалась
+        // посреди проявления индикатора Scroll (delay 1.8) — «итог 0.81» был срезом, а не итогом.
     });
     const api = {
       page,

@@ -45,23 +45,23 @@
   <div class="h-2"></div>
   <div class="flex items-center gap-2">
     <button class="border rounded p-1"
-            (click)="table.setPageIndex(0)"
-            [disabled]="!table.getCanPreviousPage()">
+            [disabled]="!table.getCanPreviousPage()"
+            (click)="table.setPageIndex(0)">
       <<
     </button>
     <button class="border rounded p-1"
-            (click)="table.previousPage()"
-            [disabled]="!table.getCanPreviousPage()">
+            [disabled]="!table.getCanPreviousPage()"
+            (click)="table.previousPage()">
       <
     </button>
     <button class="border rounded p-1"
-            (click)="table.nextPage()"
-            [disabled]="!table.getCanNextPage()">
+            [disabled]="!table.getCanNextPage()"
+            (click)="table.nextPage()">
       >
     </button>
     <button class="border rounded p-1"
-            (click)="table.setPageIndex(table.getPageCount() - 1)"
-            [disabled]="!table.getCanNextPage()">
+            [disabled]="!table.getCanNextPage()"
+            (click)="table.setPageIndex(table.getPageCount() - 1)">
       >>
     </button>
     <span class="flex items-center gap-1">
@@ -74,9 +74,9 @@
     <span class="flex items-center gap-1">
       | Go to page:
       <input type="number"
+             class="border p-1 rounded w-16"
              [value]="table.getState().pagination.pageIndex + 1"
-             (input)="onPageInputChange($event)"
-             class="border p-1 rounded w-16" />
+             (input)="onPageInputChange($event)" />
     </span>
 
     <select [value]="table.getState().pagination.pageSize"

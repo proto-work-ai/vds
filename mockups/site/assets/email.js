@@ -23,7 +23,13 @@
   'use strict';
 
   const SITE = 'https://shtorivdom.ru';
-  const LOGO = SITE + '/favicon-96x96.png';
+  // Знак логотипа (logo-1) картинкой PNG: SVG почтовые программы не показывают.
+  // В письме — абсолютный адрес на сайте; в предпросмотре (галерея писем, Storybook) — рядом с email.js.
+  const LOGO_FILE = 'logo/logo-1-email.png';
+  const SCRIPT_SRC = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : '';
+  const LOGO = SCRIPT_SRC && /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/)/.test(SCRIPT_SRC)
+    ? new URL(LOGO_FILE, SCRIPT_SRC).href
+    : SITE + '/' + LOGO_FILE;
   const SALON = {
     brand: 'Шторы в дом',
     phone: '+7 (925) 594-61-17',
@@ -233,7 +239,7 @@
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;border-collapse:collapse;">
 <tr><td bgcolor="${C.navy}" style="background-color:${C.navy};padding:20px 24px;border-top:4px solid ${C.gold};">
   <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td width="44" valign="middle" style="width:44px;"><img src="${LOGO}" width="40" height="40" alt="" style="display:block;border:0;border-radius:6px;background-color:#ffffff;"></td>
+    <td width="44" valign="middle" style="width:44px;"><img src="${LOGO}" width="40" height="40" alt="Шторы в дом" style="display:block;border:0;"></td>
     <td valign="middle" style="padding-left:12px;font-family:${SERIF};font-size:20px;line-height:24px;font-weight:bold;color:#ffffff;">${esc(SALON.brand)}<br><span style="font-family:${SANS};font-size:11px;line-height:16px;font-weight:normal;letter-spacing:2px;text-transform:uppercase;color:${C.gold};">${esc(eyebrow)}</span></td>
   </tr></table>
 </td></tr>

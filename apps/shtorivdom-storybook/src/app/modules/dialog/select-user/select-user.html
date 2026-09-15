@@ -10,7 +10,7 @@
     <th hlmTh>Phone</th>
   </tr>
   @for (user of _users; track user.name) {
-  <tr hlmTr (click)="selectUser(user)" class="cursor-pointer">
+  <tr hlmTr class="cursor-pointer" (click)="selectUser(user)">
     <td hlmTd truncate class="font-medium">{{ user.name }}</td>
     <td hlmTd>{{ user.email }}</td>
     <td hlmTd>{{ user.phone }}</td>

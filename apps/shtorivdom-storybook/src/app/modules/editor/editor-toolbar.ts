@@ -212,7 +212,7 @@ export class AtlasEditorToolbarComponent {
   }
 
   public get isLinkButtonDisabled(): boolean {
-    return this.htmlMode || !Boolean(this.editorService.selectedText);
+    return this.htmlMode || !this.editorService.selectedText;
   }
 
   constructor(

@@ -5,320 +5,320 @@
         @case (_commands.customClasses) {
           <toolbar-select
             class="select-custom-style"
-            [(ngModel)]="customClassId"
-            [options]="customClassList"
-            (change)="setCustomClass(customClassId)"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [options]="customClassList"
+            [disabled]="htmlMode"
+            [(ngModel)]="customClassId"
+            (change)="setCustomClass(customClassId)"
           ></toolbar-select>
         }
         @case (_commands.textColor) {
           <input #fgInput type="color"  style="display: none" (change)="insertColor(fgInput.value, 'textColor')"/>
           <button
-            [id]="'foregroundColorPicker-' + id"
             type="button"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('foregroundColorPicker') | async"
-            (click)="focus(); fgInput.click()"
             title="Text Color"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'foregroundColorPicker-' + id"
+            [class.active]="hasButtonActive('foregroundColorPicker') | async"
+            [disabled]="htmlMode"
+            (click)="focus(); fgInput.click()"
           >
             <span class="color-label foreground"><i class="fa fa-font small"></i></span>
           </button>
         }
         @case (_commands.backgroundColor) {
-          <input style="display: none" type="color" (change)="insertColor(bgInput.value, 'backgroundColor')" #bgInput />
+          <input #bgInput style="display: none" type="color" (change)="insertColor(bgInput.value, 'backgroundColor')" />
           <button
-            [id]="'backgroundColorPicker-' + id"
             type="button"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('backgroundColorPicker') | async"
-            (click)="focus(); bgInput.click()"
             title="Background Color"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'backgroundColorPicker-' + id"
+            [class.active]="hasButtonActive('backgroundColorPicker') | async"
+            [disabled]="htmlMode"
+            (click)="focus(); bgInput.click()"
           >
             <span class="color-label background"><i class="fa fa-font small"></i></span>
           </button>
         }
         @case (_commands.bold) {
           <button
-            [id]="'bold-' + id"
             type="button"
             title="Bold"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('bold') | async"
-            (click)="triggerCommand('bold')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'bold-' + id"
+            [class.active]="hasButtonActive('bold') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('bold')"
           >
             <i class="fa fa-bold small"></i>
           </button>
         }
         @case (_commands.italic) {
           <button
-            [id]="'italic-' + id"
             type="button"
             title="Italic"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('italic') | async"
-            (click)="triggerCommand('italic')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'italic-' + id"
+            [class.active]="hasButtonActive('italic') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('italic')"
           >
             <i class="fa fa-italic small"></i>
           </button>
         }
         @case (_commands.underline) {
           <button
-            [id]="'underline-' + id"
             type="button"
             title="Underline"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('underline') | async"
-            (click)="triggerCommand('underline')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'underline-' + id"
+            [class.active]="hasButtonActive('underline') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('underline')"
           >
             <i class="fa fa-underline small"></i>
           </button>
         }
         @case (_commands.strikeThrough) {
           <button
-            [id]="'strikeThrough-' + id"
             type="button"
             title="Strikethrough"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('strikeThrough') | async"
-            (click)="triggerCommand('strikeThrough')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'strikeThrough-' + id"
+            [class.active]="hasButtonActive('strikeThrough') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('strikeThrough')"
           >
             <i class="fa fa-strikethrough small"></i>
           </button>
         }
         @case (_commands.subscript) {
           <button
-            [id]="'subscript-' + id"
             type="button"
             title="Subscript"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('subscript') | async"
-            (click)="triggerCommand('subscript')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'subscript-' + id"
+            [class.active]="hasButtonActive('subscript') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('subscript')"
           >
             <i class="fa fa-subscript small"></i>
           </button>
         }
         @case (_commands.superscript) {
           <button
-            [id]="'superscript-' + id"
             type="button"
             title="Superscript"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('superscript') | async"
-            (click)="triggerCommand('superscript')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'superscript-' + id"
+            [class.active]="hasButtonActive('superscript') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('superscript')"
           >
             <i class="fa fa-superscript small"></i>
           </button>
         }
         @case (_commands.justifyLeft) {
           <button
-            [id]="'justifyLeft-' + id"
             type="button"
             title="Justify Left"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('justifyLeft') | async"
-            (click)="triggerCommand('justifyLeft')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'justifyLeft-' + id"
+            [class.active]="hasButtonActive('justifyLeft') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('justifyLeft')"
           >
             <i class="fa fa-align-left small"></i>
           </button>
         }
         @case (_commands.justifyCenter) {
           <button
-            [id]="'justifyCenter-' + id"
             type="button"
             title="Justify Center"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('justifyCenter') | async"
-            (click)="triggerCommand('justifyCenter')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'justifyCenter-' + id"
+            [class.active]="hasButtonActive('justifyCenter') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('justifyCenter')"
           >
             <i class="fa fa-align-center small"></i>
           </button>
         }
         @case (_commands.justifyRight) {
           <button
-            [id]="'justifyRight-' + id"
             type="button"
             title="Justify Right"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('justifyRight') | async"
-            (click)="triggerCommand('justifyRight')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'justifyRight-' + id"
+            [class.active]="hasButtonActive('justifyRight') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('justifyRight')"
           >
             <i class="fa fa-align-right small"></i>
           </button>
         }
         @case (_commands.justifyFull) {
           <button
-            [id]="'justifyFull-' + id"
             type="button"
             title="Justify Full"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('justifyFull') | async"
-            (click)="triggerCommand('justifyFull')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'justifyFull-' + id"
+            [class.active]="hasButtonActive('justifyFull') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('justifyFull')"
           >
             <i class="fa fa-align-justify small"></i>
           </button>
         }
         @case (_commands.indent) {
           <button
-            [id]="'indent-' + id"
             type="button"
             title="Indent"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('indent') | async"
-            (click)="triggerCommand('indent')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'indent-' + id"
+            [class.active]="hasButtonActive('indent') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('indent')"
           >
             <i class="fa fa-indent small"></i>
           </button>
         }
         @case (_commands.outdent) {
           <button
-            [id]="'outdent-' + id"
             type="button"
             title="Outdent"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('outdent') | async"
-            (click)="triggerCommand('outdent')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'outdent-' + id"
+            [class.active]="hasButtonActive('outdent') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('outdent')"
           >
             <i class="fa fa-outdent small"></i>
           </button>
         }
         @case (_commands.insertUnorderedList) {
           <button
-            [id]="'insertUnorderedList-' + id"
             type="button"
             title="Unordered List"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('insertUnorderedList') | async"
-            (click)="triggerCommand('insertUnorderedList')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'insertUnorderedList-' + id"
+            [class.active]="hasButtonActive('insertUnorderedList') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('insertUnorderedList')"
           >
             <i class="fa fa-list-ul small"></i>
           </button>
         }
         @case (_commands.insertOrderedList) {
           <button
-            [id]="'insertOrderedList-' + id"
             type="button"
             title="Ordered List"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('insertOrderedList') | async"
-            (click)="triggerCommand('insertOrderedList')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'insertOrderedList-' + id"
+            [class.active]="hasButtonActive('insertOrderedList') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('insertOrderedList')"
           >
             <i class="fa fa-list-ol small"></i>
           </button>
         }
         @case (_commands.link) {
           <button
-            [id]="'link-' + id"
             type="button"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('link') | async"
-            (click)="insertUrl()"
             title="Insert Link"
-            [disabled]="isLinkButtonDisabled"
             tabindex="-1"
+            [id]="'link-' + id"
+            [class.active]="hasButtonActive('link') | async"
+            [disabled]="isLinkButtonDisabled"
+            (click)="insertUrl()"
           >
             <i class="fa fa-link small"></i>
           </button>
         }
         @case (_commands.unlink) {
           <button
-            [id]="'unlink-' + id"
             type="button"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('unlink') | async"
-            (click)="triggerCommand('unlink')"
             title="Unlink"
-            [disabled]="htmlMode || !linkSelected"
             tabindex="-1"
+            [id]="'unlink-' + id"
+            [class.active]="hasButtonActive('unlink') | async"
+            [disabled]="htmlMode || !linkSelected"
+            (click)="triggerCommand('unlink')"
           >
             <i class="fa fa-chain-broken small"></i>
           </button>
         }
         @case (_commands.insertImage) {
-          <input style="display: none" accept="image/*" type="file" (change)="onFileChanged($event)" #fileInput />
+          <input #fileInput style="display: none" accept="image/*" type="file" (change)="onFileChanged($event)" />
           <button
-            [id]="'insertImage-' + id"
             type="button"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('insertImage') | async"
-            (click)="focus(); fileInput.click()"
             title="Insert Image"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'insertImage-' + id"
+            [class.active]="hasButtonActive('insertImage') | async"
+            [disabled]="htmlMode"
+            (click)="focus(); fileInput.click()"
           >
             <i class="fa fa-image small"></i>
           </button>
         }
         @case (_commands.insertVideo) {
           <button
-            [id]="'insertVideo-' + id"
             type="button"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('insertVideo') | async"
-            (click)="insertVideo()"
             title="Insert Video"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'insertVideo-' + id"
+            [class.active]="hasButtonActive('insertVideo') | async"
+            [disabled]="htmlMode"
+            (click)="insertVideo()"
           >
             <i class="fa fa-video-camera small"></i>
           </button>
         }
         @case (_commands.insertHorizontalRule) {
           <button
-            [id]="'insertHorizontalRule-' + id"
             type="button"
             title="Horizontal Line"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('insertHorizontalRule') | async"
-            (click)="triggerCommand('insertHorizontalRule')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'insertHorizontalRule-' + id"
+            [class.active]="hasButtonActive('insertHorizontalRule') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('insertHorizontalRule')"
           >
             <i class="fa fa-minus small"></i>
           </button>
         }
         @case (_commands.removeFormat) {
           <button
-            [id]="'clearFormatting-' + id"
             type="button"
             title="Clear Formatting"
             class="btn btn-light me-1 py-0 px-2"
-            [class.active]="hasButtonActive('clearFormatting') | async"
-            (click)="triggerCommand('removeFormat')"
-            [disabled]="htmlMode"
             tabindex="-1"
+            [id]="'clearFormatting-' + id"
+            [class.active]="hasButtonActive('clearFormatting') | async"
+            [disabled]="htmlMode"
+            (click)="triggerCommand('removeFormat')"
           >
             <i class="fa fa-remove small"></i>
           </button>
@@ -328,8 +328,8 @@
             type="button"
             title="Undo"
             class="btn btn-light me-1 py-0 px-2"
-            (click)="triggerCommand('undo')"
             tabindex="-1"
+            (click)="triggerCommand('undo')"
           >
             <i class="fa fa-undo small"></i>
           </button>
@@ -339,8 +339,8 @@
             type="button"
             title="Redo"
             class="btn btn-light me-1 py-0 px-2"
-            (click)="triggerCommand('redo')"
             tabindex="-1"
+            (click)="triggerCommand('redo')"
           >
             <i class="fa fa-redo small"></i>
           </button>
@@ -348,31 +348,31 @@
         @case (_commands.heading) {
           <toolbar-select
             class="select-heading"
+            tabindex="-1"
             [options]="headings"
+            [disabled]="htmlMode"
             [(ngModel)]="block"
             (change)="triggerCommand(block)"
-            [disabled]="htmlMode"
-            tabindex="-1"
           ></toolbar-select>
         }
         @case (_commands.fontName) {
           <toolbar-select
             class="select-font"
+            tabindex="-1"
             [options]="fonts"
+            [disabled]="htmlMode"
             [(ngModel)]="fontName"
             (change)="setFontName(fontName)"
-            [disabled]="htmlMode"
-            tabindex="-1"
           ></toolbar-select>
         }
         @case (_commands.fontSize) {
           <toolbar-select
             class="select-font-size"
+            tabindex="-1"
             [options]="fontSizes"
+            [disabled]="htmlMode"
             [(ngModel)]="fontSize"
             (change)="setFontSize(fontSize)"
-            [disabled]="htmlMode"
-            tabindex="-1"
           >
           </toolbar-select>
         }
@@ -381,9 +381,9 @@
             type="button"
             title="HTML Code"
             class="btn btn-light me-1 py-0 px-2"
+            tabindex="-1"
             [class.active]="htmlMode"
             (click)="triggerCommand('toggleEditorMode')"
-            tabindex="-1"
           >
             <i class="fa fa-code small"></i>
           </button>

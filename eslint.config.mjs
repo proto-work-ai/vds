@@ -1,7 +1,8 @@
 import nx from '@nx/eslint-plugin';
+import { defineConfig } from 'eslint/config';
 import angular from 'angular-eslint';
 
-export default [
+export default defineConfig([
   ...nx.configs['flat/base'],
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
@@ -33,10 +34,8 @@ export default [
   },
   {
     files: ['**/*.html'],
+    // extends разворачивает defineConfig; плагин @angular-eslint/template подключают сами пресеты.
     extends: [...angular.configs.templateRecommended, ...angular.configs.templateAccessibility],
-    plugins: {
-      ...angular.templatePlugin,
-    },
     languageOptions: {
       parser: angular.templateParser,
     },
@@ -62,4 +61,4 @@ export default [
       ],
     },
   },
-];
+]);

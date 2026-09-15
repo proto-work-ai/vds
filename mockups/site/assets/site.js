@@ -5,7 +5,7 @@
    - шапка (landing-1): тёмная после 60px или всегда на страницах data-header="solid";
    - мобильное меню: бургер ↔ крестик, панель выезжает по высоте 0.3s, подменю каталога;
    - появление .reveal при прокрутке, счётчики data-count (1.8s, как landing-8);
-   - каталог (landing-1): «Подробнее ↓» раскрывает прайс, открыта одна карточка;
+   - каталог (landing-1): прайс раздела в карточке виден всегда;
    - до/после (landing-9): перетаскивание мышью и пальцем;
    - отзывы (landing-9): стрелки, точки, смена раз в 5.2s;
    - FAQ (landing-8): открыт один ответ, высота 280ms ease-in-out;
@@ -77,6 +77,15 @@
     reveals.forEach((el) => io.observe(el));
   }
 
+  // ---------- кнопка «наверх»: после 600px прокрутки ----------
+  const toTop = $('[data-to-top]');
+  if (toTop) {
+    const syncTop = () => toTop.classList.toggle('is-on', scrollY > 600);
+    addEventListener('scroll', syncTop, { passive: true });
+    syncTop();
+    toTop.addEventListener('click', () => scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' }));
+  }
+
   // ---------- счётчики ----------
   const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   const counters = $$('[data-count]');
@@ -94,26 +103,6 @@
     }), { threshold: 0.5 });
     counters.forEach((el) => io.observe(el));
   }
-
-  // ---------- каталог: «Подробнее» ----------
-  const cards = $$('[data-svc]').map((card) => ({ card, btn: $('[data-svc-btn]', card), more: $('[data-svc-more]', card) }));
-  let openCard = null;
-  const setCard = (target) => {
-    cards.forEach((c) => {
-      const on = c === target;
-      const was = c.btn.getAttribute('aria-expanded') === 'true';
-      if (on === was) return;
-      c.btn.setAttribute('aria-expanded', String(on));
-      c.btn.textContent = on ? 'Свернуть ↑' : 'Подробнее ↓';
-      c.more.classList.toggle('is-open', on);
-      on ? openH(c.more) : closeH(c.more);
-    });
-    openCard = target;
-  };
-  cards.forEach((c) => c.card.addEventListener('click', (e) => {
-    if (e.target.closest('a')) return; // ссылка «Перейти в раздел» работает как ссылка
-    setCard(openCard === c ? null : c);
-  }));
 
   // ---------- до и после ----------
   const compare = $('[data-compare]');
@@ -303,6 +292,6 @@
     select(fromHash() ?? tabs[0]);
     addEventListener('hashchange', () => fromHash() && select(fromHash()));
   });
-  // «Пригласить дизайнера» в первом экране — фокус на телефон
-  $$('[data-focus-form]').forEach((a) => a.addEventListener('click', () => setTimeout(() => $('#hero-form [data-phone]')?.focus({ preventScroll: true }), 400)));
+  // «Пригласить дизайнера» в первом экране — фокус на первое поле формы (имя)
+  $$('[data-focus-form]').forEach((a) => a.addEventListener('click', () => setTimeout(() => $('#hero-form input[name="name"]')?.focus({ preventScroll: true }), 400)));
 })();

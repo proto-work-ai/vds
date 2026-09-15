@@ -1,4 +1,4 @@
-/* eslint-disable @nx/enforce-module-boundaries */
+ 
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';
 import {

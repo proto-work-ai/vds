@@ -123,7 +123,11 @@ const dist = (a, b) => {
   return Math.sqrt(s);
 };
 function analyze(track) {
-  const pts = track.filter(([, v]) => v != null).map(([t, v]) => [t, nums(v), v]);
+  const raw = track.filter(([, v]) => v != null).map(([t, v]) => [t, nums(v), v]);
+  // framer-motion на финише WAAPI-анимации (opacity) снимает её раньше, чем пишет итоговый стиль:
+  // ровно один кадр getComputedStyle отдаёт initial (opacity 0) между двумя кадрами с итогом.
+  // Это не видимая анимация, а порядок чтения в rAF — одиночный выброс, чьи соседи равны, отбрасываем.
+  const pts = raw.filter((q, i) => i === 0 || i === raw.length - 1 || !(dist(raw[i - 1][1], raw[i + 1][1]) < 1e-3 && dist(q[1], raw[i - 1][1]) > 0.05));
   if (!pts.length) return { missing: true };
   const v0 = pts[0][1];
   const vEnd = pts[pts.length - 1][1];

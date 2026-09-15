@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/component-selector */
-/* eslint-disable @nx/enforce-module-boundaries */
+ 
 import { Component, viewChild } from '@angular/core';
 import { BrnDialog } from '@spartan-ng/brain/dialog';
 import { HlmButtonImports } from '@spartan-ng/helm/button';

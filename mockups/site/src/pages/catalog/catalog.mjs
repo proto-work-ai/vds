@@ -122,7 +122,7 @@ const read = (p) => readFileSync(path.join(SRC, p), 'utf8');
 const arrow = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
 const chevron = (d) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${d}"/></svg>`;
 
-const crumbs = (list) => `<nav class="rise mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60" aria-label="Хлебные крошки">${list
+const crumbs = (list) => `<nav class="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60" aria-label="Хлебные крошки">${list
   .map(([t, href]) => (href ? `<a href="${href}" class="transition-colors hover:text-gold">${t}</a>` : `<span class="text-cream/90" aria-current="page">${t}</span>`))
   .join('<span class="text-gold" aria-hidden="true">/</span>')}</nav>`;
 
@@ -187,7 +187,7 @@ const priceTable = (key, title) => {
     </div>
     <div class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center">
       <a href="#lead" class="btn-gold group max-sm:w-full">Рассчитать стоимость ${arrow}</a>
-      <a href="{{root}}price/" class="inline-flex items-center gap-2 py-3 text-[13px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:text-gold">Все цены →</a>
+      <a href="{{root}}price/" class="inline-flex items-center justify-center gap-2 rounded-[2px] border border-navy/30 px-[26px] py-[14px] text-[13px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:border-gold hover:text-gold max-sm:w-full">Все цены →</a>
     </div>
   </div>
 </section>`;
@@ -262,7 +262,7 @@ const listPage = () => `${styles}
   <div class="wrap relative">
     ${crumbs([['Главная', '{{home}}'], ['Каталог']])}
     <div class="text-center">
-      <div class="rise" style="--d:.05s">${eyebrow('Наше ателье')}</div>
+      <div>${eyebrow('Наше ателье')}</div>
       <h1 class="rise mb-5 text-[clamp(36px,6vw,60px)] leading-[1.15] font-bold" style="--d:.1s">Каталог <em class="text-gold">Штор</em></h1>
       <p class="rise mx-auto max-w-[520px] text-[16px] leading-[1.8] text-cream/60" style="--d:.2s">Вся продукция изготавливается по индивидуальным размерам из качественных материалов.</p>
     </div>
@@ -311,7 +311,7 @@ const sectionPage = (s) => {
   <div class="wrap grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
     <div>
       ${crumbs([['Главная', '{{home}}'], ['Каталог', '{{root}}catalog/'], [s.title]])}
-      <div class="rise" style="--d:.05s">${eyebrow('Каталог', false, true)}</div>
+      <div>${eyebrow('Каталог', false, true)}</div>
       <h1 class="rise mb-5 text-[clamp(36px,6vw,60px)] leading-[1.1]" style="--d:.1s">${s.title}</h1>
       <p class="rise mb-8 max-w-[520px] text-[18px] leading-relaxed text-cream/75" style="--d:.2s">${s.text}</p>
       <div class="rise mb-9 flex items-baseline gap-3" style="--d:.25s"><span class="text-[13px] tracking-[.2em] text-cream/50 uppercase">Цена</span><span class="font-serif text-[30px] text-gold">от ${money(min)} ₽</span><span class="text-cream/60">/ ${unit}</span></div>
@@ -389,7 +389,7 @@ const modelPage = (m) => {
       </button>
     </div>
     <div>
-      <div class="rise" style="--d:.05s">${eyebrow('Карнизы для штор', false)}</div>
+      <div>${eyebrow('Карнизы для штор', false)}</div>
       <h1 class="rise mb-4 text-[clamp(32px,4.5vw,48px)] leading-[1.12]" style="--d:.1s">${m.title}</h1>
       <p class="rise mb-8 text-[17px] leading-relaxed font-light text-slate" style="--d:.15s">Декоративные и профильные.</p>
       <div class="rise mb-8 border border-navy/10 bg-white px-6 py-6" style="--d:.2s">

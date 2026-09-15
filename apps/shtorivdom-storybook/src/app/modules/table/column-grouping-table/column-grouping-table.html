@@ -13,8 +13,8 @@
             @if (header.column.getCanGroup()) {
             <!-- If the header can be grouped, let's add a toggle -->
             <button
-              (click)="header.column.toggleGrouping()"
               [style.cursor]="'pointer'"
+              (click)="header.column.toggleGrouping()"
             >
               @if (header.column.getIsGrouped()) { 🛑({{
               header.column.getGroupedIndex() }}) } @else { 👊 }
@@ -54,8 +54,8 @@
           @if (cell.getIsGrouped()) {
           <!-- If it's a grouped cell, add an expander and row count -->
           <button
-            (click)="row.toggleExpanded()"
             [style.cursor]="row.getCanExpand() ? 'pointer' : 'normal'"
+            (click)="row.toggleExpanded()"
           >
             {{ row.getIsExpanded() ? '👇 ' : '👉' }}
           </button>
@@ -108,29 +108,29 @@
   <div class="flex items-center gap-2">
     <button
       class="border rounded p-1"
-      (click)="table.setPageIndex(0)"
       [disabled]="!table.getCanPreviousPage()"
+      (click)="table.setPageIndex(0)"
     >
       <<
     </button>
     <button
       class="border rounded p-1"
-      (click)="table.previousPage()"
       [disabled]="!table.getCanPreviousPage()"
+      (click)="table.previousPage()"
     >
       <
     </button>
     <button
       class="border rounded p-1"
-      (click)="table.nextPage()"
       [disabled]="!table.getCanNextPage()"
+      (click)="table.nextPage()"
     >
       >
     </button>
     <button
       class="border rounded p-1"
-      (click)="table.setPageIndex(table.getPageCount() - 1)"
       [disabled]="!table.getCanNextPage()"
+      (click)="table.setPageIndex(table.getPageCount() - 1)"
     >
       >>
     </button>
@@ -145,9 +145,9 @@
       | Go to page:
       <input
         type="number"
+        class="border p-1 rounded w-16"
         [value]="table.getState().pagination.pageIndex + 1"
         (input)="onPageInputChange($event)"
-        class="border p-1 rounded w-16"
       />
     </span>
 

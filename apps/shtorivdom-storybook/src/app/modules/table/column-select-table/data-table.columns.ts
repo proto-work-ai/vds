@@ -1,4 +1,4 @@
-/* eslint-disable @nx/enforce-module-boundaries */
+ 
 import { ColumnDef, flexRenderComponent } from '@tanstack/angular-table';
 import {
   TableHeadSelection,

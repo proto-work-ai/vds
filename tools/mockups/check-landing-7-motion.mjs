@@ -59,6 +59,10 @@ const nums = (v) => {
   if (v === 'none') return [1, 0, 0, 1, 0, 0];
   const m = String(v).match(/-?\d*\.?\d+(e-?\d+)?/g)?.map(Number) ?? [];
   if (/^rgb\(/.test(v)) m.push(1);
+  // Цвет с альфой сравниваем в предумноженном виде (так интерполирует браузер): иначе при переходе
+  // rgb(201,168,76) → rgba(255,255,255,0.2) каналы «прыгают» к 255 в первых кадрах, кривая становится
+  // ступенькой, и «середина» зависит от фазы кадров (0.51 или 0.7 при одинаковом transition).
+  if (/^rgba?\(/.test(v)) return [m[0] * m[3], m[1] * m[3], m[2] * m[3], m[3] * 255];
   return m;
 };
 const dist = (a, b) => {
@@ -76,7 +80,11 @@ function analyze(track) {
   let e = p.length - 1;
   while (e > 0 && Math.abs(p[e - 1][1] - 1) < 0.02) e--;
   const dur = p[e][0] - start;
-  const mid = p.reduce((b, q) => (Math.abs(q[0] - start - dur / 2) < Math.abs(b[0] - start - dur / 2) ? q : b))[1];
+  // Середина — линейная интерполяция между соседними кадрами, а не ближайший кадр (переход ~7 кадров).
+  const midT = start + dur / 2;
+  const j = Math.max(1, p.findIndex(([t]) => t >= midT));
+  const [ta, xa] = p[j - 1], [tb, xb] = p[j];
+  const mid = tb === ta ? xb : xa + ((xb - xa) * (midT - ta)) / (tb - ta);
   return { start, dur, mid: +mid.toFixed(2), final };
 }
 const near = (a, b, abs, rel = 0) => Math.abs(a - b) <= Math.max(abs, rel * Math.max(Math.abs(a), Math.abs(b)));

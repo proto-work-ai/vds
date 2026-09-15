@@ -14,7 +14,7 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; scrollbar-gutter: stable; }
   body { font-family: var(--font-sans); color: var(--color-navy); background: var(--color-cream); overflow-x: hidden; }
   h1, h2, h3 { font-family: var(--font-serif); }
   button:not(:disabled), summary, [role='button'] { cursor: pointer; }
@@ -42,12 +42,14 @@
   .reveal-soft { transform: translateY(28px); transition-duration: .85s; }
   .reveal.is-in { opacity: 1; transform: none; }
 
-  /* Шапка — landing-1: выезд сверху 0.6s, прозрачная наверху, тёмная после 60px */
-  .site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: transparent; border-bottom: 1px solid transparent; transition: background .4s, border-color .4s; animation: hdr-drop .6s ease-out backwards; }
-  .site-header.is-solid { background: var(--color-navy); border-bottom-color: rgb(201 168 76 / .3); }
-  @keyframes hdr-drop { from { transform: translateY(-80px); } }
+  /* Шапка: прозрачная наверху главной, тёмная после 60px. Без анимации при загрузке —
+     при переходе между страницами панель не должна выезжать или проявляться. */
+  .site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: transparent; border-bottom: 1px solid transparent; transition: background .4s, border-color .4s; }
+  .site-header.is-solid, body[data-header="solid"] .site-header { background: var(--color-navy); border-bottom-color: rgb(201 168 76 / .3); }
+  body[data-header="solid"] .site-header { transition: none; }
   .nav-link { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--color-cream); transition: color .2s; white-space: nowrap; }
   .nav-link:hover, .nav-link[aria-current='page'] { color: var(--color-gold); }
+  .nav-link[aria-current='page'] { transition: none; }
   .dropdown { position: absolute; top: 100%; left: -20px; min-width: 240px; padding: 10px 0; background: var(--color-navy); border: 1px solid rgb(201 168 76 / .25); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
   .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown, .has-dropdown.is-open .dropdown { opacity: 1; visibility: visible; transform: none; }
   .dropdown a { display: block; padding: 9px 20px; font-size: 14px; color: var(--color-cream); transition: color .2s, background .2s; }
@@ -66,6 +68,7 @@
   .m-toggle svg { transition: transform .3s; }
 
   /* Карточки каталога — landing-1 Services */
+  .svc-card { height: 100%; }
   .svc-card { background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid rgb(13 34 61 / .08); box-shadow: 0 2px 20px rgb(13 34 61 / .06); cursor: pointer; transition: transform .25s ease-out; }
   .svc-card:hover { transform: translateY(-4px); }
   .svc-more { overflow: hidden; height: 0; opacity: 0; transition: height .3s ease-out, opacity .3s ease-out; }
@@ -85,14 +88,20 @@
   /* Слайдер отзывов — landing-9 */
   .dot { height: 8px; width: 8px; border-radius: 4px; background: var(--color-sand); transition: all .3s; }
   .dot.is-on { width: 22px; background: var(--color-gold); }
-  .slide { transition: opacity .4s ease-out, transform .4s ease-out; }
-  .slide.is-out { opacity: 0; transform: translateX(-30px); }
+  .slide { transition: opacity .4s ease-out; }
+  .slide.is-out { opacity: 0; }
 
   /* FAQ — landing-8 */
   .faq-a { overflow: hidden; height: 0; transition: height .28s ease-in-out; }
   .faq-icon .minus { display: none; }
   [aria-expanded='true'] .faq-icon .minus { display: block; }
   [aria-expanded='true'] .faq-icon .plus { display: none; }
+
+  /* Кнопка «наверх» — landing-8 */
+  .to-top { position: fixed; right: 20px; bottom: 20px; z-index: 90; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 2px; background: var(--color-gold); color: var(--color-navy); box-shadow: 0 8px 24px rgb(13 34 61 / .25); opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .3s ease-out, transform .3s ease-out, visibility .3s; }
+  .to-top.is-on { opacity: 1; visibility: visible; transform: none; }
+  .to-top:hover { opacity: .85; }
+  @media (width >= 640px) { .to-top { right: 28px; bottom: 28px; } }
 
   /* Поля форм */
   .field { width: 100%; font-size: 15px; color: var(--color-navy); background: #fff; border: 1px solid rgb(13 34 61 / .18); border-radius: 2px; padding: 13px 16px; outline: none; transition: border-color .2s; }
@@ -104,4 +113,16 @@
 
   @keyframes hero-rise { from { opacity: 0; transform: translateY(40px); } }
   .rise { animation: hero-rise .9s ease-out backwards; animation-delay: var(--d, 0s); }
+  /* Текст без анимации появления (решение владельца): заголовки, подзаголовки, надписи и блоки-заголовки
+     разделов видны сразу; карточки, фото и кнопки появляются как раньше. */
+  .rise:is(h1, h2, h3, p, .eyebrow) { animation: none; }
+  .reveal:is(h1, h2, h3, p), .reveal:has(> h1, > h2, > .eyebrow, > .h2) { opacity: 1; transform: none; transition: none; }
+  /* Кнопки без анимации появления (решение владельца): сами кнопки и блоки с кнопками */
+  :is(.btn-gold, .btn-line).rise, .rise:has(> .btn-gold, > .btn-line, > a > .btn-gold) { animation: none; }
+  :is(.btn-gold, .btn-line).reveal, .reveal:has(> .btn-gold, > .btn-line) { opacity: 1; transform: none; transition: none; }
+  /* Формы без анимации появления (решение владельца): форма, блок с формой и её поля */
+  form.rise, .rise:has(form), form .rise { animation: none; }
+  form.reveal, .reveal:has(form), form .reveal { opacity: 1; transform: none; transition: none; }
+  /* Заголовки таблиц по центру по высоте (цены, каталог) */
+  table thead th { vertical-align: middle !important; }
 }

@@ -3,9 +3,8 @@
    node tools/mockups/site-build.mjs
 
    Исходники — mockups/site/src/:
-   - partials/theme.css   — токены Tailwind 4 (@theme) и общие компоненты; вставляется
-                            в каждую страницу как <style type="text/tailwindcss">
-                            (браузерный Tailwind не умеет @import внешнего файла с @theme);
+   - partials/theme.css   — токены Tailwind 4 (@theme) и общие компоненты; собирается вместе
+                            с классами страниц в assets/site.css (tailwindcss compile + oxide Scanner);
    - partials/header.html, footer.html, lead-form.html — шапка, подвал, форма заявки;
    - pages/index.html     — главная;
    - pages/_stub.html     — заготовка остальных страниц (шапка + заголовок + форма + подвал).
@@ -22,6 +21,9 @@
    и model/price-list.service.ts (минимальные цены — «от»). */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import { createRequire } from 'node:module';
+import { compile } from 'tailwindcss';
+import { Scanner } from '@tailwindcss/oxide';
 
 const SITE = 'mockups/site';
 const SRC = path.join(SITE, 'src');
@@ -85,11 +87,11 @@ const logo = (n) => readFileSync(path.join(SITE, 'assets/logo', `logo-${n}.svg`)
 
 const catalogLinks = (root) => CATALOG.map((c) => `<a href="${root}catalog/${c.key}/">${c.title}</a>`).join('');
 
-// Каталог разделов — landing-1 «Services»: фото с градиентом, цена «от», «Подробнее» раскрывает прайс раздела.
+// Каталог разделов — landing-1 «Services»: фото с градиентом, цена «от» и прайс раздела видны всегда.
 const catalogCards = (root) => CATALOG.map((c, i) => {
   const [min, unit] = minOf(c);
   return `
-      <article class="reveal" style="--d:${(i % 3) * 0.08}s">
+      <article class="reveal h-full" style="--d:${(i % 3) * 0.08}s">
         <div class="svc-card" data-svc>
           <div class="relative h-[200px] sm:h-[220px]">
             <img src="${root}assets/img/catalog/${c.key}/${c.image}" alt="${c.title}" loading="lazy" class="absolute inset-0 size-full object-cover" />
@@ -101,13 +103,12 @@ const catalogCards = (root) => CATALOG.map((c, i) => {
           </div>
           <div class="px-6 pt-6 pb-5">
             <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">${c.text}</p>
-            <div class="svc-more" data-svc-more>
+            <div>
               <ul class="mb-4">
                 ${c.prices.map((r) => `<li class="flex items-baseline gap-2.5 py-1.5 text-[14px]"><span class="font-bold text-gold">✓</span><span class="flex-1">${r[0]}</span><span class="font-bold whitespace-nowrap">${Array.isArray(r[1]) ? '' : 'от '}${priceText(r[1])} ₽/${r[2]}</span></li>`).join('\n                ')}
               </ul>
-              <a href="${root}catalog/${c.key}/" class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold">Перейти в раздел →</a>
+              <a href="${root}catalog/${c.key}/" class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75">Подробнее →</a>
             </div>
-            <button type="button" class="-my-3 flex items-center gap-1.5 py-3 text-[12px] font-bold tracking-[.1em] text-gold uppercase" aria-expanded="false" data-svc-btn>Подробнее ↓</button>
           </div>
         </div>
       </article>`;
@@ -115,7 +116,7 @@ const catalogCards = (root) => CATALOG.map((c, i) => {
 
 const priceRows = (root) => CATALOG.map((c) => {
   const [min, unit] = minOf(c);
-  return `<a href="${root}catalog/${c.key}/" class="flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex-1 text-[16px]">${c.title}</span><span class="text-[16px] font-bold whitespace-nowrap">от ${money(min)} ₽/${unit}</span></a>`;
+  return `<a href="${root}catalog/${c.key}/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">${c.title}<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от ${money(min)} ₽/${unit}</span></a>`;
 }).join('\n        ');
 
 // Метаданные — как на основном сайте (apps/shtorivdom-site: src/index.html, seo.ts,
@@ -178,11 +179,10 @@ const head = (page, root) => {
   <meta property="og:url" content="${url}" />
   <meta property="og:title" content="${esc(page.title)}" />
   ${page.description ? `<meta property="og:description" content="${esc(page.description)}" />\n  ` : ''}${ogImage ? `<meta property="og:image" content="${ogImage}" />\n  ` : ''}${ORG_LD.trimStart()}
+  <link rel="preload" href="${root}../shared/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="${root}../shared/fonts/lato-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="${root}../shared/fonts.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-  <style type="text/tailwindcss">
-${read('partials/theme.css')}
-  </style>
+  <link rel="stylesheet" href="${root}assets/site.css" />
 </head>`;
 };
 
@@ -234,3 +234,18 @@ for (const page of PAGES) {
   count++;
 }
 console.log(`site-build: собрано страниц — ${count}`);
+
+// CSS собирается заранее (раньше — браузерный Tailwind из CDN: страница мигала без стилей
+// при каждом переходе). Классы берутся из всех HTML и JS прототипа.
+const twDir = path.dirname(createRequire(import.meta.url).resolve('tailwindcss/package.json'));
+const loadStylesheet = async (id, base) => {
+  const file = id === 'tailwindcss' ? path.join(twDir, 'index.css')
+    : id.startsWith('tailwindcss/') ? path.join(twDir, id.slice(12))
+    : path.resolve(base, id);
+  return { path: file, base: path.dirname(file), content: readFileSync(file, 'utf8') };
+};
+const compiler = await compile(['@import "tailwindcss";', read('partials/theme.css')].join('\n'), { base: path.resolve(SITE), loadStylesheet });
+const candidates = new Scanner({ sources: [{ base: path.resolve(SITE), pattern: '**/*.{html,js,mjs}', negated: false }] }).scan();
+const css = compiler.build(candidates);
+writeFileSync(path.join(SITE, 'assets/site.css'), css);
+console.log(`site-build: assets/site.css — ${Math.round(css.length / 1024)} КБ, классов ${candidates.length}`);

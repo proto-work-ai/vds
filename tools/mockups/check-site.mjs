@@ -6,7 +6,7 @@
       без 404 (документ и ресурсы), без ошибок в консоли и исключений JS.
    2. Главная, 375px: мобильное меню открывается и закрывается.
    3. Главная, 1440px: форма (пустой телефон → ошибка, заполненный + согласие → «Спасибо»),
-      FAQ открывает/закрывает, «Подробнее» в каталоге, слайдер отзывов, до/после тянется.
+      FAQ открывает/закрывает, прайс в карточках каталога, слайдер отзывов, до/после тянется.
    Печатает ✓/✗ по пунктам, код выхода 1 при любой ошибке.
    При EBUSY на DevToolsActivePort (параллельный Chrome) — просто повторить. */
 import { withBrowser } from './snapshot.mjs';
@@ -125,15 +125,9 @@ await withBrowser(async (page) => {
     out.faqSwitch = [qs[2].nextElementSibling.getBoundingClientRect().height, qs[3].nextElementSibling.getBoundingClientRect().height];
     qs[3].click(); await s(450);
     out.faqClosed = qs[3].nextElementSibling.getBoundingClientRect().height;
-    // Подробнее
-    const btns = [...document.querySelectorAll('[data-svc-btn]')];
-    btns[1].click(); await s(450);
-    const more = (i) => btns[i].closest('[data-svc]').querySelector('[data-svc-more]').getBoundingClientRect().height;
-    out.more = [more(1), btns[1].textContent.trim()];
-    btns[4].click(); await s(450);
-    out.moreSwitch = [more(1), more(4)];
-    btns[4].click(); await s(450);
-    out.moreClosed = more(4);
+    // каталог: прайс в карточках виден всегда
+    out.prices = [...document.querySelectorAll("[data-svc]")].map((card) => card.querySelectorAll("li").length);
+    out.toggles = document.querySelectorAll("[data-svc-btn]").length;
     // отзывы
     const sl = $('[data-slider]');
     const idx = () => [...sl.querySelectorAll('[data-dot] .dot')].findIndex((d) => d.classList.contains('is-on'));
@@ -158,9 +152,7 @@ await withBrowser(async (page) => {
   ok(r.faqOpen > 20, `FAQ: вопрос открывается (${Math.round(r.faqOpen)}px)`);
   ok(r.faqSwitch[0] === 0 && r.faqSwitch[1] > 20, 'FAQ: открыт один ответ — предыдущий закрылся');
   ok(r.faqClosed === 0, 'FAQ: повторный клик закрывает');
-  ok(r.more[0] > 60 && /Свернуть/.test(r.more[1]), `каталог: «Подробнее» раскрывает прайс (${Math.round(r.more[0])}px)`);
-  ok(r.moreSwitch[0] === 0 && r.moreSwitch[1] > 60, 'каталог: открыта одна карточка');
-  ok(r.moreClosed === 0, 'каталог: повторный клик сворачивает');
+  ok(r.prices.length === 7 && r.prices.every((n) => n >= 3) && r.toggles === 0, `каталог: прайс виден во всех карточках без «Подробнее» (${r.prices.join("/")})`);
   ok(r.start === 0 && r.next === 1 && r.dot === 2 && r.prev === 1, `отзывы: точка 1 → 1, вперёд → 2, точка → 3, назад → 2 (${r.start + 1}/${r.next + 1}/${r.dot + 1}/${r.prev + 1})`);
 
   // до/после: настоящие события мыши через CDP

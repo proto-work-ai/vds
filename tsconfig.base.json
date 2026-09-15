@@ -44,6 +44,7 @@
       "@spartan-ng/helm/utils": ["libs/ui/utils/src/index.ts"],
       "@metadb/core": ["libs/metadb/core/src/index.ts"],
       "@atlas/core": ["libs/atlas/core/src/index.ts"],
+      "@shtorivdom/site-kit": ["libs/ui/site-kit/src/index.ts"],
       "@atlas/table": ["libs/atlas/table/src/index.ts"],
       "@atlas/form": ["libs/atlas/form/src/index.ts"],
       "@spartan-ng/helm/navigation-menu": ["libs/ui/navigation-menu/src/index.ts"]

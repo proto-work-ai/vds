@@ -6,11 +6,11 @@ import { readFileSync, writeFileSync } from 'node:fs';
 const APP = 'apps/shtorivdom-site/src/app';
 const OUT = 'mockups/site/src/pages';
 
-const hero = (lead, h1cls = 'text-[34px]') => `<section class="bg-navy pt-[120px] pb-14 text-cream sm:pt-[150px] sm:pb-20">
+const hero = (lead, h1cls = 'text-[24px]') => `<section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
   <div class="wrap">
-    <nav class="mb-6 flex flex-wrap items-center gap-2 text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
-    <h1 class="rise ${h1cls} leading-[1.15] font-bold sm:text-[52px]">{{h1}}</h1>${lead ? `
-    <p class="rise mt-4 max-w-[640px] text-[17px] leading-[1.7] font-light text-cream/75" style="--d:.1s">${lead}</p>` : ''}
+    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
+    <h1 class="rise ${h1cls} leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>${lead ? `
+    <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75" style="--d:.1s">${lead}</p>` : ''}
   </div>
 </section>`;
 
@@ -29,7 +29,7 @@ const keys = Object.keys(TITLES);
 const tabs = keys.map((k, i) => `<button type="button" role="tab" id="tab-${k}" aria-controls="panel-${k}" aria-selected="${i === 0}" data-tab="${k}" class="rounded-[2px] border border-navy/15 bg-white px-4 py-2.5 text-[14px] font-bold transition-colors hover:border-gold aria-selected:border-navy aria-selected:bg-navy aria-selected:text-gold">${TITLES[k]}</button>`).join('\n        ');
 const panels = keys.map((k, i) => {
   const rows = priceMap[k];
-  return `<div role="tabpanel" id="panel-${k}" aria-labelledby="tab-${k}" class="rise"${i ? ' hidden' : ''} data-tab-panel>
+  return `<div role="tabpanel" id="panel-${k}" aria-labelledby="tab-${k}"${i ? ' hidden' : ''} data-tab-panel>
         <div class="hidden overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-[0_2px_20px_rgb(13_34_61/.06)] md:block">
           <table class="w-full text-left text-[15px]">
             <thead class="bg-navy text-cream"><tr class="[&>th]:px-6 [&>th]:py-4 [&>th]:text-[12px] [&>th]:font-bold [&>th]:tracking-[.12em] [&>th]:uppercase">

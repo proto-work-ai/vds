@@ -1,11 +1,11 @@
 <span class="pn-font pn-picker" [ngClass]="{'pn-expanded': isOpen}">
   <button
     #labelButton
-    [tabIndex]="-1"
     tabindex="0"
     type="button"
     role="button"
     class="pn-picker-label"
+    [tabIndex]="-1"
     (click)="toggleOpen($event)"
   >
     {{ label }}

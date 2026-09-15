@@ -1,5 +1,5 @@
 /* eslint-disable @angular-eslint/component-selector */
-/* eslint-disable @nx/enforce-module-boundaries */
+ 
 import { Component, inject } from '@angular/core';
 import { HlmButton } from '@spartan-ng/helm/button';
 import { HlmDialogService } from '@spartan-ng/helm/dialog';

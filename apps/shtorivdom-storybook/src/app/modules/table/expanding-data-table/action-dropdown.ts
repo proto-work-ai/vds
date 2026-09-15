@@ -1,4 +1,4 @@
-/* eslint-disable @nx/enforce-module-boundaries */
+ 
 /* eslint-disable @angular-eslint/component-selector */
 import { Component } from '@angular/core';
 import { NgIcon, provideIcons } from '@ng-icons/core';

@@ -1,42 +1,42 @@
 /* Шрифты по умолчанию для лендингов: заголовки — Playfair Display, текст — Lato 2.0
    (из пакета lato-font, в Lato из Google Fonts кириллицы нет). Оба с кириллицей.
    Правило в слое base — там, где у заголовка свой шрифт (класс, стиль сайта), он важнее. */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap&subset=cyrillic');
 
 @font-face {
   font-family: "Lato";
   src: url("fonts/lato-light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: "Lato";
   src: url("fonts/lato-normal.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: "Lato";
   src: url("fonts/lato-normal-italic.woff2") format("woff2");
   font-weight: 400;
   font-style: italic;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: "Lato";
   src: url("fonts/lato-semibold.woff2") format("woff2");
   font-weight: 600;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 @font-face {
   font-family: "Lato";
   src: url("fonts/lato-bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @layer base {

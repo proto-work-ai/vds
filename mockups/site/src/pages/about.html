@@ -2,18 +2,18 @@
 <!-- О нас. Текущий сайт: pages/about = main-about + main-form. Цифры — main-welcome, преимущества — way-we-work,
      этапы — place-an-order. Фото: image-13.jpg (main-about), image-8/9.jpg (public/images текущего сайта). -->
 <main>
-<section class="bg-navy pt-[120px] pb-14 text-cream sm:pt-[150px] sm:pb-20">
+<section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
   <div class="wrap">
-    <nav class="mb-6 flex flex-wrap items-center gap-2 text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
-    <h1 class="rise text-[34px] leading-[1.15] font-bold sm:text-[52px]">{{h1}}</h1>
-    <p class="rise mt-4 max-w-[640px] text-[17px] leading-[1.7] font-light text-cream/75" style="--d:.1s">{{lead}}</p>
+    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
+    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>
+    <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75" style="--d:.1s">{{lead}}</p>
   </div>
 </section>
 
 <!-- ============ О компании — landing-8 «Crafting Beautiful Interiors» (коллаж + текст + цифры). Тексты main-about ============ -->
 <section class="bg-cream py-20 sm:py-28">
   <div class="wrap grid items-center gap-16 lg:grid-cols-2">
-    <div class="reveal relative pb-6 sm:pb-0">
+    <div class="relative pb-6 sm:pb-0">
       <div class="absolute -top-5 -right-5 hidden size-44 bg-gold/10 sm:block"></div>
       <div class="relative z-10 mr-10 sm:mr-16"><img src="{{root}}assets/img/about/image-13.jpg" alt="Шторы на заказ в интерьере" loading="lazy" class="h-[380px] w-full object-cover shadow-2xl sm:h-[540px]" /></div>
       <div class="absolute right-0 bottom-10 z-20 w-[140px] border-4 border-white shadow-2xl sm:w-[200px]"><img src="{{root}}assets/img/about/image-8.jpg" alt="Шторы в интерьере" loading="lazy" class="h-[150px] w-full object-cover sm:h-[210px]" /></div>
@@ -22,7 +22,7 @@
         <span class="mt-1 text-center text-[11px] tracking-[.2em] text-white/85 uppercase">лет</span>
       </div>
     </div>
-    <div class="reveal" style="--d:.1s">
+    <div>
       <div class="mb-5 flex items-center gap-3"><span class="h-px w-9 bg-gold"></span><span class="text-[12px] tracking-[.38em] text-gold uppercase">О нас</span></div>
       <p class="mb-6 font-serif text-[clamp(22px,2.6vw,30px)] leading-snug">Компания успешно работает на рынке более 15 лет. За это время мы выполнили более 10 000 проектов.</p>
       <div class="space-y-4 text-[16px] leading-relaxed font-light text-slate">
@@ -36,12 +36,12 @@
 </section>
 
 <!-- ============ Цифры — landing-8 счётчики, тексты main-welcome ============ -->
-<section class="bg-navy py-14 text-cream sm:py-20">
+<section class="bg-navy py-8 text-cream sm:py-10">
   <div class="wrap">
-    <ol class="grid grid-cols-1 gap-10 text-center sm:grid-cols-3">
-      <li class="reveal"><div class="font-serif text-[48px] leading-none text-gold" data-count="3000" data-suffix="+">3000+</div><p class="mx-auto mt-3 max-w-[220px] text-[15px] leading-snug text-cream/70">Тканей, карнизов и аксессуаров в наличии</p></li>
-      <li class="reveal" style="--d:.1s"><div class="font-serif text-[48px] leading-none text-gold" data-count="10000" data-suffix="+">10 000+</div><p class="mx-auto mt-3 max-w-[220px] text-[15px] leading-snug text-cream/70">Реализованных дизайн-проектов</p></li>
-      <li class="reveal" style="--d:.2s"><div class="font-serif text-[48px] leading-none text-gold" data-count="1000" data-suffix="+">1 000+</div><p class="mx-auto mt-3 max-w-[220px] text-[15px] leading-snug text-cream/70">Постоянных клиентов</p></li>
+    <ol class="grid grid-cols-3 gap-3 text-center sm:gap-6">
+      <li class="reveal"><div class="font-serif text-[22px] leading-none whitespace-nowrap text-gold min-[375px]:text-[26px] sm:text-[48px]" data-count="3000" data-suffix="+">3 000+</div><p class="mx-auto mt-2 max-w-[280px] text-[12px] sm:text-[15px] leading-snug text-cream/70">Тканей, карнизов и аксессуаров в наличии</p></li>
+      <li class="reveal" style="--d:.1s"><div class="font-serif text-[22px] leading-none whitespace-nowrap text-gold min-[375px]:text-[26px] sm:text-[48px]" data-count="10000" data-suffix="+">10 000+</div><p class="mx-auto mt-2 max-w-[280px] text-[12px] sm:text-[15px] leading-snug text-cream/70">Реализованных дизайн-проектов</p></li>
+      <li class="reveal" style="--d:.2s"><div class="font-serif text-[22px] leading-none whitespace-nowrap text-gold min-[375px]:text-[26px] sm:text-[48px]" data-count="1000" data-suffix="+">1 000+</div><p class="mx-auto mt-2 max-w-[280px] text-[12px] sm:text-[15px] leading-snug text-cream/70">Постоянных клиентов</p></li>
     </ol>
   </div>
 </section>
@@ -49,18 +49,18 @@
 <!-- ============ Преимущества — landing-6 «Where Artistry Meets Architecture» (фото + список). Тексты way-we-work ============ -->
 <section class="bg-white py-20 sm:py-28">
   <div class="wrap grid items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
-    <div class="reveal order-2 lg:order-1">
+    <div class="order-2 lg:order-1">
       <div class="mb-4 flex items-center gap-3"><span class="h-px w-8 bg-gold"></span><span class="text-[12px] tracking-[.28em] text-gold uppercase">Почему мы</span></div>
       <h2 class="mb-10 text-[clamp(30px,4vw,46px)] leading-[1.12]">Более 15 лет мы создаем <em class="text-gold">уникальные текстильные интерьеры</em></h2>
       <ul class="grid gap-8 sm:grid-cols-2">
-        <li class="reveal"><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><h3 class="mb-2 text-[19px]">Сотни бесплатных образцов тканей</h3><p class="text-[15px] leading-relaxed font-light text-slate">Высококачественные, экологически чистые материалы, подходящие к любому стилю интерьера.</p></li>
-        <li class="reveal" style="--d:.08s"><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span><h3 class="mb-2 text-[19px]">Бесплатная услуга по разработке дизайна.</h3><p class="text-[15px] leading-relaxed font-light text-slate">Индивидуальный дизайн штор, соответствующих вашему уникальному стилю и пространству.</p></li>
-        <li class="reveal" style="--d:.16s"><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M12 2v2"/></svg></span><h3 class="mb-2 text-[19px]">Создано вручную специально для вас</h3><p class="text-[15px] leading-relaxed font-light text-slate">Изготавливается на заказ опытными мастерами с учетом ваших точных потребностей.</p></li>
-        <li class="reveal" style="--d:.24s"><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span><h3 class="mb-2 text-[19px]">Бесплатная доставка</h3><p class="text-[15px] leading-relaxed font-light text-slate">Наслаждайтесь быстрой и надежной доставкой каждого заказа без дополнительных сборов за доставку.</p></li>
+        <li><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><h3 class="mb-2 text-[19px]">Сотни бесплатных образцов тканей</h3><p class="text-[15px] leading-relaxed font-light text-slate">Высококачественные, экологически чистые материалы, подходящие к любому стилю интерьера.</p></li>
+        <li><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span><h3 class="mb-2 text-[19px]">Бесплатная услуга по разработке дизайна.</h3><p class="text-[15px] leading-relaxed font-light text-slate">Индивидуальный дизайн штор, соответствующих вашему уникальному стилю и пространству.</p></li>
+        <li><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M12 2v2"/></svg></span><h3 class="mb-2 text-[19px]">Создано вручную специально для вас</h3><p class="text-[15px] leading-relaxed font-light text-slate">Изготавливается на заказ опытными мастерами с учетом ваших точных потребностей.</p></li>
+        <li><span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span><h3 class="mb-2 text-[19px]">Бесплатная доставка</h3><p class="text-[15px] leading-relaxed font-light text-slate">Наслаждайтесь быстрой и надежной доставкой каждого заказа без дополнительных сборов за доставку.</p></li>
       </ul>
     </div>
-    <div class="reveal relative order-1 lg:order-2" style="--d:.1s">
-      <div class="absolute -inset-3 border border-gold/30 sm:-inset-5"></div>
+    <div class="relative order-1 lg:order-2">
+      <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
       <img src="{{root}}assets/img/about/image-9.jpg" alt="Гостиная со шторами" loading="lazy" class="relative h-[300px] w-full object-cover sm:h-[520px]" />
     </div>
   </div>
