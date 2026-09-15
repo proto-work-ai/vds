@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/component-selector */
  
 import { Component, inject } from '@angular/core';
 import { HlmButton } from '@spartan-ng/helm/button';

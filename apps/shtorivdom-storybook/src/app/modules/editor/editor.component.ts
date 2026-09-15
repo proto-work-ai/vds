@@ -1,6 +1,3 @@
-/* eslint-disable @angular-eslint/no-output-rename */
-/* eslint-disable @angular-eslint/no-input-rename */
-/* eslint-disable @angular-eslint/no-output-native */
 import {
   Attribute,
   ChangeDetectorRef,
@@ -81,10 +78,8 @@ export class AtlasEditorComponent
   @Input() public id = `editor-${elementNum++}`;
   @Input() public placeholder = '';
   @Input() public tabIndex: number | null;
-  // eslint-disable-next-line @angular-eslint/no-output-native, @angular-eslint/no-output-rename
   @Output('blur') blurEvent: EventEmitter<FocusEvent> =
     new EventEmitter<FocusEvent>();
-  // eslint-disable-next-line @angular-eslint/no-output-rename, @angular-eslint/no-output-native
   @Output('focus') focusEvent: EventEmitter<FocusEvent> =
     new EventEmitter<FocusEvent>();
   @Output() html = new EventEmitter<FocusEvent>();;

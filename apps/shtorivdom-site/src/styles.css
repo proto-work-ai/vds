@@ -1,0 +1,43 @@
+/* Стили сайта — тема прототипа mockups/site (Tailwind 4). Классы берутся из шаблонов сайта и site-kit. */
+@import 'tailwindcss' source(none);
+@source './app';
+@source '../../../libs/ui/site-kit/src';
+@import './styles/theme.css';
+@import './styles/catalog.css';
+
+/* Lato 2.0 с кириллицей; block — без мигания запасным шрифтом, основные начертания в preload (index.html) */
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/lato-light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/lato-normal.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/lato-normal-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/lato-semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('/fonts/lato-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: block;
+}

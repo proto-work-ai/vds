@@ -1,4 +1,3 @@
-/* eslint-disable @angular-eslint/component-selector */
 
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';

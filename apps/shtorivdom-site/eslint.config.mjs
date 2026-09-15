@@ -31,4 +31,9 @@ export default [
     // Override or add rules here
     rules: {},
   },
+  {
+    // Шаблоны страниц генерируются из прототипа (tools/mockups/site-to-angular.mjs) — строки как в исходнике
+    files: ['**/src/app/pages/**/page.html', '**/src/app/layout/site-footer.html'],
+    rules: { 'max-len': 'off' },
+  },
 ];

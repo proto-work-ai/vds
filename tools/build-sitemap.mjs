@@ -5,10 +5,10 @@ import { readFileSync, writeFileSync } from 'node:fs';
  * Собирает `sitemap.xml` и `robots.txt` сайта shtorivdom.
  *
  * Перенесено из DesignPad (tools/build-sitemap.mjs) и переделано: список
- * адресов не выписан отдельным файлом, а берётся из `app.routes.ts` и ключей
- * каталога в `catalog.data.ts` — новая страница каталога попадает в карту сама.
+ * адресов не выписан отдельным файлом, а берётся из маршрутов
+ * `site-pages.ts` — новая страница попадает в карту сама.
  *
- * Дата изменения — из истории git по файлу страницы, а не время запуска:
+ * Дата изменения — из истории git по папке страницы, а не время запуска:
  * `lastmod`, который меняется у всех страниц при каждой сборке, поисковик
  * перестаёт принимать всерьёз.
  *
@@ -17,33 +17,30 @@ import { readFileSync, writeFileSync } from 'node:fs';
 const APP = 'apps/shtorivdom-site';
 const OUT_SITEMAP = `${APP}/public/sitemap.xml`;
 const OUT_ROBOTS = `${APP}/public/robots.txt`;
-const CATALOG_DATA = `${APP}/src/app/model/catalog/catalog.data.ts`;
+const SITE_PAGES = `${APP}/src/app/site-pages.ts`;
 
 const SITE = process.env.SITE_URL ?? 'https://shtorivdom.ru';
 
-// Страницы верхнего уровня и файл, из истории которого берётся дата.
-const staticPages = [
-  { route: '/', source: `${APP}/src/app/pages/main-page`, priority: '1.0' },
-  { route: '/about', source: `${APP}/src/app/pages/about`, priority: '0.6' },
-  { route: '/contact', source: `${APP}/src/app/pages/contact`, priority: '0.7' },
-  { route: '/partner', source: `${APP}/src/app/pages/partner`, priority: '0.5' },
-  { route: '/privacy-policy', source: `${APP}/src/app/pages/privacy-policy`, priority: '0.2' },
-  {
-    route: '/soglasie-na-obrabotku-personalnyh-dannyh',
-    source: `${APP}/src/app/pages/soglasie-na-obrabotku-personalnyh-dannyh`,
-    priority: '0.2',
-  },
-];
+const priorityOf = (route) =>
+  route === '/'
+    ? '1.0'
+    : route.startsWith('/catalog')
+      ? '0.8'
+      : ['/price/', '/services/', '/contact/'].includes(route)
+        ? '0.7'
+        : route === '/about/'
+          ? '0.6'
+          : route === '/partner/'
+            ? '0.5'
+            : '0.2';
 
-// Ключи верхнего уровня каталога — с отступом в 4 пробела; вложенные элементы
-// (`key: '1'`) глубже, закомментированные начинаются с `//` и не совпадают.
-const catalogKeys = [...readFileSync(CATALOG_DATA, 'utf8').matchAll(/^ {4}key: '([^']+)'/gm)].map((m) => m[1]);
-
-const catalogPages = catalogKeys.map((key) => ({
-  route: `/catalog/${key}`,
-  source: `${APP}/src/app/model/catalog/catalog-detail/${key}`,
-  priority: '0.8',
-}));
+// Маршрут и папка страницы: path: '…' и import('./pages/<папка>/page')
+const pages = [...readFileSync(SITE_PAGES, 'utf8').matchAll(/path: '([^']*)'[\s\S]*?import\('\.\/pages\/([^/]+)\/page'\)/g)].map(
+  ([, path, dir]) => {
+    const route = path ? `/${path}/` : '/';
+    return { route, source: `${APP}/src/app/pages/${dir}`, priority: priorityOf(route) };
+  }
+);
 
 function lastModified(path) {
   try {
@@ -52,8 +49,6 @@ function lastModified(path) {
     return null;
   }
 }
-
-const pages = [...staticPages, ...catalogPages];
 
 const entries = pages.map(({ route, source, priority }) => {
   const lastmod = lastModified(source);

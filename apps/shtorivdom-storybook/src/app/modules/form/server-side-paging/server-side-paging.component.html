@@ -1,7 +1,7 @@
   <tui-textfield virtualScrollHost tuiChevron [stringify]="[] | virtualScrollPaginate: serviceSearch() | stringifySetter: 'title'">
-    <label tuiLabel>Select Entity</label>
+    <label tuiLabel for="relation-id">Select Entity</label>
 
-    <input tuiComboBox formControlName="relationId" />
+    <input id="relation-id" tuiComboBox formControlName="relationId" />
 
     <tui-data-list *tuiTextfieldDropdown>
       <cdk-virtual-scroll-viewport itemSize="35" appendOnly class="example-viewport">

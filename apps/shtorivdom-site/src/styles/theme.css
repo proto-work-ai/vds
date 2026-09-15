@@ -1,0 +1,128 @@
+/* Тема прототипа сайта Shtorivdom. Сборщик вставляет этот файл в каждую страницу
+   как <style type="text/tailwindcss"> (браузерный Tailwind не подключает внешние
+   файлы с @theme). Правка здесь → node tools/mockups/site-build.mjs. */
+@theme {
+  --font-sans: 'Lato', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --color-navy: #0d223d;
+  --color-navy-deep: #081629;
+  --color-gold: #c9a84c;
+  --color-gold-soft: #f0e6c8;
+  --color-cream: #f5f0e8;
+  --color-sand: #e8e2d6;
+  --color-slate: #2d3748;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; scrollbar-gutter: stable; }
+  body { font-family: var(--font-sans); color: var(--color-navy); background: var(--color-cream); overflow-x: hidden; }
+  h1, h2, h3 { font-family: var(--font-serif); }
+  button:not(:disabled), summary, [role='button'] { cursor: pointer; }
+}
+
+@layer components {
+  /* Контейнер секций: 1200px, поля 20/32px */
+  .wrap { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 20px; }
+  @media (width >= 640px) { .wrap { padding-inline: 32px; } }
+
+  /* Надзаголовок и ромб-разделитель — landing-1 */
+  .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--color-gold); margin-bottom: 12px; }
+  .h2 { font-family: var(--font-serif); font-size: clamp(28px, 4vw, 44px); font-weight: 700; line-height: 1.2; }
+  .divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 16px 0; }
+  .divider::before, .divider::after { content: ''; width: 40px; height: 1px; background: var(--color-gold); }
+  .divider > i { width: 6px; height: 6px; background: var(--color-gold); transform: rotate(45deg); }
+
+  .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-gold); color: var(--color-navy); font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: opacity .2s; }
+  .btn-gold:hover { opacity: .85; }
+  .btn-line { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgb(255 255 255 / .35); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: border-color .3s; }
+  .btn-line:hover { border-color: rgb(255 255 255 / .7); }
+
+  /* Появление при прокрутке: landing-1 (40px, 0.7s) и landing-9 (.reveal-soft: 28px, 0.85s) */
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease-out var(--d, 0s), transform .7s ease-out var(--d, 0s); }
+  .reveal-soft { transform: translateY(28px); transition-duration: .85s; }
+  .reveal.is-in { opacity: 1; transform: none; }
+
+  /* Шапка: прозрачная наверху главной, тёмная после 60px. Без анимации при загрузке —
+     при переходе между страницами панель не должна выезжать или проявляться. */
+  .site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: transparent; border-bottom: 1px solid transparent; transition: background .4s, border-color .4s; }
+  .site-header.is-solid, body[data-header="solid"] .site-header { background: var(--color-navy); border-bottom-color: rgb(201 168 76 / .3); }
+  body[data-header="solid"] .site-header { transition: none; }
+  .nav-link { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--color-cream); transition: color .2s; white-space: nowrap; }
+  .nav-link:hover, .nav-link[aria-current='page'] { color: var(--color-gold); }
+  .nav-link[aria-current='page'] { transition: none; }
+  .dropdown { position: absolute; top: 100%; left: -20px; min-width: 240px; padding: 10px 0; background: var(--color-navy); border: 1px solid rgb(201 168 76 / .25); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
+  .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown, .has-dropdown.is-open .dropdown { opacity: 1; visibility: visible; transform: none; }
+  .dropdown a { display: block; padding: 9px 20px; font-size: 14px; color: var(--color-cream); transition: color .2s, background .2s; }
+  .dropdown a:hover { color: var(--color-gold); background: rgb(255 255 255 / .04); }
+  .burger span { display: block; width: 24px; height: 2px; background: var(--color-cream); transition: transform .3s, opacity .3s; }
+  .burger span + span { margin-top: 5px; }
+  .burger[aria-expanded='true'] span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+  .burger[aria-expanded='true'] span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+  .mobile-panel { background: var(--color-navy); border-top: 1px solid rgb(201 168 76 / .2); overflow: hidden; height: 0; opacity: 0; transition: height .3s ease-out, opacity .3s ease-out; }
+  .mobile-panel.is-open { opacity: 1; }
+  .mobile-panel a, .mobile-panel .m-toggle { display: flex; width: 100%; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--color-cream); padding: 12px 0; border-bottom: 1px solid rgb(255 255 255 / .07); }
+  .mobile-panel .m-sub a { text-transform: none; letter-spacing: 0; font-weight: 400; padding-left: 16px; }
+  .m-sub { overflow: hidden; height: 0; transition: height .3s ease-out; }
+  .m-toggle[aria-expanded='true'] svg { transform: rotate(180deg); }
+  .m-toggle svg { transition: transform .3s; }
+
+  /* Карточки каталога — landing-1 Services */
+  .svc-card { height: 100%; }
+  .svc-card { background: #fff; border-radius: 4px; overflow: hidden; border: 1px solid rgb(13 34 61 / .08); box-shadow: 0 2px 20px rgb(13 34 61 / .06); cursor: pointer; transition: transform .25s ease-out; }
+  .svc-card:hover { transform: translateY(-4px); }
+  .svc-more { overflow: hidden; height: 0; opacity: 0; transition: height .3s ease-out, opacity .3s ease-out; }
+  .svc-more.is-open { opacity: 1; }
+
+  /* Галерея — landing-1 Real Homes: триггер — карточка */
+  .work img { transition: transform .4s ease-out; }
+  .work:hover img { transform: scale(1.06); }
+  .work .cap { opacity: 0; transition: opacity .3s ease-out; }
+  .work:hover .cap, .work:focus-visible .cap { opacity: 1; }
+  @media (hover: none) { .work .cap { opacity: 1; } }
+
+  /* Тарифы — landing-1 Pricing */
+  .tier { border-radius: 4px; position: relative; overflow: hidden; transition: transform .25s ease-out; }
+  .tier:hover { transform: translateY(-6px); }
+
+  /* Слайдер отзывов — landing-9 */
+  .dot { height: 8px; width: 8px; border-radius: 4px; background: var(--color-sand); transition: all .3s; }
+  .dot.is-on { width: 22px; background: var(--color-gold); }
+  .slide { transition: opacity .4s ease-out; }
+  .slide.is-out { opacity: 0; }
+
+  /* FAQ — landing-8 */
+  .faq-a { overflow: hidden; height: 0; transition: height .28s ease-in-out; }
+  .faq-icon .minus { display: none; }
+  [aria-expanded='true'] .faq-icon .minus { display: block; }
+  [aria-expanded='true'] .faq-icon .plus { display: none; }
+
+  /* Кнопка «наверх» — landing-8 */
+  .to-top { position: fixed; right: 20px; bottom: 20px; z-index: 90; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 2px; background: var(--color-gold); color: var(--color-navy); box-shadow: 0 8px 24px rgb(13 34 61 / .25); opacity: 0; visibility: hidden; transform: translateY(12px); transition: opacity .3s ease-out, transform .3s ease-out, visibility .3s; }
+  .to-top.is-on { opacity: 1; visibility: visible; transform: none; }
+  .to-top:hover { opacity: .85; }
+  @media (width >= 640px) { .to-top { right: 28px; bottom: 28px; } }
+
+  /* Поля форм */
+  .field { width: 100%; font-size: 15px; color: var(--color-navy); background: #fff; border: 1px solid rgb(13 34 61 / .18); border-radius: 2px; padding: 13px 16px; outline: none; transition: border-color .2s; }
+  .field:focus { border-color: var(--color-gold); }
+  .field.is-error { border-color: #c0392b; }
+  .field-label { display: block; margin-bottom: 8px; font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+  .form-done { opacity: 0; transform: scale(.95); transition: opacity .4s ease-out, transform .4s ease-out; }
+  .form-done.is-in { opacity: 1; transform: none; }
+
+  @keyframes hero-rise { from { opacity: 0; transform: translateY(40px); } }
+  .rise { animation: hero-rise .9s ease-out backwards; animation-delay: var(--d, 0s); }
+  /* Текст без анимации появления (решение владельца): заголовки, подзаголовки, надписи и блоки-заголовки
+     разделов видны сразу; карточки, фото и кнопки появляются как раньше. */
+  .rise:is(h1, h2, h3, p, .eyebrow) { animation: none; }
+  .reveal:is(h1, h2, h3, p), .reveal:has(> h1, > h2, > .eyebrow, > .h2) { opacity: 1; transform: none; transition: none; }
+  /* Кнопки без анимации появления (решение владельца): сами кнопки и блоки с кнопками */
+  :is(.btn-gold, .btn-line).rise, .rise:has(> .btn-gold, > .btn-line, > a > .btn-gold) { animation: none; }
+  :is(.btn-gold, .btn-line).reveal, .reveal:has(> .btn-gold, > .btn-line) { opacity: 1; transform: none; transition: none; }
+  /* Формы без анимации появления (решение владельца): форма, блок с формой и её поля */
+  form.rise, .rise:has(form), form .rise { animation: none; }
+  form.reveal, .reveal:has(form), form .reveal { opacity: 1; transform: none; transition: none; }
+  /* Заголовки таблиц по центру по высоте (цены, каталог) */
+  table thead th { vertical-align: middle !important; }
+}

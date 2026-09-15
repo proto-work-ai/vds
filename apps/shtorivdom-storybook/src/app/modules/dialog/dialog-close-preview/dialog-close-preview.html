@@ -6,15 +6,15 @@
     </hlm-dialog-header>
     <div class="grid gap-4 py-4">
       <div class="flex items-center justify-between gap-4">
-        <label hlmLabel>Close dialog by directive</label>
+        <span hlmLabel>Close dialog by directive</span>
         <button hlmBtn hlmDialogClose>Close</button>
       </div>
       <div class="flex items-center justify-between gap-4">
-        <label hlmLabel>Close dialog by reference</label>
+        <span hlmLabel>Close dialog by reference</span>
         <button hlmBtn (click)="dialogRef.close({})">Close</button>
       </div>
       <div class="flex items-center justify-between gap-4">
-        <label hlmLabel>Close dialog by viewchild reference</label>
+        <span hlmLabel>Close dialog by viewchild reference</span>
         <button hlmBtn (click)="closeDialog()">Close</button>
       </div>
     </div>

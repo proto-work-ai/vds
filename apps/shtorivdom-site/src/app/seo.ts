@@ -5,10 +5,14 @@ import { filter } from 'rxjs';
 
 export const SITE_URL = 'https://shtorivdom.ru';
 
-// Заголовок и описание страницы; кладутся в `data.seo` маршрута.
+/** Метаданные страницы; кладутся в `data.seo` маршрута (src/app/site-pages.ts). */
 export interface SeoData {
   title: string;
   description: string;
+  /** Абсолютный адрес картинки для og:image */
+  image: string;
+  /** Разметка schema.org: хлебные крошки, FAQ, товар, организация */
+  jsonLd: object[];
 }
 
 function deepest(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {
@@ -16,10 +20,8 @@ function deepest(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {
 }
 
 /**
- * После каждой навигации ставит canonical и og:url, а для маршрутов с
- * `data.seo` — ещё title и description. Страницы каталога и юридические
- * задают title сами в конструкторе, у их маршрутов `seo` нет, и сервис их не
- * перезаписывает.
+ * После каждой навигации ставит title, description, canonical, Open Graph и JSON-LD страницы.
+ * Навигация проходит и при пререндере, поэтому всё это попадает в готовый HTML.
  */
 export function provideSeo() {
   return provideAppInitializer(() => {
@@ -29,8 +31,8 @@ export function provideSeo() {
     const document = inject(DOCUMENT);
 
     router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
-      const path = router.url.split(/[?#]/)[0].replace(/\/+$/, '');
-      const url = `${SITE_URL}${path}/`.replace(/\/\/$/, '/');
+      const path = router.url.split(/[?#]/)[0].replace(/^\/+|\/+$/g, '');
+      const url = `${SITE_URL}/${path ? path + '/' : ''}`;
 
       let link = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
       if (!link) {
@@ -41,12 +43,22 @@ export function provideSeo() {
       link.href = url;
       meta.updateTag({ property: 'og:url', content: url });
 
+      document.head.querySelectorAll('script[data-page-ld]').forEach((s) => s.remove());
       const seo = deepest(router.routerState.snapshot.root).data['seo'] as SeoData | undefined;
-      if (seo) {
-        title.setTitle(seo.title);
-        meta.updateTag({ name: 'description', content: seo.description });
-        meta.updateTag({ property: 'og:title', content: seo.title });
-        meta.updateTag({ property: 'og:description', content: seo.description });
+      if (!seo) return;
+
+      title.setTitle(seo.title);
+      meta.updateTag({ name: 'description', content: seo.description });
+      meta.updateTag({ property: 'og:title', content: seo.title });
+      meta.updateTag({ property: 'og:description', content: seo.description });
+      meta.updateTag({ property: 'og:image', content: seo.image });
+      for (const data of seo.jsonLd) {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.setAttribute('data-page-ld', '');
+        // «<» в тексте не должен закрыть тег script
+        script.textContent = JSON.stringify(data).replace(/</g, '\\u003c');
+        document.head.appendChild(script);
       }
     });
   });

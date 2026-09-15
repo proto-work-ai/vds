@@ -1,6 +1,5 @@
  
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable @angular-eslint/component-selector */
 import {
   ChangeDetectionStrategy,
   Component,

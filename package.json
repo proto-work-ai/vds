@@ -8,7 +8,7 @@
     "site:serve:prod": "npx nx run shtorivdom-site:serve --configuration=production",
     "site:build": "npx nx run shtorivdom-site:build",
     "site:build:dev": "npx nx run shtorivdom-site:build --configuration=development",
-    "site:start": "node dist/apps/shtorivdom-site/server/server.mjs",
+    "site:start": "npx nx run shtorivdom-site:serve-static",
     "build": "npx nx run shtorivdom-site:build",
     "storybook": "npx nx run shtorivdom-storybook:storybook",
     "storybook:serve": "npx nx run shtorivdom-storybook:storybook",

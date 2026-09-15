@@ -50,11 +50,11 @@ export class EditorSelectComponent implements OnInit, ControlValueAccessor {
   optionId = 0;
 
   opened = false;
-  public propagateChange: any = () => {};
-  public propagateTouched: any = () => {};
+  public propagateChange: any = () => undefined;
+  public propagateTouched: any = () => undefined;
 
   public get label(): string {
-    return this.selectedOption()?.hasOwnProperty('label') ? this.selectedOption()!.label : 'Select';
+    return Object.hasOwn(this.selectedOption() ?? {}, 'label') ? this.selectedOption()!.label : 'Select';
   }
 
   public get value() {
@@ -194,13 +194,19 @@ export class EditorSelectComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  _handleSpace($event: KeyboardEvent) {}
+  _handleSpace($event: KeyboardEvent) {
+    void $event;
+  }
 
   _handleEnter($event: PointerEvent) {
     this.optionSelect(this.options[this.optionId], $event);
   }
 
-  _handleTab($event: KeyboardEvent) {}
+  _handleTab($event: KeyboardEvent) {
+    void $event;
+  }
 
-  _handleBackspace() {}
+  _handleBackspace() {
+    return;
+  }
 }
