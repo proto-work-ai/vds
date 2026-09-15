@@ -14,7 +14,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
-const APP = 'apps/shtorivdom-site/src/app/model/catalog/catalog-detail';
+const APP = 'mockups/site/src/data/old-site/model/catalog/catalog-detail';
 const SRC = 'mockups/site/src';
 
 // ---------- данные: catalog.data.ts ----------
@@ -240,7 +240,7 @@ const stepsHtml = (() => {
   const start = index.indexOf('<div class="reveal reveal-soft mt-20 mb-14 text-center sm:mt-28">');
   const end = index.indexOf('</ol>', start);
   if (start < 0 || end < 0) throw new Error('catalog.mjs: не найден блок «Как сделать заказ?» в src/pages/index.html');
-  return index.slice(start, end + '</ol>\n    </div>'.length).replace('mt-20 mb-14', 'mb-14').replace('sm:mt-28', '');
+  return index.slice(start, index.indexOf('</div>', end) + '</div>'.length).replace('mt-20 mb-14', 'mb-14').replace('sm:mt-28', '');
 })();
 const faqHtml = (() => {
   const m = index.match(/<section id="faq"[\s\S]*?<\/section>/);

@@ -134,12 +134,37 @@
     });
   }
 
-  // ---------- отзывы (заглушки) ----------
+  // ---------- отзывы: ДЕМО только для макета (на Angular-сайт не переносятся — там свой site-behavior.ts) ----------
+  const DEMO_REVIEWS = [
+    { name: 'Ирина', bg: '#0d223d', fg: '#c9a84c', hair: 'long', cat: 'Римские шторы · Троицк', text: 'Дизайнер приехала с образцами в удобное время и помогла подобрать ткань для кухни. Шторы сшили точно по размеру, установили быстро и аккуратно.' },
+    { name: 'Сергей', bg: '#c9a84c', fg: '#0d223d', hair: 'short', cat: 'Шторы блэкаут · Ватутинки', text: 'Искали плотные шторы в спальню, чтобы утром не будил свет. Сделали замеры, повесили карниз и шторы за один приезд — в комнате теперь полная темнота.' },
+    { name: 'Марина', bg: '#e8e2d6', fg: '#0d223d', hair: 'bob', cat: 'Льняные шторы · Москва', text: 'Понравилось, что можно было спокойно посмотреть ткани дома и примерить к интерьеру. Результат совпал с эскизом, ничего переделывать не пришлось.' },
+  ];
   const slider = $('[data-slider]');
   if (slider) {
     const slide = $('[data-slide]', slider);
     const quote = $('[data-quote]', slider);
+    const nameEl = $('[data-name]', slider);
+    const catEl = $('[data-cat]', slider);
+    const avatar = $('[data-avatar]', slider);
+    const note = $('[data-reviews-note]');
     const dots = $$('[data-dot]', slider);
+    const fill = (i) => {
+      const r = DEMO_REVIEWS[i % DEMO_REVIEWS.length];
+      quote.textContent = r.text;
+      quote.classList.remove('text-slate/50');
+      if (nameEl) { nameEl.textContent = `${r.name} — пример отзыва`; nameEl.classList.remove('text-slate/60'); }
+      if (catEl) catEl.textContent = r.cat;
+      if (avatar) {
+        // Иллюстрация-силуэт, не фото человека: демо-отзывы вымышленные
+        const hair = { long: 'M14 30c-3-8 0-18 10-18s13 10 10 18c-2-4-4-9-10-9s-8 5-10 9z', short: 'M15 20c0-6 4-9 9-9s9 3 9 9c-2-3-5-4-9-4s-7 1-9 4z', bob: 'M13 25c-1-9 3-14 11-14s12 5 11 14c-2-5-5-8-11-8s-9 3-11 8z' }[r.hair];
+        avatar.innerHTML = `<svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="${r.bg}"/><circle cx="24" cy="21" r="8" fill="${r.fg}" opacity=".9"/><path d="${hair}" fill="${r.fg}"/><path d="M9 44c2-9 8-13 15-13s13 4 15 13" fill="${r.fg}" opacity=".9"/></svg>`;
+        avatar.classList.remove('bg-sand');
+        avatar.classList.add('overflow-hidden');
+      }
+    };
+    if (note) note.textContent = 'Демо-отзывы для макета — на сайт не переносятся';
+    fill(0);
     let index = 0, token = 0;
     const go = (i) => {
       i = (i + dots.length) % dots.length;
@@ -151,7 +176,7 @@
       slide.classList.add('is-out');
       setTimeout(() => {
         if (my !== token) return;
-        quote.textContent = `Текст отзыва ${i + 1} — ждёт реального текста`;
+        fill(i);
         slide.classList.remove('is-out');
       }, 400);
     };

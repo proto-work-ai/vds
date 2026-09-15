@@ -123,7 +123,8 @@
           "node_modules/@fontsource/playfair-display/cyrillic-700-italic.css",
           "node_modules/@fontsource/playfair-display/latin-600-italic.css",
           "node_modules/@fontsource/playfair-display/latin-700-italic.css",
-          "libs/ui/site-kit/src/styles/site.css"
+          "libs/ui/site-kit/src/styles/site.css",
+          "apps/shtorivdom-storybook/src/landing-3-buttons.css"
         ]
       },
       "configurations": {
@@ -161,7 +162,8 @@
           "node_modules/@fontsource/playfair-display/cyrillic-700-italic.css",
           "node_modules/@fontsource/playfair-display/latin-600-italic.css",
           "node_modules/@fontsource/playfair-display/latin-700-italic.css",
-          "libs/ui/site-kit/src/styles/site.css"
+          "libs/ui/site-kit/src/styles/site.css",
+          "apps/shtorivdom-storybook/src/landing-3-buttons.css"
         ]
       },
       "configurations": {

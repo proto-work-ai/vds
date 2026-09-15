@@ -3,7 +3,7 @@
 // Запуск из корня репозитория: node tools/mockups/site-gen-pages.mjs, затем node tools/mockups/site-build.mjs
 import { readFileSync, writeFileSync } from 'node:fs';
 
-const APP = 'apps/shtorivdom-site/src/app';
+const APP = 'mockups/site/src/data/old-site';
 const OUT = 'mockups/site/src/pages';
 
 const hero = (lead, h1cls = 'text-[24px]') => `<section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">

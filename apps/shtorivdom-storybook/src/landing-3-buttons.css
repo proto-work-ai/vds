@@ -1,0 +1,86 @@
+/* Кнопки лендинга 3 (mockups/landing-3) — копия 1:1: значения из классов оригинала,
+   анимации pulseGold/borderGlow и мобильные правила из его <style>. */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:wght@400&display=swap');
+
+@keyframes l3-pulseGold { 0% { box-shadow: 0 0 #d4af3766; } 70% { box-shadow: 0 0 0 15px #d4af3700; } to { box-shadow: 0 0 #d4af3700; } }
+@keyframes l3-borderGlow { 0% { border-color: #d4af374d; } 50% { border-color: #d4af37e6; } to { border-color: #d4af374d; } }
+
+.l3-bg { background: rgb(6, 10, 7); }
+
+/* «Book Consult» — шапка */
+.l3-btn-header {
+  font-family: Cinzel, serif; font-size: 10px; letter-spacing: .3em; color: rgb(6, 10, 7);
+  background: linear-gradient(135deg, rgb(212, 175, 55), rgb(240, 208, 96));
+  padding: 10px 22px; text-decoration: none; text-transform: uppercase; border-radius: 1px;
+  transition: transform .3s, box-shadow .3s; box-shadow: rgba(212, 175, 55, .3) 0 4px 15px; cursor: pointer; border: 0;
+}
+.l3-btn-header:hover { box-shadow: rgba(212, 175, 55, .5) 0 8px 25px; transform: translateY(-1px); }
+
+/* «Explore Collections» — первый экран, золотая */
+.l3-btn-primary {
+  font-family: Cinzel, serif; font-size: 11px; letter-spacing: .35em; color: rgb(6, 10, 7);
+  background: linear-gradient(135deg, rgb(201, 168, 76), rgb(240, 208, 96), rgb(201, 168, 76)) 0% 0% / 200% 100%;
+  padding: 16px 40px; text-decoration: none; text-transform: uppercase; display: inline-block; transition: .4s;
+  box-shadow: rgba(212, 175, 55, .4) 0 8px 30px; animation: 3s ease 2s infinite normal none running l3-pulseGold; cursor: pointer; border: 0;
+}
+.l3-btn-primary:hover {
+  background: linear-gradient(135deg, rgb(201, 168, 76), rgb(240, 208, 96), rgb(201, 168, 76)) 100% 0 / 200% 100%;
+  box-shadow: rgba(212, 175, 55, .6) 0 15px 40px; transform: translateY(-3px);
+}
+
+/* «Our Story» — первый экран, контурная */
+.l3-btn-outline {
+  font-family: Cinzel, serif; font-size: 11px; letter-spacing: .35em; color: rgb(212, 175, 55); background: transparent;
+  padding: 16px 40px; text-decoration: none; text-transform: uppercase; display: inline-block;
+  border: 1px solid rgba(212, 175, 55, .5); transition: .4s; animation: 4s ease-in-out 2.5s infinite normal none running l3-borderGlow; cursor: pointer;
+}
+.l3-btn-outline:hover { background: rgba(212, 175, 55, .1); border: 1px solid rgb(212, 175, 55); transform: translateY(-3px); }
+
+/* «View» — карточка коллекции */
+.l3-btn-view {
+  font-family: Cinzel, serif; font-size: 9px; letter-spacing: .3em; color: rgb(212, 175, 55); text-transform: uppercase;
+  background: none; border: 1px solid rgba(212, 175, 55, .5); padding: 8px 16px; cursor: pointer; transition: .3s;
+}
+.l3-btn-view:hover { color: rgb(6, 10, 7); background: rgb(212, 175, 55); }
+
+/* «Request Free Consultation» — форма */
+.l3-btn-submit {
+  font-family: Cinzel, serif; font-size: 11px; letter-spacing: .4em; color: rgb(6, 10, 7);
+  background: linear-gradient(135deg, rgb(201, 168, 76), rgb(240, 208, 96), rgb(201, 168, 76)) 0% 0% / 200% 100%;
+  padding: 18px 40px; border: none; text-transform: uppercase; cursor: pointer; transition: .4s;
+  box-shadow: rgba(212, 175, 55, .35) 0 8px 30px;
+}
+.l3-btn-submit:hover {
+  background: linear-gradient(135deg, rgb(201, 168, 76), rgb(240, 208, 96), rgb(201, 168, 76)) 100% 0 / 200% 100%;
+  box-shadow: rgba(212, 175, 55, .55) 0 15px 45px; transform: translateY(-2px);
+}
+
+/* Соцсети в подвале: Ig, Fb, Pi, Li */
+.l3-btn-social {
+  width: 36px; height: 36px; border: 1px solid rgba(212, 175, 55, .25); background: transparent; color: rgb(212, 175, 55);
+  font-family: Cinzel, serif; font-size: 10px; cursor: pointer; transition: .3s; display: flex; align-items: center; justify-content: center;
+}
+.l3-btn-social:hover { border: 1px solid rgba(212, 175, 55, .6); background: rgba(212, 175, 55, .15); }
+
+/* Бургер мобильного меню */
+.l3-burger { display: flex; background: none; border: none; cursor: pointer; padding: 8px; color: rgb(212, 175, 55); }
+.l3-burger > div { width: 24px; display: flex; flex-direction: column; gap: 5px; }
+.l3-burger span { display: block; height: 1.5px; background: rgb(212, 175, 55); transition: .3s; transform: none; }
+.l3-burger.is-open span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
+.l3-burger.is-open span:nth-child(2) { opacity: 0; }
+.l3-burger.is-open span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+
+/* Мобильные правила оригинала */
+@media (max-width: 1023px) {
+  .l3-btn-header, .l3-btn-primary, .l3-btn-outline, .l3-btn-view, .l3-btn-submit, .l3-btn-social { font-size: 12px; }
+  .l3-burger { padding: 12px 10px; }
+  .l3-btn-view { padding: 12px 18px; }
+  .l3-btn-social { width: 40px; height: 40px; }
+}
+@media (max-width: 767px) {
+  .l3-btn-submit { letter-spacing: .22em; }
+  .l3-btn-primary, .l3-btn-outline { letter-spacing: .2em; }
+}
+@media (max-width: 480px) {
+  .l3-btn-submit { letter-spacing: .16em; padding-left: 12px; padding-right: 12px; }
+}

@@ -124,7 +124,7 @@ const priceRows = (root) => CATALOG.map((c) => {
 // из первого фото images в catalog.data.ts, иконки, манифест и карточка организации.
 const SITE_URL = 'https://shtorivdom.ru';
 const ogImageByKey = Object.fromEntries(
-  [...readFileSync('apps/shtorivdom-site/src/app/model/catalog/catalog.data.ts', 'utf8').matchAll(/key:\s*'([^']+)'[\s\S]*?images:\s*\[\s*'([^']+)'/g)].map((m) => [m[1], m[2]])
+  [...readFileSync('mockups/site/src/data/old-site/model/catalog/catalog.data.ts', 'utf8').matchAll(/key:\s*'([^']+)'[\s\S]*?images:\s*\[\s*'([^']+)'/g)].map((m) => [m[1], m[2]])
 );
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const ORG_LD = `  <!-- Карточка организации для поисковиков: адрес, телефон, часы работы -->
