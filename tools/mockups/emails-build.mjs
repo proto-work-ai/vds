@@ -21,6 +21,7 @@ for (const [who, kind] of pages) {
     .replace('href="../../"', 'href="../../../"')
     .replace('<a href="../">Прототип сайта</a>', '<a href="../">Все письма</a>')
     .replace('src="../assets/email.js"', 'src="../../assets/email.js"')
+    .replaceAll('href="../assets/icons/', 'href="../../assets/icons/')
     .replace('<title>Почтовые шаблоны заявок — Shtorivdom</title>', `<title>${who === 'client' ? 'Клиенту' : 'В салон'}: ${kind} — почтовые шаблоны</title>`);
   mkdirSync(path.join(DIR, `${who}-${kind}`), { recursive: true });
   writeFileSync(path.join(DIR, `${who}-${kind}`, 'index.html'), html);
