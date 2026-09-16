@@ -38,7 +38,13 @@ const stat = (p) => {
 for (const [port, dir] of SERVERS) {
   const base = path.join(ROOT, dir);
   createServer((req, res) => {
-    const url = new URL(req.url, 'http://x');
+    // «//» и подобные адреса не должны ронять сервер
+    let url;
+    try {
+      url = new URL(req.url.replace(/^\/+/, '/'), 'http://x');
+    } catch {
+      return res.writeHead(400).end();
+    }
     let pathname;
     try {
       pathname = decodeURIComponent(url.pathname);

@@ -221,6 +221,10 @@ for (const page of PAGES) {
     .replaceAll('<!-- @logo-1 -->', logo(1))
     .replaceAll('<!-- @logo-2 -->', logo(2))
     .replaceAll('<!-- @logo-3 -->', logo(3))
+    .replaceAll('<!-- @logo-4 -->', logo(4))
+    .replaceAll('<!-- @logo-5 -->', logo(5))
+    // Золотой оригинал logo-5 с градиентом (mockups/logo-5.svg), тянется по ширине блока
+    .replaceAll('<!-- @logo-5-gold -->', readFileSync('mockups/logo-5.svg', 'utf8').replace('<svg width="400" height="250"', '<svg class="block h-auto w-full" role="img" aria-label="Шторы в дом"'))
     .replaceAll('<!-- @catalog-links -->', catalogLinks(root))
     .replaceAll('<!-- @catalog-cards -->', catalogCards(root))
     .replaceAll('<!-- @price-rows -->', priceRows(root))

@@ -16,7 +16,7 @@ type LogoArgs = { variant: SiteLogoVariant; color: SiteLogoColor; width: number;
 export const Логотип: StoryObj<LogoArgs> = {
   args: { variant: 'horizontal', color: 'navy', width: 220, background: 'cream' },
   argTypes: {
-    variant: { name: 'вариант', control: 'inline-radio', options: ['mark', 'vertical', 'horizontal', 'wordmark'] },
+    variant: { name: 'вариант', control: 'inline-radio', options: ['mark', 'vertical', 'horizontal', 'wordmark', 'full'] },
     color: { name: 'цвет', control: 'inline-radio', options: ['navy', 'white', 'cream', 'gold'] },
     width: { name: 'ширина, px', control: { type: 'range', min: 40, max: 400, step: 10 } },
     background: { name: 'фон', control: 'inline-radio', options: ['cream', 'white', 'navy', 'navy-deep', 'фото'] },
@@ -42,6 +42,7 @@ export const ВсеВариантыНаФонах: StoryObj = {
         { v: 'vertical', label: 'Вертикальный (logo-2)', w: 160 },
         { v: 'horizontal', label: 'Горизонтальный (logo-3)', w: 230 },
         { v: 'wordmark', label: 'Надпись (logo-4)', w: 230 },
+        { v: 'full', label: 'Полный крупный (logo-5)', w: 240 },
       ],
       rows: [
         { bg: 'bg-cream', label: 'Светлый cream', colors: ['navy', 'gold'] },
@@ -95,7 +96,7 @@ export const Размеры: StoryObj = {
     props: { sizes: [40, 80, 130, 190, 260] },
     template: `
       <div class="space-y-8 bg-cream p-8">
-        @for (v of ['mark', 'vertical', 'horizontal', 'wordmark']; track v) {
+        @for (v of ['mark', 'vertical', 'horizontal', 'wordmark', 'full']; track v) {
           <div class="flex flex-wrap items-end gap-8">
             @for (s of sizes; track s) {
               <div class="flex flex-col items-center gap-2"><site-logo [variant]="$any(v)" color="navy" [style.width.px]="s" /><span class="text-[11px] text-slate/60">{{ s }}px</span></div>

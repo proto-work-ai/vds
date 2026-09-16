@@ -35,9 +35,9 @@
   .divider::before, .divider::after { content: ''; width: 40px; height: 1px; background: var(--color-gold); }
   .divider > i { width: 6px; height: 6px; background: var(--color-gold); transform: rotate(45deg); }
 
-  .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-gold); color: var(--color-navy); font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: opacity .2s; }
+  .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-gold); color: var(--color-navy); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: opacity .2s; }
   .btn-gold:hover { opacity: .85; }
-  .btn-line { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgb(255 255 255 / .35); color: #fff; font-weight: 700; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: border-color .3s; }
+  .btn-line { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgb(255 255 255 / .35); color: #fff; font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: border-color .3s; }
   .btn-line:hover { border-color: rgb(255 255 255 / .7); }
 
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease-out var(--d, 0s), transform .7s ease-out var(--d, 0s); }
@@ -46,7 +46,7 @@
 
   .site-header { position: fixed; inset: 0 0 auto; z-index: 100; background: transparent; border-bottom: 1px solid transparent; transition: background .4s, border-color .4s; }
   .site-header.is-solid { background: var(--color-navy); border-bottom-color: rgb(201 168 76 / .3); }
-  .nav-link { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--color-cream); transition: color .2s; white-space: nowrap; }
+  .nav-link { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--color-cream); transition: color .2s; white-space: nowrap; }
   .nav-link:hover, .nav-link[aria-current='page'] { color: var(--color-gold); }
   .dropdown { position: absolute; top: 100%; left: -20px; min-width: 240px; padding: 10px 0; background: var(--color-navy); border: 1px solid rgb(201 168 76 / .25); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
   .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown, .has-dropdown.is-open .dropdown { opacity: 1; visibility: visible; transform: none; }
