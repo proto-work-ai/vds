@@ -232,10 +232,8 @@
       : page.startsWith('contact') ? 'contact'
       : 'order');
 
-  /** Заглушка отправки. На сайте здесь POST на серверный скрипт, например:
-      fetch('/api/send-message.php', { method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subject, message: html, text, clientEmail, clientSubject, clientMessage }) })
-      Скрипт только отправляет: mail() в салон и, если есть clientEmail, подтверждение клиенту. */
+  /** Режим макета (#test): письмо собирается в браузере и показывается в окне предпросмотра.
+      Настоящая отправка — в submitLead ниже: поля уходят в /api/lead.php, письмо собирает сервер. */
   const sendLead = ({ subject, html, text, clientEmail, client }) => {
     if (!isTest) return Promise.resolve(true);
     console.log('[заявка] письмо в салон:', subject, '\n' + text, '\n', html);

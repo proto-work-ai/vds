@@ -36,6 +36,9 @@ return [
         'chatId' => '',
     ],
 
+    // Подтверждение клиенту, если он оставил email. false — не отправлять.
+    'clientEmail' => true,
+
     // С каких доменов принимаем заявки
     'allowedHosts' => ['shtorivdom.ru', 'www.shtorivdom.ru'],
 

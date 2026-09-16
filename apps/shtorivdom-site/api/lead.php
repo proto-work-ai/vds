@@ -172,6 +172,23 @@ if (!$sent) {
     lead_log(['at' => date('c'), 'error' => 'smtp', 'message' => $error, 'kind' => $kind]);
 }
 
+// ---------- подтверждение клиенту ----------
+// Уходит только при корректном email в заявке. Отключается в настройках: 'clientEmail' => false.
+if (($config['clientEmail'] ?? true) && $data['email'] !== '') {
+    $client = lead_build_client_email($kind, $data);
+    if ($client) {
+        [$clientSent, $clientError] = smtp_send($config['smtp'], [
+            'to' => [$data['email']],
+            'subject' => $client['subject'],
+            'html' => $client['html'],
+            'text' => $client['text'],
+        ]);
+        if (!$clientSent) {
+            lead_log(['at' => date('c'), 'error' => 'smtp-client', 'message' => $clientError, 'to' => $data['email']]);
+        }
+    }
+}
+
 // ---------- дубль в Telegram ----------
 $tg = $config['telegram'] ?? null;
 if ($tg && !empty($tg['token']) && !empty($tg['chatId'])) {

@@ -6,7 +6,7 @@
    Что куда:
    - mockups/site/** (без src/ и emails/)   → public_html/
    - mockups/shared/fonts.css, fonts/**     → public_html/shared/   (страницы берут ../shared/…)
-   PHP не выкладывается: формы на хостинге пока не работают (шлют на /api/send-message.php).
+   Приём заявок — api/lead.php (настройки lead-config.php создаются на хостинге).
    Файлы на сервере только добавляются и перезаписываются — скрипт ничего не удаляет. */
 import { existsSync } from 'node:fs';
 import path from 'node:path';

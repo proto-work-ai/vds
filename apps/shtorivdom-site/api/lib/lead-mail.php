@@ -170,6 +170,125 @@ function lead_build_email(string $kind, array $data, array $meta): array
     ];
 }
 
+/** Шаги «что будет дальше» для письма клиенту. */
+const LEAD_STEP_CALL = ['Звонок', 'Перезвоним в рабочее время — без выходных, с 10:00 до 20:00. Ответим на вопросы и договоримся о встрече.'];
+const LEAD_STEP_VISIT = ['Выезд дизайнера', 'Бесплатно. Дизайнер привезёт образцы и каталоги тканей, сделает замеры, подготовит эскиз и расчёт.'];
+const LEAD_STEP_SEW = ['Пошив', '10–14 дней в собственном цехе под контролем технолога. Каждое изделие проверяем перед выдачей.'];
+const LEAD_STEP_MOUNT = ['Монтаж', 'Привезём, установим карнизы, навесим и отпарим шторы. Гарантия 2 года на работы и материалы.'];
+
+/** Тексты письма клиенту: тема, вступление и шаги. Совпадают с шаблонами макетов. */
+const LEAD_CLIENT_COPY = [
+    'callback' => [
+        'subject' => 'Спасибо! Мы перезвоним',
+        'intro' => 'Заявка на звонок принята. Менеджер позвонит вам в рабочее время, ответит на вопросы и поможет договориться о встрече с дизайнером.',
+        'steps' => ['call', 'visit', 'sew', 'mount'],
+    ],
+    'designer' => [
+        'subject' => 'Заявка на выезд дизайнера принята',
+        'intro' => 'Дизайнер свяжется с вами, чтобы договориться о дне и времени выезда. Выезд бесплатный — в любой район Москвы и Московской области.',
+        'steps' => ['call', 'visit', 'sew', 'mount'],
+    ],
+    'order' => [
+        'subject' => 'Заявка на заказ принята',
+        'intro' => 'Мы получили вашу заявку и скоро свяжемся с вами, чтобы уточнить детали и договориться о встрече.',
+        'steps' => ['call', 'visit', 'sew', 'mount'],
+    ],
+    'contact' => [
+        'subject' => 'Мы получили ваш вопрос',
+        'intro' => 'Спасибо, что написали. Ответим на этот адрес в рабочее время — без выходных, с 10:00 до 20:00.',
+        'steps' => [
+            ['Ответ', 'Менеджер разберётся в вопросе и ответит письмом или перезвонит, если вы оставили телефон.'],
+            ['Если нужен замер', 'Договоримся о бесплатном выезде дизайнера с образцами тканей.'],
+        ],
+    ],
+    'partner' => [
+        'subject' => 'Анкета партнёра получена',
+        'intro' => 'Спасибо за интерес к сотрудничеству. Мы изучим анкету и позвоним вам в рабочее время.',
+        'steps' => [
+            ['Анкета', 'Анкета у нас — менеджер познакомится с ней.'],
+            ['Звонок', 'Перезвоним без выходных, с 10:00 до 20:00, и расскажем, как устроена партнёрская программа.'],
+        ],
+    ],
+    'curtain-rod' => [
+        'subject' => 'Заявка на карниз принята',
+        'intro' => 'Мы получили заявку на выбранную модель и перезвоним, чтобы уточнить размеры и договориться о замере.',
+        'steps' => [
+            'call',
+            ['Замер', 'Бесплатный выезд: замерим окна и покажем образцы.'],
+            'mount',
+        ],
+    ],
+];
+
+/**
+ * Подтверждение клиенту. Возвращает null, если в заявке нет корректного email.
+ *
+ * @return array{subject:string, html:string, text:string}|null
+ */
+function lead_build_client_email(string $kind, array $data): ?array
+{
+    $email = trim((string) ($data['email'] ?? ''));
+    if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return null;
+    }
+    $copy = LEAD_CLIENT_COPY[$kind] ?? LEAD_CLIENT_COPY['order'];
+    $C = LEAD_COLORS;
+    $named = ['call' => LEAD_STEP_CALL, 'visit' => LEAD_STEP_VISIT, 'sew' => LEAD_STEP_SEW, 'mount' => LEAD_STEP_MOUNT];
+
+    $name = trim((string) ($data['name'] ?? ''));
+    $hello = $name !== '' ? $name . ', здравствуйте!' : 'Здравствуйте!';
+    $subject = $copy['subject'] . ' — Шторы в дом';
+
+    $stepsHtml = '';
+    $stepsText = [];
+    foreach ($copy['steps'] as $i => $step) {
+        [$stepTitle, $stepText] = is_string($step) ? $named[$step] : $step;
+        $stepsText[] = ($i + 1) . '. ' . $stepTitle . '. ' . $stepText;
+        $stepsHtml .= '<tr>'
+            . '<td valign="top" width="44" style="width:44px;padding:0 0 16px;">'
+            . '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
+            . '<td width="32" height="32" align="center" valign="middle" bgcolor="' . $C['gold'] . '" style="width:32px;height:32px;background-color:' . $C['gold']
+            . ';font-family:' . LEAD_SERIF . ';font-size:15px;color:' . $C['navy'] . ';border-radius:16px;">' . ($i + 1) . '</td>'
+            . '</tr></table></td>'
+            . '<td valign="top" style="padding:4px 0 16px;font-family:' . LEAD_SANS . ';font-size:15px;line-height:22px;color:' . $C['slate'] . ';">'
+            . '<strong style="font-family:' . LEAD_SERIF . ';font-size:17px;color:' . $C['navy'] . ';">' . lead_esc($stepTitle) . '</strong><br>' . lead_esc($stepText)
+            . '</td></tr>';
+    }
+
+    $html = '<!doctype html><html lang="ru"><head><meta charset="UTF-8">'
+        . '<meta name="viewport" content="width=device-width,initial-scale=1">'
+        . '<title>' . lead_esc($subject) . '</title></head>'
+        . '<body style="margin:0;padding:0;background:' . $C['cream'] . ';">'
+        . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:' . $C['cream'] . ';">'
+        . '<tr><td align="center" style="padding:24px 12px;">'
+        . '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:100%;background:#ffffff;">'
+        . '<tr><td bgcolor="' . $C['navy'] . '" style="background-color:' . $C['navy'] . ';padding:20px 24px;border-top:4px solid ' . $C['gold'] . ';">'
+        . '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
+        . '<td width="44" valign="middle" style="width:44px;"><img src="https://shtorivdom.ru/logo/logo-1-email.png" width="40" height="40" alt="Шторы в дом" style="display:block;border:0;"></td>'
+        . '<td valign="middle" style="padding-left:12px;font-family:' . LEAD_SERIF . ';font-size:20px;line-height:24px;color:#ffffff;">Шторы в дом'
+        . '<div style="font-family:' . LEAD_SANS . ';font-size:12px;line-height:16px;color:' . $C['gold'] . ';letter-spacing:1px;text-transform:uppercase;">Заявка принята</div>'
+        . '</td></tr></table></td></tr>'
+        . '<tr><td style="padding:28px 24px 8px;font-family:' . LEAD_SERIF . ';font-size:22px;line-height:28px;color:' . $C['navy'] . ';">' . lead_esc($copy['subject']) . '</td></tr>'
+        . '<tr><td style="padding:0 24px 20px;font-family:' . LEAD_SANS . ';font-size:15px;line-height:22px;color:' . $C['slate'] . ';">'
+        . lead_esc($hello) . ' ' . lead_esc($copy['intro']) . '</td></tr>'
+        . '<tr><td style="padding:0 24px 4px;font-family:' . LEAD_SANS . ';font-size:12px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:' . $C['muted'] . ';">Что будет дальше</td></tr>'
+        . '<tr><td style="padding:12px 24px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 0 20px;">'
+        . $stepsHtml . '</table></td></tr>'
+        . '<tr><td style="padding:0 24px;">' . lead_button('tel:+79255946117', 'Позвонить +7 (925) 594-61-17', true)
+        . '<div style="clear:both;line-height:0;font-size:0;">&nbsp;</div></td></tr>'
+        . '<tr><td style="padding:16px 24px 24px;border-top:1px solid ' . $C['line'] . ';font-family:' . LEAD_SANS
+        . ';font-size:13px;line-height:20px;color:' . $C['muted'] . ';">'
+        . 'Шторы в дом · Троицк, Кварцевая улица, 3, корп. 2<br>'
+        . '<a href="tel:+79255946117" style="color:' . $C['muted'] . ';">+7 (925) 594-61-17</a> · '
+        . '<a href="mailto:info@shtorivdom.ru" style="color:' . $C['muted'] . ';">info@shtorivdom.ru</a> · Без выходных, 10:00–20:00'
+        . '</td></tr></table></td></tr></table></body></html>';
+
+    $text = $copy['subject'] . "\n\n" . $hello . ' ' . $copy['intro'] . "\n\nЧТО БУДЕТ ДАЛЬШЕ\n" . implode("\n", $stepsText)
+        . "\n\nШторы в дом · Троицк, Кварцевая улица, 3, корп. 2\n+7 (925) 594-61-17 · info@shtorivdom.ru · Без выходных, 10:00–20:00";
+
+    return ['subject' => $subject, 'html' => $html, 'text' => $text];
+}
+
 /** Короткое сообщение для Telegram (разметка HTML, её понимает Bot API). */
 function lead_telegram_text(string $kind, array $data, array $meta): string
 {
