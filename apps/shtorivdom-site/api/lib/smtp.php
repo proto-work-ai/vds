@@ -103,6 +103,13 @@ function smtp_build_message(array $cfg, array $msg): string
         $name = $msg['replyToName'] ?? '';
         $headers[] = 'Reply-To: ' . ($name !== '' ? $encode($name) . ' ' : '') . '<' . $msg['replyTo'] . '>';
     }
+    // Отписка: письма о заявках служебные, но проверялки доставляемости ждут этот заголовок
+    if (!empty($cfg['unsubscribe'])) {
+        $headers[] = 'List-Unsubscribe: <mailto:' . $cfg['unsubscribe'] . '?subject=unsubscribe>';
+    }
+    // Служебное письмо, а не рассылка: почтовые службы не считают его массовым
+    $headers[] = 'Auto-Submitted: auto-generated';
+    $headers[] = 'X-Auto-Response-Suppress: OOF, AutoReply';
 
     $part = static fn(string $type, string $content): string =>
         "--$boundary\r\nContent-Type: $type; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
