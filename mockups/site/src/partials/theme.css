@@ -146,4 +146,14 @@
   form.reveal, .reveal:has(form), form .reveal { opacity: 1; transform: none; transition: none; }
   /* Заголовки таблиц по центру по высоте (цены, каталог) */
   table thead th { vertical-align: middle !important; }
+  /* Текст: начертание не тоньше 400 (правило владельца) — тонкий Lato 300 читается бледно.
+     На телефоне обычный текст ещё и на 1px крупнее с большим межстрочным. Кнопки не затрагиваются. */
+  :is(p, li, dd, figcaption, blockquote, span, div).font-light,
+  .font-light :is(p, li, dd),
+  .font-light { font-weight: 400 !important; }
+  @media (max-width: 767px) {
+    :is(p, li, dd, blockquote)[class~='text-[14px]'] { font-size: 15px !important; line-height: 1.65 !important; }
+    :is(p, li, dd, blockquote)[class~='text-[15px]'] { font-size: 16px !important; line-height: 1.7 !important; }
+    :is(p, li, dd, blockquote)[class~='text-[16px]'] { font-size: 17px !important; line-height: 1.75 !important; }
+  }
 }

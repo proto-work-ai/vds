@@ -262,8 +262,8 @@
   function buttons(list) {
     if (!list.length) return '';
     return `<div style="margin:0 0 20px;">${list.map((b, i) => `<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="left" style="margin:0 10px 10px 0;"><tr>
-<td bgcolor="${i ? '#ffffff' : C.gold}" style="background-color:${i ? '#ffffff' : C.gold};border:2px solid ${C.gold};border-radius:3px;">
-<a href="${esc(b.href)}" style="display:inline-block;padding:12px 20px;font-family:${SANS};font-size:15px;line-height:20px;font-weight:bold;color:${C.navy};text-decoration:none;">${esc(b.label)}</a>
+<td bgcolor="${i ? '#ffffff' : C.gold}" style="background-color:${i ? '#ffffff' : C.gold};${i ? "" : "background-image:linear-gradient(135deg, #c9a84c, #f0d060, #c9a84c);"}border:1px solid ${C.gold};">
+<a href="${esc(b.href)}" style="display:inline-block;padding:16px 32px;font-family:'Cinzel', ${SERIF};font-size:13px;line-height:16px;font-weight:bold;letter-spacing:1.3px;text-transform:uppercase;color:${i ? C.goldText : C.navy};text-decoration:none;">${esc(b.label)}</a>
 </td></tr></table>`).join('')}<div style="clear:both;line-height:0;font-size:0;">&nbsp;</div></div>`;
   }
 

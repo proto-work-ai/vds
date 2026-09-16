@@ -20,6 +20,10 @@ const files = [
     .map((f) => [f, posix(path.relative('mockups/site', f))]),
   ['mockups/shared/fonts.css', 'shared/fonts.css'],
   ...walk('mockups/shared/fonts').map((f) => [f, posix(path.join('shared', path.relative('mockups/shared', f)))]),
+  // Приём заявок: обработчик и образец настроек. lead-config.php с паролем ящика живёт только на хостинге.
+  ...walk('apps/shtorivdom-site/api')
+    .filter((f) => !/lead-config\.php$/.test(f) && !/[\\/]leads[\\/]/.test(f) && !/send(-message)?\.php$/.test(f))
+    .map((f) => [f, posix(path.join('api', path.relative('apps/shtorivdom-site/api', f)))]),
 ];
 
 deploy(files, { title: 'Прототип сайта', uploadCommand: 'FTP_PASSWORD=… node tools/mockups/deploy-site-ftp.mjs --upload' });

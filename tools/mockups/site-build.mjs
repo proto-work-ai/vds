@@ -93,14 +93,14 @@ const catalogCards = (root) => CATALOG.map((c, i) => {
   return `
       <article class="reveal h-full" style="--d:${(i % 3) * 0.08}s">
         <div class="svc-card" data-svc>
-          <div class="relative h-[200px] sm:h-[220px]">
+          <a href="${root}catalog/${c.key}/" class="relative block h-[200px] sm:h-[220px]" aria-label="${c.title}">
             <img src="${root}assets/img/catalog/${c.key}/${c.image}" alt="${c.title}" loading="lazy" class="absolute inset-0 size-full object-cover" />
             <div class="absolute inset-0 bg-gradient-to-t from-navy/75 to-transparent to-60%"></div>
             <div class="absolute inset-x-5 bottom-4 flex flex-wrap items-end justify-between gap-2">
               <h3 class="text-[20px] font-bold text-cream">${c.title}</h3>
               <span class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold">от ${money(min)} ₽/${unit}</span>
             </div>
-          </div>
+          </a>
           <div class="px-6 pt-6 pb-5">
             <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">${c.text}</p>
             <div>

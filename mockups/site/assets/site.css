@@ -270,6 +270,9 @@
   .-left-5 {
     left: calc(var(--spacing) * -5);
   }
+  .-left-\[9999px\] {
+    left: calc(9999px * -1);
+  }
   .left-0 {
     left: 0px;
   }
@@ -431,6 +434,10 @@
   }
   .aspect-square {
     aspect-ratio: 1 / 1;
+  }
+  .size-0 {
+    width: 0px;
+    height: 0px;
   }
   .size-4 {
     width: calc(var(--spacing) * 4);
@@ -1168,6 +1175,9 @@
   .pt-8 {
     padding-top: calc(var(--spacing) * 8);
   }
+  .pt-10 {
+    padding-top: calc(var(--spacing) * 10);
+  }
   .pt-\[84px\] {
     padding-top: 84px;
   }
@@ -1215,6 +1225,9 @@
   }
   .align-middle {
     vertical-align: middle;
+  }
+  .font-sans {
+    font-family: var(--font-sans);
   }
   .font-serif {
     font-family: var(--font-serif);
@@ -1417,10 +1430,6 @@
     --tw-tracking: .28em;
     letter-spacing: .28em;
   }
-  .tracking-\[\.32em\] {
-    --tw-tracking: .32em;
-    letter-spacing: .32em;
-  }
   .tracking-\[\.35em\] {
     --tw-tracking: .35em;
     letter-spacing: .35em;
@@ -1619,6 +1628,9 @@
   }
   .accent-\[\#0d223d\] {
     accent-color: #0d223d;
+  }
+  .opacity-0 {
+    opacity: 0%;
   }
   .opacity-60 {
     opacity: 60%;
@@ -1978,6 +1990,9 @@
     .sm\:py-28 {
       padding-block: calc(var(--spacing) * 28);
     }
+    .sm\:pt-12 {
+      padding-top: calc(var(--spacing) * 12);
+    }
     .sm\:pt-\[100px\] {
       padding-top: 100px;
     }
@@ -1989,6 +2004,9 @@
     }
     .sm\:pb-0 {
       padding-bottom: 0px;
+    }
+    .sm\:pb-6 {
+      padding-bottom: calc(var(--spacing) * 6);
     }
     .sm\:pb-9 {
       padding-bottom: calc(var(--spacing) * 9);
@@ -2898,6 +2916,23 @@
   }
   table thead th {
     vertical-align: middle !important;
+  }
+  :is(p, li, dd, figcaption, blockquote, span, div).font-light, .font-light :is(p, li, dd), .font-light {
+    font-weight: 400 !important;
+  }
+  @media (max-width: 767px) {
+    :is(p, li, dd, blockquote)[class~='text-[14px]'] {
+      font-size: 15px !important;
+      line-height: 1.65 !important;
+    }
+    :is(p, li, dd, blockquote)[class~='text-[15px]'] {
+      font-size: 16px !important;
+      line-height: 1.7 !important;
+    }
+    :is(p, li, dd, blockquote)[class~='text-[16px]'] {
+      font-size: 17px !important;
+      line-height: 1.75 !important;
+    }
   }
 }
 @property --tw-translate-x {

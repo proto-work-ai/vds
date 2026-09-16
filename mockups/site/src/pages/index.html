@@ -24,6 +24,7 @@
     <div id="hero-form" class="rise scroll-mt-24 rounded-[4px] bg-cream/95 px-6 py-8 shadow-[0_20px_60px_rgb(0_0_0/.25)] backdrop-blur sm:px-8" style="--d:.35s">
       <p class="mb-6 font-serif text-[26px] leading-tight font-bold">Оставьте заявку дизайнеру:</p>
       <form class="flex flex-col gap-6" novalidate data-lead-form>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] size-0 opacity-0" />
         <label class="flex items-center gap-3 border-b border-gold pb-3">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           <input name="name" type="text" autocomplete="name" placeholder="Введите имя" class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60" />
@@ -105,7 +106,10 @@
           <span class="inline-flex items-center gap-2.5 border border-gold/40 px-4 py-2 text-[14px]"><img src="assets/img/icons/benefit-icon-03.svg" alt="" width="24" height="25" class="size-6 shrink-0" />Нет минимальной суммы заказа</span>
         </div>
       </div>
-      <div class="reveal reveal-soft" style="--d:.1s"><img src="assets/img/production.jpg" alt="Шторы и тюль в гостиной" loading="lazy" class="h-[300px] w-full object-cover sm:h-[460px]" /></div>
+      <div class="reveal reveal-soft relative" style="--d:.1s">
+        <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
+        <img src="assets/img/production.jpg" alt="Шторы и тюль в гостиной" loading="lazy" class="relative h-[300px] w-full object-cover sm:h-[460px]" />
+      </div>
     </div>
 
     <div class="reveal reveal-soft mt-20 mb-14 text-center sm:mt-28">

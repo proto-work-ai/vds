@@ -217,6 +217,8 @@
   // Письма заявок: assets/email.js подгружается рядом с site.js (window.ShtorivdomEmail).
   // Режим проверки — адрес с #test (как на сайте) или ?test: письмо в console и окно предпросмотра.
   const isTest = location.hash === '#test' || new URLSearchParams(location.search).has('test');
+  // Макет на localhost без PHP: заявку отправлять некуда, поэтому только предпросмотр письма
+  const isMock = isTest || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
   const emailScript = document.createElement('script');
   emailScript.src = new URL('email.js', document.currentScript?.src ?? location.href).href;
   document.head.appendChild(emailScript);
@@ -256,21 +258,58 @@
     document.body.appendChild(box);
     $('button', box).focus();
   };
+  /** Поля заявки → серверный обработчик. Письмо собирает сервер: из браузера уходят только поля. */
   const submitLead = (form) => {
-    const api = window.ShtorivdomEmail;
-    if (!api) return console.warn('email.js не загрузился — письмо не собрано');
     const v = (n) => form.elements[n]?.value?.trim() || undefined;
     const data = { name: v('name'), phone: v('phone'), email: v('email'), theme: v('theme'), city: v('city'), description: v('comment'), model: form.dataset.orderModel };
     const kind = leadKind(form, data);
-    const lead = api.buildLeadEmail(kind, data, { pageTitle: document.title, pageUrl: location.href.split('#')[0], sentAt: new Date() });
-    const client = api.buildClientEmail(kind, data);
-    return sendLead({ ...lead, clientEmail: client ? data.email : undefined, client });
+
+    // На localhost (макет без PHP) заявка не отправляется: с #test открывается предпросмотр письма, иначе просто «Спасибо».
+    if (isMock) {
+      const api = window.ShtorivdomEmail;
+      if (!isTest || !api) return Promise.resolve(true);
+      const lead = api.buildLeadEmail(kind, data, { pageTitle: document.title, pageUrl: location.href.split('#')[0], sentAt: new Date() });
+      const client = api.buildClientEmail(kind, data);
+      return sendLead({ ...lead, clientEmail: client ? data.email : undefined, client });
+    }
+
+    return fetch('/api/lead.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...data,
+        kind,
+        consent: true,
+        website: form.elements.website?.value ?? '',      // ловушка для ботов
+        formTime: Date.now() - (Number(form.dataset.openedAt) || Date.now()),
+        pageTitle: document.title,
+        pageUrl: location.href.split('#')[0],
+      }),
+    })
+      .then((r) => r.json().catch(() => ({ ok: r.ok })))
+      .then((r) => {
+        if (!r.ok) throw new Error(r.error || 'Не удалось отправить заявку');
+        return true;
+      });
   };
 
   $$('[data-lead-form]').forEach((form) => {
     const phone = $('[data-phone]', form);
     const consent = $('[data-consent]', form);
+    const submit = $('[type="submit"]', form);
+    form.dataset.openedAt = String(Date.now());   // время заполнения: слишком быстрая отправка — бот
     const err = (name, on) => $(`[data-error="${name}"]`, form)?.classList.toggle('hidden', !on);
+    const failBox = () => {
+      let box = $('[data-send-error]', form);
+      if (!box) {
+        box = document.createElement('p');
+        box.setAttribute('data-send-error', '');
+        box.setAttribute('role', 'alert');
+        box.className = 'text-[14px] leading-relaxed text-[#c0392b]';
+        submit?.before(box);
+      }
+      return box;
+    };
     consent?.addEventListener('change', () => consent.checked && err('consent', false));
     phone.addEventListener('input', () => err('phone', false));
     form.addEventListener('submit', (e) => {
@@ -283,15 +322,31 @@
       $('[data-phone-wrap]', form)?.classList.toggle('!border-[#c0392b]', badPhone);
       if (badPhone) return phone.focus();
       if (badConsent) return consent.focus();
-      submitLead(form); // письмо собирается до замены формы на «Спасибо»
-      const done = document.createElement('div');
-      done.className = 'form-done py-8 text-center';
-      done.setAttribute('role', 'status');
-      done.setAttribute('data-thanks', '');
-      done.innerHTML = '<p class="mb-3 font-serif text-[30px] font-bold text-gold">Спасибо!</p><p class="text-[16px] leading-relaxed text-slate">Ваша заявка успешно отправлена! Мы скоро с вами свяжемся.</p>';
-      form.replaceWith(done);
-      void done.offsetHeight;
-      done.classList.add('is-in');
+
+      $('[data-send-error]', form)?.remove();
+      if (submit) {
+        submit.disabled = true;
+        submit.dataset.label = submit.textContent;
+        submit.textContent = 'Отправляем…';
+      }
+      Promise.resolve(submitLead(form))
+        .then(() => {
+          const done = document.createElement('div');
+          done.className = 'form-done py-8 text-center';
+          done.setAttribute('role', 'status');
+          done.setAttribute('data-thanks', '');
+          done.innerHTML = '<p class="mb-3 font-serif text-[30px] font-bold text-gold">Спасибо!</p><p class="text-[16px] leading-relaxed text-slate">Ваша заявка успешно отправлена! Мы скоро с вами свяжемся.</p>';
+          form.replaceWith(done);
+          void done.offsetHeight;
+          done.classList.add('is-in');
+        })
+        .catch((e) => {
+          failBox().textContent = (e?.message || 'Не удалось отправить заявку') + '. Позвоните нам: +7 (925) 594-61-17';
+          if (submit) {
+            submit.disabled = false;
+            submit.textContent = submit.dataset.label || 'Отправить';
+          }
+        });
     });
   });
   // ---------- вкладки (страница цен): стрелки ←/→, #ключ в адресе открывает вкладку ----------
