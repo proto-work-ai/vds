@@ -59,6 +59,10 @@ const PAGES = [
   { path: 'catalog/', h1: 'Каталог штор', lead: 'Вся продукция изготавливается по индивидуальным размерам из качественных материалов.', title: 'Каталог штор | Shtorivdom', extra: 'catalog' },
   ...CATALOG.map((c) => ({ path: `catalog/${c.key}/`, h1: c.title, lead: c.text, title: `${c.title} на заказ в Москве | Shtorivdom`,
     description: `${c.title} на заказ: ${c.text} Бесплатный выезд дизайнера с образцами.`, crumb: ['Каталог', 'catalog/'] })),
+  { path: 'calc/', h1: 'Калькулятор штор', title: 'Калькулятор штор на заказ — расчёт ткани и стоимости | Shtorivdom',
+    description: 'Рассчитайте шторы на заказ: сколько ткани нужно под ваш карниз и окно и сколько это стоит по ценам каталога. Точный расчёт — после бесплатного замера.' },
+  { path: 'quiz/', h1: 'Подбор штор', title: 'Подбор штор за 4 шага — какие шторы подойдут | Shtorivdom',
+    description: 'Ответьте на 4 вопроса о комнате и окне — подскажем, какие шторы подойдут: блэкаут, римские, рулонные, льняные, плиссе или жалюзи.' },
   { path: 'price/', h1: 'Цены / стоимость', title: 'Цены | Shtorivdom', extra: 'prices' },
   { path: 'services/', h1: 'Услуги', title: 'Услуги | Shtorivdom' },
   { path: 'about/', h1: 'О нас', lead: 'Более 15 лет мы создаем уникальные текстильные интерьеры', title: 'О салоне штор Shtorivdom — более 15 лет пошива штор',
@@ -230,6 +234,7 @@ for (const page of PAGES) {
     .replaceAll('<!-- @catalog-links -->', catalogLinks(root))
     .replaceAll('<!-- @catalog-cards -->', catalogCards(root))
     .replaceAll('<!-- @price-rows -->', priceRows(root))
+    .replaceAll('<!-- @calc-data -->', `<script type="application/json" id="calc-data">${JSON.stringify(CATALOG.map((c) => { const [min, unit] = minOf(c); return { key: c.key, title: c.title, unit, min, image: `${root}assets/img/catalog/${c.key}/${c.image}`, href: `${root}catalog/${c.key}/` }; }))}</script>`)
     .replaceAll('{{root}}', root)
     .replaceAll('{{home}}', home)
     .replaceAll('{{h1}}', page.h1 ?? '')

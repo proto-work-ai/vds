@@ -216,6 +216,154 @@
     });
   }));
 
+  // ---------- шапка прячется при прокрутке вниз ----------
+  // Появляется при прокрутке вверх; при открытом мобильном меню и в начале страницы видна всегда.
+  if (header && !reduced) {
+    let lastY = scrollY;
+    addEventListener('scroll', () => {
+      const y = scrollY;
+      const menuOpen = burger?.getAttribute('aria-expanded') === 'true';
+      if (menuOpen || y < 200) header.classList.remove('is-hidden');
+      else if (y > lastY + 6) header.classList.add('is-hidden');
+      else if (y < lastY - 6) header.classList.remove('is-hidden');
+      lastY = y;
+    }, { passive: true });
+    header.addEventListener('focusin', () => header.classList.remove('is-hidden'));
+  }
+
+  // Данные каталога для калькулятора и квиза: { key, title, unit, min, image, href }
+  const catalogData = (() => { try { return JSON.parse($('#calc-data')?.textContent || '[]'); } catch { return []; } })();
+  const money = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const dec = (n) => String(n).replace('.', ',');
+  // Перенос текста в комментарий общей формы заявки и прокрутка к ней
+  const toLeadForm = (text) => {
+    const comment = $('#lead [name="comment"]');
+    if (comment) comment.value = text;
+    $('#lead')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    setTimeout(() => $('#lead [data-phone]')?.focus({ preventScroll: true }), reduced ? 0 : 600);
+  };
+
+  // ---------- калькулятор штор ----------
+  const calc = $('[data-calc]');
+  if (calc && catalogData.length) {
+    const kinds = $('[data-calc-kinds]', calc);
+    const widthIn = $('[data-calc-width]', calc);
+    const heightIn = $('[data-calc-height]', calc);
+    const rodIn = $('[data-calc-rod]', calc);
+    const rod = catalogData.find((c) => c.key === 'curtain-rods');
+    const curtains = catalogData.filter((c) => c.key !== 'curtain-rods');
+    kinds.innerHTML = curtains.map((c, i) => '<label class="calc-option"><input type="radio" name="kind" value="' + c.key + '" class="sr-only"' + (i === 0 ? ' checked' : '') + ' />'
+      + '<span class="calc-option-box"><img src="' + c.image + '" alt="" loading="lazy" class="calc-kind-img" />'
+      + '<b class="font-serif text-[17px] leading-tight">' + c.title + '</b><span class="text-[13px] text-slate/80">от ' + money(c.min) + ' ₽/' + c.unit + '</span></span></label>').join('');
+
+    const render = () => {
+      const kind = curtains.find((c) => c.key === $('input[name="kind"]:checked', calc)?.value) ?? curtains[0];
+      const byMeter = kind.unit === 'м.пог.';
+      const w = Number(widthIn.value), h = Number(heightIn.value);
+      const bad = !(w >= 30 && w <= 1500 && h >= 30 && h <= 600);
+      $('[data-calc-error]', calc).classList.toggle('hidden', !bad);
+      $('[data-calc-fullness-step] .grid', calc).classList.toggle('hidden', !byMeter);
+      $('[data-calc-width-label]', calc).textContent = byMeter ? 'Ширина карниза, см' : 'Ширина окна (створки), см';
+      $('[data-calc-height-label]', calc).textContent = byMeter ? 'Высота от карниза до пола, см' : 'Высота окна (створки), см';
+      $('[data-calc-width-hint]', calc).textContent = byMeter
+        ? 'Длина карниза от края до края. Если карниза ещё нет — ширина окна плюс по 15–20 см с каждой стороны.'
+        : 'Для крепления в проём — ширина проёма, на створку — ширина стекла со штапиком.';
+      $('[data-calc-height-hint]', calc).textContent = byMeter
+        ? 'Для штор в пол — до пола минус 1–2 см, чтобы ткань не собирала пыль.'
+        : 'От верха рамы до подоконника или до нижнего края створки.';
+      $('[data-calc-title]', calc).textContent = kind.title;
+      const rows = [];
+      let total = 0, summary = '';
+      if (!bad) {
+        const wm = w / 100, hm = h / 100;
+        if (byMeter) {
+          const k = Number($('input[name="fullness"]:checked', calc)?.value || 2);
+          const fabric = Math.ceil((wm * k + 0.2) * 10) / 10; // +20 см на боковые подгибы
+          const cut = Math.ceil((hm + 0.3) * 10) / 10; // +30 см на подгиб низа и тесьму
+          total = fabric * kind.min;
+          rows.push(['Ширина × пышность', money(w) + ' см × ' + dec(k)], ['Ткани нужно', dec(fabric) + ' м.пог.'], ['Высота полотна с подгибами', dec(cut) + ' м']);
+          if (cut > 3) rows.push(['Внимание', 'выше 3 м — нужна ткань большой высоты или сшивка']);
+          summary = kind.title + ': карниз ' + w + ' см, высота ' + h + ' см, пышность ×' + dec(k) + ', ткани ~' + dec(fabric) + ' м.пог.';
+        } else {
+          const area = Math.max(0.5, Math.ceil(wm * hm * 100) / 100); // минимальная площадь изделия
+          total = area * kind.min;
+          rows.push(['Размер', money(w) + ' × ' + money(h) + ' см'], ['Площадь', dec(area) + ' м²']);
+          summary = kind.title + ': ' + w + ' × ' + h + ' см, площадь ~' + dec(area) + ' м²';
+        }
+        rows.push([kind.title, 'от ' + money(total) + ' ₽']);
+        if (rodIn.checked && rod) {
+          const rodM = Math.ceil(wm * 10) / 10;
+          const rodSum = rodM * rod.min;
+          rows.push(['Карниз ' + dec(rodM) + ' м', 'от ' + money(rodSum) + ' ₽']);
+          total += rodSum;
+          summary += '; карниз ~' + dec(rodM) + ' м';
+        }
+      }
+      $('[data-calc-rows]', calc).innerHTML = rows.map(([a, b]) => '<div class="flex items-baseline justify-between gap-4 py-2.5"><dt class="text-cream/70">' + a + '</dt><dd class="text-right font-bold">' + b + '</dd></div>').join('');
+      $('[data-calc-total]', calc).textContent = bad ? '—' : 'от ' + money(total) + ' ₽';
+      calc.dataset.summary = bad ? '' : summary + '. Ориентировочно от ' + money(total) + ' ₽.';
+    };
+    calc.addEventListener('input', render);
+    calc.addEventListener('change', render);
+    render();
+    $('[data-calc-send]', calc).addEventListener('click', (e) => {
+      e.preventDefault();
+      toLeadForm(calc.dataset.summary ? 'Расчёт с калькулятора — ' + calc.dataset.summary : '');
+    });
+  }
+
+  // ---------- подбор штор (квиз) ----------
+  const quiz = $('[data-quiz]');
+  if (quiz && catalogData.length) {
+    const steps = $$('[data-quiz-step]', quiz);
+    const result = $('[data-quiz-result]', quiz);
+    const next = $('[data-quiz-next]', quiz), back = $('[data-quiz-back]', quiz);
+    const hint = $('[data-quiz-hint]', quiz), nav = $('[data-quiz-nav]', quiz);
+    // Баллы разделам каталога за ответы
+    const SCORES = {
+      room: { bedroom: { 'blackout-curtains': 3, 'roman-blinds': 1 }, living: { 'linen-curtains': 2, 'blackout-curtains': 1, 'curtain-rods': 1 }, kids: { 'blackout-curtains': 2, 'roller-blinds': 2 },
+        kitchen: { 'roman-blinds': 3, 'roller-blinds': 2, blinds: 1 }, office: { blinds: 3, 'roller-blinds': 2 }, other: { 'linen-curtains': 1, 'roller-blinds': 1 } },
+      light: { dark: { 'blackout-curtains': 4, 'roller-blinds': 1 }, soft: { 'linen-curtains': 3, 'roman-blinds': 1, 'pleated-blinds': 1 }, privacy: { 'pleated-blinds': 2, 'roller-blinds': 2, blinds: 2 }, decor: { 'roman-blinds': 2, 'linen-curtains': 2, 'curtain-rods': 1 } },
+      window: { standard: {}, panoramic: { 'linen-curtains': 2, 'blackout-curtains': 1, 'curtain-rods': 2 }, attic: { 'pleated-blinds': 4, 'roller-blinds': 1 }, door: { 'roller-blinds': 2, blinds: 2, 'pleated-blinds': 1 } },
+      style: { classic: { 'roman-blinds': 2, 'blackout-curtains': 1, 'curtain-rods': 1 }, modern: { 'roller-blinds': 2, blinds: 2, 'pleated-blinds': 1 }, eco: { 'linen-curtains': 3, 'roman-blinds': 1 } },
+    };
+    let current = 0;
+    const answer = (i) => $('input:checked', steps[i]);
+    const renderResult = () => {
+      const score = {};
+      steps.forEach((st, i) => {
+        const table = SCORES[st.dataset.quizStep]?.[answer(i)?.value] ?? {};
+        for (const [k, v] of Object.entries(table)) score[k] = (score[k] ?? 0) + v;
+      });
+      const top = catalogData.filter((c) => score[c.key]).sort((a, b) => score[b.key] - score[a.key]).slice(0, 2);
+      $('[data-quiz-cards]', quiz).innerHTML = top.map((c) => '<a href="' + c.href + '" class="work group relative block overflow-hidden rounded-[4px] bg-navy text-cream">'
+        + '<div class="relative aspect-[4/3] overflow-hidden"><img src="' + c.image + '" alt="' + c.title + '" loading="lazy" class="absolute inset-0 size-full object-cover" /></div>'
+        + '<div class="flex items-center justify-between gap-3 p-5"><span><b class="block font-serif text-[20px] leading-tight">' + c.title + '</b><span class="text-[14px] text-cream/70">от ' + money(c.min) + ' ₽/' + c.unit + '</span></span>'
+        + '<span class="text-gold transition-transform duration-300 group-hover:translate-x-1">→</span></div></a>').join('');
+      quiz.dataset.summary = steps.map((st, i) => st.querySelector('legend').textContent.trim() + ' ' + (answer(i)?.closest('label').querySelector('b').textContent ?? '—')).join('; ')
+        + '. Рекомендация: ' + top.map((c) => c.title).join(', ') + '.';
+    };
+    const show = () => {
+      const done = current >= steps.length;
+      steps.forEach((st, i) => { st.hidden = i !== current; });
+      result.hidden = !done;
+      nav.hidden = done;
+      back.hidden = current === 0;
+      next.disabled = !done && !answer(current);
+      next.textContent = current === steps.length - 1 ? 'Показать результат' : 'Далее →';
+      hint.textContent = !done && !answer(current) ? 'Выберите вариант' : '';
+      $('[data-quiz-counter]', quiz).textContent = done ? 'Готово' : 'Вопрос ' + (current + 1) + ' из ' + steps.length;
+      $('[data-quiz-bar]', quiz).style.width = (Math.min(current + (done ? 0 : 1), steps.length) / steps.length) * 100 + '%';
+      if (done) renderResult();
+    };
+    quiz.addEventListener('change', () => show());
+    next.addEventListener('click', () => { if (answer(current)) { current++; show(); quiz.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' }); } });
+    back.addEventListener('click', () => { current = Math.max(0, current - 1); show(); });
+    $('[data-quiz-restart]', quiz).addEventListener('click', () => { $$('input', quiz).forEach((r) => (r.checked = false)); current = 0; show(); });
+    $('[data-quiz-send]', quiz).addEventListener('click', (e) => { e.preventDefault(); toLeadForm('Подбор штор — ' + (quiz.dataset.summary ?? '')); });
+    show();
+  }
+
   // ---------- формы заявки ----------
   const digits = (v) => v.replace(/\D/g, '');
   const mask = (v) => {

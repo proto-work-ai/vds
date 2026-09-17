@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Сотрудничество с салоном штор Shtorivdom</title>
-  <meta name="description" content="Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров." />
+  <title>Калькулятор штор на заказ — расчёт ткани и стоимости | Shtorivdom</title>
+  <meta name="description" content="Рассчитайте шторы на заказ: сколько ткани нужно под ваш карниз и окно и сколько это стоит по ценам каталога. Точный расчёт — после бесплатного замера." />
   <!-- Собрано: node tools/mockups/site-build.mjs — не править руками, исходники в mockups/site/src/ -->
-  <link rel="canonical" href="https://shtorivdom.ru/partner/" />
+  <link rel="canonical" href="https://shtorivdom.ru/calc/" />
   <link rel="icon" type="image/png" href="../assets/icons/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg" />
   <link rel="shortcut icon" href="../assets/icons/favicon.ico" />
@@ -16,9 +16,9 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Shtorivdom" />
   <meta property="og:locale" content="ru_RU" />
-  <meta property="og:url" content="https://shtorivdom.ru/partner/" />
-  <meta property="og:title" content="Сотрудничество с салоном штор Shtorivdom" />
-  <meta property="og:description" content="Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров." />
+  <meta property="og:url" content="https://shtorivdom.ru/calc/" />
+  <meta property="og:title" content="Калькулятор штор на заказ — расчёт ткани и стоимости | Shtorivdom" />
+  <meta property="og:description" content="Рассчитайте шторы на заказ: сколько ткани нужно под ваш карниз и окно и сколько это стоит по ценам каталога. Точный расчёт — после бесплатного замера." />
   <!-- Карточка организации для поисковиков: адрес, телефон, часы работы -->
   <script type="application/ld+json">
     {
@@ -50,7 +50,7 @@
   <link rel="stylesheet" href="../../shared/fonts.css?v=ad41b266" />
   <link rel="stylesheet" href="../assets/site.css?v=dd9f5e2e" />
 </head>
-<body data-page="partner/" data-header="solid">
+<body data-page="calc/" data-header="solid">
 <header class="site-header" data-header>
   <div class="wrap flex h-[72px] items-center justify-between gap-6">
     <a href="../" class="block w-[190px] shrink-0 text-white sm:w-[220px]" aria-label="Shtorivdom — на главную"><svg class="block h-auto w-full" role="img" aria-hidden="true" viewBox="0 0 305 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,74 +107,121 @@
   </div>
 </header>
 
-<!-- Партнёрам. Текст и поля анкеты — pages/partner/partner-page.html; фото image-6.jpg оттуда же.
-     Анкета заменяет общую форму заявки (id="lead", чтобы кнопка «Заявка» в шапке вела сюда). -->
+<!-- Калькулятор штор. Идея — калькулятор расхода из шаблона «магазин-красок» (шаги с номерами, подсказка, итог, оговорка);
+     цены — те же, что на странице цен (CATALOG в site-build, «от»). Расчёт ориентировочный, точный — после замера. -->
 <main>
 <section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
   <div class="wrap">
     <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><a href="../" class="hover:text-gold">Главная</a></nav>
-    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Стать партнером</h1>
-    <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75" style="--d:.1s">Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров.</p>
-    <a href="#lead" class="btn-gold mt-8" style="--d:.2s">Стать партнером</a>
+    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Калькулятор штор</h1>
+    <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] text-cream/75">Посчитайте, сколько ткани нужно под ваше окно и сколько это примерно стоит. Точную смету дизайнер составит после бесплатного замера.</p>
   </div>
 </section>
 
-<!-- ============ Программа лояльности — landing-6 «Where Artistry Meets Architecture» (фото с рамкой + список) ============ -->
-<section class="bg-white py-20 sm:py-28">
-  <div class="wrap grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
-    <div class="relative">
-      <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
-      <img src="../assets/img/partner/image-6.jpg" alt="Шторы в интерьере — проект партнёра" loading="lazy" class="relative h-[300px] w-full object-cover sm:h-[520px]" />
-    </div>
-    <div class="reveal" style="--d:.1s">
-      <div class="mb-5 flex items-center gap-3"><span class="h-px w-9 bg-gold"></span><span class="text-[12px] tracking-[.38em] text-gold uppercase">Партнёрам</span></div>
-      <h2 class="mb-8 text-[clamp(28px,3.6vw,42px)] leading-tight">В рамках программы лояльности вам доступны <em class="text-gold">бесплатные услуги:</em></h2>
-      <ul class="flex flex-col border-t border-navy/10 text-[16px] leading-snug [&>li]:flex [&>li]:items-start [&>li]:gap-4 [&>li]:border-b [&>li]:border-navy/10 [&>li]:py-4">
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Выезд дизайнера на объект с образцами</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Выезд замерщика на объект</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Визуализация, проектирование изделий и расчет стоимости проекта</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Профессиональный монтаж карнизов и солнцезащитных систем любой сложности — в том числе с электроуправлением</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Влажно-тепловая обработка, навеска и драпировка текстильных изделий</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Хранение заказа на нашем складе</li>
-      </ul>
-      <p class="mt-6 border-l-2 border-gold pl-4 text-[15px] leading-relaxed font-light text-slate">Дополнительно вы можете заказать комплект тканевых палитр (свотчей) под разрабатываемый дизайн-проект.</p>
-    </div>
+<section class="bg-cream py-12 sm:py-20">
+  <div class="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-12" data-calc>
+    <!-- Шаги -->
+    <form class="flex flex-col gap-6" novalidate data-calc-form>
+      <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
+        <legend class="sr-only">Шаг 1. Вид штор</legend>
+        <div class="mb-5 flex items-center gap-4">
+          <span class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold">1</span>
+          <h2 class="text-[22px] leading-tight font-bold sm:text-[26px]">Выберите вид штор</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3" data-calc-kinds></div>
+      </fieldset>
+
+      <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
+        <legend class="sr-only">Шаг 2. Размеры</legend>
+        <div class="mb-5 flex items-center gap-4">
+          <span class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold">2</span>
+          <h2 class="text-[22px] leading-tight font-bold sm:text-[26px]">Измерьте окно</h2>
+        </div>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label class="field-label" for="calc-width" data-calc-width-label>Ширина карниза, см</label>
+            <input id="calc-width" name="width" type="number" inputmode="numeric" min="30" max="1500" step="1" value="250" class="field" data-calc-width />
+            <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-width-hint>Длина карниза от края до края. Если карниза ещё нет — ширина окна плюс по 15–20 см с каждой стороны.</p>
+          </div>
+          <div>
+            <label class="field-label" for="calc-height" data-calc-height-label>Высота от карниза до пола, см</label>
+            <input id="calc-height" name="height" type="number" inputmode="numeric" min="30" max="600" step="1" value="260" class="field" data-calc-height />
+            <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-height-hint>Для штор в пол — до пола минус 1–2 см, чтобы ткань не собирала пыль.</p>
+          </div>
+        </div>
+        <p class="mt-4 hidden text-[14px] text-[#c0392b]" role="alert" data-calc-error>Проверьте размеры: ширина от 30 до 1500 см, высота от 30 до 600 см.</p>
+      </fieldset>
+
+      <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8" data-calc-fullness-step>
+        <legend class="sr-only">Шаг 3. Пышность</legend>
+        <div class="mb-5 flex items-center gap-4">
+          <span class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold">3</span>
+          <h2 class="text-[22px] leading-tight font-bold sm:text-[26px]">Насколько пышные складки</h2>
+        </div>
+        <div class="grid gap-3 sm:grid-cols-3">
+          <label class="calc-option"><input type="radio" name="fullness" value="1.5" class="sr-only" /><span class="calc-option-box"><b class="font-serif text-[18px]">Лёгкие</b><span class="text-[14px] text-slate/80">×1,5 — плотные ткани, мало складок</span></span></label>
+          <label class="calc-option"><input type="radio" name="fullness" value="2" class="sr-only" checked /><span class="calc-option-box"><b class="font-serif text-[18px]">Классика</b><span class="text-[14px] text-slate/80">×2 — ровные мягкие волны</span></span></label>
+          <label class="calc-option"><input type="radio" name="fullness" value="2.5" class="sr-only" /><span class="calc-option-box"><b class="font-serif text-[18px]">Пышные</b><span class="text-[14px] text-slate/80">×2,5 — тюль и лёгкие ткани</span></span></label>
+        </div>
+        <label class="mt-5 flex items-center gap-3 text-[15px]">
+          <input type="checkbox" name="rod" class="size-4 accent-[#0d223d]" data-calc-rod />
+          Посчитать и карниз по ширине окна
+        </label>
+      </fieldset>
+    </form>
+
+    <!-- Итог -->
+    <aside class="lg:sticky lg:top-28" aria-live="polite">
+      <div class="relative">
+        <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
+        <div class="relative bg-navy px-6 py-8 text-cream sm:px-8 sm:py-10">
+          <p class="mb-3 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Предварительный расчёт</p>
+          <h2 class="mb-6 font-serif text-[26px] leading-tight font-bold" data-calc-title>Шторы блэкаут</h2>
+          <dl class="mb-6 divide-y divide-white/10 border-y border-white/10 text-[15px]" data-calc-rows></dl>
+          <p class="mb-1 text-[14px] text-cream/70">Ориентировочно</p>
+          <p class="mb-6 font-serif text-[36px] leading-none font-bold text-gold" data-calc-total>—</p>
+          <a href="#lead" class="btn-gold !flex w-full" data-calc-send>Отправить расчёт дизайнеру</a>
+          <p class="mt-5 text-[13px] leading-relaxed text-cream/60">Расчёт примерный: по минимальным ценам каталога, без учёта отделки и аксессуаров. Погрешность возможна до 15–20%. Точную стоимость дизайнер назовёт после бесплатного замера.</p>
+        </div>
+      </div>
+    </aside>
   </div>
+<script type="application/json" id="calc-data">[{"key":"blackout-curtains","title":"Шторы блэкаут","unit":"м.пог.","min":2500,"image":"../assets/img/catalog/blackout-curtains/image-5.jpg","href":"../catalog/blackout-curtains/"},{"key":"roman-blinds","title":"Римские шторы","unit":"м²","min":4500,"image":"../assets/img/catalog/roman-blinds/image-1.jpg","href":"../catalog/roman-blinds/"},{"key":"roller-blinds","title":"Рулонные шторы","unit":"м²","min":2200,"image":"../assets/img/catalog/roller-blinds/image-2.jpg","href":"../catalog/roller-blinds/"},{"key":"linen-curtains","title":"Льняные шторы","unit":"м.пог.","min":2800,"image":"../assets/img/catalog/linen-curtains/image-3.jpg","href":"../catalog/linen-curtains/"},{"key":"pleated-blinds","title":"Шторы плиссе","unit":"м²","min":3500,"image":"../assets/img/catalog/pleated-blinds/image-1.jpg","href":"../catalog/pleated-blinds/"},{"key":"curtain-rods","title":"Карнизы для штор","unit":"м.пог.","min":900,"image":"../assets/img/catalog/curtain-rods/image-1.jpg","href":"../catalog/curtain-rods/"},{"key":"blinds","title":"Жалюзи","unit":"м²","min":1500,"image":"../assets/img/catalog/blinds/image-1.jpg","href":"../catalog/blinds/"}]</script>
 </section>
 
-<!-- ============ Анкета партнёра — landing-1 «Ready to Transform» (текст + форма). Поля partner-page ============ -->
+<!-- Оформить заказ — landing-1 «Ready to Transform»: контакты + форма. Тексты — main-form -->
 <section id="lead" class="bg-sand py-16 sm:py-24">
-  <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
+  <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
     <div class="reveal">
-      <p class="eyebrow">Анкета</p>
-      <h2 class="h2 mb-5">Стать <span class="text-gold italic">партнером</span></h2>
-      <p class="mb-10 text-[16px] leading-[1.8] font-light text-slate">Для вступления в программу заполните анкету</p>
-      <ul class="flex flex-col gap-3 text-[16px]">
-        <li><a href="tel:+79255946117" class="font-serif text-[24px] font-bold hover:text-gold">+7 (925) 594-61-17</a></li>
-        <li><a href="mailto:info@shtorivdom.ru" class="hover:text-gold">info@shtorivdom.ru</a></li>
+      <p class="eyebrow">Заявка</p>
+      <h2 class="h2 mb-5">Запишитесь на посещение шоурума и получите <span class="text-gold italic">скидку 10%</span></h2>
+      <div class="mb-10 space-y-3 text-[16px] leading-[1.8] font-light text-slate">
+        <p>Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.</p>
+        <p>На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором модели и рассчитаем стоимость в разных ценовых категориях.</p>
+        <p>Изготовим заказ на собственном производстве точно в срок, произведем монтаж.</p>
+      </div>
+      <ul class="flex flex-col gap-6">
+        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Телефон</p><a href="tel:+79255946117" class="font-serif text-[20px] font-bold transition-colors hover:text-gold">+7 (925) 594-61-17</a></div></li>
+        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Эл. почта</p><a href="mailto:info@shtorivdom.ru" class="text-[16px] hover:text-gold">info@shtorivdom.ru</a></div></li>
+        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Адрес</p><a href="https://yandex.ru/maps/-/CDQG4AYV" target="_blank" rel="noopener" class="text-[16px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold">Троицк, Кварцевая улица, 3, корп. 2</a></div></li>
+        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">График работы</p><p class="text-[16px]">Без выходных, 10:00–20:00</p></div></li>
       </ul>
     </div>
     <div class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12" style="--d:.15s">
-      <form id="form-partner" class="flex flex-col gap-5" novalidate data-lead-form>
+      <form class="flex flex-col gap-5" novalidate data-lead-form>
         <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] size-0 opacity-0" />
-        <div class="grid gap-5 sm:grid-cols-2">
-          <div>
-            <label class="field-label" for="partner-name">Имя</label>
-            <input id="partner-name" name="name" type="text" autocomplete="name" placeholder="Введите имя" class="field" />
-          </div>
-          <div>
-            <label class="field-label" for="partner-phone">Телефон *</label>
-            <input id="partner-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Укажите телефон" class="field" data-phone />
-            <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="phone">Введите номер телефона полностью</p>
-          </div>
+        <div>
+          <label class="field-label" for="lead-phone">Телефон *</label>
+          <input id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Укажите телефон" class="field" data-phone />
+          <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="phone">Введите номер телефона полностью</p>
         </div>
         <div>
-          <label class="field-label" for="partner-city">Город</label>
-          <input id="partner-city" name="city" type="text" autocomplete="address-level2" placeholder="Город" class="field" />
-        </div>
-        <div>
-          <label class="field-label" for="partner-comment">Комментарий</label>
-          <textarea id="partner-comment" name="comment" rows="4" placeholder="Комментарий" class="field resize-none"></textarea>
+          <label class="field-label" for="lead-comment">Комментарий</label>
+          <textarea id="lead-comment" name="comment" rows="4" placeholder="Комментарий" class="field resize-none"></textarea>
         </div>
         <div>
           <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
@@ -188,6 +235,7 @@
     </div>
   </div>
 </section>
+
 </main>
 <!-- Подвал — landing-8: колонки, соцсети (без подписки — её нет на текущем сайте) -->
 <footer class="bg-navy-deep text-white">
