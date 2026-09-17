@@ -89,7 +89,7 @@ export const ГалочкиИКонтакты: StoryObj = {
           <p class="eyebrow">Контакты (страница контактов)</p>
           <site-contact-item icon="pin" label="Адрес"><a href="#" class="text-[17px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold">Троицк, Кварцевая улица, 3, корп. 2</a></site-contact-item>
           <site-contact-item icon="clock" label="График работы"><p class="text-[17px]">Без выходных, 10:00–20:00</p></site-contact-item>
-          <site-contact-item icon="phone" label="Телефон"><a href="#" class="font-serif text-[24px] font-bold hover:text-gold">+7 (925) 594-61-17</a></site-contact-item>
+          <site-contact-item icon="phone" label="Телефон"><a href="#" class="font-serif text-[24px] font-bold hover:text-gold">+7 (915) 359-12-00</a></site-contact-item>
           <site-contact-item icon="mail" label="Эл. почта"><a href="#" class="text-[17px] hover:text-gold">info&#64;shtorivdom.ru</a></site-contact-item>
           <site-contact-item icon="message" label="Социальные сети"><site-social-links variant="plain" class="mt-1" /></site-contact-item>
         </div>

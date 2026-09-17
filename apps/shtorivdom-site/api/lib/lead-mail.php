@@ -34,7 +34,7 @@ function lead_esc(string $v): string
     return htmlspecialchars($v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
 }
 
-/** Телефон 79255946117 -> ['+7 (925) 594-61-17', '+79255946117']; иначе как есть, без ссылки. */
+/** Телефон 79255946117 -> ['+7 (915) 359-12-00', '+79153591200']; иначе как есть, без ссылки. */
 function lead_phone(string $raw): array
 {
     $d = preg_replace('/\D/', '', $raw);
@@ -274,17 +274,17 @@ function lead_build_client_email(string $kind, array $data): ?array
         . '<tr><td style="padding:0 24px 4px;font-family:' . LEAD_SANS . ';font-size:12px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:' . $C['muted'] . ';">Что будет дальше</td></tr>'
         . '<tr><td style="padding:12px 24px 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;margin:0 0 20px;">'
         . $stepsHtml . '</table></td></tr>'
-        . '<tr><td style="padding:0 24px;">' . lead_button('tel:+79255946117', 'Позвонить +7 (925) 594-61-17', true)
+        . '<tr><td style="padding:0 24px;">' . lead_button('tel:+79153591200', 'Позвонить +7 (915) 359-12-00', true)
         . '<div style="clear:both;line-height:0;font-size:0;">&nbsp;</div></td></tr>'
         . '<tr><td style="padding:16px 24px 24px;border-top:1px solid ' . $C['line'] . ';font-family:' . LEAD_SANS
         . ';font-size:13px;line-height:20px;color:' . $C['muted'] . ';">'
         . 'Шторы в дом · Троицк, Кварцевая улица, 3, корп. 2<br>'
-        . '<a href="tel:+79255946117" style="color:' . $C['muted'] . ';">+7 (925) 594-61-17</a> · '
+        . '<a href="tel:+79153591200" style="color:' . $C['muted'] . ';">+7 (915) 359-12-00</a> · '
         . '<a href="mailto:info@shtorivdom.ru" style="color:' . $C['muted'] . ';">info@shtorivdom.ru</a> · Без выходных, 10:00–20:00'
         . '</td></tr></table></td></tr></table></body></html>';
 
     $text = $copy['subject'] . "\n\n" . $hello . ' ' . $copy['intro'] . "\n\nЧТО БУДЕТ ДАЛЬШЕ\n" . implode("\n", $stepsText)
-        . "\n\nШторы в дом · Троицк, Кварцевая улица, 3, корп. 2\n+7 (925) 594-61-17 · info@shtorivdom.ru · Без выходных, 10:00–20:00";
+        . "\n\nШторы в дом · Троицк, Кварцевая улица, 3, корп. 2\n+7 (915) 359-12-00 · info@shtorivdom.ru · Без выходных, 10:00–20:00";
 
     return ['subject' => $subject, 'html' => $html, 'text' => $text];
 }

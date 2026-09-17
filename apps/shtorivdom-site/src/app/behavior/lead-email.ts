@@ -30,7 +30,10 @@ const SITE = 'https://shtorivdom.ru';
 const LOGO = `${SITE}/logo/logo-1-email.png`;
 const BRAND = 'Шторы в дом';
 
-const COPY: Record<LeadKind, { subject: (d: { theme: string; model: string }) => string; title: string; lead: string }> = {
+const COPY: Record<
+  LeadKind,
+  { subject: (d: { theme: string; model: string }) => string; title: string; lead: string }
+> = {
   callback: {
     subject: () => 'Заявка с сайта: обратный звонок',
     title: 'Новая заявка: клиент просит перезвонить',
@@ -71,7 +74,8 @@ const LABELS = {
   source: 'Откуда заявка',
   call: 'Позвонить',
   write: 'Написать',
-  salonFooter: 'Письмо собрано формой на сайте shtorivdom.ru. Отвечать на него не нужно — свяжитесь с клиентом по контактам выше.',
+  salonFooter:
+    'Письмо собрано формой на сайте shtorivdom.ru. Отвечать на него не нужно — свяжитесь с клиентом по контактам выше.',
   fields: {
     name: 'Имя',
     phone: 'Телефон',
@@ -89,7 +93,16 @@ const LABELS = {
   },
 };
 
-const C = { navy: '#0d223d', gold: '#c9a84c', goldText: '#8a6d1f', cream: '#f5f0e8', sand: '#e8e2d6', slate: '#2d3748', muted: '#6b6457', line: '#e3dccd' };
+const C = {
+  navy: '#0d223d',
+  gold: '#c9a84c',
+  goldText: '#8a6d1f',
+  cream: '#f5f0e8',
+  sand: '#e8e2d6',
+  slate: '#2d3748',
+  muted: '#6b6457',
+  line: '#e3dccd',
+};
 const SERIF = "Georgia, 'Times New Roman', serif";
 const SANS = 'Arial, Helvetica, sans-serif';
 
@@ -99,13 +112,20 @@ interface Row {
   html: string;
 }
 
-const ESC: Record<string, string> = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+const ESC: Record<string, string> = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
 export const escapeHtml = (v: unknown) => String(v).replace(/[&<>"']/g, (ch) => ESC[ch]);
-const clean = (v: unknown) => (v === undefined || v === null ? '' : String(v).replace(/\r\n?/g, '\n').trim());
+const clean = (v: unknown) =>
+  v === undefined || v === null ? '' : String(v).replace(/\r\n?/g, '\n').trim();
 const oneLine = (v: unknown) => clean(v).replace(/\s+/g, ' ');
 const multiline = (v: string) => escapeHtml(v).replace(/\n/g, '<br>');
 
-/** Телефон → { text: '+7 (925) 594-61-17', tel: '+79255946117' }; неполный — как есть, без ссылки. */
+/** Нормализованный телефон получает отображаемый текст и ссылку tel; неполный номер возвращается как есть. */
 export function normalizePhone(raw: unknown): { text: string; tel: string } | null {
   const src = oneLine(raw);
   if (!src) return null;
@@ -113,25 +133,39 @@ export function normalizePhone(raw: unknown): { text: string; tel: string } | nu
   if (d.length === 10) d = '7' + d;
   else if (d.length === 11 && d[0] === '8') d = '7' + d.slice(1);
   if (d.length !== 11 || d[0] !== '7') return { text: src, tel: '' };
-  return { text: `+7 (${d.slice(1, 4)}) ${d.slice(4, 7)}-${d.slice(7, 9)}-${d.slice(9, 11)}`, tel: '+' + d };
+  return {
+    text: `+7 (${d.slice(1, 4)}) ${d.slice(4, 7)}-${d.slice(7, 9)}-${d.slice(9, 11)}`,
+    tel: '+' + d,
+  };
 }
-const isEmail = (v: string) => /^[^\s@<>"'()&,;:\\]+@[^\s@<>"'()&,;:\\]+\.[^\s@<>"'()&,;:\\]{2,}$/.test(v);
+const isEmail = (v: string) =>
+  /^[^\s@<>"'()&,;:\\]+@[^\s@<>"'()&,;:\\]+\.[^\s@<>"'()&,;:\\]{2,}$/.test(v);
 const safeUrl = (v: string) => (/^https?:\/\/[^\s<>"'\\]+$/i.test(v) ? v : '');
 // eslint-disable-next-line no-control-regex -- тема письма одной строкой, без управляющих символов
-const subjectLine = (v: string) => oneLine(v).replace(/[\u0000-\u001f\u007f]/g, '').slice(0, 180);
+const subjectLine = (v: string) =>
+  oneLine(v)
+    .replace(/[\u0000-\u001f\u007f]/g, '')
+    .slice(0, 180);
 
 function formatDate(date: Date): string {
   try {
     return (
-      date.toLocaleString('ru-RU', { timeZone: 'Europe/Moscow', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) +
-      ' (МСК)'
+      date.toLocaleString('ru-RU', {
+        timeZone: 'Europe/Moscow',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      }) + ' (МСК)'
     );
   } catch {
     return date.toISOString().replace('T', ' ').slice(0, 16) + ' UTC';
   }
 }
 
-const link = (href: string, text: string) => `<a href="${escapeHtml(href)}" style="color:${C.navy};text-decoration:underline;">${escapeHtml(text)}</a>`;
+const link = (href: string, text: string) =>
+  `<a href="${escapeHtml(href)}" style="color:${C.navy};text-decoration:underline;">${escapeHtml(text)}</a>`;
 const heading = (t: string) =>
   `<p style="margin:0 0 8px;font-family:${SANS};font-size:12px;line-height:16px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:${C.goldText};">${escapeHtml(t)}</p>`;
 
@@ -139,10 +173,13 @@ function buttons(list: { href: string; label: string }[]): string {
   if (!list.length) return '';
   return `<div style="margin:0 0 20px;">${list
     .map(
-      (b, i) => `<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="left" style="margin:0 10px 10px 0;"><tr>
+      (
+        b,
+        i,
+      ) => `<table role="presentation" cellpadding="0" cellspacing="0" border="0" align="left" style="margin:0 10px 10px 0;"><tr>
 <td bgcolor="${i ? '#ffffff' : C.gold}" style="background-color:${i ? '#ffffff' : C.gold};border:2px solid ${C.gold};border-radius:3px;">
 <a href="${escapeHtml(b.href)}" style="display:inline-block;padding:12px 20px;font-family:${SANS};font-size:15px;line-height:20px;font-weight:bold;color:${C.navy};text-decoration:none;">${escapeHtml(b.label)}</a>
-</td></tr></table>`
+</td></tr></table>`,
     )
     .join('')}<div style="clear:both;line-height:0;font-size:0;">&nbsp;</div></div>`;
 }
@@ -155,13 +192,19 @@ ${rows
     (r) => `<tr>
 <td valign="top" width="130" style="width:130px;padding:10px 12px 10px 0;border-bottom:1px solid ${C.line};font-family:${SANS};font-size:13px;line-height:20px;color:${C.muted};">${escapeHtml(r.label)}</td>
 <td valign="top" style="padding:10px 0;border-bottom:1px solid ${C.line};font-family:${SANS};font-size:15px;line-height:22px;color:${C.navy};word-break:break-word;">${r.html}</td>
-</tr>`
+</tr>`,
   )
   .join('\n')}
 </table>`;
 }
 
-function layout(o: { preheader: string; title: string; lead: string; body: string; footer: string }): string {
+function layout(o: {
+  preheader: string;
+  title: string;
+  lead: string;
+  body: string;
+  footer: string;
+}): string {
   return `<!DOCTYPE html>
 <html lang="ru" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -198,10 +241,15 @@ function layout(o: { preheader: string; title: string; lead: string; body: strin
 }
 
 /** Письмо в салон: { subject, html, text } */
-export function buildLeadEmail(kind: LeadKind, data: LeadData, meta: LeadMeta = {}): { subject: string; html: string; text: string } {
+export function buildLeadEmail(
+  kind: LeadKind,
+  data: LeadData,
+  meta: LeadMeta = {},
+): { subject: string; html: string; text: string } {
   const c = COPY[kind];
   const L = LABELS.fields;
-  const row = (label: string, text: string, html?: string): Row | null => (text ? { label, text, html: html ?? multiline(text) } : null);
+  const row = (label: string, text: string, html?: string): Row | null =>
+    text ? { label, text, html: html ?? multiline(text) } : null;
   const name = oneLine(data.name);
   const phone = normalizePhone(data.phone);
   const email = oneLine(data.email);
@@ -212,8 +260,15 @@ export function buildLeadEmail(kind: LeadKind, data: LeadData, meta: LeadMeta = 
 
   const contacts = [
     row(L.name, name),
-    phone && row(L.phone, phone.text, phone.tel ? link('tel:' + phone.tel, phone.text) : escapeHtml(phone.text)),
-    email ? row(L.email, email, emailOk ? link('mailto:' + email, email) : escapeHtml(email)) : null,
+    phone &&
+      row(
+        L.phone,
+        phone.text,
+        phone.tel ? link('tel:' + phone.tel, phone.text) : escapeHtml(phone.text),
+      ),
+    email
+      ? row(L.email, email, emailOk ? link('mailto:' + email, email) : escapeHtml(email))
+      : null,
   ].filter((r): r is Row => !!r);
   const details = [
     row(L.theme, theme),
@@ -232,7 +287,13 @@ export function buildLeadEmail(kind: LeadKind, data: LeadData, meta: LeadMeta = 
   const when = formatDate(meta.sentAt ?? new Date());
   const page = pageTitle || pageUrl;
   const source = [
-    page ? { label: L.page, text: page + (pageUrl && pageTitle ? ` — ${pageUrl}` : ''), html: pageUrl ? link(pageUrl, page) : escapeHtml(page) } : null,
+    page
+      ? {
+          label: L.page,
+          text: page + (pageUrl && pageTitle ? ` — ${pageUrl}` : ''),
+          html: pageUrl ? link(pageUrl, page) : escapeHtml(page),
+        }
+      : null,
     { label: L.time, text: when, html: escapeHtml(when) },
   ].filter((r): r is Row => !!r);
 
@@ -240,7 +301,12 @@ export function buildLeadEmail(kind: LeadKind, data: LeadData, meta: LeadMeta = 
   if (phone?.tel) actions.push({ href: 'tel:' + phone.tel, label: `${LABELS.call} ${phone.text}` });
   if (emailOk) actions.push({ href: 'mailto:' + email, label: `${LABELS.write} на ${email}` });
 
-  const detailsTitle = kind === 'contact' ? LABELS.detailsContact : kind === 'partner' ? LABELS.detailsPartner : LABELS.details;
+  const detailsTitle =
+    kind === 'contact'
+      ? LABELS.detailsContact
+      : kind === 'partner'
+        ? LABELS.detailsPartner
+        : LABELS.details;
   const body = [
     heading(LABELS.contacts),
     buttons(actions),
@@ -250,8 +316,21 @@ export function buildLeadEmail(kind: LeadKind, data: LeadData, meta: LeadMeta = 
     table(source),
   ].join('\n');
 
-  const html = layout({ preheader: `${c.lead}${who ? ' ' + who : ''}`, title: c.title, lead: c.lead, body, footer: escapeHtml(LABELS.salonFooter) });
-  const block = (t: string, rows: Row[]) => (rows.length ? ['', t.toUpperCase(), ...rows.map((r) => `${r.label}: ${r.text}`)] : []);
-  const text = [c.title, c.lead, ...block(LABELS.contacts, contacts), ...block(detailsTitle, details), ...block(LABELS.source, source)].join('\n');
+  const html = layout({
+    preheader: `${c.lead}${who ? ' ' + who : ''}`,
+    title: c.title,
+    lead: c.lead,
+    body,
+    footer: escapeHtml(LABELS.salonFooter),
+  });
+  const block = (t: string, rows: Row[]) =>
+    rows.length ? ['', t.toUpperCase(), ...rows.map((r) => `${r.label}: ${r.text}`)] : [];
+  const text = [
+    c.title,
+    c.lead,
+    ...block(LABELS.contacts, contacts),
+    ...block(detailsTitle, details),
+    ...block(LABELS.source, source),
+  ].join('\n');
   return { subject, html, text };
 }

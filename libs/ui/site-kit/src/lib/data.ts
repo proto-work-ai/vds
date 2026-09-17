@@ -9,11 +9,11 @@ export interface SiteLink {
 }
 
 export const SITE_CONTACTS = {
-  phone: '+7 (925) 594-61-17',
-  tel: '+79255946117',
+  phone: '+7 (915) 359-12-00',
+  tel: '+79153591200',
   email: 'info@shtorivdom.ru',
   address: 'Троицк, Кварцевая улица, 3, корп. 2',
-  addressLink: 'https://yandex.ru/maps/-/CDQG4AYV',
+  addressLink: 'https://yandex.ru/maps/-/CTxLMJIy',
   hours: '10:00–20:00 / Без выходных',
   telegram: 'https://t.me/andreevav1',
   max: 'https://max.ru/u/f9LHodD0cOIMeP9lespjPt8cxagsm7ObEGSeElhYDRMQhW9vFT_lt7I30J0',

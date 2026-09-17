@@ -1,4 +1,11 @@
-import { Component, ElementRef, inject, input, ViewEncapsulation, WritableSignal } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  input,
+  ViewEncapsulation,
+  WritableSignal,
+} from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { TuiTextfield, TuiInput } from '@taiga-ui/core';
@@ -8,7 +15,15 @@ import { TuiDataListWrapper, TuiInputPhone, TuiInputSlider } from '@taiga-ui/kit
   templateUrl: 'cookie-accepted.html',
   styleUrl: 'cookie-accepted.scss',
   encapsulation: ViewEncapsulation.None,
-  imports: [TuiDataListWrapper, ReactiveFormsModule, TuiTextfield, TuiInputSlider, TuiInputPhone, TuiInput, RouterLink],
+  imports: [
+    TuiDataListWrapper,
+    ReactiveFormsModule,
+    TuiTextfield,
+    TuiInputSlider,
+    TuiInputPhone,
+    TuiInput,
+    RouterLink,
+  ],
 })
 export class CookieAccepted {
   cookie!: WritableSignal<unknown>;

@@ -1,10 +1,10 @@
 {
-  "printWidth": 120,
+  "printWidth": 100,
   "tabWidth": 2,
   "useTabs": false,
   "singleQuote": true,
   "quoteProps": "as-needed",
-  "trailingComma": "es5",
+  "trailingComma": "all",
   "bracketSpacing": true,
   "bracketSameLine": false,
   "endOfLine": "auto",
@@ -14,7 +14,8 @@
       "options": {
         "parser": "angular",
         "trailingComma": "none",
-        "bracketSpacing": false
+        "bracketSpacing": false,
+        "htmlWhitespaceSensitivity": "ignore"
       }
     },
     {

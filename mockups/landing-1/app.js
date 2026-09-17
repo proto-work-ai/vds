@@ -9,19 +9,73 @@
 (() => {
   // Преимущества услуг: оригинал рисует их только в раскрытой карточке, в разметке их нет.
   const FEATURES = {
-    'Custom Drapery': ['Free in-home consultation', '200+ fabric selections', 'Custom lining & interlining', 'Professional installation included'],
-    'Roller & Solar Shades': ['Motorized & manual options', 'UV-blocking solar fabrics', 'Blackout & room-darkening', 'Cordless child-safe design'],
-    'Wood & Faux Wood Blinds': ['Real & faux wood options', 'Moisture-resistant finish', 'Multiple stain & paint colors', '2″ and 2½″ slat sizes'],
-    'Motorized Smart Shades': ['Alexa, Google & Apple HomeKit', 'Battery-powered or hardwired', 'Scene & schedule programming', 'Free smart-home setup'],
-    'Roman & Woven Shades': ['Flat, relaxed & hobbled folds', 'Natural grass & bamboo weaves', 'Custom fabric sourcing', 'Lined & unlined options'],
-    'Commercial Window Solutions': ['Volume pricing available', 'ADA-compliant options', 'Fire-rated & contract fabrics', 'Project management included'],
+    'Custom Drapery': [
+      'Free in-home consultation',
+      '200+ fabric selections',
+      'Custom lining & interlining',
+      'Professional installation included',
+    ],
+    'Roller & Solar Shades': [
+      'Motorized & manual options',
+      'UV-blocking solar fabrics',
+      'Blackout & room-darkening',
+      'Cordless child-safe design',
+    ],
+    'Wood & Faux Wood Blinds': [
+      'Real & faux wood options',
+      'Moisture-resistant finish',
+      'Multiple stain & paint colors',
+      '2″ and 2½″ slat sizes',
+    ],
+    'Motorized Smart Shades': [
+      'Alexa, Google & Apple HomeKit',
+      'Battery-powered or hardwired',
+      'Scene & schedule programming',
+      'Free smart-home setup',
+    ],
+    'Roman & Woven Shades': [
+      'Flat, relaxed & hobbled folds',
+      'Natural grass & bamboo weaves',
+      'Custom fabric sourcing',
+      'Lined & unlined options',
+    ],
+    'Commercial Window Solutions': [
+      'Volume pricing available',
+      'ADA-compliant options',
+      'Fire-rated & contract fabrics',
+      'Project management included',
+    ],
   };
   // Отзывы: в разметке только первый.
   const REVIEWS = [
-    { name: 'Sarah M.', loc: 'Bellevue, WA', stars: 5, service: 'Custom Drapery', text: 'Cascade Drape completely transformed our living room. The custom drapes are absolutely stunning and the installation team was professional and efficient. Worth every penny!' },
-    { name: 'James R.', loc: 'Seattle, WA', stars: 5, service: 'Motorized Smart Shades', text: 'We had motorized shades installed throughout our home and the smart integration is flawless. Now my morning routine includes the blinds opening automatically with the sunrise. Life-changing!' },
-    { name: 'Linda & Tom K.', loc: 'Tacoma, WA', stars: 5, service: 'Wood Blinds', text: 'From the initial consultation to final installation, the entire experience was seamless. They listened to exactly what we wanted and delivered beyond our expectations.' },
-    { name: 'Priya N.', loc: 'Spokane, WA', stars: 5, service: 'Roman Shades', text: "I'm a repeat customer — Cascade Drape has done every room in my house over four years. Consistent quality, fair pricing, and they stand behind their warranty 100%." },
+    {
+      name: 'Sarah M.',
+      loc: 'Bellevue, WA',
+      stars: 5,
+      service: 'Custom Drapery',
+      text: 'Cascade Drape completely transformed our living room. The custom drapes are absolutely stunning and the installation team was professional and efficient. Worth every penny!',
+    },
+    {
+      name: 'James R.',
+      loc: 'Seattle, WA',
+      stars: 5,
+      service: 'Motorized Smart Shades',
+      text: 'We had motorized shades installed throughout our home and the smart integration is flawless. Now my morning routine includes the blinds opening automatically with the sunrise. Life-changing!',
+    },
+    {
+      name: 'Linda & Tom K.',
+      loc: 'Tacoma, WA',
+      stars: 5,
+      service: 'Wood Blinds',
+      text: 'From the initial consultation to final installation, the entire experience was seamless. They listened to exactly what we wanted and delivered beyond our expectations.',
+    },
+    {
+      name: 'Priya N.',
+      loc: 'Spokane, WA',
+      stars: 5,
+      service: 'Roman Shades',
+      text: "I'm a repeat customer — Cascade Drape has done every room in my house over four years. Consistent quality, fair pricing, and they stand behind their warranty 100%.",
+    },
   ];
   const SECTIONS = ['Services', 'Gallery', 'Pricing', 'About', 'Contact'];
 
@@ -128,10 +182,12 @@
       const on = c === target;
       if (on && !c.list) {
         const ul = document.createElement('ul');
-        ul.className = '[overflow:hidden] [list-style:none] [padding:0px] [margin:0px_0px_16px] [opacity:0] [transition:height_0.3s_ease-out,opacity_0.3s_ease-out]';
+        ul.className =
+          '[overflow:hidden] [list-style:none] [padding:0px] [margin:0px_0px_16px] [opacity:0] [transition:height_0.3s_ease-out,opacity_0.3s_ease-out]';
         for (const f of c.features) {
           const li = document.createElement('li');
-          li.className = '[font-family:Lato,_sans-serif] [font-size:13px] [color:rgb(26,_39,_68)] [padding:5px_0px] [display:flex] [align-items:center] [gap:10px]';
+          li.className =
+            '[font-family:Lato,_sans-serif] [font-size:13px] [color:rgb(26,_39,_68)] [padding:5px_0px] [display:flex] [align-items:center] [gap:10px]';
           const tick = document.createElement('span');
           tick.className = '[color:rgb(201,_168,_76)] [font-weight:700]';
           tick.textContent = '✓';
@@ -177,7 +233,7 @@
           const s = stars.firstElementChild?.cloneNode(true) ?? document.createElement('span');
           s.textContent = '★';
           return s;
-        })
+        }),
       );
       name.textContent = r.name;
       meta.textContent = `${r.loc} · ${r.service}`;
@@ -189,7 +245,11 @@
       const my = ++token;
       // AnimatePresence mode="wait": старый уходит влево (0.4 с), затем новый приходит справа.
       slide.classList.add(MOVE);
-      swap(slide, ['[opacity:1]', '[transform:none]', '[transform:translateX(30px)]'], ['[opacity:0]', '[transform:translateX(-30px)]']);
+      swap(
+        slide,
+        ['[opacity:1]', '[transform:none]', '[transform:translateX(30px)]'],
+        ['[opacity:0]', '[transform:translateX(-30px)]'],
+      );
       setTimeout(() => {
         if (my !== token) return;
         fill(REVIEWS[i]);
@@ -197,7 +257,11 @@
         swap(slide, ['[transform:translateX(-30px)]'], ['[transform:translateX(30px)]']);
         reflow(slide);
         slide.classList.add(MOVE);
-        swap(slide, ['[opacity:0]', '[transform:translateX(30px)]'], ['[opacity:1]', '[transform:none]']);
+        swap(
+          slide,
+          ['[opacity:0]', '[transform:translateX(30px)]'],
+          ['[opacity:1]', '[transform:none]'],
+        );
       }, 400);
     };
     dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
@@ -207,11 +271,13 @@
   const form = $('section#contact form');
   if (form) {
     // Рамка поля при фокусе: в оригинале onFocus/onBlur меняли border-color.
-    for (const el of $$('input, select, textarea', form)) el.classList.add('focus:[border-color:rgb(201,_168,_76)]');
+    for (const el of $$('input, select, textarea', form))
+      el.classList.add('focus:[border-color:rgb(201,_168,_76)]');
     form.addEventListener('submit', (e) => {
       e.preventDefault();
       const done = document.createElement('div');
-      done.className = '[text-align:center] [padding:40px_0px] [opacity:0] [transform:scale(0.95)] [transition:opacity_0.4s_ease-out,transform_0.4s_ease-out]';
+      done.className =
+        '[text-align:center] [padding:40px_0px] [opacity:0] [transform:scale(0.95)] [transition:opacity_0.4s_ease-out,transform_0.4s_ease-out]';
       done.innerHTML = `
         <div class="[font-size:56px] [margin-bottom:16px]">🎉</div>
         <h3 class="[font-family:'Playfair_Display',_serif] [font-size:28px] [font-weight:700] [color:rgb(26,_39,_68)] [margin-bottom:12px]">Thank You!</h3>

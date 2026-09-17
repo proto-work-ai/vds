@@ -50,7 +50,8 @@
   document.body.appendChild(preload);
 
   // Иконки lucide-react 0.487: Menu и X — те же пути, что в бандле оригинала.
-  const ICON_MENU = '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>';
+  const ICON_MENU =
+    '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>';
   const ICON_X = '<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>';
 
   // ---------- появление при прокрутке ----------
@@ -71,8 +72,9 @@
   };
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && (io.unobserve(e.target), reveal(e.target))),
-      { rootMargin: '-80px' }
+      (entries) =>
+        entries.forEach((e) => e.isIntersecting && (io.unobserve(e.target), reveal(e.target))),
+      { rootMargin: '-80px' },
     );
     inview.forEach((el) => io.observe(el));
   } else inview.forEach(reveal);
@@ -81,7 +83,11 @@
   const nav = $('nav');
   const toggle = nav && $$('button', nav).find((b) => $('svg.lucide-menu', b));
   // Панель — соседний с шапкой fixed-блок с теми же пунктами разделов.
-  const panel = nav && [...document.querySelectorAll('div')].find((d) => d.previousElementSibling === nav && $('a[href="#collections"]', d));
+  const panel =
+    nav &&
+    [...document.querySelectorAll('div')].find(
+      (d) => d.previousElementSibling === nav && $('a[href="#collections"]', d),
+    );
   if (toggle && panel) {
     panel.classList.add(PANEL_TRANSITION);
     let open = false;

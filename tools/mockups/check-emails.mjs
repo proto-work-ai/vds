@@ -52,10 +52,10 @@ for (const kind of E.KINDS) {
   const lead = E.buildLeadEmail(kind, normal, meta);
   staticChecks(`${kind}/салон`, lead);
   mails.push([`${kind}-salon`, lead]);
-  ok(lead.html.includes('href="tel:+79255946117"') && lead.html.includes('+7 (925) 594-61-17'), `${kind}/салон: телефон нормализован, ссылка tel:`);
+  ok(lead.html.includes('href="tel:+79153591200"') && lead.html.includes('+7 (915) 359-12-00'), `${kind}/салон: телефон нормализован, ссылка tel:`);
   ok(lead.html.includes('href="mailto:anna@example.ru"'), `${kind}/салон: email — mailto:`);
   ok(lead.html.includes('href="https://shtorivdom.ru/catalog/3/"') && lead.html.includes('14.09.2026, 15:30 (МСК)'), `${kind}/салон: страница ссылкой и время МСК`);
-  ok(lead.subject.endsWith('— +7 (925) 594-61-17'), `${kind}/салон: телефон в теме — «${lead.subject}»`);
+  ok(lead.subject.endsWith('— +7 (915) 359-12-00'), `${kind}/салон: телефон в теме — «${lead.subject}»`);
 
   const client = E.buildClientEmail(kind, normal);
   ok(!!client, `${kind}/клиент: письмо есть при email`);
@@ -84,7 +84,7 @@ for (const kind of E.KINDS) {
   ok(!/<img src=x|href="javascript/i.test(badClient.html) && badClient.html.includes('&lt;script&gt;'), `${kind}/клиент-вред: разметка экранирована`);
 }
 const ph = (v) => E.normalizePhone(v)?.text;
-ok(ph('9255946117') === '+7 (925) 594-61-17' && ph('89255946117') === '+7 (925) 594-61-17' && ph('+7 925 594 61 17') === '+7 (925) 594-61-17' && ph(9255946117) === '+7 (925) 594-61-17', 'телефон: 10 цифр, 8…, +7…, число → +7 (XXX) XXX-XX-XX');
+ok(ph('9255946117') === '+7 (915) 359-12-00' && ph('89255946117') === '+7 (915) 359-12-00' && ph('+7 925 594 61 17') === '+7 (915) 359-12-00' && ph(9255946117) === '+7 (915) 359-12-00', 'телефон: 10 цифр, 8…, +7…, число → +7 (XXX) XXX-XX-XX');
 ok(E.normalizePhone('12345').tel === '' && E.normalizePhone('') === null, 'телефон: неполный — без tel:, пустой — null');
 console.log(`статические проверки: ${failed ? '✗ ошибок ' + failed : '✓ все пройдены'} (писем ${mails.length})`);
 

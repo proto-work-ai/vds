@@ -14,16 +14,33 @@
   // цветах oklab/oklch, которые генерирует браузерный Tailwind 4 (text-white/30 и т.п.), — PDF молча
   // не создавался. html2canvas-pro — тот же API (window.html2canvas) с поддержкой этих цветов.
   const JSPDF_URL = 'https://cdn.jsdelivr.net/npm/jspdf@4.2.1/dist/jspdf.umd.min.js';
-  const HTML2CANVAS_URL = 'https://cdn.jsdelivr.net/npm/html2canvas-pro@1.5.11/dist/html2canvas-pro.min.js';
+  const HTML2CANVAS_URL =
+    'https://cdn.jsdelivr.net/npm/html2canvas-pro@1.5.11/dist/html2canvas-pro.min.js';
 
-  const TAB_ON = ['[background:rgba(201,_168,_76,_0.15)]', '[border:1px_solid_rgba(201,_168,_76,_0.5)]', '[color:rgb(201,_168,_76)]'];
-  const TAB_OFF = ['[background:transparent]', '[border:1px_solid_transparent]', '[color:rgba(255,_255,_255,_0.35)]'];
+  const TAB_ON = [
+    '[background:rgba(201,_168,_76,_0.15)]',
+    '[border:1px_solid_rgba(201,_168,_76,_0.5)]',
+    '[color:rgb(201,_168,_76)]',
+  ];
+  const TAB_OFF = [
+    '[background:transparent]',
+    '[border:1px_solid_transparent]',
+    '[color:rgba(255,_255,_255,_0.35)]',
+  ];
   const NAV_ON = ['[color:rgb(201,_168,_76)]', '[cursor:pointer]'];
   const NAV_OFF = ['[color:rgba(255,_255,_255,_0.2)]', '[cursor:not-allowed]'];
   const DOT_ON = ['[width:24px]', '[background:rgb(201,_168,_76)]'];
   const DOT_OFF = ['[width:8px]', '[background:rgba(201,_168,_76,_0.2)]'];
-  const DL_IDLE = ['[background:rgba(201,_168,_76,_0.15)]', '[color:rgb(201,_168,_76)]', '[cursor:pointer]'];
-  const DL_BUSY = ['[background:rgba(201,_168,_76,_0.1)]', '[color:rgba(201,_168,_76,_0.5)]', '[cursor:not-allowed]'];
+  const DL_IDLE = [
+    '[background:rgba(201,_168,_76,_0.15)]',
+    '[color:rgb(201,_168,_76)]',
+    '[cursor:pointer]',
+  ];
+  const DL_BUSY = [
+    '[background:rgba(201,_168,_76,_0.1)]',
+    '[color:rgba(201,_168,_76,_0.5)]',
+    '[cursor:not-allowed]',
+  ];
   const SPINNER =
     '[display:inline-block] [width:10px] [height:10px] [border:1.5px_solid_rgba(201,_168,_76,_0.3)] [border-top-color:rgb(201,_168,_76)] [border-radius:50%] [animation:spin_0.8s_linear_infinite]';
   // Ширина полоски прогресса: при 10 страницах проценты кратны 10 — классы известны заранее.
@@ -35,7 +52,8 @@
     <div class="font-display text-5xl text-white mb-6 [font-weight:300]" data-percent>0%</div>
     <div class="w-64 h-px [background:rgba(201,_168,_76,_0.2)]"><div class="h-px transition-all duration-300 [width:0%] [background:linear-gradient(90deg,_rgb(201,_168,_76),_rgb(228,_201,_126))]" data-bar></div></div>
     <div class="mt-4 font-body font-light text-white/30 text-[9px] tracking-wider" data-caption>Rendering page 0 of 10…</div>`;
-  const OVERLAY_CLASS = 'fixed inset-0 z-40 flex flex-col items-center justify-center [background:rgba(0,_0,_0,_0.85)] [backdrop-filter:blur(8px)]';
+  const OVERLAY_CLASS =
+    'fixed inset-0 z-40 flex flex-col items-center justify-center [background:rgba(0,_0,_0,_0.85)] [backdrop-filter:blur(8px)]';
 
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
   const swap = (el, from, to) => {
@@ -49,7 +67,20 @@
   preload.hidden = true;
   // Один узел со всеми классами (и из разметки оверлея): лишние узлы сбивали бы сравнение со структурой оригинала.
   const overlayClasses = [...OVERLAY_HTML.matchAll(/class="([^"]*)"/g)].map((m) => m[1]);
-  preload.className = [...TAB_ON, ...TAB_OFF, ...NAV_ON, ...NAV_OFF, ...DOT_ON, ...DOT_OFF, ...DL_IDLE, ...DL_BUSY, ...BAR_WIDTHS, SPINNER, OVERLAY_CLASS, ...overlayClasses].join(' ');
+  preload.className = [
+    ...TAB_ON,
+    ...TAB_OFF,
+    ...NAV_ON,
+    ...NAV_OFF,
+    ...DOT_ON,
+    ...DOT_OFF,
+    ...DL_IDLE,
+    ...DL_BUSY,
+    ...BAR_WIDTHS,
+    SPINNER,
+    OVERLAY_CLASS,
+    ...overlayClasses,
+  ].join(' ');
   document.body.appendChild(preload);
 
   // ---------- элементы ----------
@@ -59,7 +90,9 @@
   const prev = buttons.find((b) => b.textContent.includes('Prev'));
   const next = buttons.find((b) => b.textContent.includes('Next'));
   const download = buttons.find((b) => b.textContent.includes('Download PDF'));
-  const label = $$('#root div').find((d) => !d.children.length && /^Page \d+ of \d+$/.test(d.textContent.trim()));
+  const label = $$('#root div').find(
+    (d) => !d.children.length && /^Page \d+ of \d+$/.test(d.textContent.trim()),
+  );
   const labelBox = label?.parentElement;
   const view = labelBox?.nextElementSibling; // обёртка текущей страницы
   const dotsBox = view?.nextElementSibling;
@@ -73,7 +106,10 @@
     index = i;
     tabs.forEach((t, k) => swap(t, k === i ? TAB_OFF : TAB_ON, k === i ? TAB_ON : TAB_OFF));
     dots.forEach((d, k) => swap(d, k === i ? DOT_OFF : DOT_ON, k === i ? DOT_ON : DOT_OFF));
-    for (const [btn, off] of [[prev, i === 0], [next, i === total - 1]]) {
+    for (const [btn, off] of [
+      [prev, i === 0],
+      [next, i === total - 1],
+    ]) {
       if (!btn) continue;
       btn.disabled = off;
       swap(btn, off ? NAV_ON : NAV_OFF, off ? NAV_OFF : NAV_ON);
@@ -85,7 +121,8 @@
     fit();
     // На телефоне вкладки прокручиваются в строке — активную держим в поле зрения.
     const tabsBox = tabs[i]?.parentElement;
-    if (tabsBox && tabsBox.scrollWidth > tabsBox.clientWidth) tabsBox.scrollTo({ left: tabs[i].offsetLeft - 16, behavior: 'smooth' });
+    if (tabsBox && tabsBox.scrollWidth > tabsBox.clientWidth)
+      tabsBox.scrollTo({ left: tabs[i].offsetLeft - 16, behavior: 'smooth' });
   };
 
   // ---------- узкий экран ----------
@@ -132,21 +169,29 @@
       view.style.width = `${page.offsetWidth * scale}px`;
     }
     // Панель на телефоне в две строки — отступ колонки под её реальную высоту.
-    if (mainColumn && header) mainColumn.style.paddingTop = matchMedia(NARROW).matches ? `${header.offsetHeight + 16}px` : '';
+    if (mainColumn && header)
+      mainColumn.style.paddingTop = matchMedia(NARROW).matches
+        ? `${header.offsetHeight + 16}px`
+        : '';
   };
   window.addEventListener('resize', fit);
 
   // Свайп влево/вправо по уменьшенному листу листает страницы (в режиме 100% — прокрутка листа).
   let touch = null;
-  view?.addEventListener('touchstart', (e) => {
-    touch = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
-  }, { passive: true });
+  view?.addEventListener(
+    'touchstart',
+    (e) => {
+      touch = e.touches.length === 1 ? { x: e.touches[0].clientX, y: e.touches[0].clientY } : null;
+    },
+    { passive: true },
+  );
   view?.addEventListener('touchend', (e) => {
     if (!touch || zoomed) return;
     const dx = e.changedTouches[0].clientX - touch.x;
     const dy = e.changedTouches[0].clientY - touch.y;
     touch = null;
-    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) render(dx < 0 ? Math.min(total - 1, index + 1) : Math.max(0, index - 1));
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5)
+      render(dx < 0 ? Math.min(total - 1, index + 1) : Math.max(0, index - 1));
   });
   tabs.forEach((t, k) => t.addEventListener('click', () => render(k)));
   dots.forEach((d, k) => d.addEventListener('click', () => render(k)));
@@ -185,7 +230,8 @@
     }
     if (!overlay) return;
     overlay.querySelector('[data-percent]').textContent = `${pct}%`;
-    overlay.querySelector('[data-caption]').textContent = `Rendering page ${Math.ceil(pct / 10)} of 10…`;
+    overlay.querySelector('[data-caption]').textContent =
+      `Rendering page ${Math.ceil(pct / 10)} of 10…`;
     const bar = overlay.querySelector('[data-bar]');
     BAR_WIDTHS.forEach((c) => bar.classList.remove(c));
     bar.classList.add(`[width:${pct}%]`);
@@ -200,7 +246,9 @@
       overlay.className = OVERLAY_CLASS;
       overlay.innerHTML = OVERLAY_HTML;
       // Порядок как в оригинале: оверлей стоит перед колонкой со страницей.
-      mainColumn?.parentElement ? mainColumn.parentElement.insertBefore(overlay, mainColumn) : document.body.appendChild(overlay);
+      mainColumn?.parentElement
+        ? mainColumn.parentElement.insertBefore(overlay, mainColumn)
+        : document.body.appendChild(overlay);
       setProgress(0);
     } else {
       overlay?.remove();
@@ -219,7 +267,15 @@
       for (let k = 0; k < pdfPages.length; k++) {
         setProgress(Math.round((k / pdfPages.length) * 100));
         // Параметры рендера — из оригинала: масштаб 2, A4 794×1123 px, JPEG 0.95.
-        const canvas = await window.html2canvas(pdfPages[k], { scale: 2, useCORS: true, allowTaint: true, backgroundColor: null, logging: false, width: 794, height: 1123 });
+        const canvas = await window.html2canvas(pdfPages[k], {
+          scale: 2,
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: null,
+          logging: false,
+          width: 794,
+          height: 1123,
+        });
         const image = canvas.toDataURL('image/jpeg', 0.95);
         if (k > 0) doc.addPage();
         doc.addImage(image, 'JPEG', 0, 0, 210, 297);

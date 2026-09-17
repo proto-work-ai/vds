@@ -12,12 +12,47 @@
 (() => {
   // Данные — в начале: const не поднимается, обработчики ниже обращаются к ним сразу.
   const WHATSAPP = '971500000000';
-  const SERVICES = ['Sheer Curtains', 'Blackout Curtains', 'Motorized Curtains', 'Roman Blinds', 'Roller Blinds', 'Wooden Blinds', 'Not Sure Yet'];
-  const MENU_ITEMS = ['Home', 'About', 'Collections', 'Services', 'Projects', 'Gallery', 'Blog', 'Contact'];
+  const SERVICES = [
+    'Sheer Curtains',
+    'Blackout Curtains',
+    'Motorized Curtains',
+    'Roman Blinds',
+    'Roller Blinds',
+    'Wooden Blinds',
+    'Not Sure Yet',
+  ];
+  const MENU_ITEMS = [
+    'Home',
+    'About',
+    'Collections',
+    'Services',
+    'Projects',
+    'Gallery',
+    'Blog',
+    'Contact',
+  ];
   const TESTIMONIALS = [
-    { name: 'Sarah Al-Rashidi', role: 'Homeowner, Dubai Hills', quote: 'SanCurtains transformed our villa beyond recognition. The team understood our vision perfectly and delivered with extraordinary precision. Every room now feels like a five-star suite.', avatar: '1494790108377-be9c29b29330' },
-    { name: 'James Whitfield', role: 'Interior Designer, London', quote: 'I have worked with curtain suppliers across three continents. SanCurtains stands apart — their fabric knowledge and craftsmanship are genuinely world-class, without exception.', avatar: '1472099645785-5658abf4ff4e' },
-    { name: 'Leila Mansour', role: 'General Manager, The Bayan Hotel', quote: 'We entrusted SanCurtains with all 142 rooms of our flagship property. The result surpassed our expectations — impeccable quality, delivered perfectly on schedule.', avatar: '1580489944761-15a19d654956' },
+    {
+      name: 'Sarah Al-Rashidi',
+      role: 'Homeowner, Dubai Hills',
+      quote:
+        'SanCurtains transformed our villa beyond recognition. The team understood our vision perfectly and delivered with extraordinary precision. Every room now feels like a five-star suite.',
+      avatar: '1494790108377-be9c29b29330',
+    },
+    {
+      name: 'James Whitfield',
+      role: 'Interior Designer, London',
+      quote:
+        'I have worked with curtain suppliers across three continents. SanCurtains stands apart — their fabric knowledge and craftsmanship are genuinely world-class, without exception.',
+      avatar: '1472099645785-5658abf4ff4e',
+    },
+    {
+      name: 'Leila Mansour',
+      role: 'General Manager, The Bayan Hotel',
+      quote:
+        'We entrusted SanCurtains with all 142 rooms of our flagship property. The result surpassed our expectations — impeccable quality, delivered perfectly on schedule.',
+      avatar: '1580489944761-15a19d654956',
+    },
   ];
 
   const SANS = "[font-family:'DM_Sans',_system-ui,_sans-serif]";
@@ -29,7 +64,8 @@
   const svg = (size, paths, cls = '') =>
     `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${cls}">${paths}</svg>`;
   const X_PATHS = '<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>';
-  const MENU_PATHS = '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>';
+  const MENU_PATHS =
+    '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>';
   const WA_PATHS =
     '<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"></path><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.124 1.535 5.856L.057 23.625c-.074.297.198.569.495.495l5.769-1.478A11.943 11.943 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.943 0-3.772-.525-5.345-1.443l-.384-.228-3.975 1.019 1.019-3.867-.248-.397A9.96 9.96 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"></path>';
   const FIELD_ICON = 'absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300 pointer-events-none';
@@ -94,7 +130,9 @@
   // Классы, которые появляются только при взаимодействии: браузерная сборка
   // Tailwind должна сгенерировать их заранее, иначе первый показ будет без стилей.
   const PRELOAD = [
-    ...[MODAL_HTML, SUCCESS_HTML, VIDEO_HTML, MENU_HTML].flatMap((h) => [...h.matchAll(/class="([^"]*)"/g)].map((m) => m[1])),
+    ...[MODAL_HTML, SUCCESS_HTML, VIDEO_HTML, MENU_HTML].flatMap((h) =>
+      [...h.matchAll(/class="([^"]*)"/g)].map((m) => m[1]),
+    ),
     ERROR_P,
     BORDER_ERR,
     '[overflow:hidden]',
@@ -127,7 +165,9 @@
     // Открыли снова в течение 400 мс — React сохранил бы введённое: берём то же окно.
     if (lastBooking && !lastBooking.dead) booking = lastBooking;
     else booking = lastBooking = createBooking();
-    (document.getElementById('container') ?? document.body).firstElementChild?.appendChild(booking.el) ?? document.body.appendChild(booking.el);
+    (document.getElementById('container') ?? document.body).firstElementChild?.appendChild(
+      booking.el,
+    ) ?? document.body.appendChild(booking.el);
     setBodyLock(true);
   };
   function createBooking() {
@@ -144,7 +184,11 @@
         const key = box.dataset.field;
         const control = $('input, select', box);
         $(':scope > p', box)?.remove();
-        swap(control, errors[key] ? [BORDER_OK] : [BORDER_ERR], errors[key] ? [BORDER_ERR] : [BORDER_OK]);
+        swap(
+          control,
+          errors[key] ? [BORDER_OK] : [BORDER_ERR],
+          errors[key] ? [BORDER_ERR] : [BORDER_OK],
+        );
         if (errors[key]) {
           const p = document.createElement('p');
           p.className = ERROR_P;
@@ -182,7 +226,8 @@
   }
   const bindBooking = (root = document) => {
     for (const b of $$('button', root)) {
-      if (/^Book (Free )?Consultation$/.test(b.textContent.trim())) b.addEventListener('click', openBooking);
+      if (/^Book (Free )?Consultation$/.test(b.textContent.trim()))
+        b.addEventListener('click', openBooking);
     }
   };
   bindBooking();
@@ -192,8 +237,11 @@
   // Этот обработчик подписан позже и в промежутке 61–64px возвращает вид «наверху».
   const scrolledEls = $$('[data-scrolled]');
   const keepTop = () => {
-    if (window.scrollY > 60 && window.scrollY <= 64) for (const el of scrolledEls) el.className = el.dataset.top;
-    else if (window.scrollY > 64) for (const el of scrolledEls) if (el.className !== el.dataset.scrolled) el.className = el.dataset.scrolled;
+    if (window.scrollY > 60 && window.scrollY <= 64)
+      for (const el of scrolledEls) el.className = el.dataset.top;
+    else if (window.scrollY > 64)
+      for (const el of scrolledEls)
+        if (el.className !== el.dataset.scrolled) el.className = el.dataset.scrolled;
   };
   keepTop();
   window.addEventListener('scroll', keepTop, { passive: true });
@@ -211,7 +259,9 @@
       nav.appendChild(menu);
       bindBooking(menu);
     }
-    toggle.innerHTML = menu ? svg(22, X_PATHS, 'lucide lucide-x') : svg(22, MENU_PATHS, 'lucide lucide-menu');
+    toggle.innerHTML = menu
+      ? svg(22, X_PATHS, 'lucide lucide-x')
+      : svg(22, MENU_PATHS, 'lucide lucide-menu');
   });
 
   // ---------- отзывы ----------
@@ -247,7 +297,9 @@
     };
     // Интервал в оригинале не перезапускается при клике — тикает ровно раз в 5,2 с.
     setInterval(() => render((index + 1) % TESTIMONIALS.length), 5200);
-    prev?.addEventListener('click', () => render((index - 1 + TESTIMONIALS.length) % TESTIMONIALS.length));
+    prev?.addEventListener('click', () =>
+      render((index - 1 + TESTIMONIALS.length) % TESTIMONIALS.length),
+    );
     next?.addEventListener('click', () => render((index + 1) % TESTIMONIALS.length));
     dots.forEach((d, k) => d.addEventListener('click', () => render(k)));
     render(0);
@@ -267,16 +319,24 @@
       // заставил бы Tailwind генерировать сотни правил, поэтому — инлайн, как у React.
       after.style.clipPath = `inset(0 ${100 - a}% 0 0)`;
       handle.style.left = `${a}%`;
-      swap(afterLabel, a > 12 ? ['[opacity:0]'] : ['[opacity:1]'], a > 12 ? ['[opacity:1]'] : ['[opacity:0]']);
+      swap(
+        afterLabel,
+        a > 12 ? ['[opacity:0]'] : ['[opacity:1]'],
+        a > 12 ? ['[opacity:1]'] : ['[opacity:0]'],
+      );
     };
     compare.addEventListener('mousedown', (e) => {
       dragging = true;
       set(e.clientX);
     });
-    compare.addEventListener('touchstart', (e) => {
-      dragging = true;
-      set(e.touches[0].clientX);
-    }, { passive: true });
+    compare.addEventListener(
+      'touchstart',
+      (e) => {
+        dragging = true;
+        set(e.touches[0].clientX);
+      },
+      { passive: true },
+    );
     const move = (e) => dragging && set('touches' in e ? e.touches[0].clientX : e.clientX);
     window.addEventListener('mousemove', move);
     window.addEventListener('touchmove', move, { passive: true });
@@ -297,7 +357,9 @@
   });
 
   // ---------- FAQ ----------
-  const faqButtons = $$('button').filter((b) => b.nextElementSibling?.classList.contains('[max-height:0px]'));
+  const faqButtons = $$('button').filter((b) =>
+    b.nextElementSibling?.classList.contains('[max-height:0px]'),
+  );
   let openIndex = null;
   const setFaq = (i) => {
     openIndex = i;
@@ -306,8 +368,14 @@
       const icon = b.lastElementChild;
       const panel = b.nextElementSibling;
       swap(icon, [on ? FAQ_CLOSED.icon : FAQ_OPEN.icon], [on ? FAQ_OPEN.icon : FAQ_CLOSED.icon]);
-      swap(panel, [on ? FAQ_CLOSED.panel : FAQ_OPEN.panel], [on ? FAQ_OPEN.panel : FAQ_CLOSED.panel]);
+      swap(
+        panel,
+        [on ? FAQ_CLOSED.panel : FAQ_OPEN.panel],
+        [on ? FAQ_OPEN.panel : FAQ_CLOSED.panel],
+      );
     });
   };
-  faqButtons.forEach((b, k) => b.addEventListener('click', () => setFaq(openIndex === k ? null : k)));
+  faqButtons.forEach((b, k) =>
+    b.addEventListener('click', () => setFaq(openIndex === k ? null : k)),
+  );
 })();

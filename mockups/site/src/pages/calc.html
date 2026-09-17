@@ -2,107 +2,271 @@
 <!-- Калькулятор штор. Идея — калькулятор расхода из шаблона «магазин-красок» (шаги с номерами, подсказка, итог, оговорка);
      цены — те же, что на странице цен (CATALOG в site-build, «от»). Расчёт ориентировочный, точный — после замера. -->
 <main>
-<section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
-  <div class="wrap">
-    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
-    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>
-    <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] text-cream/75">Посчитайте, сколько ткани нужно под ваше окно и сколько это примерно стоит. Точную смету дизайнер составит после бесплатного замера.</p>
-  </div>
-</section>
+  <section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
+    <div class="wrap">
+      <nav
+        class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60"
+        aria-label="Хлебные крошки"
+      >
+        <!-- @crumbs -->
+      </nav>
+      <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>
+      <p
+        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] text-cream/75"
+      >
+        Посчитайте, сколько ткани нужно под ваше окно и сколько это примерно стоит. Точную смету
+        дизайнер составит после бесплатного замера.
+      </p>
+    </div>
+  </section>
 
-<section class="bg-cream py-12 sm:py-20">
-  <div class="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-12" data-calc>
-    <!-- Шаги -->
-    <form class="flex flex-col gap-6" novalidate data-calc-form>
-      <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
-        <legend class="sr-only">Шаг 1. Вид штор</legend>
-        <div class="mb-5 flex items-center gap-4">
-          <span class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold">1</span>
-          <h2 class="text-[22px] leading-tight font-bold sm:text-[26px]">Выберите вид штор</h2>
-        </div>
-        <div class="grid grid-cols-2 gap-3 sm:grid-cols-3" data-calc-kinds></div>
-      </fieldset>
-
-      <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
-        <legend class="sr-only">Шаг 2. Размеры</legend>
-        <div class="mb-5 flex items-center gap-4">
-          <span class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold">2</span>
-          <h2 class="text-[22px] leading-tight font-bold sm:text-[26px]">Измерьте окно</h2>
-        </div>
-        <div class="grid gap-5 sm:grid-cols-2">
-          <div>
-            <label class="field-label" for="calc-width" data-calc-width-label>Ширина карниза, см</label>
-            <input id="calc-width" name="width" type="number" inputmode="numeric" min="30" max="1500" step="1" value="250" class="field" data-calc-width />
-            <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-width-hint>Длина карниза от края до края. Если карниза ещё нет — ширина окна плюс по 15–20 см с каждой стороны.</p>
+  <section class="bg-cream py-12 sm:py-20">
+    <div
+      class="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-12"
+      data-calc
+    >
+      <!-- Шаги -->
+      <form class="flex flex-col gap-6" novalidate data-calc-form>
+        <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
+          <legend class="sr-only">Шаг 1. Вид штор</legend>
+          <div class="mb-5 flex items-center gap-4">
+            <span
+              class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold"
+              >1</span
+            >
+            <h2 class="text-[26px] leading-tight font-bold sm:text-[30px]">Выберите вид штор</h2>
           </div>
-          <div>
-            <label class="field-label" for="calc-height" data-calc-height-label>Высота от карниза до пола, см</label>
-            <input id="calc-height" name="height" type="number" inputmode="numeric" min="30" max="600" step="1" value="260" class="field" data-calc-height />
-            <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-height-hint>Для штор в пол — до пола минус 1–2 см, чтобы ткань не собирала пыль.</p>
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3" data-calc-kinds></div>
+        </fieldset>
+
+        <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
+          <legend class="sr-only">Шаг 2. Размеры</legend>
+          <div class="mb-5 flex items-center gap-4">
+            <span
+              class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold"
+              >2</span
+            >
+            <h2 class="text-[22px] leading-tight font-bold sm:text-[26px]">Измерьте окно</h2>
           </div>
-        </div>
-        <p class="mt-4 hidden text-[14px] text-[#c0392b]" role="alert" data-calc-error>Проверьте размеры: ширина от 30 до 1500 см, высота от 30 до 600 см.</p>
-      </fieldset>
-
-      <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8" data-calc-fullness-step>
-        <legend class="sr-only">Шаг 3. Пышность</legend>
-        <div class="mb-5 flex items-center gap-4">
-          <span class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold">3</span>
-          <h2 class="text-[22px] leading-tight font-bold sm:text-[26px]">Насколько пышные складки</h2>
-        </div>
-        <div class="grid gap-3 sm:grid-cols-3">
-          <label class="calc-option"><input type="radio" name="fullness" value="1.5" class="sr-only" /><span class="calc-option-box"><b class="font-serif text-[18px]">Лёгкие</b><span class="text-[14px] text-slate/80">×1,5 — плотные ткани, мало складок</span></span></label>
-          <label class="calc-option"><input type="radio" name="fullness" value="2" class="sr-only" checked /><span class="calc-option-box"><b class="font-serif text-[18px]">Классика</b><span class="text-[14px] text-slate/80">×2 — ровные мягкие волны</span></span></label>
-          <label class="calc-option"><input type="radio" name="fullness" value="2.5" class="sr-only" /><span class="calc-option-box"><b class="font-serif text-[18px]">Пышные</b><span class="text-[14px] text-slate/80">×2,5 — тюль и лёгкие ткани</span></span></label>
-        </div>
-        <label class="mt-5 flex items-center gap-3 text-[15px]">
-          <input type="checkbox" name="rod" class="size-4 accent-[#0d223d]" data-calc-rod />
-          Посчитать и карниз по ширине окна
-        </label>
-      </fieldset>
-    </form>
-
-    <!-- Итог -->
-    <aside class="lg:sticky lg:top-28" aria-live="polite">
-      <div class="relative">
-        <div class="relative bg-navy px-6 py-8 text-cream sm:px-8 sm:py-10">
-          <p class="mb-3 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Предварительный расчёт</p>
-          <h2 class="mb-6 font-serif text-[26px] leading-tight font-bold" data-calc-title>Шторы блэкаут</h2>
-          <dl class="mb-6 divide-y divide-white/10 border-y border-white/10 text-[15px]" data-calc-rows></dl>
-          <p class="mb-1 text-[14px] text-cream/70">Ориентировочно</p>
-          <p class="mb-6 font-serif text-[36px] leading-none font-bold text-gold" data-calc-total>—</p>
-          <p class="mb-4 text-[15px] text-cream/80">Оставьте телефон — дизайнер перезвонит, уточнит размеры и договорится о бесплатном замере.</p>
-          <form class="flex flex-col gap-5" novalidate data-lead-form="order" data-inline-lead="calc">
-            <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] size-0 opacity-0" />
-            <input type="hidden" name="comment" value="" data-inline-comment />
-            <label class="flex items-center gap-3 border-b border-gold pb-3">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <input name="name" type="text" autocomplete="name" placeholder="Введите имя" class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50" />
-            </label>
+          <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label class="flex items-center gap-3 border-b border-gold pb-3" data-phone-wrap>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Укажите телефон" class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50" data-phone />
-              </label>
-              <p class="mt-2 hidden text-[13px] text-[#ff8a7a]" data-error="phone">Введите номер телефона полностью</p>
+              <label class="field-label" for="calc-width" data-calc-width-label
+                >Ширина карниза, см</label
+              >
+              <input
+                id="calc-width"
+                name="width"
+                type="number"
+                inputmode="numeric"
+                min="30"
+                max="1500"
+                step="1"
+                value="250"
+                class="field"
+                data-calc-width
+              />
+              <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-width-hint>
+                Длина карниза от края до края. Если карниза ещё нет — ширина окна плюс по 15–20 см с
+                каждой стороны.
+              </p>
             </div>
             <div>
-              <label class="flex items-start gap-3 text-[14px] leading-snug text-cream/75">
-                <input type="checkbox" name="consent" class="mt-0.5 size-4 shrink-0 accent-[#c9a84c]" checked data-consent />
-                <span>Я соглашаюсь с правилами по обработке <a href="{{root}}soglasie-na-obrabotku-personalnyh-dannyh/" class="underline decoration-gold underline-offset-2 hover:text-gold">персональных данных</a></span>
-              </label>
-              <p class="mt-2 hidden text-[13px] text-[#ff8a7a]" data-error="consent">Нужно согласие на обработку персональных данных</p>
+              <label class="field-label" for="calc-height" data-calc-height-label
+                >Высота от карниза до пола, см</label
+              >
+              <input
+                id="calc-height"
+                name="height"
+                type="number"
+                inputmode="numeric"
+                min="30"
+                max="600"
+                step="1"
+                value="260"
+                class="field"
+                data-calc-height
+              />
+              <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-height-hint>
+                Для штор в пол — до пола минус 1–2 см, чтобы ткань не собирала пыль.
+              </p>
             </div>
-            <button type="submit" class="btn-gold !flex w-full">Отправить расчёт дизайнеру</button>
-          </form>
-          <p class="mt-5 text-[13px] leading-relaxed text-cream/60">Расчёт примерный: по минимальным ценам каталога, без учёта отделки и аксессуаров. Погрешность возможна до 15–20%. Точную стоимость дизайнер назовёт после бесплатного замера.</p>
-        </div>
-      </div>
-    </aside>
-  </div>
-<!-- @calc-data -->
-</section>
+          </div>
+          <p class="mt-4 hidden text-[14px] text-[#c0392b]" role="alert" data-calc-error>
+            Проверьте размеры: ширина от 30 до 1500 см, высота от 30 до 600 см.
+          </p>
+        </fieldset>
 
-<!-- @lead-form -->
+        <fieldset
+          class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8"
+          data-calc-fullness-step
+        >
+          <legend class="sr-only">Шаг 3. Пышность</legend>
+          <div class="mb-5 flex items-center gap-4">
+            <span
+              class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold"
+              >3</span
+            >
+            <h2 class="text-[22px] leading-tight font-bold sm:text-[26px]">
+              Насколько пышные складки
+            </h2>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-3">
+            <label class="calc-option"
+              ><input type="radio" name="fullness" value="1.5" class="sr-only" /><span
+                class="calc-option-box"
+                ><b class="font-serif text-[18px]">Лёгкие</b
+                ><span class="text-[14px] text-slate/80"
+                  >×1,5 — плотные ткани, мало складок</span
+                ></span
+              ></label
+            >
+            <label class="calc-option"
+              ><input type="radio" name="fullness" value="2" class="sr-only" checked /><span
+                class="calc-option-box"
+                ><b class="font-serif text-[18px]">Классика</b
+                ><span class="text-[14px] text-slate/80">×2 — ровные мягкие волны</span></span
+              ></label
+            >
+            <label class="calc-option"
+              ><input type="radio" name="fullness" value="2.5" class="sr-only" /><span
+                class="calc-option-box"
+                ><b class="font-serif text-[18px]">Пышные</b
+                ><span class="text-[14px] text-slate/80">×2,5 — тюль и лёгкие ткани</span></span
+              ></label
+            >
+          </div>
+          <label class="mt-5 flex items-center gap-3 text-[15px]">
+            <input type="checkbox" name="rod" class="size-4 accent-[#0d223d]" data-calc-rod />
+            Посчитать и карниз по ширине окна
+          </label>
+        </fieldset>
+      </form>
+
+      <!-- Итог -->
+      <aside class="lg:sticky lg:top-28" aria-live="polite">
+        <div class="relative">
+          <div class="relative bg-navy px-6 py-8 text-cream sm:px-8 sm:py-10">
+            <p class="mb-3 text-[12px] font-bold tracking-[.12em] text-gold uppercase">
+              Предварительный расчёт
+            </p>
+            <h2 class="mb-6 font-serif text-[26px] leading-tight font-bold" data-calc-title>
+              Шторы блэкаут
+            </h2>
+            <dl
+              class="mb-6 divide-y divide-white/10 border-y border-white/10 text-[15px]"
+              data-calc-rows
+            ></dl>
+            <p class="mb-1 text-[14px] text-cream/70">Ориентировочно</p>
+            <p class="mb-6 font-serif text-[36px] leading-none font-bold text-gold" data-calc-total>
+              —
+            </p>
+            <p class="mb-4 text-[15px] text-cream/80">
+              Оставьте телефон — дизайнер перезвонит, уточнит размеры и договорится о бесплатном
+              замере.
+            </p>
+            <form
+              class="flex flex-col gap-5"
+              novalidate
+              data-lead-form="order"
+              data-inline-lead="calc"
+            >
+              <input
+                type="text"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                class="absolute -left-[9999px] size-0 opacity-0"
+              />
+              <input type="hidden" name="comment" value="" data-inline-comment />
+              <label class="flex items-center gap-3 border-b border-gold pb-3">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c9a84c"
+                  stroke-width="2"
+                  class="shrink-0"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <input
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Введите имя"
+                  class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50"
+                />
+              </label>
+              <div>
+                <label class="flex items-center gap-3 border-b border-gold pb-3" data-phone-wrap>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#c9a84c"
+                    stroke-width="2"
+                    class="shrink-0"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                  <input
+                    name="phone"
+                    type="tel"
+                    inputmode="tel"
+                    autocomplete="tel"
+                    placeholder="Укажите телефон"
+                    class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50"
+                    data-phone
+                  />
+                </label>
+                <p class="mt-2 hidden text-[13px] text-[#ff8a7a]" data-error="phone">
+                  Введите номер телефона полностью
+                </p>
+              </div>
+              <div>
+                <label class="flex items-start gap-3 text-[14px] leading-snug text-cream/75">
+                  <input
+                    type="checkbox"
+                    name="consent"
+                    class="mt-0.5 size-4 shrink-0 accent-[#c9a84c]"
+                    checked
+                    data-consent
+                  />
+                  <span
+                    >Я соглашаюсь с правилами по обработке
+                    <a
+                      href="{{root}}soglasie-na-obrabotku-personalnyh-dannyh/"
+                      class="underline decoration-gold underline-offset-2 hover:text-gold"
+                      >персональных данных</a
+                    ></span
+                  >
+                </label>
+                <p class="mt-2 hidden text-[13px] text-[#ff8a7a]" data-error="consent">
+                  Нужно согласие на обработку персональных данных
+                </p>
+              </div>
+              <button type="submit" class="btn-gold !flex w-full">
+                Отправить расчёт дизайнеру
+              </button>
+            </form>
+            <p class="mt-5 text-[13px] leading-relaxed text-cream/60">
+              Расчёт примерный: по минимальным ценам каталога, без учёта отделки и аксессуаров.
+              Погрешность возможна до 15–20%. Точную стоимость дизайнер назовёт после бесплатного
+              замера.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <!-- @calc-data -->
+  </section>
+
+  <!-- @lead-form -->
 </main>
 <!-- @footer -->

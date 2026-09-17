@@ -218,6 +218,6 @@ if ($tg && !empty($tg['token']) && !empty($tg['chatId'])) {
 }
 
 if (!$sent) {
-    lead_reply(500, ['ok' => false, 'error' => 'Не удалось отправить заявку. Позвоните нам: +7 (925) 594-61-17']);
+    lead_reply(500, ['ok' => false, 'error' => 'Не удалось отправить заявку. Позвоните нам: +7 (915) 359-12-00']);
 }
 lead_reply(200, ['ok' => true]);

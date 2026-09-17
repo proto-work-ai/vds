@@ -66,6 +66,46 @@ description: Правила Андрея для проекта shtorivdom (са�
   конструктор страницы каталога), canonical ставит `provideSeo()`.
 - После добавления страниц — `npm run sitemap`.
 
+## Формы и телефонные поля
+
+- Формы сайта переводить на Angular Reactive Forms (`FormGroup`, `FormControl`,
+  `ReactiveFormsModule`) и отправлять заявки JSON-запросом в существующий
+  `/api/lead.php`. PHP-контракт не менять без отдельной просьбы владельца.
+- Каждая форма должна быть действительно реактивной: использовать
+  `[formGroup]` и `formControlName` для всех полей, а не только читать DOM
+  через `querySelector`/`elements` в момент submit. `ngModel` в этих формах
+  не использовать.
+- Для Taiga UI использовать нативные контролы внутри `<tui-textfield>`:
+  `<input tuiTextfield ... />` и `<textarea tuiTextarea ...></textarea>`.
+- Для телефона использовать `TuiInputPhone` из `@taiga-ui/kit` и директиву
+  `tuiInputPhone` с маской, например `mask="+7 (###) ###-##-##"`.
+  Самописный `formatPhone` не добавлять: маскирование выполняет Taiga UI,
+  а значение напрямую связывается с `FormControl`.
+- Согласие оформлять через Taiga UI `TuiCheckbox`/`tuiCheckbox`, а не через
+  голый нативный checkbox. Для форм использовать `size="s"` и передавать
+  состояние через `FormControl`; не добавлять `checked`, `accent-*` или
+  ручные размеры вроде `size-4`. Кнопки существующих форм не менять без просьбы.
+- Ответ API типизировать именованным интерфейсом (например, `LeadResponse`),
+  а не оставлять повторяющийся inline-тип `{ok?: boolean; error?: string}`.
+- Контактные данные сайта (телефон, email, Telegram, MAX и карта) хранить только в
+  `app/contact-config.ts` и подключать через `provideContactConfig`. В шаблонах
+  использовать `data-contact-link="phone|email|telegram|max|map"`; не дублировать
+  `tel:`, `mailto:` и внешние ссылки по страницам.
+
+## Форматирование и линтинг
+
+- Для TypeScript/JavaScript использовать стиль PSB lint: ширина строки 100,
+  без точек с запятой, одинарные кавычки, `quoteProps: "consistent"`,
+  trailing commas в многострочных конструкциях и автоматическое определение
+  перевода строк.
+- Для Angular HTML использовать Angular-aware Prettier parser, игнорировать
+  чувствительность HTML-пробелов и не добавлять trailing commas в шаблонах.
+- Для CSS/SCSS применять Prettier через Stylelint; разрешать SCSS at-rules
+  (`@mixin`, `@include`, `@if`, `@for`, `@use`, `@function` и связанные),
+  не считать пустой источник ошибкой.
+- Перед сдачей проверять форматирование и линт изменённых файлов, не меняя
+  несвязанный код.
+
 ## Коммиты
 
 - Один коммит в конце работы, без push.

@@ -132,7 +132,7 @@ export interface SiteLeadData {
           }
           <div>
             <label class="field-label" [attr.for]="id + '-comment'">Комментарий</label>
-            <textarea siteField name="comment" rows="4" placeholder="Комментарий" [id]="id + '-comment'" [value]="comment()"
+            <textarea siteField name="comment" rows="3" placeholder="Комментарий" [id]="id + '-comment'" [value]="comment()"
               (input)="comment.set(val($event))"></textarea>
           </div>
         }
@@ -222,7 +222,7 @@ export class SiteLeadForm {
 export class SiteLeadSection {
   readonly state = input<SiteLeadFormState>('idle');
   protected readonly contacts = [
-    { icon: 'phone' as const, label: 'Телефон', text: '+7 (925) 594-61-17', href: 'tel:+79255946117' },
+    { icon: 'phone' as const, label: 'Телефон', text: '+7 (915) 359-12-00', href: 'tel:+79153591200' },
     { icon: 'mail' as const, label: 'Эл. почта', text: 'info@shtorivdom.ru', href: 'mailto:info@shtorivdom.ru' },
     { icon: 'pin' as const, label: 'Адрес', text: 'Троицк, Кварцевая улица, 3, корп. 2', href: '' },
     { icon: 'clock' as const, label: 'График работы', text: 'Без выходных, 10:00–20:00', href: '' },

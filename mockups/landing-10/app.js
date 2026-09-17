@@ -6,8 +6,9 @@
   const show = (el) => el.classList.add('is-shown');
   if (!('IntersectionObserver' in window)) return els.forEach(show);
   const io = new IntersectionObserver(
-    (entries) => entries.forEach((e) => e.isIntersecting && (show(e.target), io.unobserve(e.target))),
-    { threshold: 0.12 }
+    (entries) =>
+      entries.forEach((e) => e.isIntersecting && (show(e.target), io.unobserve(e.target))),
+    { threshold: 0.12 },
   );
   els.forEach((el) => io.observe(el));
 })();
@@ -42,8 +43,12 @@ const scrollTrack = (id, dir) => {
   else if (to < -2) to = max;
   track.scrollTo({ left: to, behavior: 'smooth' });
 };
-document.querySelectorAll('[data-next]').forEach((b) => b.addEventListener('click', () => scrollTrack(b.dataset.next, 1)));
-document.querySelectorAll('[data-prev]').forEach((b) => b.addEventListener('click', () => scrollTrack(b.dataset.prev, -1)));
+document
+  .querySelectorAll('[data-next]')
+  .forEach((b) => b.addEventListener('click', () => scrollTrack(b.dataset.next, 1)));
+document
+  .querySelectorAll('[data-prev]')
+  .forEach((b) => b.addEventListener('click', () => scrollTrack(b.dataset.prev, -1)));
 
 // Кнопки и карточки услуг ведут к форме
 const toForm = (e) => {
@@ -51,7 +56,9 @@ const toForm = (e) => {
   document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
   setTimeout(() => document.querySelector('#lead input')?.focus({ preventScroll: true }), 600);
 };
-document.querySelectorAll('[data-scroll-form], a[href="#form"]').forEach((el) => el.addEventListener('click', toForm));
+document
+  .querySelectorAll('[data-scroll-form], a[href="#form"]')
+  .forEach((el) => el.addEventListener('click', toForm));
 
 // Форма: без отправки на сервер
 (() => {
@@ -85,5 +92,8 @@ document.querySelectorAll('[data-scroll-form], a[href="#form"]').forEach((el) =>
     box.classList.replace('hidden', 'grid');
   });
   box.addEventListener('click', () => box.classList.replace('grid', 'hidden'));
-  document.addEventListener('keydown', (e) => e.key === 'Escape' && box.classList.replace('grid', 'hidden'));
+  document.addEventListener(
+    'keydown',
+    (e) => e.key === 'Escape' && box.classList.replace('grid', 'hidden'),
+  );
 })();

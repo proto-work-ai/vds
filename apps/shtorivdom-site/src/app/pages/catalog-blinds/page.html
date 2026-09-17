@@ -1,259 +1,1333 @@
 <main>
-<section class="relative overflow-hidden bg-navy pt-[110px] pb-14 text-cream sm:pt-[130px] lg:pb-20">
-  <div class="wrap grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
-    <div>
-      <nav class="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60" aria-label="Хлебные крошки"><a href="/" class="transition-colors hover:text-gold">Главная</a><span class="text-gold" aria-hidden="true">/</span><a href="/catalog/" class="transition-colors hover:text-gold">Каталог</a><span class="text-gold" aria-hidden="true">/</span><span class="text-cream/90" aria-current="page">Жалюзи</span></nav>
-      <div><div class="mb-5 flex items-center  gap-4"><span class="cat-line-l h-px w-[60px]"></span><span class="text-[12px] tracking-[.35em] text-cream/70 uppercase">Каталог</span></div></div>
-      <h1 class="rise mb-5 text-[clamp(36px,6vw,60px)] leading-[1.1]" style="--d:.1s">Жалюзи</h1>
-      <p class="rise mb-8 max-w-[520px] text-[18px] leading-relaxed text-cream/75" style="--d:.2s">Стильные, практичные.</p>
-      <div class="rise mb-9 flex items-baseline gap-3" style="--d:.25s"><span class="text-[13px] tracking-[.2em] text-cream/50 uppercase">Цена</span><span class="font-serif text-[30px] text-gold">от 1 500 ₽</span><span class="text-cream/60">/ м²</span></div>
-      <div class="rise flex flex-wrap gap-4" style="--d:.3s">
-        <a href="#lead" class="btn-gold group max-sm:w-full">Пригласить дизайнера <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#prices" class="btn-line max-sm:w-full">Смотреть цены</a>
-      </div>
-    </div>
-    <div class="rise relative" style="--d:.2s">
-      <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
-      <button type="button" class="group relative block aspect-[4/3] w-full overflow-hidden bg-navy-deep" data-gallery data-gallery-item data-src="/assets/img/catalog/blinds/image-1.jpg" data-alt="Жалюзи" aria-label="Открыть фото: Жалюзи">
-        <img src="/assets/img/catalog/blinds/image-1.jpg" alt="Жалюзи" fetchpriority="high" class="cat-zoom-img size-full object-cover" />
-      </button>
-    </div>
-  </div>
-</section>
-
-<section class="bg-cream py-16 sm:py-24">
-  <div class="wrap grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16">
-    <div>
-      <p class="reveal mb-12 border-l-2 border-gold pl-5 font-serif text-[20px] leading-[1.6] text-navy sm:pl-7 sm:text-[23px]">Шторы-жалюзи (вертикальные и горизонтальные) — это практичные солнцезащитные системы, которые совмещают уют классических штор и функциональность ламелей для точной регулировки света.</p>
-      <div data-detail>
-      <article class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11" style="--d:.05s">
-        <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
-          <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">01</span>
-          <div>
-            <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">Основные виды вертикальных и горизонтальных систем</h3>
-            
-            <ul class="space-y-3.5"><li class="cat-li"><strong class="font-bold text-navy">Горизонтальные жалюзи:</strong> Классическая конструкция из ламелей. Идеально подходят для офисов и кухонь, так как позволяют точно регулировать поток света поворотом элементов.</li><li class="cat-li"><strong class="font-bold text-navy">Вертикальные жалюзи:</strong> Визуально поднимают потолки. Чаще всего используются для больших окон, панорамного остекления и зонирования комнат.</li><li class="cat-li"><strong class="font-bold text-navy">Рулонные шторы (ролшторы):</strong> Сплошное тканевое полотно, которое наматывается на вал. Сворачиваются в аккуратный рулон сверху окна.</li><li class="cat-li"><strong class="font-bold text-navy">Шторы «День-Ночь» (Зебра):</strong> Двухслойное полотно с чередующимися прозрачными и плотными полосами. Позволяют плавно менять освещение в комнате.</li><li class="cat-li"><strong class="font-bold text-navy">Шторы плиссе:</strong> Ткань, собранная в гармошку. Отличный выбор для мансардных, круглых, треугольных и любых нестандартных окон.</li></ul>
-            
+  <section
+    class="relative overflow-hidden bg-navy pt-[110px] pb-14 text-cream sm:pt-[130px] lg:pb-20"
+  >
+    <div class="wrap grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-16">
+      <div>
+        <nav
+          class="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60"
+          aria-label="Хлебные крошки"
+        >
+          <a href="/" class="transition-colors hover:text-gold">Главная</a>
+          <span class="text-gold" aria-hidden="true">/</span>
+          <a href="/catalog/" class="transition-colors hover:text-gold">Каталог</a>
+          <span class="text-gold" aria-hidden="true">/</span>
+          <span class="text-cream/90" aria-current="page">Жалюзи</span>
+        </nav>
+        <div>
+          <div class="mb-5 flex items-center gap-4">
+            <span class="cat-line-l h-px w-[60px]"></span>
+            <span class="text-[12px] tracking-[.35em] text-cream/70 uppercase">Каталог</span>
           </div>
         </div>
-      </article>
-      <article class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11" style="--d:.05s">
-        <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
-          <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">02</span>
-          <div>
-            <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">Сравнение материалов</h3>
-            
-            
-            
-        <div class="hidden md:block"><table class="cat-table"><thead><tr><th>Материал</th><th>Плюсы</th><th>Минусы</th><th>Куда подходит</th></tr></thead><tbody><tr><td class="font-bold">Пластик</td><td>Легко мыть, не боится влаги, низкая цена</td><td>Может пожелтеть на солнце, хрупкий</td><td>Кухня, ванная, балкон</td></tr><tr><td class="font-bold">Алюминий</td><td>Долговечный, пожаробезопасный, стерильный</td><td>Шумит при сквозняке, нагревается</td><td>Офис, производственные зоны</td></tr><tr><td class="font-bold">Дерево / Бамбук</td><td>Экологичный, дорогой вид, прочный</td><td>Высокая цена, боится высокой влажности</td><td>Гостиная, кабинет, спальня</td></tr><tr><td class="font-bold">Ткань</td><td>Огромный выбор расцветок и текстур</td><td>Требует бережной чистки (сухая или влажная губка)</td><td>Спальня, детская, гостиная</td></tr></tbody></table></div>
-        <div class="grid gap-3 md:hidden"><dl class="border border-navy/10 bg-white px-4 py-3"><dt class="mb-2 font-serif text-[18px] font-bold">Пластик</dt><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Плюсы</span>Легко мыть, не боится влаги, низкая цена</dd><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Минусы</span>Может пожелтеть на солнце, хрупкий</dd><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Куда подходит</span>Кухня, ванная, балкон</dd></dl><dl class="border border-navy/10 bg-white px-4 py-3"><dt class="mb-2 font-serif text-[18px] font-bold">Алюминий</dt><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Плюсы</span>Долговечный, пожаробезопасный, стерильный</dd><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Минусы</span>Шумит при сквозняке, нагревается</dd><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Куда подходит</span>Офис, производственные зоны</dd></dl><dl class="border border-navy/10 bg-white px-4 py-3"><dt class="mb-2 font-serif text-[18px] font-bold">Дерево / Бамбук</dt><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Плюсы</span>Экологичный, дорогой вид, прочный</dd><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Минусы</span>Высокая цена, боится высокой влажности</dd><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Куда подходит</span>Гостиная, кабинет, спальня</dd></dl><dl class="border border-navy/10 bg-white px-4 py-3"><dt class="mb-2 font-serif text-[18px] font-bold">Ткань</dt><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Плюсы</span>Огромный выбор расцветок и текстур</dd><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Минусы</span>Требует бережной чистки (сухая или влажная губка)</dd><dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">Куда подходит</span>Спальня, детская, гостиная</dd></dl></div>
+        <h1 class="rise mb-5 text-[clamp(36px,6vw,60px)] leading-[1.1]" style="--d: 0.1s">
+          Жалюзи
+        </h1>
+        <p
+          class="rise mb-8 max-w-[520px] text-[18px] leading-relaxed text-cream/75"
+          style="--d: 0.2s"
+        >
+          Стильные, практичные.
+        </p>
+        <div class="rise mb-9 flex items-baseline gap-3" style="--d: 0.25s">
+          <span class="text-[13px] tracking-[.2em] text-cream/50 uppercase">Цена</span>
+          <span class="font-serif text-[30px] text-gold">от 1 500 ₽</span>
+          <span class="text-cream/60">/ м²</span>
+        </div>
+        <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
+          <a href="#lead" class="btn-gold group max-sm:w-full">
+            Пригласить дизайнера
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="transition-transform duration-300 group-hover:translate-x-1"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#prices" class="btn-line max-sm:w-full">Смотреть цены</a>
+        </div>
+      </div>
+      <div class="rise relative" style="--d: 0.2s">
+        <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
+        <button
+          type="button"
+          class="group relative block aspect-[4/3] w-full overflow-hidden bg-navy-deep"
+          data-gallery
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-1.jpg"
+          data-alt="Жалюзи"
+          aria-label="Открыть фото: Жалюзи"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-1.jpg"
+            alt="Жалюзи"
+            fetchpriority="high"
+            class="cat-zoom-img size-full object-cover"
+          />
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-cream py-16 sm:py-24">
+    <div class="wrap grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16">
+      <div>
+        <p
+          class="reveal mb-12 border-l-2 border-gold pl-5 font-serif text-[20px] leading-[1.6] text-navy sm:pl-7 sm:text-[23px]"
+        >
+          Шторы-жалюзи (вертикальные и горизонтальные) — это практичные солнцезащитные системы,
+          которые совмещают уют классических штор и функциональность ламелей для точной регулировки
+          света.
+        </p>
+        <div data-detail>
+          <article
+            class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11"
+            style="--d: 0.05s"
+          >
+            <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
+              <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">01</span>
+              <div>
+                <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">
+                  Основные виды вертикальных и горизонтальных систем
+                </h3>
+
+                <ul class="space-y-3.5">
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">Горизонтальные жалюзи:</strong>
+                    Классическая конструкция из ламелей. Идеально подходят для офисов и кухонь, так
+                    как позволяют точно регулировать поток света поворотом элементов.
+                  </li>
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">Вертикальные жалюзи:</strong>
+                    Визуально поднимают потолки. Чаще всего используются для больших окон,
+                    панорамного остекления и зонирования комнат.
+                  </li>
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">Рулонные шторы (ролшторы):</strong>
+                    Сплошное тканевое полотно, которое наматывается на вал. Сворачиваются в
+                    аккуратный рулон сверху окна.
+                  </li>
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">Шторы «День-Ночь» (Зебра):</strong>
+                    Двухслойное полотно с чередующимися прозрачными и плотными полосами. Позволяют
+                    плавно менять освещение в комнате.
+                  </li>
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">Шторы плиссе:</strong>
+                    Ткань, собранная в гармошку. Отличный выбор для мансардных, круглых, треугольных
+                    и любых нестандартных окон.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article
+            class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11"
+            style="--d: 0.05s"
+          >
+            <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
+              <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">02</span>
+              <div>
+                <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">Сравнение материалов</h3>
+
+                <div class="hidden md:block">
+                  <table class="cat-table">
+                    <thead>
+                      <tr>
+                        <th>Материал</th>
+                        <th>Плюсы</th>
+                        <th>Минусы</th>
+                        <th>Куда подходит</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="font-bold">Пластик</td>
+                        <td>Легко мыть, не боится влаги, низкая цена</td>
+                        <td>Может пожелтеть на солнце, хрупкий</td>
+                        <td>Кухня, ванная, балкон</td>
+                      </tr>
+                      <tr>
+                        <td class="font-bold">Алюминий</td>
+                        <td>Долговечный, пожаробезопасный, стерильный</td>
+                        <td>Шумит при сквозняке, нагревается</td>
+                        <td>Офис, производственные зоны</td>
+                      </tr>
+                      <tr>
+                        <td class="font-bold">Дерево / Бамбук</td>
+                        <td>Экологичный, дорогой вид, прочный</td>
+                        <td>Высокая цена, боится высокой влажности</td>
+                        <td>Гостиная, кабинет, спальня</td>
+                      </tr>
+                      <tr>
+                        <td class="font-bold">Ткань</td>
+                        <td>Огромный выбор расцветок и текстур</td>
+                        <td>Требует бережной чистки (сухая или влажная губка)</td>
+                        <td>Спальня, детская, гостиная</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="grid gap-3 md:hidden">
+                  <dl class="border border-navy/10 bg-white px-4 py-3">
+                    <dt class="mb-2 font-serif text-[18px] font-bold">Пластик</dt>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Плюсы
+                      </span>
+                      Легко мыть, не боится влаги, низкая цена
+                    </dd>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Минусы
+                      </span>
+                      Может пожелтеть на солнце, хрупкий
+                    </dd>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Куда подходит
+                      </span>
+                      Кухня, ванная, балкон
+                    </dd>
+                  </dl>
+                  <dl class="border border-navy/10 bg-white px-4 py-3">
+                    <dt class="mb-2 font-serif text-[18px] font-bold">Алюминий</dt>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Плюсы
+                      </span>
+                      Долговечный, пожаробезопасный, стерильный
+                    </dd>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Минусы
+                      </span>
+                      Шумит при сквозняке, нагревается
+                    </dd>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Куда подходит
+                      </span>
+                      Офис, производственные зоны
+                    </dd>
+                  </dl>
+                  <dl class="border border-navy/10 bg-white px-4 py-3">
+                    <dt class="mb-2 font-serif text-[18px] font-bold">Дерево / Бамбук</dt>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Плюсы
+                      </span>
+                      Экологичный, дорогой вид, прочный
+                    </dd>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Минусы
+                      </span>
+                      Высокая цена, боится высокой влажности
+                    </dd>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Куда подходит
+                      </span>
+                      Гостиная, кабинет, спальня
+                    </dd>
+                  </dl>
+                  <dl class="border border-navy/10 bg-white px-4 py-3">
+                    <dt class="mb-2 font-serif text-[18px] font-bold">Ткань</dt>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Плюсы
+                      </span>
+                      Огромный выбор расцветок и текстур
+                    </dd>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Минусы
+                      </span>
+                      Требует бережной чистки (сухая или влажная губка)
+                    </dd>
+                    <dd class="flex flex-col py-1 text-[14px]">
+                      <span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">
+                        Куда подходит
+                      </span>
+                      Спальня, детская, гостиная
+                    </dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </article>
+          <article
+            class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11"
+            style="--d: 0.05s"
+          >
+            <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
+              <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">03</span>
+              <div>
+                <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">Типы крепления</h3>
+
+                <ul class="space-y-3.5">
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">На створку окна (без сверления):</strong>
+                    Используются специальные зажимы или двухсторонний скотч. Окно открывается вместе
+                    со шторой.
+                  </li>
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">В оконный проем:</strong>
+                    Конструкция крепится к верхнему откосу. Подоконник остается свободным, но штора
+                    может мешать полному открытию створок.
+                  </li>
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">На стену или потолок:</strong>
+                    Закрывает весь оконный проем целиком, как обычные портьеры.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article
+            class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11"
+            style="--d: 0.05s"
+          >
+            <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
+              <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">04</span>
+              <div>
+                <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">
+                  Как выбрать степень затемнения ткани?
+                </h3>
+
+                <ul class="space-y-3.5">
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">
+                      Прозрачные / Полупрозрачные (10–30%):
+                    </strong>
+                    Мягко рассеивают свет. Нужны для защиты от чужих глаз на первых этажах.
+                  </li>
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">Диммаут (Dimout, 60–80%):</strong>
+                    Задерживают большую часть солнечных лучей. Подходят для гостиной и детской.
+                  </li>
+                  <li class="cat-li">
+                    <strong class="font-bold text-navy">Блэкаут (Blackout, 100%):</strong>
+                    Полностью блокируют свет благодаря специальному многослойному покрытию.
+                    Незаменимы для спален и домашних кинотеатров.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <aside class="lg:sticky lg:top-24 lg:self-start">
+        <div class="reveal bg-navy px-6 py-8 text-cream sm:px-8">
+          <p class="mb-3 text-[12px] tracking-[.25em] text-gold uppercase">Бесплатно</p>
+          <p class="mb-6 font-serif text-[22px] leading-snug">
+            Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.
+          </p>
+          <a href="#lead" class="btn-gold !flex w-full !px-4 whitespace-nowrap">
+            Пригласить дизайнера
+          </a>
+          <a
+            data-contact-link="phone"
+            class="mt-5 block text-center font-serif text-[20px] font-bold transition-colors hover:text-gold"
+          ></a>
+        </div>
+        <nav
+          class="reveal mt-6 hidden border border-navy/10 bg-white px-6 py-5 lg:block"
+          aria-label="Другие разделы"
+        >
+          <p class="mb-3 text-[12px] font-bold tracking-[.2em] text-gold uppercase">
+            Другие разделы
+          </p>
+          <a
+            href="/catalog/blackout-curtains/"
+            class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold"
+          >
+            Шторы блэкаут
+            <span class="text-gold">→</span>
+          </a>
+          <a
+            href="/catalog/roman-blinds/"
+            class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold"
+          >
+            Римские шторы
+            <span class="text-gold">→</span>
+          </a>
+          <a
+            href="/catalog/roller-blinds/"
+            class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold"
+          >
+            Рулонные шторы
+            <span class="text-gold">→</span>
+          </a>
+          <a
+            href="/catalog/linen-curtains/"
+            class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold"
+          >
+            Льняные шторы
+            <span class="text-gold">→</span>
+          </a>
+          <a
+            href="/catalog/pleated-blinds/"
+            class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold"
+          >
+            Шторы плиссе
+            <span class="text-gold">→</span>
+          </a>
+          <a
+            href="/catalog/curtain-rods/"
+            class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold"
+          >
+            Карнизы для штор
+            <span class="text-gold">→</span>
+          </a>
+        </nav>
+      </aside>
+    </div>
+  </section>
+
+  <section class="bg-white py-14 sm:py-20" aria-label="Фото: Жалюзи">
+    <div class="wrap">
+      <div class="reveal mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <div class="mb-5 flex items-center gap-4">
+            <span class="cat-line-l h-px w-[60px]"></span>
+            <span class="text-[12px] tracking-[.35em] text-gold uppercase">Фото работ</span>
+          </div>
+          <h2 class="text-[clamp(28px,4vw,40px)] leading-tight">
+            Жалюзи
+            <em class="text-gold">в интерьере</em>
+          </h2>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" class="cat-arrow" aria-label="Предыдущие фото" data-strip-prev>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <button type="button" class="cat-arrow" aria-label="Следующие фото" data-strip-next>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="reveal cat-strip" data-strip data-gallery>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-10.jpg"
+          data-alt="Жалюзи — фото 1"
+          aria-label="Открыть фото 1 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-10.jpg"
+            alt="Жалюзи — фото 1"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-9.jpg"
+          data-alt="Жалюзи — фото 2"
+          aria-label="Открыть фото 2 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-9.jpg"
+            alt="Жалюзи — фото 2"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-1.jpg"
+          data-alt="Жалюзи — фото 3"
+          aria-label="Открыть фото 3 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-1.jpg"
+            alt="Жалюзи — фото 3"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-3.jpg"
+          data-alt="Жалюзи — фото 4"
+          aria-label="Открыть фото 4 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-3.jpg"
+            alt="Жалюзи — фото 4"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-4.jpg"
+          data-alt="Жалюзи — фото 5"
+          aria-label="Открыть фото 5 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-4.jpg"
+            alt="Жалюзи — фото 5"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-5.jpg"
+          data-alt="Жалюзи — фото 6"
+          aria-label="Открыть фото 6 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-5.jpg"
+            alt="Жалюзи — фото 6"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-6.jpg"
+          data-alt="Жалюзи — фото 7"
+          aria-label="Открыть фото 7 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-6.jpg"
+            alt="Жалюзи — фото 7"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-7.jpg"
+          data-alt="Жалюзи — фото 8"
+          aria-label="Открыть фото 8 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-7.jpg"
+            alt="Жалюзи — фото 8"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+        <button
+          type="button"
+          class="cat-shot group"
+          data-gallery-item
+          data-src="/assets/img/catalog/blinds/image-8.jpg"
+          data-alt="Жалюзи — фото 9"
+          aria-label="Открыть фото 9 из 9"
+        >
+          <img
+            src="/assets/img/catalog/blinds/image-8.jpg"
+            alt="Жалюзи — фото 9"
+            loading="lazy"
+            class="size-full object-cover"
+          />
+          <span class="cat-zoom" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3M11 8v6M8 11h6" />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="prices" class="scroll-mt-20 bg-cream py-16 sm:py-24">
+    <div class="wrap">
+      <div class="reveal mb-10 text-center sm:mb-12">
+        <p class="eyebrow">Стоимость</p>
+        <h2 class="h2">
+          Цены:
+          <span class="text-gold italic">Жалюзи</span>
+        </h2>
+        <div class="divider"><i></i></div>
+        <p class="text-[14px] text-slate/70">
+          *Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.
+        </p>
+      </div>
+      <div class="reveal hidden overflow-x-auto lg:block" data-price-table>
+        <table class="cat-table cat-price">
+          <thead>
+            <tr>
+              <th>Материал / модель</th>
+              <th>Производство</th>
+              <th>Ширина, м</th>
+              <th>Гарантия</th>
+              <th class="text-right">
+                Цена
+                <span class="block text-[11px] font-normal tracking-normal normal-case opacity-70">
+                  с пошивом и установкой
+                </span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-serif text-[18px] font-bold">Горизонтальные алюминиевые</td>
+              <td>Россия</td>
+              <td>—</td>
+              <td>2 года</td>
+              <td class="text-right text-[17px] font-bold whitespace-nowrap">
+                от 1 500 ₽
+                <span class="font-normal text-slate/70">/ м²</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-serif text-[18px] font-bold">Вертикальные тканевые</td>
+              <td>Россия</td>
+              <td>—</td>
+              <td>2 года</td>
+              <td class="text-right text-[17px] font-bold whitespace-nowrap">
+                от 1 800 ₽
+                <span class="font-normal text-slate/70">/ м²</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="font-serif text-[18px] font-bold">Деревянные</td>
+              <td>Китай</td>
+              <td>—</td>
+              <td>3 года</td>
+              <td class="text-right text-[17px] font-bold whitespace-nowrap">
+                от 6 500 ₽
+                <span class="font-normal text-slate/70">/ м²</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid gap-4 lg:hidden" data-price-cards>
+        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0s">
+          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">
+            Горизонтальные алюминиевые
+          </p>
+          <p class="mb-4 text-[20px] font-bold text-navy">
+            от 1 500 ₽
+            <span class="text-[14px] font-normal text-slate/70">/ м²</span>
+          </p>
+          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px]">
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
+              <dd>Россия</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
+              <dd>—</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
+              <dd>2 года</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0.08s">
+          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Вертикальные тканевые</p>
+          <p class="mb-4 text-[20px] font-bold text-navy">
+            от 1 800 ₽
+            <span class="text-[14px] font-normal text-slate/70">/ м²</span>
+          </p>
+          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px]">
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
+              <dd>Россия</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
+              <dd>—</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
+              <dd>2 года</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0.16s">
+          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Деревянные</p>
+          <p class="mb-4 text-[20px] font-bold text-navy">
+            от 6 500 ₽
+            <span class="text-[14px] font-normal text-slate/70">/ м²</span>
+          </p>
+          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px]">
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
+              <dd>Китай</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
+              <dd>—</dd>
+            </div>
+            <div>
+              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
+              <dd>3 года</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+      <div
+        class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center"
+      >
+        <a href="#lead" class="btn-gold group max-sm:w-full">
+          Рассчитать стоимость
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            class="transition-transform duration-300 group-hover:translate-x-1"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+        <a
+          href="/price/"
+          class="inline-flex items-center justify-center gap-2 rounded-[2px] border border-navy/30 px-[26px] py-[14px] text-[13px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:border-gold hover:text-gold max-sm:w-full"
+        >
+          Все цены →
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="bg-white pt-20 pb-6 sm:pt-28 sm:pb-8">
+    <div class="wrap">
+      <div class="reveal reveal-soft mb-14 text-center">
+        <div class="mb-4 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-gold"></span>
+          <span class="text-[12px] tracking-[.28em] text-gold uppercase">Этапы</span>
+          <span class="h-px w-8 bg-gold"></span>
+        </div>
+        <h2 class="text-[clamp(30px,4vw,46px)]">Как сделать заказ?</h2>
+      </div>
+      <div class="relative">
+        <div
+          class="absolute top-8 right-0 left-0 hidden h-px bg-[linear-gradient(90deg,transparent,var(--color-sand)_8%,var(--color-sand)_92%,transparent)] lg:block"
+        ></div>
+        <ol class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <li class="text-center lg:text-left">
+            <span
+              class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0"
+            >
+              01
+            </span>
+            <h3 class="mb-2.5 text-[22px]">Заявка</h3>
+            <p class="text-[15px] leading-relaxed text-slate/80">
+              Оставьте заявку на сайте или позвоните нам по телефону, напишите в мессенджер — как
+              вам удобно. Мы ответим на все ваши вопросы и назначим удобную для вас дату встречи с
+              нашим дизайнером
+            </p>
+          </li>
+          <li class="text-center lg:text-left" style="--d: 0.1s">
+            <span
+              class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0"
+            >
+              02
+            </span>
+            <h3 class="mb-2.5 text-[22px]">Встреча</h3>
+            <p class="text-[15px] leading-relaxed text-slate/80">
+              Выезд дизайнера бесплатный. Наш сотрудник полностью проконсультирует вас на месте —
+              продемонстрирует образцы и каталоги тканей, сделает необходимые технические замеры,
+              подготовит первоначальный эскиз и просчет.
+            </p>
+          </li>
+          <li class="text-center lg:text-left" style="--d: 0.2s">
+            <span
+              class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0"
+            >
+              03
+            </span>
+            <h3 class="mb-2.5 text-[22px]">Пошив</h3>
+            <p class="text-[15px] leading-relaxed text-slate/80">
+              Пошив штор в собственном швейном цехе под надзором технолога. Проверка готовых изделий
+              на брак. В отличие от многих, мы даём гарантию 2 года на все виды работ и материалы.
+            </p>
+          </li>
+          <li class="text-center lg:text-left" style="--d: 0.3s">
+            <span
+              class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0"
+            >
+              04
+            </span>
+            <h3 class="mb-2.5 text-[22px]">Монтаж</h3>
+            <p class="text-[15px] leading-relaxed text-slate/80">
+              Монтаж штор на окна. Осуществим доставку, установку карнизов и навеску штор, отпарив
+              их. Все под ключ.
+            </p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+  <section id="faq" class="bg-white pt-6 pb-20 sm:pt-8 sm:pb-28">
+    <div class="mx-auto w-full max-w-3xl px-5 sm:px-6">
+      <div class="reveal mb-14 text-center">
+        <div class="mb-5 flex items-center justify-center gap-3">
+          <span class="h-px w-9 bg-gold"></span>
+          <span class="text-[12px] tracking-[.38em] text-gold uppercase">FAQ</span>
+          <span class="h-px w-9 bg-gold"></span>
+        </div>
+        <h2 class="text-[clamp(30px,4vw,46px)]">
+          Вопросы-
+          <em>ответы</em>
+        </h2>
+      </div>
+      <div class="reveal space-y-2" data-faq>
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Сколько стоит пошив штор на заказ?</span>
+            <span class="faq-icon shrink-0 text-gold">
+              <svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              Редко какая студия, специализирующаяся на изготовлении штор по меркам клиента, сможет
+              дать точный ответ на этот вопрос, не располагая деталями: конкретными габаритами
+              будущих изделий, выбором материалов и декором. Цена любых индивидуальных заказов
+              напрямую зависит от уникальных характеристик проекта. Тем не менее, мы готовы
+              предоставить вам примерный расчет, чтобы вы могли получить общее представление о
+              порядке цен и ориентироваться на рынке. Для этого достаточно отправить нам
+              приблизительные размеры вашего окна, проект или ваши пожелания. Наши дизайнеры
+              подготовят предварительный расчет, включающий стоимость базовых материалов и пошива
+              штор, а также дополнительных услуг (установка карнизов и монтаж штор). Если озвученная
+              предварительная сумма вас устроит, то после личной встречи с нашим дизайнером вы
+              получите детальную смету, учитывающую выбранные модели, ткани и точные размеры.
+              Выбрать шторы на заказ в Москве и МО в нашем салоне — это правильное решение. Мы
+              предлагаем индивидуальное изготовление штор по доступным ценам в срок 10–14 дней.
+            </p>
           </div>
         </div>
-      </article>
-      <article class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11" style="--d:.05s">
-        <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
-          <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">03</span>
-          <div>
-            <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">Типы крепления</h3>
-            
-            <ul class="space-y-3.5"><li class="cat-li"><strong class="font-bold text-navy">На створку окна (без сверления):</strong> Используются специальные зажимы или двухсторонний скотч. Окно открывается вместе со шторой.</li><li class="cat-li"><strong class="font-bold text-navy">В оконный проем:</strong> Конструкция крепится к верхнему откосу. Подоконник остается свободным, но штора может мешать полному открытию створок.</li><li class="cat-li"><strong class="font-bold text-navy">На стену или потолок:</strong> Закрывает весь оконный проем целиком, как обычные портьеры.</li></ul>
-            
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Где можно посмотреть Ваши работы?</span>
+            <span class="faq-icon shrink-0 text-gold">
+              <svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              На нашем сайте есть большое портфолио выполненных работ. В нём Вы можете ознакомиться
+              с разными вариантами исполнения штор на заказ, которые изготовлены нашей компанией.
+              Работ так много, что Вы несомненно найдете в них вдохновение для своего проекта. Также
+              Вы можете познакомиться с нами в разных социальных сетях.
+            </p>
           </div>
         </div>
-      </article>
-      <article class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11" style="--d:.05s">
-        <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
-          <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">04</span>
-          <div>
-            <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">Как выбрать степень затемнения ткани?</h3>
-            
-            <ul class="space-y-3.5"><li class="cat-li"><strong class="font-bold text-navy">Прозрачные / Полупрозрачные (10–30%):</strong> Мягко рассеивают свет. Нужны для защиты от чужих глаз на первых этажах.</li><li class="cat-li"><strong class="font-bold text-navy">Диммаут (Dimout, 60–80%):</strong> Задерживают большую часть солнечных лучей. Подходят для гостиной и детской.</li><li class="cat-li"><strong class="font-bold text-navy">Блэкаут (Blackout, 100%):</strong> Полностью блокируют свет благодаря специальному многослойному покрытию. Незаменимы для спален и домашних кинотеатров.</li></ul>
-            
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Есть ли гарантия на изделия?</span>
+            <span class="faq-icon shrink-0 text-gold">
+              <svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              Мы даем 2 года гарантии на изделия и на все работы, проводимые нами по договору.
+            </p>
           </div>
         </div>
-      </article>
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Какие сроки по пошиву?</span>
+            <span class="faq-icon shrink-0 text-gold">
+              <svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              По договору 10–14 дней, в зависимости от объема можем сделать и раньше.
+            </p>
+          </div>
+        </div>
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Сколько стоит выезд дизайнера?</span>
+            <span class="faq-icon shrink-0 text-gold">
+              <svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" />
+              </svg>
+            </span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              Выезд дизайнера — бесплатный! Дизайнер приезжает с образцами и каталогами тканей,
+              делает замер и просчет на месте. Даже если потребуется повторный выезд.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-    <aside class="lg:sticky lg:top-24 lg:self-start">
-      <div class="reveal bg-navy px-6 py-8 text-cream sm:px-8">
-        <p class="mb-3 text-[12px] tracking-[.25em] text-gold uppercase">Бесплатно</p>
-        <p class="mb-6 font-serif text-[22px] leading-snug">Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.</p>
-        <a href="#lead" class="btn-gold !flex w-full !px-4 whitespace-nowrap">Пригласить дизайнера</a>
-        <a href="tel:+79255946117" class="mt-5 block text-center font-serif text-[20px] font-bold transition-colors hover:text-gold">+7 (925) 594-61-17</a>
-      </div>
-      <nav class="reveal mt-6 hidden border border-navy/10 bg-white px-6 py-5 lg:block" aria-label="Другие разделы">
-        <p class="mb-3 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Другие разделы</p>
-        <a href="/catalog/blackout-curtains/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">Шторы блэкаут<span class="text-gold">→</span></a>
-        <a href="/catalog/roman-blinds/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">Римские шторы<span class="text-gold">→</span></a>
-        <a href="/catalog/roller-blinds/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">Рулонные шторы<span class="text-gold">→</span></a>
-        <a href="/catalog/linen-curtains/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">Льняные шторы<span class="text-gold">→</span></a>
-        <a href="/catalog/pleated-blinds/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">Шторы плиссе<span class="text-gold">→</span></a>
-        <a href="/catalog/curtain-rods/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">Карнизы для штор<span class="text-gold">→</span></a>
-      </nav>
-    </aside>
-  </div>
-</section>
-
-<section class="bg-white py-14 sm:py-20" aria-label="Фото: Жалюзи">
-  <div class="wrap">
-    <div class="reveal mb-8 flex flex-wrap items-end justify-between gap-4">
-      <div><div class="mb-5 flex items-center  gap-4"><span class="cat-line-l h-px w-[60px]"></span><span class="text-[12px] tracking-[.35em] text-gold uppercase">Фото работ</span></div><h2 class="text-[clamp(28px,4vw,40px)] leading-tight">Жалюзи <em class="text-gold">в интерьере</em></h2></div>
-      <div class="flex gap-2">
-        <button type="button" class="cat-arrow" aria-label="Предыдущие фото" data-strip-prev><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button>
-        <button type="button" class="cat-arrow" aria-label="Следующие фото" data-strip-next><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>
-      </div>
-    </div>
-    <div class="reveal cat-strip" data-strip data-gallery>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-10.jpg" data-alt="Жалюзи — фото 1" aria-label="Открыть фото 1 из 9"><img src="/assets/img/catalog/blinds/image-10.jpg" alt="Жалюзи — фото 1" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-9.jpg" data-alt="Жалюзи — фото 2" aria-label="Открыть фото 2 из 9"><img src="/assets/img/catalog/blinds/image-9.jpg" alt="Жалюзи — фото 2" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-1.jpg" data-alt="Жалюзи — фото 3" aria-label="Открыть фото 3 из 9"><img src="/assets/img/catalog/blinds/image-1.jpg" alt="Жалюзи — фото 3" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-3.jpg" data-alt="Жалюзи — фото 4" aria-label="Открыть фото 4 из 9"><img src="/assets/img/catalog/blinds/image-3.jpg" alt="Жалюзи — фото 4" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-4.jpg" data-alt="Жалюзи — фото 5" aria-label="Открыть фото 5 из 9"><img src="/assets/img/catalog/blinds/image-4.jpg" alt="Жалюзи — фото 5" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-5.jpg" data-alt="Жалюзи — фото 6" aria-label="Открыть фото 6 из 9"><img src="/assets/img/catalog/blinds/image-5.jpg" alt="Жалюзи — фото 6" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-6.jpg" data-alt="Жалюзи — фото 7" aria-label="Открыть фото 7 из 9"><img src="/assets/img/catalog/blinds/image-6.jpg" alt="Жалюзи — фото 7" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-7.jpg" data-alt="Жалюзи — фото 8" aria-label="Открыть фото 8 из 9"><img src="/assets/img/catalog/blinds/image-7.jpg" alt="Жалюзи — фото 8" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-      <button type="button" class="cat-shot group" data-gallery-item data-src="/assets/img/catalog/blinds/image-8.jpg" data-alt="Жалюзи — фото 9" aria-label="Открыть фото 9 из 9"><img src="/assets/img/catalog/blinds/image-8.jpg" alt="Жалюзи — фото 9" loading="lazy" class="size-full object-cover" /><span class="cat-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span></button>
-    </div>
-  </div>
-</section>
-
-
-<section id="prices" class="scroll-mt-20 bg-cream py-16 sm:py-24">
-  <div class="wrap">
-    <div class="reveal mb-10 text-center sm:mb-12">
-      <p class="eyebrow">Стоимость</p>
-      <h2 class="h2">Цены: <span class="text-gold italic">Жалюзи</span></h2>
-      <div class="divider"><i></i></div>
-      <p class="text-[14px] text-slate/70">*Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.</p>
-    </div>
-    <div class="reveal hidden overflow-x-auto lg:block" data-price-table>
-      <table class="cat-table cat-price">
-        <thead><tr><th>Материал / модель</th><th>Производство</th><th>Ширина, м</th><th>Гарантия</th><th class="text-right">Цена <span class="block text-[11px] font-normal tracking-normal normal-case opacity-70">с пошивом и установкой</span></th></tr></thead>
-        <tbody><tr><td class="font-serif text-[18px] font-bold">Горизонтальные алюминиевые</td><td>Россия</td><td>—</td><td>2 года</td><td class="text-right text-[17px] font-bold whitespace-nowrap">от 1 500 ₽ <span class="font-normal text-slate/70">/ м²</span></td></tr><tr><td class="font-serif text-[18px] font-bold">Вертикальные тканевые</td><td>Россия</td><td>—</td><td>2 года</td><td class="text-right text-[17px] font-bold whitespace-nowrap">от 1 800 ₽ <span class="font-normal text-slate/70">/ м²</span></td></tr><tr><td class="font-serif text-[18px] font-bold">Деревянные</td><td>Китай</td><td>—</td><td>3 года</td><td class="text-right text-[17px] font-bold whitespace-nowrap">от 6 500 ₽ <span class="font-normal text-slate/70">/ м²</span></td></tr></tbody>
-      </table>
-    </div>
-    <div class="grid gap-4 lg:hidden" data-price-cards>
-      <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d:0s">
-        <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Горизонтальные алюминиевые</p>
-        <p class="mb-4 text-[20px] font-bold text-navy">от 1 500 ₽ <span class="text-[14px] font-normal text-slate/70">/ м²</span></p>
-        <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px]">
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt><dd>Россия</dd></div>
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt><dd>—</dd></div>
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt><dd>2 года</dd></div>
-        </dl>
-      </div>
-      <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d:0.08s">
-        <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Вертикальные тканевые</p>
-        <p class="mb-4 text-[20px] font-bold text-navy">от 1 800 ₽ <span class="text-[14px] font-normal text-slate/70">/ м²</span></p>
-        <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px]">
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt><dd>Россия</dd></div>
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt><dd>—</dd></div>
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt><dd>2 года</dd></div>
-        </dl>
-      </div>
-      <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d:0.16s">
-        <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Деревянные</p>
-        <p class="mb-4 text-[20px] font-bold text-navy">от 6 500 ₽ <span class="text-[14px] font-normal text-slate/70">/ м²</span></p>
-        <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px]">
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt><dd>Китай</dd></div>
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt><dd>—</dd></div>
-          <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt><dd>3 года</dd></div>
-        </dl>
-      </div>
-    </div>
-    <div class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center">
-      <a href="#lead" class="btn-gold group max-sm:w-full">Рассчитать стоимость <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      <a href="/price/" class="inline-flex items-center justify-center gap-2 rounded-[2px] border border-navy/30 px-[26px] py-[14px] text-[13px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:border-gold hover:text-gold max-sm:w-full">Все цены →</a>
-    </div>
-  </div>
-</section>
-<section class="bg-white pt-20 pb-6 sm:pt-28 sm:pb-8">
-  <div class="wrap">
-    <div class="reveal reveal-soft mb-14 text-center ">
-      <div class="mb-4 flex items-center justify-center gap-3"><span class="h-px w-8 bg-gold"></span><span class="text-[12px] tracking-[.28em] text-gold uppercase">Этапы</span><span class="h-px w-8 bg-gold"></span></div>
-      <h2 class="text-[clamp(30px,4vw,46px)]">Как сделать заказ?</h2>
-    </div>
-    <div class="relative">
-      <div class="absolute top-8 right-0 left-0 hidden h-px bg-[linear-gradient(90deg,transparent,var(--color-sand)_8%,var(--color-sand)_92%,transparent)] lg:block"></div>
-      <ol class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-        <li class="text-center lg:text-left"><span class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0">01</span><h3 class="mb-2.5 text-[22px]">Заявка</h3><p class="text-[15px] leading-relaxed text-slate/80">Оставьте заявку на сайте или позвоните нам по телефону, напишите в мессенджер — как вам удобно. Мы ответим на все ваши вопросы и назначим удобную для вас дату встречи с нашим дизайнером</p></li>
-        <li class="text-center lg:text-left" style="--d:.1s"><span class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0">02</span><h3 class="mb-2.5 text-[22px]">Встреча</h3><p class="text-[15px] leading-relaxed text-slate/80">Выезд дизайнера бесплатный. Наш сотрудник полностью проконсультирует вас на месте — продемонстрирует образцы и каталоги тканей, сделает необходимые технические замеры, подготовит первоначальный эскиз и просчет.</p></li>
-        <li class="text-center lg:text-left" style="--d:.2s"><span class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0">03</span><h3 class="mb-2.5 text-[22px]">Пошив</h3><p class="text-[15px] leading-relaxed text-slate/80">Пошив штор в собственном швейном цехе под надзором технолога. Проверка готовых изделий на брак. В отличие от многих, мы даём гарантию 2 года на все виды работ и материалы.</p></li>
-        <li class="text-center lg:text-left" style="--d:.3s"><span class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0">04</span><h3 class="mb-2.5 text-[22px]">Монтаж</h3><p class="text-[15px] leading-relaxed text-slate/80">Монтаж штор на окна. Осуществим доставку, установку карнизов и навеску штор, отпарив их. Все под ключ.</p></li>
-      </ol>
-    </div>
-  </div>
-</section>
-<section id="faq" class="bg-white pt-6 pb-20 sm:pt-8 sm:pb-28">
-  <div class="mx-auto w-full max-w-3xl px-5 sm:px-6">
-    <div class="reveal mb-14 text-center">
-      <div class="mb-5 flex items-center justify-center gap-3"><span class="h-px w-9 bg-gold"></span><span class="text-[12px] tracking-[.38em] text-gold uppercase">FAQ</span><span class="h-px w-9 bg-gold"></span></div>
-      <h2 class="text-[clamp(30px,4vw,46px)]">Вопросы-<em>ответы</em></h2>
-    </div>
-    <div class="reveal space-y-2" data-faq>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Сколько стоит пошив штор на заказ?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">Редко какая студия, специализирующаяся на изготовлении штор по меркам клиента, сможет дать точный ответ на этот вопрос, не располагая деталями: конкретными габаритами будущих изделий, выбором материалов и декором. Цена любых индивидуальных заказов напрямую зависит от уникальных характеристик проекта. Тем не менее, мы готовы предоставить вам примерный расчет, чтобы вы могли получить общее представление о порядке цен и ориентироваться на рынке. Для этого достаточно отправить нам приблизительные размеры вашего окна, проект или ваши пожелания. Наши дизайнеры подготовят предварительный расчет, включающий стоимость базовых материалов и пошива штор, а также дополнительных услуг (установка карнизов и монтаж штор). Если озвученная предварительная сумма вас устроит, то после личной встречи с нашим дизайнером вы получите детальную смету, учитывающую выбранные модели, ткани и точные размеры. Выбрать шторы на заказ в Москве и МО в нашем салоне — это правильное решение. Мы предлагаем индивидуальное изготовление штор по доступным ценам в срок 10–14 дней.</p></div>
-      </div>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Где можно посмотреть Ваши работы?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">На нашем сайте есть большое портфолио выполненных работ. В нём Вы можете ознакомиться с разными вариантами исполнения штор на заказ, которые изготовлены нашей компанией. Работ так много, что Вы несомненно найдете в них вдохновение для своего проекта. Также Вы можете познакомиться с нами в разных социальных сетях.</p></div>
-      </div>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Есть ли гарантия на изделия?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">Мы даем 2 года гарантии на изделия и на все работы, проводимые нами по договору.</p></div>
-      </div>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Какие сроки по пошиву?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">По договору 10–14 дней, в зависимости от объема можем сделать и раньше.</p></div>
-      </div>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Сколько стоит выезд дизайнера?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">Выезд дизайнера — бесплатный! Дизайнер приезжает с образцами и каталогами тканей, делает замер и просчет на месте. Даже если потребуется повторный выезд.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 </main>
 <section id="lead" class="bg-sand py-16 sm:py-24">
   <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
     <div class="reveal">
       <p class="eyebrow">Заявка</p>
-      <h2 class="h2 mb-5">Запишитесь на посещение шоурума и получите <span class="text-gold italic">скидку 10%</span></h2>
+      <h2 class="h2 mb-5">
+        Запишитесь на посещение шоурума и получите
+        <span class="text-gold italic">скидку 10%</span>
+      </h2>
       <div class="mb-10 space-y-3 text-[16px] leading-[1.8] font-light text-slate">
         <p>Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.</p>
-        <p>На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором модели и рассчитаем стоимость в разных ценовых категориях.</p>
+        <p>
+          На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором
+          модели и рассчитаем стоимость в разных ценовых категориях.
+        </p>
         <p>Изготовим заказ на собственном производстве точно в срок, произведем монтаж.</p>
       </div>
       <ul class="flex flex-col gap-6">
-        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Телефон</p><a href="tel:+79255946117" class="font-serif text-[20px] font-bold transition-colors hover:text-gold">+7 (925) 594-61-17</a></div></li>
-        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Эл. почта</p><a href="mailto:info&#64;shtorivdom.ru" class="text-[16px] hover:text-gold">info&#64;shtorivdom.ru</a></div></li>
-        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
-          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Адрес</p><a href="https://yandex.ru/maps/-/CDQG4AYV" target="_blank" rel="noopener" class="text-[16px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold">Троицк, Кварцевая улица, 3, корп. 2</a></div></li>
-        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">График работы</p><p class="text-[16px]">Без выходных, 10:00–20:00</p></div></li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-gold">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+              />
+            </svg>
+          </span>
+          <div>
+            <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Телефон</p>
+            <a
+              data-contact-link="phone"
+              class="font-serif text-[20px] font-bold transition-colors hover:text-gold"
+            ></a>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-gold">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </span>
+          <div>
+            <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Эл. почта</p>
+            <a data-contact-link="email" class="text-[16px] hover:text-gold"></a>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-gold">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+              <circle cx="12" cy="10" r="3" />
+            </svg>
+          </span>
+          <div>
+            <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Адрес</p>
+            <a
+              href="https://yandex.ru/maps/-/CTxLMJIy"
+              target="_blank"
+              rel="noopener"
+              class="text-[16px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold"
+            >
+              Троицк, Кварцевая улица, 3, корп. 2
+            </a>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="mt-1 text-gold">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </span>
+          <div>
+            <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">
+              График работы
+            </p>
+            <p class="text-[16px]">Без выходных, 10:00–20:00</p>
+          </div>
+        </li>
       </ul>
     </div>
-    <div class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12" style="--d:.15s">
-      <form class="flex flex-col gap-5" novalidate data-lead-form>
-        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] size-0 opacity-0" />
+    <div
+      class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
+      style="--d: 0.15s"
+    >
+      <form
+        class="flex flex-col gap-5"
+        novalidate
+        data-lead-form
+        #lead="leadForm"
+        [formGroup]="lead.form"
+      >
+        <input
+          type="text"
+          formControlName="website"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          aria-hidden="true"
+          class="absolute -left-[9999px] size-0 opacity-0"
+        />
         <div>
-          <label class="field-label" for="lead-phone">Телефон *</label>
-          <input id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Укажите телефон" class="field" data-phone />
-          <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="phone">Введите номер телефона полностью</p>
+          <label class="field-label" for="lead-phone">
+            Телефон
+            <span class="text-red-600">*</span>
+          </label>
+          <tui-textfield [tuiTextfieldCleaner]="false">
+            <input
+              mask="+7 (###) ###-##-##"
+              tuiInputPhone
+              id="lead-phone"
+              formControlName="phone"
+              name="phone"
+              type="tel"
+              inputmode="tel"
+              autocomplete="tel"
+              placeholder="Укажите телефон"
+              class="field"
+              data-phone
+            />
+          </tui-textfield>
+          <!-- <tui-error formControlName="phone" /> -->
         </div>
         <div>
           <label class="field-label" for="lead-comment">Комментарий</label>
-          <textarea id="lead-comment" name="comment" rows="4" placeholder="Комментарий" class="field resize-none"></textarea>
+          <tui-textfield [tuiTextfieldCleaner]="false">
+            <textarea
+              tuiTextarea
+              [min]="3"
+              [max]="6"
+              id="lead-comment"
+              formControlName="comment"
+              [rows]="3"
+              placeholder="Комментарий"
+              class="field resize-none"
+            ></textarea>
+          </tui-textfield>
         </div>
         <div>
           <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-            <input type="checkbox" name="consent" class="mt-0.5 size-4 shrink-0 accent-[#0d223d]" checked data-consent />
-            <span>Я соглашаюсь с правилами по обработке <a href="/soglasie-na-obrabotku-personalnyh-dannyh/" class="text-navy underline decoration-gold underline-offset-2 hover:text-gold">персональных данных</a></span>
+            <input
+              tuiCheckbox
+              type="checkbox"
+              formControlName="consent"
+              [size]="'m'"
+              name="consent"
+              class="mt-0.5 shrink-0"
+              data-consent
+            />
+            <span>
+              Я соглашаюсь с правилами по обработке
+              <a
+                href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
+              >
+                персональных данных
+              </a>
+            </span>
           </label>
-          <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">Нужно согласие на обработку персональных данных</p>
+          <!--<tui-error formControlName="consent" /> -->
         </div>
         <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
       </form>

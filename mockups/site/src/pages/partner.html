@@ -2,83 +2,210 @@
 <!-- Партнёрам. Текст и поля анкеты — pages/partner/partner-page.html; фото image-6.jpg оттуда же.
      Анкета заменяет общую форму заявки (id="lead", чтобы кнопка «Заявка» в шапке вела сюда). -->
 <main>
-<section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
-  <div class="wrap">
-    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
-    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>
-    <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75" style="--d:.1s">Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров.</p>
-    <a href="#lead" class="btn-gold mt-8" style="--d:.2s">Стать партнером</a>
-  </div>
-</section>
+  <section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
+    <div class="wrap">
+      <nav
+        class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60"
+        aria-label="Хлебные крошки"
+      >
+        <!-- @crumbs -->
+      </nav>
+      <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>
+      <p
+        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75"
+        style="--d: 0.1s"
+      >
+        Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании.
+        Выгодные условия для партнёров.
+      </p>
+      <a href="#lead" class="btn-gold mt-8" style="--d: 0.2s">Стать партнером</a>
+    </div>
+  </section>
 
-<!-- ============ Программа лояльности — landing-6 «Where Artistry Meets Architecture» (фото с рамкой + список) ============ -->
-<section class="bg-white py-20 sm:py-28">
-  <div class="wrap grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
-    <div class="relative">
-      <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
-      <img src="{{root}}assets/img/partner/image-6.jpg" alt="Шторы в интерьере — проект партнёра" loading="lazy" class="relative h-[300px] w-full object-cover sm:h-[520px]" />
+  <!-- ============ Программа лояльности — landing-6 «Where Artistry Meets Architecture» (фото с рамкой + список) ============ -->
+  <section class="bg-white py-20 sm:py-28">
+    <div class="wrap grid items-center gap-14 lg:grid-cols-2 lg:gap-16">
+      <div class="relative">
+        <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
+        <img
+          src="{{root}}assets/img/partner/image-6.jpg"
+          alt="Шторы в интерьере — проект партнёра"
+          loading="lazy"
+          class="relative h-[300px] w-full object-cover sm:h-[520px]"
+        />
+      </div>
+      <div class="reveal" style="--d: 0.1s">
+        <div class="mb-5 flex items-center gap-3">
+          <span class="h-px w-9 bg-gold"></span
+          ><span class="text-[12px] tracking-[.38em] text-gold uppercase">Партнёрам</span>
+        </div>
+        <h2 class="mb-8 text-[clamp(28px,3.6vw,42px)] leading-tight">
+          В рамках программы лояльности вам доступны <em class="text-gold">бесплатные услуги:</em>
+        </h2>
+        <ul
+          class="flex flex-col border-t border-navy/10 text-[16px] leading-snug [&>li]:flex [&>li]:items-start [&>li]:gap-4 [&>li]:border-b [&>li]:border-navy/10 [&>li]:py-4"
+        >
+          <li>
+            <span
+              class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white"
+              >✓</span
+            >Выезд дизайнера на объект с образцами
+          </li>
+          <li>
+            <span
+              class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white"
+              >✓</span
+            >Выезд замерщика на объект
+          </li>
+          <li>
+            <span
+              class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white"
+              >✓</span
+            >Визуализация, проектирование изделий и расчет стоимости проекта
+          </li>
+          <li>
+            <span
+              class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white"
+              >✓</span
+            >Профессиональный монтаж карнизов и солнцезащитных систем любой сложности — в том числе
+            с электроуправлением
+          </li>
+          <li>
+            <span
+              class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white"
+              >✓</span
+            >Влажно-тепловая обработка, навеска и драпировка текстильных изделий
+          </li>
+          <li>
+            <span
+              class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white"
+              >✓</span
+            >Хранение заказа на нашем складе
+          </li>
+        </ul>
+        <p
+          class="mt-6 border-l-2 border-gold pl-4 text-[15px] leading-relaxed font-light text-slate"
+        >
+          Дополнительно вы можете заказать комплект тканевых палитр (свотчей) под разрабатываемый
+          дизайн-проект.
+        </p>
+      </div>
     </div>
-    <div class="reveal" style="--d:.1s">
-      <div class="mb-5 flex items-center gap-3"><span class="h-px w-9 bg-gold"></span><span class="text-[12px] tracking-[.38em] text-gold uppercase">Партнёрам</span></div>
-      <h2 class="mb-8 text-[clamp(28px,3.6vw,42px)] leading-tight">В рамках программы лояльности вам доступны <em class="text-gold">бесплатные услуги:</em></h2>
-      <ul class="flex flex-col border-t border-navy/10 text-[16px] leading-snug [&>li]:flex [&>li]:items-start [&>li]:gap-4 [&>li]:border-b [&>li]:border-navy/10 [&>li]:py-4">
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Выезд дизайнера на объект с образцами</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Выезд замерщика на объект</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Визуализация, проектирование изделий и расчет стоимости проекта</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Профессиональный монтаж карнизов и солнцезащитных систем любой сложности — в том числе с электроуправлением</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Влажно-тепловая обработка, навеска и драпировка текстильных изделий</li>
-        <li><span class="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-gold text-[12px] font-bold text-white">✓</span>Хранение заказа на нашем складе</li>
-      </ul>
-      <p class="mt-6 border-l-2 border-gold pl-4 text-[15px] leading-relaxed font-light text-slate">Дополнительно вы можете заказать комплект тканевых палитр (свотчей) под разрабатываемый дизайн-проект.</p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ Анкета партнёра — landing-1 «Ready to Transform» (текст + форма). Поля partner-page ============ -->
-<section id="lead" class="bg-sand py-16 sm:py-24">
-  <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16">
-    <div class="reveal">
-      <p class="eyebrow">Анкета</p>
-      <h2 class="h2 mb-5">Стать <span class="text-gold italic">партнером</span></h2>
-      <p class="mb-10 text-[16px] leading-[1.8] font-light text-slate">Для вступления в программу заполните анкету</p>
-      <ul class="flex flex-col gap-3 text-[16px]">
-        <li><a href="tel:+79255946117" class="font-serif text-[24px] font-bold hover:text-gold">+7 (925) 594-61-17</a></li>
-        <li><a href="mailto:info@shtorivdom.ru" class="hover:text-gold">info@shtorivdom.ru</a></li>
-      </ul>
-    </div>
-    <div class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12" style="--d:.15s">
-      <form id="form-partner" class="flex flex-col gap-5" novalidate data-lead-form>
-        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] size-0 opacity-0" />
-        <div class="grid gap-5 sm:grid-cols-2">
-          <div>
-            <label class="field-label" for="partner-name">Имя</label>
-            <input id="partner-name" name="name" type="text" autocomplete="name" placeholder="Введите имя" class="field" />
+  <!-- ============ Анкета партнёра — landing-1 «Ready to Transform» (текст + форма). Поля partner-page ============ -->
+  <section id="lead" class="bg-sand py-16 sm:py-24">
+    <div
+      class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16"
+    >
+      <div class="reveal">
+        <p class="eyebrow">Анкета</p>
+        <h2 class="h2 mb-5">Стать <span class="text-gold italic">партнером</span></h2>
+        <p class="mb-10 text-[16px] leading-[1.8] font-light text-slate">
+          Для вступления в программу заполните анкету
+        </p>
+        <ul class="flex flex-col gap-3 text-[16px]">
+          <li>
+            <a href="tel:+79153591200" class="font-serif text-[24px] font-bold hover:text-gold"
+              >+7 (915) 359-12-00</a
+            >
+          </li>
+          <li>
+            <a href="mailto:info@shtorivdom.ru" class="hover:text-gold">info@shtorivdom.ru</a>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
+        style="--d: 0.15s"
+      >
+        <form id="form-partner" class="flex flex-col gap-5" novalidate data-lead-form>
+          <input
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="absolute -left-[9999px] size-0 opacity-0"
+          />
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label class="field-label" for="partner-name">Имя</label>
+              <input
+                id="partner-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                placeholder="Введите имя"
+                class="field"
+              />
+            </div>
+            <div>
+              <label class="field-label" for="partner-phone">Телефон *</label>
+              <input
+                id="partner-phone"
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="Укажите телефон"
+                class="field"
+                data-phone
+              />
+              <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="phone">
+                Введите номер телефона полностью
+              </p>
+            </div>
           </div>
           <div>
-            <label class="field-label" for="partner-phone">Телефон *</label>
-            <input id="partner-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Укажите телефон" class="field" data-phone />
-            <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="phone">Введите номер телефона полностью</p>
+            <label class="field-label" for="partner-city">Город</label>
+            <input
+              id="partner-city"
+              name="city"
+              type="text"
+              autocomplete="address-level2"
+              placeholder="Город"
+              class="field"
+            />
           </div>
-        </div>
-        <div>
-          <label class="field-label" for="partner-city">Город</label>
-          <input id="partner-city" name="city" type="text" autocomplete="address-level2" placeholder="Город" class="field" />
-        </div>
-        <div>
-          <label class="field-label" for="partner-comment">Комментарий</label>
-          <textarea id="partner-comment" name="comment" rows="4" placeholder="Комментарий" class="field resize-none"></textarea>
-        </div>
-        <div>
-          <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-            <input type="checkbox" name="consent" class="mt-0.5 size-4 shrink-0 accent-[#0d223d]" checked data-consent />
-            <span>Я соглашаюсь с правилами по обработке <a href="{{root}}soglasie-na-obrabotku-personalnyh-dannyh/" class="text-navy underline decoration-gold underline-offset-2 hover:text-gold">персональных данных</a></span>
-          </label>
-          <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">Нужно согласие на обработку персональных данных</p>
-        </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
-      </form>
+          <div>
+            <label class="field-label" for="partner-comment">Комментарий</label>
+            <textarea
+              id="partner-comment"
+              name="comment"
+              rows="3"
+              placeholder="Комментарий"
+              class="field resize-none"
+            ></textarea>
+          </div>
+          <div>
+            <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
+              <input
+                type="checkbox"
+                name="consent"
+                class="mt-0.5 size-4 shrink-0 accent-[#0d223d]"
+                checked
+                data-consent
+              />
+              <span
+                >Я соглашаюсь с правилами по обработке
+                <a
+                  href="{{root}}soglasie-na-obrabotku-personalnyh-dannyh/"
+                  class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
+                  >персональных данных</a
+                ></span
+              >
+            </label>
+            <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">
+              Нужно согласие на обработку персональных данных
+            </p>
+          </div>
+          <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">
+            Отправить
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </main>
 <!-- @footer -->

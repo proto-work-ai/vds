@@ -16,12 +16,30 @@
   const GOLD = '#C8A96A';
   const SECTIONS = ['Home', 'About', 'Services', 'Collections', 'Gallery', 'Contact'];
   const FAQ = [
-    { q: 'How long does the custom curtain process take?', a: 'From consultation to installation, our standard lead time is 10–14 working days. For complex motorized systems or large-scale projects, we allocate 3–4 weeks to ensure absolute perfection.' },
-    { q: 'Do you offer in-home consultations?', a: 'Yes — our complimentary in-home consultation service is available across the region. Our design experts visit your space, take measurements, and present curated fabric samples on-site.' },
-    { q: 'What fabric collections do you carry?', a: 'We carry an extensive range including velvet, linen, silk, sheer, jacquard, blackout, and textured fabrics sourced from premium mills in Italy, Belgium, Turkey, and beyond.' },
-    { q: 'Are your curtains truly made to measure?', a: 'Every product we create is custom made to your exact specifications. We hold no off-the-shelf inventory — 100% bespoke craftsmanship is our unwavering standard.' },
-    { q: 'Do you install motorized and smart curtain systems?', a: 'Absolutely. We specialise in motorized curtain systems compatible with KNX, Lutron, Somfy, Google Home, and Amazon Alexa, delivered by certified installation engineers.' },
-    { q: 'What warranty do you offer?', a: 'We provide a comprehensive 2-year warranty covering fabric defects, stitching, and hardware. Motorized and smart systems carry an extended 3-year parts-and-labour warranty.' },
+    {
+      q: 'How long does the custom curtain process take?',
+      a: 'From consultation to installation, our standard lead time is 10–14 working days. For complex motorized systems or large-scale projects, we allocate 3–4 weeks to ensure absolute perfection.',
+    },
+    {
+      q: 'Do you offer in-home consultations?',
+      a: 'Yes — our complimentary in-home consultation service is available across the region. Our design experts visit your space, take measurements, and present curated fabric samples on-site.',
+    },
+    {
+      q: 'What fabric collections do you carry?',
+      a: 'We carry an extensive range including velvet, linen, silk, sheer, jacquard, blackout, and textured fabrics sourced from premium mills in Italy, Belgium, Turkey, and beyond.',
+    },
+    {
+      q: 'Are your curtains truly made to measure?',
+      a: 'Every product we create is custom made to your exact specifications. We hold no off-the-shelf inventory — 100% bespoke craftsmanship is our unwavering standard.',
+    },
+    {
+      q: 'Do you install motorized and smart curtain systems?',
+      a: 'Absolutely. We specialise in motorized curtain systems compatible with KNX, Lutron, Somfy, Google Home, and Amazon Alexa, delivered by certified installation engineers.',
+    },
+    {
+      q: 'What warranty do you offer?',
+      a: 'We provide a comprehensive 2-year warranty covering fabric defects, stitching, and hardware. Motorized and smart systems carry an extended 3-year parts-and-labour warranty.',
+    },
   ];
   // Счётчики: цель и длительность из useCounter(target, 1800).
   const COUNTERS = [15, 5000, 12000];
@@ -32,9 +50,15 @@
   // Умолчание framer-motion для x/y без transition: пружина stiffness 500, damping 25, restSpeed 10.
   // Считаем её кадрами (шаг 10 мс) — WAAPI пружин не умеет.
   const springFrames = (from, to) => {
-    const k = 500, c = 25, d0 = to - from;
-    const w0 = Math.sqrt(k), z = c / (2 * w0), wd = w0 * Math.sqrt(1 - z * z);
-    const x = (t) => to - Math.exp(-z * w0 * t) * (((z * w0 * d0) / wd) * Math.sin(wd * t) + d0 * Math.cos(wd * t));
+    const k = 500,
+      c = 25,
+      d0 = to - from;
+    const w0 = Math.sqrt(k),
+      z = c / (2 * w0),
+      wd = w0 * Math.sqrt(1 - z * z);
+    const x = (t) =>
+      to -
+      Math.exp(-z * w0 * t) * (((z * w0 * d0) / wd) * Math.sin(wd * t) + d0 * Math.cos(wd * t));
     const frames = [];
     let t = 0;
     for (; t < 2; t += 0.01) {
@@ -48,9 +72,18 @@
 
   const ICON = (paths, cls) =>
     `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="${cls}">${paths}</svg>`;
-  const ICON_MENU = ICON('<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>', 'lucide lucide-menu w-6 h-6');
-  const ICON_X = ICON('<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>', 'lucide lucide-x w-6 h-6');
-  const ICON_PLUS = ICON('<path d="M5 12h14"></path><path d="M12 5v14"></path>', 'lucide lucide-plus w-4 h-4');
+  const ICON_MENU = ICON(
+    '<line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line>',
+    'lucide lucide-menu w-6 h-6',
+  );
+  const ICON_X = ICON(
+    '<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>',
+    'lucide lucide-x w-6 h-6',
+  );
+  const ICON_PLUS = ICON(
+    '<path d="M5 12h14"></path><path d="M12 5v14"></path>',
+    'lucide lucide-plus w-4 h-4',
+  );
   const ICON_MINUS = ICON('<path d="M5 12h14"></path>', 'lucide lucide-minus w-4 h-4');
 
   const INTRO_HTML = `
@@ -81,8 +114,20 @@
       </div>
     </div>`;
   // Шапка: значения style из кода при s = true / false.
-  const HEADER_TOP = ['[background:transparent]', '[backdrop-filter:none]', '[border-bottom-width:medium]', '[border-bottom-style:none]', '[border-bottom-color:currentcolor]', '[padding:1.6rem_0px]'];
-  const HEADER_SCROLLED = ['[background:rgba(14,_14,_14,_0.96)]', '[backdrop-filter:blur(14px)]', '[border-bottom:1px_solid_rgba(200,_169,_106,_0.12)]', '[padding:0.85rem_0px]'];
+  const HEADER_TOP = [
+    '[background:transparent]',
+    '[backdrop-filter:none]',
+    '[border-bottom-width:medium]',
+    '[border-bottom-style:none]',
+    '[border-bottom-color:currentcolor]',
+    '[padding:1.6rem_0px]',
+  ];
+  const HEADER_SCROLLED = [
+    '[background:rgba(14,_14,_14,_0.96)]',
+    '[backdrop-filter:blur(14px)]',
+    '[border-bottom:1px_solid_rgba(200,_169,_106,_0.12)]',
+    '[padding:0.85rem_0px]',
+  ];
 
   const $ = (sel, root = document) => root.querySelector(sel);
   const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
@@ -99,7 +144,9 @@
   // Классы, которые появляются только при взаимодействии: браузерная сборка
   // Tailwind должна сгенерировать их заранее, иначе первый показ будет без стилей.
   const PRELOAD = [
-    ...[INTRO_HTML, MENU_HTML, ANSWER_HTML(''), ICON_X, ICON_MINUS].flatMap((h) => [...h.matchAll(/class="([^"]*)"/g)].map((m) => m[1])),
+    ...[INTRO_HTML, MENU_HTML, ANSWER_HTML(''), ICON_X, ICON_MINUS].flatMap((h) =>
+      [...h.matchAll(/class="([^"]*)"/g)].map((m) => m[1]),
+    ),
     ...HEADER_SCROLLED,
     ...HEADER_TOP,
   ];
@@ -118,23 +165,33 @@
     // Логотип: initial {opacity 0, y 16} → animate, transition 0.6 с, задержка 0.1.
     const logo = $('[data-logo]', intro);
     logo.animate(
-      [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }],
-      { duration: 600, delay: 100, easing: FM_EASE_OUT, fill: 'backwards' }
+      [
+        { opacity: 0, transform: 'translateY(16px)' },
+        { opacity: 1, transform: 'none' },
+      ],
+      { duration: 600, delay: 100, easing: FM_EASE_OUT, fill: 'backwards' },
     );
     // Через 700 мс t = true: шторки уезжают, 1.3 с, ease [0.76, 0, 0.24, 1], задержка 0.15.
     for (const panel of $$('[data-panel]', intro)) {
-      panel.animate([{ transform: 'translateX(0)' }, { transform: `translateX(${panel.dataset.panel})` }], {
-        duration: 1300,
-        delay: 700 + 150,
-        easing: 'cubic-bezier(0.76, 0, 0.24, 1)',
-        fill: 'forwards',
-      });
+      panel.animate(
+        [{ transform: 'translateX(0)' }, { transform: `translateX(${panel.dataset.panel})` }],
+        {
+          duration: 1300,
+          delay: 700 + 150,
+          easing: 'cubic-bezier(0.76, 0, 0.24, 1)',
+          fill: 'forwards',
+        },
+      );
     }
     // Через 2300 мс n = true: заставка исчезает (exit opacity 0 за 0.5 с, easeOut) и удаляется.
     // exit логотипа в оригинале не виден (замер: opacity остаётся 1) — гаснет весь оверлей, но
     // AnimatePresence ждёт и exit логотипа (0.6 с + задержка 0.1): узел уходит через 0.7 с.
     setTimeout(() => {
-      intro.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 500, easing: FM_EASE_OUT, fill: 'forwards' });
+      intro.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 500,
+        easing: FM_EASE_OUT,
+        fill: 'forwards',
+      });
       setTimeout(() => intro.remove(), 700);
     }, 2300);
   }
@@ -144,12 +201,18 @@
   // Пока n = false, блок невидим и сдвинут на 44px; появляется в момент ухода заставки.
   // В разметке у блока style="opacity:0" — чтобы текст не мелькнул до запуска скрипта.
   if (heroText) heroText.style.opacity = '';
-  heroText?.animate([{ opacity: 0, transform: 'translateY(44px)' }, { opacity: 1, transform: 'none' }], {
-    duration: 1100,
-    delay: 2300 + 200,
-    easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-    fill: 'backwards',
-  });
+  heroText?.animate(
+    [
+      { opacity: 0, transform: 'translateY(44px)' },
+      { opacity: 1, transform: 'none' },
+    ],
+    {
+      duration: 1100,
+      delay: 2300 + 200,
+      easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      fill: 'backwards',
+    },
+  );
 
   // ---------- шапка и «наверх» ----------
   const backTop = $('button[aria-label="Back to top"]');
@@ -173,15 +236,25 @@
       const fade = [{ opacity: c ? 0 : 1 }, { opacity: c ? 1 : 0 }];
       const spring = springFrames(c ? 8 : 0, c ? 0 : 8);
       if (c) backTop.hidden = false;
-      const a = backTop.animate(fade, { duration: 300, easing: FM_EASE, fill: c ? 'none' : 'forwards' });
-      const b = backTop.animate(spring.frames, { duration: spring.duration, fill: c ? 'none' : 'forwards' });
+      const a = backTop.animate(fade, {
+        duration: 300,
+        easing: FM_EASE,
+        fill: c ? 'none' : 'forwards',
+      });
+      const b = backTop.animate(spring.frames, {
+        duration: spring.duration,
+        fill: c ? 'none' : 'forwards',
+      });
       if (!c) {
-        Promise.all([a.finished, b.finished]).then(() => {
-          if (!backShown) {
-            backTop.hidden = true;
-            backTop.getAnimations().forEach((x) => x.cancel());
-          }
-        }, () => {});
+        Promise.all([a.finished, b.finished]).then(
+          () => {
+            if (!backShown) {
+              backTop.hidden = true;
+              backTop.getAnimations().forEach((x) => x.cancel());
+            }
+          },
+          () => {},
+        );
       }
     }
   };
@@ -190,10 +263,16 @@
 
   // ---------- счётчики ----------
   const statsSection = $('section#home')?.nextElementSibling;
-  const statValues = statsSection ? $$('.text-center > div:first-child', statsSection).slice(0, COUNTERS.length) : [];
+  const statValues = statsSection
+    ? $$('.text-center > div:first-child', statsSection).slice(0, COUNTERS.length)
+    : [];
   if (statValues.length === COUNTERS.length) {
     const suffixes = statValues.map((el) => el.textContent.trim().replace(/^[\d\s .,]+/, ''));
-    const paint = (k) => statValues.forEach((el, i) => (el.textContent = `${Math.round(k * COUNTERS[i]).toLocaleString()}${suffixes[i]}`));
+    const paint = (k) =>
+      statValues.forEach(
+        (el, i) =>
+          (el.textContent = `${Math.round(k * COUNTERS[i]).toLocaleString()}${suffixes[i]}`),
+      );
     paint(0);
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -208,7 +287,7 @@
         };
         requestAnimationFrame(step);
       },
-      { threshold: 0.3 }
+      { threshold: 0.3 },
     );
     io.observe(statsSection);
   }
@@ -224,7 +303,7 @@
         { height: from ? h : '0px', opacity: from ? 1 : 0 },
         { height: to ? h : '0px', opacity: to ? 1 : 0 },
       ],
-      { duration, easing }
+      { duration, easing },
     );
   };
   const closeMenu = () => {
@@ -267,7 +346,9 @@
     });
     openIndex = index;
   };
-  faqButtons.forEach((btn, i) => btn.addEventListener('click', () => setFaq(openIndex === i ? null : i)));
+  faqButtons.forEach((btn, i) =>
+    btn.addEventListener('click', () => setFaq(openIndex === i ? null : i)),
+  );
 
   // ---------- форма ----------
   // В оригинале onSubmit только отменяет отправку — страница не перезагружается.

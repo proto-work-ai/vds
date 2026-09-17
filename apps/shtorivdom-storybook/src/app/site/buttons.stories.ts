@@ -75,7 +75,7 @@ export const ВсеВарианты: StoryObj = {
             <a siteButton href="#">Стать партнером</a>
           </div>
           <p class="text-[13px] text-cream/60">«Заявка» в шапке — size sm:</p>
-          <div class="flex items-center gap-5"><span class="text-[15px] font-bold text-cream">+7 (925) 594-61-17</span><a siteButton size="sm" href="#">Заявка</a></div>
+          <div class="flex items-center gap-5"><span class="text-[15px] font-bold text-cream">+7 (915) 359-12-00</span><a siteButton size="sm" href="#">Заявка</a></div>
           <p class="text-[13px] text-cream/60">Мобильное меню и боковая панель раздела — на всю ширину:</p>
           <div class="max-w-[320px] space-y-3"><a siteButton href="#" class="!flex !justify-center !border-0">Оставить заявку</a><a siteButton [block]="true" href="#">Пригласить дизайнера <site-icon name="arrow-right" [size]="14" /></a></div>
         </div>
@@ -156,7 +156,7 @@ export const СсылкиКнопки: StoryObj<LinkArgs> = {
           </div>
           <div class="space-y-5 bg-[#12294a] p-8">
             <div><p class="mb-2 text-[12px] text-cream/60">card-dark — карточка коллекции</p><a href="#" siteTextLink="card-dark">Подробнее</a></div>
-            <div><p class="mb-2 text-[12px] text-cream/60">Телефон в шапке</p><a href="#" class="text-[15px] font-bold whitespace-nowrap text-cream transition-colors hover:text-gold">+7 (925) 594-61-17</a></div>
+            <div><p class="mb-2 text-[12px] text-cream/60">Телефон в шапке</p><a href="#" class="text-[15px] font-bold whitespace-nowrap text-cream transition-colors hover:text-gold">+7 (915) 359-12-00</a></div>
             <div><p class="mb-2 text-[12px] text-cream/60">«Открыть карту →»</p><span class="text-[12px] font-bold tracking-[.1em] text-gold uppercase">Открыть карту →</span></div>
           </div>
         </div>
@@ -174,7 +174,7 @@ export const ЗвонокСтрелкиТочки: StoryObj = {
         <div class="bg-navy p-8">
           <p class="mb-3 text-[12px] text-cream/60">Кнопка звонка (мобильная шапка) и бургер</p>
           <div class="flex items-center gap-1">
-            <a href="tel:+79255946117" class="grid size-11 place-items-center text-gold" aria-label="Позвонить"><site-icon name="phone" /></a>
+            <a href="tel:+79153591200" class="grid size-11 place-items-center text-gold" aria-label="Позвонить"><site-icon name="phone" /></a>
             <button siteBurger></button>
             <button siteBurger [expanded]="true"></button>
           </div>

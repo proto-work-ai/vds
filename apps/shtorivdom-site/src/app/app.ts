@@ -1,5 +1,14 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
-import { ApplicationRef, ChangeDetectionStrategy, Component, computed, DestroyRef, inject, PLATFORM_ID, signal } from '@angular/core';
+import {
+  ApplicationRef,
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  DestroyRef,
+  inject,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SiteHeader, SiteToTop } from '@shtorivdom/site-kit';
@@ -33,7 +42,7 @@ export class App {
     this._router.events
       .pipe(
         filter((e) => e instanceof NavigationEnd),
-        takeUntilDestroyed()
+        takeUntilDestroyed(),
       )
       .subscribe((e) => this.onNavigated(e.urlAfterRedirects));
 
@@ -72,7 +81,15 @@ export class App {
 
   /** Внутренние ссылки шаблонов (обычные href) — переходом роутера, «#якорь» — прокруткой на текущей странице. */
   protected onClick(event: MouseEvent): void {
-    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (
+      event.defaultPrevented ||
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
     const a = (event.target as Element | null)?.closest?.('a[href]') as HTMLAnchorElement | null;
     if (!a || (a.target && a.target !== '_self') || a.hasAttribute('download')) return;
     const href = a.getAttribute('href') ?? '';

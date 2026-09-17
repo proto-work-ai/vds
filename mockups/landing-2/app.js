@@ -10,59 +10,63 @@
    Классы состояний взяты из разметки перевода — те же значения, что задавал React. */
 (() => {
   const DATA = {
-    "hero": [
+    hero: [
       {
-        "img": "images/photo-1555041469-a586c61ea9bc-1920x1080.jpg",
-        "tag": "Signature Collection",
-        "heading": "Where Luxury",
-        "heading2": "Meets Elegance",
-        "sub": "Handcrafted curtains that transform your living spaces into timeless sanctuaries of beauty."
+        img: 'images/photo-1555041469-a586c61ea9bc-1920x1080.jpg',
+        tag: 'Signature Collection',
+        heading: 'Where Luxury',
+        heading2: 'Meets Elegance',
+        sub: 'Handcrafted curtains that transform your living spaces into timeless sanctuaries of beauty.',
       },
       {
-        "img": "images/photo-1600607687939-ce8a6c25118c-1920x1080.jpg",
-        "tag": "Bespoke Interiors",
-        "heading": "Crafted For",
-        "heading2": "Connoisseurs",
-        "sub": "Every drape, every fold — a masterpiece of precision and unparalleled craftsmanship."
+        img: 'images/photo-1600607687939-ce8a6c25118c-1920x1080.jpg',
+        tag: 'Bespoke Interiors',
+        heading: 'Crafted For',
+        heading2: 'Connoisseurs',
+        sub: 'Every drape, every fold — a masterpiece of precision and unparalleled craftsmanship.',
       },
       {
-        "img": "images/photo-1586023492125-27b2c045efd7-1920x1080.jpg",
-        "tag": "Premium Fabrics",
-        "heading": "Redefine Your",
-        "heading2": "Living Space",
-        "sub": "Explore our exclusive range of premium curtains, drapes, and window treatments."
-      }
+        img: 'images/photo-1586023492125-27b2c045efd7-1920x1080.jpg',
+        tag: 'Premium Fabrics',
+        heading: 'Redefine Your',
+        heading2: 'Living Space',
+        sub: 'Explore our exclusive range of premium curtains, drapes, and window treatments.',
+      },
     ],
-    "testimonials": [
+    testimonials: [
       {
-        "name": "Priya Krishnamurthy",
-        "role": "Interior Designer, Chennai",
-        "quote": "San Curtains has been my go-to partner for every luxury project. The quality of their Royal Velvet collection is simply unmatched — my clients are always stunned.",
-        "rating": 5,
-        "img": "images/photo-1438761681033-6461ffad8d80-100x100.jpg"
+        name: 'Priya Krishnamurthy',
+        role: 'Interior Designer, Chennai',
+        quote:
+          'San Curtains has been my go-to partner for every luxury project. The quality of their Royal Velvet collection is simply unmatched — my clients are always stunned.',
+        rating: 5,
+        img: 'images/photo-1438761681033-6461ffad8d80-100x100.jpg',
       },
       {
-        "name": "Rajesh Mehta",
-        "role": "Homeowner, Coimbatore",
-        "quote": "We renovated our entire villa with San Curtains. From consultation to installation, the experience was flawless. The craftsmanship is extraordinary — worth every rupee.",
-        "rating": 5,
-        "img": "images/photo-1507003211169-0a1dd7228f2d-100x100.jpg"
+        name: 'Rajesh Mehta',
+        role: 'Homeowner, Coimbatore',
+        quote:
+          'We renovated our entire villa with San Curtains. From consultation to installation, the experience was flawless. The craftsmanship is extraordinary — worth every rupee.',
+        rating: 5,
+        img: 'images/photo-1507003211169-0a1dd7228f2d-100x100.jpg',
       },
       {
-        "name": "Deepa Subramaniam",
-        "role": "Architect, Bangalore",
-        "quote": "I specify San Curtains in all my high-end residential projects. Their attention to detail, timely delivery, and bespoke customisation capabilities are second to none.",
-        "rating": 5,
-        "img": "images/photo-1544005313-94ddf0286df2-100x100.jpg"
+        name: 'Deepa Subramaniam',
+        role: 'Architect, Bangalore',
+        quote:
+          'I specify San Curtains in all my high-end residential projects. Their attention to detail, timely delivery, and bespoke customisation capabilities are second to none.',
+        rating: 5,
+        img: 'images/photo-1544005313-94ddf0286df2-100x100.jpg',
       },
       {
-        "name": "Arjun Nair",
-        "role": "Hotel Owner, Kochi",
-        "quote": "We outfitted all 48 suites of our boutique hotel with San Curtains. The Midnight Blackout series is a guest favourite — perfectly blends style with functionality.",
-        "rating": 5,
-        "img": "images/photo-1500648767791-00dcc994a43e-100x100.jpg"
-      }
-    ]
+        name: 'Arjun Nair',
+        role: 'Hotel Owner, Kochi',
+        quote:
+          'We outfitted all 48 suites of our boutique hotel with San Curtains. The Midnight Blackout series is a guest favourite — perfectly blends style with functionality.',
+        rating: 5,
+        img: 'images/photo-1500648767791-00dcc994a43e-100x100.jpg',
+      },
+    ],
   };
   // Разделы страницы: нужны кнопкам прокрутки ещё при первом рендере слайда.
   const SECTIONS = ['home', 'collections', 'gallery', 'about', 'contact'];
@@ -91,8 +95,15 @@
   // ---------- первый экран ----------
   const hero = $('section#home');
   if (hero && DATA?.hero?.length) {
-    const layers = [...hero.children].filter((el) => el.tagName === 'DIV' && el.querySelector(':scope > img'));
-    const dots = [...hero.children].find((el) => el.tagName === 'DIV' && el.children.length === DATA.hero.length && [...el.children].every((c) => c.tagName === 'BUTTON'));
+    const layers = [...hero.children].filter(
+      (el) => el.tagName === 'DIV' && el.querySelector(':scope > img'),
+    );
+    const dots = [...hero.children].find(
+      (el) =>
+        el.tagName === 'DIV' &&
+        el.children.length === DATA.hero.length &&
+        [...el.children].every((c) => c.tagName === 'BUTTON'),
+    );
     const textBox = $('h1', hero)?.parentElement;
     const LAYER_ON = ['[opacity:1]'];
     const LAYER_OFF = ['[opacity:0]'];
@@ -112,7 +123,9 @@
         const img = $(':scope > img', layer);
         if (img) swap(img, k === i ? IMG_OFF : IMG_ON, k === i ? IMG_ON : IMG_OFF);
       });
-      [...(dots?.children ?? [])].forEach((dot, k) => swap(dot, k === i ? DOT_OFF : DOT_ON, k === i ? DOT_ON : DOT_OFF));
+      [...(dots?.children ?? [])].forEach((dot, k) =>
+        swap(dot, k === i ? DOT_OFF : DOT_ON, k === i ? DOT_ON : DOT_OFF),
+      );
       const box = textBoxRef.current;
       if (box) {
         const slide = DATA.hero[i];
@@ -150,7 +163,12 @@
   if (testimonials && DATA?.testimonials?.length) {
     const items = DATA.testimonials;
     const cardRef = { current: $('blockquote', testimonials).parentElement };
-    const groups = [...cardRef.current.parentElement.children].filter((el) => el.tagName === 'DIV' && [...el.children].length === items.length && [...el.children].every((c) => c.tagName === 'BUTTON'));
+    const groups = [...cardRef.current.parentElement.children].filter(
+      (el) =>
+        el.tagName === 'DIV' &&
+        [...el.children].length === items.length &&
+        [...el.children].every((c) => c.tagName === 'BUTTON'),
+    );
     const dots = groups.find((g) => !$('img', g));
     const thumbs = groups.find((g) => $('img', g));
     const DOT_ON = ['[width:32px]', '[background:rgb(191,_155,_48)]'];
@@ -183,8 +201,12 @@
         // У части кнопок в разметке остался data-reveal из снимка — держим его в согласии.
         if (d.hasAttribute('data-reveal')) d.dataset.reveal = d.className;
       };
-      [...(dots?.children ?? [])].forEach((d, k) => sync(d, k === i ? DOT_OFF : DOT_ON, k === i ? DOT_ON : DOT_OFF));
-      [...(thumbs?.children ?? [])].forEach((d, k) => sync(d, k === i ? THUMB_OFF : THUMB_ON, k === i ? THUMB_ON : THUMB_OFF));
+      [...(dots?.children ?? [])].forEach((d, k) =>
+        sync(d, k === i ? DOT_OFF : DOT_ON, k === i ? DOT_ON : DOT_OFF),
+      );
+      [...(thumbs?.children ?? [])].forEach((d, k) =>
+        sync(d, k === i ? THUMB_OFF : THUMB_ON, k === i ? THUMB_ON : THUMB_OFF),
+      );
     };
     const start = () => {
       clearInterval(timer);
@@ -192,7 +214,9 @@
     };
     // В оригинале клик не перезапускает интервал.
     for (const group of [dots, thumbs]) {
-      [...(group?.children ?? [])].forEach((btn, k) => btn.addEventListener('click', () => render(k)));
+      [...(group?.children ?? [])].forEach((btn, k) =>
+        btn.addEventListener('click', () => render(k)),
+      );
     }
     render(0);
     start();
@@ -218,10 +242,16 @@
 
   // ---------- мобильное меню ----------
   const nav = $('nav');
-  const burger = nav && $$('button', nav).find((b) => b.querySelectorAll('span').length === 3 && !b.textContent.trim());
+  const burger =
+    nav &&
+    $$('button', nav).find((b) => b.querySelectorAll('span').length === 3 && !b.textContent.trim());
   let menu = null;
   const lines = burger ? $$('span', burger) : [];
-  const OPEN = ['[transform:rotate(45deg)_translate(5px,5px)]', '[transform:scaleX(0)]', '[transform:rotate(-45deg)_translate(5px,-5px)]'];
+  const OPEN = [
+    '[transform:rotate(45deg)_translate(5px,5px)]',
+    '[transform:scaleX(0)]',
+    '[transform:rotate(-45deg)_translate(5px,-5px)]',
+  ];
   function closeMenu() {
     if (!menu) return;
     menu.remove();
@@ -273,13 +303,18 @@
   // ---------- галерея ----------
   const gallery = $('section#gallery');
   if (gallery) {
-    const photos = $$('img', gallery).map((img) => ({ src: img.getAttribute('src'), label: img.alt }));
+    const photos = $$('img', gallery).map((img) => ({
+      src: img.getAttribute('src'),
+      label: img.alt,
+    }));
     let overlay = null;
     let current = 0;
     const show = (i) => {
       current = (i + photos.length) % photos.length;
       const p = photos[current];
-      overlay.querySelector('img').src = p.src.replace('w=600', 'w=1200').replace('w=800', 'w=1200');
+      overlay.querySelector('img').src = p.src
+        .replace('w=600', 'w=1200')
+        .replace('w=800', 'w=1200');
       overlay.querySelector('img').alt = p.label;
       overlay.querySelector('[data-label]').textContent = p.label;
     };

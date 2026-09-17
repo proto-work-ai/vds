@@ -8,16 +8,11 @@
   "targets": {
     "build": {
       "executor": "@angular/build:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/shtorivdom-site",
         "browser": "apps/shtorivdom-site/src/main.ts",
-        "polyfills": [
-          "zone.js",
-          "@angular/localize/init"
-        ],
+        "polyfills": ["zone.js", "@angular/localize/init"],
         "tsConfig": "apps/shtorivdom-site/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
@@ -29,6 +24,11 @@
             "glob": "**/*",
             "input": "apps/shtorivdom-site/api",
             "output": "api"
+          },
+          {
+            "glob": "*.svg",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
           }
         ],
         "styles": [
@@ -40,10 +40,14 @@
           "@fontsource/playfair-display/latin-700.css",
           "@fontsource/playfair-display/latin-400-italic.css",
           "@fontsource/playfair-display/latin-700-italic.css",
+          "node_modules/@taiga-ui/styles/taiga-ui-theme.less",
           "apps/shtorivdom-site/src/styles.css"
         ],
         "server": "apps/shtorivdom-site/src/main.server.ts",
-        "outputMode": "static"
+        "outputMode": "static",
+        "stylePreprocessorOptions": {
+          "includePaths": ["node_modules/@taiga-ui/styles"]
+        }
       },
       "configurations": {
         "production": {

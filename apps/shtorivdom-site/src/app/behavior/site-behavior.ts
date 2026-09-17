@@ -5,9 +5,12 @@
  * installGlobal — один раз (лайтбокс, Escape в выпадающем меню). Шапка и «наверх» — компоненты site-kit.
  */
 import { buildLeadEmail, LeadData, LeadKind } from './lead-email';
+import { DEFAULT_CONTACT_CONFIG } from '../contact-config';
 
-const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => r.querySelector<T>(s);
-const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) => Array.from(r.querySelectorAll<T>(s));
+const $ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) =>
+  r.querySelector<T>(s);
+const $$ = <T extends Element = HTMLElement>(s: string, r: ParentNode = document) =>
+  Array.from(r.querySelectorAll<T>(s));
 
 const timers = new WeakMap<HTMLElement, ReturnType<typeof setTimeout>>();
 // Раскрытие «до auto»: анимируем к scrollHeight, после перехода снимаем высоту
@@ -16,7 +19,7 @@ const openH = (el: HTMLElement, ms = 300) => {
   clearTimeout(timers.get(el));
   timers.set(
     el,
-    setTimeout(() => (el.style.height = 'auto'), ms)
+    setTimeout(() => (el.style.height = 'auto'), ms),
   );
 };
 const closeH = (el: HTMLElement) => {
@@ -34,7 +37,14 @@ const mask = (v: string) => {
   if (d[0] !== '7') d = '7' + d;
   d = d.slice(0, 11);
   const p = [d.slice(1, 4), d.slice(4, 7), d.slice(7, 9), d.slice(9, 11)];
-  return '+7' + (p[0] ? ` (${p[0]}` : '') + (p[0].length === 3 ? ')' : '') + (p[1] ? ` ${p[1]}` : '') + (p[2] ? `-${p[2]}` : '') + (p[3] ? `-${p[3]}` : '');
+  return (
+    '+7' +
+    (p[0] ? ` (${p[0]}` : '') +
+    (p[0].length === 3 ? ')' : '') +
+    (p[1] ? ` ${p[1]}` : '') +
+    (p[2] ? `-${p[2]}` : '') +
+    (p[3] ? `-${p[3]}` : '')
+  );
 };
 
 type Ym = (id: number, action: string, goal: string) => void;
@@ -45,7 +55,8 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
 
   // ---------- появление ----------
   const reveals = $$('.reveal', root);
-  if (reduced || !('IntersectionObserver' in window)) reveals.forEach((el) => el.classList.add('is-in'));
+  if (reduced || !('IntersectionObserver' in window))
+    reveals.forEach((el) => el.classList.add('is-in'));
   else {
     const io = new IntersectionObserver(
       (entries) =>
@@ -55,7 +66,7 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
             io.unobserve(e.target);
           }
         }),
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
     );
     reveals.forEach((el) => io.observe(el));
     signal.addEventListener('abort', () => io.disconnect());
@@ -75,12 +86,13 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
           const t0 = performance.now();
           const tick = (t: number) => {
             const k = Math.min(1, (t - t0) / 1800);
-            el.textContent = fmt(Math.round(to * (1 - Math.pow(1 - k, 3)))) + (el.dataset['suffix'] ?? '');
+            el.textContent =
+              fmt(Math.round(to * (1 - Math.pow(1 - k, 3)))) + (el.dataset['suffix'] ?? '');
             if (k < 1 && !signal.aborted) requestAnimationFrame(tick);
           };
           requestAnimationFrame(tick);
         }),
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
     counters.forEach((el) => io.observe(el));
     signal.addEventListener('abort', () => io.disconnect());
@@ -96,8 +108,13 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
         ? data.filter((item): item is CalcItem => {
             if (!item || typeof item !== 'object') return false;
             const value = item as Record<string, unknown>;
-            return typeof value['key'] === 'string' && typeof value['title'] === 'string'
-              && typeof value['unit'] === 'string' && typeof value['min'] === 'number' && typeof value['image'] === 'string';
+            return (
+              typeof value['key'] === 'string' &&
+              typeof value['title'] === 'string' &&
+              typeof value['unit'] === 'string' &&
+              typeof value['min'] === 'number' &&
+              typeof value['image'] === 'string'
+            );
           })
         : [];
     } catch {
@@ -115,40 +132,89 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     if (!kinds || !widthIn || !heightIn || !rowsBox || !totalBox) return;
     const rod = catalogData.find((item) => item.key === 'curtain-rods');
     const curtains = catalogData.filter((item) => item.key !== 'curtain-rods');
-    const money = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    const money = (n: number) =>
+      Math.round(n)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     const dec = (n: number) => String(n).replace('.', ',');
-    kinds.innerHTML = curtains.map((item, index) => '<label class="calc-option"><input type="radio" name="kind" value="' + item.key + '" class="sr-only"' + (index === 0 ? ' checked' : '') + ' />'
-      + '<span class="calc-option-box"><img src="' + item.image + '" alt="" loading="lazy" class="calc-kind-img" />'
-      + '<b class="font-serif text-[17px] leading-tight">' + item.title + '</b><span class="text-[13px] text-slate/80">от ' + money(item.min) + ' ₽/' + item.unit + '</span></span></label>').join('');
+    kinds.innerHTML = curtains
+      .map(
+        (item, index) =>
+          '<label class="calc-option"><input type="radio" name="kind" value="' +
+          item.key +
+          '" class="sr-only"' +
+          (index === 0 ? ' checked' : '') +
+          ' />' +
+          '<span class="calc-option-box"><img src="' +
+          item.image +
+          '" alt="" loading="lazy" class="calc-kind-img" />' +
+          '<b class="font-serif text-[17px] leading-tight">' +
+          item.title +
+          '</b><span class="text-[13px] text-slate/80">от ' +
+          money(item.min) +
+          ' ₽/' +
+          item.unit +
+          '</span></span></label>',
+      )
+      .join('');
     const render = () => {
-      const selected = curtains.find((item) => item.key === $('input[name="kind"]:checked', calc)?.getAttribute('value')) ?? curtains[0];
+      const selected =
+        curtains.find(
+          (item) => item.key === $('input[name="kind"]:checked', calc)?.getAttribute('value'),
+        ) ?? curtains[0];
       if (!selected) return;
       const byMeter = selected.unit === 'м.пог.';
-      const width = Number(widthIn.value), height = Number(heightIn.value);
+      const width = Number(widthIn.value),
+        height = Number(heightIn.value);
       const bad = !(width >= 30 && width <= 1500 && height >= 30 && height <= 600);
       $('[data-calc-error]', calc)?.classList.toggle('hidden', !bad);
       $('[data-calc-fullness-step]', calc)?.classList.toggle('hidden', !byMeter);
-      $('[data-calc-width-label]', calc)!.textContent = byMeter ? 'Ширина карниза, см' : 'Ширина окна (створки), см';
-      $('[data-calc-height-label]', calc)!.textContent = byMeter ? 'Высота от карниза до пола, см' : 'Высота окна (створки), см';
+      $('[data-calc-width-label]', calc)!.textContent = byMeter
+        ? 'Ширина карниза, см'
+        : 'Ширина окна (створки), см';
+      $('[data-calc-height-label]', calc)!.textContent = byMeter
+        ? 'Высота от карниза до пола, см'
+        : 'Высота окна (створки), см';
       $('[data-calc-title]', calc)!.textContent = selected.title;
       const rows: string[][] = [];
       let total = 0;
       let summary = '';
       if (!bad) {
-        const widthMeters = width / 100, heightMeters = height / 100;
+        const widthMeters = width / 100,
+          heightMeters = height / 100;
         if (byMeter) {
-          const fullness = Number($('input[name="fullness"]:checked', calc)?.getAttribute('value') ?? 2);
+          const fullness = Number(
+            $('input[name="fullness"]:checked', calc)?.getAttribute('value') ?? 2,
+          );
           const fabric = Math.ceil((widthMeters * fullness + 0.2) * 10) / 10;
           const cut = Math.ceil((heightMeters + 0.3) * 10) / 10;
           total = fabric * selected.min;
-          rows.push(['Ширина × пышность', money(width) + ' см × ' + dec(fullness)], ['Ткани нужно', dec(fabric) + ' м.пог.'], ['Высота полотна с подгибами', dec(cut) + ' м']);
+          rows.push(
+            ['Ширина × пышность', money(width) + ' см × ' + dec(fullness)],
+            ['Ткани нужно', dec(fabric) + ' м.пог.'],
+            ['Высота полотна с подгибами', dec(cut) + ' м'],
+          );
           if (cut > 3) rows.push(['Внимание', 'выше 3 м — нужна ткань большой высоты или сшивка']);
-          summary = selected.title + ': карниз ' + width + ' см, высота ' + height + ' см, пышность ×' + dec(fullness) + ', ткани ~' + dec(fabric) + ' м.пог.';
+          summary =
+            selected.title +
+            ': карниз ' +
+            width +
+            ' см, высота ' +
+            height +
+            ' см, пышность ×' +
+            dec(fullness) +
+            ', ткани ~' +
+            dec(fabric) +
+            ' м.пог.';
         } else {
           const area = Math.max(0.5, Math.ceil(widthMeters * heightMeters * 100) / 100);
           total = area * selected.min;
-          rows.push(['Размер', money(width) + ' × ' + money(height) + ' см'], ['Площадь', dec(area) + ' м²']);
-          summary = selected.title + ': ' + width + ' × ' + height + ' см, площадь ~' + dec(area) + ' м²';
+          rows.push(
+            ['Размер', money(width) + ' × ' + money(height) + ' см'],
+            ['Площадь', dec(area) + ' м²'],
+          );
+          summary =
+            selected.title + ': ' + width + ' × ' + height + ' см, площадь ~' + dec(area) + ' м²';
         }
         rows.push([selected.title, 'от ' + money(total) + ' ₽']);
         if (rodIn?.checked && rod) {
@@ -159,10 +225,24 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
           summary += '; карниз ~' + dec(rodMeters) + ' м';
         }
       }
-      rowsBox.innerHTML = rows.map(([label, value]) => '<div class="flex items-baseline justify-between gap-4 py-2.5"><dt class="text-cream/70">' + label + '</dt><dd class="text-right font-bold">' + value + '</dd></div>').join('');
+      rowsBox.innerHTML = rows
+        .map(
+          ([label, value]) =>
+            '<div class="flex items-baseline justify-between gap-4 py-2.5"><dt class="text-cream/70">' +
+            label +
+            '</dt><dd class="text-right font-bold">' +
+            value +
+            '</dd></div>',
+        )
+        .join('');
       totalBox.textContent = bad ? '—' : 'от ' + money(total) + ' ₽';
-      const hidden = $('[data-inline-lead="calc"] [data-inline-comment]') as HTMLInputElement | null;
-      if (hidden) hidden.value = summary ? 'Расчёт с калькулятора — ' + summary + '. Ориентировочно от ' + money(total) + ' ₽.' : '';
+      const hidden = $(
+        '[data-inline-lead="calc"] [data-inline-comment]',
+      ) as HTMLInputElement | null;
+      if (hidden)
+        hidden.value = summary
+          ? 'Расчёт с калькулятора — ' + summary + '. Ориентировочно от ' + money(total) + ' ₽.'
+          : '';
     };
     calc.addEventListener('input', render, opt);
     calc.addEventListener('change', render, opt);
@@ -211,7 +291,11 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     const dots = $$('[data-dot]', slider);
     const avatar = $('[data-avatar]', slider) as HTMLElement | null;
     // Аватарки отзывов (public/assets/img/avatars), по одной на слайд
-    const AVATARS = ['/assets/img/avatars/marina.png', '/assets/img/avatars/irina.jpg', '/assets/img/avatars/sergey.png'];
+    const AVATARS = [
+      '/assets/img/avatars/marina.png',
+      '/assets/img/avatars/irina.jpg',
+      '/assets/img/avatars/sergey.png',
+    ];
     const setAvatar = (i: number) => {
       if (!avatar) return;
       avatar.classList.remove('bg-sand');
@@ -242,17 +326,25 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     // Без автопрокрутки. Свайп пальцем: влево — следующий, вправо — предыдущий; короткие и вертикальные движения не листают.
     let touchX: number | null = null;
     let touchY = 0;
-    slider.addEventListener('touchstart', (e) => {
-      touchX = e.touches[0].clientX;
-      touchY = e.touches[0].clientY;
-    }, { passive: true, signal });
-    slider.addEventListener('touchend', (e) => {
-      if (touchX === null) return;
-      const dx = e.changedTouches[0].clientX - touchX;
-      const dy = e.changedTouches[0].clientY - touchY;
-      touchX = null;
-      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(index + (dx < 0 ? 1 : -1));
-    }, { passive: true, signal });
+    slider.addEventListener(
+      'touchstart',
+      (e) => {
+        touchX = e.touches[0].clientX;
+        touchY = e.touches[0].clientY;
+      },
+      { passive: true, signal },
+    );
+    slider.addEventListener(
+      'touchend',
+      (e) => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        const dy = e.changedTouches[0].clientY - touchY;
+        touchX = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(index + (dx < 0 ? 1 : -1));
+      },
+      { passive: true, signal },
+    );
   }
 
   // ---------- FAQ: открыт один ответ ----------
@@ -267,8 +359,8 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
         const a = other.nextElementSibling as HTMLElement;
         if (on) openH(a, 280);
         else closeH(a);
-      })
-    })
+      });
+    }),
   );
 
   // ---------- формы заявки ----------
@@ -287,7 +379,8 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
             : 'order');
 
   const sendLead = async (form: HTMLFormElement) => {
-    const v = (n: string) => (form.elements.namedItem(n) as HTMLInputElement | null)?.value?.trim() || undefined;
+    const v = (n: string) =>
+      (form.elements.namedItem(n) as HTMLInputElement | null)?.value?.trim() || undefined;
     const data: LeadData = {
       name: v('name'),
       phone: v('phone'),
@@ -299,7 +392,11 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     };
     const kind = leadKind(form, data);
     if (isTest) {
-      const lead = buildLeadEmail(kind, data, { pageTitle: document.title, pageUrl: location.href.split('#')[0], sentAt: new Date() });
+      const lead = buildLeadEmail(kind, data, {
+        pageTitle: document.title,
+        pageUrl: location.href.split('#')[0],
+        sentAt: new Date(),
+      });
       console.log('[заявка] письмо в салон:', lead.subject, '\n' + lead.text, '\n', lead.html);
       return;
     }
@@ -317,7 +414,10 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
         pageUrl: location.href.split('#')[0],
       }),
     });
-    const answer = (await res.json().catch(() => ({ ok: res.ok }))) as { ok?: boolean; error?: string };
+    const answer = (await res.json().catch(() => ({ ok: res.ok }))) as {
+      ok?: boolean;
+      error?: string;
+    };
     if (!res.ok || !answer.ok) throw new Error(answer.error || 'Не удалось отправить заявку');
     (window as unknown as { ym?: Ym }).ym?.(108545164, 'reachGoal', 'form-submit');
   };
@@ -326,15 +426,16 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     input.addEventListener('input', () => {
       input.value = mask(input.value);
       input.classList.remove('is-error');
-    })
+    }),
   );
 
-  $$<HTMLFormElement>('[data-lead-form]', root).forEach((form) => {
+  $$<HTMLFormElement>('[data-lead-form]:not([data-angular-lead])', root).forEach((form) => {
     const phone = $<HTMLInputElement>('[data-phone]', form);
     const consent = $<HTMLInputElement>('[data-consent]', form);
     const submit = $<HTMLButtonElement>('button[type="submit"]', form);
     form.dataset['openedAt'] = String(Date.now()); // слишком быстрая отправка — бот
-    const err = (name: string, on: boolean) => $(`[data-error="${name}"]`, form)?.classList.toggle('hidden', !on);
+    const err = (name: string, on: boolean) =>
+      $(`[data-error="${name}"]`, form)?.classList.toggle('hidden', !on);
     consent?.addEventListener('change', () => consent.checked && err('consent', false));
     phone?.addEventListener('input', () => err('phone', false));
     form.addEventListener('submit', (e) => {
@@ -369,8 +470,9 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
           p.className = 'text-[13px] text-[#c0392b]';
           p.setAttribute('role', 'alert');
           p.setAttribute('data-send-error', '');
-          const reason = error instanceof Error && error.message ? error.message : 'Не удалось отправить заявку';
-          p.textContent = `${reason}. Попробуйте ещё раз или позвоните: +7 (925) 594-61-17`;
+          const reason =
+            error instanceof Error && error.message ? error.message : 'Не удалось отправить заявку';
+          p.textContent = `${reason}. Попробуйте ещё раз или позвоните: ${DEFAULT_CONTACT_CONFIG.phone}`;
           form.appendChild(p);
         });
     });
@@ -404,15 +506,27 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     });
     const fromHash = () => tabs.find((t) => '#' + t.dataset['tab'] === location.hash);
     select(fromHash() ?? tabs[0]);
-    addEventListener('hashchange', () => {
-      const t = fromHash();
-      if (t) select(t);
-    }, opt);
+    addEventListener(
+      'hashchange',
+      () => {
+        const t = fromHash();
+        if (t) select(t);
+      },
+      opt,
+    );
   });
 
   // «Пригласить дизайнера» в первом экране — фокус на поле имени
   $$('[data-focus-form]', root).forEach((a) =>
-    a.addEventListener('click', () => setTimeout(() => $<HTMLInputElement>('#hero-form input[name="name"]', root)?.focus({ preventScroll: true }), 400))
+    a.addEventListener('click', () =>
+      setTimeout(
+        () =>
+          $<HTMLInputElement>('#hero-form input[name="name"]', root)?.focus({
+            preventScroll: true,
+          }),
+        400,
+      ),
+    ),
   );
 
   // ---------- ленты фото каталога ----------
@@ -424,7 +538,8 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
       if (prev) prev.disabled = strip.scrollLeft <= 2;
       if (next) next.disabled = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 2;
     };
-    const go = (dir: number) => strip.scrollBy({ left: dir * strip.clientWidth * 0.9, behavior: 'smooth' });
+    const go = (dir: number) =>
+      strip.scrollBy({ left: dir * strip.clientWidth * 0.9, behavior: 'smooth' });
     prev?.addEventListener('click', () => go(-1));
     next?.addEventListener('click', () => go(1));
     strip.addEventListener('scroll', sync, { passive: true });
@@ -439,7 +554,7 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
       const model = a.dataset['order'] ?? '';
       if (field && !field.value) field.value = `Интересует: ${model}`;
       if (field?.form) field.form.dataset['orderModel'] = model;
-    })
+    }),
   );
 }
 
@@ -451,7 +566,8 @@ export function installGlobal(doc: Document): void {
   installed = true;
 
   doc.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && (e.target as Element | null)?.closest?.('.has-dropdown')) (doc.activeElement as HTMLElement | null)?.blur();
+    if (e.key === 'Escape' && (e.target as Element | null)?.closest?.('.has-dropdown'))
+      (doc.activeElement as HTMLElement | null)?.blur();
   });
 
   const lb = doc.createElement('div');
@@ -460,7 +576,8 @@ export function installGlobal(doc: Document): void {
   lb.setAttribute('aria-modal', 'true');
   lb.setAttribute('aria-label', 'Просмотр фото');
   lb.setAttribute('data-lightbox', '');
-  const icon = (d: string) => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${d}"/></svg>`;
+  const icon = (d: string) =>
+    `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${d}"/></svg>`;
   lb.innerHTML = `
     <button type="button" class="cat-lb-btn cat-lb-close" aria-label="Закрыть" data-lb-close>${icon('M18 6 6 18M6 6l12 12')}</button>
     <button type="button" class="cat-lb-btn cat-lb-prev" aria-label="Предыдущее фото" data-lb-prev>${icon('m15 18-6-6 6-6')}</button>

@@ -28,7 +28,7 @@ export const Поля: StoryObj = {
           <input siteField id="f5" placeholder="Укажите телефон" [(sitePhoneMask)]="phone" />
           <p class="mt-2 text-[13px] text-slate/60">Значение: {{ phone || '—' }}</p>
         </div>
-        <div><label class="field-label" for="f6">Комментарий — textarea</label><textarea siteField id="f6" rows="4" placeholder="Комментарий"></textarea></div>
+        <div><label class="field-label" for="f6">Комментарий — textarea</label><textarea siteField id="f6" rows="3" placeholder="Комментарий"></textarea></div>
         <div class="md:col-span-2 grid gap-6 md:grid-cols-2">
           <div class="bg-white p-6"><p class="mb-3 text-[12px] text-slate/60">Согласие — обычное</p><site-consent /></div>
           <div class="bg-white p-6"><p class="mb-3 text-[12px] text-slate/60">Согласие — ошибка</p><site-consent [error]="true" /></div>

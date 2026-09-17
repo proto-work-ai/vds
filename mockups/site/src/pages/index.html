@@ -1,346 +1,1068 @@
 <!-- @header -->
 <main>
-
-<!-- ============ Первый экран — landing-9 (фото, заголовок) + форма с телефоном landing-10. Тексты main-banner / main-banner-form ============ -->
-<section id="top" class="relative flex min-h-[100svh] items-center overflow-hidden bg-navy">
-  <img src="assets/img/hero.jpg" alt="Гостиная со шторами и тюлем в пол" class="absolute inset-0 size-full object-cover opacity-90" fetchpriority="high" />
-  <div class="absolute inset-0 bg-[linear-gradient(115deg,rgb(13_34_61/.82)_0%,rgb(13_34_61/.5)_55%,rgb(13_34_61/.2)_100%)]"></div>
-  <div class="wrap relative z-10 grid items-center gap-10 pt-[110px] pb-14 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16 lg:pt-[120px] lg:pb-20">
-    <div>
-      <div class="mb-7 flex items-center gap-3"><span class="h-px w-10 shrink-0 bg-gold"></span><span class="text-[12px] tracking-[.3em] text-white/70 uppercase">Москва и Подмосковье</span></div>
-      <h1 class="rise mb-6 text-[40px] leading-[1.08] text-white sm:text-[56px] lg:text-[72px]" style="--d:.1s">Шторы под ключ <em class="text-gold not-italic">на заказ</em></h1>
-      <p class="rise mb-10 max-w-[480px] text-[18px] leading-relaxed text-white/75" style="--d:.2s">Дизайн-студия по пошиву штор и текстиля в Москве и Подмосковье</p>
-      <div class="rise flex flex-wrap gap-4" style="--d:.3s">
-        <a href="#hero-form" class="btn-gold btn-pulse group max-sm:w-full" data-focus-form>Пригласить дизайнера <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#catalog" class="btn-line btn-glow max-sm:w-full">Каталог штор</a>
-      </div>
-      <ul class="mt-12 grid max-w-[640px] grid-cols-1 gap-x-8 gap-y-4 border-t border-white/15 pt-8 text-[15px] text-white/85 min-[420px]:grid-cols-2" style="--d:.4s">
-        <li class="flex items-start gap-3"><span class="mt-0.5 text-gold">✓</span>Бесплатный выезд замерщика</li>
-        <li class="flex items-start gap-3"><span class="mt-0.5 text-gold">✓</span>Собственный швейный цех</li>
-        <li class="flex items-start gap-3"><span class="mt-0.5 text-gold">✓</span>Изготовление за 7–14 дней, установка за 2 часа</li>
-        <li class="flex items-start gap-3"><span class="mt-0.5 text-gold">✓</span>2 года гарантии на материалы</li>
-      </ul>
-    </div>
-    <div id="hero-form" class="rise scroll-mt-24 rounded-[4px] bg-cream/95 px-6 py-8 shadow-[0_20px_60px_rgb(0_0_0/.25)] backdrop-blur sm:px-8" style="--d:.35s">
-      <p class="mb-6 font-serif text-[26px] leading-tight font-bold">Оставьте заявку дизайнеру:</p>
-      <form class="flex flex-col gap-6" novalidate data-lead-form>
-        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] size-0 opacity-0" />
-        <label class="flex items-center gap-3 border-b border-gold pb-3">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <input name="name" type="text" autocomplete="name" placeholder="Введите имя" class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60" />
-        </label>
-        <div>
-          <label class="flex items-center gap-3 border-b border-gold pb-3" data-phone-wrap>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <input name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Укажите телефон" class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60" data-phone />
-          </label>
-          <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="phone">Введите номер телефона полностью</p>
+  <!-- ============ Первый экран — landing-9 (фото, заголовок) + форма с телефоном landing-10. Тексты main-banner / main-banner-form ============ -->
+  <section id="top" class="relative flex min-h-[100svh] items-center overflow-hidden bg-navy">
+    <img
+      src="assets/img/hero.jpg"
+      alt="Гостиная со шторами и тюлем в пол"
+      class="absolute inset-0 size-full object-cover opacity-90"
+      fetchpriority="high"
+    />
+    <div
+      class="absolute inset-0 bg-[linear-gradient(115deg,rgb(13_34_61/.82)_0%,rgb(13_34_61/.5)_55%,rgb(13_34_61/.2)_100%)]"
+    ></div>
+    <div
+      class="wrap relative z-10 grid items-center gap-10 pt-[110px] pb-14 lg:grid-cols-[minmax(0,1fr)_400px] lg:gap-16 lg:pt-[120px] lg:pb-20"
+    >
+      <div>
+        <div class="mb-7 flex items-center gap-3">
+          <span class="h-px w-10 shrink-0 bg-gold"></span
+          ><span class="text-[12px] tracking-[.3em] text-white/70 uppercase"
+            >Москва и Подмосковье</span
+          >
         </div>
-        <div>
-          <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-            <input type="checkbox" name="consent" class="mt-0.5 size-4 shrink-0 accent-[#0d223d]" checked data-consent />
-            <span>Я соглашаюсь с правилами по обработке <a href="soglasie-na-obrabotku-personalnyh-dannyh/" class="underline decoration-gold underline-offset-2 hover:text-gold">персональных данных</a></span>
-          </label>
-          <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">Нужно согласие на обработку персональных данных</p>
+        <h1
+          class="rise mb-6 text-[40px] leading-[1.08] text-white sm:text-[56px] lg:text-[72px]"
+          style="--d: 0.1s"
+        >
+          Шторы под ключ <em class="text-gold not-italic">на заказ</em>
+        </h1>
+        <p
+          class="rise mb-10 max-w-[480px] text-[18px] leading-relaxed text-white/75"
+          style="--d: 0.2s"
+        >
+          Дизайн-студия по пошиву штор и текстиля в Москве и Подмосковье
+        </p>
+        <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
+          <a href="#hero-form" class="btn-gold btn-pulse group max-sm:w-full" data-focus-form
+            >Пригласить дизайнера
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              class="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" /></svg
+          ></a>
+          <a href="#catalog" class="btn-line btn-glow max-sm:w-full">Каталог штор</a>
         </div>
-        <button type="submit" class="btn-gold w-full">Отправить</button>
-      </form>
-    </div>
-  </div>
-</section>
-
-<!-- ============ Приветствие — landing-8 «Crafting Beautiful Interiors» (коллаж фото + текст + цифры). Тексты main-welcome / main-about ============ -->
-<section id="about" class="bg-cream py-20 sm:py-28">
-  <div class="wrap grid items-center gap-16 lg:grid-cols-2">
-    <div class="reveal relative pb-6 sm:pb-0">
-      <div class="absolute -bottom-5 -left-5 hidden size-44 bg-gold/10 sm:block"></div>
-      <div class="relative z-10 ml-10 sm:ml-16"><img src="assets/img/welcome-1.jpg" alt="Гостиная со шторами на заказ и ламбрекеном" loading="lazy" class="h-[380px] w-full object-cover shadow-2xl sm:h-[520px]" /></div>
-      <div class="absolute top-10 left-0 z-20 w-[130px] border-4 border-white shadow-2xl sm:w-[190px]"><img src="assets/img/welcome-2.jpg" alt="Шторы в интерьере" loading="lazy" class="h-[170px] w-full object-cover sm:h-[240px]" /></div>
-      <div class="absolute right-0 bottom-0 z-20 flex size-28 flex-col items-center justify-center bg-gold shadow-xl sm:bottom-6">
-        <span class="font-serif text-[30px] leading-none text-white">15+</span>
-        <span class="mt-1 text-center text-[11px] tracking-[.2em] text-white/85 uppercase">лет</span>
-      </div>
-    </div>
-    <div class="reveal" style="--d:.1s">
-      <div class="mb-5 flex items-center gap-3"><span class="h-px w-9 bg-gold"></span><span class="text-[12px] tracking-[.38em] text-gold uppercase">Добро пожаловать</span></div>
-      <h2 class="mb-6 text-[clamp(30px,4vw,46px)] leading-tight">Более 15 лет мы создаем <em>уникальные текстильные интерьеры</em></h2>
-      <p class="mb-4 text-[16px] leading-relaxed font-light text-slate">Мы — это профессиональное ателье по пошиву штор в Москве. Мы создаем стильные индивидуальные решения для любого интерьера: изготавливаем все виды штор, карнизы, жалюзи и другие изделия для оформления всех видов окон.</p>
-      <p class="mb-9 text-[16px] leading-relaxed font-light text-slate">Наши опытные дизайнеры разрабатывают проекты с учетом пожеланий клиента, а мастера обеспечивают безупречное качество исполнения, доставку и установку штор в Москве и МО. Действуют акции, скидки, гарантия и постгарантийное обслуживание.</p>
-      <ol class="mb-9 grid grid-cols-1 gap-6 border-y border-navy/10 py-7 min-[480px]:grid-cols-3">
-        <li><div class="font-serif text-[34px] leading-none text-gold" data-count="3000" data-suffix="+">3 000+</div><p class="mt-2 text-[14px] leading-snug text-slate">Тканей, карнизов и аксессуаров в наличии</p></li>
-        <li><div class="font-serif text-[34px] leading-none text-gold" data-count="10000" data-suffix="+">10 000+</div><p class="mt-2 text-[14px] leading-snug text-slate">Реализованных дизайн-проектов</p></li>
-        <li><div class="font-serif text-[34px] leading-none text-gold" data-count="1000" data-suffix="+">1 000+</div><p class="mt-2 text-[14px] leading-snug text-slate">Постоянных клиентов</p></li>
-      </ol>
-      <a href="#lead" class="group inline-flex items-center gap-3 text-[14px] font-bold tracking-[.12em] text-gold uppercase transition-[gap] duration-300 hover:gap-5">Пригласить дизайнера <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ Каталог разделов — landing-1 «Services». Данные catalog.data.ts + price-list ============ -->
-<section id="catalog" class="bg-sand py-16 sm:py-24">
-  <div class="wrap">
-    <div class="reveal mb-14 text-center">
-      <p class="eyebrow">Каталог</p>
-      <h2 class="h2">Каталог <span class="text-gold italic">Штор</span></h2>
-      <div class="divider"><i></i></div>
-      <p class="mx-auto max-w-[560px] text-[16px] leading-[1.8] font-light text-slate">Вся продукция изготавливается по индивидуальным размерам из качественных материалов.</p>
-    </div>
-    <div class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"><!-- @catalog-cards --></div>
-  </div>
-</section>
-
-<!-- ============ Рассчитать и подобрать — банеры-входы (идея шаблона «магазин-красок») ============ -->
-<section id="tools" class="bg-cream py-16 sm:py-24">
-  <div class="wrap">
-    <div class="mb-10 text-center sm:mb-12">
-      <p class="eyebrow">Онлайн-помощники</p>
-      <h2 class="h2">Рассчитайте и <span class="text-gold italic">подберите</span> шторы</h2>
-      <div class="divider"><i></i></div>
-    </div>
-  <div class="grid gap-6 lg:grid-cols-2">
-    <a href="calc/" class="work group relative block overflow-hidden rounded-[4px] bg-navy text-cream">
-      <div class="grid h-full sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
-        <div class="relative min-h-[200px] overflow-hidden"><img src="assets/img/catalog/roman-blinds/image-3.jpg" alt="Окно с римской шторой в гостиной" loading="lazy" class="absolute inset-0 size-full object-cover" /></div>
-        <div class="flex flex-col justify-center gap-3 p-6 sm:p-8">
-          <p class="text-[12px] font-bold tracking-[.12em] text-gold uppercase">Калькулятор</p>
-          <h3 class="font-serif text-[24px] leading-tight font-bold sm:text-[28px]">Рассчитайте шторы</h3>
-          <p class="text-[15px] leading-relaxed text-cream/75">Сколько ткани нужно под ваш карниз и сколько это примерно стоит — за минуту.</p>
-          <span class="mt-2 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase">Рассчитать <span class="transition-transform duration-300 group-hover:translate-x-1">→</span></span>
-        </div>
-      </div>
-    </a>
-    <a href="quiz/" class="work group relative block overflow-hidden rounded-[4px] bg-white text-navy">
-      <div class="grid h-full sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
-        <div class="relative min-h-[200px] overflow-hidden"><img src="assets/img/catalog/linen-curtains/image-3.jpg" alt="Льняные шторы в интерьере" loading="lazy" class="absolute inset-0 size-full object-cover" /></div>
-        <div class="flex flex-col justify-center gap-3 p-6 sm:p-8">
-          <p class="text-[12px] font-bold tracking-[.12em] text-gold uppercase">Подбор за 4 шага</p>
-          <h3 class="font-serif text-[24px] leading-tight font-bold sm:text-[28px]">Подберите шторы</h3>
-          <p class="text-[15px] leading-relaxed text-slate">Ответьте на 4 вопроса о комнате и окне — подскажем, какие шторы подойдут.</p>
-          <span class="mt-2 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase">Подобрать <span class="transition-transform duration-300 group-hover:translate-x-1">→</span></span>
-        </div>
-      </div>
-    </a>
-  </div>
-</div>
-</section>
-
-<!-- ============ Производство и как работаем — landing-10 «Как мы работаем» + landing-9 «Our Process». Тексты main-production / place-an-order ============ -->
-<section id="production" class="bg-white py-20 sm:py-28">
-  <div class="wrap">
-    <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
-      <div class="reveal reveal-soft">
-        <div class="mb-4 flex items-center gap-3"><span class="h-px w-8 bg-gold"></span><span class="text-[12px] tracking-[.28em] text-gold uppercase">Собственное производство</span></div>
-        <h2 class="mb-7 text-[clamp(30px,4vw,46px)] leading-[1.12]">Изготовление штор на заказ с контролем качества на каждом этапе</h2>
-        <div class="space-y-4 text-[16px] leading-relaxed font-light text-slate">
-          <p>Пошив штор на заказ — лучший способ получить качественные занавеси, соответствующие размеру и форме окна, уровню освещенности и дизайну комнаты, а также вкусам Заказчика.</p>
-          <p>Студия текстильного дизайна «Shtorivdom» оказывает комплекс услуг по подбору и пошиву текстиля. Мы выезжаем к Вам домой или офис с образцами тканей и изделий, для проведения первоначальных замеров, консультируем по видам изделий, характеристикам тканей и карнизов, помогаем выбрать оптимальное решение из многообразия видов и стилей, таких как римские, французские, австрийские, на петлях, с люверсами или лаконичные жалюзи, которое подойдет именно Вам.</p>
-          <p>Еще у нас можно купить ткань на отрез, если вы хотите сшить шторы самостоятельно, а также заказать пошив дополнительного текстиля: покрывал, декоративных подушек, чехлов на стулья и мебель, скатертей или салфеток на стол.</p>
-        </div>
-        <ul class="mt-8 flex flex-col gap-3 text-[15px] [&>li]:flex [&>li]:gap-3">
-          <li><span class="font-bold text-gold">✓</span>Устанавливаем карнизы и шторы под ключ.</li>
-          <li><span class="font-bold text-gold">✓</span>Нет минимальной суммы заказа</li>
+        <ul
+          class="mt-12 grid max-w-[640px] grid-cols-1 gap-x-8 gap-y-4 border-t border-white/15 pt-8 text-[15px] text-white/85 min-[420px]:grid-cols-2"
+          style="--d: 0.4s"
+        >
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 text-gold">✓</span>Бесплатный выезд замерщика
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 text-gold">✓</span>Собственный швейный цех
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 text-gold">✓</span>Изготовление за 7–14 дней, установка за 2 часа
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 text-gold">✓</span>2 года гарантии на материалы
+          </li>
         </ul>
       </div>
-      <div class="reveal reveal-soft relative" style="--d:.1s">
-        <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
-        <img src="assets/img/production.jpg" alt="Шторы и тюль в гостиной" loading="lazy" class="relative h-[300px] w-full object-cover sm:h-[460px]" />
+      <div
+        id="hero-form"
+        class="rise scroll-mt-24 rounded-[4px] bg-cream/95 px-6 py-8 shadow-[0_20px_60px_rgb(0_0_0/.25)] backdrop-blur sm:px-8"
+        style="--d: 0.35s"
+      >
+        <p class="mb-6 font-serif text-[26px] leading-tight font-bold">
+          Оставьте заявку дизайнеру:
+        </p>
+        <form class="flex flex-col gap-6" novalidate data-lead-form>
+          <input
+            type="text"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="absolute -left-[9999px] size-0 opacity-0"
+          />
+          <label class="flex items-center gap-3 border-b border-gold pb-3">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#c9a84c"
+              stroke-width="2"
+              class="shrink-0"
+            >
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            <input
+              name="name"
+              type="text"
+              autocomplete="name"
+              placeholder="Введите имя"
+              class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60"
+            />
+          </label>
+          <div>
+            <label class="flex items-center gap-3 border-b border-gold pb-3" data-phone-wrap>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#c9a84c"
+                stroke-width="2"
+                class="shrink-0"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+              <input
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="Укажите телефон"
+                class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60"
+                data-phone
+              />
+            </label>
+            <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="phone">
+              Введите номер телефона полностью
+            </p>
+          </div>
+          <div>
+            <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
+              <input
+                type="checkbox"
+                name="consent"
+                class="mt-0.5 size-4 shrink-0 accent-[#0d223d]"
+                checked
+                data-consent
+              />
+              <span
+                >Я соглашаюсь с правилами по обработке
+                <a
+                  href="soglasie-na-obrabotku-personalnyh-dannyh/"
+                  class="underline decoration-gold underline-offset-2 hover:text-gold"
+                  >персональных данных</a
+                ></span
+              >
+            </label>
+            <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">
+              Нужно согласие на обработку персональных данных
+            </p>
+          </div>
+          <button type="submit" class="btn-gold w-full">Отправить</button>
+        </form>
       </div>
     </div>
+  </section>
 
-    <div class="reveal reveal-soft mt-20 mb-14 text-center sm:mt-28">
-      <div class="mb-4 flex items-center justify-center gap-3"><span class="h-px w-8 bg-gold"></span><span class="text-[12px] tracking-[.28em] text-gold uppercase">Этапы</span><span class="h-px w-8 bg-gold"></span></div>
-      <h2 class="text-[clamp(30px,4vw,46px)]">Как сделать заказ?</h2>
-    </div>
-    <div class="relative">
-      <div class="absolute top-8 right-0 left-0 hidden h-px bg-[linear-gradient(90deg,transparent,var(--color-sand)_8%,var(--color-sand)_92%,transparent)] lg:block"></div>
-      <ol class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-        <li class="text-center lg:text-left"><span class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0">01</span><h3 class="mb-2.5 text-[22px]">Заявка</h3><p class="text-[15px] leading-relaxed text-slate/80">Оставьте заявку на сайте или позвоните нам по телефону, напишите в мессенджер — как вам удобно. Мы ответим на все ваши вопросы и назначим удобную для вас дату встречи с нашим дизайнером</p></li>
-        <li class="text-center lg:text-left" style="--d:.1s"><span class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0">02</span><h3 class="mb-2.5 text-[22px]">Встреча</h3><p class="text-[15px] leading-relaxed text-slate/80">Выезд дизайнера бесплатный. Наш сотрудник полностью проконсультирует вас на месте — продемонстрирует образцы и каталоги тканей, сделает необходимые технические замеры, подготовит первоначальный эскиз и просчет.</p></li>
-        <li class="text-center lg:text-left" style="--d:.2s"><span class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0">03</span><h3 class="mb-2.5 text-[22px]">Пошив</h3><p class="text-[15px] leading-relaxed text-slate/80">Пошив штор в собственном швейном цехе под надзором технолога. Проверка готовых изделий на брак. В отличие от многих, мы даём гарантию 2 года на все виды работ и материалы.</p></li>
-        <li class="text-center lg:text-left" style="--d:.3s"><span class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0">04</span><h3 class="mb-2.5 text-[22px]">Монтаж</h3><p class="text-[15px] leading-relaxed text-slate/80">Монтаж штор на окна. Осуществим доставку, установку карнизов и навеску штор, отпарив их. Все под ключ.</p></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-<!-- ============ Цены — landing-1 «Pricing». Тарифы main-price, минимальные цены разделов — price-list ============ -->
-<section id="price" class="bg-cream py-16 sm:py-24">
-  <div class="mx-auto w-full max-w-[1100px] px-5 sm:px-8">
-    <div class="reveal mb-14 text-center">
-      <p class="eyebrow">Стоимость</p>
-      <h2 class="h2">Цены / <span class="text-gold italic">стоимость</span></h2>
-      <div class="divider"><i></i></div>
-    </div>
-    <div class="grid items-start gap-6 lg:grid-cols-3">
-      <div class="reveal">
-        <div class="tier border border-navy/10 bg-white px-6 py-9 sm:px-8">
-          <p class="mb-3 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Стандарт</p>
-          <p class="mb-5 font-serif text-[40px] leading-none font-bold sm:text-[46px]"><span class="align-middle text-[18px] font-normal">от</span> 39 000 <span class="align-middle text-[18px] font-normal opacity-60">руб</span></p>
-          <p class="mb-5 text-[14px] leading-relaxed text-slate">Шторы прямого кроя из ткани класса стандарт на стандартной шторной ленте без подкладки</p>
-          <div class="mb-5 h-px bg-navy/10"></div>
-          <ul class="mb-5 text-[14px] [&>li]:flex [&>li]:gap-2.5 [&>li]:py-1.5">
-            <li><span class="font-bold text-gold">✓</span>Тюль с пошивом</li><li><span class="font-bold text-gold">✓</span>Портьеры с пошивом</li><li><span class="font-bold text-gold">✓</span>Алюминиевый потолочный карниз двухрядный</li><li><span class="font-bold text-gold">✓</span>Авторский надзор проекта</li>
-          </ul>
-          <p class="mb-2 text-[12px] font-bold tracking-[.15em] text-gold uppercase">В подарок</p>
-          <ul class="mb-6 text-[14px] text-slate [&>li]:py-1">
-            <li>Выезд дизайнера и замерщика с образцами тканей</li><li>Эскиз 1 вариант</li><li>Наволочка под интерьер</li>
-          </ul>
-          <p class="mb-6 text-[13px] text-slate/70">*Срок изготовления 14 дней</p>
-          <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+  <!-- ============ Приветствие — landing-8 «Crafting Beautiful Interiors» (коллаж фото + текст + цифры). Тексты main-welcome / main-about ============ -->
+  <section id="about" class="bg-cream py-20 sm:py-28">
+    <div class="wrap grid items-center gap-16 lg:grid-cols-2">
+      <div class="reveal relative pb-6 sm:pb-0">
+        <div class="absolute -bottom-5 -left-5 hidden size-44 bg-gold/10 sm:block"></div>
+        <div class="relative z-10 ml-10 sm:ml-16">
+          <img
+            src="assets/img/welcome-1.jpg"
+            alt="Гостиная со шторами на заказ и ламбрекеном"
+            loading="lazy"
+            class="h-[380px] w-full object-cover shadow-2xl sm:h-[520px]"
+          />
+        </div>
+        <div
+          class="absolute top-10 left-0 z-20 w-[130px] border-4 border-white shadow-2xl sm:w-[190px]"
+        >
+          <img
+            src="assets/img/welcome-2.jpg"
+            alt="Шторы в интерьере"
+            loading="lazy"
+            class="h-[170px] w-full object-cover sm:h-[240px]"
+          />
+        </div>
+        <div
+          class="absolute right-0 bottom-0 z-20 flex size-28 flex-col items-center justify-center bg-gold shadow-xl sm:bottom-6"
+        >
+          <span class="font-serif text-[30px] leading-none text-white">15+</span>
+          <span class="mt-1 text-center text-[11px] tracking-[.2em] text-white/85 uppercase"
+            >лет</span
+          >
         </div>
       </div>
-      <div class="reveal" style="--d:.12s">
-        <div class="tier border-2 border-gold bg-navy px-6 py-10 text-cream shadow-[0_20px_60px_rgb(201_168_76/.2)] sm:px-9 sm:py-11">
-          <p class="mb-3 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Премиум</p>
-          <p class="mb-5 font-serif text-[40px] leading-none font-bold sm:text-[46px]"><span class="align-middle text-[18px] font-normal">от</span> 58 000 <span class="align-middle text-[18px] font-normal opacity-60">руб</span></p>
-          <p class="mb-5 text-[14px] leading-relaxed text-cream/80">Шторы прямого кроя из ткани класса премиум с декором, кантом, на фигурной шторной ленте</p>
-          <div class="mb-5 h-px bg-gold/30"></div>
-          <ul class="mb-5 text-[14px] [&>li]:flex [&>li]:gap-2.5 [&>li]:py-1.5">
-            <li><span class="font-bold text-gold">✓</span>Тюль с пошивом</li><li><span class="font-bold text-gold">✓</span>Портьеры с пошивом</li><li><span class="font-bold text-gold">✓</span>Алюминиевый потолочный карниз двухрядный улучшенного скольжения</li><li><span class="font-bold text-gold">✓</span>Подхват — декоративная кисть</li>
-          </ul>
-          <p class="mb-2 text-[12px] font-bold tracking-[.15em] text-gold uppercase">В подарок</p>
-          <ul class="mb-6 text-[14px] text-cream/80 [&>li]:py-1">
-            <li>Выезд дизайнера и замерщика с образцами тканей</li><li>Эскиз 1 вариант</li><li>Наволочка под интерьер</li>
-          </ul>
-          <p class="mb-6 text-[13px] text-cream/60">*Срок изготовления 10 дней</p>
-          <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+      <div class="reveal" style="--d: 0.1s">
+        <div class="mb-5 flex items-center gap-3">
+          <span class="h-px w-9 bg-gold"></span
+          ><span class="text-[12px] tracking-[.38em] text-gold uppercase">Добро пожаловать</span>
         </div>
-      </div>
-      <div class="reveal" style="--d:.24s">
-        <div class="tier border border-navy/10 bg-gold-soft px-6 py-9 sm:px-8">
-          <p class="mb-3 text-[12px] font-bold tracking-[.2em] uppercase">Люкс</p>
-          <p class="mb-5 font-serif text-[40px] leading-none font-bold sm:text-[46px]"><span class="align-middle text-[18px] font-normal">от</span> 85 000 <span class="align-middle text-[18px] font-normal opacity-60">руб</span></p>
-          <p class="mb-5 text-[14px] leading-relaxed text-slate">Шторы прямого кроя из ткани класса премиум с декором, кантом, на фигурной шторной ленте</p>
-          <div class="mb-5 h-px bg-navy/10"></div>
-          <ul class="mb-5 text-[14px] [&>li]:flex [&>li]:gap-2.5 [&>li]:py-1.5">
-            <li><span class="font-bold">✓</span>Тюль с пошивом</li><li><span class="font-bold">✓</span>Портьеры с пошивом</li><li><span class="font-bold">✓</span>Алюминиевый потолочный карниз двухрядный улучшенного скольжения</li><li><span class="font-bold">✓</span>Авторский надзор проекта</li>
-          </ul>
-          <p class="mb-2 text-[12px] font-bold tracking-[.15em] uppercase">В подарок</p>
-          <ul class="mb-6 text-[14px] text-slate [&>li]:py-1">
-            <li>Выезд ведущего дизайнера и замерщика с образцами тканей</li><li>Эскиз 1 вариант</li><li>Наволочка под интерьер</li>
-          </ul>
-          <p class="mb-6 text-[13px] text-slate/70">*Срок изготовления 7 дней</p>
-          <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
-        </div>
+        <h2 class="mb-6 text-[clamp(30px,4vw,46px)] leading-tight">
+          Более 15 лет мы создаем <em>уникальные текстильные интерьеры</em>
+        </h2>
+        <p class="mb-4 text-[16px] leading-relaxed font-light text-slate">
+          Мы — это профессиональное ателье по пошиву штор в Москве. Мы создаем стильные
+          индивидуальные решения для любого интерьера: изготавливаем все виды штор, карнизы, жалюзи
+          и другие изделия для оформления всех видов окон.
+        </p>
+        <p class="mb-9 text-[16px] leading-relaxed font-light text-slate">
+          Наши опытные дизайнеры разрабатывают проекты с учетом пожеланий клиента, а мастера
+          обеспечивают безупречное качество исполнения, доставку и установку штор в Москве и МО.
+          Действуют акции, скидки, гарантия и постгарантийное обслуживание.
+        </p>
+        <ol
+          class="mb-9 grid grid-cols-1 gap-6 border-y border-navy/10 py-7 min-[480px]:grid-cols-3"
+        >
+          <li>
+            <div
+              class="font-serif text-[34px] leading-none text-gold"
+              data-count="3000"
+              data-suffix="+"
+            >
+              3 000+
+            </div>
+            <p class="mt-2 text-[14px] leading-snug text-slate">
+              Тканей, карнизов и аксессуаров в наличии
+            </p>
+          </li>
+          <li>
+            <div
+              class="font-serif text-[34px] leading-none text-gold"
+              data-count="10000"
+              data-suffix="+"
+            >
+              10 000+
+            </div>
+            <p class="mt-2 text-[14px] leading-snug text-slate">Реализованных дизайн-проектов</p>
+          </li>
+          <li>
+            <div
+              class="font-serif text-[34px] leading-none text-gold"
+              data-count="1000"
+              data-suffix="+"
+            >
+              1 000+
+            </div>
+            <p class="mt-2 text-[14px] leading-snug text-slate">Постоянных клиентов</p>
+          </li>
+        </ol>
+        <a
+          href="#lead"
+          class="group inline-flex items-center gap-3 text-[14px] font-bold tracking-[.12em] text-gold uppercase transition-[gap] duration-300 hover:gap-5"
+          >Пригласить дизайнера
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" /></svg
+        ></a>
       </div>
     </div>
-    <div class="reveal mt-16 rounded-[4px] bg-white px-5 py-8 sm:px-10">
-      <h3 class="mb-4 text-[24px]">Цены по разделам</h3>
-      <!-- @price-rows -->
-      <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
-        <p class="text-[14px] text-slate/70">*Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.</p>
-        <a href="price/" class="btn-gold">Все цены</a>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ Наши работы — landing-1 «Real Homes» (hover) + landing-9 «Before & After» ============ -->
-<section id="works" class="bg-sand py-16 sm:py-24">
-  <div class="wrap">
-    <div class="reveal mb-14 text-center">
-      <p class="eyebrow">Портфолио</p>
-      <h2 class="h2">Наши <span class="text-gold italic">работы</span></h2>
-      <div class="divider"><i></i></div>
+  <!-- ============ Каталог разделов — landing-1 «Services». Данные catalog.data.ts + price-list ============ -->
+  <section id="catalog" class="bg-sand py-16 sm:py-24">
+    <div class="wrap">
+      <div class="reveal mb-14 text-center">
+        <p class="eyebrow">Каталог</p>
+        <h2 class="h2">Каталог <span class="text-gold italic">Штор</span></h2>
+        <div class="divider"><i></i></div>
+        <p class="mx-auto max-w-[560px] text-[16px] leading-[1.8] font-light text-slate">
+          Вся продукция изготавливается по индивидуальным размерам из качественных материалов.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- @catalog-cards -->
+      </div>
     </div>
-    <div class="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3">
-      <a href="catalog/blackout-curtains/" class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"><img src="assets/img/catalog/blackout-curtains/image-4.jpg" alt="Шторы блэкаут" loading="lazy" class="size-full object-cover" /><span class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream">Шторы блэкаут</span></a>
-      <a href="catalog/roman-blinds/" class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy" style="--d:.07s"><img src="assets/img/catalog/roman-blinds/image-2.jpg" alt="Римские шторы" loading="lazy" class="size-full object-cover" /><span class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream">Римские шторы</span></a>
-      <a href="catalog/linen-curtains/" class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy" style="--d:.14s"><img src="assets/img/catalog/linen-curtains/image-1.jpg" alt="Льняные шторы" loading="lazy" class="size-full object-cover" /><span class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream">Льняные шторы</span></a>
-      <a href="catalog/roller-blinds/" class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy" style="--d:.21s"><img src="assets/img/catalog/roller-blinds/image-3.jpg" alt="Рулонные шторы" loading="lazy" class="size-full object-cover" /><span class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream">Рулонные шторы</span></a>
-      <a href="catalog/pleated-blinds/" class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy" style="--d:.28s"><img src="assets/img/catalog/pleated-blinds/image-2.jpg" alt="Шторы плиссе" loading="lazy" class="size-full object-cover" /><span class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream">Шторы плиссе</span></a>
-      <a href="catalog/blackout-curtains/" class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy" style="--d:.35s"><img src="assets/img/catalog/blackout-curtains/image-3.jpg" alt="Шторы блэкаут в интерьере" loading="lazy" class="size-full object-cover" /><span class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream">Шторы блэкаут</span></a>
+  </section>
+
+  <!-- ============ Рассчитать и подобрать — банеры-входы (идея шаблона «магазин-красок») ============ -->
+  <section id="tools" class="bg-cream py-16 sm:py-24">
+    <div class="wrap">
+      <div class="mb-10 text-center sm:mb-12">
+        <p class="eyebrow">Онлайн-помощники</p>
+        <h2 class="h2">Рассчитайте и <span class="text-gold italic">подберите</span> шторы</h2>
+        <div class="divider"><i></i></div>
+      </div>
+      <div class="grid gap-6 lg:grid-cols-2">
+        <a
+          href="calc/"
+          class="work group relative block overflow-hidden rounded-[4px] bg-navy text-cream"
+        >
+          <div class="grid h-full sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+            <div class="relative min-h-[200px] overflow-hidden">
+              <img
+                src="assets/img/catalog/roman-blinds/image-3.jpg"
+                alt="Окно с римской шторой в гостиной"
+                loading="lazy"
+                class="absolute inset-0 size-full object-cover"
+              />
+            </div>
+            <div class="flex flex-col justify-center gap-3 p-6 sm:p-8">
+              <p class="text-[12px] font-bold tracking-[.12em] text-gold uppercase">Калькулятор</p>
+              <h3 class="font-serif text-[24px] leading-tight font-bold sm:text-[28px]">
+                Рассчитайте шторы
+              </h3>
+              <p class="text-[15px] leading-relaxed text-cream/75">
+                Сколько ткани нужно под ваш карниз и сколько это примерно стоит — за минуту.
+              </p>
+              <span
+                class="mt-2 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase"
+                >Рассчитать
+                <span class="transition-transform duration-300 group-hover:translate-x-1"
+                  >→</span
+                ></span
+              >
+            </div>
+          </div>
+        </a>
+        <a
+          href="quiz/"
+          class="work group relative block overflow-hidden rounded-[4px] bg-white text-navy"
+        >
+          <div class="grid h-full sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
+            <div class="relative min-h-[200px] overflow-hidden">
+              <img
+                src="assets/img/catalog/linen-curtains/image-3.jpg"
+                alt="Льняные шторы в интерьере"
+                loading="lazy"
+                class="absolute inset-0 size-full object-cover"
+              />
+            </div>
+            <div class="flex flex-col justify-center gap-3 p-6 sm:p-8">
+              <p class="text-[12px] font-bold tracking-[.12em] text-gold uppercase">
+                Подбор за 4 шага
+              </p>
+              <h3 class="font-serif text-[24px] leading-tight font-bold sm:text-[28px]">
+                Подберите шторы
+              </h3>
+              <p class="text-[15px] leading-relaxed text-slate">
+                Ответьте на 4 вопроса о комнате и окне — подскажем, какие шторы подойдут.
+              </p>
+              <span
+                class="mt-2 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase"
+                >Подобрать
+                <span class="transition-transform duration-300 group-hover:translate-x-1"
+                  >→</span
+                ></span
+              >
+            </div>
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
-</section>
-<section class="bg-navy py-16 sm:py-24">
-  <div class="wrap">
-    <div class="reveal reveal-soft mb-12 text-center">
-      <div class="mb-4 flex items-center justify-center gap-3"><span class="h-px w-8 bg-gold"></span><span class="text-[12px] tracking-[.28em] text-white/60 uppercase">Преображение</span><span class="h-px w-8 bg-gold"></span></div>
-      <h2 class="text-[clamp(30px,4vw,46px)] text-white">До и после</h2>
-      <p class="mt-3 text-[14px] text-white/50">Потяните ручку, чтобы сравнить</p>
-    </div>
-    <div class="reveal reveal-soft">
-      <div class="relative h-[300px] cursor-col-resize touch-pan-y overflow-hidden select-none sm:h-[500px]" data-compare>
-        <img src="assets/img/after.jpg" alt="Комната после" class="pointer-events-none absolute inset-0 size-full object-cover" draggable="false" />
-        <span class="absolute top-5 right-5 bg-gold px-3 py-1.5 text-[12px] tracking-[.2em] text-white uppercase">После</span>
-        <!-- Верхний слой обрезается справа: слева «до», справа «после» -->
-        <img src="assets/img/before.jpg" alt="Комната до" class="pointer-events-none absolute inset-0 size-full object-cover [clip-path:inset(0_50%_0_0)]" draggable="false" data-compare-after />
-        <span class="absolute top-5 left-5 bg-black/40 px-3 py-1.5 text-[12px] tracking-[.2em] text-white/70 uppercase backdrop-blur-sm transition-opacity duration-300" data-compare-label>До</span>
-        <div class="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2" data-compare-handle>
-          <div class="mx-auto h-full w-px bg-white/60"></div>
-          <div class="absolute top-1/2 left-1/2 flex size-10 -translate-1/2 items-center justify-center gap-0.5 rounded-full bg-gold text-white shadow-[0_0_0_4px_rgb(201_168_76/.28)]"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m15 18-6-6 6-6"/></svg><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m9 18 6-6-6-6"/></svg></div>
+  </section>
+
+  <!-- ============ Производство и как работаем — landing-10 «Как мы работаем» + landing-9 «Our Process». Тексты main-production / place-an-order ============ -->
+  <section id="production" class="bg-white py-20 sm:py-28">
+    <div class="wrap">
+      <div class="grid items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
+        <div class="reveal reveal-soft">
+          <div class="mb-4 flex items-center gap-3">
+            <span class="h-px w-8 bg-gold"></span
+            ><span class="text-[12px] tracking-[.28em] text-gold uppercase"
+              >Собственное производство</span
+            >
+          </div>
+          <h2 class="mb-7 text-[clamp(30px,4vw,46px)] leading-[1.12]">
+            Изготовление штор на заказ с контролем качества на каждом этапе
+          </h2>
+          <div class="space-y-4 text-[16px] leading-relaxed font-light text-slate">
+            <p>
+              Пошив штор на заказ — лучший способ получить качественные занавеси, соответствующие
+              размеру и форме окна, уровню освещенности и дизайну комнаты, а также вкусам Заказчика.
+            </p>
+            <p>
+              Студия текстильного дизайна «Shtorivdom» оказывает комплекс услуг по подбору и пошиву
+              текстиля. Мы выезжаем к Вам домой или офис с образцами тканей и изделий, для
+              проведения первоначальных замеров, консультируем по видам изделий, характеристикам
+              тканей и карнизов, помогаем выбрать оптимальное решение из многообразия видов и
+              стилей, таких как римские, французские, австрийские, на петлях, с люверсами или
+              лаконичные жалюзи, которое подойдет именно Вам.
+            </p>
+            <p>
+              Еще у нас можно купить ткань на отрез, если вы хотите сшить шторы самостоятельно, а
+              также заказать пошив дополнительного текстиля: покрывал, декоративных подушек, чехлов
+              на стулья и мебель, скатертей или салфеток на стол.
+            </p>
+          </div>
+          <ul class="mt-8 flex flex-col gap-3 text-[15px] [&>li]:flex [&>li]:gap-3">
+            <li>
+              <span class="font-bold text-gold">✓</span>Устанавливаем карнизы и шторы под ключ.
+            </li>
+            <li><span class="font-bold text-gold">✓</span>Нет минимальной суммы заказа</li>
+          </ul>
+        </div>
+        <div class="reveal reveal-soft relative" style="--d: 0.1s">
+          <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
+          <img
+            src="assets/img/production.jpg"
+            alt="Шторы и тюль в гостиной"
+            loading="lazy"
+            class="relative h-[300px] w-full object-cover sm:h-[460px]"
+          />
         </div>
       </div>
-      <!-- <p class="mt-3 text-center text-[12px] text-white/40">Фото — временные, из референса landing-9: реальных фото «до/после» на текущем сайте нет.</p> -->
-    </div>
-  </div>
-</section>
 
-<!-- ============ Отзывы — landing-9 (слайдер, стрелки, точки). ЗАГЛУШКА: на текущем сайте отзывов нет ============ -->
-<section id="reviews" class="bg-cream py-16 sm:py-24">
-  <div class="wrap">
-    <div class="reveal reveal-soft mb-12 text-center">
-      <div class="mb-4 flex items-center justify-center gap-3"><span class="h-px w-8 bg-gold"></span><span class="text-[12px] tracking-[.28em] text-gold uppercase">Отзывы</span><span class="h-px w-8 bg-gold"></span></div>
-      <h2 class="text-[clamp(30px,4vw,46px)]">Отзывы клиентов</h2>
-      <!-- <p class="mx-auto mt-4 inline-block border border-dashed border-gold px-4 py-2 text-[14px] text-slate" data-reviews-note>Отзывы — ждут реальных текстов</p> -->
+      <div class="reveal reveal-soft mt-20 mb-14 text-center sm:mt-28">
+        <div class="mb-4 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-gold"></span
+          ><span class="text-[12px] tracking-[.28em] text-gold uppercase">Этапы</span
+          ><span class="h-px w-8 bg-gold"></span>
+        </div>
+        <h2 class="text-[clamp(30px,4vw,46px)]">Как сделать заказ?</h2>
+      </div>
+      <div class="relative">
+        <div
+          class="absolute top-8 right-0 left-0 hidden h-px bg-[linear-gradient(90deg,transparent,var(--color-sand)_8%,var(--color-sand)_92%,transparent)] lg:block"
+        ></div>
+        <ol class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+          <li class="text-center lg:text-left">
+            <span
+              class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0"
+              >01</span
+            >
+            <h3 class="mb-2.5 text-[22px]">Заявка</h3>
+            <p class="text-[15px] leading-relaxed text-slate/80">
+              Оставьте заявку на сайте или позвоните нам по телефону, напишите в мессенджер — как
+              вам удобно. Мы ответим на все ваши вопросы и назначим удобную для вас дату встречи с
+              нашим дизайнером
+            </p>
+          </li>
+          <li class="text-center lg:text-left" style="--d: 0.1s">
+            <span
+              class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0"
+              >02</span
+            >
+            <h3 class="mb-2.5 text-[22px]">Встреча</h3>
+            <p class="text-[15px] leading-relaxed text-slate/80">
+              Выезд дизайнера бесплатный. Наш сотрудник полностью проконсультирует вас на месте —
+              продемонстрирует образцы и каталоги тканей, сделает необходимые технические замеры,
+              подготовит первоначальный эскиз и просчет.
+            </p>
+          </li>
+          <li class="text-center lg:text-left" style="--d: 0.2s">
+            <span
+              class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0"
+              >03</span
+            >
+            <h3 class="mb-2.5 text-[22px]">Пошив</h3>
+            <p class="text-[15px] leading-relaxed text-slate/80">
+              Пошив штор в собственном швейном цехе под надзором технолога. Проверка готовых изделий
+              на брак. В отличие от многих, мы даём гарантию 2 года на все виды работ и материалы.
+            </p>
+          </li>
+          <li class="text-center lg:text-left" style="--d: 0.3s">
+            <span
+              class="relative z-10 mx-auto mb-6 flex size-16 items-center justify-center rounded-full border-2 border-gold bg-cream font-serif text-[22px] font-semibold text-gold lg:mx-0"
+              >04</span
+            >
+            <h3 class="mb-2.5 text-[22px]">Монтаж</h3>
+            <p class="text-[15px] leading-relaxed text-slate/80">
+              Монтаж штор на окна. Осуществим доставку, установку карнизов и навеску штор, отпарив
+              их. Все под ключ.
+            </p>
+          </li>
+        </ol>
+      </div>
     </div>
-    <div class="reveal reveal-soft" data-slider>
-      <div class="mx-auto max-w-[760px] bg-white px-6 py-12 text-center shadow-[0_8px_64px_rgb(0_0_0/.06)] sm:px-16 sm:py-14">
-        <div class="slide" data-slide>
-          <div class="mb-8 flex justify-center gap-1 text-gold" aria-hidden="true">★★★★★</div>
-          <blockquote class="mb-10 font-serif text-[20px] leading-relaxed text-slate/50 italic" data-quote>Текст отзыва 1 — ждёт реального текста</blockquote>
-          <div class="flex items-center justify-center gap-4">
-            <span class="grid size-12 place-items-center rounded-full bg-sand font-serif text-[17px] text-gold" data-avatar></span>
-            <div class="text-left"><p class="font-serif text-[15px] text-slate/60" data-name>Имя клиента</p><p class="text-[13px] text-slate/40" data-cat>Раздел каталога</p></div>
+  </section>
+
+  <!-- ============ Цены — landing-1 «Pricing». Тарифы main-price, минимальные цены разделов — price-list ============ -->
+  <section id="price" class="bg-cream py-16 sm:py-24">
+    <div class="mx-auto w-full max-w-[1100px] px-5 sm:px-8">
+      <div class="reveal mb-14 text-center">
+        <p class="eyebrow">Стоимость</p>
+        <h2 class="h2">Цены / <span class="text-gold italic">стоимость</span></h2>
+        <div class="divider"><i></i></div>
+      </div>
+      <div class="grid items-start gap-6 lg:grid-cols-3">
+        <div class="reveal">
+          <div class="tier border border-navy/10 bg-white px-6 py-9 sm:px-8">
+            <p class="mb-3 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Стандарт</p>
+            <p class="mb-5 font-serif text-[40px] leading-none font-bold sm:text-[46px]">
+              <span class="align-middle text-[18px] font-normal">от</span> 39 000
+              <span class="align-middle text-[18px] font-normal opacity-60">руб</span>
+            </p>
+            <p class="mb-5 text-[14px] leading-relaxed text-slate">
+              Шторы прямого кроя из ткани класса стандарт на стандартной шторной ленте без подкладки
+            </p>
+            <div class="mb-5 h-px bg-navy/10"></div>
+            <ul class="mb-5 text-[14px] [&>li]:flex [&>li]:gap-2.5 [&>li]:py-1.5">
+              <li><span class="font-bold text-gold">✓</span>Тюль с пошивом</li>
+              <li><span class="font-bold text-gold">✓</span>Портьеры с пошивом</li>
+              <li>
+                <span class="font-bold text-gold">✓</span>Алюминиевый потолочный карниз двухрядный
+              </li>
+              <li><span class="font-bold text-gold">✓</span>Авторский надзор проекта</li>
+            </ul>
+            <p class="mb-2 text-[12px] font-bold tracking-[.15em] text-gold uppercase">В подарок</p>
+            <ul class="mb-6 text-[14px] text-slate [&>li]:py-1">
+              <li>Выезд дизайнера и замерщика с образцами тканей</li>
+              <li>Эскиз 1 вариант</li>
+              <li>Наволочка под интерьер</li>
+            </ul>
+            <p class="mb-6 text-[13px] text-slate/70">*Срок изготовления 14 дней</p>
+            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+          </div>
+        </div>
+        <div class="reveal" style="--d: 0.12s">
+          <div
+            class="tier border-2 border-gold bg-navy px-6 py-10 text-cream shadow-[0_20px_60px_rgb(201_168_76/.2)] sm:px-9 sm:py-11"
+          >
+            <p class="mb-3 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Премиум</p>
+            <p class="mb-5 font-serif text-[40px] leading-none font-bold sm:text-[46px]">
+              <span class="align-middle text-[18px] font-normal">от</span> 58 000
+              <span class="align-middle text-[18px] font-normal opacity-60">руб</span>
+            </p>
+            <p class="mb-5 text-[14px] leading-relaxed text-cream/80">
+              Шторы прямого кроя из ткани класса премиум с декором, кантом, на фигурной шторной
+              ленте
+            </p>
+            <div class="mb-5 h-px bg-gold/30"></div>
+            <ul class="mb-5 text-[14px] [&>li]:flex [&>li]:gap-2.5 [&>li]:py-1.5">
+              <li><span class="font-bold text-gold">✓</span>Тюль с пошивом</li>
+              <li><span class="font-bold text-gold">✓</span>Портьеры с пошивом</li>
+              <li>
+                <span class="font-bold text-gold">✓</span>Алюминиевый потолочный карниз двухрядный
+                улучшенного скольжения
+              </li>
+              <li><span class="font-bold text-gold">✓</span>Подхват — декоративная кисть</li>
+            </ul>
+            <p class="mb-2 text-[12px] font-bold tracking-[.15em] text-gold uppercase">В подарок</p>
+            <ul class="mb-6 text-[14px] text-cream/80 [&>li]:py-1">
+              <li>Выезд дизайнера и замерщика с образцами тканей</li>
+              <li>Эскиз 1 вариант</li>
+              <li>Наволочка под интерьер</li>
+            </ul>
+            <p class="mb-6 text-[13px] text-cream/60">*Срок изготовления 10 дней</p>
+            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+          </div>
+        </div>
+        <div class="reveal" style="--d: 0.24s">
+          <div class="tier border border-navy/10 bg-gold-soft px-6 py-9 sm:px-8">
+            <p class="mb-3 text-[12px] font-bold tracking-[.2em] uppercase">Люкс</p>
+            <p class="mb-5 font-serif text-[40px] leading-none font-bold sm:text-[46px]">
+              <span class="align-middle text-[18px] font-normal">от</span> 85 000
+              <span class="align-middle text-[18px] font-normal opacity-60">руб</span>
+            </p>
+            <p class="mb-5 text-[14px] leading-relaxed text-slate">
+              Шторы прямого кроя из ткани класса премиум с декором, кантом, на фигурной шторной
+              ленте
+            </p>
+            <div class="mb-5 h-px bg-navy/10"></div>
+            <ul class="mb-5 text-[14px] [&>li]:flex [&>li]:gap-2.5 [&>li]:py-1.5">
+              <li><span class="font-bold">✓</span>Тюль с пошивом</li>
+              <li><span class="font-bold">✓</span>Портьеры с пошивом</li>
+              <li>
+                <span class="font-bold">✓</span>Алюминиевый потолочный карниз двухрядный улучшенного
+                скольжения
+              </li>
+              <li><span class="font-bold">✓</span>Авторский надзор проекта</li>
+            </ul>
+            <p class="mb-2 text-[12px] font-bold tracking-[.15em] uppercase">В подарок</p>
+            <ul class="mb-6 text-[14px] text-slate [&>li]:py-1">
+              <li>Выезд ведущего дизайнера и замерщика с образцами тканей</li>
+              <li>Эскиз 1 вариант</li>
+              <li>Наволочка под интерьер</li>
+            </ul>
+            <p class="mb-6 text-[13px] text-slate/70">*Срок изготовления 7 дней</p>
+            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
       </div>
-      <div class="mt-8 flex items-center justify-center gap-5">
-        <button type="button" class="flex size-10 items-center justify-center border border-black/10 text-slate/60 transition-colors hover:border-gold hover:text-gold" aria-label="Предыдущий отзыв" data-prev><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
-        <div class="flex gap-1">
-          <button type="button" class="px-1 py-4" aria-label="Отзыв 1" data-dot><span class="dot is-on block"></span></button>
-          <button type="button" class="px-1 py-4" aria-label="Отзыв 2" data-dot><span class="dot block"></span></button>
-          <button type="button" class="px-1 py-4" aria-label="Отзыв 3" data-dot><span class="dot block"></span></button>
+      <div class="reveal mt-16 rounded-[4px] bg-white px-5 py-8 sm:px-10">
+        <h3 class="mb-4 text-[24px]">Цены по разделам</h3>
+        <!-- @price-rows -->
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+          <p class="text-[14px] text-slate/70">
+            *Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.
+          </p>
+          <a href="price/" class="btn-gold">Все цены</a>
         </div>
-        <button type="button" class="flex size-10 items-center justify-center border border-black/10 text-slate/60 transition-colors hover:border-gold hover:text-gold" aria-label="Следующий отзыв" data-next><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ============ Вопросы — landing-8 FAQ (аккордеон). Тексты main-questions ============ -->
-<section id="faq" class="bg-white py-20 sm:py-28">
-  <div class="mx-auto w-full max-w-3xl px-5 sm:px-6">
-    <div class="reveal mb-14 text-center">
-      <div class="mb-5 flex items-center justify-center gap-3"><span class="h-px w-9 bg-gold"></span><span class="text-[12px] tracking-[.38em] text-gold uppercase">FAQ</span><span class="h-px w-9 bg-gold"></span></div>
-      <h2 class="text-[clamp(30px,4vw,46px)]">Вопросы-<em>ответы</em></h2>
+  <!-- ============ Наши работы — landing-1 «Real Homes» (hover) + landing-9 «Before & After» ============ -->
+  <section id="works" class="bg-sand py-16 sm:py-24">
+    <div class="wrap">
+      <div class="reveal mb-14 text-center">
+        <p class="eyebrow">Портфолио</p>
+        <h2 class="h2">Наши <span class="text-gold italic">работы</span></h2>
+        <div class="divider"><i></i></div>
+      </div>
+      <div class="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3">
+        <a
+          href="catalog/blackout-curtains/"
+          class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
+          ><img
+            src="assets/img/catalog/blackout-curtains/image-4.jpg"
+            alt="Шторы блэкаут"
+            loading="lazy"
+            class="size-full object-cover"
+          /><span
+            class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream"
+            >Шторы блэкаут</span
+          ></a
+        >
+        <a
+          href="catalog/roman-blinds/"
+          class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
+          style="--d: 0.07s"
+          ><img
+            src="assets/img/catalog/roman-blinds/image-2.jpg"
+            alt="Римские шторы"
+            loading="lazy"
+            class="size-full object-cover"
+          /><span
+            class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream"
+            >Римские шторы</span
+          ></a
+        >
+        <a
+          href="catalog/linen-curtains/"
+          class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
+          style="--d: 0.14s"
+          ><img
+            src="assets/img/catalog/linen-curtains/image-1.jpg"
+            alt="Льняные шторы"
+            loading="lazy"
+            class="size-full object-cover"
+          /><span
+            class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream"
+            >Льняные шторы</span
+          ></a
+        >
+        <a
+          href="catalog/roller-blinds/"
+          class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
+          style="--d: 0.21s"
+          ><img
+            src="assets/img/catalog/roller-blinds/image-3.jpg"
+            alt="Рулонные шторы"
+            loading="lazy"
+            class="size-full object-cover"
+          /><span
+            class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream"
+            >Рулонные шторы</span
+          ></a
+        >
+        <a
+          href="catalog/pleated-blinds/"
+          class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
+          style="--d: 0.28s"
+          ><img
+            src="assets/img/catalog/pleated-blinds/image-2.jpg"
+            alt="Шторы плиссе"
+            loading="lazy"
+            class="size-full object-cover"
+          /><span
+            class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream"
+            >Шторы плиссе</span
+          ></a
+        >
+        <a
+          href="catalog/blackout-curtains/"
+          class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
+          style="--d: 0.35s"
+          ><img
+            src="assets/img/catalog/blackout-curtains/image-3.jpg"
+            alt="Шторы блэкаут в интерьере"
+            loading="lazy"
+            class="size-full object-cover"
+          /><span
+            class="cap absolute inset-0 flex items-end bg-gradient-to-t from-navy/85 to-transparent to-55% p-5 font-serif text-[18px] font-semibold text-cream"
+            >Шторы блэкаут</span
+          ></a
+        >
+      </div>
     </div>
-    <div class="reveal space-y-2" data-faq>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Сколько стоит пошив штор на заказ?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">Редко какая студия, специализирующаяся на изготовлении штор по меркам клиента, сможет дать точный ответ на этот вопрос, не располагая деталями: конкретными габаритами будущих изделий, выбором материалов и декором. Цена любых индивидуальных заказов напрямую зависит от уникальных характеристик проекта. Тем не менее, мы готовы предоставить вам примерный расчет, чтобы вы могли получить общее представление о порядке цен и ориентироваться на рынке. Для этого достаточно отправить нам приблизительные размеры вашего окна, проект или ваши пожелания. Наши дизайнеры подготовят предварительный расчет, включающий стоимость базовых материалов и пошива штор, а также дополнительных услуг (установка карнизов и монтаж штор). Если озвученная предварительная сумма вас устроит, то после личной встречи с нашим дизайнером вы получите детальную смету, учитывающую выбранные модели, ткани и точные размеры. Выбрать шторы на заказ в Москве и МО в нашем салоне — это правильное решение. Мы предлагаем индивидуальное изготовление штор по доступным ценам в срок 10–14 дней.</p></div>
+  </section>
+  <section class="bg-navy py-16 sm:py-24">
+    <div class="wrap">
+      <div class="reveal reveal-soft mb-12 text-center">
+        <div class="mb-4 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-gold"></span
+          ><span class="text-[12px] tracking-[.28em] text-white/60 uppercase">Преображение</span
+          ><span class="h-px w-8 bg-gold"></span>
+        </div>
+        <h2 class="text-[clamp(30px,4vw,46px)] text-white">До и после</h2>
+        <p class="mt-3 text-[14px] text-white/50">Потяните ручку, чтобы сравнить</p>
       </div>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Где можно посмотреть Ваши работы?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">На нашем сайте есть большое портфолио выполненных работ. В нём Вы можете ознакомиться с разными вариантами исполнения штор на заказ, которые изготовлены нашей компанией. Работ так много, что Вы несомненно найдете в них вдохновение для своего проекта. Также Вы можете познакомиться с нами в разных социальных сетях.</p></div>
-      </div>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Есть ли гарантия на изделия?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">Мы даем 2 года гарантии на изделия и на все работы, проводимые нами по договору.</p></div>
-      </div>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Какие сроки по пошиву?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">По договору 10–14 дней, в зависимости от объема можем сделать и раньше.</p></div>
-      </div>
-      <div class="border border-gold/20 bg-cream/40">
-        <button type="button" class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6" aria-expanded="false" data-faq-q><span class="text-[16px]">Сколько стоит выезд дизайнера?</span><span class="faq-icon shrink-0 text-gold"><svg class="plus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5v14"/></svg><svg class="minus" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/></svg></span></button>
-        <div class="faq-a" data-faq-a><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">Выезд дизайнера — бесплатный! Дизайнер приезжает с образцами и каталогами тканей, делает замер и просчет на месте. Даже если потребуется повторный выезд.</p></div>
+      <div class="reveal reveal-soft">
+        <div
+          class="relative h-[300px] cursor-col-resize touch-pan-y overflow-hidden select-none sm:h-[500px]"
+          data-compare
+        >
+          <img
+            src="assets/img/after.jpg"
+            alt="Комната после"
+            class="pointer-events-none absolute inset-0 size-full object-cover"
+            draggable="false"
+          />
+          <span
+            class="absolute top-5 right-5 bg-gold px-3 py-1.5 text-[12px] tracking-[.2em] text-white uppercase"
+            >После</span
+          >
+          <!-- Верхний слой обрезается справа: слева «до», справа «после» -->
+          <img
+            src="assets/img/before.jpg"
+            alt="Комната до"
+            class="pointer-events-none absolute inset-0 size-full object-cover [clip-path:inset(0_50%_0_0)]"
+            draggable="false"
+            data-compare-after
+          />
+          <span
+            class="absolute top-5 left-5 bg-black/40 px-3 py-1.5 text-[12px] tracking-[.2em] text-white/70 uppercase backdrop-blur-sm transition-opacity duration-300"
+            data-compare-label
+            >До</span
+          >
+          <div
+            class="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2"
+            data-compare-handle
+          >
+            <div class="mx-auto h-full w-px bg-white/60"></div>
+            <div
+              class="absolute top-1/2 left-1/2 flex size-10 -translate-1/2 items-center justify-center gap-0.5 rounded-full bg-gold text-white shadow-[0_0_0_4px_rgb(201_168_76/.28)]"
+            >
+              <svg
+                width="10"
+                height="10"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="m15 18-6-6 6-6" /></svg
+              ><svg
+                width="10"
+                height="10"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="m9 18 6-6-6-6" />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <!-- <p class="mt-3 text-center text-[12px] text-white/40">Фото — временные, из референса landing-9: реальных фото «до/после» на текущем сайте нет.</p> -->
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- ============ Отзывы — landing-9 (слайдер, стрелки, точки). ЗАГЛУШКА: на текущем сайте отзывов нет ============ -->
+  <section id="reviews" class="bg-cream py-16 sm:py-24">
+    <div class="wrap">
+      <div class="reveal reveal-soft mb-12 text-center">
+        <div class="mb-4 flex items-center justify-center gap-3">
+          <span class="h-px w-8 bg-gold"></span
+          ><span class="text-[12px] tracking-[.28em] text-gold uppercase">Отзывы</span
+          ><span class="h-px w-8 bg-gold"></span>
+        </div>
+        <h2 class="text-[clamp(30px,4vw,46px)]">Отзывы клиентов</h2>
+        <!-- <p class="mx-auto mt-4 inline-block border border-dashed border-gold px-4 py-2 text-[14px] text-slate" data-reviews-note>Отзывы — ждут реальных текстов</p> -->
+      </div>
+      <div class="reveal reveal-soft" data-slider>
+        <div
+          class="mx-auto max-w-[760px] bg-white px-6 py-12 text-center shadow-[0_8px_64px_rgb(0_0_0/.06)] sm:px-16 sm:py-14"
+        >
+          <div class="slide" data-slide>
+            <div class="mb-8 flex justify-center gap-1 text-gold" aria-hidden="true">★★★★★</div>
+            <blockquote
+              class="mb-10 font-serif text-[20px] leading-relaxed text-slate/50 italic"
+              data-quote
+            >
+              Текст отзыва 1 — ждёт реального текста
+            </blockquote>
+            <div class="flex items-center justify-center gap-4">
+              <span
+                class="grid size-12 place-items-center rounded-full bg-sand font-serif text-[17px] text-gold"
+                data-avatar
+              ></span>
+              <div class="text-left">
+                <p class="font-serif text-[15px] text-slate/60" data-name>Имя клиента</p>
+                <p class="text-[13px] text-slate/40" data-cat>Раздел каталога</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 flex items-center justify-center gap-5">
+          <button
+            type="button"
+            class="flex size-10 items-center justify-center border border-black/10 text-slate/60 transition-colors hover:border-gold hover:text-gold"
+            aria-label="Предыдущий отзыв"
+            data-prev
+          >
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m15 18-6-6 6-6" />
+            </svg>
+          </button>
+          <div class="flex gap-1">
+            <button type="button" class="px-1 py-4" aria-label="Отзыв 1" data-dot>
+              <span class="dot is-on block"></span>
+            </button>
+            <button type="button" class="px-1 py-4" aria-label="Отзыв 2" data-dot>
+              <span class="dot block"></span>
+            </button>
+            <button type="button" class="px-1 py-4" aria-label="Отзыв 3" data-dot>
+              <span class="dot block"></span>
+            </button>
+          </div>
+          <button
+            type="button"
+            class="flex size-10 items-center justify-center border border-black/10 text-slate/60 transition-colors hover:border-gold hover:text-gold"
+            aria-label="Следующий отзыв"
+            data-next
+          >
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="m9 18 6-6-6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Вопросы — landing-8 FAQ (аккордеон). Тексты main-questions ============ -->
+  <section id="faq" class="bg-white py-20 sm:py-28">
+    <div class="mx-auto w-full max-w-3xl px-5 sm:px-6">
+      <div class="reveal mb-14 text-center">
+        <div class="mb-5 flex items-center justify-center gap-3">
+          <span class="h-px w-9 bg-gold"></span
+          ><span class="text-[12px] tracking-[.38em] text-gold uppercase">FAQ</span
+          ><span class="h-px w-9 bg-gold"></span>
+        </div>
+        <h2 class="text-[clamp(30px,4vw,46px)]">Вопросы-<em>ответы</em></h2>
+      </div>
+      <div class="reveal space-y-2" data-faq>
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Сколько стоит пошив штор на заказ?</span
+            ><span class="faq-icon shrink-0 text-gold"
+              ><svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" /></svg
+            ></span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              Редко какая студия, специализирующаяся на изготовлении штор по меркам клиента, сможет
+              дать точный ответ на этот вопрос, не располагая деталями: конкретными габаритами
+              будущих изделий, выбором материалов и декором. Цена любых индивидуальных заказов
+              напрямую зависит от уникальных характеристик проекта. Тем не менее, мы готовы
+              предоставить вам примерный расчет, чтобы вы могли получить общее представление о
+              порядке цен и ориентироваться на рынке. Для этого достаточно отправить нам
+              приблизительные размеры вашего окна, проект или ваши пожелания. Наши дизайнеры
+              подготовят предварительный расчет, включающий стоимость базовых материалов и пошива
+              штор, а также дополнительных услуг (установка карнизов и монтаж штор). Если озвученная
+              предварительная сумма вас устроит, то после личной встречи с нашим дизайнером вы
+              получите детальную смету, учитывающую выбранные модели, ткани и точные размеры.
+              Выбрать шторы на заказ в Москве и МО в нашем салоне — это правильное решение. Мы
+              предлагаем индивидуальное изготовление штор по доступным ценам в срок 10–14 дней.
+            </p>
+          </div>
+        </div>
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Где можно посмотреть Ваши работы?</span
+            ><span class="faq-icon shrink-0 text-gold"
+              ><svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" /></svg
+            ></span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              На нашем сайте есть большое портфолио выполненных работ. В нём Вы можете ознакомиться
+              с разными вариантами исполнения штор на заказ, которые изготовлены нашей компанией.
+              Работ так много, что Вы несомненно найдете в них вдохновение для своего проекта. Также
+              Вы можете познакомиться с нами в разных социальных сетях.
+            </p>
+          </div>
+        </div>
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Есть ли гарантия на изделия?</span
+            ><span class="faq-icon shrink-0 text-gold"
+              ><svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" /></svg
+            ></span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              Мы даем 2 года гарантии на изделия и на все работы, проводимые нами по договору.
+            </p>
+          </div>
+        </div>
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Какие сроки по пошиву?</span
+            ><span class="faq-icon shrink-0 text-gold"
+              ><svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" /></svg
+            ></span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              По договору 10–14 дней, в зависимости от объема можем сделать и раньше.
+            </p>
+          </div>
+        </div>
+        <div class="border border-gold/20 bg-cream/40">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+            aria-expanded="false"
+            data-faq-q
+          >
+            <span class="text-[16px]">Сколько стоит выезд дизайнера?</span
+            ><span class="faq-icon shrink-0 text-gold"
+              ><svg
+                class="plus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14M12 5v14" /></svg
+              ><svg
+                class="minus"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M5 12h14" /></svg
+            ></span>
+          </button>
+          <div class="faq-a" data-faq-a>
+            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+              Выезд дизайнера — бесплатный! Дизайнер приезжает с образцами и каталогами тканей,
+              делает замер и просчет на месте. Даже если потребуется повторный выезд.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 <!-- @lead-form -->
 <!-- @footer -->

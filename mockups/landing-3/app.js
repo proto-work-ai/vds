@@ -9,19 +9,22 @@
   // Отзывы — массив `he` из кода оригинала, в том же порядке.
   const TESTIMONIALS = [
     {
-      quote: 'SanCurtains transformed our Mayfair townhouse into something from a dream. The Imperial Velvet collection in our drawing room has become the most talked-about feature among our guests.',
+      quote:
+        'SanCurtains transformed our Mayfair townhouse into something from a dream. The Imperial Velvet collection in our drawing room has become the most talked-about feature among our guests.',
       name: 'Lady Caroline Ashworth',
       title: 'Interior Design Client, London',
       img: 'https://images.unsplash.com/photo-1766684412414-57b272c62d45?w=120&h=120&fit=crop&auto=format',
     },
     {
-      quote: "We've worked with every premium curtain maker in Europe. SanCurtains stands in a category entirely of their own. The craftsmanship is extraordinary — the fabric, the weight, the fall.",
+      quote:
+        "We've worked with every premium curtain maker in Europe. SanCurtains stands in a category entirely of their own. The craftsmanship is extraordinary — the fabric, the weight, the fall.",
       name: 'Alessandro Ferrari',
       title: 'Principal Architect, Ferrari & Associates, Milan',
       img: 'https://images.unsplash.com/photo-1688506900123-0ae2c0b063a7?w=120&h=120&fit=crop&auto=format',
     },
     {
-      quote: 'From our first consultation to the final installation, every detail was handled with the kind of white-glove care you rarely encounter. Our penthouse was worth the wait.',
+      quote:
+        'From our first consultation to the final installation, every detail was handled with the kind of white-glove care you rarely encounter. Our penthouse was worth the wait.',
       name: 'Dr. Priya Mehta',
       title: 'Residential Client, Dubai',
       img: 'https://images.unsplash.com/photo-1763940018489-12e722c40bab?w=120&h=120&fit=crop&auto=format',
@@ -45,7 +48,7 @@
   const MENU_CLASS =
     '[position:absolute] [top:80px] [left:0px] [right:0px] [background:rgba(6,_10,_7,_0.98)] [backdrop-filter:blur(20px)] [border-bottom:1px_solid_rgba(212,_175,_55,_0.2)] [padding:24px_32px] [display:flex] [flex-direction:column] [gap:20px] [animation:fadeInUp_0.3s_ease]';
   const MENU_LINK_CLASS =
-    "[font-family:Cinzel,_serif] [font-size:12px] [letter-spacing:0.3em] [color:rgb(232,_223,_208)] [text-decoration:none] [text-transform:uppercase] [opacity:0.8]";
+    '[font-family:Cinzel,_serif] [font-size:12px] [letter-spacing:0.3em] [color:rgb(232,_223,_208)] [text-decoration:none] [text-transform:uppercase] [opacity:0.8]';
 
   // Классы, которые появляются только при взаимодействии: браузерная сборка
   // Tailwind должна сгенерировать их заранее, иначе первый переход не проиграется.
@@ -108,15 +111,22 @@
 
   // ---------- «Scroll» на первом экране ----------
   const hero = $('section#home');
-  const scrollHint = hero && $$('span', hero).find((s) => s.textContent.trim() === 'Scroll')?.parentElement;
-  scrollHint?.addEventListener('click', () => document.getElementById('collections')?.scrollIntoView({ behavior: 'smooth' }));
+  const scrollHint =
+    hero && $$('span', hero).find((s) => s.textContent.trim() === 'Scroll')?.parentElement;
+  scrollHint?.addEventListener('click', () =>
+    document.getElementById('collections')?.scrollIntoView({ behavior: 'smooth' }),
+  );
 
   // ---------- отзывы ----------
   const section = $('section#testimonials');
-  const quoteP = section && $$('p', section).find((p) => p.textContent.trim().startsWith('"') && p.textContent.length > 40);
+  const quoteP =
+    section &&
+    $$('p', section).find((p) => p.textContent.trim().startsWith('"') && p.textContent.length > 40);
   if (quoteP) {
     const cardRef = { current: quoteP.parentElement };
-    const dotsBox = [...cardRef.current.parentElement.children].find((el) => el !== cardRef.current && $$(':scope > button', el).length === TESTIMONIALS.length);
+    const dotsBox = [...cardRef.current.parentElement.children].find(
+      (el) => el !== cardRef.current && $$(':scope > button', el).length === TESTIMONIALS.length,
+    );
     const dots = dotsBox ? $$(':scope > button', dotsBox) : [];
     const DOT_ON = ['[width:28px]', '[background:rgb(212,_175,_55)]'];
     const DOT_OFF = ['[width:8px]', '[background:rgba(212,_175,_55,_0.3)]'];
@@ -162,8 +172,11 @@
   const lateReveal = $$('.section-reveal:not([data-reveal]):not(.visible)');
   if (lateReveal.length && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && (e.target.classList.add('visible'), io.unobserve(e.target))),
-      { threshold: 0.2 }
+      (entries) =>
+        entries.forEach(
+          (e) => e.isIntersecting && (e.target.classList.add('visible'), io.unobserve(e.target)),
+        ),
+      { threshold: 0.2 },
     );
     lateReveal.forEach((el) => io.observe(el));
   } else lateReveal.forEach((el) => el.classList.add('visible'));

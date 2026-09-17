@@ -2,6 +2,7 @@
 @import 'tailwindcss' source(none);
 @source './app';
 @source '../../../libs/ui/site-kit/src';
+@import './theme/taiga-ui.scss';
 @import './styles/theme.css';
 @import './styles/catalog.css';
 

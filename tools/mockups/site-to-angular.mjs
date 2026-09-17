@@ -39,7 +39,7 @@ const LOCAL_BUSINESS = {
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}/assets/favicon/favicon-96x96.png`,
   image: `${SITE_URL}/assets/img/hero.jpg`,
-  telephone: '+79255946117',
+  telephone: '+79153591200',
   email: 'info@shtorivdom.ru',
   address: { '@type': 'PostalAddress', streetAddress: 'Кварцевая улица, 3, корп. 2', addressLocality: 'Троицк, Москва', addressCountry: 'RU' },
   areaServed: ['Москва', 'Московская область'],

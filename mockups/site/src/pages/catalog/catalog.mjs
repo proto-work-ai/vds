@@ -19,48 +19,140 @@ const SRC = 'mockups/site/src';
 
 // ---------- данные: catalog.data.ts ----------
 const SECTIONS = [
-  { key: 'blackout-curtains', title: 'Шторы блэкаут', text: 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме', image: 'image-5.jpg',
-    images: [5, 4, 3, 1, 2, 6, 7, 8, 9, 10, 13] },
-  { key: 'roman-blinds', title: 'Римские шторы', text: 'Из плотных и легких тканей для прямых и скошенных окон.', image: 'image-1.jpg', images: [1, 2, 3] },
-  { key: 'roller-blinds', title: 'Рулонные шторы', text: 'Крепление на проем, в проем или раму окна.', image: 'image-2.jpg', images: [2, 3, 4, 5, 6, 7, 8, 9, 10] },
+  {
+    key: 'blackout-curtains',
+    title: 'Шторы блэкаут',
+    text: 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме',
+    image: 'image-5.jpg',
+    images: [5, 4, 3, 1, 2, 6, 7, 8, 9, 10, 13],
+  },
+  {
+    key: 'roman-blinds',
+    title: 'Римские шторы',
+    text: 'Из плотных и легких тканей для прямых и скошенных окон.',
+    image: 'image-1.jpg',
+    images: [1, 2, 3],
+  },
+  {
+    key: 'roller-blinds',
+    title: 'Рулонные шторы',
+    text: 'Крепление на проем, в проем или раму окна.',
+    image: 'image-2.jpg',
+    images: [2, 3, 4, 5, 6, 7, 8, 9, 10],
+  },
   // image-10 указан в catalog.data.ts, но файла в public/ нет — пропущен.
-  { key: 'linen-curtains', title: 'Льняные шторы', text: 'Для стандартных, мансардных и треугольных окон.', image: 'image-3.jpg', images: [3, 1, 2, 4, 5, 6, 7, 8, 9] },
-  { key: 'pleated-blinds', title: 'Шторы плиссе', text: 'Для стандартных, мансардных и треугольных окон.', image: 'image-1.jpg', images: [1, 2, 3, 4, 5, 6, 7, 8, 9] },
-  { key: 'curtain-rods', title: 'Карнизы для штор', text: 'Декоративные и профильные.', image: 'image-1.jpg', images: [4, 5, 6, 7, 8, 9, 10] },
-  { key: 'blinds', title: 'Жалюзи', text: 'Стильные, практичные.', image: 'image-1.jpg', images: [10, 9, 1, 3, 4, 5, 6, 7, 8] },
+  {
+    key: 'linen-curtains',
+    title: 'Льняные шторы',
+    text: 'Для стандартных, мансардных и треугольных окон.',
+    image: 'image-3.jpg',
+    images: [3, 1, 2, 4, 5, 6, 7, 8, 9],
+  },
+  {
+    key: 'pleated-blinds',
+    title: 'Шторы плиссе',
+    text: 'Для стандартных, мансардных и треугольных окон.',
+    image: 'image-1.jpg',
+    images: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+  },
+  {
+    key: 'curtain-rods',
+    title: 'Карнизы для штор',
+    text: 'Декоративные и профильные.',
+    image: 'image-1.jpg',
+    images: [4, 5, 6, 7, 8, 9, 10],
+  },
+  {
+    key: 'blinds',
+    title: 'Жалюзи',
+    text: 'Стильные, практичные.',
+    image: 'image-1.jpg',
+    images: [10, 9, 1, 3, 4, 5, 6, 7, 8],
+  },
 ];
 
 const MODELS = [
-  'Карниз 0-25025-22', 'Карниз CASTLE messing matt', 'Карниз AIDA anthrazit-nickel matt', 'Карниз AIDA anthrazit-messing matt',
-  'Карниз PLENUM венге', 'Карниз DAVOS белый', 'Карниз CAPRI орех', 'Карниз CANNES бук', 'Карниз JAZZ nickel matt',
+  'Карниз 0-25025-22',
+  'Карниз CASTLE messing matt',
+  'Карниз AIDA anthrazit-nickel matt',
+  'Карниз AIDA anthrazit-messing matt',
+  'Карниз PLENUM венге',
+  'Карниз DAVOS белый',
+  'Карниз CAPRI орех',
+  'Карниз CANNES бук',
+  'Карниз JAZZ nickel matt',
 ].map((title, i) => ({ key: String(i + 1), title }));
 
 // ---------- цены: price-list.service.ts ----------
 const U = { lm: 'м.пог.', m2: 'м²', pcs: 'шт.' };
 const PRICES = {
-  'blackout-curtains': [['Блэкаут однотонный', 'Турция', 2.8, 3, 2500, U.lm], ['Блэкаут с фактурой льна', 'Турция', 2.8, 3, 3200, U.lm], ['Блэкаут жаккард', 'Германия', 3, 5, [4500, 7000], U.lm]],
-  'roman-blinds': [['Лёгкая ткань', 'Турция', 2.8, 3, 4500, U.m2], ['Плотная ткань / блэкаут', 'Турция', 2.8, 3, 5500, U.m2], ['Лён премиум', 'Италия', 3, 5, [8000, 12000], U.m2]],
-  'roller-blinds': [['Мини, ткань стандарт', 'Россия', [0.3, 1.6], 2, 2200, U.m2], ['Кассетные UNI', 'Россия', [0.3, 1.8], 3, 3500, U.m2], ['День-ночь (зебра)', 'Корея', [0.3, 2.5], 3, 4200, U.m2]],
-  'linen-curtains': [['Лён с хлопком', 'Турция', 2.8, 3, 2800, U.lm], ['Натуральный лён', 'Беларусь', 2.6, 3, 4000, U.lm], ['Итальянский лён', 'Италия', 3, 5, [6500, 9500], U.lm]],
-  'pleated-blinds': [['Плиссе стандарт', 'Россия', [0.3, 1.8], 2, 3500, U.m2], ['Плиссе блэкаут', 'Германия', [0.3, 1.8], 3, 5000, U.m2], ['Мансардные плиссе', 'Германия', [0.3, 1.5], 3, 7500, U.m2]],
-  'curtain-rods': [['Профильный алюминиевый', 'Россия', undefined, 3, 900, U.lm], ['Декоративный металлический', 'Германия', undefined, 5, [2500, 6000], U.lm], ['Электрокарниз', 'Германия', undefined, 2, 18000, U.pcs]],
-  blinds: [['Горизонтальные алюминиевые', 'Россия', undefined, 2, 1500, U.m2], ['Вертикальные тканевые', 'Россия', undefined, 2, 1800, U.m2], ['Деревянные', 'Китай', undefined, 3, 6500, U.m2]],
+  'blackout-curtains': [
+    ['Блэкаут однотонный', 'Турция', 2.8, 3, 2500, U.lm],
+    ['Блэкаут с фактурой льна', 'Турция', 2.8, 3, 3200, U.lm],
+    ['Блэкаут жаккард', 'Германия', 3, 5, [4500, 7000], U.lm],
+  ],
+  'roman-blinds': [
+    ['Лёгкая ткань', 'Турция', 2.8, 3, 4500, U.m2],
+    ['Плотная ткань / блэкаут', 'Турция', 2.8, 3, 5500, U.m2],
+    ['Лён премиум', 'Италия', 3, 5, [8000, 12000], U.m2],
+  ],
+  'roller-blinds': [
+    ['Мини, ткань стандарт', 'Россия', [0.3, 1.6], 2, 2200, U.m2],
+    ['Кассетные UNI', 'Россия', [0.3, 1.8], 3, 3500, U.m2],
+    ['День-ночь (зебра)', 'Корея', [0.3, 2.5], 3, 4200, U.m2],
+  ],
+  'linen-curtains': [
+    ['Лён с хлопком', 'Турция', 2.8, 3, 2800, U.lm],
+    ['Натуральный лён', 'Беларусь', 2.6, 3, 4000, U.lm],
+    ['Итальянский лён', 'Италия', 3, 5, [6500, 9500], U.lm],
+  ],
+  'pleated-blinds': [
+    ['Плиссе стандарт', 'Россия', [0.3, 1.8], 2, 3500, U.m2],
+    ['Плиссе блэкаут', 'Германия', [0.3, 1.8], 3, 5000, U.m2],
+    ['Мансардные плиссе', 'Германия', [0.3, 1.5], 3, 7500, U.m2],
+  ],
+  'curtain-rods': [
+    ['Профильный алюминиевый', 'Россия', undefined, 3, 900, U.lm],
+    ['Декоративный металлический', 'Германия', undefined, 5, [2500, 6000], U.lm],
+    ['Электрокарниз', 'Германия', undefined, 2, 18000, U.pcs],
+  ],
+  blinds: [
+    ['Горизонтальные алюминиевые', 'Россия', undefined, 2, 1500, U.m2],
+    ['Вертикальные тканевые', 'Россия', undefined, 2, 1800, U.m2],
+    ['Деревянные', 'Китай', undefined, 3, 6500, U.m2],
+  ],
 };
 
 const money = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const num = (n) => String(n).replace('.', ',');
-const range = (v, suffix, single, fmt = money) => v === undefined ? '—'
-  : Array.isArray(v) ? `от ${fmt(v[0])} до ${fmt(v[1])} ${suffix}` : `${single}${fmt(v)} ${suffix}`;
-const years = (n) => `${n} ${n % 10 === 1 && n % 100 !== 11 ? 'год' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'года' : 'лет'}`;
-const minPrice = (key) => PRICES[key].reduce((m, r) => { const v = Math.min(...[].concat(r[4])); return v < m[0] ? [v, r[5]] : m; }, [Infinity, '']);
+const range = (v, suffix, single, fmt = money) =>
+  v === undefined
+    ? '—'
+    : Array.isArray(v)
+      ? `от ${fmt(v[0])} до ${fmt(v[1])} ${suffix}`
+      : `${single}${fmt(v)} ${suffix}`;
+const years = (n) =>
+  `${n} ${n % 10 === 1 && n % 100 !== 11 ? 'год' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? 'года' : 'лет'}`;
+const minPrice = (key) =>
+  PRICES[key].reduce(
+    (m, r) => {
+      const v = Math.min(...[].concat(r[4]));
+      return v < m[0] ? [v, r[5]] : m;
+    },
+    [Infinity, ''],
+  );
 
-const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const esc = (s) =>
+  s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const img = (key, file) => `{{root}}assets/img/catalog/${key}/${file}`;
 
 // ---------- разбор catalog-detail/<key>.html ----------
-const norm = (s) => s.replace(/\s+/g, ' ').trim()
-  // «подъеме.Для ткани» — склеенные предложения на текущем сайте
-  .replace(/([а-яё»)])\.([А-ЯЁ])/g, '$1. $2');
+const norm = (s) =>
+  s
+    .replace(/\s+/g, ' ')
+    .trim()
+    // «подъеме.Для ткани» — склеенные предложения на текущем сайте
+    .replace(/([а-яё»)])\.([А-ЯЁ])/g, '$1. $2');
 
 // Дерево списка: <ol><li>текст <ol>…</ol> <blockquote>…</blockquote></li></ol>
 function parseList(html) {
@@ -71,16 +163,36 @@ function parseList(html) {
   for (const m of html.matchAll(/<(\/?)(ol|li|blockquote)[^>]*>|([^<]+)/g)) {
     const [, close, tag, text] = m;
     if (text !== undefined) {
-      if (li && text.trim()) li[li.inQuote ? 'quote' : 'text'] = ((li[li.inQuote ? 'quote' : 'text'] ?? '') + ' ' + text).trim();
+      if (li && text.trim())
+        li[li.inQuote ? 'quote' : 'text'] = (
+          (li[li.inQuote ? 'quote' : 'text'] ?? '') +
+          ' ' +
+          text
+        ).trim();
       continue;
     }
-    if (tag === 'ol' && !close) { const list = { items: [] }; if (li) li.sub = list; else root.sub ??= list; stack.push(list); liStack.push(li); li = null; }
-    else if (tag === 'ol') { stack.pop(); li = liStack.pop(); }
-    else if (tag === 'li' && !close) { li = { text: '' }; stack.at(-1).items.push(li); }
-    else if (tag === 'li') li = null;
+    if (tag === 'ol' && !close) {
+      const list = { items: [] };
+      if (li) li.sub = list;
+      else root.sub ??= list;
+      stack.push(list);
+      liStack.push(li);
+      li = null;
+    } else if (tag === 'ol') {
+      stack.pop();
+      li = liStack.pop();
+    } else if (tag === 'li' && !close) {
+      li = { text: '' };
+      stack.at(-1).items.push(li);
+    } else if (tag === 'li') li = null;
     else if (tag === 'blockquote' && li) li.inQuote = !close;
   }
-  const clean = (list) => list.items.map((i) => ({ text: norm(i.text), quote: i.quote && norm(i.quote), sub: i.sub && clean(i.sub) }));
+  const clean = (list) =>
+    list.items.map((i) => ({
+      text: norm(i.text),
+      quote: i.quote && norm(i.quote),
+      sub: i.sub && clean(i.sub),
+    }));
   return root.sub ? clean(root.sub) : [];
 }
 
@@ -93,7 +205,11 @@ function parseDetail(key) {
     const title = norm(h[2]) || norm(h[1].replace(/class="[^"]*"/, ''));
     const note = s.match(/<\/div>\s*<p>([\s\S]*?)<\/p>/)?.[1];
     const table = s.match(/<table[\s\S]*?<\/table>/)?.[0];
-    const rows = table && [...table.matchAll(/<tr>([\s\S]*?)<\/tr>/g)].map(([, r]) => [...r.matchAll(/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/g)].map(([, c]) => norm(c)));
+    const rows =
+      table &&
+      [...table.matchAll(/<tr>([\s\S]*?)<\/tr>/g)].map(([, r]) =>
+        [...r.matchAll(/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/g)].map(([, c]) => norm(c)),
+      );
     const ol = s.match(/<ol[\s\S]*<\/ol>/)?.[0];
     return { title, note: note && norm(note), rows, items: ol ? parseList(ol) : [] };
   });
@@ -119,19 +235,29 @@ function parseDetail(key) {
 
 // ---------- разметка ----------
 const read = (p) => readFileSync(path.join(SRC, p), 'utf8');
-const arrow = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
-const chevron = (d) => `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${d}"/></svg>`;
+const arrow =
+  '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+const chevron = (d) =>
+  `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${d}"/></svg>`;
 
-const crumbs = (list) => `<nav class="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60" aria-label="Хлебные крошки">${list
-  .map(([t, href]) => (href ? `<a href="${href}" class="transition-colors hover:text-gold">${t}</a>` : `<span class="text-cream/90" aria-current="page">${t}</span>`))
-  .join('<span class="text-gold" aria-hidden="true">/</span>')}</nav>`;
+const crumbs = (list) =>
+  `<nav class="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60" aria-label="Хлебные крошки">${list
+    .map(([t, href]) =>
+      href
+        ? `<a href="${href}" class="transition-colors hover:text-gold">${t}</a>`
+        : `<span class="text-cream/90" aria-current="page">${t}</span>`,
+    )
+    .join('<span class="text-gold" aria-hidden="true">/</span>')}</nav>`;
 
-const eyebrow = (text, center = true, light = false) => `<div class="mb-5 flex items-center ${center ? 'justify-center' : ''} gap-4"><span class="cat-line-l h-px w-[60px]"></span><span class="text-[12px] tracking-[.35em] ${light ? 'text-cream/70' : 'text-gold'} uppercase">${text}</span>${center ? '<span class="cat-line-r h-px w-[60px]"></span>' : ''}</div>`;
+const eyebrow = (text, center = true, light = false) =>
+  `<div class="mb-5 flex items-center ${center ? 'justify-center' : ''} gap-4"><span class="cat-line-l h-px w-[60px]"></span><span class="text-[12px] tracking-[.35em] ${light ? 'text-cream/70' : 'text-gold'} uppercase">${text}</span>${center ? '<span class="cat-line-r h-px w-[60px]"></span>' : ''}</div>`;
 
 // Пункт списка: «Термин: описание» / «Термин. описание» — термин жирным.
 const itemHtml = (it) => {
   const m = it.text.match(/^([^:.]{2,48}?)([:.])\s+(.+)$/);
-  const text = m ? `<strong class="font-bold text-navy">${esc(m[1])}${m[2] === '.' ? '.' : ':'}</strong> ${esc(m[3])}` : `<strong class="font-bold text-navy">${esc(it.text)}</strong>`;
+  const text = m
+    ? `<strong class="font-bold text-navy">${esc(m[1])}${m[2] === '.' ? '.' : ':'}</strong> ${esc(m[3])}`
+    : `<strong class="font-bold text-navy">${esc(it.text)}</strong>`;
   const plain = !m && !it.sub ? esc(it.text) : text;
   return `<li class="cat-li">${plain}${it.quote ? `<p class="mt-3 border-l-2 border-gold bg-gold-soft/50 px-4 py-3 text-[15px] text-navy">${esc(it.quote)}</p>` : ''}${it.sub ? `<ul class="mt-3 space-y-3">${it.sub.map(itemHtml).join('')}</ul>` : ''}</li>`;
 };
@@ -140,10 +266,24 @@ const compareTable = (rows) => {
   const [head, ...body] = rows;
   return `
         <div class="hidden md:block"><table class="cat-table"><thead><tr>${head.map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${body.map((r) => `<tr>${r.map((c, i) => (i ? `<td>${esc(c)}</td>` : `<td class="font-bold">${esc(c)}</td>`)).join('')}</tr>`).join('')}</tbody></table></div>
-        <div class="grid gap-3 md:hidden">${body.map((r) => `<dl class="border border-navy/10 bg-white px-4 py-3"><dt class="mb-2 font-serif text-[18px] font-bold">${esc(r[0])}</dt>${r.slice(1).map((c, i) => `<dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">${esc(head[i + 1])}</span>${esc(c)}</dd>`).join('')}</dl>`).join('')}</div>`;
+        <div class="grid gap-3 md:hidden">${body
+          .map(
+            (r) =>
+              `<dl class="border border-navy/10 bg-white px-4 py-3"><dt class="mb-2 font-serif text-[18px] font-bold">${esc(r[0])}</dt>${r
+                .slice(1)
+                .map(
+                  (c, i) =>
+                    `<dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">${esc(head[i + 1])}</span>${esc(c)}</dd>`,
+                )
+                .join('')}</dl>`,
+          )
+          .join('')}</div>`;
 };
 
-const contentBlocks = (detail) => detail.sections.map((s, i) => `
+const contentBlocks = (detail) =>
+  detail.sections
+    .map(
+      (s, i) => `
       <article class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11" style="--d:.05s">
         <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
           <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">${String(i + 1).padStart(2, '0')}</span>
@@ -154,7 +294,9 @@ const contentBlocks = (detail) => detail.sections.map((s, i) => `
             ${s.rows ? compareTable(s.rows) : ''}
           </div>
         </div>
-      </article>`).join('');
+      </article>`,
+    )
+    .join('');
 
 // Таблица цен — price-list-brand-table: 5 колонок на широком экране, на телефоне карточки.
 const priceTable = (key, title) => {
@@ -174,7 +316,9 @@ const priceTable = (key, title) => {
         <tbody>${rows.map(([name, country, width, warranty, price, unit]) => `<tr><td class="font-serif text-[18px] font-bold">${name}</td><td>${country}</td><td>${range(width, 'м', 'до ', num)}</td><td>${years(warranty)}</td><td class="text-right text-[17px] font-bold whitespace-nowrap">${range(price, '₽', 'от ')} <span class="font-normal text-slate/70">/ ${unit}</span></td></tr>`).join('')}</tbody>
       </table>
     </div>
-    <div class="grid gap-4 lg:hidden" data-price-cards>${rows.map(([name, country, width, warranty, price, unit], i) => `
+    <div class="grid gap-4 lg:hidden" data-price-cards>${rows
+      .map(
+        ([name, country, width, warranty, price, unit], i) => `
       <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d:${i * 0.08}s">
         <p class="mb-3 font-serif text-[20px] leading-tight font-bold">${name}</p>
         <p class="mb-4 text-[20px] font-bold text-navy">${range(price, '₽', 'от ')} <span class="text-[14px] font-normal text-slate/70">/ ${unit}</span></p>
@@ -183,7 +327,9 @@ const priceTable = (key, title) => {
           <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt><dd>${range(width, 'м', 'до ', num)}</dd></div>
           <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt><dd>${years(warranty)}</dd></div>
         </dl>
-      </div>`).join('')}
+      </div>`,
+      )
+      .join('')}
     </div>
     <div class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center">
       <a href="#lead" class="btn-gold group max-sm:w-full">Рассчитать стоимость ${arrow}</a>
@@ -219,7 +365,11 @@ const modelsGrid = () => `
       <div class="divider"><i></i></div>
     </div>
     <div class="grid grid-cols-1 gap-6 min-[520px]:grid-cols-2 lg:grid-cols-3" data-models>
-      ${MODELS.map((m, i) => `<a href="${m.key}/" class="reveal fade-up group block" style="--d:${(i % 3) * 0.1}s" data-model-card>
+      ${MODELS.map(
+        (
+          m,
+          i,
+        ) => `<a href="${m.key}/" class="reveal fade-up group block" style="--d:${(i % 3) * 0.1}s" data-model-card>
         <div class="cat-card h-full overflow-hidden rounded-[2px] border border-navy/10 bg-white">
           <div class="relative flex h-[190px] items-center justify-center overflow-hidden bg-white px-6"><img src="{{root}}assets/img/catalog/curtain-rods/models/catalog-${m.key}.webp" alt="${m.title}" loading="lazy" class="cat-zoom-img max-h-[120px] w-full object-contain" /></div>
           <div class="border-t border-navy/10 px-6 pt-5 pb-6">
@@ -229,7 +379,8 @@ const modelsGrid = () => `
             <span class="inline-flex items-center gap-2 text-[12px] font-bold tracking-[.2em] text-navy/70 uppercase transition-colors group-hover:text-gold">Подробнее ${arrow}</span>
           </div>
         </div>
-      </a>`).join('\n      ')}
+      </a>`,
+      ).join('\n      ')}
     </div>
   </div>
 </section>`;
@@ -239,13 +390,20 @@ const index = read('pages/index.html');
 const stepsHtml = (() => {
   const start = index.indexOf('<div class="reveal reveal-soft mt-20 mb-14 text-center sm:mt-28">');
   const end = index.indexOf('</ol>', start);
-  if (start < 0 || end < 0) throw new Error('catalog.mjs: не найден блок «Как сделать заказ?» в src/pages/index.html');
-  return index.slice(start, index.indexOf('</div>', end) + '</div>'.length).replace('mt-20 mb-14', 'mb-14').replace('sm:mt-28', '');
+  if (start < 0 || end < 0)
+    throw new Error('catalog.mjs: не найден блок «Как сделать заказ?» в src/pages/index.html');
+  return index
+    .slice(start, index.indexOf('</div>', end) + '</div>'.length)
+    .replace('mt-20 mb-14', 'mb-14')
+    .replace('sm:mt-28', '');
 })();
 const faqHtml = (() => {
   const m = index.match(/<section id="faq"[\s\S]*?<\/section>/);
   if (!m) throw new Error('catalog.mjs: не найден блок FAQ в src/pages/index.html');
-  return m[0].replace('class="bg-white py-20 sm:py-28"', 'class="bg-white pt-6 pb-20 sm:pt-8 sm:pb-28"');
+  return m[0].replace(
+    'class="bg-white py-20 sm:py-28"',
+    'class="bg-white pt-6 pb-20 sm:pt-8 sm:pb-28"',
+  );
 })();
 
 const styles = read('partials/catalog-styles.html');
@@ -341,11 +499,16 @@ const sectionPage = (s) => {
         <p class="mb-3 text-[12px] tracking-[.25em] text-gold uppercase">Бесплатно</p>
         <p class="mb-6 font-serif text-[22px] leading-snug">Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.</p>
         <a href="#lead" class="btn-gold !flex w-full !px-4 whitespace-nowrap">Пригласить дизайнера</a>
-        <a href="tel:+79255946117" class="mt-5 block text-center font-serif text-[20px] font-bold transition-colors hover:text-gold">+7 (925) 594-61-17</a>
+        <a href="tel:+79153591200" class="mt-5 block text-center font-serif text-[20px] font-bold transition-colors hover:text-gold">+7 (915) 359-12-00</a>
       </div>
       <nav class="reveal mt-6 hidden border border-navy/10 bg-white px-6 py-5 lg:block" aria-label="Другие разделы">
         <p class="mb-3 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Другие разделы</p>
-        ${SECTIONS.filter((o) => o.key !== s.key).map((o) => `<a href="{{root}}catalog/${o.key}/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">${o.title}<span class="text-gold">→</span></a>`).join('\n        ')}
+        ${SECTIONS.filter((o) => o.key !== s.key)
+          .map(
+            (o) =>
+              `<a href="{{root}}catalog/${o.key}/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">${o.title}<span class="text-gold">→</span></a>`,
+          )
+          .join('\n        ')}
       </nav>
     </aside>
   </div>
@@ -366,7 +529,10 @@ ${faqHtml}
 const modelPage = (m) => {
   const shots = [
     [`{{root}}assets/img/catalog/curtain-rods/models/model-${m.key}.jpg`, `${m.title} — фото`],
-    [`{{root}}assets/img/catalog/curtain-rods/models/catalog-${m.key}.webp`, `${m.title} — вид целиком`],
+    [
+      `{{root}}assets/img/catalog/curtain-rods/models/catalog-${m.key}.webp`,
+      `${m.title} — вид целиком`,
+    ],
   ];
   const others = MODELS.filter((o) => o.key !== m.key);
   return `${styles}
@@ -427,7 +593,13 @@ const modelPage = (m) => {
 
 export function catalogPages() {
   return [
-    { path: 'catalog/', title: 'Каталог штор | Shtorivdom', description: 'Каталог Shtorivdom: шторы блэкаут, римские, рулонные, льняные шторы, плиссе, жалюзи и карнизы. Вся продукция изготавливается по индивидуальным размерам.', body: listPage() },
+    {
+      path: 'catalog/',
+      title: 'Каталог штор | Shtorivdom',
+      description:
+        'Каталог Shtorivdom: шторы блэкаут, римские, рулонные, льняные шторы, плиссе, жалюзи и карнизы. Вся продукция изготавливается по индивидуальным размерам.',
+      body: listPage(),
+    },
     ...SECTIONS.map((s) => ({
       path: `catalog/${s.key}/`,
       // SEO — как в catalog-detail-page.ts текущего сайта

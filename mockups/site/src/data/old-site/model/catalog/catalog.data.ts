@@ -5,7 +5,8 @@ export const catalogPagesAll: IContentType[] = [
     key: 'blackout-curtains',
     title: 'Шторы блэкаут',
     text: 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме',
-    detail: () => import('./catalog-detail/blackout-curtains/blackout-curtains').then((a) => a.Detail),
+    detail: () =>
+      import('./catalog-detail/blackout-curtains/blackout-curtains').then((a) => a.Detail),
     image: '/catalog/blackout-curtains/image-5.jpg',
     images: [
       '/catalog/blackout-curtains/image-5.jpg',

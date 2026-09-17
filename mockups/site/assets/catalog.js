@@ -11,7 +11,8 @@
   // ---------- ленты ----------
   $$('[data-strip]').forEach((strip) => {
     const box = strip.parentElement;
-    const prev = $('[data-strip-prev]', box), next = $('[data-strip-next]', box);
+    const prev = $('[data-strip-prev]', box),
+      next = $('[data-strip-next]', box);
     const sync = () => {
       if (prev) prev.disabled = strip.scrollLeft <= 2;
       if (next) next.disabled = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 2;
@@ -31,7 +32,8 @@
   lb.setAttribute('aria-modal', 'true');
   lb.setAttribute('aria-label', 'Просмотр фото');
   lb.setAttribute('data-lightbox', '');
-  const icon = (d) => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${d}"/></svg>`;
+  const icon = (d) =>
+    `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="${d}"/></svg>`;
   lb.innerHTML = `
     <button type="button" class="cat-lb-btn cat-lb-close" aria-label="Закрыть" data-lb-close>${icon('M18 6 6 18M6 6l12 12')}</button>
     <button type="button" class="cat-lb-btn cat-lb-prev" aria-label="Предыдущее фото" data-lb-prev>${icon('m15 18-6-6 6-6')}</button>
@@ -39,7 +41,10 @@
     <figure><img alt="" data-lb-img /><figcaption><span data-lb-caption></span> <span class="ml-2 text-gold" data-lb-count></span></figcaption></figure>`;
   document.body.appendChild(lb);
   const lbImg = $('[data-lb-img]', lb);
-  let items = [], index = 0, opener = null, lastFocus = null;
+  let items = [],
+    index = 0,
+    opener = null,
+    lastFocus = null;
 
   const show = (i, swap = true) => {
     index = (i + items.length) % items.length;
@@ -55,7 +60,10 @@
     const multi = items.length > 1;
     $('[data-lb-prev]', lb).hidden = !multi;
     $('[data-lb-next]', lb).hidden = !multi;
-    if (swap) { lbImg.classList.add('is-swap'); setTimeout(apply, 150); } else apply();
+    if (swap) {
+      lbImg.classList.add('is-swap');
+      setTimeout(apply, 150);
+    } else apply();
   };
   const open = (item) => {
     const gallery = item.closest('[data-gallery]') ?? item;
@@ -106,9 +114,11 @@
   });
 
   // ---------- заказ модели ----------
-  $$('[data-order]').forEach((a) => a.addEventListener('click', () => {
-    const field = $('#lead-comment');
-    if (field && !field.value) field.value = `Интересует: ${a.dataset.order}`;
-    if (field?.form) field.form.dataset.orderModel = a.dataset.order; // письмо «Заказ карниза» (site.js → email.js)
-  }));
+  $$('[data-order]').forEach((a) =>
+    a.addEventListener('click', () => {
+      const field = $('#lead-comment');
+      if (field && !field.value) field.value = `Интересует: ${a.dataset.order}`;
+      if (field?.form) field.form.dataset.orderModel = a.dataset.order; // письмо «Заказ карниза» (site.js → email.js)
+    }),
+  );
 })();

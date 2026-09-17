@@ -37,7 +37,6 @@
         "styles": [
           "libs/fonts/font-awesome/font-awesome.scss",
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
           "apps/shtorivdom-storybook/src/styles.scss"
         ]
       },

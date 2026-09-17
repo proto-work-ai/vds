@@ -8,17 +8,20 @@
 (() => {
   // Данные и классы — в начале: const не поднимается, обработчики ниже их используют.
   // framer-motion: при заданной duration без ease tween идёт с "easeOut" = cubic-bezier(0,0,0.58,1).
-  const MENU_TRANSITION = '[transition:height_0.35s_cubic-bezier(0,0,0.58,1),opacity_0.35s_cubic-bezier(0,0,0.58,1)]';
+  const MENU_TRANSITION =
+    '[transition:height_0.35s_cubic-bezier(0,0,0.58,1),opacity_0.35s_cubic-bezier(0,0,0.58,1)]';
   // Высота «auto» анимируется в CSS только с interpolate-size — так же, как framer
   // измеряет панель и тянет высоту до её реального размера.
   const MENU_AUTO = '[interpolate-size:allow-keywords]';
   const MENU_OPEN = ['[height:auto]', '[opacity:1]'];
   const MENU_CLOSED = ['[height:0px]', '[opacity:0]'];
-  const SLIDE_TRANSITION = '[transition:opacity_0.65s_cubic-bezier(0,0,0.58,1),transform_0.65s_cubic-bezier(0,0,0.58,1)]';
+  const SLIDE_TRANSITION =
+    '[transition:opacity_0.65s_cubic-bezier(0,0,0.58,1),transform_0.65s_cubic-bezier(0,0,0.58,1)]';
   const SLIDE_ON = ['[opacity:1]', '[transform:none]', 'pointer-events-auto'];
   const SLIDE_OFF = ['[opacity:0]', '[transform:translateY(16px)]', 'pointer-events-none'];
   const DOT_ON = 'transition-all duration-400 w-7 h-[3px] bg-[#C9952A]';
-  const DOT_OFF = 'transition-all duration-400 w-[6px] h-[6px] rotate-45 bg-[#F2E8D5]/25 hover:bg-[#C9952A]/50';
+  const DOT_OFF =
+    'transition-all duration-400 w-[6px] h-[6px] rotate-45 bg-[#F2E8D5]/25 hover:bg-[#C9952A]/50';
   const TESTIMONIAL_INTERVAL = 5500;
   // Иконка lucide «x» (lucide-react 0.487) — в разметке её нет, оригинал рисует её при открытом меню.
   const ICON_X = '<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>';
@@ -34,7 +37,15 @@
   // должна сгенерировать их заранее, иначе первый переход не проиграется.
   const preload = document.createElement('div');
   preload.hidden = true;
-  preload.className = [MENU_TRANSITION, MENU_AUTO, ...MENU_OPEN, SLIDE_TRANSITION, ...SLIDE_OFF, DOT_ON, DOT_OFF].join(' ');
+  preload.className = [
+    MENU_TRANSITION,
+    MENU_AUTO,
+    ...MENU_OPEN,
+    SLIDE_TRANSITION,
+    ...SLIDE_OFF,
+    DOT_ON,
+    DOT_OFF,
+  ].join(' ');
   document.body.appendChild(preload);
 
   // ---------- появление при прокрутке ----------
@@ -55,8 +66,9 @@
   };
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(
-      (entries) => entries.forEach((e) => e.isIntersecting && (io.unobserve(e.target), reveal(e.target))),
-      { rootMargin: '-80px' }
+      (entries) =>
+        entries.forEach((e) => e.isIntersecting && (io.unobserve(e.target), reveal(e.target))),
+      { rootMargin: '-80px' },
     );
     inview.forEach((el) => io.observe(el));
   } else inview.forEach(reveal);
@@ -104,7 +116,9 @@
       index = i;
       // Переход — только со сменой слайда: в оригинале initial: false, на старте CSS-перехода нет.
       slides.forEach((s) => s.classList.add(SLIDE_TRANSITION));
-      slides.forEach((s, k) => swap(s, k === i ? SLIDE_OFF : SLIDE_ON, k === i ? SLIDE_ON : SLIDE_OFF));
+      slides.forEach((s, k) =>
+        swap(s, k === i ? SLIDE_OFF : SLIDE_ON, k === i ? SLIDE_ON : SLIDE_OFF),
+      );
       dots.forEach((d, k) => (d.className = k === i ? DOT_ON : DOT_OFF));
     };
     // Таймер в оригинале заводится один раз (useEffect с []), клик по точке его не сбрасывает.

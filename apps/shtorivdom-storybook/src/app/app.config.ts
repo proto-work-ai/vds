@@ -7,6 +7,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideEventPlugins } from '@taiga-ui/event-plugins';
 import { appRoutes } from './app.routes';
 import { LocationStrategy, TrailingSlashPathLocationStrategy } from '@angular/common';
+import { tuiInputPhoneOptionsProvider } from '@taiga-ui/kit';
+import { provideTaiga } from '@taiga-ui/core';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,5 +20,12 @@ export const appConfig: ApplicationConfig = {
     provideRouter(appRoutes),
     provideAnimations(),
     provideEventPlugins(),
+    provideTaiga(),
+    tuiInputPhoneOptionsProvider({
+      valueTransformer: {
+        fromControlValue: (value) => `+${value}`,
+        toControlValue: (value) => value?.slice(2),
+      },
+    }),
   ],
 };

@@ -1,149 +1,392 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-<meta charset="utf-8">
-<link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96">
-<link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg">
-<link rel="shortcut icon" href="../../assets/favicon/favicon.ico">
-<link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>В салон: designer — почтовые шаблоны</title>
-<!-- Галерея писем assets/email.js: для каждого типа заявки письмо в салон и клиенту на тестовых данных,
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="../../assets/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../../assets/favicon/favicon.svg" />
+    <link rel="shortcut icon" href="../../assets/favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="../../assets/favicon/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>В салон: designer — почтовые шаблоны</title>
+    <!-- Галерея писем assets/email.js: для каждого типа заявки письмо в салон и клиенту на тестовых данных,
      в iframe 600px и 360px, код письма и текстовая версия. Тексты — COPY в email.js. -->
-<style>
-  :root { --navy:#0d223d; --gold:#c9a84c; --cream:#f5f0e8; --sand:#e8e2d6; --slate:#2d3748; }
-  * { box-sizing: border-box; }
-  body { margin:0; font:15px/1.6 Arial, Helvetica, sans-serif; color:var(--navy); background:var(--cream); }
-  .wrap { max-width:1100px; margin:0 auto; padding:32px 20px 64px; }
-  h1 { font:700 34px/1.2 Georgia, serif; margin:0 0 8px; }
-  h2 { font:700 22px/1.3 Georgia, serif; margin:0 0 4px; }
-  a { color:var(--navy); }
-  code { background:var(--sand); padding:1px 5px; border-radius:3px; font-size:13px; }
-  .muted { color:var(--slate); font-weight:300; }
-  .bar { display:flex; flex-wrap:wrap; gap:8px; margin:24px 0 12px; }
-  .bar button { border:1px solid rgb(13 34 61/.2); background:#fff; color:var(--navy); padding:8px 14px; border-radius:3px; font:inherit; cursor:pointer; }
-  .bar button[aria-pressed="true"] { background:var(--navy); color:#fff; border-color:var(--navy); }
-  .bar button:disabled { opacity:.4; cursor:not-allowed; }
-  .card { background:#fff; border:1px solid rgb(13 34 61/.08); border-radius:4px; padding:20px; margin-top:12px; }
-  .subject { font-weight:700; word-break:break-word; }
-  .frames { display:flex; flex-wrap:wrap; gap:20px; align-items:flex-start; margin-top:16px; }
-  .frames figure { margin:0; max-width:100%; }
-  .frames figcaption { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#8a6d1f; font-weight:700; margin-bottom:6px; }
-  .scroll { overflow-x:auto; max-width:100%; }
-  iframe { display:block; border:1px solid var(--sand); background:#fff; height:900px; }
-  pre { overflow:auto; max-height:420px; background:var(--navy); color:#f0e6c8; padding:14px; border-radius:4px; font-size:12px; line-height:1.5; white-space:pre-wrap; word-break:break-word; }
-  .copy { width:100%; border-collapse:collapse; font-size:14px; }
-  .copy td, .copy th { text-align:left; vertical-align:top; padding:8px 10px; border-bottom:1px solid var(--sand); }
-  .copy th { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#8a6d1f; }
-  .btn { border:1px solid var(--gold); background:var(--gold); color:var(--navy); font-weight:700; padding:8px 14px; border-radius:3px; cursor:pointer; font:inherit; }
-</style>
-</head>
-<body data-kind="designer" data-to="salon">
-<div class="wrap">
-  <p data-nav><a href="../../">← Карта макетов</a> · <a href="../">Все письма</a></p>
-  <h1>Почтовые шаблоны заявок</h1>
-  <p class="muted">Письма собирает <code>site/assets/email.js</code>: <code>buildLeadEmail(kind, data, meta)</code> — в салон, <code>buildClientEmail(kind, data)</code> — клиенту (только если указан email). Данные ниже тестовые; тексты правятся в объекте <code>COPY</code>.</p>
+    <style>
+      :root {
+        --navy: #0d223d;
+        --gold: #c9a84c;
+        --cream: #f5f0e8;
+        --sand: #e8e2d6;
+        --slate: #2d3748;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font:
+          15px/1.6 Arial,
+          Helvetica,
+          sans-serif;
+        color: var(--navy);
+        background: var(--cream);
+      }
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 32px 20px 64px;
+      }
+      h1 {
+        font:
+          700 34px/1.2 Georgia,
+          serif;
+        margin: 0 0 8px;
+      }
+      h2 {
+        font:
+          700 22px/1.3 Georgia,
+          serif;
+        margin: 0 0 4px;
+      }
+      a {
+        color: var(--navy);
+      }
+      code {
+        background: var(--sand);
+        padding: 1px 5px;
+        border-radius: 3px;
+        font-size: 13px;
+      }
+      .muted {
+        color: var(--slate);
+        font-weight: 300;
+      }
+      .bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 24px 0 12px;
+      }
+      .bar button {
+        border: 1px solid rgb(13 34 61/0.2);
+        background: #fff;
+        color: var(--navy);
+        padding: 8px 14px;
+        border-radius: 3px;
+        font: inherit;
+        cursor: pointer;
+      }
+      .bar button[aria-pressed='true'] {
+        background: var(--navy);
+        color: #fff;
+        border-color: var(--navy);
+      }
+      .bar button:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid rgb(13 34 61/0.08);
+        border-radius: 4px;
+        padding: 20px;
+        margin-top: 12px;
+      }
+      .subject {
+        font-weight: 700;
+        word-break: break-word;
+      }
+      .frames {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: flex-start;
+        margin-top: 16px;
+      }
+      .frames figure {
+        margin: 0;
+        max-width: 100%;
+      }
+      .frames figcaption {
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #8a6d1f;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .scroll {
+        overflow-x: auto;
+        max-width: 100%;
+      }
+      iframe {
+        display: block;
+        border: 1px solid var(--sand);
+        background: #fff;
+        height: 900px;
+      }
+      pre {
+        overflow: auto;
+        max-height: 420px;
+        background: var(--navy);
+        color: #f0e6c8;
+        padding: 14px;
+        border-radius: 4px;
+        font-size: 12px;
+        line-height: 1.5;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .copy {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      .copy td,
+      .copy th {
+        text-align: left;
+        vertical-align: top;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--sand);
+      }
+      .copy th {
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #8a6d1f;
+      }
+      .btn {
+        border: 1px solid var(--gold);
+        background: var(--gold);
+        color: var(--navy);
+        font-weight: 700;
+        padding: 8px 14px;
+        border-radius: 3px;
+        cursor: pointer;
+        font: inherit;
+      }
+    </style>
+  </head>
+  <body data-kind="designer" data-to="salon">
+    <div class="wrap">
+      <p data-nav><a href="../../">← Карта макетов</a> · <a href="../">Все письма</a></p>
+      <h1>Почтовые шаблоны заявок</h1>
+      <p class="muted">
+        Письма собирает <code>site/assets/email.js</code>:
+        <code>buildLeadEmail(kind, data, meta)</code> — в салон,
+        <code>buildClientEmail(kind, data)</code> — клиенту (только если указан email). Данные ниже
+        тестовые; тексты правятся в объекте <code>COPY</code>.
+      </p>
 
-  <div class="bar" role="group" aria-label="Тип заявки" data-kinds></div>
-  <div class="bar" role="group" aria-label="Кому" data-who>
-    <button type="button" data-to="salon" aria-pressed="true">Письмо в салон</button>
-    <button type="button" data-to="client" aria-pressed="false">Письмо клиенту</button>
-  </div>
+      <div class="bar" role="group" aria-label="Тип заявки" data-kinds></div>
+      <div class="bar" role="group" aria-label="Кому" data-who>
+        <button type="button" data-to="salon" aria-pressed="true">Письмо в салон</button>
+        <button type="button" data-to="client" aria-pressed="false">Письмо клиенту</button>
+      </div>
 
-  <section class="card">
-    <p class="muted" style="margin:0" data-form></p>
-    <p style="margin:4px 0 0">Тема: <span class="subject" data-subject></span></p>
-    <p style="margin:12px 0 0"><button type="button" class="btn" data-show-html aria-expanded="false">Показать HTML</button></p>
-    <div data-code hidden>
-      <h2 style="margin-top:16px">HTML</h2><pre data-html></pre>
-      <h2>Текстовая версия</h2><pre data-text></pre>
+      <section class="card">
+        <p class="muted" style="margin: 0" data-form></p>
+        <p style="margin: 4px 0 0">Тема: <span class="subject" data-subject></span></p>
+        <p style="margin: 12px 0 0">
+          <button type="button" class="btn" data-show-html aria-expanded="false">
+            Показать HTML
+          </button>
+        </p>
+        <div data-code hidden>
+          <h2 style="margin-top: 16px">HTML</h2>
+          <pre data-html></pre>
+          <h2>Текстовая версия</h2>
+          <pre data-text></pre>
+        </div>
+        <div class="frames">
+          <figure>
+            <figcaption>600px — десктоп</figcaption>
+            <div class="scroll">
+              <iframe title="Письмо 600px" width="600" data-frame="600"></iframe>
+            </div>
+          </figure>
+          <figure>
+            <figcaption>360px — телефон</figcaption>
+            <iframe title="Письмо 360px" width="360" data-frame="360"></iframe>
+          </figure>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Тексты писем (COPY)</h2>
+        <div class="scroll"><table class="copy" data-copy></table></div>
+      </section>
     </div>
-    <div class="frames">
-      <figure><figcaption>600px — десктоп</figcaption><div class="scroll"><iframe title="Письмо 600px" width="600" data-frame="600"></iframe></div></figure>
-      <figure><figcaption>360px — телефон</figcaption><iframe title="Письмо 360px" width="360" data-frame="360"></iframe></figure>
-    </div>
-  </section>
+    <script src="../../site/assets/email.js"></script>
+    <script>
+      (() => {
+        const E = window.ShtorivdomEmail;
+        const $ = (s) => document.querySelector(s);
+        // Тестовые данные по формам сайта
+        const SAMPLES = {
+          callback: {
+            form: 'Окно «Оставить заявку» (send.modal): телефон',
+            data: { phone: '9255946117' },
+            meta: {
+              pageTitle: 'Шторы на заказ в Москве — пошив и дизайн штор | Shtorivdom',
+              pageUrl: 'https://shtorivdom.ru/'
+            }
+          },
+          designer: {
+            form: 'Первый экран / «Пригласить дизайнера»: имя, телефон, способ связи',
+            data: { name: 'Анна', phone: '+7 (916) 123-45-67', connectionType: 'Telegram' },
+            meta: {
+              pageTitle: 'Шторы на заказ в Москве — пошив и дизайн штор | Shtorivdom',
+              pageUrl: 'https://shtorivdom.ru/'
+            }
+          },
+          order: {
+            form: 'Форма заказа (main-form, #lead): телефон, пожелание; email для примера письма клиенту',
+            data: {
+              name: 'Ольга Петрова',
+              phone: '89031234567',
+              email: 'olga@example.ru',
+              type: 'Блэкаут',
+              size: 18,
+              description: 'Гостиная, два окна.\nХочется плотные шторы и тюль.'
+            },
+            meta: {
+              pageTitle: 'Шторы блэкаут на заказ | Shtorivdom',
+              pageUrl: 'https://shtorivdom.ru/catalog/blackout-curtains/'
+            }
+          },
+          contact: {
+            form: 'Страница контактов: имя, тема, email, сообщение',
+            data: {
+              name: 'Игорь',
+              theme: 'Сроки изготовления',
+              email: 'igor@example.ru',
+              description: 'Сколько по времени шьются римские шторы на три окна?'
+            },
+            meta: { pageTitle: 'Контакты | Shtorivdom', pageUrl: 'https://shtorivdom.ru/contact/' }
+          },
+          partner: {
+            form: 'Анкета партнёра: имя, телефон, город, комментарий',
+            data: {
+              name: 'Марина, дизайнер интерьеров',
+              phone: '9161112233',
+              city: 'Подольск',
+              email: 'marina@example.ru',
+              description: 'Веду 3–4 объекта в месяц, ищу надёжный цех.'
+            },
+            meta: {
+              pageTitle: 'Стать партнером | Shtorivdom',
+              pageUrl: 'https://shtorivdom.ru/partner/'
+            }
+          },
+          'curtain-rod': {
+            form: 'Каталог карнизов: «Заказать карниз» → модель в комментарии',
+            data: {
+              phone: '9998887766',
+              model: 'Карниз 3',
+              description: 'Интересует: Карниз 3\nОкно 2,4 м',
+              email: 'client@example.ru'
+            },
+            meta: {
+              pageTitle: 'Карниз 3 | Shtorivdom',
+              pageUrl: 'https://shtorivdom.ru/catalog/curtain-rods/3/'
+            }
+          }
+        };
+        const sentAt = '2026-09-14T12:30:00Z';
+        // Отдельная страница письма (emails/lead-*/, client-*/): тип и адресат заданы в <body>, кнопки ведут на соседние страницы
+        const FIXED = !!document.body.dataset.kind;
+        const q = new URLSearchParams(location.search);
+        let kind = document.body.dataset.kind || q.get('kind') || 'designer';
+        let to = document.body.dataset.to || q.get('to') || 'salon';
+        const hasClient = (k) => !!E.buildClientEmail(k, SAMPLES[k].data);
+        const slug = (k, t) => (t === 'client' ? 'client-' : 'lead-') + k;
+        const PAGES = [
+          ...E.KINDS.map((k) => slug(k, 'salon')),
+          ...E.KINDS.filter(hasClient).map((k) => slug(k, 'client'))
+        ];
+        const go = (k, t) => {
+          if (t === 'client' && !hasClient(k)) t = 'salon';
+          if (FIXED) location.href = '../' + slug(k, t) + '/';
+          else {
+            kind = k;
+            to = t;
+            render();
+          }
+        };
+        if (FIXED) {
+          const i = PAGES.indexOf(slug(kind, to));
+          const prev = PAGES[(i - 1 + PAGES.length) % PAGES.length],
+            next = PAGES[(i + 1) % PAGES.length];
+          document.querySelector('[data-nav]').innerHTML =
+            `<a href="../">← все письма</a> · <a href="../${prev}/">← ${prev}</a> · <a href="../${next}/">${next} →</a>`;
+        }
 
-  <section class="card">
-    <h2>Тексты писем (COPY)</h2>
-    <div class="scroll"><table class="copy" data-copy></table></div>
-  </section>
-</div>
-<script src="../../site/assets/email.js"></script>
-<script>
-(() => {
-  const E = window.ShtorivdomEmail;
-  const $ = (s) => document.querySelector(s);
-  // Тестовые данные по формам сайта
-  const SAMPLES = {
-    callback: { form: 'Окно «Оставить заявку» (send.modal): телефон', data: { phone: '9255946117' }, meta: { pageTitle: 'Шторы на заказ в Москве — пошив и дизайн штор | Shtorivdom', pageUrl: 'https://shtorivdom.ru/' } },
-    designer: { form: 'Первый экран / «Пригласить дизайнера»: имя, телефон, способ связи', data: { name: 'Анна', phone: '+7 (916) 123-45-67', connectionType: 'Telegram' }, meta: { pageTitle: 'Шторы на заказ в Москве — пошив и дизайн штор | Shtorivdom', pageUrl: 'https://shtorivdom.ru/' } },
-    order: { form: 'Форма заказа (main-form, #lead): телефон, пожелание; email для примера письма клиенту', data: { name: 'Ольга Петрова', phone: '89031234567', email: 'olga@example.ru', type: 'Блэкаут', size: 18, description: 'Гостиная, два окна.\nХочется плотные шторы и тюль.' }, meta: { pageTitle: 'Шторы блэкаут на заказ | Shtorivdom', pageUrl: 'https://shtorivdom.ru/catalog/blackout-curtains/' } },
-    contact: { form: 'Страница контактов: имя, тема, email, сообщение', data: { name: 'Игорь', theme: 'Сроки изготовления', email: 'igor@example.ru', description: 'Сколько по времени шьются римские шторы на три окна?' }, meta: { pageTitle: 'Контакты | Shtorivdom', pageUrl: 'https://shtorivdom.ru/contact/' } },
-    partner: { form: 'Анкета партнёра: имя, телефон, город, комментарий', data: { name: 'Марина, дизайнер интерьеров', phone: '9161112233', city: 'Подольск', email: 'marina@example.ru', description: 'Веду 3–4 объекта в месяц, ищу надёжный цех.' }, meta: { pageTitle: 'Стать партнером | Shtorivdom', pageUrl: 'https://shtorivdom.ru/partner/' } },
-    'curtain-rod': { form: 'Каталог карнизов: «Заказать карниз» → модель в комментарии', data: { phone: '9998887766', model: 'Карниз 3', description: 'Интересует: Карниз 3\nОкно 2,4 м', email: 'client@example.ru' }, meta: { pageTitle: 'Карниз 3 | Shtorivdom', pageUrl: 'https://shtorivdom.ru/catalog/curtain-rods/3/' } },
-  };
-  const sentAt = '2026-09-14T12:30:00Z';
-  // Отдельная страница письма (emails/lead-*/, client-*/): тип и адресат заданы в <body>, кнопки ведут на соседние страницы
-  const FIXED = !!document.body.dataset.kind;
-  const q = new URLSearchParams(location.search);
-  let kind = document.body.dataset.kind || q.get('kind') || 'designer';
-  let to = document.body.dataset.to || q.get('to') || 'salon';
-  const hasClient = (k) => !!E.buildClientEmail(k, SAMPLES[k].data);
-  const slug = (k, t) => (t === 'client' ? 'client-' : 'lead-') + k;
-  const PAGES = [...E.KINDS.map((k) => slug(k, 'salon')), ...E.KINDS.filter(hasClient).map((k) => slug(k, 'client'))];
-  const go = (k, t) => { if (t === 'client' && !hasClient(k)) t = 'salon'; if (FIXED) location.href = '../' + slug(k, t) + '/'; else { kind = k; to = t; render(); } };
-  if (FIXED) {
-    const i = PAGES.indexOf(slug(kind, to));
-    const prev = PAGES[(i - 1 + PAGES.length) % PAGES.length], next = PAGES[(i + 1) % PAGES.length];
-    document.querySelector('[data-nav]').innerHTML = `<a href="../">← все письма</a> · <a href="../${prev}/">← ${prev}</a> · <a href="../${next}/">${next} →</a>`;
-  }
+        const kinds = $('[data-kinds]');
+        E.KINDS.forEach((k) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.dataset.kind = k;
+          b.textContent = E.COPY[k].salon.title.replace(/^Новая заявка: |^Новая |^Новый /, '');
+          b.addEventListener('click', () => go(k, to));
+          kinds.appendChild(b);
+        });
+        document
+          .querySelectorAll('[data-to]')
+          .forEach((b) => b.addEventListener('click', () => go(kind, b.dataset.to)));
+        $('[data-show-html]').addEventListener('click', (e) => {
+          const code = $('[data-code]');
+          code.hidden = !code.hidden;
+          e.target.setAttribute('aria-expanded', String(!code.hidden));
+          e.target.textContent = code.hidden ? 'Показать HTML' : 'Скрыть HTML';
+        });
 
-  const kinds = $('[data-kinds]');
-  E.KINDS.forEach((k) => {
-    const b = document.createElement('button');
-    b.type = 'button'; b.dataset.kind = k; b.textContent = E.COPY[k].salon.title.replace(/^Новая заявка: |^Новая |^Новый /, '');
-    b.addEventListener('click', () => go(k, to));
-    kinds.appendChild(b);
-  });
-  document.querySelectorAll('[data-to]').forEach((b) => b.addEventListener('click', () => go(kind, b.dataset.to)));
-  $('[data-show-html]').addEventListener('click', (e) => {
-    const code = $('[data-code]'); code.hidden = !code.hidden;
-    e.target.setAttribute('aria-expanded', String(!code.hidden));
-    e.target.textContent = code.hidden ? 'Показать HTML' : 'Скрыть HTML';
-  });
+        function render() {
+          const s = SAMPLES[kind];
+          const client = E.buildClientEmail(kind, s.data);
+          if (to === 'client' && !client) to = 'salon';
+          const mail =
+            to === 'client' ? client : E.buildLeadEmail(kind, s.data, { ...s.meta, sentAt });
+          kinds
+            .querySelectorAll('button')
+            .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kind === kind)));
+          document
+            .querySelectorAll('[data-to]')
+            .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.to === to)));
+          $('[data-to="client"]').disabled = !client;
+          $('[data-to="client"]').title = client
+            ? ''
+            : 'В данных нет email — письмо клиенту не отправляется';
+          $('[data-form]').textContent =
+            'Форма: ' + s.form + (client ? '' : ' (без email — письма клиенту нет)');
+          $('[data-subject]').textContent = mail.subject;
+          $('[data-html]').textContent = mail.html;
+          $('[data-text]').textContent = mail.text;
+          document.querySelectorAll('[data-frame]').forEach((f) => {
+            f.onload = () => {
+              try {
+                f.style.height = f.contentDocument.documentElement.scrollHeight + 'px';
+              } catch {}
+            };
+            f.srcdoc = mail.html;
+          });
+          if (!FIXED) history.replaceState(null, '', `?kind=${kind}&to=${to}`);
+          else document.title = mail.subject + ' — почтовые шаблоны';
+        }
 
-  function render() {
-    const s = SAMPLES[kind];
-    const client = E.buildClientEmail(kind, s.data);
-    if (to === 'client' && !client) to = 'salon';
-    const mail = to === 'client' ? client : E.buildLeadEmail(kind, s.data, { ...s.meta, sentAt });
-    kinds.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.kind === kind)));
-    document.querySelectorAll('[data-to]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.to === to)));
-    $('[data-to="client"]').disabled = !client;
-    $('[data-to="client"]').title = client ? '' : 'В данных нет email — письмо клиенту не отправляется';
-    $('[data-form]').textContent = 'Форма: ' + s.form + (client ? '' : ' (без email — письма клиенту нет)');
-    $('[data-subject]').textContent = mail.subject;
-    $('[data-html]').textContent = mail.html;
-    $('[data-text]').textContent = mail.text;
-    document.querySelectorAll('[data-frame]').forEach((f) => {
-      f.onload = () => { try { f.style.height = f.contentDocument.documentElement.scrollHeight + 'px'; } catch {} };
-      f.srcdoc = mail.html;
-    });
-    if (!FIXED) history.replaceState(null, '', `?kind=${kind}&to=${to}`);
-    else document.title = mail.subject + ' — почтовые шаблоны';
-  }
+        // Таблица текстов
+        const esc = E.escapeHtml;
+        $('[data-copy]').innerHTML =
+          '<tr><th>Тип</th><th>В салон</th><th>Клиенту</th></tr>' +
+          E.KINDS.map((k) => {
+            const c = E.COPY[k];
+            return (
+              `<tr><td><code>${esc(k)}</code></td><td><b>${esc(c.salon.subject({ theme: '‹тема›', model: '‹модель›' }))} — ‹телефон/имя›</b><br>${esc(c.salon.title)}<br><span class="muted">${esc(c.salon.lead)}</span></td>` +
+              `<td><b>${esc(c.client.subject)}</b><br>${esc(c.client.intro)}<ol style="margin:6px 0 0;padding-left:18px">${c.client.steps.map(([t, d]) => `<li><b>${esc(t)}.</b> ${esc(d)}</li>`).join('')}</ol></td></tr>`
+            );
+          }).join('');
 
-  // Таблица текстов
-  const esc = E.escapeHtml;
-  $('[data-copy]').innerHTML = '<tr><th>Тип</th><th>В салон</th><th>Клиенту</th></tr>' + E.KINDS.map((k) => {
-    const c = E.COPY[k];
-    return `<tr><td><code>${esc(k)}</code></td><td><b>${esc(c.salon.subject({ theme: '‹тема›', model: '‹модель›' }))} — ‹телефон/имя›</b><br>${esc(c.salon.title)}<br><span class="muted">${esc(c.salon.lead)}</span></td>` +
-      `<td><b>${esc(c.client.subject)}</b><br>${esc(c.client.intro)}<ol style="margin:6px 0 0;padding-left:18px">${c.client.steps.map(([t, d]) => `<li><b>${esc(t)}.</b> ${esc(d)}</li>`).join('')}</ol></td></tr>`;
-  }).join('');
-
-  render();
-})();
-</script>
-</body>
+        render();
+      })();
+    </script>
+  </body>
 </html>
