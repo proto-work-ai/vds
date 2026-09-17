@@ -11,8 +11,14 @@
    Страницы лежат в папках, как и переводы: сервер макетов открывает
    `/images/` со слешем, и относительные пути должны считаться от папки.
    Одинаковые картинки и иконки с разных сайтов объединяются в одну карточку.
-   Лайтбокс — общий скрипт mockups/shared/lightbox.js. */
-import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync } from 'node:fs';
+   Лайтбокс — общий скрипт mockups/shared/lightbox.js.
+
+   Кроме лендингов в галереи попадают все файлы картинок и SVG — в том числе неиспользуемые:
+   - mockups/site/assets        — прототип сайта;
+   - apps/shtorivdom-site/public — Angular-сайт (сервер макетов отдаёт по /_site-public/).
+   Одинаковые файлы объединяются по содержимому. */
+import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync, statSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 
 const ROOT = 'mockups';
@@ -64,7 +70,36 @@ for (const site of sites) {
   }
 }
 
-const siteLabel = (s) => `Лендинг ${s.slice(8)}`;
+const siteLabel = (s) => (/^landing-\d+$/.test(s) ? `Лендинг ${s.slice(8)}` : s);
+
+// ---------- файлы картинок и SVG ----------
+const FILE_SOURCES = [
+  { dir: 'mockups/site/assets', url: '../site/assets', label: 'Прототип сайта' },
+  { dir: 'apps/shtorivdom-site/public', url: '../_site-public', label: 'Angular-сайт (public)' },
+];
+const RASTER = /\.(jpe?g|png|webp|gif|avif)$/i;
+const walk = (dir) => readdirSync(dir).flatMap((n) => {
+  const p = path.join(dir, n);
+  return statSync(p).isDirectory() ? walk(p) : [p];
+});
+const fileImages = new Map();
+const fileIcons = new Map();
+for (const src of FILE_SOURCES) {
+  if (!existsSync(src.dir)) continue;
+  for (const file of walk(src.dir)) {
+    const isRaster = RASTER.test(file);
+    const isSvg = /\.svg$/i.test(file);
+    if (!isRaster && !isSvg) continue;
+    const hash = createHash('md5').update(readFileSync(file)).digest('hex');
+    const rel = path.relative(src.dir, file).split(path.sep).join('/');
+    const url = `${src.url}/${rel.split('/').map(encodeURIComponent).join('/')}`;
+    const map = isRaster ? fileImages : fileIcons;
+    const cur = map.get(hash) ?? { src: url, name: rel, sites: new Set(), paths: new Set() };
+    cur.sites.add(src.label);
+    cur.paths.add(`${src.dir}/${rel}`);
+    map.set(hash, cur);
+  }
+}
 const shell = (title, subtitle, cards) => `<!doctype html>
 <html lang="ru">
   <head>
@@ -104,8 +139,8 @@ const imageCards = [...images.values()]
   .map(
     (im) => `      <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
         <button type="button" data-lightbox="image" data-src="${esc(im.src)}" data-title="${esc(im.name)}" data-text="${esc(im.alt || im.text)}"
-          class="block aspect-[4/3] w-full cursor-zoom-in overflow-hidden bg-stone-200" title="Открыть полную версию">
-          <img src="${esc(im.src)}" alt="${esc(im.alt || im.name)}" loading="lazy" class="h-full w-full object-cover transition duration-300 hover:scale-105" />
+          class="flex aspect-[4/3] w-full cursor-zoom-in items-center justify-center overflow-hidden bg-stone-200" title="Открыть полную версию">
+          <img src="${esc(im.src)}" alt="${esc(im.alt || im.name)}" loading="lazy" class="max-h-full max-w-full object-contain" />
         </button>
         <figcaption class="space-y-1 p-4">
           <p class="break-all text-[14px] font-semibold">${esc(im.name)}</p>
@@ -116,6 +151,20 @@ const imageCards = [...images.values()]
       </figure>`
   )
   .join('\n');
+
+const fileCard = (f, kind) => `      <figure class="overflow-hidden rounded-xl border border-stone-200 bg-white">
+        <button type="button" data-lightbox="image" data-src="${esc(f.src)}" data-title="${esc(f.name)}" data-text="${esc([...f.paths].join(', '))}"
+          class="flex aspect-[4/3] w-full cursor-zoom-in items-center justify-center overflow-hidden ${kind === 'icon' ? 'bg-stone-50 p-6' : 'bg-stone-200'}" title="Открыть полную версию">
+          <img src="${esc(f.src)}" alt="${esc(f.name)}" loading="lazy" class="${kind === 'icon' ? 'max-h-24 max-w-full object-contain' : 'max-h-full max-w-full object-contain'}" />
+        </button>
+        <figcaption class="space-y-1 p-4">
+          <p class="break-all text-[14px] font-semibold">${esc(f.name)}</p>
+          <p class="break-all text-[12px] text-stone-500">${esc([...f.paths].join(', '))}</p>
+          <p class="text-[12px] text-stone-400">${[...f.sites].join(', ')}</p>
+        </figcaption>
+      </figure>`;
+const fileImageCards = [...fileImages.values()].map((f) => fileCard(f, 'image')).join('\n');
+const fileIconCards = [...fileIcons.values()].map((f) => fileCard(f, 'icon')).join('\n');
 
 const iconCards = [...icons.values()]
   .map(
@@ -137,10 +186,10 @@ for (const old of ['images.html', 'icons.html']) rmSync(path.join(ROOT, old), { 
 for (const dir of ['images', 'icons', 'shared']) mkdirSync(path.join(ROOT, dir), { recursive: true });
 writeFileSync(
   path.join(ROOT, 'images', 'index.html'),
-  shell('Картинки макетов', `${images.size} картинок из ${sites.length} сайтов. Нажмите на карточку — откроется полная версия.`, imageCards)
+  shell('Картинки макетов', `${images.size + fileImages.size} картинок: ${images.size} из лендингов, ${fileImages.size} файлов прототипа и сайта. Нажмите на карточку — откроется полная версия.`, imageCards + '\n' + fileImageCards)
 );
 writeFileSync(
   path.join(ROOT, 'icons', 'index.html'),
-  shell('Иконки макетов', `${icons.size} иконок из ${sites.length} сайтов. Нажмите на карточку — иконка откроется крупно.`, iconCards)
+  shell('Иконки макетов', `${icons.size + fileIcons.size} иконок: ${icons.size} из лендингов, ${fileIcons.size} SVG-файлов прототипа и сайта. Нажмите на карточку — иконка откроется крупно.`, iconCards + '\n' + fileIconCards)
 );
-console.log(`картинок: ${images.size}, иконок: ${icons.size}, сайтов: ${sites.length}`);
+console.log(`картинок: ${images.size} + файлов ${fileImages.size}, иконок: ${icons.size} + SVG-файлов ${fileIcons.size}, лендингов: ${sites.length}`);

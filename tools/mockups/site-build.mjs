@@ -22,6 +22,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
+import { createHash } from 'node:crypto';
 import { compile } from 'tailwindcss';
 import { Scanner } from '@tailwindcss/oxide';
 
@@ -187,6 +188,7 @@ const head = (page, root) => {
 };
 
 let count = 0;
+const built = [];
 for (const page of PAGES) {
   const depth = page.path.split('/').filter(Boolean).length;
   const root = '../'.repeat(depth);
@@ -223,8 +225,8 @@ for (const page of PAGES) {
     .replaceAll('<!-- @logo-3 -->', logo(3))
     .replaceAll('<!-- @logo-4 -->', logo(4))
     .replaceAll('<!-- @logo-5 -->', logo(5))
-    // Золотой оригинал logo-5 с градиентом (mockups/logo-5.svg), тянется по ширине блока
-    .replaceAll('<!-- @logo-5-gold -->', readFileSync('mockups/logo-5.svg', 'utf8').replace('<svg width="400" height="250"', '<svg class="block h-auto w-full" role="img" aria-label="Шторы в дом"'))
+    // Золотой оригинал logo-5 с градиентом (assets/logo/logo-5.svg), тянется по ширине блока
+    .replaceAll('<!-- @logo-5-gold -->', readFileSync(path.join(SITE, 'assets/logo/logo-5.svg'), 'utf8').replace('<svg width="400" height="250"', '<svg class="block h-auto w-full" role="img" aria-label="Шторы в дом"'))
     .replaceAll('<!-- @catalog-links -->', catalogLinks(root))
     .replaceAll('<!-- @catalog-cards -->', catalogCards(root))
     .replaceAll('<!-- @price-rows -->', priceRows(root))
@@ -235,6 +237,7 @@ for (const page of PAGES) {
   const out = path.join(SITE, page.path, 'index.html');
   mkdirSync(path.dirname(out), { recursive: true });
   writeFileSync(out, html);
+  built.push(out);
   count++;
 }
 console.log(`site-build: собрано страниц — ${count}`);
@@ -253,3 +256,23 @@ const candidates = new Scanner({ sources: [{ base: path.resolve(SITE), pattern: 
 const css = compiler.build(candidates);
 writeFileSync(path.join(SITE, 'assets/site.css'), css);
 console.log(`site-build: assets/site.css — ${Math.round(css.length / 1024)} КБ, классов ${candidates.length}`);
+
+// Версии в адресах стилей и скриптов: хостинг отдаёт css/js с Cache-Control на год,
+// без ?v= браузер показывает старые стили после выкладки. Хеш меняется вместе с содержимым файла.
+// Только с флагом --versions (перед коммитом и при выкладке), чтобы обычная сборка не меняла все страницы.
+const WITH_VERSIONS = process.argv.includes('--versions');
+const ver = (file) => createHash('md5').update(readFileSync(file)).digest('hex').slice(0, 8);
+const V = {
+  css: ver(path.join(SITE, 'assets/site.css')),
+  js: ver(path.join(SITE, 'assets/site.js')),
+  email: ver(path.join(SITE, 'assets/email.js')),
+  fonts: ver('mockups/shared/fonts.css'),
+};
+for (const file of WITH_VERSIONS ? built : []) {
+  const html = readFileSync(file, 'utf8')
+    .replace(/(shared\/fonts\.css)(\?v=[0-9a-f]+)?"/g, `$1?v=${V.fonts}"`)
+    .replace(/(assets\/site\.css)(\?v=[0-9a-f]+)?"/g, `$1?v=${V.css}"`)
+    .replace(/(assets\/site\.js)(\?v=[0-9a-f]+)?"( data-email-v="[0-9a-f]+")?/g, `$1?v=${V.js}" data-email-v="${V.email}"`);
+  writeFileSync(file, html);
+}
+console.log(WITH_VERSIONS ? `site-build: версии файлов — css ${V.css}, js ${V.js}, email ${V.email}, fonts ${V.fonts}` : 'site-build: без версий в адресах (для выкладки и коммита — --versions)');

@@ -47,8 +47,8 @@
   </script>
   <link rel="preload" href="../../../../shared/fonts/lato-bold.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="../../../../shared/fonts/lato-normal.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="../../../../shared/fonts.css" />
-  <link rel="stylesheet" href="../../../assets/site.css" />
+  <link rel="stylesheet" href="../../../../shared/fonts.css?v=ad41b266" />
+  <link rel="stylesheet" href="../../../assets/site.css?v=0a7913c2" />
 </head>
 <body data-page="catalog/curtain-rods/9/" data-header="solid">
 <!-- Стили страниц каталога (обычный CSS, вне Tailwind-слоёв — перекрывает .reveal из theme.css).
@@ -88,12 +88,15 @@
   .cat-strip > * { scroll-snap-align: start; }
   .cat-strip-models { grid-auto-columns: minmax(230px, 24%); padding-block: 10px 16px; }
   @media (width < 640px) { .cat-strip { grid-auto-columns: 82%; } .cat-strip-models { grid-auto-columns: 70%; } }
-  .cat-shot { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #e8e2d6; }
+  .cat-shot { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #e8e2d6; cursor: zoom-in; }
+  /* Фото открывается крупно: лупа видна всегда, при наведении фото темнеет */
+  .cat-shot::after { content: ""; position: absolute; inset: 0; background: rgb(13 34 61 / 0); transition: background .3s; pointer-events: none; }
+  .cat-shot:hover::after, .cat-shot:focus-visible::after { background: rgb(13 34 61 / .18); }
   .cat-shot img { transition: transform .7s; }
   .cat-shot:hover img { transform: scale(1.07); }
-  .cat-zoom { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgb(13 34 61 / .7); color: #c9a84c; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
-  .group:hover .cat-zoom, .group:focus-visible .cat-zoom { opacity: 1; transform: none; }
-  @media (hover: none) { .cat-zoom { opacity: 1; transform: none; } }
+  .cat-zoom { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgb(13 34 61 / .7); color: #c9a84c; z-index: 1; opacity: .9; box-shadow: 0 4px 14px rgb(0 0 0 / .2); transition: opacity .3s, transform .3s, background .3s; }
+  .group:hover .cat-zoom, .group:focus-visible .cat-zoom { opacity: 1; transform: scale(1.1); background: rgb(13 34 61 / .9); }
+  @media (hover: none) { .cat-zoom { opacity: 1; } }
 
   /* Лайтбокс — assets/catalog.js */
   .cat-lb { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 64px 16px; background: rgb(8 22 41 / .94); opacity: 0; visibility: hidden; transition: opacity .3s ease-out, visibility .3s; }
@@ -240,7 +243,7 @@
       </div>
       <ul class="flex flex-col gap-6">
         <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
-          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Телефон</p><a href="tel:+79255946117" class="text-[16px] hover:text-gold">+7 (925) 594-61-17</a></div></li>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Телефон</p><a href="tel:+79255946117" class="font-serif text-[20px] font-bold transition-colors hover:text-gold">+7 (925) 594-61-17</a></div></li>
         <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
           <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Эл. почта</p><a href="mailto:info@shtorivdom.ru" class="text-[16px] hover:text-gold">info@shtorivdom.ru</a></div></li>
         <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
@@ -276,7 +279,7 @@
 
 <!-- Подвал — landing-8: колонки, соцсети (без подписки — её нет на текущем сайте) -->
 <footer class="bg-navy-deep text-white">
-  <div class="wrap pt-10 pb-5 sm:pt-12 sm:pb-6">
+  <div class="wrap pt-6 pb-5 sm:pt-8 sm:pb-6">
     <div class="mb-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
       <div>
         <a href="../../../" class="block w-[170px] text-gold" aria-label="Shtorivdom — на главную"><svg class="block h-auto w-full" role="img" aria-hidden="true" viewBox="0 0 272 168" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -307,7 +310,7 @@
       <div>
         <h4 class="mb-5 font-sans text-[12px] font-bold tracking-[.12em] text-gold uppercase">Контакты</h4>
         <div class="flex flex-col gap-3 text-[14px] font-light text-white/60">
-          <a href="tel:+79255946117" class="text-[18px] font-bold text-white transition-colors hover:text-gold">+7 (925) 594-61-17</a>
+          <a href="tel:+79255946117" class="font-serif text-[20px] font-bold text-white transition-colors hover:text-gold">+7 (925) 594-61-17</a>
           <a href="mailto:info@shtorivdom.ru" class="transition-colors hover:text-gold">info@shtorivdom.ru</a>
           <p><a href="https://yandex.ru/maps/-/CDQG4AYV" target="_blank" rel="noopener" class="underline decoration-gold/50 decoration-dashed underline-offset-4 transition-colors hover:text-gold">Троицк, Кварцевая улица, 3, корп. 2</a></p>
           <p>10:00–20:00 / Без выходных</p>
@@ -328,6 +331,6 @@
 <button type="button" class="to-top" data-to-top aria-label="Наверх"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg></button>
 
 <script src="../../../assets/catalog.js" defer></script>
-<script src="../../../assets/site.js"></script>
+<script src="../../../assets/site.js?v=d25d982f" data-email-v="c87a65bf"></script>
 </body>
 </html>

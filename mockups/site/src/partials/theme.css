@@ -95,11 +95,17 @@
   .svc-more.is-open { opacity: 1; }
 
   /* Галерея — landing-1 Real Homes: триггер — карточка */
-  .work img { transition: transform .4s ease-out; }
-  .work:hover img { transform: scale(1.06); }
-  .work .cap { opacity: 0; transition: opacity .3s ease-out; }
-  .work:hover .cap, .work:focus-visible .cap { opacity: 1; }
-  @media (hover: none) { .work .cap { opacity: 1; } }
+  /* Плитки «Наши работы» — ссылки на разделы: подпись видна всегда, при наведении фото темнеет и приближается,
+     появляются золотая рамка и стрелка. На телефоне стрелка видна сразу. */
+  .work { cursor: pointer; }
+  .work img { transition: transform .5s ease-out, filter .5s ease-out; }
+  .work:hover img, .work:focus-visible img { transform: scale(1.08); filter: brightness(.82); }
+  .work::after { content: ""; position: absolute; inset: 0; border: 2px solid transparent; border-radius: inherit; transition: border-color .3s; pointer-events: none; }
+  .work:hover::after, .work:focus-visible::after { border-color: var(--color-gold); }
+  .work .cap { gap: 10px; }
+  .work .cap::after { content: "→"; color: var(--color-gold); opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .3s; }
+  .work:hover .cap::after, .work:focus-visible .cap::after { opacity: 1; transform: none; }
+  @media (hover: none) { .work .cap::after { opacity: 1; transform: none; } }
 
   /* Тарифы — landing-1 Pricing */
   .tier { border-radius: 4px; position: relative; overflow: hidden; transition: transform .25s ease-out; }

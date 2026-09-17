@@ -10,16 +10,15 @@
     "site:build:dev": "npx nx run shtorivdom-site:build --configuration=development",
     "site:start": "npx nx run shtorivdom-site:serve-static",
     "build": "npx nx run shtorivdom-site:build",
-    "storybook": "npx nx run shtorivdom-storybook:storybook",
-    "storybook:serve": "npx nx run shtorivdom-storybook:storybook",
+    "storybook:start": "npx nx run shtorivdom-storybook:storybook",
     "storybook:build": "npx nx run shtorivdom-storybook:build-storybook",
     "storybook:static": "npx nx run shtorivdom-storybook:static-storybook",
     "sitemap": "node tools/build-sitemap.mjs",
     "site:deploy": "nx build shtorivdom-site && node tools/deploy-site-ftp.mjs",
     "mockups": "node tools/mockups/serve.mjs",
-    "mockups:site:build": "node tools/mockups/site-build.mjs",
     "mockups:site": "node tools/mockups/site-build.mjs && node tools/mockups/serve.mjs",
-    "mockups:site:deploy": "node tools/mockups/site-build.mjs && node tools/mockups/deploy-site-ftp.mjs"
+    "mockups:site:build": "node tools/mockups/site-build.mjs",
+    "mockups:site:deploy": "node tools/mockups/site-build.mjs --versions && node tools/mockups/deploy-site-ftp.mjs"
   },
   "private": true,
   "dependencies": {

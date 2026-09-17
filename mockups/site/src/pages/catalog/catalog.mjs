@@ -245,7 +245,7 @@ const stepsHtml = (() => {
 const faqHtml = (() => {
   const m = index.match(/<section id="faq"[\s\S]*?<\/section>/);
   if (!m) throw new Error('catalog.mjs: не найден блок FAQ в src/pages/index.html');
-  return m[0];
+  return m[0].replace('class="bg-white py-20 sm:py-28"', 'class="bg-white pt-6 pb-20 sm:pt-8 sm:pb-28"');
 })();
 
 const styles = read('partials/catalog-styles.html');
@@ -321,7 +321,7 @@ const sectionPage = (s) => {
       </div>
     </div>
     <div class="rise relative" style="--d:.2s">
-      <div class="absolute -right-3 -bottom-3 hidden h-full w-full border border-gold/40 sm:block"></div>
+      <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
       <button type="button" class="group relative block aspect-[4/3] w-full overflow-hidden bg-navy-deep" data-gallery data-gallery-item data-src="${img(s.key, s.image)}" data-alt="${s.title}" aria-label="Открыть фото: ${s.title}">
         <img src="${img(s.key, s.image)}" alt="${s.title}" fetchpriority="high" class="cat-zoom-img size-full object-cover" />
       </button>
@@ -340,8 +340,8 @@ const sectionPage = (s) => {
       <div class="reveal bg-navy px-6 py-8 text-cream sm:px-8">
         <p class="mb-3 text-[12px] tracking-[.25em] text-gold uppercase">Бесплатно</p>
         <p class="mb-6 font-serif text-[22px] leading-snug">Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.</p>
-        <a href="#lead" class="btn-gold group !flex w-full">Пригласить дизайнера ${arrow}</a>
-        <a href="tel:+79255946117" class="mt-5 block text-center text-[16px] font-bold transition-colors hover:text-gold">+7 (925) 594-61-17</a>
+        <a href="#lead" class="btn-gold !flex w-full !px-4 whitespace-nowrap">Пригласить дизайнера</a>
+        <a href="tel:+79255946117" class="mt-5 block text-center font-serif text-[20px] font-bold transition-colors hover:text-gold">+7 (925) 594-61-17</a>
       </div>
       <nav class="reveal mt-6 hidden border border-navy/10 bg-white px-6 py-5 lg:block" aria-label="Другие разделы">
         <p class="mb-3 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Другие разделы</p>
@@ -353,7 +353,7 @@ const sectionPage = (s) => {
 ${gallery(s)}
 ${s.key === 'curtain-rods' ? modelsGrid() : ''}
 ${priceTable(s.key, s.title)}
-<section class="bg-white py-20 sm:py-28">
+<section class="bg-white pt-20 pb-6 sm:pt-28 sm:pb-8">
   <div class="wrap">
     ${stepsHtml}
   </div>

@@ -51,8 +51,12 @@ for (const [port, dir] of SERVERS) {
     } catch {
       pathname = url.pathname;
     }
-    let file = path.join(base, pathname);
-    if (!file.startsWith(base)) return res.writeHead(403).end();
+    // /_site-public/… — файлы Angular-сайта (apps/shtorivdom-site/public) для галереи картинок и иконок
+    const SITE_PUBLIC = path.resolve('apps/shtorivdom-site/public');
+    const fromPublic = pathname.startsWith('/_site-public/');
+    const root = fromPublic ? SITE_PUBLIC : base;
+    let file = path.join(root, fromPublic ? pathname.slice('/_site-public'.length) : pathname);
+    if (!file.startsWith(root)) return res.writeHead(403).end();
     let st = stat(file);
     if (st?.isDirectory()) {
       // Относительные пути страниц считаются от папки — нужен слеш в конце.

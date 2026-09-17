@@ -135,10 +135,15 @@
   }
 
   // ---------- отзывы: ДЕМО только для макета (на Angular-сайт не переносятся — там свой site-behavior.ts) ----------
+  // Фото в демо-отзывах — только в макете (localhost, #test). На боевом домене — нарисованные силуэты,
+  // чтобы вымышленный отзыв не выглядел отзывом реального клиента.
+  const DEMO_PHOTOS = location.hash === '#test' || new URLSearchParams(location.search).has('test')
+    || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  const ASSET_BASE = document.currentScript?.src ?? location.href;
   const DEMO_REVIEWS = [
-    { name: 'Ирина', bg: '#0d223d', fg: '#c9a84c', hair: 'long', cat: 'Римские шторы · Троицк', text: 'Дизайнер приехала с образцами в удобное время и помогла подобрать ткань для кухни. Шторы сшили точно по размеру, установили быстро и аккуратно.' },
-    { name: 'Сергей', bg: '#c9a84c', fg: '#0d223d', hair: 'short', cat: 'Шторы блэкаут · Ватутинки', text: 'Искали плотные шторы в спальню, чтобы утром не будил свет. Сделали замеры, повесили карниз и шторы за один приезд — в комнате теперь полная темнота.' },
-    { name: 'Марина', bg: '#e8e2d6', fg: '#0d223d', hair: 'bob', cat: 'Льняные шторы · Москва', text: 'Понравилось, что можно было спокойно посмотреть ткани дома и примерить к интерьеру. Результат совпал с эскизом, ничего переделывать не пришлось.' },
+    { name: 'Марина', photo: 'img/avatars/marina.png', bg: '#e8e2d6', fg: '#0d223d', hair: 'bob', cat: 'Льняные шторы · Москва', text: 'Понравилось, что можно было спокойно посмотреть ткани дома и примерить к интерьеру. Результат совпал с эскизом, ничего переделывать не пришлось.' },
+    { name: 'Ирина', photo: 'img/avatars/irina.jpg', bg: '#0d223d', fg: '#c9a84c', hair: 'long', cat: 'Римские шторы · Троицк', text: 'Дизайнер приехала с образцами в удобное время и помогла подобрать ткань для кухни. Шторы сшили точно по размеру, установили быстро и аккуратно.' },
+    { name: 'Сергей', photo: 'img/avatars/sergey.png', bg: '#c9a84c', fg: '#0d223d', hair: 'short', cat: 'Шторы блэкаут · Ватутинки', text: 'Искали плотные шторы в спальню, чтобы утром не будил свет. Сделали замеры, повесили карниз и шторы за один приезд — в комнате теперь полная темнота.' },
   ];
   const slider = $('[data-slider]');
   if (slider) {
@@ -153,7 +158,7 @@
       const r = DEMO_REVIEWS[i % DEMO_REVIEWS.length];
       quote.textContent = r.text;
       quote.classList.remove('text-slate/50');
-      if (nameEl) { nameEl.textContent = `${r.name} — пример отзыва`; nameEl.classList.remove('text-slate/60'); }
+      if (nameEl) { nameEl.textContent = `${r.name}`; nameEl.classList.remove('text-slate/60'); }
       if (catEl) catEl.textContent = r.cat;
       if (avatar) {
         // Иллюстрация-силуэт, не фото человека: демо-отзывы вымышленные
@@ -161,6 +166,9 @@
         avatar.innerHTML = `<svg viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><circle cx="24" cy="24" r="24" fill="${r.bg}"/><circle cx="24" cy="21" r="8" fill="${r.fg}" opacity=".9"/><path d="${hair}" fill="${r.fg}"/><path d="M9 44c2-9 8-13 15-13s13 4 15 13" fill="${r.fg}" opacity=".9"/></svg>`;
         avatar.classList.remove('bg-sand');
         avatar.classList.add('overflow-hidden');
+        if (DEMO_PHOTOS && r.photo) {
+          avatar.innerHTML = `<img src="${new URL(r.photo, ASSET_BASE).href}" alt="" width="48" height="48" class="size-full rounded-full object-cover" />`;
+        }
       }
     };
     if (note) note.textContent = 'Демо-отзывы для макета — на сайт не переносятся';
@@ -183,7 +191,16 @@
     $('[data-prev]', slider).addEventListener('click', () => go(index - 1));
     $('[data-next]', slider).addEventListener('click', () => go(index + 1));
     dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
-    if (!reduced) setInterval(() => document.hidden || go(index + 1), 5200);
+    // Свайп пальцем: влево — следующий, вправо — предыдущий. Короткие и вертикальные движения не листают.
+    let touchX = null, touchY = 0;
+    slider.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; }, { passive: true });
+    slider.addEventListener('touchend', (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
+      touchX = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(index + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+    // Автопрокрутка отзывов выключена: листаются только стрелками и точками
   }
 
   // ---------- FAQ ----------
@@ -220,7 +237,9 @@
   // Макет на localhost без PHP: заявку отправлять некуда, поэтому только предпросмотр письма
   const isMock = isTest || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
   const emailScript = document.createElement('script');
-  emailScript.src = new URL('email.js', document.currentScript?.src ?? location.href).href;
+  const emailUrl = new URL('email.js', document.currentScript?.src ?? location.href);
+  if (document.currentScript?.dataset.emailV) emailUrl.search = '?v=' + document.currentScript.dataset.emailV; // версия против кеша хостинга
+  emailScript.src = emailUrl.href;
   document.head.appendChild(emailScript);
 
   // Тип письма по форме: data-lead-form="kind" → анкета партнёра → первый экран → карниз из каталога → контакты → заказ
