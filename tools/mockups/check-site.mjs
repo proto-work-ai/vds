@@ -111,6 +111,8 @@ await withBrowser(async (page) => {
     const ph = $('[data-phone]', form);
     ph.value = '9255946117'; ph.dispatchEvent(new Event('input', { bubbles: true }));
     out.masked = ph.value;
+    out.consentDefault = $('[data-consent]', form).checked;
+    $('[data-consent]', form).checked = false;
     form.requestSubmit(); await s(100);
     out.consentErr = !$('[data-error="consent"]', form).classList.contains('hidden') && !!$('#lead [data-lead-form]');
     $('[data-consent]', form).click();
@@ -147,6 +149,7 @@ await withBrowser(async (page) => {
   ok(!r.headerTop && r.headerScrolled, 'шапка: прозрачная наверху, тёмная после прокрутки');
   ok(r.emptyErr, 'форма: пустой телефон → ошибка «Введите номер телефона полностью»');
   ok(r.masked === '+7 (925) 594-61-17', `форма: маска телефона → ${r.masked}`);
+  ok(r.consentDefault, 'форма: согласие отмечено по умолчанию');
   ok(r.consentErr, 'форма: без согласия → ошибка согласия');
   ok(r.formGone && /Спасибо/.test(r.thanks ?? ''), `форма: заполнено → «${r.thanks}»`);
   ok(r.faqOpen > 20, `FAQ: вопрос открывается (${Math.round(r.faqOpen)}px)`);
@@ -289,10 +292,11 @@ await withBrowser(async (page) => {
       form.requestSubmit(); await s(100);
       const err = !box.querySelector('[data-error="phone"]').classList.contains('hidden');
       const ph = form.querySelector('[data-phone]'); ph.value = '9255946117'; ph.dispatchEvent(new Event('input', { bubbles: true }));
+      const cdef = form.querySelector('[data-consent]').checked; form.querySelector('[data-consent]').checked = false;
       form.requestSubmit(); await s(100);
       const cerr = !box.querySelector('[data-error="consent"]').classList.contains('hidden');
       form.querySelector('[data-consent]').click(); form.requestSubmit(); await s(500);
-      return { err, cerr, fields: [...form.elements].map((e) => e.name).filter(Boolean).join(','), thanks: !!box.querySelector('[data-thanks]') && !box.querySelector('[data-lead-form]') };
+      return { err, cerr: cerr && cdef, fields: [...form.elements].map((e) => e.name).filter(Boolean).join(','), thanks: !!box.querySelector('[data-thanks]') && !box.querySelector('[data-lead-form]') };
     })()`);
     ok(f.err && f.cerr && f.thanks, `${p}: форма — ошибка телефона, ошибка согласия, «Спасибо» (${f.fields})`);
   }

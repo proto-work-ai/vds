@@ -39,7 +39,7 @@ import { SiteSocialLinks } from './social-links.component';
       <div class="hidden items-center gap-5 lg:flex">
         <a class="hidden text-[15px] font-bold whitespace-nowrap text-cream transition-colors hover:text-gold xl:block"
           [href]="'tel:' + contacts.tel">{{ contacts.phone }}</a>
-        <a siteButton size="sm" href="#lead">Заявка</a>
+        <a class="btn-header" href="#lead">Заявка</a>
       </div>
       <div class="flex items-center gap-1 lg:hidden">
         <a class="grid size-11 place-items-center text-gold" [href]="'tel:' + contacts.tel"

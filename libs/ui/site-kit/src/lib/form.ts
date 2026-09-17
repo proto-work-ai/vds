@@ -58,7 +58,7 @@ export class SitePhoneMask {
   `,
 })
 export class SiteConsent {
-  readonly checked = model(false);
+  readonly checked = model(true); // согласие отмечено по умолчанию (решение владельца)
   readonly error = model(false);
   readonly href = input('soglasie-na-obrabotku-personalnyh-dannyh/');
 
@@ -158,7 +158,7 @@ export class SiteLeadForm {
   readonly phone = model('');
   readonly city = model('');
   readonly comment = model('');
-  readonly consent = model(false);
+  readonly consent = model(true); // согласие отмечено по умолчанию (решение владельца)
   /** Начальное состояние для витрины: ошибки проверки или «Спасибо». */
   readonly state = input<SiteLeadFormState>('idle');
   readonly phoneError = linkedSignal(() => this.state() === 'errors');

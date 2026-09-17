@@ -32,10 +32,30 @@
   .divider::before, .divider::after { content: ''; width: 40px; height: 1px; background: var(--color-gold); }
   .divider > i { width: 6px; height: 6px; background: var(--color-gold); transform: rotate(45deg); }
 
-  .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-gold); color: var(--color-navy); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: opacity .2s; }
-  .btn-gold:hover { opacity: .85; }
-  .btn-line { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgb(255 255 255 / .35); color: #fff; font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: border-color .3s; }
-  .btn-line:hover { border-color: rgb(255 255 255 / .7); }
+  /* Старый дизайн кнопок (до лендинга 3) — сохранён: .btn-gold-classic, .btn-line-classic.
+     Кнопка «Заявка» в шапке в старом дизайне: class="btn-gold-classic !px-5 !py-2.5". */
+  .btn-gold-classic { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--color-gold); color: var(--color-navy); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: opacity .2s; }
+  .btn-gold-classic:hover { opacity: .85; }
+  .btn-line-classic { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgb(255 255 255 / .35); color: #fff; font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; padding: 14px 26px; border-radius: 2px; transition: border-color .3s; }
+  .btn-line-classic:hover { border-color: rgb(255 255 255 / .7); }
+
+  /* Кнопки — копия кнопок лендинга 3 (сторибук «Сайт/Кнопки лендинга 3»):
+     .btn-gold — «Explore Collections», .btn-line — «Our Story», .btn-header — «Book Consult».
+     Пульс и свечение рамки — только с .btn-pulse / .btn-glow (в оригинале — на первом экране). */
+  .btn-gold { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: Cinzel, serif; font-size: 14px; font-weight: 700; letter-spacing: .1em; line-height: 1.5; color: rgb(6, 10, 7); text-transform: uppercase; text-decoration: none; background: linear-gradient(135deg, rgb(201, 168, 76), rgb(240, 208, 96), rgb(201, 168, 76)) 0% 0% / 200% 100%; padding: 16px 40px; border: 0; border-radius: 0; box-shadow: rgba(212, 175, 55, .4) 0 8px 30px; transition: .4s; cursor: pointer; }
+  .btn-gold:hover { background: linear-gradient(135deg, rgb(201, 168, 76), rgb(240, 208, 96), rgb(201, 168, 76)) 100% 0 / 200% 100%; box-shadow: rgba(212, 175, 55, .6) 0 15px 40px; transform: translateY(-3px); }
+  .btn-line { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-family: Cinzel, serif; font-size: 14px; font-weight: 700; letter-spacing: .1em; line-height: 1.5; color: rgb(212, 175, 55); text-transform: uppercase; text-decoration: none; background: transparent; padding: 16px 40px; border: 1px solid rgba(212, 175, 55, .5); border-radius: 0; transition: .4s; cursor: pointer; }
+  .btn-line:hover { background: rgba(212, 175, 55, .1); border: 1px solid rgb(212, 175, 55); transform: translateY(-3px); }
+  .btn-header { font-family: Cinzel, serif; font-size: 12px; font-weight: 700; letter-spacing: .1em; line-height: 1.5; color: rgb(6, 10, 7); text-transform: uppercase; text-decoration: none; white-space: nowrap; background: linear-gradient(135deg, rgb(212, 175, 55), rgb(240, 208, 96)); padding: 10px 22px; border-radius: 1px; box-shadow: rgba(212, 175, 55, .3) 0 4px 15px; transition: transform .3s, box-shadow .3s; }
+  .btn-header:hover { box-shadow: rgba(212, 175, 55, .5) 0 8px 25px; transform: translateY(-1px); }
+  @keyframes btn-pulse { 0% { box-shadow: 0 0 #d4af3766; } 70% { box-shadow: 0 0 0 15px #d4af3700; } to { box-shadow: 0 0 #d4af3700; } }
+  @keyframes btn-glow { 0% { border-color: #d4af374d; } 50% { border-color: #d4af37e6; } to { border-color: #d4af374d; } }
+  .btn-pulse { animation: 3s ease 2s infinite normal none running btn-pulse; }
+  .btn-glow { animation: 4s ease-in-out 2.5s infinite normal none running btn-glow; }
+  button.btn-gold:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+  @media (max-width: 1023px) { .btn-gold, .btn-line { font-size: 12px; } .btn-header { font-size: 12px; } }
+  @media (max-width: 767px) { .btn-gold, .btn-line { padding-left: 24px; padding-right: 24px; } }
+  @media (prefers-reduced-motion: reduce) { .btn-pulse, .btn-glow { animation: none; } }
 
   /* Появление при прокрутке: landing-1 (40px, 0.7s) и landing-9 (.reveal-soft: 28px, 0.85s) */
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease-out var(--d, 0s), transform .7s ease-out var(--d, 0s); }
@@ -75,11 +95,17 @@
   .svc-more.is-open { opacity: 1; }
 
   /* Галерея — landing-1 Real Homes: триггер — карточка */
-  .work img { transition: transform .4s ease-out; }
-  .work:hover img { transform: scale(1.06); }
-  .work .cap { opacity: 0; transition: opacity .3s ease-out; }
-  .work:hover .cap, .work:focus-visible .cap { opacity: 1; }
-  @media (hover: none) { .work .cap { opacity: 1; } }
+  /* Плитки «Наши работы» — ссылки на разделы: подпись видна всегда, при наведении фото темнеет и приближается,
+     появляются золотая рамка и стрелка. На телефоне стрелка видна сразу. */
+  .work { cursor: pointer; }
+  .work img { transition: transform .5s ease-out, filter .5s ease-out; }
+  .work:hover img, .work:focus-visible img { transform: scale(1.08); filter: brightness(.82); }
+  .work::after { content: ""; position: absolute; inset: 0; border: 2px solid transparent; border-radius: inherit; transition: border-color .3s; pointer-events: none; }
+  .work:hover::after, .work:focus-visible::after { border-color: var(--color-gold); }
+  .work .cap { gap: 10px; }
+  .work .cap::after { content: "→"; color: var(--color-gold); opacity: 0; transform: translateX(-8px); transition: opacity .3s, transform .3s; }
+  .work:hover .cap::after, .work:focus-visible .cap::after { opacity: 1; transform: none; }
+  @media (hover: none) { .work .cap::after { opacity: 1; transform: none; } }
 
   /* Тарифы — landing-1 Pricing */
   .tier { border-radius: 4px; position: relative; overflow: hidden; transition: transform .25s ease-out; }
@@ -118,11 +144,22 @@
   .rise:is(h1, h2, h3, p, .eyebrow) { animation: none; }
   .reveal:is(h1, h2, h3, p), .reveal:has(> h1, > h2, > .eyebrow, > .h2) { opacity: 1; transform: none; transition: none; }
   /* Кнопки без анимации появления (решение владельца): сами кнопки и блоки с кнопками */
-  :is(.btn-gold, .btn-line).rise, .rise:has(> .btn-gold, > .btn-line, > a > .btn-gold) { animation: none; }
-  :is(.btn-gold, .btn-line).reveal, .reveal:has(> .btn-gold, > .btn-line) { opacity: 1; transform: none; transition: none; }
+  /* Только блоки с кнопками: на самой кнопке эти правила глушили её переходы, подъём при наведении и пульс */
+  .rise:has(> .btn-gold, > .btn-line, > a > .btn-gold) { animation: none; }
+  .reveal:has(> .btn-gold, > .btn-line) { opacity: 1; transform: none; transition: none; }
   /* Формы без анимации появления (решение владельца): форма, блок с формой и её поля */
   form.rise, .rise:has(form), form .rise { animation: none; }
   form.reveal, .reveal:has(form), form .reveal { opacity: 1; transform: none; transition: none; }
   /* Заголовки таблиц по центру по высоте (цены, каталог) */
   table thead th { vertical-align: middle !important; }
+  /* Текст: начертание не тоньше 400 (правило владельца) — тонкий Lato 300 читается бледно.
+     На телефоне обычный текст ещё и на 1px крупнее с большим межстрочным. Кнопки не затрагиваются. */
+  :is(p, li, dd, figcaption, blockquote, span, div).font-light,
+  .font-light :is(p, li, dd),
+  .font-light { font-weight: 400 !important; }
+  @media (max-width: 767px) {
+    :is(p, li, dd, blockquote)[class~='text-[14px]'] { font-size: 15px !important; line-height: 1.65 !important; }
+    :is(p, li, dd, blockquote)[class~='text-[15px]'] { font-size: 16px !important; line-height: 1.7 !important; }
+    :is(p, li, dd, blockquote)[class~='text-[16px]'] { font-size: 17px !important; line-height: 1.75 !important; }
+  }
 }

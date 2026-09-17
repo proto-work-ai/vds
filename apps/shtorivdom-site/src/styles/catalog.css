@@ -33,12 +33,15 @@
   .cat-strip > * { scroll-snap-align: start; }
   .cat-strip-models { grid-auto-columns: minmax(230px, 24%); padding-block: 10px 16px; }
   @media (width < 640px) { .cat-strip { grid-auto-columns: 82%; } .cat-strip-models { grid-auto-columns: 70%; } }
-  .cat-shot { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #e8e2d6; }
+  .cat-shot { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #e8e2d6; cursor: zoom-in; }
+  /* Фото открывается крупно: лупа видна всегда, при наведении фото темнеет */
+  .cat-shot::after { content: ""; position: absolute; inset: 0; background: rgb(13 34 61 / 0); transition: background .3s; pointer-events: none; }
+  .cat-shot:hover::after, .cat-shot:focus-visible::after { background: rgb(13 34 61 / .18); }
   .cat-shot img { transition: transform .7s; }
   .cat-shot:hover img { transform: scale(1.07); }
-  .cat-zoom { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgb(13 34 61 / .7); color: #c9a84c; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s; }
-  .group:hover .cat-zoom, .group:focus-visible .cat-zoom { opacity: 1; transform: none; }
-  @media (hover: none) { .cat-zoom { opacity: 1; transform: none; } }
+  .cat-zoom { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgb(13 34 61 / .7); color: #c9a84c; z-index: 1; opacity: .9; box-shadow: 0 4px 14px rgb(0 0 0 / .2); transition: opacity .3s, transform .3s, background .3s; }
+  .group:hover .cat-zoom, .group:focus-visible .cat-zoom { opacity: 1; transform: scale(1.1); background: rgb(13 34 61 / .9); }
+  @media (hover: none) { .cat-zoom { opacity: 1; } }
 
   /* Лайтбокс — assets/catalog.js */
   .cat-lb { position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center; padding: 64px 16px; background: rgb(8 22 41 / .94); opacity: 0; visibility: hidden; transition: opacity .3s ease-out, visibility .3s; }

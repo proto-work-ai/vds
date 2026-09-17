@@ -145,10 +145,20 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     $('[data-prev]', slider)?.addEventListener('click', () => go(index - 1));
     $('[data-next]', slider)?.addEventListener('click', () => go(index + 1));
     dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
-    if (!reduced) {
-      const timer = setInterval(() => document.hidden || go(index + 1), 5200);
-      signal.addEventListener('abort', () => clearInterval(timer));
-    }
+    // Без автопрокрутки. Свайп пальцем: влево — следующий, вправо — предыдущий; короткие и вертикальные движения не листают.
+    let touchX: number | null = null;
+    let touchY = 0;
+    slider.addEventListener('touchstart', (e) => {
+      touchX = e.touches[0].clientX;
+      touchY = e.touches[0].clientY;
+    }, { passive: true, signal });
+    slider.addEventListener('touchend', (e) => {
+      if (touchX === null) return;
+      const dx = e.changedTouches[0].clientX - touchX;
+      const dy = e.changedTouches[0].clientY - touchY;
+      touchX = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(index + (dx < 0 ? 1 : -1));
+    }, { passive: true, signal });
   }
 
   // ---------- FAQ: открыт один ответ ----------
@@ -193,18 +203,28 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
       description: v('comment'),
       model: form.dataset['orderModel'],
     };
-    const lead = buildLeadEmail(leadKind(form, data), data, { pageTitle: document.title, pageUrl: location.href.split('#')[0], sentAt: new Date() });
+    const kind = leadKind(form, data);
     if (isTest) {
+      const lead = buildLeadEmail(kind, data, { pageTitle: document.title, pageUrl: location.href.split('#')[0], sentAt: new Date() });
       console.log('[заявка] письмо в салон:', lead.subject, '\n' + lead.text, '\n', lead.html);
       return;
     }
-    // api/send-message.php принимает { message } и отправляет его HTML-письмом
-    const res = await fetch('/api/send-message.php', {
+    // api/lead.php принимает поля формы и сам собирает письмо (SMTP, Telegram, журнал заявок)
+    const res = await fetch('/api/lead.php', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: lead.html }),
+      body: JSON.stringify({
+        ...data,
+        kind,
+        consent: true,
+        website: (form.elements.namedItem('website') as HTMLInputElement | null)?.value ?? '', // ловушка для ботов
+        formTime: Date.now() - (Number(form.dataset['openedAt']) || Date.now()),
+        pageTitle: document.title,
+        pageUrl: location.href.split('#')[0],
+      }),
     });
-    if (!res.ok) throw new Error(`send-message.php: ${res.status}`);
+    const answer = (await res.json().catch(() => ({ ok: res.ok }))) as { ok?: boolean; error?: string };
+    if (!res.ok || !answer.ok) throw new Error(answer.error || 'Не удалось отправить заявку');
     (window as unknown as { ym?: Ym }).ym?.(108545164, 'reachGoal', 'form-submit');
   };
 
@@ -219,6 +239,7 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     const phone = $<HTMLInputElement>('[data-phone]', form);
     const consent = $<HTMLInputElement>('[data-consent]', form);
     const submit = $<HTMLButtonElement>('button[type="submit"]', form);
+    form.dataset['openedAt'] = String(Date.now()); // слишком быстрая отправка — бот
     const err = (name: string, on: boolean) => $(`[data-error="${name}"]`, form)?.classList.toggle('hidden', !on);
     consent?.addEventListener('change', () => consent.checked && err('consent', false));
     phone?.addEventListener('input', () => err('phone', false));
@@ -248,13 +269,14 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
           void done.offsetHeight;
           done.classList.add('is-in');
         })
-        .catch(() => {
+        .catch((error: unknown) => {
           if (submit) submit.disabled = false;
           const p = document.createElement('p');
           p.className = 'text-[13px] text-[#c0392b]';
           p.setAttribute('role', 'alert');
           p.setAttribute('data-send-error', '');
-          p.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз или позвоните: +7 (925) 594-61-17';
+          const reason = error instanceof Error && error.message ? error.message : 'Не удалось отправить заявку';
+          p.textContent = `${reason}. Попробуйте ещё раз или позвоните: +7 (925) 594-61-17`;
           form.appendChild(p);
         });
     });
