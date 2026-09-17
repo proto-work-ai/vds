@@ -7,7 +7,7 @@
    - src/app/layout/site-footer.html — подвал;
    - src/app/site-pages.ts — маршруты с SEO: title, description, og:image, schema.org;
    - src/styles/catalog.css — стили страниц каталога (<style> из страниц каталога);
-   - public/assets/img — картинки прототипа, public/logo/logo-1-email.png — логотип писем.
+   - public/assets/img — картинки прототипа, public/assets/logo/logo-1-email.png — логотип писем.
    Ссылки становятся абсолютными (/price/), интерактив — src/app/behavior/*.ts.
    Сгенерированные файлы руками не править: правка в mockups/site/src → пересборка. */
 import { readFileSync, writeFileSync, mkdirSync, rmSync, readdirSync, statSync, cpSync, existsSync } from 'node:fs';
@@ -37,7 +37,7 @@ const LOCAL_BUSINESS = {
   name: 'Shtorivdom',
   description: 'Салон штор: пошив штор на заказ, жалюзи, карнизы. Бесплатный выезд дизайнера.',
   url: `${SITE_URL}/`,
-  logo: `${SITE_URL}/favicon-96x96.png`,
+  logo: `${SITE_URL}/assets/favicon/favicon-96x96.png`,
   image: `${SITE_URL}/assets/img/hero.jpg`,
   telephone: '+79255946117',
   email: 'info@shtorivdom.ru',
@@ -229,8 +229,8 @@ writeFileSync(path.join(APP, 'src/styles/theme.css'), readFileSync(path.join(SIT
 writeFileSync(path.join(APP, 'src/styles/catalog.css'), `/* Стили страниц каталога — mockups/site/src/partials/catalog-styles.html */\n${catalogCss}\n`);
 
 cpSync(path.join(SITE, 'assets/img'), path.join(APP, 'public/assets/img'), { recursive: true });
-mkdirSync(path.join(APP, 'public/logo'), { recursive: true });
-cpSync(path.join(SITE, 'assets/logo/logo-1-email.png'), path.join(APP, 'public/logo/logo-1-email.png'));
+mkdirSync(path.join(APP, 'public/assets/logo'), { recursive: true });
+cpSync(path.join(SITE, 'assets/logo/logo-1-email.png'), path.join(APP, 'public/assets/logo/logo-1-email.png'));
 mkdirSync(path.join(APP, 'public/fonts'), { recursive: true });
 for (const f of ['lato-light', 'lato-normal', 'lato-normal-italic', 'lato-semibold', 'lato-bold']) {
   cpSync(`mockups/shared/fonts/${f}.woff2`, path.join(APP, `public/fonts/${f}.woff2`));

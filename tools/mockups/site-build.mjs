@@ -136,7 +136,7 @@ const ORG_LD = `  <!-- Карточка организации для поиск
       "name": "Shtorivdom",
       "description": "Салон штор: пошив штор на заказ, жалюзи, карнизы. Бесплатный выезд дизайнера.",
       "url": "https://shtorivdom.ru/",
-      "logo": "https://shtorivdom.ru/favicon-96x96.png",
+      "logo": "https://shtorivdom.ru/assets/favicon/favicon-96x96.png",
       "telephone": "+79255946117",
       "email": "info@shtorivdom.ru",
       "address": {
@@ -158,7 +158,7 @@ const ORG_LD = `  <!-- Карточка организации для поиск
 const head = (page, root) => {
   const url = `${SITE_URL}/${page.path}`;
   const sectionKey = page.path.match(/^catalog\/([^/]+)\/$/)?.[1];
-  const ogImage = sectionKey && ogImageByKey[sectionKey] ? `${SITE_URL}${ogImageByKey[sectionKey]}` : '';
+  const ogImage = sectionKey && ogImageByKey[sectionKey] ? `${SITE_URL}/assets/img${ogImageByKey[sectionKey]}` : '';
   const icons = `${root}assets/icons/`;
   return `<!doctype html>
 <html lang="ru">

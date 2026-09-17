@@ -13,10 +13,9 @@
    Одинаковые картинки и иконки с разных сайтов объединяются в одну карточку.
    Лайтбокс — общий скрипт mockups/shared/lightbox.js.
 
-   Кроме лендингов в галереи попадают все файлы картинок и SVG — в том числе неиспользуемые:
-   - mockups/site/assets        — прототип сайта;
-   - apps/shtorivdom-site/public — Angular-сайт (сервер макетов отдаёт по /_site-public/).
-   Одинаковые файлы объединяются по содержимому. */
+   Кроме лендингов в галереи попадают все файлы картинок и SVG прототипа (mockups/site/assets),
+   в том числе неиспользуемые. Одинаковые файлы объединяются по содержимому.
+   Мокапы существуют отдельно от Angular-сайта: файлы apps/shtorivdom-site сюда не берутся. */
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync, statSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import path from 'node:path';
@@ -75,7 +74,6 @@ const siteLabel = (s) => (/^landing-\d+$/.test(s) ? `Лендинг ${s.slice(8)
 // ---------- файлы картинок и SVG ----------
 const FILE_SOURCES = [
   { dir: 'mockups/site/assets', url: '../site/assets', label: 'Прототип сайта' },
-  { dir: 'apps/shtorivdom-site/public', url: '../_site-public', label: 'Angular-сайт (public)' },
 ];
 const RASTER = /\.(jpe?g|png|webp|gif|avif)$/i;
 const walk = (dir) => readdirSync(dir).flatMap((n) => {
@@ -186,10 +184,10 @@ for (const old of ['images.html', 'icons.html']) rmSync(path.join(ROOT, old), { 
 for (const dir of ['images', 'icons', 'shared']) mkdirSync(path.join(ROOT, dir), { recursive: true });
 writeFileSync(
   path.join(ROOT, 'images', 'index.html'),
-  shell('Картинки макетов', `${images.size + fileImages.size} картинок: ${images.size} из лендингов, ${fileImages.size} файлов прототипа и сайта. Нажмите на карточку — откроется полная версия.`, imageCards + '\n' + fileImageCards)
+  shell('Картинки макетов', `${images.size + fileImages.size} картинок: ${images.size} из лендингов, ${fileImages.size} файлов прототипа. Нажмите на карточку — откроется полная версия.`, imageCards + '\n' + fileImageCards)
 );
 writeFileSync(
   path.join(ROOT, 'icons', 'index.html'),
-  shell('Иконки макетов', `${icons.size + fileIcons.size} иконок: ${icons.size} из лендингов, ${fileIcons.size} SVG-файлов прототипа и сайта. Нажмите на карточку — иконка откроется крупно.`, iconCards + '\n' + fileIconCards)
+  shell('Иконки макетов', `${icons.size + fileIcons.size} иконок: ${icons.size} из лендингов, ${fileIcons.size} SVG-файлов прототипа. Нажмите на карточку — иконка откроется крупно.`, iconCards + '\n' + fileIconCards)
 );
 console.log(`картинок: ${images.size} + файлов ${fileImages.size}, иконок: ${icons.size} + SVG-файлов ${fileIcons.size}, лендингов: ${sites.length}`);

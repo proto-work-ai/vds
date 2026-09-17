@@ -29,7 +29,7 @@
   const SCRIPT_SRC = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : '';
   const LOGO = SCRIPT_SRC && /^https?:\/\/(localhost|127\.0\.0\.1)(:|\/)/.test(SCRIPT_SRC)
     ? new URL(LOGO_FILE, SCRIPT_SRC).href
-    : SITE + '/' + LOGO_FILE;
+    : SITE + '/assets/' + LOGO_FILE;
   const SALON = {
     brand: 'Шторы в дом',
     phone: '+7 (925) 594-61-17',
