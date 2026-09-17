@@ -1244,9 +1244,6 @@
   .pb-14 {
     padding-bottom: calc(var(--spacing) * 14);
   }
-  .pb-16 {
-    padding-bottom: calc(var(--spacing) * 16);
-  }
   .pb-20 {
     padding-bottom: calc(var(--spacing) * 20);
   }
@@ -1503,6 +1500,9 @@
   .text-\[\#c0392b\] {
     color: #c0392b;
   }
+  .text-\[\#ff8a7a\] {
+    color: #ff8a7a;
+  }
   .text-blue-600 {
     color: var(--color-blue-600);
   }
@@ -1674,6 +1674,9 @@
   .accent-\[\#0d223d\] {
     accent-color: #0d223d;
   }
+  .accent-\[\#c9a84c\] {
+    accent-color: #c9a84c;
+  }
   .opacity-0 {
     opacity: 0%;
   }
@@ -1804,6 +1807,12 @@
     }
     .group-hover\:text-gold:is(:where(.group):hover *) {
       color: var(--color-gold);
+    }
+  }
+  .placeholder\:text-cream\/50::placeholder {
+    color: color-mix(in srgb, #f5f0e8 50%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      color: color-mix(in oklab, var(--color-cream) 50%, transparent);
     }
   }
   .placeholder\:text-slate\/60::placeholder {
@@ -2083,9 +2092,6 @@
     .sm\:pb-12 {
       padding-bottom: calc(var(--spacing) * 12);
     }
-    .sm\:pb-24 {
-      padding-bottom: calc(var(--spacing) * 24);
-    }
     .sm\:pb-28 {
       padding-bottom: calc(var(--spacing) * 28);
     }
@@ -2172,6 +2178,9 @@
     }
     .md\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .md\:grid-cols-\[minmax\(0\,1fr\)_minmax\(0\,1\.1fr\)\] {
+      grid-template-columns: minmax(0,1fr) minmax(0,1.1fr);
     }
     .md\:flex-row {
       flex-direction: row;
@@ -2754,6 +2763,9 @@
     margin: 0;
     animation: quiz-in .35s ease-out;
   }
+  .bg-navy [data-thanks] p:last-child {
+    color: rgb(245 240 232 / .8);
+  }
   @keyframes quiz-in {
     from {
       opacity: 0;
@@ -2847,6 +2859,15 @@
   .dropdown a:hover {
     color: var(--color-gold);
     background: rgb(255 255 255 / .04);
+  }
+  .dropdown-sep {
+    display: block;
+    height: 1px;
+    margin: 8px 20px;
+    background: rgb(201 168 76 / .25);
+  }
+  .m-sub .dropdown-sep {
+    margin: 6px 0 6px 16px;
   }
   .burger span {
     display: block;

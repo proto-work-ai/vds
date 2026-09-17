@@ -71,6 +71,8 @@
   .calc-option input:focus-visible + .calc-option-box { outline: 2px solid var(--color-gold); outline-offset: 2px; }
   .calc-kind-img { aspect-ratio: 4 / 3; width: 100%; object-fit: cover; margin-bottom: 6px; }
   .quiz-step { border: 0; padding: 0; margin: 0; animation: quiz-in .35s ease-out; }
+  /* «Спасибо» после заявки в тёмной карточке калькулятора */
+  .bg-navy [data-thanks] p:last-child { color: rgb(245 240 232 / .8); }
   @keyframes quiz-in { from { opacity: 0; transform: translateX(12px); } }
   @media (prefers-reduced-motion: reduce) { .quiz-step { animation: none; } }
 
@@ -96,6 +98,8 @@
   .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown, .has-dropdown.is-open .dropdown { opacity: 1; visibility: visible; transform: none; }
   .dropdown a { display: block; padding: 9px 20px; font-size: 14px; color: var(--color-cream); transition: color .2s, background .2s; }
   .dropdown a:hover { color: var(--color-gold); background: rgb(255 255 255 / .04); }
+  .dropdown-sep { display: block; height: 1px; margin: 8px 20px; background: rgb(201 168 76 / .25); }
+  .m-sub .dropdown-sep { margin: 6px 0 6px 16px; }
   .burger span { display: block; width: 24px; height: 2px; background: var(--color-cream); transition: transform .3s, opacity .3s; }
   .burger span + span { margin-top: 5px; }
   .burger[aria-expanded='true'] span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }

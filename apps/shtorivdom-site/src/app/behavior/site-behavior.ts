@@ -86,6 +86,89 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     signal.addEventListener('abort', () => io.disconnect());
   }
 
+  // ---------- калькулятор штор ----------
+  type CalcItem = { key: string; title: string; unit: string; min: number; image: string };
+  const catalogData = (() => {
+    try {
+      const json = $('#calc-data', root)?.textContent ?? '[]';
+      const data: unknown = JSON.parse(json.replaceAll('&#123;', '{').replaceAll('&#125;', '}'));
+      return Array.isArray(data)
+        ? data.filter((item): item is CalcItem => {
+            if (!item || typeof item !== 'object') return false;
+            const value = item as Record<string, unknown>;
+            return typeof value['key'] === 'string' && typeof value['title'] === 'string'
+              && typeof value['unit'] === 'string' && typeof value['min'] === 'number' && typeof value['image'] === 'string';
+          })
+        : [];
+    } catch {
+      return [];
+    }
+  })();
+  const calc = $('[data-calc]', root);
+  if (calc && catalogData.length) {
+    const kinds = $('[data-calc-kinds]', calc);
+    const widthIn = $('[data-calc-width]', calc) as HTMLInputElement | null;
+    const heightIn = $('[data-calc-height]', calc) as HTMLInputElement | null;
+    const rodIn = $('[data-calc-rod]', calc) as HTMLInputElement | null;
+    const rowsBox = $('[data-calc-rows]', calc);
+    const totalBox = $('[data-calc-total]', calc);
+    if (!kinds || !widthIn || !heightIn || !rowsBox || !totalBox) return;
+    const rod = catalogData.find((item) => item.key === 'curtain-rods');
+    const curtains = catalogData.filter((item) => item.key !== 'curtain-rods');
+    const money = (n: number) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    const dec = (n: number) => String(n).replace('.', ',');
+    kinds.innerHTML = curtains.map((item, index) => '<label class="calc-option"><input type="radio" name="kind" value="' + item.key + '" class="sr-only"' + (index === 0 ? ' checked' : '') + ' />'
+      + '<span class="calc-option-box"><img src="' + item.image + '" alt="" loading="lazy" class="calc-kind-img" />'
+      + '<b class="font-serif text-[17px] leading-tight">' + item.title + '</b><span class="text-[13px] text-slate/80">от ' + money(item.min) + ' ₽/' + item.unit + '</span></span></label>').join('');
+    const render = () => {
+      const selected = curtains.find((item) => item.key === $('input[name="kind"]:checked', calc)?.getAttribute('value')) ?? curtains[0];
+      if (!selected) return;
+      const byMeter = selected.unit === 'м.пог.';
+      const width = Number(widthIn.value), height = Number(heightIn.value);
+      const bad = !(width >= 30 && width <= 1500 && height >= 30 && height <= 600);
+      $('[data-calc-error]', calc)?.classList.toggle('hidden', !bad);
+      $('[data-calc-fullness-step]', calc)?.classList.toggle('hidden', !byMeter);
+      $('[data-calc-width-label]', calc)!.textContent = byMeter ? 'Ширина карниза, см' : 'Ширина окна (створки), см';
+      $('[data-calc-height-label]', calc)!.textContent = byMeter ? 'Высота от карниза до пола, см' : 'Высота окна (створки), см';
+      $('[data-calc-title]', calc)!.textContent = selected.title;
+      const rows: string[][] = [];
+      let total = 0;
+      let summary = '';
+      if (!bad) {
+        const widthMeters = width / 100, heightMeters = height / 100;
+        if (byMeter) {
+          const fullness = Number($('input[name="fullness"]:checked', calc)?.getAttribute('value') ?? 2);
+          const fabric = Math.ceil((widthMeters * fullness + 0.2) * 10) / 10;
+          const cut = Math.ceil((heightMeters + 0.3) * 10) / 10;
+          total = fabric * selected.min;
+          rows.push(['Ширина × пышность', money(width) + ' см × ' + dec(fullness)], ['Ткани нужно', dec(fabric) + ' м.пог.'], ['Высота полотна с подгибами', dec(cut) + ' м']);
+          if (cut > 3) rows.push(['Внимание', 'выше 3 м — нужна ткань большой высоты или сшивка']);
+          summary = selected.title + ': карниз ' + width + ' см, высота ' + height + ' см, пышность ×' + dec(fullness) + ', ткани ~' + dec(fabric) + ' м.пог.';
+        } else {
+          const area = Math.max(0.5, Math.ceil(widthMeters * heightMeters * 100) / 100);
+          total = area * selected.min;
+          rows.push(['Размер', money(width) + ' × ' + money(height) + ' см'], ['Площадь', dec(area) + ' м²']);
+          summary = selected.title + ': ' + width + ' × ' + height + ' см, площадь ~' + dec(area) + ' м²';
+        }
+        rows.push([selected.title, 'от ' + money(total) + ' ₽']);
+        if (rodIn?.checked && rod) {
+          const rodMeters = Math.ceil(widthMeters * 10) / 10;
+          const rodTotal = rodMeters * rod.min;
+          rows.push(['Карниз ' + dec(rodMeters) + ' м', 'от ' + money(rodTotal) + ' ₽']);
+          total += rodTotal;
+          summary += '; карниз ~' + dec(rodMeters) + ' м';
+        }
+      }
+      rowsBox.innerHTML = rows.map(([label, value]) => '<div class="flex items-baseline justify-between gap-4 py-2.5"><dt class="text-cream/70">' + label + '</dt><dd class="text-right font-bold">' + value + '</dd></div>').join('');
+      totalBox.textContent = bad ? '—' : 'от ' + money(total) + ' ₽';
+      const hidden = $('[data-inline-lead="calc"] [data-inline-comment]') as HTMLInputElement | null;
+      if (hidden) hidden.value = summary ? 'Расчёт с калькулятора — ' + summary + '. Ориентировочно от ' + money(total) + ' ₽.' : '';
+    };
+    calc.addEventListener('input', render, opt);
+    calc.addEventListener('change', render, opt);
+    render();
+  }
+
   // ---------- до и после ----------
   const compare = $('[data-compare]', root);
   if (compare) {
@@ -126,6 +209,16 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
     const slide = $('[data-slide]', slider) as HTMLElement;
     const quote = $('[data-quote]', slider) as HTMLElement;
     const dots = $$('[data-dot]', slider);
+    const avatar = $('[data-avatar]', slider) as HTMLElement | null;
+    // Аватарки отзывов (public/assets/img/avatars), по одной на слайд
+    const AVATARS = ['/assets/img/avatars/marina.png', '/assets/img/avatars/irina.jpg', '/assets/img/avatars/sergey.png'];
+    const setAvatar = (i: number) => {
+      if (!avatar) return;
+      avatar.classList.remove('bg-sand');
+      avatar.classList.add('overflow-hidden');
+      avatar.innerHTML = `<img src="${AVATARS[i % AVATARS.length]}" alt="" width="48" height="48" class="size-full rounded-full object-cover" />`;
+    };
+    setAvatar(0);
     let index = 0;
     let token = 0;
     const go = (i: number) => {
@@ -139,6 +232,7 @@ export function initPage(root: HTMLElement, page: string, signal: AbortSignal): 
       setTimeout(() => {
         if (my !== token) return;
         quote.textContent = `Текст отзыва ${i + 1} — ждёт реального текста`;
+        setAvatar(i);
         slide.classList.remove('is-out');
       }, 400);
     };

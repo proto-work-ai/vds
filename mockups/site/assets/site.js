@@ -235,13 +235,6 @@
   const catalogData = (() => { try { return JSON.parse($('#calc-data')?.textContent || '[]'); } catch { return []; } })();
   const money = (n) => Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   const dec = (n) => String(n).replace('.', ',');
-  // Перенос текста в комментарий общей формы заявки и прокрутка к ней
-  const toLeadForm = (text) => {
-    const comment = $('#lead [name="comment"]');
-    if (comment) comment.value = text;
-    $('#lead')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-    setTimeout(() => $('#lead [data-phone]')?.focus({ preventScroll: true }), reduced ? 0 : 600);
-  };
 
   // ---------- калькулятор штор ----------
   const calc = $('[data-calc]');
@@ -255,6 +248,11 @@
     kinds.innerHTML = curtains.map((c, i) => '<label class="calc-option"><input type="radio" name="kind" value="' + c.key + '" class="sr-only"' + (i === 0 ? ' checked' : '') + ' />'
       + '<span class="calc-option-box"><img src="' + c.image + '" alt="" loading="lazy" class="calc-kind-img" />'
       + '<b class="font-serif text-[17px] leading-tight">' + c.title + '</b><span class="text-[13px] text-slate/80">от ' + money(c.min) + ' ₽/' + c.unit + '</span></span></label>').join('');
+    // Стоимость вида под введённые размеры (без карниза): ткань по м.пог. с пышностью или площадь от 0,5 м²
+    const costOf = (c, w, h) => {
+      const k = Number($('input[name="fullness"]:checked', calc)?.value || 2);
+      return c.unit === 'м.пог.' ? Math.ceil((w / 100 * k + 0.2) * 10) / 10 * c.min : Math.max(0.5, Math.ceil(w / 100 * h / 100 * 100) / 100) * c.min;
+    };
 
     const render = () => {
       const kind = curtains.find((c) => c.key === $('input[name="kind"]:checked', calc)?.value) ?? curtains[0];
@@ -302,14 +300,12 @@
       $('[data-calc-rows]', calc).innerHTML = rows.map(([a, b]) => '<div class="flex items-baseline justify-between gap-4 py-2.5"><dt class="text-cream/70">' + a + '</dt><dd class="text-right font-bold">' + b + '</dd></div>').join('');
       $('[data-calc-total]', calc).textContent = bad ? '—' : 'от ' + money(total) + ' ₽';
       calc.dataset.summary = bad ? '' : summary + '. Ориентировочно от ' + money(total) + ' ₽.';
+      const hidden = $('[data-inline-lead="calc"] [data-inline-comment]');
+      if (hidden) hidden.value = calc.dataset.summary ? 'Расчёт с калькулятора — ' + calc.dataset.summary : '';
     };
     calc.addEventListener('input', render);
     calc.addEventListener('change', render);
     render();
-    $('[data-calc-send]', calc).addEventListener('click', (e) => {
-      e.preventDefault();
-      toLeadForm(calc.dataset.summary ? 'Расчёт с калькулятора — ' + calc.dataset.summary : '');
-    });
   }
 
   // ---------- подбор штор (квиз) ----------
@@ -342,6 +338,8 @@
         + '<span class="text-gold transition-transform duration-300 group-hover:translate-x-1">→</span></div></a>').join('');
       quiz.dataset.summary = steps.map((st, i) => st.querySelector('legend').textContent.trim() + ' ' + (answer(i)?.closest('label').querySelector('b').textContent ?? '—')).join('; ')
         + '. Рекомендация: ' + top.map((c) => c.title).join(', ') + '.';
+      const hidden = $('[data-inline-lead="quiz"] [data-inline-comment]');
+      if (hidden) hidden.value = 'Подбор штор — ' + quiz.dataset.summary;
     };
     const show = () => {
       const done = current >= steps.length;
@@ -359,8 +357,7 @@
     quiz.addEventListener('change', () => show());
     next.addEventListener('click', () => { if (answer(current)) { current++; show(); quiz.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'nearest' }); } });
     back.addEventListener('click', () => { current = Math.max(0, current - 1); show(); });
-    $('[data-quiz-restart]', quiz).addEventListener('click', () => { $$('input', quiz).forEach((r) => (r.checked = false)); current = 0; show(); });
-    $('[data-quiz-send]', quiz).addEventListener('click', (e) => { e.preventDefault(); toLeadForm('Подбор штор — ' + (quiz.dataset.summary ?? '')); });
+    $('[data-quiz-restart]', quiz).addEventListener('click', () => { $$('[data-quiz-step] input[type="radio"]', quiz).forEach((r) => (r.checked = false)); current = 0; show(); });
     show();
   }
 

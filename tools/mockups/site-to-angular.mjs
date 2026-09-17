@@ -80,7 +80,12 @@ const absolutize = (html, pagePath) => {
 };
 
 // Шаблон Angular: фигурные скобки и @ в тексте — служебные
-const toTemplate = (html) => html.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;').replace(/@/g, '&#64;').replace(/<!--[\s\S]*?-->/g, '');
+const toTemplate = (html) => html
+  .replace(/<script type="application\/json" id="calc-data">([\s\S]*?)<\/script>/g, '<div id="calc-data" class="hidden" aria-hidden="true">$1</div>')
+  .replace(/\{/g, '&#123;')
+  .replace(/\}/g, '&#125;')
+  .replace(/@/g, '&#64;')
+  .replace(/<!--[\s\S]*?-->/g, '');
 
 const pagesDir = path.join(APP, 'src/app/pages');
 rmSync(pagesDir, { recursive: true, force: true });

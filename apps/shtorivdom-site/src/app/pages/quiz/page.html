@@ -1,11 +1,8 @@
-<!-- @header -->
-<!-- Подбор штор — квиз. Идея — квиз из шаблона «магазин-красок» (шаги «далее/назад», смена картинки, итог).
-     Рекомендация — разделы каталога по ответам (баллы в assets/site.js), заявка — общая форма ниже. -->
 <main>
 <section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
   <div class="wrap">
-    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
-    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>
+    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><a href="/" class="hover:text-gold">Главная</a></nav>
+    <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Подбор штор</h1>
     <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] text-cream/75">Ответьте на 4 вопроса — подскажем, какие шторы подойдут вашей комнате и окну.</p>
   </div>
 </section>
@@ -15,7 +12,7 @@
     <div class="relative">
       <div class="absolute -inset-3 border-2 border-gold/60 sm:-inset-5"></div>
       <div class="relative bg-white px-5 py-7 sm:px-10 sm:py-10">
-        <!-- прогресс -->
+        
         <div class="mb-7 flex items-center justify-between gap-4">
           <p class="text-[12px] font-bold tracking-[.12em] text-gold uppercase" data-quiz-counter>Вопрос 1 из 4</p>
           <div class="h-1 flex-1 max-w-[260px] overflow-hidden rounded-full bg-sand" aria-hidden="true"><div class="h-full bg-gold transition-[width] duration-500" style="width:25%" data-quiz-bar></div></div>
@@ -63,7 +60,7 @@
             </div>
           </fieldset>
 
-          <!-- итог -->
+          
           <div data-quiz-result hidden>
             <p class="mb-2 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Наша рекомендация</p>
             <h2 class="mb-6 font-serif text-[26px] leading-tight font-bold sm:text-[32px]">Вам подойдут</h2>
@@ -92,7 +89,7 @@
             <div>
               <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
                 <input type="checkbox" name="consent" class="mt-0.5 size-4 shrink-0 accent-[#c9a84c]" checked data-consent />
-                <span>Я соглашаюсь с правилами по обработке <a href="{{root}}soglasie-na-obrabotku-personalnyh-dannyh/" class="underline decoration-gold underline-offset-2 hover:text-gold">персональных данных</a></span>
+                <span>Я соглашаюсь с правилами по обработке <a href="/soglasie-na-obrabotku-personalnyh-dannyh/" class="underline decoration-gold underline-offset-2 hover:text-gold">персональных данных</a></span>
               </label>
               <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">Нужно согласие на обработку персональных данных</p>
             </div>
@@ -110,9 +107,54 @@
       </div>
     </div>
   </div>
-<!-- @calc-data -->
+<div id="calc-data" class="hidden" aria-hidden="true">[&#123;"key":"blackout-curtains","title":"Шторы блэкаут","unit":"м.пог.","min":2500,"image":"../assets/img/catalog/blackout-curtains/image-5.jpg","href":"../catalog/blackout-curtains/"&#125;,&#123;"key":"roman-blinds","title":"Римские шторы","unit":"м²","min":4500,"image":"../assets/img/catalog/roman-blinds/image-1.jpg","href":"../catalog/roman-blinds/"&#125;,&#123;"key":"roller-blinds","title":"Рулонные шторы","unit":"м²","min":2200,"image":"../assets/img/catalog/roller-blinds/image-2.jpg","href":"../catalog/roller-blinds/"&#125;,&#123;"key":"linen-curtains","title":"Льняные шторы","unit":"м.пог.","min":2800,"image":"../assets/img/catalog/linen-curtains/image-3.jpg","href":"../catalog/linen-curtains/"&#125;,&#123;"key":"pleated-blinds","title":"Шторы плиссе","unit":"м²","min":3500,"image":"../assets/img/catalog/pleated-blinds/image-1.jpg","href":"../catalog/pleated-blinds/"&#125;,&#123;"key":"curtain-rods","title":"Карнизы для штор","unit":"м.пог.","min":900,"image":"../assets/img/catalog/curtain-rods/image-1.jpg","href":"../catalog/curtain-rods/"&#125;,&#123;"key":"blinds","title":"Жалюзи","unit":"м²","min":1500,"image":"../assets/img/catalog/blinds/image-1.jpg","href":"../catalog/blinds/"&#125;]</div>
 </section>
 
-<!-- @lead-form -->
+
+<section id="lead" class="bg-sand py-16 sm:py-24">
+  <div class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16">
+    <div class="reveal">
+      <p class="eyebrow">Заявка</p>
+      <h2 class="h2 mb-5">Запишитесь на посещение шоурума и получите <span class="text-gold italic">скидку 10%</span></h2>
+      <div class="mb-10 space-y-3 text-[16px] leading-[1.8] font-light text-slate">
+        <p>Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.</p>
+        <p>На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором модели и рассчитаем стоимость в разных ценовых категориях.</p>
+        <p>Изготовим заказ на собственном производстве точно в срок, произведем монтаж.</p>
+      </div>
+      <ul class="flex flex-col gap-6">
+        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Телефон</p><a href="tel:+79255946117" class="font-serif text-[20px] font-bold transition-colors hover:text-gold">+7 (925) 594-61-17</a></div></li>
+        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Эл. почта</p><a href="mailto:info&#64;shtorivdom.ru" class="text-[16px] hover:text-gold">info&#64;shtorivdom.ru</a></div></li>
+        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Адрес</p><a href="https://yandex.ru/maps/-/CDQG4AYV" target="_blank" rel="noopener" class="text-[16px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold">Троицк, Кварцевая улица, 3, корп. 2</a></div></li>
+        <li class="flex gap-4"><span class="mt-1 text-gold"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <div><p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">График работы</p><p class="text-[16px]">Без выходных, 10:00–20:00</p></div></li>
+      </ul>
+    </div>
+    <div class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12" style="--d:.15s">
+      <form class="flex flex-col gap-5" novalidate data-lead-form>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="absolute -left-[9999px] size-0 opacity-0" />
+        <div>
+          <label class="field-label" for="lead-phone">Телефон *</label>
+          <input id="lead-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Укажите телефон" class="field" data-phone />
+          <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="phone">Введите номер телефона полностью</p>
+        </div>
+        <div>
+          <label class="field-label" for="lead-comment">Комментарий</label>
+          <textarea id="lead-comment" name="comment" rows="4" placeholder="Комментарий" class="field resize-none"></textarea>
+        </div>
+        <div>
+          <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
+            <input type="checkbox" name="consent" class="mt-0.5 size-4 shrink-0 accent-[#0d223d]" checked data-consent />
+            <span>Я соглашаюсь с правилами по обработке <a href="/soglasie-na-obrabotku-personalnyh-dannyh/" class="text-navy underline decoration-gold underline-offset-2 hover:text-gold">персональных данных</a></span>
+          </label>
+          <p class="mt-2 hidden text-[13px] text-[#c0392b]" data-error="consent">Нужно согласие на обработку персональных данных</p>
+        </div>
+        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
+      </form>
+    </div>
+  </div>
+</section>
+
 </main>
-<!-- @footer -->
