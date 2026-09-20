@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Directive, ElementRef, HostListener, inject, signal } from '@angular/core';
+import { Directive, ElementRef, HostListener, inject, input, signal } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { markAsSubmit } from '@atlas/core';
 import { CONTACT_CONFIG } from '../contact-config';
@@ -34,6 +34,7 @@ export class CalcLeadFormDirective {
 
   readonly submitting = signal(false);
   readonly submitted = signal(false);
+  readonly calculationSummary = input.required<string>();
 
   @HostListener('submit', ['$event'])
   onSubmit(event: Event): void {
@@ -42,9 +43,7 @@ export class CalcLeadFormDirective {
   }
 
   private submit(): void {
-    const inlineComment = this.element.querySelector('[data-inline-comment]');
-    if (inlineComment instanceof HTMLInputElement)
-      this.form.controls.comment.setValue(inlineComment.value.trim());
+    this.form.controls.comment.setValue(this.calculationSummary());
 
     const valid = markAsSubmit(this.form);
     this.updateFieldErrors();

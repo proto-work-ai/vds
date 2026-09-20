@@ -222,6 +222,9 @@
               class="flex flex-col gap-5"
               novalidate
               data-calc-lead-form
+              [calculationSummary]="
+                calculation().summary ? 'Расчёт с калькулятора — ' + calculation().summary : ''
+              "
               data-inline-lead="calc"
               #lead="calcLeadForm"
               [formGroup]="lead.form"
@@ -234,14 +237,6 @@
                 autocomplete="off"
                 aria-hidden="true"
                 class="absolute -left-[9999px] size-0 opacity-0"
-              />
-              <input
-                type="hidden"
-                formControlName="comment"
-                [value]="
-                  calculation().summary ? 'Расчёт с калькулятора — ' + calculation().summary : ''
-                "
-                data-inline-comment
               />
               <label class="flex items-center gap-3 border-b border-gold pb-3">
                 <svg

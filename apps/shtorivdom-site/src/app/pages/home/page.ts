@@ -5,6 +5,7 @@ import { TuiCheckbox, TuiError, TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { ContactLinksDirective } from '../../contact-links.directive';
 import { LeadFormDirective } from '../../forms/lead-form.directive';
+import { SITE_FAQ, SiteFaq } from '@shtorivdom/site-kit';
 
 // Сгенерировано tools/mockups/site-to-angular.mjs из mockups/site/index.html
 @Component({
@@ -12,6 +13,7 @@ import { LeadFormDirective } from '../../forms/lead-form.directive';
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    SiteFaq,
     DeferDirective,
     ReactiveFormsModule,
     TuiTextfield,
@@ -24,4 +26,6 @@ import { LeadFormDirective } from '../../forms/lead-form.directive';
     ContactLinksDirective,
   ],
 })
-export class HomePage {}
+export class HomePage {
+  protected readonly faq = SITE_FAQ;
+}

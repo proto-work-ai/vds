@@ -90,7 +90,12 @@ export class CalcComponent {
     return {
       rows,
       total,
-      summary: rows.map(([label, value]) => `${label}: ${value}`).join('; '),
+      summary: [
+        item.title,
+        `${this.byMeter() ? 'Ширина карниза × высота' : 'Ширина × высота окна'}: ${this.width()} × ${this.height()} см`,
+        ...rows.map(([label, value]) => `${label}: ${value}`),
+        `Ориентировочно от ${this.formatMoney(total)} ₽`,
+      ].join('; '),
     };
   });
 
