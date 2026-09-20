@@ -119,6 +119,7 @@
               <circle cx="12" cy="7" r="4" />
             </svg>
             <tui-textfield class="w-full" [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Имя</label>
               <input
                 tuiInput
                 #heroName
@@ -146,6 +147,7 @@
               </svg>
               <div class="w-full">
                 <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
+                  <label tuiLabel>Телефон</label>
                   <input
                     tuiInputPhone
                     mask="+7 (###) ###-##-##"
