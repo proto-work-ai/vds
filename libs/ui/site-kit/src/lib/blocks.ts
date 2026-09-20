@@ -124,7 +124,12 @@ export class SiteFaq {
   selector: 'site-review-slider',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SiteArrow, SiteDots],
-  host: { class: 'block', '(touchstart)': 'touchStart($event)', '(touchend)': 'touchEnd($event)' },
+  host: {
+    class: 'block touch-pan-y',
+    '(pointerdown)': 'swipeStart($event)',
+    '(pointerup)': 'swipeEnd($event)',
+    '(pointercancel)': 'swipeCancel()',
+  },
   templateUrl: './site-review-slider.html',
 })
 export class SiteReviewSlider {
@@ -134,16 +139,21 @@ export class SiteReviewSlider {
   readonly index = model(0);
   protected readonly shown = signal(0);
   protected readonly review = computed(() => SITE_REVIEWS[this.shown() % SITE_REVIEWS.length]);
-  private touch: { x: number; y: number } | null = null;
-  protected touchStart(event: TouchEvent): void {
-    this.touch = { x: event.touches[0].clientX, y: event.touches[0].clientY };
+  private swipe: { id: number; x: number; y: number } | null = null;
+  protected swipeStart(event: PointerEvent): void {
+    if (event.pointerType === 'mouse') return;
+    this.swipe = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    (event.currentTarget as HTMLElement).setPointerCapture?.(event.pointerId);
   }
-  protected touchEnd(event: TouchEvent): void {
-    if (!this.touch) return;
-    const dx = event.changedTouches[0].clientX - this.touch.x;
-    const dy = event.changedTouches[0].clientY - this.touch.y;
-    this.touch = null;
+  protected swipeEnd(event: PointerEvent): void {
+    if (!this.swipe || event.pointerId !== this.swipe.id) return;
+    const dx = event.clientX - this.swipe.x;
+    const dy = event.clientY - this.swipe.y;
+    this.swipe = null;
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) this.go(this.index() + (dx < 0 ? 1 : -1));
+  }
+  protected swipeCancel(): void {
+    this.swipe = null;
   }
   protected readonly out = signal(false);
   private _token = 0;

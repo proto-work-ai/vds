@@ -55,6 +55,16 @@ await withBrowser(async (page) => {
   assert.equal(home.faq, 5);
   assert.ok(home.reviewChanged);
   console.log('PASS FAQ and reviews');
+  const swipe = await page.eval(`(async () => {
+    const slider = document.querySelector('site-review-slider');
+    const before = slider.querySelector('blockquote').textContent;
+    slider.dispatchEvent(new PointerEvent('pointerdown', { pointerId: 7, pointerType: 'touch', clientX: 300, clientY: 200, bubbles: true }));
+    slider.dispatchEvent(new PointerEvent('pointerup', { pointerId: 7, pointerType: 'touch', clientX: 100, clientY: 205, bubbles: true }));
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    return before !== slider.querySelector('blockquote').textContent;
+  })()`);
+  assert.ok(swipe, 'review swipe');
+  console.log('PASS review swipe');
   mkdirSync('.playwright-mcp', { recursive: true });
   await page.eval(`document.querySelector('#faq').scrollIntoView({behavior:'instant'})`);
   await sleep(650);
