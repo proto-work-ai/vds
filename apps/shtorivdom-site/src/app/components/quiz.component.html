@@ -398,7 +398,10 @@
                       <circle cx="12" cy="7" r="4" />
                     </svg>
                     <tui-textfield class="w-full" [tuiTextfieldCleaner]="false">
-                      <label tuiLabel>Имя</label>
+                      <label tuiLabel>
+                        Имя
+                        <span class="text-red-600">*</span>
+                      </label>
                       <input
                         tuiInput
                         formControlName="name"
@@ -430,7 +433,10 @@
                       </svg>
                       <div class="w-full">
                         <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-                          <label tuiLabel>Телефон</label>
+                          <label tuiLabel>
+                            Телефон
+                            <span class="text-red-600">*</span>
+                          </label>
                           <input
                             mask="+7 (###) ###-##-##"
                             tuiInputPhone
