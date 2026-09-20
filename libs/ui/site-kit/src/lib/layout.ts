@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { SiteButton } from './button.directive';
 import { SiteBurger } from './controls.component';
-import { SITE_CATALOG, SITE_CONTACTS, SITE_NAV } from './data';
+import { SITE_CATALOG, SITE_NAV, SiteContacts } from './data';
 import { closeHeight, openHeight } from './height';
 import { SiteIcon } from './icon.component';
 import { SiteLogo } from './logo.component';
@@ -65,7 +65,7 @@ export class SiteHeader {
 
   protected readonly catalog = SITE_CATALOG;
   protected readonly nav = SITE_NAV;
-  protected readonly contacts = SITE_CONTACTS;
+  readonly contacts = input.required<SiteContacts>();
   private readonly _panel = viewChild.required<ElementRef<HTMLElement>>('panel');
   private readonly _sub = viewChild.required<ElementRef<HTMLElement>>('sub');
   private _first = true;
@@ -110,5 +110,5 @@ export class SiteFooter {
   readonly root = input('');
   protected readonly home = computed(() => this.root() || './');
   protected readonly catalog = SITE_CATALOG;
-  protected readonly contacts = SITE_CONTACTS;
+  readonly contacts = input.required<SiteContacts>();
 }

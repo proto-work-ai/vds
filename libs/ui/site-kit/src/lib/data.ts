@@ -10,16 +10,16 @@ export interface SiteLink {
   href?: string;
 }
 
-export const SITE_CONTACTS = {
-  phone: '+7 (915) 359-12-00',
-  tel: '+79153591200',
-  email: 'info@shtorivdom.ru',
-  address: 'Троицк, Кварцевая улица, 3, корп. 2',
-  addressLink: 'https://yandex.ru/maps/-/CTxLMJIy',
-  hours: '10:00–20:00 / Без выходных',
-  telegram: 'https://t.me/andreevav1',
-  max: 'https://max.ru/u/f9LHodD0cOIMeP9lespjPt8cxagsm7ObEGSeElhYDRMQhW9vFT_lt7I30J0',
-} as const;
+export interface SiteContacts {
+  phone: string;
+  tel: string;
+  email: string;
+  address: string;
+  addressLink: string;
+  hours: string;
+  telegram: string;
+  max: string;
+}
 
 export interface SitePriceLine {
   name: string;

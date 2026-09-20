@@ -13,6 +13,7 @@ import { SiteHeader, SiteToTop } from '@shtorivdom/site-kit';
 import { filter } from 'rxjs';
 import { SiteFooter } from './layout/site-footer';
 import { GalleryDialog } from './components/gallery-dialog';
+import { SITE_CONTACTS } from './site-contacts';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { GalleryDialog } from './components/gallery-dialog';
   host: { '(window:scroll)': 'onScroll()' },
 })
 export class App {
+  protected readonly siteContacts = SITE_CONTACTS;
   private readonly router = inject(Router);
   private readonly document = inject(DOCUMENT);
   protected readonly current = signal('');

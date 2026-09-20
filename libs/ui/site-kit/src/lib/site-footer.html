@@ -7,7 +7,7 @@
       <p class="mt-5 mb-6 max-w-[280px] text-[14px] leading-[1.75] font-light text-white/50">
         Дизайн-студия по пошиву штор и текстиля в Москве и Подмосковье
       </p>
-      <site-social-links variant="footer" />
+      <site-social-links variant="footer" [contacts]="contacts()" />
     </div>
     <div>
       <h4 class="mb-5 text-[12px] font-normal tracking-[.32em] text-gold uppercase">Меню</h4>
@@ -37,15 +37,15 @@
       <div class="flex flex-col gap-3 text-[14px] font-light text-white/60">
         <a
           class="text-[18px] font-bold text-white transition-colors hover:text-gold"
-          [href]="'tel:' + contacts.tel"
+          [href]="'tel:' + contacts().tel"
         >
-          {{ contacts.phone }}
+          {{ contacts().phone }}
         </a>
-        <a class="transition-colors hover:text-gold" [href]="'mailto:' + contacts.email">
-          {{ contacts.email }}
+        <a class="transition-colors hover:text-gold" [href]="'mailto:' + contacts().email">
+          {{ contacts().email }}
         </a>
-        <p>{{ contacts.address }}</p>
-        <p>{{ contacts.hours }}</p>
+        <p>{{ contacts().address }}</p>
+        <p>{{ contacts().hours }}</p>
       </div>
     </div>
   </div>

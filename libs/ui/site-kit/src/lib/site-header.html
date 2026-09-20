@@ -65,17 +65,17 @@
   <div class="hidden items-center gap-5 lg:flex">
     <a
       class="hidden text-[14px] font-bold whitespace-nowrap text-cream transition-colors hover:text-gold xl:block"
-      [href]="'tel:' + contacts.tel"
+      [href]="'tel:' + contacts().tel"
     >
-      {{ contacts.phone }}
+      {{ contacts().phone }}
     </a>
     <a class="l3-btn-header btn-header" [routerLink]="[]" fragment="lead">Заявка</a>
   </div>
   <div class="flex items-center gap-1 lg:hidden">
     <a
       class="grid size-11 place-items-center text-gold"
-      [href]="'tel:' + contacts.tel"
-      [attr.aria-label]="'Позвонить ' + contacts.phone"
+      [href]="'tel:' + contacts().tel"
+      [attr.aria-label]="'Позвонить ' + contacts().phone"
     >
       <site-icon name="phone" />
     </a>
@@ -115,7 +115,7 @@
     @for (n of nav; track n.path) {
       <a [routerLink]="root() + n.path" (click)="closeMenu()">{{ n.label }}</a>
     }
-    <p class="mt-5 text-[14px] text-cream/70">{{ contacts.hours }}</p>
+    <p class="mt-5 text-[14px] text-cream/70">{{ contacts().hours }}</p>
     <a
       siteButton
       [routerLink]="[]"
