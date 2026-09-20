@@ -2,12 +2,16 @@
   <a
     class="block w-[190px] shrink-0 text-white sm:w-[220px]"
     aria-label="Shtorivdom — на главную"
-    [href]="home()"
+    [routerLink]="home()"
   >
     <site-logo variant="horizontal" color="white" />
   </a>
   <nav class="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Основное меню">
-    <a class="nav-link" [href]="home()" [attr.aria-current]="current() === '' ? 'page' : null">
+    <a
+      class="nav-link"
+      [routerLink]="home()"
+      [attr.aria-current]="current() === '' ? 'page' : null"
+    >
       Главная
     </a>
     <div
@@ -20,7 +24,7 @@
       <a
         class="nav-link inline-flex items-center gap-1"
         aria-haspopup="true"
-        [href]="root() + 'catalog/'"
+        [routerLink]="root() + 'catalog/'"
         [attr.aria-current]="current().startsWith('catalog/') ? 'page' : null"
         (click)="closeMenu()"
       >
@@ -38,17 +42,19 @@
       </a>
       <div class="dropdown" (click)="closeCatalog()">
         @for (c of catalog; track c.key) {
-          <a [href]="root() + 'catalog/' + c.key + '/'" (click)="closeMenu()">{{ c.title }}</a>
+          <a [routerLink]="root() + 'catalog/' + c.key + '/'" (click)="closeMenu()">
+            {{ c.title }}
+          </a>
         }
         <span class="dropdown-sep" aria-hidden="true"></span>
-        <a [href]="root() + 'calc/'" (click)="closeMenu()">Калькулятор штор</a>
-        <a [href]="root() + 'quiz/'" (click)="closeMenu()">Подбор штор</a>
+        <a [routerLink]="root() + 'calc/'" (click)="closeMenu()">Калькулятор штор</a>
+        <a [routerLink]="root() + 'quiz/'" (click)="closeMenu()">Подбор штор</a>
       </div>
     </div>
     @for (n of nav; track n.path) {
       <a
         class="nav-link"
-        [href]="root() + n.path"
+        [routerLink]="root() + n.path"
         [attr.aria-current]="current().startsWith(n.path) ? 'page' : null"
         (click)="closeMenu()"
       >
@@ -63,7 +69,7 @@
     >
       {{ contacts.phone }}
     </a>
-    <a class="l3-btn-header btn-header" href="#lead">Заявка</a>
+    <a class="l3-btn-header btn-header" [routerLink]="[]" fragment="lead">Заявка</a>
   </div>
   <div class="flex items-center gap-1 lg:hidden">
     <a
@@ -79,7 +85,7 @@
 </div>
 <div #panel id="site-mobile-menu" class="mobile-panel lg:hidden" [class.is-open]="menuOpen()">
   <div class="wrap pt-2 pb-6">
-    <a [href]="home()" (click)="closeMenu()">Главная</a>
+    <a [routerLink]="home()" (click)="closeMenu()">Главная</a>
     <button
       type="button"
       class="m-toggle"
@@ -99,18 +105,24 @@
       </svg>
     </button>
     <div #sub class="m-sub">
-      <a [href]="root() + 'catalog/'" (click)="closeMenu()">Весь каталог</a>
+      <a [routerLink]="root() + 'catalog/'" (click)="closeMenu()">Весь каталог</a>
       @for (c of catalog; track c.key) {
-        <a [href]="root() + 'catalog/' + c.key + '/'" (click)="closeMenu()">{{ c.title }}</a>
+        <a [routerLink]="root() + 'catalog/' + c.key + '/'" (click)="closeMenu()">{{ c.title }}</a>
       }
-      <a [href]="root() + 'calc/'" (click)="closeMenu()">Калькулятор штор</a>
-      <a [href]="root() + 'quiz/'" (click)="closeMenu()">Подбор штор</a>
+      <a [routerLink]="root() + 'calc/'" (click)="closeMenu()">Калькулятор штор</a>
+      <a [routerLink]="root() + 'quiz/'" (click)="closeMenu()">Подбор штор</a>
     </div>
     @for (n of nav; track n.path) {
-      <a [href]="root() + n.path" (click)="closeMenu()">{{ n.label }}</a>
+      <a [routerLink]="root() + n.path" (click)="closeMenu()">{{ n.label }}</a>
     }
     <p class="mt-5 text-[14px] text-cream/70">{{ contacts.hours }}</p>
-    <a siteButton href="#lead" class="mt-4 !flex !justify-center !border-0" (click)="closeMenu()">
+    <a
+      siteButton
+      [routerLink]="[]"
+      fragment="lead"
+      class="mt-4 !flex !justify-center !border-0"
+      (click)="closeMenu()"
+    >
       Оставить заявку
     </a>
   </div>

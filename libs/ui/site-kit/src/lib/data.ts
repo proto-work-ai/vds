@@ -479,3 +479,30 @@ export const SITE_NAV: { label: string; path: string }[] = [
   { label: 'Партнёрам', path: 'partner/' },
   { label: 'Контакты', path: 'contact/' },
 ];
+
+export interface SiteReview {
+  name: string;
+  cat: string;
+  text: string;
+  avatar: string;
+}
+export const SITE_REVIEWS: SiteReview[] = [
+  {
+    name: 'Марина',
+    cat: 'Льняные шторы · Москва',
+    text: 'Понравилось, что можно было спокойно посмотреть ткани дома и примерить к интерьеру. Результат совпал с эскизом, ничего переделывать не пришлось.',
+    avatar: 'img/avatars/marina.png',
+  },
+  {
+    name: 'Ирина',
+    cat: 'Римские шторы · Троицк',
+    text: 'Дизайнер приехала с образцами в удобное время и помогла подобрать ткань для кухни. Шторы сшили точно по размеру, установили быстро и аккуратно.',
+    avatar: 'img/avatars/irina.jpg',
+  },
+  {
+    name: 'Сергей',
+    cat: 'Шторы блэкаут · Ватутинки',
+    text: 'Искали плотные шторы в спальню, чтобы утром не будил свет. Сделали замеры, повесили карниз и шторы за один приезд — в комнате теперь полная темнота.',
+    avatar: 'img/avatars/sergey.png',
+  },
+];

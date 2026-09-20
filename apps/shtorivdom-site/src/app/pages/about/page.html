@@ -5,7 +5,7 @@
         class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[12px] sm:mb-3 sm:text-[14px] text-cream/60"
         aria-label="Хлебные крошки"
       >
-        <a href="/" class="hover:text-gold">Главная</a>
+        <a routerLink="/" class="hover:text-gold">Главная</a>
       </nav>
       <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">О нас</h1>
       <p
@@ -411,7 +411,7 @@
       <p class="reveal max-w-[640px] font-serif text-[clamp(22px,3vw,32px)] leading-snug">
         Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.
       </p>
-      <a href="#lead" class="btn-gold">Пригласить дизайнера</a>
+      <a [routerLink]="[]" fragment="lead" class="btn-gold">Пригласить дизайнера</a>
     </div>
   </section>
 </main>
@@ -563,8 +563,6 @@
               data-phone
             />
           </tui-textfield>
-          <!-- <tui-error formControlName="phone" /> -->
-
         </div>
         <div>
           <label class="field-label" for="lead-comment">Комментарий</label>
@@ -595,17 +593,23 @@
             <span>
               Я соглашаюсь с правилами по обработке
               <a
-                href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                 class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
               >
                 персональных данных
               </a>
             </span>
           </label>
-          <!--<tui-error formControlName="consent" /> -->
         </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
+        <button
+          type="submit"
+          class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
+          [disabled]="lead.submitting()"
+        >
+          Отправить
+        </button>
       </form>
+      <app-lead-status [lead]="lead" />
     </div>
   </div>
 </section>

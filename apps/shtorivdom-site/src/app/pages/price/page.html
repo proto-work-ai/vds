@@ -5,7 +5,7 @@
         class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[12px] sm:mb-3 sm:text-[14px] text-cream/60"
         aria-label="Хлебные крошки"
       >
-        <a href="/" class="hover:text-gold">Главная</a>
+        <a routerLink="/" class="hover:text-gold">Главная</a>
       </nav>
       <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Цены / стоимость</h1>
       <p
@@ -240,7 +240,7 @@
             </li>
           </ul>
           <a
-            href="/catalog/blackout-curtains/"
+            routerLink="/catalog/blackout-curtains"
             class="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold"
           >
             Перейти в раздел «Шторы блэкаут» →
@@ -381,7 +381,7 @@
             </li>
           </ul>
           <a
-            href="/catalog/roman-blinds/"
+            routerLink="/catalog/roman-blinds"
             class="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold"
           >
             Перейти в раздел «Римские шторы» →
@@ -522,7 +522,7 @@
             </li>
           </ul>
           <a
-            href="/catalog/roller-blinds/"
+            routerLink="/catalog/roller-blinds"
             class="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold"
           >
             Перейти в раздел «Рулонные шторы» →
@@ -663,7 +663,7 @@
             </li>
           </ul>
           <a
-            href="/catalog/linen-curtains/"
+            routerLink="/catalog/linen-curtains"
             class="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold"
           >
             Перейти в раздел «Льняные шторы» →
@@ -804,7 +804,7 @@
             </li>
           </ul>
           <a
-            href="/catalog/pleated-blinds/"
+            routerLink="/catalog/pleated-blinds"
             class="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold"
           >
             Перейти в раздел «Шторы плиссе» →
@@ -945,7 +945,7 @@
             </li>
           </ul>
           <a
-            href="/catalog/curtain-rods/"
+            routerLink="/catalog/curtain-rods"
             class="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold"
           >
             Перейти в раздел «Карнизы для штор» →
@@ -1080,7 +1080,7 @@
             </li>
           </ul>
           <a
-            href="/catalog/blinds/"
+            routerLink="/catalog/blinds"
             class="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold"
           >
             Перейти в раздел «Жалюзи» →
@@ -1138,7 +1138,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 14 дней</p>
-            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
         <div class="reveal" style="--d: 0.12s">
@@ -1181,7 +1181,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-cream/60">*Срок изготовления 10 дней</p>
-            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
         <div class="reveal" style="--d: 0.24s">
@@ -1222,7 +1222,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 7 дней</p>
-            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
       </div>
@@ -1377,7 +1377,6 @@
               data-phone
             />
           </tui-textfield>
-          <!-- <tui-error formControlName="phone" /> -->
         </div>
         <div>
           <label class="field-label" for="lead-comment">Комментарий</label>
@@ -1408,17 +1407,23 @@
             <span>
               Я соглашаюсь с правилами по обработке
               <a
-                href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                 class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
               >
                 персональных данных
               </a>
             </span>
           </label>
-          <!--<tui-error formControlName="consent" /> -->
         </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
+        <button
+          type="submit"
+          class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
+          [disabled]="lead.submitting()"
+        >
+          Отправить
+        </button>
       </form>
+      <app-lead-status [lead]="lead" />
     </div>
   </div>
 </section>

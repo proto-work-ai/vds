@@ -1,0 +1,25 @@
+<div role="tablist" aria-label="Разделы каталога" class="mb-8 flex flex-wrap gap-2">
+  @for (s of sections(); track s.key; let i = $index) {
+    <button
+      #tab
+      type="button"
+      role="tab"
+      class="rounded-[2px] border border-navy/15 bg-white px-4 py-2.5 text-[14px] font-bold transition-colors hover:border-gold aria-selected:border-navy aria-selected:bg-navy aria-selected:text-gold"
+      [id]="'tab-' + s.key"
+      [attr.aria-controls]="'panel-' + s.key"
+      [attr.aria-selected]="s.key === current().key"
+      [tabIndex]="s.key === current().key ? 0 : -1"
+      (click)="selected.set(s.key)"
+      (keydown)="key($event, i)"
+    >
+      {{ s.title }}
+    </button>
+  }
+</div>
+<div
+  role="tabpanel"
+  [id]="'panel-' + current().key"
+  [attr.aria-labelledby]="'tab-' + current().key"
+>
+  <site-price-table [section]="current()" [layout]="layout()" [root]="root()" />
+</div>

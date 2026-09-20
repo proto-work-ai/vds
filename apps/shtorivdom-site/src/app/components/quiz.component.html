@@ -5,7 +5,7 @@
         class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[12px] sm:mb-3 sm:text-[14px] text-cream/60"
         aria-label="Хлебные крошки"
       >
-        <a href="/" class="hover:text-gold">Главная</a>
+        <a routerLink="/" class="hover:text-gold">Главная</a>
       </nav>
       <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Подбор штор</h1>
       <p
@@ -48,6 +48,7 @@
                     type="radio"
                     name="room"
                     value="bedroom"
+                    [checked]="answers().room === 'bedroom'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -58,6 +59,7 @@
                     type="radio"
                     name="room"
                     value="living"
+                    [checked]="answers().room === 'living'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -70,6 +72,7 @@
                     type="radio"
                     name="room"
                     value="kids"
+                    [checked]="answers().room === 'kids'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -80,6 +83,7 @@
                     type="radio"
                     name="room"
                     value="kitchen"
+                    [checked]="answers().room === 'kitchen'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -90,6 +94,7 @@
                     type="radio"
                     name="room"
                     value="office"
+                    [checked]="answers().room === 'office'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -100,6 +105,7 @@
                     type="radio"
                     name="room"
                     value="other"
+                    [checked]="answers().room === 'other'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -122,6 +128,7 @@
                     type="radio"
                     name="light"
                     value="dark"
+                    [checked]="answers().light === 'dark'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -135,6 +142,7 @@
                     type="radio"
                     name="light"
                     value="soft"
+                    [checked]="answers().light === 'soft'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -148,6 +156,7 @@
                     type="radio"
                     name="light"
                     value="privacy"
+                    [checked]="answers().light === 'privacy'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -161,6 +170,7 @@
                     type="radio"
                     name="light"
                     value="decor"
+                    [checked]="answers().light === 'decor'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -186,6 +196,7 @@
                     type="radio"
                     name="window"
                     value="standard"
+                    [checked]="answers().window === 'standard'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -199,6 +210,7 @@
                     type="radio"
                     name="window"
                     value="panoramic"
+                    [checked]="answers().window === 'panoramic'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -212,6 +224,7 @@
                     type="radio"
                     name="window"
                     value="attic"
+                    [checked]="answers().window === 'attic'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -225,6 +238,7 @@
                     type="radio"
                     name="window"
                     value="door"
+                    [checked]="answers().window === 'door'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -250,6 +264,7 @@
                     type="radio"
                     name="style"
                     value="classic"
+                    [checked]="answers().style === 'classic'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -263,6 +278,7 @@
                     type="radio"
                     name="style"
                     value="modern"
+                    [checked]="answers().style === 'modern'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -276,6 +292,7 @@
                     type="radio"
                     name="style"
                     value="eco"
+                    [checked]="answers().style === 'eco'"
                     class="sr-only"
                     (change)="selectAnswer($event)"
                   />
@@ -297,7 +314,7 @@
               <div class="grid gap-5 sm:grid-cols-2" data-quiz-cards>
                 @for (item of recommendations(); track item.key) {
                   <a
-                    [href]="item.href"
+                    [routerLink]="item.href"
                     class="work group relative block overflow-hidden rounded-[4px] bg-navy text-cream"
                   >
                     <div class="relative aspect-[4/3] overflow-hidden">
@@ -353,7 +370,7 @@
                   data-lead-form="order"
                   data-lead-type="full"
                   data-inline-lead="quiz"
-                  data-preserve-form
+                  [leadDescription]="'Подбор штор — ' + summary()"
                   #quizLead="leadForm"
                   [formGroup]="quizLead.form"
                 >
@@ -366,12 +383,7 @@
                     aria-hidden="true"
                     class="absolute -left-[9999px] size-0 opacity-0"
                   />
-                  <input
-                    type="hidden"
-                    formControlName="comment"
-                    [value]="'Подбор штор — ' + summary()"
-                    data-inline-comment
-                  />
+
                   <label class="flex items-center gap-3 border-b border-gold pb-3">
                     <svg
                       width="20"
@@ -432,7 +444,6 @@
                         </tui-textfield>
                       </div>
                     </label>
-                    <!-- <tui-error formControlName="phone" /> -->
                   </div>
                   <div>
                     <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
@@ -448,17 +459,23 @@
                       <span>
                         Я соглашаюсь с правилами по обработке
                         <a
-                          href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                          routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                           class="underline decoration-gold underline-offset-2 hover:text-gold"
                         >
                           персональных данных
                         </a>
                       </span>
                     </label>
-                    <!--<tui-error formControlName="consent" /> -->
                   </div>
-                  <button type="submit" class="btn-gold !flex w-full">Отправить подбор</button>
+                  <button
+                    type="submit"
+                    class="btn-gold !flex w-full"
+                    [disabled]="quizLead.submitting()"
+                  >
+                    Отправить подбор
+                  </button>
                 </form>
+                <app-lead-status [lead]="quizLead" />
               </div>
             </div>
           </div>
@@ -654,7 +671,6 @@
                 data-phone
               />
             </tui-textfield>
-            <!-- <tui-error formControlName="phone" /> -->
           </div>
           <div>
             <label class="field-label" for="lead-comment">Комментарий</label>
@@ -685,19 +701,23 @@
               <span>
                 Я соглашаюсь с правилами по обработке
                 <a
-                  href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                  routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                   class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
                 >
                   персональных данных
                 </a>
               </span>
             </label>
-            <!--<tui-error formControlName="consent" /> -->
           </div>
-          <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">
+          <button
+            type="submit"
+            class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
+            [disabled]="contactLead.submitting()"
+          >
             Отправить
           </button>
         </form>
+        <app-lead-status [lead]="contactLead" />
       </div>
     </div>
   </section>

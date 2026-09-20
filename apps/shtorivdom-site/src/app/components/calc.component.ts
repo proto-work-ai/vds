@@ -1,7 +1,10 @@
+import { RouterLink } from '@angular/router';
+import { LeadStatus } from '../forms/lead-status';
+import { RevealDirective } from './reveal.directive';
 import { DeferDirective } from './defer.component';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TuiCheckbox, TuiError, TuiInput, TuiTextfield } from '@taiga-ui/core';
+import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { ContactLinksDirective } from '../contact-links.directive';
 import { CalcLeadFormDirective } from '../forms/calc-lead-form.directive';
@@ -20,6 +23,9 @@ type CalcItem = {
   templateUrl: './calc.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    RouterLink,
+    LeadStatus,
+    RevealDirective,
     DeferDirective,
     ReactiveFormsModule,
     TuiTextfield,
@@ -27,7 +33,6 @@ type CalcItem = {
     TuiInputPhone,
     TuiTextarea,
     TuiCheckbox,
-    TuiError,
     CalcLeadFormDirective,
     LeadFormDirective,
     ContactLinksDirective,

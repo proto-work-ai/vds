@@ -1,0 +1,71 @@
+@if (layout() !== 'cards') {
+  <div
+    class="overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-[0_2px_20px_rgb(13_34_61/.06)]"
+    [class]="layout() === 'auto' ? 'hidden md:block' : 'block'"
+  >
+    <table class="w-full text-left text-[14px]">
+      <thead class="bg-navy text-cream">
+        <tr
+          class="[&>th]:px-6 [&>th]:py-4 [&>th]:text-[12px] [&>th]:font-bold [&>th]:tracking-[.12em] [&>th]:uppercase"
+        >
+          <th scope="col">Материал / модель</th>
+          <th scope="col">Производство</th>
+          <th scope="col">Ширина, м</th>
+          <th scope="col">Гарантия</th>
+          <th scope="col" class="text-right">
+            Цена
+            <span class="block text-[11px] font-normal tracking-normal normal-case text-cream/60">
+              с пошивом и установкой
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (r of section().rows; track r.name) {
+          <tr
+            class="border-t border-navy/8 transition-colors hover:bg-cream/60 [&>td]:px-6 [&>td]:py-4"
+          >
+            <th scope="row" class="px-6 py-4 font-bold">{{ r.name }}</th>
+            <td>{{ r.country }}</td>
+            <td>{{ r.width }}</td>
+            <td>{{ r.warranty }}</td>
+            <td class="text-right font-serif text-[18px] font-bold whitespace-nowrap">
+              {{ r.price }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
+@if (layout() !== 'table') {
+  <ul class="flex flex-col gap-4" [class.md:hidden]="layout() === 'auto'">
+    @for (r of section().rows; track r.name) {
+      <li
+        class="rounded-[4px] border border-navy/8 bg-white p-5 shadow-[0_2px_20px_rgb(13_34_61/.06)]"
+      >
+        <p class="mb-1 tetext-[14px] font-bold">{{ r.name }}</p>
+        <p class="mb-4 font-serif text-[22px] font-bold text-gold">{{ r.price }}</p>
+        <dl
+          class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px] [&_dd]:font-bold [&_dt]:text-slate/60"
+        >
+          <div>
+            <dt>Производство</dt>
+            <dd>{{ r.country }}</dd>
+          </div>
+          <div>
+            <dt>Ширина, м</dt>
+            <dd>{{ r.width }}</dd>
+          </div>
+          <div>
+            <dt>Гарантия</dt>
+            <dd>{{ r.warranty }}</dd>
+          </div>
+        </dl>
+      </li>
+    }
+  </ul>
+}
+<a siteTextLink="section" class="mt-6" [href]="root() + 'catalog/' + section().key + '/'">
+  Перейти в раздел «{{ section().title }}»
+</a>

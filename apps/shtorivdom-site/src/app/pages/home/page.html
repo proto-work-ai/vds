@@ -33,7 +33,12 @@
           Дизайн-студия по пошиву штор и текстиля в Москве и Подмосковье
         </p>
         <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
-          <a href="#hero-form" class="btn-gold btn-pulse group max-sm:w-full" data-focus-form>
+          <a
+            [routerLink]="[]"
+            fragment="hero-form"
+            class="btn-gold btn-pulse group max-sm:w-full"
+            (click)="heroName.focus()"
+          >
             Пригласить дизайнера
             <svg
               width="14"
@@ -47,7 +52,9 @@
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-          <a href="#catalog" class="btn-line btn-glow max-sm:w-full">Каталог штор</a>
+          <a [routerLink]="[]" fragment="catalog" class="btn-line btn-glow max-sm:w-full">
+            Каталог штор
+          </a>
         </div>
         <ul
           class="mt-12 grid max-w-[640px] grid-cols-1 gap-x-8 gap-y-4 border-t border-white/15 pt-8 text-[14px] text-white/85 min-[420px]:grid-cols-2"
@@ -114,6 +121,7 @@
             <tui-textfield class="w-full" [tuiTextfieldCleaner]="false">
               <input
                 tuiInput
+                #heroName
                 formControlName="name"
                 type="text"
                 autocomplete="name"
@@ -148,9 +156,6 @@
                 </tui-textfield>
               </div>
             </label>
-            @if (heroLead.form.controls.phone.invalid && heroLead.form.controls.phone.touched) {
-              <!-- <tui-error formControlName="phone" /> -->
-            }
           </div>
           <div>
             <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
@@ -164,21 +169,19 @@
               <span>
                 Я соглашаюсь с правилами по обработке
                 <a
-                  href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                  routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                   class="underline decoration-gold underline-offset-2 hover:text-gold"
                 >
                   персональных данных
                 </a>
               </span>
             </label>
-            @if (heroLead.form.controls.consent.invalid && heroLead.form.controls.consent.touched) {
-              <!--<tui-error formControlName="consent" /> -->
-            }
           </div>
           <button type="submit" class="btn-gold w-full" [disabled]="heroLead.submitting()">
             Отправить
           </button>
         </form>
+        <app-lead-status [lead]="heroLead" />
       </div>
     </div>
   </section>
@@ -270,7 +273,8 @@
           </li>
         </ol>
         <a
-          href="#lead"
+          [routerLink]="[]"
+          fragment="lead"
           class="group inline-flex items-center gap-3 text-[14px] font-bold tracking-[.12em] text-gold uppercase transition-[gap] duration-300 hover:gap-5"
         >
           Пригласить дизайнера
@@ -306,7 +310,7 @@
         <article class="reveal h-full" style="--d: 0s">
           <div class="svc-card" data-svc>
             <a
-              href="/catalog/blackout-curtains/"
+              routerLink="/catalog/blackout-curtains"
               class="relative block h-[200px] sm:h-[220px]"
               aria-label="Шторы блэкаут"
             >
@@ -353,7 +357,7 @@
                   </li>
                 </ul>
                 <a
-                  href="/catalog/blackout-curtains/"
+                  routerLink="/catalog/blackout-curtains"
                   class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
@@ -365,7 +369,7 @@
         <article class="reveal h-full" style="--d: 0.08s">
           <div class="svc-card" data-svc>
             <a
-              href="/catalog/roman-blinds/"
+              routerLink="/catalog/roman-blinds"
               class="relative block h-[200px] sm:h-[220px]"
               aria-label="Римские шторы"
             >
@@ -412,7 +416,7 @@
                   </li>
                 </ul>
                 <a
-                  href="/catalog/roman-blinds/"
+                  routerLink="/catalog/roman-blinds"
                   class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
@@ -424,7 +428,7 @@
         <article class="reveal h-full" style="--d: 0.16s">
           <div class="svc-card" data-svc>
             <a
-              href="/catalog/roller-blinds/"
+              routerLink="/catalog/roller-blinds"
               class="relative block h-[200px] sm:h-[220px]"
               aria-label="Рулонные шторы"
             >
@@ -471,7 +475,7 @@
                   </li>
                 </ul>
                 <a
-                  href="/catalog/roller-blinds/"
+                  routerLink="/catalog/roller-blinds"
                   class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
@@ -483,7 +487,7 @@
         <article class="reveal h-full" style="--d: 0s">
           <div class="svc-card" data-svc>
             <a
-              href="/catalog/linen-curtains/"
+              routerLink="/catalog/linen-curtains"
               class="relative block h-[200px] sm:h-[220px]"
               aria-label="Льняные шторы"
             >
@@ -530,7 +534,7 @@
                   </li>
                 </ul>
                 <a
-                  href="/catalog/linen-curtains/"
+                  routerLink="/catalog/linen-curtains"
                   class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
@@ -542,7 +546,7 @@
         <article class="reveal h-full" style="--d: 0.08s">
           <div class="svc-card" data-svc>
             <a
-              href="/catalog/pleated-blinds/"
+              routerLink="/catalog/pleated-blinds"
               class="relative block h-[200px] sm:h-[220px]"
               aria-label="Шторы плиссе"
             >
@@ -589,7 +593,7 @@
                   </li>
                 </ul>
                 <a
-                  href="/catalog/pleated-blinds/"
+                  routerLink="/catalog/pleated-blinds"
                   class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
@@ -601,7 +605,7 @@
         <article class="reveal h-full" style="--d: 0.16s">
           <div class="svc-card" data-svc>
             <a
-              href="/catalog/curtain-rods/"
+              routerLink="/catalog/curtain-rods"
               class="relative block h-[200px] sm:h-[220px]"
               aria-label="Карнизы для штор"
             >
@@ -648,7 +652,7 @@
                   </li>
                 </ul>
                 <a
-                  href="/catalog/curtain-rods/"
+                  routerLink="/catalog/curtain-rods"
                   class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
@@ -660,7 +664,7 @@
         <article class="reveal h-full" style="--d: 0s">
           <div class="svc-card" data-svc>
             <a
-              href="/catalog/blinds/"
+              routerLink="/catalog/blinds"
               class="relative block h-[200px] sm:h-[220px]"
               aria-label="Жалюзи"
             >
@@ -707,7 +711,7 @@
                   </li>
                 </ul>
                 <a
-                  href="/catalog/blinds/"
+                  routerLink="/catalog/blinds"
                   class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
@@ -733,7 +737,7 @@
       </div>
       <div class="grid gap-6 lg:grid-cols-2">
         <a
-          href="/calc/"
+          routerLink="/calc"
           class="work group relative block overflow-hidden rounded-[4px] bg-navy text-cream"
         >
           <div class="grid h-full sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
@@ -763,7 +767,7 @@
           </div>
         </a>
         <a
-          href="/quiz/"
+          routerLink="/quiz"
           class="work group relative block overflow-hidden rounded-[4px] bg-white text-navy"
         >
           <div class="grid h-full sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
@@ -968,7 +972,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 14 дней</p>
-            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
         <div class="reveal" style="--d: 0.12s">
@@ -1011,7 +1015,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-cream/60">*Срок изготовления 10 дней</p>
-            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
         <div class="reveal" style="--d: 0.24s">
@@ -1052,14 +1056,14 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 7 дней</p>
-            <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
       </div>
       <div class="reveal mt-16 rounded-[4px] bg-white px-5 py-8 sm:px-10">
         <h3 class="mb-4 text-[24px]">Цены по разделам</h3>
         <a
-          href="/catalog/blackout-curtains/"
+          routerLink="/catalog/blackout-curtains"
           class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"
         >
           <span class="flex flex-1 items-center gap-2 text-[16px]">
@@ -1074,7 +1078,7 @@
           <span class="text-[16px] font-bold whitespace-nowrap">от 2 500 ₽/м.пог.</span>
         </a>
         <a
-          href="/catalog/roman-blinds/"
+          routerLink="/catalog/roman-blinds"
           class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"
         >
           <span class="flex flex-1 items-center gap-2 text-[16px]">
@@ -1089,7 +1093,7 @@
           <span class="text-[16px] font-bold whitespace-nowrap">от 4 500 ₽/м²</span>
         </a>
         <a
-          href="/catalog/roller-blinds/"
+          routerLink="/catalog/roller-blinds"
           class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"
         >
           <span class="flex flex-1 items-center gap-2 text-[16px]">
@@ -1104,7 +1108,7 @@
           <span class="text-[16px] font-bold whitespace-nowrap">от 2 200 ₽/м²</span>
         </a>
         <a
-          href="/catalog/linen-curtains/"
+          routerLink="/catalog/linen-curtains"
           class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"
         >
           <span class="flex flex-1 items-center gap-2 text-[16px]">
@@ -1119,7 +1123,7 @@
           <span class="text-[16px] font-bold whitespace-nowrap">от 2 800 ₽/м.пог.</span>
         </a>
         <a
-          href="/catalog/pleated-blinds/"
+          routerLink="/catalog/pleated-blinds"
           class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"
         >
           <span class="flex flex-1 items-center gap-2 text-[16px]">
@@ -1134,7 +1138,7 @@
           <span class="text-[16px] font-bold whitespace-nowrap">от 3 500 ₽/м²</span>
         </a>
         <a
-          href="/catalog/curtain-rods/"
+          routerLink="/catalog/curtain-rods"
           class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"
         >
           <span class="flex flex-1 items-center gap-2 text-[16px]">
@@ -1149,7 +1153,7 @@
           <span class="text-[16px] font-bold whitespace-nowrap">от 900 ₽/м.пог.</span>
         </a>
         <a
-          href="/catalog/blinds/"
+          routerLink="/catalog/blinds"
           class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"
         >
           <span class="flex flex-1 items-center gap-2 text-[16px]">
@@ -1167,7 +1171,7 @@
           <p class="text-[14px] text-slate/70">
             *Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.
           </p>
-          <a href="/price/" class="btn-gold">Все цены</a>
+          <a routerLink="/price" class="btn-gold">Все цены</a>
         </div>
       </div>
     </div>
@@ -1185,7 +1189,7 @@
       </div>
       <div class="grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 lg:grid-cols-3">
         <a
-          href="/catalog/blackout-curtains/"
+          routerLink="/catalog/blackout-curtains"
           class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
         >
           <img
@@ -1201,7 +1205,7 @@
           </span>
         </a>
         <a
-          href="/catalog/roman-blinds/"
+          routerLink="/catalog/roman-blinds"
           class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
           style="--d: 0.07s"
         >
@@ -1218,7 +1222,7 @@
           </span>
         </a>
         <a
-          href="/catalog/linen-curtains/"
+          routerLink="/catalog/linen-curtains"
           class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
           style="--d: 0.14s"
         >
@@ -1235,7 +1239,7 @@
           </span>
         </a>
         <a
-          href="/catalog/roller-blinds/"
+          routerLink="/catalog/roller-blinds"
           class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
           style="--d: 0.21s"
         >
@@ -1252,7 +1256,7 @@
           </span>
         </a>
         <a
-          href="/catalog/pleated-blinds/"
+          routerLink="/catalog/pleated-blinds"
           class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
           style="--d: 0.28s"
         >
@@ -1269,7 +1273,7 @@
           </span>
         </a>
         <a
-          href="/catalog/blackout-curtains/"
+          routerLink="/catalog/blackout-curtains"
           class="reveal work group relative block aspect-[4/5] overflow-hidden rounded-[4px] bg-navy"
           style="--d: 0.35s"
         >
@@ -1300,65 +1304,7 @@
         <p class="mt-3 text-[14px] text-white/50">Потяните ручку, чтобы сравнить</p>
       </div>
       <div class="reveal reveal-soft">
-        <div
-          class="relative h-[300px] cursor-col-resize touch-pan-y overflow-hidden select-none sm:h-[500px]"
-          data-compare
-        >
-          <img
-            src="/assets/img/after.jpg"
-            alt="Комната после"
-            class="pointer-events-none absolute inset-0 size-full object-cover"
-            draggable="false"
-          />
-          <span
-            class="absolute top-5 right-5 bg-gold px-3 py-1.5 text-[12px] tracking-[.2em] text-white uppercase"
-          >
-            После
-          </span>
-
-          <img
-            src="/assets/img/before.jpg"
-            alt="Комната до"
-            class="pointer-events-none absolute inset-0 size-full object-cover [clip-path:inset(0_50%_0_0)]"
-            draggable="false"
-            data-compare-after
-          />
-          <span
-            class="absolute top-5 left-5 bg-black/40 px-3 py-1.5 text-[12px] tracking-[.2em] text-white/70 uppercase backdrop-blur-sm transition-opacity duration-300"
-            data-compare-label
-          >
-            До
-          </span>
-          <div
-            class="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2"
-            data-compare-handle
-          >
-            <div class="mx-auto h-full w-px bg-white/60"></div>
-            <div
-              class="absolute top-1/2 left-1/2 flex size-10 -translate-1/2 items-center justify-center gap-0.5 rounded-full bg-gold text-white shadow-[0_0_0_4px_rgb(201_168_76/.28)]"
-            >
-              <svg
-                width="10"
-                height="10"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-              >
-                <path d="m15 18-6-6 6-6" /></svg
-              ><svg
-                width="10"
-                height="10"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2.5"
-              >
-                <path d="m9 18 6-6-6-6" />
-              </svg>
-            </div>
-          </div>
-        </div>
+        <site-before-after />
       </div>
     </div>
   </section>
@@ -1373,79 +1319,7 @@
         </div>
         <h2 class="text-[clamp(30px,4vw,46px)]">Отзывы клиентов</h2>
       </div>
-      <div class="reveal reveal-soft" data-slider>
-        <div
-          class="mx-auto max-w-[760px] bg-white px-6 py-12 text-center shadow-[0_8px_64px_rgb(0_0_0/.06)] sm:px-16 sm:py-14"
-        >
-          <div class="slide" data-slide>
-            <div class="mb-8 flex justify-center gap-1 text-gold" aria-hidden="true">★★★★★</div>
-            <blockquote
-              class="mb-10 font-serif text-[20px] leading-relaxed text-slate/50 italic"
-              data-quote
-            >
-              Понравилось, что можно было спокойно посмотреть ткани дома и примерить к интерьеру.
-              Результат совпал с эскизом, ничего переделывать не пришлось.
-            </blockquote>
-            <div class="flex items-center justify-center gap-4">
-              <span
-                class="grid size-12 place-items-center rounded-full bg-sand font-serif tetext-[14px] text-gold"
-                data-avatar
-              ></span>
-              <div class="text-left">
-                <p class="font-serif text-[14px] text-slate/60" data-name>Марина</p>
-                <p class="text-[12px] text-slate/40" data-cat>Льняные шторы · Москва</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-8 flex items-center justify-center gap-5">
-          <button
-            type="button"
-            class="flex size-10 items-center justify-center border border-black/10 text-slate/60 transition-colors hover:border-gold hover:text-gold"
-            aria-label="Предыдущий отзыв"
-            data-prev
-          >
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-          </button>
-          <div class="flex gap-1">
-            <button type="button" class="px-1 py-4" aria-label="Отзыв 1" data-dot>
-              <span class="dot is-on block"></span>
-            </button>
-            <button type="button" class="px-1 py-4" aria-label="Отзыв 2" data-dot>
-              <span class="dot block"></span>
-            </button>
-            <button type="button" class="px-1 py-4" aria-label="Отзыв 3" data-dot>
-              <span class="dot block"></span>
-            </button>
-          </div>
-          <button
-            type="button"
-            class="flex size-10 items-center justify-center border border-black/10 text-slate/60 transition-colors hover:border-gold hover:text-gold"
-            aria-label="Следующий отзыв"
-            data-next
-          >
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </button>
-        </div>
-      </div>
+      <site-review-slider class="reveal reveal-soft" />
     </div>
   </section>
 
@@ -1614,7 +1488,6 @@
               data-phone
             />
           </tui-textfield>
-          <!-- <tui-error formControlName="phone" /> -->
         </div>
         <div>
           <label class="field-label" for="lead-comment">Комментарий</label>
@@ -1644,17 +1517,23 @@
             <span>
               Я соглашаюсь с правилами по обработке
               <a
-                href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                 class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
               >
                 персональных данных
               </a>
             </span>
           </label>
-          <!--<tui-error formControlName="consent" /> -->
         </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
+        <button
+          type="submit"
+          class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
+          [disabled]="contactLead.submitting()"
+        >
+          Отправить
+        </button>
       </form>
+      <app-lead-status [lead]="contactLead" />
     </div>
   </div>
 </section>

@@ -1,0 +1,23 @@
+@for (item of items(); track item.question; let i = $index) {
+  <div class="border border-gold/20 bg-cream/40">
+    <button
+      type="button"
+      class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
+      [attr.aria-expanded]="open() === i"
+      (click)="toggle(i)"
+    >
+      <span class="text-[16px]">{{ item.question }}</span>
+      <span class="faq-icon shrink-0 text-gold">
+        <span class="plus"><site-icon name="plus" [size]="16" /></span>
+        <span class="minus">
+          <site-icon name="minus" [size]="16" />
+        </span>
+      </span>
+    </button>
+    <div #answer class="faq-a">
+      <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
+        {{ item.answer }}
+      </p>
+    </div>
+  </div>
+}

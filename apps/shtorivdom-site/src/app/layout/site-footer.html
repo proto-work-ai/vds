@@ -2,7 +2,7 @@
   <div class="wrap pt-6 pb-5 sm:pt-8 sm:pb-6">
     <div class="mb-8 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
       <div>
-        <a href="/" class="block w-[170px] text-gold" aria-label="Shtorivdom — на главную">
+        <a routerLink="/" class="block w-[170px] text-gold" aria-label="Shtorivdom — на главную">
           <svg
             class="block h-auto w-full"
             role="img"
@@ -72,14 +72,14 @@
         <div
           class="flex flex-col text-[14px] font-light text-white/60 [&>a]:py-1.5 [&>a]:transition-colors [&>a:hover]:text-gold"
         >
-          <a href="/">Главная</a>
-          <a href="/price/">Цены</a>
-          <a href="/services/">Услуги</a>
-          <a href="/calc/">Калькулятор штор</a>
-          <a href="/quiz/">Подбор штор</a>
-          <a href="/about/">О нас</a>
-          <a href="/partner/">Стать партнером</a>
-          <a href="/contact/">Контакты</a>
+          <a routerLink="/">Главная</a>
+          <a routerLink="/price">Цены</a>
+          <a routerLink="/services">Услуги</a>
+          <a routerLink="/calc">Калькулятор штор</a>
+          <a routerLink="/quiz">Подбор штор</a>
+          <a routerLink="/about">О нас</a>
+          <a routerLink="/partner">Стать партнером</a>
+          <a routerLink="/contact">Контакты</a>
         </div>
       </div>
       <div>
@@ -89,13 +89,13 @@
         <div
           class="flex flex-col text-[14px] font-light text-white/60 [&>a]:py-1.5 [&>a]:transition-colors [&>a:hover]:text-gold"
         >
-          <a href="/catalog/blackout-curtains/">Шторы блэкаут</a>
-          <a href="/catalog/roman-blinds/">Римские шторы</a>
-          <a href="/catalog/roller-blinds/">Рулонные шторы</a>
-          <a href="/catalog/linen-curtains/">Льняные шторы</a>
-          <a href="/catalog/pleated-blinds/">Шторы плиссе</a>
-          <a href="/catalog/curtain-rods/">Карнизы для штор</a>
-          <a href="/catalog/blinds/">Жалюзи</a>
+          <a routerLink="/catalog/blackout-curtains">Шторы блэкаут</a>
+          <a routerLink="/catalog/roman-blinds">Римские шторы</a>
+          <a routerLink="/catalog/roller-blinds">Рулонные шторы</a>
+          <a routerLink="/catalog/linen-curtains">Льняные шторы</a>
+          <a routerLink="/catalog/pleated-blinds">Шторы плиссе</a>
+          <a routerLink="/catalog/curtain-rods">Карнизы для штор</a>
+          <a routerLink="/catalog/blinds">Жалюзи</a>
         </div>
       </div>
       <div>
@@ -147,8 +147,8 @@
     >
       <span>© 2020–2026. ООО «Shtorivdom»</span>
       <span class="flex flex-wrap gap-x-6 gap-y-2">
-        <a href="/privacy-policy/" class="hover:text-gold">Политика конфиденциальности</a>
-        <a href="/soglasie-na-obrabotku-personalnyh-dannyh/" class="hover:text-gold">
+        <a routerLink="/privacy-policy" class="hover:text-gold">Политика конфиденциальности</a>
+        <a routerLink="/soglasie-na-obrabotku-personalnyh-dannyh" class="hover:text-gold">
           Согласие на обработку персональных данных
         </a>
       </span>

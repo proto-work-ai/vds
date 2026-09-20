@@ -1,7 +1,14 @@
-/* eslint-disable @angular-eslint/directive-selector */
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @angular-eslint/no-input-rename */
-import { DestroyRef, Directive, effect, inject, input, Pipe, PipeTransform, signal, untracked } from '@angular/core';
+import {
+  DestroyRef,
+  Directive,
+  effect,
+  inject,
+  input,
+  Pipe,
+  PipeTransform,
+  signal,
+  untracked,
+} from '@angular/core';
 import { TuiTextfieldComponent } from '@taiga-ui/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap, Subject, switchMap, debounceTime, distinctUntilChanged, filter, of } from 'rxjs';
@@ -11,7 +18,6 @@ import { ISearchFn } from './service-search';
 export class FieldFilterByInput implements PipeTransform {
   private readonly destroyRef = inject(DestroyRef);
   private readonly textfield = inject(TuiTextfieldComponent);
-  private readonly skip = signal(0);
   private readonly filtered = signal<unknown>([]);
   private readonly searchFn = signal<ISearchFn | undefined>(undefined);
   private readonly textfieldValue$ = new Subject<string>();
@@ -29,7 +35,7 @@ export class FieldFilterByInput implements PipeTransform {
           return of([]);
         }),
         tap((items) => this.filtered.set(items)),
-        takeUntilDestroyed(this.destroyRef)
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
   }
@@ -63,7 +69,7 @@ export class FieldFilterByInputDirective {
         debounceTime(300),
         switchMap((query) => this.searchFn()?.(query)),
         tap((items) => this.filtered.set(items)),
-        takeUntilDestroyed(this.destroyRef)
+        takeUntilDestroyed(this.destroyRef),
       )
       .subscribe();
   }

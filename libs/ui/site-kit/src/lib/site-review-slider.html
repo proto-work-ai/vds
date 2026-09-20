@@ -1,0 +1,22 @@
+<div
+  class="mx-auto max-w-[760px] bg-white px-6 py-12 text-center shadow-[0_8px_64px_rgb(0_0_0/.06)] sm:px-16 sm:py-14"
+>
+  <div class="slide" [class.is-out]="out()">
+    <div class="mb-8 flex justify-center gap-1 text-gold" aria-hidden="true">★★★★★</div>
+    <blockquote class="mb-10 font-serif text-[20px] leading-relaxed text-slate/50 italic">
+      {{ review().text }}
+    </blockquote>
+    <div class="flex items-center justify-center gap-4">
+      <img class="size-12 rounded-full object-cover" [src]="assets + review().avatar" alt="" />
+      <div class="text-left">
+        <p class="font-serif text-[14px] text-slate/60">{{ review().name }}</p>
+        <p class="text-[12px] text-slate/40">{{ review().cat }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="mt-8 flex items-center justify-center gap-5">
+  <button siteArrow="prev" aria-label="Предыдущий отзыв" (click)="go(index() - 1)"></button>
+  <site-dots [count]="count()" [index]="index()" (indexChange)="go($event)" />
+  <button siteArrow="next" aria-label="Следующий отзыв" (click)="go(index() + 1)"></button>
+</div>

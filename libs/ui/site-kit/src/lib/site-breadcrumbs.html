@@ -1,0 +1,19 @@
+<nav
+  aria-label="Хлебные крошки"
+  [class]="
+    variant() === 'catalog'
+      ? 'flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60'
+      : 'flex flex-wrap items-center justify-start gap-2 text-left text-[12px] text-cream/60 sm:text-[14px]'
+  "
+>
+  @for (item of items(); track item.label; let last = $last) {
+    @if (item.href) {
+      <a class="transition-colors hover:text-gold" [href]="item.href">{{ item.label }}</a>
+    } @else {
+      <span class="text-cream/90" aria-current="page">{{ item.label }}</span>
+    }
+    @if (!last) {
+      <span class="text-gold" aria-hidden="true">/</span>
+    }
+  }
+</nav>

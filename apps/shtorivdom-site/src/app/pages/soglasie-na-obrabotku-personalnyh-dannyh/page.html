@@ -5,7 +5,7 @@
         class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[12px] sm:mb-3 sm:text-[14px] text-cream/60"
         aria-label="Хлебные крошки"
       >
-        <a href="/" class="hover:text-gold">Главная</a>
+        <a routerLink="/" class="hover:text-gold">Главная</a>
       </nav>
       <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">
         Согласие на обработку персональных данных
@@ -34,7 +34,7 @@
             <li>адрес электронной почты (email);</li>
             <li>
               история запросов и просмотров на сайте
-              <a href="/">https://shtorivdom.ru/</a>
+              <a routerLink="/">https://shtorivdom.ru/</a>
               , (далее — Сайт) и его сервисах;
             </li>
             <li>
@@ -89,7 +89,7 @@
         <p class="mt-10 border-t border-navy/10 pt-6 text-[14px] text-slate/70">
           См. также:
           <a
-            href="/privacy-policy/"
+            routerLink="/privacy-policy"
             class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
           >
             Политика конфиденциальности
@@ -247,7 +247,6 @@
               data-phone
             />
           </tui-textfield>
-          <!-- <tui-error formControlName="phone" /> -->
         </div>
         <div>
           <label class="field-label" for="lead-comment">Комментарий</label>
@@ -278,17 +277,23 @@
             <span>
               Я соглашаюсь с правилами по обработке
               <a
-                href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                 class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
               >
                 персональных данных
               </a>
             </span>
           </label>
-          <!--<tui-error formControlName="consent" /> -->
         </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
+        <button
+          type="submit"
+          class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
+          [disabled]="lead.submitting()"
+        >
+          Отправить
+        </button>
       </form>
+      <app-lead-status [lead]="lead" />
     </div>
   </div>
 </section>

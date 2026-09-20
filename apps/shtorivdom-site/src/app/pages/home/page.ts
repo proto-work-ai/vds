@@ -1,11 +1,15 @@
+import { RouterLink } from '@angular/router';
+import { LeadStatus } from '../../forms/lead-status';
+import { CounterDirective } from '../../components/reveal.directive';
+import { RevealDirective } from '../../components/reveal.directive';
 import { DeferDirective } from '../../components/defer.component';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TuiCheckbox, TuiError, TuiInput, TuiTextfield } from '@taiga-ui/core';
+import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { ContactLinksDirective } from '../../contact-links.directive';
 import { LeadFormDirective } from '../../forms/lead-form.directive';
-import { SITE_FAQ, SiteFaq } from '@shtorivdom/site-kit';
+import { SITE_FAQ, SiteFaq, SiteBeforeAfter, SiteReviewSlider } from '@shtorivdom/site-kit';
 
 // Сгенерировано tools/mockups/site-to-angular.mjs из mockups/site/index.html
 @Component({
@@ -13,6 +17,12 @@ import { SITE_FAQ, SiteFaq } from '@shtorivdom/site-kit';
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    SiteBeforeAfter,
+    SiteReviewSlider,
+    RouterLink,
+    LeadStatus,
+    CounterDirective,
+    RevealDirective,
     SiteFaq,
     DeferDirective,
     ReactiveFormsModule,
@@ -21,7 +31,6 @@ import { SITE_FAQ, SiteFaq } from '@shtorivdom/site-kit';
     TuiInputPhone,
     TuiTextarea,
     TuiCheckbox,
-    TuiError,
     LeadFormDirective,
     ContactLinksDirective,
   ],

@@ -8,9 +8,9 @@
           class="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60"
           aria-label="Хлебные крошки"
         >
-          <a href="/" class="transition-colors hover:text-gold">Главная</a>
+          <a routerLink="/" class="transition-colors hover:text-gold">Главная</a>
           <span class="text-gold" aria-hidden="true">/</span>
-          <a href="/catalog/" class="transition-colors hover:text-gold">Каталог</a>
+          <a routerLink="/catalog" class="transition-colors hover:text-gold">Каталог</a>
           <span class="text-gold" aria-hidden="true">/</span>
           <span class="text-cream/90" aria-current="page">Карнизы для штор</span>
         </nav>
@@ -35,7 +35,7 @@
           <span class="text-cream/60">/ м.пог.</span>
         </div>
         <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
-          <a href="#lead" class="btn-gold group max-sm:w-full">
+          <a [routerLink]="[]" fragment="lead" class="btn-gold group max-sm:w-full">
             Пригласить дизайнера
             <svg
               width="14"
@@ -50,7 +50,7 @@
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-          <a href="#prices" class="btn-line max-sm:w-full">Смотреть цены</a>
+          <a [routerLink]="[]" fragment="prices" class="btn-line max-sm:w-full">Смотреть цены</a>
         </div>
       </div>
       <div class="rise relative" style="--d: 0.2s">
@@ -183,7 +183,11 @@
           <p class="mb-6 font-serif text-[22px] leading-snug">
             Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.
           </p>
-          <a href="#lead" class="btn-gold !flex w-full !px-4 whitespace-nowrap">
+          <a
+            [routerLink]="[]"
+            fragment="lead"
+            class="btn-gold !flex w-full !px-4 whitespace-nowrap"
+          >
             Пригласить дизайнера
           </a>
           <a
@@ -199,42 +203,42 @@
             Другие разделы
           </p>
           <a
-            href="/catalog/blackout-curtains/"
+            routerLink="/catalog/blackout-curtains"
             class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[14px] transition-colors last:border-0 hover:text-gold"
           >
             Шторы блэкаут
             <span class="text-gold">→</span>
           </a>
           <a
-            href="/catalog/roman-blinds/"
+            routerLink="/catalog/roman-blinds"
             class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[14px] transition-colors last:border-0 hover:text-gold"
           >
             Римские шторы
             <span class="text-gold">→</span>
           </a>
           <a
-            href="/catalog/roller-blinds/"
+            routerLink="/catalog/roller-blinds"
             class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[14px] transition-colors last:border-0 hover:text-gold"
           >
             Рулонные шторы
             <span class="text-gold">→</span>
           </a>
           <a
-            href="/catalog/linen-curtains/"
+            routerLink="/catalog/linen-curtains"
             class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[14px] transition-colors last:border-0 hover:text-gold"
           >
             Льняные шторы
             <span class="text-gold">→</span>
           </a>
           <a
-            href="/catalog/pleated-blinds/"
+            routerLink="/catalog/pleated-blinds"
             class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[14px] transition-colors last:border-0 hover:text-gold"
           >
             Шторы плиссе
             <span class="text-gold">→</span>
           </a>
           <a
-            href="/catalog/blinds/"
+            routerLink="/catalog/blinds"
             class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[14px] transition-colors last:border-0 hover:text-gold"
           >
             Жалюзи
@@ -259,7 +263,13 @@
           </h2>
         </div>
         <div class="flex gap-2">
-          <button type="button" class="cat-arrow" aria-label="Предыдущие фото" data-strip-prev>
+          <button
+            type="button"
+            class="cat-arrow"
+            aria-label="Предыдущие фото"
+            (click)="photoStrip.move(-1)"
+            [disabled]="photoStrip.atStart()"
+          >
             <svg
               width="18"
               height="18"
@@ -272,7 +282,13 @@
               <path d="m15 18-6-6 6-6" />
             </svg>
           </button>
-          <button type="button" class="cat-arrow" aria-label="Следующие фото" data-strip-next>
+          <button
+            type="button"
+            class="cat-arrow"
+            aria-label="Следующие фото"
+            (click)="photoStrip.move(1)"
+            [disabled]="photoStrip.atEnd()"
+          >
             <svg
               width="18"
               height="18"
@@ -287,7 +303,7 @@
           </button>
         </div>
       </div>
-      <div class="reveal cat-strip" data-strip data-gallery>
+      <div class="reveal cat-strip" data-strip #photoStrip="photoStrip" data-gallery>
         <button
           type="button"
           class="cat-shot group"
@@ -504,7 +520,7 @@
       </div>
       <div class="grid grid-cols-1 gap-6 min-[520px]:grid-cols-2 lg:grid-cols-3" data-models>
         <a
-          href="/catalog/curtain-rods/1/"
+          routerLink="/catalog/curtain-rods/1"
           class="reveal fade-up group block"
           style="--d: 0s"
           data-model-card
@@ -545,7 +561,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/2/"
+          routerLink="/catalog/curtain-rods/2"
           class="reveal fade-up group block"
           style="--d: 0.1s"
           data-model-card
@@ -586,7 +602,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/3/"
+          routerLink="/catalog/curtain-rods/3"
           class="reveal fade-up group block"
           style="--d: 0.2s"
           data-model-card
@@ -627,7 +643,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/4/"
+          routerLink="/catalog/curtain-rods/4"
           class="reveal fade-up group block"
           style="--d: 0s"
           data-model-card
@@ -668,7 +684,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/5/"
+          routerLink="/catalog/curtain-rods/5"
           class="reveal fade-up group block"
           style="--d: 0.1s"
           data-model-card
@@ -709,7 +725,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/6/"
+          routerLink="/catalog/curtain-rods/6"
           class="reveal fade-up group block"
           style="--d: 0.2s"
           data-model-card
@@ -750,7 +766,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/7/"
+          routerLink="/catalog/curtain-rods/7"
           class="reveal fade-up group block"
           style="--d: 0s"
           data-model-card
@@ -791,7 +807,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/8/"
+          routerLink="/catalog/curtain-rods/8"
           class="reveal fade-up group block"
           style="--d: 0.1s"
           data-model-card
@@ -832,7 +848,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/9/"
+          routerLink="/catalog/curtain-rods/9"
           class="reveal fade-up group block"
           style="--d: 0.2s"
           data-model-card
@@ -1009,7 +1025,7 @@
       <div
         class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center"
       >
-        <a href="#lead" class="btn-gold group max-sm:w-full">
+        <a [routerLink]="[]" fragment="lead" class="btn-gold group max-sm:w-full">
           Рассчитать стоимость
           <svg
             width="14"
@@ -1025,7 +1041,7 @@
           </svg>
         </a>
         <a
-          href="/price/"
+          routerLink="/price"
           class="inline-flex items-center justify-center gap-2 rounded-[2px] border border-navy/30 px-[26px] py-[14px] text-[12px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:border-gold hover:text-gold max-sm:w-full"
         >
           Все цены →
@@ -1115,214 +1131,7 @@
           <em>ответы</em>
         </h2>
       </div>
-      <div class="reveal space-y-2" data-faq>
-        <div class="border border-gold/20 bg-cream/40">
-          <button
-            type="button"
-            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
-            aria-expanded="false"
-            data-faq-q
-          >
-            <span class="text-[16px]">Сколько стоит пошив штор на заказ?</span>
-            <span class="faq-icon shrink-0 text-gold">
-              <svg
-                class="plus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5v14" /></svg
-              ><svg
-                class="minus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14" />
-              </svg>
-            </span>
-          </button>
-          <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
-              Редко какая студия, специализирующаяся на изготовлении штор по меркам клиента, сможет
-              дать точный ответ на этот вопрос, не располагая деталями: конкретными габаритами
-              будущих изделий, выбором материалов и декором. Цена любых индивидуальных заказов
-              напрямую зависит от уникальных характеристик проекта. Тем не менее, мы готовы
-              предоставить вам примерный расчет, чтобы вы могли получить общее представление о
-              порядке цен и ориентироваться на рынке. Для этого достаточно отправить нам
-              приблизительные размеры вашего окна, проект или ваши пожелания. Наши дизайнеры
-              подготовят предварительный расчет, включающий стоимость базовых материалов и пошива
-              штор, а также дополнительных услуг (установка карнизов и монтаж штор). Если озвученная
-              предварительная сумма вас устроит, то после личной встречи с нашим дизайнером вы
-              получите детальную смету, учитывающую выбранные модели, ткани и точные размеры.
-              Выбрать шторы на заказ в Москве и МО в нашем салоне — это правильное решение. Мы
-              предлагаем индивидуальное изготовление штор по доступным ценам в срок 10–14 дней.
-            </p>
-          </div>
-        </div>
-        <div class="border border-gold/20 bg-cream/40">
-          <button
-            type="button"
-            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
-            aria-expanded="false"
-            data-faq-q
-          >
-            <span class="text-[16px]">Где можно посмотреть Ваши работы?</span>
-            <span class="faq-icon shrink-0 text-gold">
-              <svg
-                class="plus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5v14" /></svg
-              ><svg
-                class="minus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14" />
-              </svg>
-            </span>
-          </button>
-          <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
-              На нашем сайте есть большое портфолио выполненных работ. В нём Вы можете ознакомиться
-              с разными вариантами исполнения штор на заказ, которые изготовлены нашей компанией.
-              Работ так много, что Вы несомненно найдете в них вдохновение для своего проекта. Также
-              Вы можете познакомиться с нами в разных социальных сетях.
-            </p>
-          </div>
-        </div>
-        <div class="border border-gold/20 bg-cream/40">
-          <button
-            type="button"
-            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
-            aria-expanded="false"
-            data-faq-q
-          >
-            <span class="text-[16px]">Есть ли гарантия на изделия?</span>
-            <span class="faq-icon shrink-0 text-gold">
-              <svg
-                class="plus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5v14" /></svg
-              ><svg
-                class="minus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14" />
-              </svg>
-            </span>
-          </button>
-          <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
-              Мы даем 2 года гарантии на изделия и на все работы, проводимые нами по договору.
-            </p>
-          </div>
-        </div>
-        <div class="border border-gold/20 bg-cream/40">
-          <button
-            type="button"
-            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
-            aria-expanded="false"
-            data-faq-q
-          >
-            <span class="text-[16px]">Какие сроки по пошиву?</span>
-            <span class="faq-icon shrink-0 text-gold">
-              <svg
-                class="plus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5v14" /></svg
-              ><svg
-                class="minus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14" />
-              </svg>
-            </span>
-          </button>
-          <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
-              По договору 10–14 дней, в зависимости от объема можем сделать и раньше.
-            </p>
-          </div>
-        </div>
-        <div class="border border-gold/20 bg-cream/40">
-          <button
-            type="button"
-            class="flex w-full items-center justify-between gap-4 p-5 text-left sm:p-6"
-            aria-expanded="false"
-            data-faq-q
-          >
-            <span class="text-[16px]">Сколько стоит выезд дизайнера?</span>
-            <span class="faq-icon shrink-0 text-gold">
-              <svg
-                class="plus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5v14" /></svg
-              ><svg
-                class="minus"
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14" />
-              </svg>
-            </span>
-          </button>
-          <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
-              Выезд дизайнера — бесплатный! Дизайнер приезжает с образцами и каталогами тканей,
-              делает замер и просчет на месте. Даже если потребуется повторный выезд.
-            </p>
-          </div>
-        </div>
-      </div>
+      <site-faq class="reveal" [items]="faq" />
     </div>
   </section>
 </main>
@@ -1474,7 +1283,6 @@
               data-phone
             />
           </tui-textfield>
-          <!-- <tui-error formControlName="phone" /> -->
         </div>
         <div>
           <label class="field-label" for="lead-comment">Комментарий</label>
@@ -1505,17 +1313,23 @@
             <span>
               Я соглашаюсь с правилами по обработке
               <a
-                href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                 class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
               >
                 персональных данных
               </a>
             </span>
           </label>
-          <!--<tui-error formControlName="consent" /> -->
         </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
+        <button
+          type="submit"
+          class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
+          [disabled]="lead.submitting()"
+        >
+          Отправить
+        </button>
       </form>
+      <app-lead-status [lead]="lead" />
     </div>
   </div>
 </section>

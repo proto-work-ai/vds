@@ -5,7 +5,7 @@
         class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[12px] sm:mb-3 sm:text-[14px] text-cream/60"
         aria-label="Хлебные крошки"
       >
-        <a href="/" class="hover:text-gold">Главная</a>
+        <a routerLink="/" class="hover:text-gold">Главная</a>
       </nav>
       <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Калькулятор штор</h1>
       <p
@@ -22,7 +22,7 @@
       class="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-12"
       data-calc
     >
-      <form class="flex flex-col gap-6" novalidate data-calc-form>
+      <div class="flex flex-col gap-6">
         <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
           <legend class="sr-only">Шаг 1. Вид штор</legend>
           <div class="mb-5 flex items-center gap-4">
@@ -188,7 +188,7 @@
             Посчитать и карниз по ширине окна
           </label>
         </fieldset>
-      </form>
+      </div>
 
       <aside aria-live="polite">
         <div class="relative">
@@ -295,7 +295,6 @@
                     </tui-textfield>
                   </div>
                 </label>
-                <!-- <tui-error formControlName="phone" /> -->
               </div>
               <div>
                 <label class="flex items-start gap-3 text-[14px] leading-snug text-cream/75">
@@ -311,19 +310,19 @@
                   <span>
                     Я соглашаюсь с правилами по обработке
                     <a
-                      href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                      routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                       class="underline decoration-gold underline-offset-2 hover:text-gold"
                     >
                       персональных данных
                     </a>
                   </span>
                 </label>
-                <!--<tui-error formControlName="consent" /> -->
               </div>
-              <button type="submit" class="btn-gold !flex w-full">
+              <button type="submit" class="btn-gold !flex w-full" [disabled]="lead.submitting()">
                 Отправить расчёт дизайнеру
               </button>
             </form>
+            <app-lead-status [lead]="lead" />
             <p class="mt-5 text-[12px] leading-relaxed text-cream/60">
               Расчёт примерный: по минимальным ценам каталога, без учёта отделки и аксессуаров.
               Погрешность возможна до 15–20%. Точную стоимость дизайнер назовёт после бесплатного
@@ -494,7 +493,6 @@
                 data-phone
               />
             </tui-textfield>
-            <!-- <tui-error formControlName="phone" /> -->
           </div>
           <div>
             <label class="field-label" for="lead-comment">Комментарий</label>
@@ -525,19 +523,23 @@
               <span>
                 Я соглашаюсь с правилами по обработке
                 <a
-                  href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                  routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                   class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
                 >
                   персональных данных
                 </a>
               </span>
             </label>
-            <!--<tui-error formControlName="consent" /> -->
           </div>
-          <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">
+          <button
+            type="submit"
+            class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
+            [disabled]="contactLead.submitting()"
+          >
             Отправить
           </button>
         </form>
+        <app-lead-status [lead]="contactLead" />
       </div>
     </div>
   </section>

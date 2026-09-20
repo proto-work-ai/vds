@@ -1,0 +1,29 @@
+@if (variant() === 'center') {
+  <p class="eyebrow">{{ eyebrow() }}</p>
+  <h2 class="h2">
+    {{ title() }}
+    @if (accent()) {
+      <span class="text-gold italic">{{ accent() }}</span>
+    }
+  </h2>
+  <div class="divider"><i></i></div>
+} @else {
+  <div class="mb-4 flex items-center gap-3" [class.justify-center]="variant() === 'lines'">
+    <span class="h-px w-8 bg-gold"></span>
+    <span
+      class="text-[12px] tracking-[.28em] uppercase"
+      [class]="dark() ? 'text-white/60' : 'text-gold'"
+    >
+      {{ eyebrow() }}
+    </span>
+    @if (variant() === 'lines') {
+      <span class="h-px w-8 bg-gold"></span>
+    }
+  </div>
+  <h2 class="text-[clamp(30px,4vw,46px)] leading-[1.12]" [class.text-white]="dark()">
+    {{ title() }}
+    @if (accent()) {
+      <em class="text-gold">{{ accent() }}</em>
+    }
+  </h2>
+}

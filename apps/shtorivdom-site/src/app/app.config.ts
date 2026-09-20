@@ -40,7 +40,7 @@ export const appConfig: ApplicationConfig = {
     provideTaiga(),
     tuiInputPhoneOptionsProvider({
       valueTransformer: {
-        fromControlValue: (value) => `+${value}`,
+        fromControlValue: (value) => (value ? `+7${value}` : ''),
         toControlValue: (value) => value?.slice(2),
       },
     }),

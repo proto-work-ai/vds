@@ -1,7 +1,10 @@
+import { RouterLink } from '@angular/router';
+import { LeadStatus } from '../../forms/lead-status';
+import { RevealDirective } from '../../components/reveal.directive';
 import { DeferDirective } from '../../components/defer.component';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TuiCheckbox, TuiError, TuiInput, TuiTextfield } from '@taiga-ui/core';
+import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { ContactLinksDirective } from '../../contact-links.directive';
 import { LeadFormDirective } from '../../forms/lead-form.directive';
@@ -12,6 +15,9 @@ import { LeadFormDirective } from '../../forms/lead-form.directive';
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    RouterLink,
+    LeadStatus,
+    RevealDirective,
     DeferDirective,
     ReactiveFormsModule,
     TuiTextfield,
@@ -19,7 +25,6 @@ import { LeadFormDirective } from '../../forms/lead-form.directive';
     TuiInputPhone,
     TuiTextarea,
     TuiCheckbox,
-    TuiError,
     LeadFormDirective,
     ContactLinksDirective,
   ],

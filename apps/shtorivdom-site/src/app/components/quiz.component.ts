@@ -1,3 +1,6 @@
+import { RouterLink } from '@angular/router';
+import { LeadStatus } from '../forms/lead-status';
+import { RevealDirective } from './reveal.directive';
 import { DeferDirective } from './defer.component';
 import {
   ChangeDetectionStrategy,
@@ -9,7 +12,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TuiCheckbox, TuiError, TuiInput, TuiTextfield } from '@taiga-ui/core';
+import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { ContactLinksDirective } from '../contact-links.directive';
 import { LeadFormDirective } from '../forms/lead-form.directive';
@@ -30,6 +33,9 @@ type Recommendation = {
   templateUrl: './quiz.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    RouterLink,
+    LeadStatus,
+    RevealDirective,
     DeferDirective,
     ReactiveFormsModule,
     TuiTextfield,
@@ -37,7 +43,6 @@ type Recommendation = {
     TuiInputPhone,
     TuiTextarea,
     TuiCheckbox,
-    TuiError,
     LeadFormDirective,
     ContactLinksDirective,
   ],
@@ -116,7 +121,7 @@ export class QuizComponent {
     unit,
     min,
     image: `../assets/img/catalog/${image}`,
-    href: `../catalog/${key}/`,
+    href: `/catalog/${key}`,
   })) as Recommendation[];
 
   protected selectAnswer(event: Event): void {
@@ -134,13 +139,9 @@ export class QuizComponent {
   }
 
   protected restart(): void {
+    if (this.quizLead()?.submitting()) return;
     this.answers.set({});
     this.step.set(0);
-    this.element.nativeElement.querySelectorAll('input[type="radio"]').forEach((input: Element) => {
-      if (!(input instanceof HTMLInputElement)) return;
-      input.checked = false;
-      input.blur();
-    });
     this.quizLead()?.reset();
     requestAnimationFrame(() => {
       const quiz = this.element.nativeElement.querySelector('[data-quiz]') as HTMLElement | null;

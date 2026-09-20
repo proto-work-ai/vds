@@ -1,3 +1,4 @@
+import { RouterLink } from '@angular/router';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ContactLinksDirective } from '../contact-links.directive';
 
@@ -6,7 +7,7 @@ import { ContactLinksDirective } from '../contact-links.directive';
   selector: 'app-site-footer',
   templateUrl: './site-footer.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ContactLinksDirective],
+  imports: [RouterLink, ContactLinksDirective],
   host: { class: 'block' },
 })
 export class SiteFooter {}

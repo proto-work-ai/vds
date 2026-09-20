@@ -7,7 +7,7 @@
         class="mb-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60"
         aria-label="Хлебные крошки"
       >
-        <a href="/" class="transition-colors hover:text-gold">Главная</a>
+        <a routerLink="/" class="transition-colors hover:text-gold">Главная</a>
         <span class="text-gold" aria-hidden="true">/</span>
         <span class="text-cream/90" aria-current="page">Каталог</span>
       </nav>
@@ -35,7 +35,7 @@
       </div>
       <div class="mt-16 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3" data-catalog-list>
         <a
-          href="/catalog/blackout-curtains/"
+          routerLink="/catalog/blackout-curtains"
           class="reveal fade-up group block"
           style="--d: 0s"
           data-catalog-card
@@ -86,7 +86,7 @@
           </div>
         </a>
         <a
-          href="/catalog/roman-blinds/"
+          routerLink="/catalog/roman-blinds"
           class="reveal fade-up group block"
           style="--d: 0.1s"
           data-catalog-card
@@ -137,7 +137,7 @@
           </div>
         </a>
         <a
-          href="/catalog/roller-blinds/"
+          routerLink="/catalog/roller-blinds"
           class="reveal fade-up group block"
           style="--d: 0.2s"
           data-catalog-card
@@ -188,7 +188,7 @@
           </div>
         </a>
         <a
-          href="/catalog/linen-curtains/"
+          routerLink="/catalog/linen-curtains"
           class="reveal fade-up group block"
           style="--d: 0s"
           data-catalog-card
@@ -239,7 +239,7 @@
           </div>
         </a>
         <a
-          href="/catalog/pleated-blinds/"
+          routerLink="/catalog/pleated-blinds"
           class="reveal fade-up group block"
           style="--d: 0.1s"
           data-catalog-card
@@ -290,7 +290,7 @@
           </div>
         </a>
         <a
-          href="/catalog/curtain-rods/"
+          routerLink="/catalog/curtain-rods"
           class="reveal fade-up group block"
           style="--d: 0.2s"
           data-catalog-card
@@ -339,7 +339,7 @@
           </div>
         </a>
         <a
-          href="/catalog/blinds/"
+          routerLink="/catalog/blinds"
           class="reveal fade-up group block"
           style="--d: 0s"
           data-catalog-card
@@ -397,7 +397,7 @@
       <p class="flex-1 font-serif text-[22px] leading-snug sm:text-[24px]">
         Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.
       </p>
-      <a href="#lead" class="btn-gold group max-sm:w-full">
+      <a [routerLink]="[]" fragment="lead" class="btn-gold group max-sm:w-full">
         Пригласить дизайнера
         <svg
           width="14"
@@ -563,7 +563,6 @@
               data-phone
             />
           </tui-textfield>
-          <!-- <tui-error formControlName="phone" /> -->
         </div>
         <div>
           <label class="field-label" for="lead-comment">Комментарий</label>
@@ -594,17 +593,23 @@
             <span>
               Я соглашаюсь с правилами по обработке
               <a
-                href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
                 class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
               >
                 персональных данных
               </a>
             </span>
           </label>
-          <!--<tui-error formControlName="consent" /> -->
         </div>
-        <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">Отправить</button>
+        <button
+          type="submit"
+          class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
+          [disabled]="lead.submitting()"
+        >
+          Отправить
+        </button>
       </form>
+      <app-lead-status [lead]="lead" />
     </div>
   </div>
 </section>
