@@ -153,6 +153,10 @@
             <div>
               <label class="field-label" for="partner-name">Имя</label>
               <tui-textfield [tuiTextfieldCleaner]="false">
+                <label tuiLabel>
+                  Имя
+                  <span class="text-red-600">*</span>
+                </label>
                 <input
                   tuiInput
                   id="partner-name"
@@ -171,6 +175,10 @@
                 <span class="text-red-600">*</span>
               </label>
               <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
+                <label tuiLabel>
+                  Телефон
+                  <span class="text-red-600">*</span>
+                </label>
                 <input
                   mask="+7 (###) ###-##-##"
                   tuiInputPhone
@@ -205,6 +213,7 @@
           <div>
             <label class="field-label" for="partner-comment">Комментарий</label>
             <tui-textfield [tuiTextfieldCleaner]="false">
+              <label tuiLabel>Комментарий</label>
               <textarea
                 tuiTextarea
                 [min]="3"

@@ -1,5 +1,6 @@
 import { RouterLink } from '@angular/router';
 import { LeadStatus } from '../../forms/lead-status';
+import { LeadFields } from '../../forms/lead-fields';
 import { RevealDirective } from '../../components/reveal.directive';
 import { GALLERY } from '../../components/gallery.service';
 import { PhotoStripDirective } from '../../components/photo-strip.directive';
@@ -17,6 +18,7 @@ import { LeadFormDirective } from '../../forms/lead-form.directive';
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    LeadFields,
     RouterLink,
     LeadStatus,
     RevealDirective,

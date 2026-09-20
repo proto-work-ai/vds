@@ -1478,11 +1478,11 @@
           class="absolute -left-[9999px] size-0 opacity-0"
         />
         <div>
-          <label class="field-label" for="lead-phone">
-            Телефон
-            <span class="text-red-600">*</span>
-          </label>
           <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
+            <label tuiLabel>
+              Телефон
+              <span class="text-red-600">*</span>
+            </label>
             <input
               mask="+7 (###) ###-##-##"
               tuiInputPhone
@@ -1498,16 +1498,16 @@
           </tui-textfield>
         </div>
         <div>
-          <label class="field-label" for="lead-comment">Комментарий</label>
           <tui-textfield [tuiTextfieldCleaner]="false">
+            <label tuiLabel>Комментарий</label>
             <textarea
               tuiTextarea
-              [min]="3"
-              [max]="6"
               id="lead-comment"
               formControlName="comment"
-              [rows]="3"
               placeholder="Комментарий"
+              [rows]="3"
+              [min]="3"
+              [max]="6"
             ></textarea>
           </tui-textfield>
         </div>

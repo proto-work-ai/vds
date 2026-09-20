@@ -1,0 +1,60 @@
+<div [formGroup]="form()" class="flex flex-col gap-5">
+  <input
+    type="text"
+    formControlName="website"
+    name="website"
+    tabindex="-1"
+    autocomplete="off"
+    aria-hidden="true"
+    class="absolute -left-[9999px] size-0 opacity-0"
+  />
+  <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
+    <label tuiLabel>Телефон <span class="text-red-600">*</span></label>
+    <input
+      mask="+7 (###) ###-##-##"
+      tuiInputPhone
+      id="lead-phone"
+      formControlName="phone"
+      name="phone"
+      type="tel"
+      inputmode="tel"
+      autocomplete="tel"
+      placeholder="Укажите телефон"
+      class="field"
+      data-phone
+    />
+  </tui-textfield>
+  <tui-textfield [tuiTextfieldCleaner]="false">
+    <label tuiLabel>Комментарий</label>
+    <textarea
+      tuiTextarea
+      id="lead-comment"
+      formControlName="comment"
+      [rows]="3"
+      [min]="3"
+      [max]="6"
+      placeholder="Комментарий"
+      class="field resize-none"
+    ></textarea>
+  </tui-textfield>
+  <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
+    <input
+      tuiCheckbox
+      type="checkbox"
+      formControlName="consent"
+      [size]="'m'"
+      name="consent"
+      class="mt-0.5 shrink-0"
+      data-consent
+    />
+    <span>
+      Я соглашаюсь с правилами по обработке
+      <a
+        routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
+        class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
+      >
+        персональных данных
+      </a>
+    </span>
+  </label>
+</div>

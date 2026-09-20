@@ -1,5 +1,6 @@
 import { RouterLink } from '@angular/router';
 import { LeadStatus } from '../../forms/lead-status';
+import { LeadFields } from '../../forms/lead-fields';
 import { RevealDirective } from '../../components/reveal.directive';
 import { DeferDirective } from '../../components/defer.component';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
@@ -15,6 +16,7 @@ import { LeadFormDirective } from '../../forms/lead-form.directive';
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    LeadFields,
     RouterLink,
     LeadStatus,
     RevealDirective,

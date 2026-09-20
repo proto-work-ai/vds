@@ -153,6 +153,15 @@
   }
 }
 
+[tuiTheme='dark'] {
+  --tui-background-neutral-1: white;
+  --tui-background-neutral-1-hover: white;
+  --tui-border-normal: #e0e0e0;
+  tui-textfield[tuiAppearance][data-appearance='textfield'][data-focus='true'] {
+    background-color: white !important;
+  }
+}
+
 tui-dropdown {
   --tui-duration: 0;
 }
@@ -275,8 +284,17 @@ tui-icon {
 }
 
 tui-textfield {
-  --tui-background-base: #1477f80f;
   --tui-background-base: white;
+
+  [tuiLabel],
+  &:focus-within [tuiLabel] {
+    color: var(--navy-color, #0d223d) !important;
+  }
+
+  [tuiAppearance][data-appearance='textfield'],
+  .t-content {
+    background-color: white !important;
+  }
 
   &[data-size='s'][tuiChevron][tuiIcons]:after {
     margin-right: -0.6rem;
@@ -290,6 +308,11 @@ tui-textfield {
   } */
 
   &.tui-invalid {
+    input[tuiInput],
+    textarea[tuiTextarea] {
+      // border-color: #f44336 !important;
+    }
+
     [tuiappearance] {
       padding-right: 1.6rem;
     }
@@ -322,6 +345,18 @@ tui-textfield {
       }
     }
   }
+}
+
+/* Taiga меняет цвет плавающей подписи в состоянии ошибки; подпись формы всегда читается на белом фоне. */
+tui-textfield label[tuiLabel],
+tui-textfield label[tuiLabel] span {
+  color: #0d223d !important;
+  -webkit-text-fill-color: #0d223d !important;
+}
+
+tui-textfield input[tuiInput],
+tui-textfield textarea[tuiTextarea] {
+  color: #0d223d !important;
 }
 
 input[type='range'] {
