@@ -41,6 +41,7 @@
           "@fontsource/playfair-display/latin-400-italic.css",
           "@fontsource/playfair-display/latin-700-italic.css",
           "node_modules/@taiga-ui/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/addon-mobile/styles/taiga-ui-mobile.less",
           "apps/shtorivdom-site/src/styles.css"
         ],
         "server": "apps/shtorivdom-site/src/main.server.ts",

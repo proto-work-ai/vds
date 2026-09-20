@@ -105,7 +105,6 @@
         "compodoc": false,
         "styles": [
           "node_modules/@taiga-ui/styles/taiga-ui-theme.less",
-          "node_modules/@taiga-ui/styles/taiga-ui-fonts.less",
           "node_modules/@taiga-ui/addon-mobile/styles/taiga-ui-mobile.less",
           "apps/shtorivdom-storybook/src/tailwind.css",
           "apps/shtorivdom-storybook/src/styles.scss",
@@ -144,7 +143,6 @@
         "compodoc": false,
         "styles": [
           "node_modules/@taiga-ui/styles/taiga-ui-theme.less",
-          "node_modules/@taiga-ui/styles/taiga-ui-fonts.less",
           "node_modules/@taiga-ui/addon-mobile/styles/taiga-ui-mobile.less",
           "apps/shtorivdom-storybook/src/tailwind.css",
           "apps/shtorivdom-storybook/src/styles.scss",
