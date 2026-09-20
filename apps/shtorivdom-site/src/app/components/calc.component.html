@@ -1,0 +1,549 @@
+<main>
+  <section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
+    <div class="wrap">
+      <nav
+        class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[12px] sm:mb-3 sm:text-[14px] text-cream/60"
+        aria-label="Хлебные крошки"
+      >
+        <a href="/" class="hover:text-gold">Главная</a>
+      </nav>
+      <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Калькулятор штор</h1>
+      <p
+        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] text-cream/75"
+      >
+        Посчитайте, сколько ткани нужно под ваше окно и сколько это примерно стоит. Точную смету
+        дизайнер составит после бесплатного замера.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-cream py-12 sm:py-20">
+    <div
+      class="wrap grid items-start gap-8 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:gap-12"
+      data-calc
+    >
+      <form class="flex flex-col gap-6" novalidate data-calc-form>
+        <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
+          <legend class="sr-only">Шаг 1. Вид штор</legend>
+          <div class="mb-5 flex items-center gap-4">
+            <span
+              class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold"
+            >
+              1
+            </span>
+            <h2 class="text-[24px] leading-tight font-bold sm:text-[30px]">Выберите вид штор</h2>
+          </div>
+          <div class="grid grid-cols-2 gap-3 sm:grid-cols-3" data-calc-kinds>
+            @for (item of items; track item.key) {
+              <label class="calc-option" (click)="selectCard(item.key, $event)">
+                <input
+                  type="radio"
+                  name="kind"
+                  class="sr-only"
+                  [value]="item.key"
+                  [checked]="selectedKey() === item.key"
+                  (change)="selectItem(item.key)"
+                />
+                <span class="calc-option-box">
+                  <img [src]="item.image" alt="" loading="lazy" class="calc-kind-img" />
+                  <b class="font-serif tetext-[14px] leading-tight">{{ item.title }}</b>
+                  <span class="text-[12px] text-slate/80">
+                    от {{ item.min.toLocaleString('ru-RU') }} ₽/{{ item.unit }}
+                  </span>
+                </span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <fieldset class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8">
+          <legend class="sr-only">Шаг 2. Размеры</legend>
+          <div class="mb-5 flex items-center gap-4">
+            <span
+              class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold"
+            >
+              2
+            </span>
+            <h2 class="text-[22px] leading-tight font-bold sm:text-[24px]">Измерьте окно</h2>
+          </div>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label class="field-label" for="calc-width">
+                {{ byMeter() ? 'Ширина карниза, см' : 'Ширина окна (створки), см' }}
+              </label>
+              <input
+                id="calc-width"
+                name="width"
+                type="number"
+                inputmode="numeric"
+                min="30"
+                max="1500"
+                step="1"
+                [value]="width()"
+                (input)="setNumber('width', $event)"
+                class="field"
+                data-calc-width
+              />
+              <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-width-hint>
+                Длина карниза от края до края. Если карниза ещё нет — ширина окна плюс по 15–20 см с
+                каждой стороны.
+              </p>
+            </div>
+            <div>
+              <label class="field-label" for="calc-height">
+                {{ byMeter() ? 'Высота от карниза до пола, см' : 'Высота окна (створки), см' }}
+              </label>
+              <input
+                id="calc-height"
+                name="height"
+                type="number"
+                inputmode="numeric"
+                min="30"
+                max="600"
+                step="1"
+                [value]="height()"
+                (input)="setNumber('height', $event)"
+                class="field"
+                data-calc-height
+              />
+              <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-height-hint>
+                Для штор в пол — до пола минус 1–2 см, чтобы ткань не собирала пыль.
+              </p>
+            </div>
+          </div>
+          <p class="mt-4 text-[14px] text-[#c0392b]" role="alert" [hidden]="!invalidSize()">
+            Проверьте размеры: ширина от 30 до 1500 см, высота от 30 до 600 см.
+          </p>
+        </fieldset>
+
+        <fieldset
+          class="rounded-[4px] border border-navy/10 bg-white p-5 sm:p-8"
+          data-calc-fullness-step
+          [hidden]="!byMeter()"
+        >
+          <legend class="sr-only">Шаг 3. Пышность</legend>
+          <div class="mb-5 flex items-center gap-4">
+            <span
+              class="grid size-10 shrink-0 place-items-center rounded-full border-2 border-gold font-serif text-[18px] font-bold text-gold"
+            >
+              3
+            </span>
+            <h2 class="text-[22px] leading-tight font-bold sm:text-[24px]">
+              Насколько пышные складки
+            </h2>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-3">
+            <label class="calc-option">
+              <input
+                type="radio"
+                name="fullness"
+                value="1.5"
+                class="sr-only"
+                [checked]="fullness() === 1.5"
+                (change)="setFullness($event)"
+              />
+              <span class="calc-option-box">
+                <b class="font-serif text-[18px]">Лёгкие</b>
+                <span class="text-[14px] text-slate/80">×1,5 — плотные ткани, мало складок</span>
+              </span>
+            </label>
+            <label class="calc-option">
+              <input
+                type="radio"
+                name="fullness"
+                value="2"
+                class="sr-only"
+                [checked]="fullness() === 2"
+                (change)="setFullness($event)"
+              />
+              <span class="calc-option-box">
+                <b class="font-serif text-[18px]">Классика</b>
+                <span class="text-[14px] text-slate/80">×2 — ровные мягкие волны</span>
+              </span>
+            </label>
+            <label class="calc-option">
+              <input
+                type="radio"
+                name="fullness"
+                value="2.5"
+                class="sr-only"
+                [checked]="fullness() === 2.5"
+                (change)="setFullness($event)"
+              />
+              <span class="calc-option-box">
+                <b class="font-serif text-[18px]">Пышные</b>
+                <span class="text-[14px] text-slate/80">×2,5 — тюль и лёгкие ткани</span>
+              </span>
+            </label>
+          </div>
+          <label class="mt-5 flex items-center gap-3 text-[14px]">
+            <input
+              type="checkbox"
+              name="rod"
+              class="calc-checkbox"
+              data-calc-rod
+              [checked]="rod()"
+              (change)="setRod($event)"
+            />
+            Посчитать и карниз по ширине окна
+          </label>
+        </fieldset>
+      </form>
+
+      <aside aria-live="polite">
+        <div class="relative">
+          <div class="relative bg-navy px-6 py-8 text-cream sm:px-8 sm:py-10">
+            <p class="mb-3 text-[12px] font-bold tracking-[.12em] text-gold uppercase">
+              Предварительный расчёт
+            </p>
+            <h2 class="mb-6 font-serif text-[24px] leading-tight font-bold">
+              {{ selected().title }}
+            </h2>
+            <dl
+              class="mb-6 divide-y divide-white/10 border-y border-white/10 text-[14px]"
+              data-calc-rows
+            >
+              @for (row of calculation().rows; track row[0]) {
+                <div class="flex justify-between gap-4 py-3">
+                  <dt>{{ row[0] }}</dt>
+                  <dd class="text-right">{{ row[1] }}</dd>
+                </div>
+              }
+            </dl>
+            <p class="mb-1 text-[14px] text-cream/70">Ориентировочно</p>
+            <p class="mb-6 font-serif text-[34px] leading-none font-bold text-gold" data-calc-total>
+              {{ invalidSize() ? '—' : 'от ' + formatMoney(calculation().total) + ' ₽' }}
+            </p>
+            <p class="mb-4 text-[14px] text-cream/80">
+              Оставьте телефон — дизайнер перезвонит, уточнит размеры и договорится о бесплатном
+              замере.
+            </p>
+            <form
+              class="flex flex-col gap-5"
+              novalidate
+              data-calc-lead-form
+              data-inline-lead="calc"
+              #lead="calcLeadForm"
+              [formGroup]="lead.form"
+            >
+              <input
+                type="text"
+                formControlName="website"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+                aria-hidden="true"
+                class="absolute -left-[9999px] size-0 opacity-0"
+              />
+              <input
+                type="hidden"
+                formControlName="comment"
+                [value]="
+                  calculation().summary ? 'Расчёт с калькулятора — ' + calculation().summary : ''
+                "
+                data-inline-comment
+              />
+              <label class="flex items-center gap-3 border-b border-gold pb-3">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#c9a84c"
+                  stroke-width="2"
+                  class="shrink-0"
+                >
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg>
+                <tui-textfield class="w-full" [tuiTextfieldCleaner]="false">
+                  <input
+                    tuiInput
+                    formControlName="name"
+                    name="name"
+                    type="text"
+                    autocomplete="name"
+                    placeholder="Введите имя"
+                    class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50"
+                  />
+                </tui-textfield>
+              </label>
+              <div>
+                <label data-phone-wrap class="flex items-center gap-3 border-b border-gold pb-3">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#c9a84c"
+                    stroke-width="2"
+                    class="shrink-0"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                  <div class="w-full">
+                    <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
+                      <input
+                        mask="+7 (###) ###-##-##"
+                        tuiInputPhone
+                        formControlName="phone"
+                        name="phone"
+                        type="tel"
+                        inputmode="tel"
+                        autocomplete="tel"
+                        placeholder="Укажите телефон"
+                        class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50"
+                        data-phone
+                      />
+                    </tui-textfield>
+                  </div>
+                </label>
+                <!-- <tui-error formControlName="phone" /> -->
+              </div>
+              <div>
+                <label class="flex items-start gap-3 text-[14px] leading-snug text-cream/75">
+                  <input
+                    tuiCheckbox
+                    type="checkbox"
+                    formControlName="consent"
+                    [size]="'m'"
+                    name="consent"
+                    class="mt-0.5 shrink-0"
+                    data-consent
+                  />
+                  <span>
+                    Я соглашаюсь с правилами по обработке
+                    <a
+                      href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                      class="underline decoration-gold underline-offset-2 hover:text-gold"
+                    >
+                      персональных данных
+                    </a>
+                  </span>
+                </label>
+                <!--<tui-error formControlName="consent" /> -->
+              </div>
+              <button type="submit" class="btn-gold !flex w-full">
+                Отправить расчёт дизайнеру
+              </button>
+            </form>
+            <p class="mt-5 text-[12px] leading-relaxed text-cream/60">
+              Расчёт примерный: по минимальным ценам каталога, без учёта отделки и аксессуаров.
+              Погрешность возможна до 15–20%. Точную стоимость дизайнер назовёт после бесплатного
+              замера.
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+    <!-- prettier-ignore -->
+    <div id="calc-data" class="hidden" aria-hidden="true">
+      [&#123;"key":"blackout-curtains","title":"Шторы блэкаут","unit":"м.пог.","min":2500,"image":"../assets/img/catalog/blackout-curtains/image-5.jpg","href":"../catalog/blackout-curtains/"&#125;,&#123;"key":"roman-blinds","title":"Римские шторы","unit":"м²","min":4500,"image":"../assets/img/catalog/roman-blinds/image-1.jpg","href":"../catalog/roman-blinds/"&#125;,&#123;"key":"roller-blinds","title":"Рулонные шторы","unit":"м²","min":2200,"image":"../assets/img/catalog/roller-blinds/image-2.jpg","href":"../catalog/roller-blinds/"&#125;,&#123;"key":"linen-curtains","title":"Льняные шторы","unit":"м.пог.","min":2800,"image":"../assets/img/catalog/linen-curtains/image-3.jpg","href":"../catalog/linen-curtains/"&#125;,&#123;"key":"pleated-blinds","title":"Шторы плиссе","unit":"м²","min":3500,"image":"../assets/img/catalog/pleated-blinds/image-1.jpg","href":"../catalog/pleated-blinds/"&#125;,&#123;"key":"curtain-rods","title":"Карнизы для штор","unit":"м.пог.","min":900,"image":"../assets/img/catalog/curtain-rods/image-1.jpg","href":"../catalog/curtain-rods/"&#125;,&#123;"key":"blinds","title":"Жалюзи","unit":"м²","min":1500,"image":"../assets/img/catalog/blinds/image-1.jpg","href":"../catalog/blinds/"&#125;]
+    </div>
+  </section>
+
+  <section id="lead" class="bg-sand py-16 sm:py-24">
+    <div
+      class="wrap grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-16"
+    >
+      <div class="reveal">
+        <p class="eyebrow">Заявка</p>
+        <h2 class="h2 mb-5">
+          Запишитесь на посещение шоурума и получите
+          <span class="text-gold italic">скидку 10%</span>
+        </h2>
+        <div class="mb-10 space-y-3 text-[16px] leading-[1.8] font-light text-slate">
+          <p>
+            Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.
+          </p>
+          <p>
+            На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором
+            модели и рассчитаем стоимость в разных ценовых категориях.
+          </p>
+          <p>Изготовим заказ на собственном производстве точно в срок, произведем монтаж.</p>
+        </div>
+        <ul class="flex flex-col gap-6">
+          <li class="flex gap-4">
+            <span class="mt-1 text-gold">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
+                />
+              </svg>
+            </span>
+            <div>
+              <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Телефон</p>
+              <a
+                data-contact-link="phone"
+                class="font-serif text-[20px] font-bold transition-colors hover:text-gold"
+              ></a>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="mt-1 text-gold">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </span>
+            <div>
+              <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">
+                Эл. почта
+              </p>
+              <a data-contact-link="email" class="text-[16px] hover:text-gold"></a>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="mt-1 text-gold">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+            </span>
+            <div>
+              <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Адрес</p>
+              <a
+                href="https://yandex.ru/maps/-/CTxLMJIy"
+                target="_blank"
+                rel="noopener"
+                class="text-[16px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold"
+              >
+                Троицк, Кварцевая улица, 3, корп. 2
+              </a>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="mt-1 text-gold">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            </span>
+            <div>
+              <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">
+                График работы
+              </p>
+              <p class="text-[16px]">Без выходных, 10:00–20:00</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
+        style="--d: 0.15s"
+      >
+        <form
+          class="flex flex-col gap-5"
+          novalidate
+          data-lead-form
+          data-lead-type="phone"
+          #contactLead="leadForm"
+          [formGroup]="contactLead.form"
+        >
+          <input
+            type="text"
+            formControlName="website"
+            name="website"
+            tabindex="-1"
+            autocomplete="off"
+            aria-hidden="true"
+            class="absolute -left-[9999px] size-0 opacity-0"
+          />
+          <div>
+            <label class="field-label" for="lead-phone">
+              Телефон
+              <span class="text-red-600">*</span>
+            </label>
+            <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
+              <input
+                mask="+7 (###) ###-##-##"
+                tuiInputPhone
+                id="lead-phone"
+                formControlName="phone"
+                name="phone"
+                type="tel"
+                inputmode="tel"
+                autocomplete="tel"
+                placeholder="Укажите телефон"
+                class="field"
+                data-phone
+              />
+            </tui-textfield>
+            <!-- <tui-error formControlName="phone" /> -->
+          </div>
+          <div>
+            <label class="field-label" for="lead-comment">Комментарий</label>
+            <tui-textfield [tuiTextfieldCleaner]="false">
+              <textarea
+                tuiTextarea
+                [min]="3"
+                [max]="6"
+                id="lead-comment"
+                formControlName="comment"
+                [rows]="3"
+                placeholder="Комментарий"
+                class="field resize-none"
+              ></textarea>
+            </tui-textfield>
+          </div>
+          <div>
+            <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
+              <input
+                tuiCheckbox
+                type="checkbox"
+                formControlName="consent"
+                [size]="'m'"
+                name="consent"
+                class="mt-0.5 shrink-0"
+                data-consent
+              />
+              <span>
+                Я соглашаюсь с правилами по обработке
+                <a
+                  href="/soglasie-na-obrabotku-personalnyh-dannyh/"
+                  class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
+                >
+                  персональных данных
+                </a>
+              </span>
+            </label>
+            <!--<tui-error formControlName="consent" /> -->
+          </div>
+          <button type="submit" class="btn-gold mt-2 w-full sm:w-auto sm:self-end">
+            Отправить
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>

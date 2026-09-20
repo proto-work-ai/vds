@@ -795,7 +795,7 @@
       font-size: 15px !important;
       line-height: 1.65 !important;
     }
-    :is(p, li, dd, blockquote)[class~='text-[15px]'] {
+    :is(p, li, dd, blockquote)[class~='text-[14px]'] {
       font-size: 16px !important;
       line-height: 1.7 !important;
     }

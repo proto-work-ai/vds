@@ -16,8 +16,8 @@ return [
     // подмена отправителя на Timeweb запрещена, письмо просто не уйдёт.
     'smtp' => [
         'host' => 'smtp.timeweb.ru',
-        'port' => 465,
-        'secure' => 'ssl',            // ssl для порта 465, tls для 587
+        'port' => 2525,
+        'secure' => 'tls',            // TLS для порта 2525
         'user' => 'info@shtorivdom.ru',
         'password' => 'ПАРОЛЬ_ЯЩИКА', // вписать на сервере, в репозиторий не коммитить
         'from' => 'info@shtorivdom.ru',
@@ -31,10 +31,7 @@ return [
     // Дубль заявки в Telegram. Оставьте пустым, если не нужно.
     // token — от @BotFather, chatId — свой id можно узнать у @userinfobot,
     // для группы добавьте бота в неё и возьмите id группы (начинается с минуса).
-    'telegram' => [
-        'token' => '',
-        'chatId' => '',
-    ],
+    'telegram' => null,
 
     // Подтверждение клиенту, если он оставил email. false — не отправлять.
     'clientEmail' => true,

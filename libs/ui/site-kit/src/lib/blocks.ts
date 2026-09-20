@@ -45,7 +45,7 @@ export class SiteSectionHeading {
   template: `
     <nav aria-label="Хлебные крошки" [class]="variant() === 'catalog'
       ? 'flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-cream/60'
-      : 'flex flex-wrap items-center justify-start gap-2 text-left text-[13px] text-cream/60 sm:text-[14px]'">
+      : 'flex flex-wrap items-center justify-start gap-2 text-left text-[12px] text-cream/60 sm:text-[14px]'">
       @for (item of items(); track item.label; let last = $last) {
         @if (item.href) {
           <a class="transition-colors hover:text-gold" [href]="item.href">{{ item.label }}</a>
@@ -101,7 +101,7 @@ export class SitePageHero {
               text-[22px] font-semibold text-gold lg:mx-0" [class]="circle() === 'white' ? 'bg-white' :
               'bg-cream'">{{ (i + 1).toString().padStart(2, '0') }}</span>
           <h3 class="mb-2.5 text-[20px]">{{ s.title }}</h3>
-          <p class="text-[15px] leading-relaxed text-slate/80">{{ s.text }}</p>
+          <p class="text-[14px] leading-relaxed text-slate/80">{{ s.text }}</p>
         </li>
       }
     </ol>
@@ -128,7 +128,7 @@ export class SiteSteps {
           <span class="faq-icon shrink-0 text-gold"><span class="plus"><site-icon name="plus" [size]="16" /></span><span class="minus">
             <site-icon name="minus" [size]="16" /></span></span>
         </button>
-        <div #answer class="faq-a"><p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">{{ item.answer }}</p>
+        <div #answer class="faq-a"><p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">{{ item.answer }}</p>
           </div>
       </div>
     }
@@ -178,8 +178,8 @@ export class SiteFaq {
             текста</blockquote>
         <div class="flex items-center justify-center gap-4">
           <span class="size-12 rounded-full bg-sand"></span>
-          <div class="text-left"><p class="font-serif text-[15px] text-slate/60">Имя клиента</p><p
-            class="text-[13px] text-slate/40">Раздел каталога</p></div>
+          <div class="text-left"><p class="font-serif text-[14px] text-slate/60">Имя клиента</p><p
+            class="text-[12px] text-slate/40">Раздел каталога</p></div>
         </div>
       </div>
     </div>
@@ -296,7 +296,7 @@ export class SiteBeforeAfter {
     @if (layout() !== 'cards') {
       <div class="overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-[0_2px_20px_rgb(13_34_61/.06)]"
         [class]="layout() === 'auto' ? 'hidden md:block' : 'block'">
-        <table class="w-full text-left text-[15px]">
+        <table class="w-full text-left text-[14px]">
           <thead class="bg-navy text-cream"><tr
             class="[&>th]:px-6 [&>th]:py-4 [&>th]:text-[12px] [&>th]:font-bold [&>th]:tracking-[.12em] [&>th]:uppercase">
             <th scope="col">Материал / модель</th><th scope="col">Производство</th><th scope="col">Ширина, м</th><th
@@ -317,9 +317,9 @@ export class SiteBeforeAfter {
       <ul class="flex flex-col gap-4" [class.md:hidden]="layout() === 'auto'">
         @for (r of section().rows; track r.name) {
           <li class="rounded-[4px] border border-navy/8 bg-white p-5 shadow-[0_2px_20px_rgb(13_34_61/.06)]">
-            <p class="mb-1 text-[17px] font-bold">{{ r.name }}</p>
+            <p class="mb-1 tetext-[14px] font-bold">{{ r.name }}</p>
             <p class="mb-4 font-serif text-[22px] font-bold text-gold">{{ r.price }}</p>
-            <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px] [&_dd]:font-bold [&_dt]:text-slate/60">
+            <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px] [&_dd]:font-bold [&_dt]:text-slate/60">
               <div><dt>Производство</dt><dd>{{ r.country }}</dd></div><div><dt>Ширина, м</dt><dd>{{ r.width }}</dd></div><div>
                 <dt>Гарантия</dt><dd>{{ r.warranty }}</dd></div>
             </dl>

@@ -42,6 +42,8 @@
   /* «Заявка» в шапке — стиль лендинга 3, как в прототипе (mockups/site/src/partials/theme.css) */
   .btn-header { font-family: Cinzel, serif; font-size: 12px; font-weight: 700; letter-spacing: .1em; line-height: 1.5; color: rgb(6, 10, 7); text-transform: uppercase; text-decoration: none; white-space: nowrap; background: linear-gradient(135deg, rgb(212, 175, 55), rgb(240, 208, 96)); padding: 10px 22px; border-radius: 1px; box-shadow: rgba(212, 175, 55, .3) 0 4px 15px; transition: transform .3s, box-shadow .3s; }
   .btn-header:hover { box-shadow: rgba(212, 175, 55, .5) 0 8px 25px; transform: translateY(-1px); }
+  .l3-btn-header { font-family: Cinzel, serif; font-size: 10px; letter-spacing: .3em; color: rgb(6, 10, 7); background: linear-gradient(135deg, rgb(212, 175, 55), rgb(240, 208, 96)); padding: 10px 22px; text-decoration: none; text-transform: uppercase; border-radius: 1px; transition: transform .3s, box-shadow .3s; box-shadow: rgba(212, 175, 55, .3) 0 4px 15px; cursor: pointer; border: 0; }
+  .l3-btn-header:hover { box-shadow: rgba(212, 175, 55, .5) 0 8px 25px; transform: translateY(-1px); }
 
   .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease-out var(--d, 0s), transform .7s ease-out var(--d, 0s); }
   .reveal-soft { transform: translateY(28px); transition-duration: .85s; }
@@ -53,8 +55,10 @@
   .nav-link:hover, .nav-link[aria-current='page'] { color: var(--color-gold); }
   .dropdown { position: absolute; top: 100%; left: -20px; min-width: 240px; padding: 10px 0; background: var(--color-navy); border: 1px solid rgb(201 168 76 / .25); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
   .has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown, .has-dropdown.is-open .dropdown { opacity: 1; visibility: visible; transform: none; }
+  .has-dropdown.is-closed .dropdown, .has-dropdown.is-closed:focus-within .dropdown { opacity: 0; visibility: hidden; transform: translateY(8px); }
   .dropdown a { display: block; padding: 9px 20px; font-size: 14px; color: var(--color-cream); transition: color .2s, background .2s; }
   .dropdown a:hover { color: var(--color-gold); background: rgb(255 255 255 / .04); }
+  .dropdown-sep { display: block; height: 1px; margin: 8px 16px; background: rgb(201 168 76 / .2); }
   .burger span { display: block; width: 24px; height: 2px; background: var(--color-cream); transition: transform .3s, opacity .3s; }
   .burger span + span { margin-top: 5px; }
   .burger[aria-expanded='true'] span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }

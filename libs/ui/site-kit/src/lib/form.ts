@@ -54,7 +54,7 @@ export class SitePhoneMask {
       <span>Я соглашаюсь с правилами по обработке <a class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
         [href]="href()">персональных данных</a></span>
     </label>
-    @if (error()) {<p class="mt-2 text-[13px] text-[#c0392b]">Нужно согласие на обработку персональных данных</p>}
+    @if (error()) {<p class="mt-2 text-[12px] text-[#c0392b]">Нужно согласие на обработку персональных данных</p>}
   `,
 })
 export class SiteConsent {
@@ -110,7 +110,7 @@ export interface SiteLeadData {
                 class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60" [value]="phone()"
                   [(sitePhoneMask)]="phone" (input)="phoneError.set(false)" />
             </label>
-            @if (phoneError()) {<p class="mt-2 text-[13px] text-[#c0392b]">Введите номер телефона полностью</p>}
+            @if (phoneError()) {<p class="mt-2 text-[12px] text-[#c0392b]">Введите номер телефона полностью</p>}
           </div>
         } @else {
           @if (variant() === 'partner') {
@@ -146,7 +146,7 @@ export interface SiteLeadData {
         <label class="field-label" [attr.for]="id + '-phone'">Телефон *</label>
         <input siteField name="phone" placeholder="Укажите телефон" [id]="id + '-phone'" [error]="phoneError()" [value]="phone()"
           [(sitePhoneMask)]="phone" (input)="phoneError.set(false)" />
-        @if (phoneError()) {<p class="mt-2 text-[13px] text-[#c0392b]">Введите номер телефона полностью</p>}
+        @if (phoneError()) {<p class="mt-2 text-[12px] text-[#c0392b]">Введите номер телефона полностью</p>}
       </div>
     </ng-template>
   `,

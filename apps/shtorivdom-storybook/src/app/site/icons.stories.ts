@@ -80,17 +80,17 @@ export const ГалочкиИКонтакты: StoryObj = {
           <site-check-item class="text-[14px]">Тюль с пошивом (тарифы, услуги)</site-check-item>
           <site-check-item variant="circle" class="text-[16px]">Выезд дизайнера на объект с образцами (партнёрам)</site-check-item>
         </div>
-        <div class="space-y-3 bg-navy p-8 text-[15px] text-white/85">
+        <div class="space-y-3 bg-navy p-8 text-[14px] text-white/85">
           <p class="eyebrow">Первый экран</p>
           <site-check-item variant="hero">Бесплатный выезд замерщика</site-check-item>
           <site-check-item variant="hero">2 года гарантии на материалы</site-check-item>
         </div>
         <div class="space-y-6 bg-cream p-8 md:col-span-2">
           <p class="eyebrow">Контакты (страница контактов)</p>
-          <site-contact-item icon="pin" label="Адрес"><a href="#" class="text-[17px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold">Троицк, Кварцевая улица, 3, корп. 2</a></site-contact-item>
-          <site-contact-item icon="clock" label="График работы"><p class="text-[17px]">Без выходных, 10:00–20:00</p></site-contact-item>
+          <site-contact-item icon="pin" label="Адрес"><a href="#" class="tetext-[14px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold">Троицк, Кварцевая улица, 3, корп. 2</a></site-contact-item>
+          <site-contact-item icon="clock" label="График работы"><p class="tetext-[14px]">Без выходных, 10:00–20:00</p></site-contact-item>
           <site-contact-item icon="phone" label="Телефон"><a href="#" class="font-serif text-[24px] font-bold hover:text-gold">+7 (915) 359-12-00</a></site-contact-item>
-          <site-contact-item icon="mail" label="Эл. почта"><a href="#" class="text-[17px] hover:text-gold">info&#64;shtorivdom.ru</a></site-contact-item>
+          <site-contact-item icon="mail" label="Эл. почта"><a href="#" class="tetext-[14px] hover:text-gold">info&#64;shtorivdom.ru</a></site-contact-item>
           <site-contact-item icon="message" label="Социальные сети"><site-social-links variant="plain" class="mt-1" /></site-contact-item>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { DeferDirective } from '../../components/defer.component';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TuiCheckbox, TuiError, TuiInput, TuiTextfield } from '@taiga-ui/core';
@@ -11,6 +12,7 @@ import { LeadFormDirective } from '../../forms/lead-form.directive';
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    DeferDirective,
     ReactiveFormsModule,
     TuiTextfield,
     TuiInput,

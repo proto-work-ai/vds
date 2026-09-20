@@ -1,25 +1,10 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TuiCheckbox, TuiError, TuiInput, TuiTextfield } from '@taiga-ui/core';
-import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
-import { ContactLinksDirective } from '../../contact-links.directive';
-import { LeadFormDirective } from '../../forms/lead-form.directive';
+import { QuizComponent } from '../../components/quiz.component';
 
-// Сгенерировано tools/mockups/site-to-angular.mjs из mockups/site/quiz/index.html
 @Component({
   selector: 'app-quiz-page',
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInput,
-    TuiInputPhone,
-    TuiTextarea,
-    TuiCheckbox,
-    TuiError,
-    LeadFormDirective,
-    ContactLinksDirective,
-  ],
+  imports: [QuizComponent],
 })
 export class QuizPage {}

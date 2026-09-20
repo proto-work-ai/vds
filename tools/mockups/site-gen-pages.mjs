@@ -8,7 +8,7 @@ const OUT = 'mockups/site/src/pages';
 
 const hero = (lead, h1cls = 'text-[24px]') => `<section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
   <div class="wrap">
-    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
+    <nav class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[12px] sm:mb-3 sm:text-[14px] text-cream/60" aria-label="Хлебные крошки"><!-- @crumbs --></nav>
     <h1 class="rise ${h1cls} leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>${lead ? `
     <p class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75" style="--d:.1s">${lead}</p>` : ''}
   </div>
@@ -31,7 +31,7 @@ const panels = keys.map((k, i) => {
   const rows = priceMap[k];
   return `<div role="tabpanel" id="panel-${k}" aria-labelledby="tab-${k}"${i ? ' hidden' : ''} data-tab-panel>
         <div class="hidden overflow-hidden rounded-[4px] border border-navy/8 bg-white shadow-[0_2px_20px_rgb(13_34_61/.06)] md:block">
-          <table class="w-full text-left text-[15px]">
+          <table class="w-full text-left text-[14px]">
             <thead class="bg-navy text-cream"><tr class="[&>th]:px-6 [&>th]:py-4 [&>th]:text-[12px] [&>th]:font-bold [&>th]:tracking-[.12em] [&>th]:uppercase">
               <th scope="col">Материал / модель</th><th scope="col">Производство</th><th scope="col">Ширина, м</th><th scope="col">Гарантия</th><th scope="col" class="text-right">Цена <span class="block text-[11px] font-normal tracking-normal normal-case text-cream/60">с пошивом и установкой</span></th>
             </tr></thead>
@@ -41,9 +41,9 @@ const panels = keys.map((k, i) => {
           </table>
         </div>
         <ul class="flex flex-col gap-4 md:hidden">
-          ${rows.map((r) => `<li class="rounded-[4px] border border-navy/8 bg-white p-5 shadow-[0_2px_20px_rgb(13_34_61/.06)]"><p class="mb-1 text-[17px] font-bold">${r.name}</p><p class="mb-4 font-serif text-[22px] font-bold text-gold">${price(r)}</p><dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px] [&_dt]:text-slate/60 [&_dd]:font-bold"><div><dt>Производство</dt><dd>${r.country}</dd></div><div><dt>Ширина, м</dt><dd>${width(r)}</dd></div><div><dt>Гарантия</dt><dd>${years(r.warranty)}</dd></div></dl></li>`).join('\n          ')}
+          ${rows.map((r) => `<li class="rounded-[4px] border border-navy/8 bg-white p-5 shadow-[0_2px_20px_rgb(13_34_61/.06)]"><p class="mb-1 tetext-[14px] font-bold">${r.name}</p><p class="mb-4 font-serif text-[22px] font-bold text-gold">${price(r)}</p><dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px] [&_dt]:text-slate/60 [&_dd]:font-bold"><div><dt>Производство</dt><dd>${r.country}</dd></div><div><dt>Ширина, м</dt><dd>${width(r)}</dd></div><div><dt>Гарантия</dt><dd>${years(r.warranty)}</dd></div></dl></li>`).join('\n          ')}
         </ul>
-        <a href="{{root}}catalog/${k}/" class="mt-6 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold">Перейти в раздел «${TITLES[k]}» →</a>
+        <a href="{{root}}catalog/${k}/" class="mt-6 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase hover:text-gold">Перейти в раздел «${TITLES[k]}» →</a>
       </div>`;
 }).join('\n      ');
 
@@ -109,7 +109,7 @@ const legal = (file) => {
   s = s.replace(/\s*(<\/?(?:h2|p|ul|li)\b)/g, '\n      $1');
   return { title, html: s.trim(), toc };
 };
-const DOC = 'text-[16px] leading-[1.8] font-light text-slate [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:font-serif [&_h2]:text-[22px] [&_h2]:leading-snug [&_h2]:font-bold [&_h2]:text-navy sm:[&_h2]:text-[26px] [&_h2:first-child]:mt-0 [&_p]:my-3 [&_ul]:my-4 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:border-l-2 [&_ul]:border-gold/40 [&_ul]:pl-5 [&_strong]:font-bold [&_strong]:text-navy [&_a]:break-words [&_a]:text-navy [&_a]:underline [&_a]:decoration-gold [&_a]:underline-offset-2 [&_a:hover]:text-gold';
+const DOC = 'text-[16px] leading-[1.8] font-light text-slate [&_h2]:mt-10 [&_h2]:mb-4 [&_h2]:font-serif [&_h2]:text-[22px] [&_h2]:leading-snug [&_h2]:font-bold [&_h2]:text-navy sm:[&_h2]:text-[24px] [&_h2:first-child]:mt-0 [&_p]:my-3 [&_ul]:my-4 [&_ul]:flex [&_ul]:flex-col [&_ul]:gap-2 [&_ul]:border-l-2 [&_ul]:border-gold/40 [&_ul]:pl-5 [&_strong]:font-bold [&_strong]:text-navy [&_a]:break-words [&_a]:text-navy [&_a]:underline [&_a]:decoration-gold [&_a]:underline-offset-2 [&_a:hover]:text-gold';
 
 const pp = legal(`${APP}/pages/privacy-policy/privacy-policy-page.html`);
 writeFileSync(`${OUT}/privacy-policy.html`, `<!-- @header -->
@@ -128,7 +128,7 @@ ${hero('', 'text-[30px] [overflow-wrap:anywhere] hyphens-auto')}
       </nav>
     </aside>
     <article class="min-w-0 rounded-[4px] bg-white px-5 py-8 shadow-[0_2px_20px_rgb(13_34_61/.06)] sm:px-12 sm:py-12">
-      <p class="mb-8 border-b border-navy/10 pb-6 font-serif text-[26px] leading-tight font-bold sm:text-[32px]">${pp.title}</p>
+      <p class="mb-8 border-b border-navy/10 pb-6 font-serif text-[24px] leading-tight font-bold sm:text-[32px]">${pp.title}</p>
       <div class="${DOC}">
       ${pp.html}
       </div>

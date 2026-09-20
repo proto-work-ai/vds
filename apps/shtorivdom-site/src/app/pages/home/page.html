@@ -50,7 +50,7 @@
           <a href="#catalog" class="btn-line btn-glow max-sm:w-full">Каталог штор</a>
         </div>
         <ul
-          class="mt-12 grid max-w-[640px] grid-cols-1 gap-x-8 gap-y-4 border-t border-white/15 pt-8 text-[15px] text-white/85 min-[420px]:grid-cols-2"
+          class="mt-12 grid max-w-[640px] grid-cols-1 gap-x-8 gap-y-4 border-t border-white/15 pt-8 text-[14px] text-white/85 min-[420px]:grid-cols-2"
           style="--d: 0.4s"
         >
           <li class="flex items-start gap-3">
@@ -76,16 +76,17 @@
         class="rise scroll-mt-24 rounded-[4px] bg-cream/95 px-6 py-8 shadow-[0_20px_60px_rgb(0_0_0/.25)] backdrop-blur sm:px-8"
         style="--d: 0.35s"
       >
-        <p class="mb-6 font-serif text-[26px] leading-tight font-bold">
+        <p class="mb-6 font-serif text-[24px] leading-tight font-bold">
           Оставьте заявку дизайнеру:
         </p>
         <form
           class="flex flex-col gap-6"
           novalidate
           data-lead-form="designer"
+          data-lead-type="full"
           data-inline-lead="designer"
-          #lead="leadForm"
-          [formGroup]="lead.form"
+          #heroLead="leadForm"
+          [formGroup]="heroLead.form"
         >
           <input
             type="text"
@@ -135,7 +136,8 @@
                   d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
                 />
               </svg>
-              <tui-textfield class="w-full" [tuiTextfieldCleaner]="false">
+              <div class="w-full">
+                <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
                 <input
                   tuiInputPhone
                   mask="+7 (###) ###-##-##"
@@ -144,8 +146,9 @@
                   placeholder="Укажите телефон"
                 />
               </tui-textfield>
+              </div>
             </label>
-            @if (lead.form.controls.phone.invalid && lead.form.controls.phone.touched) {
+            @if (heroLead.form.controls.phone.invalid && heroLead.form.controls.phone.touched) {
               <!-- <tui-error formControlName="phone" /> -->
             }
           </div>
@@ -168,11 +171,11 @@
                 </a>
               </span>
             </label>
-            @if (lead.form.controls.consent.invalid && lead.form.controls.consent.touched) {
+            @if (heroLead.form.controls.consent.invalid && heroLead.form.controls.consent.touched) {
               <!--<tui-error formControlName="consent" /> -->
             }
           </div>
-          <button type="submit" class="btn-gold w-full" [disabled]="lead.submitting()">
+          <button type="submit" class="btn-gold w-full" [disabled]="heroLead.submitting()">
             Отправить
           </button>
         </form>
@@ -321,14 +324,14 @@
               >
                 <h3 class="text-[20px] font-bold text-cream">Шторы блэкаут</h3>
                 <span
-                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold"
+                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold whitespace-nowrap text-gold"
                 >
                   от 2 500 ₽/м.пог.
                 </span>
               </div>
             </a>
             <div class="px-6 pt-6 pb-5">
-              <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">
+              <p class="mb-4 text-[14px] leading-[1.75] font-light text-slate">
                 Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме
               </p>
               <div>
@@ -351,7 +354,7 @@
                 </ul>
                 <a
                   href="/catalog/blackout-curtains/"
-                  class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
+                  class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
                 </a>
@@ -380,14 +383,14 @@
               >
                 <h3 class="text-[20px] font-bold text-cream">Римские шторы</h3>
                 <span
-                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold"
+                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold whitespace-nowrap text-gold"
                 >
                   от 4 500 ₽/м²
                 </span>
               </div>
             </a>
             <div class="px-6 pt-6 pb-5">
-              <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">
+              <p class="mb-4 text-[14px] leading-[1.75] font-light text-slate">
                 Из плотных и легких тканей для прямых и скошенных окон.
               </p>
               <div>
@@ -410,7 +413,7 @@
                 </ul>
                 <a
                   href="/catalog/roman-blinds/"
-                  class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
+                  class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
                 </a>
@@ -439,14 +442,14 @@
               >
                 <h3 class="text-[20px] font-bold text-cream">Рулонные шторы</h3>
                 <span
-                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold"
+                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold whitespace-nowrap text-gold"
                 >
                   от 2 200 ₽/м²
                 </span>
               </div>
             </a>
             <div class="px-6 pt-6 pb-5">
-              <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">
+              <p class="mb-4 text-[14px] leading-[1.75] font-light text-slate">
                 Крепление на проем, в проем или раму окна.
               </p>
               <div>
@@ -469,7 +472,7 @@
                 </ul>
                 <a
                   href="/catalog/roller-blinds/"
-                  class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
+                  class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
                 </a>
@@ -498,14 +501,14 @@
               >
                 <h3 class="text-[20px] font-bold text-cream">Льняные шторы</h3>
                 <span
-                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold"
+                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold whitespace-nowrap text-gold"
                 >
                   от 2 800 ₽/м.пог.
                 </span>
               </div>
             </a>
             <div class="px-6 pt-6 pb-5">
-              <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">
+              <p class="mb-4 text-[14px] leading-[1.75] font-light text-slate">
                 Для стандартных, мансардных и треугольных окон.
               </p>
               <div>
@@ -528,7 +531,7 @@
                 </ul>
                 <a
                   href="/catalog/linen-curtains/"
-                  class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
+                  class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
                 </a>
@@ -557,14 +560,14 @@
               >
                 <h3 class="text-[20px] font-bold text-cream">Шторы плиссе</h3>
                 <span
-                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold"
+                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold whitespace-nowrap text-gold"
                 >
                   от 3 500 ₽/м²
                 </span>
               </div>
             </a>
             <div class="px-6 pt-6 pb-5">
-              <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">
+              <p class="mb-4 text-[14px] leading-[1.75] font-light text-slate">
                 Для стандартных, мансардных и треугольных окон.
               </p>
               <div>
@@ -587,7 +590,7 @@
                 </ul>
                 <a
                   href="/catalog/pleated-blinds/"
-                  class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
+                  class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
                 </a>
@@ -616,14 +619,14 @@
               >
                 <h3 class="text-[20px] font-bold text-cream">Карнизы для штор</h3>
                 <span
-                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold"
+                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold whitespace-nowrap text-gold"
                 >
                   от 900 ₽/м.пог.
                 </span>
               </div>
             </a>
             <div class="px-6 pt-6 pb-5">
-              <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">
+              <p class="mb-4 text-[14px] leading-[1.75] font-light text-slate">
                 Декоративные и профильные.
               </p>
               <div>
@@ -646,7 +649,7 @@
                 </ul>
                 <a
                   href="/catalog/curtain-rods/"
-                  class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
+                  class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
                 </a>
@@ -675,14 +678,14 @@
               >
                 <h3 class="text-[20px] font-bold text-cream">Жалюзи</h3>
                 <span
-                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold"
+                  class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold whitespace-nowrap text-gold"
                 >
                   от 1 500 ₽/м²
                 </span>
               </div>
             </a>
             <div class="px-6 pt-6 pb-5">
-              <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">
+              <p class="mb-4 text-[14px] leading-[1.75] font-light text-slate">
                 Стильные, практичные.
               </p>
               <div>
@@ -705,7 +708,7 @@
                 </ul>
                 <a
                   href="/catalog/blinds/"
-                  class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
+                  class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75"
                 >
                   Подробнее →
                 </a>
@@ -747,11 +750,11 @@
               <h3 class="font-serif text-[24px] leading-tight font-bold sm:text-[28px]">
                 Рассчитайте шторы
               </h3>
-              <p class="text-[15px] leading-relaxed text-cream/75">
+              <p class="text-[14px] leading-relaxed text-cream/75">
                 Сколько ткани нужно под ваш карниз и сколько это примерно стоит — за минуту.
               </p>
               <span
-                class="mt-2 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase"
+                class="mt-2 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase"
               >
                 Рассчитать
                 <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -779,11 +782,11 @@
               <h3 class="font-serif text-[24px] leading-tight font-bold sm:text-[28px]">
                 Подберите шторы
               </h3>
-              <p class="text-[15px] leading-relaxed text-slate">
+              <p class="text-[14px] leading-relaxed text-slate">
                 Ответьте на 4 вопроса о комнате и окне — подскажем, какие шторы подойдут.
               </p>
               <span
-                class="mt-2 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase"
+                class="mt-2 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase"
               >
                 Подобрать
                 <span class="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -827,7 +830,7 @@
               на стулья и мебель, скатертей или салфеток на стол.
             </p>
           </div>
-          <ul class="mt-8 flex flex-col gap-3 text-[15px] [&>li]:flex [&>li]:gap-3">
+          <ul class="mt-8 flex flex-col gap-3 text-[14px] [&>li]:flex [&>li]:gap-3">
             <li>
               <span class="font-bold text-gold">✓</span>
               Устанавливаем карнизы и шторы под ключ.
@@ -869,7 +872,7 @@
               01
             </span>
             <h3 class="mb-2.5 text-[22px]">Заявка</h3>
-            <p class="text-[15px] leading-relaxed text-slate/80">
+            <p class="text-[14px] leading-relaxed text-slate/80">
               Оставьте заявку на сайте или позвоните нам по телефону, напишите в мессенджер — как
               вам удобно. Мы ответим на все ваши вопросы и назначим удобную для вас дату встречи с
               нашим дизайнером
@@ -882,7 +885,7 @@
               02
             </span>
             <h3 class="mb-2.5 text-[22px]">Встреча</h3>
-            <p class="text-[15px] leading-relaxed text-slate/80">
+            <p class="text-[14px] leading-relaxed text-slate/80">
               Выезд дизайнера бесплатный. Наш сотрудник полностью проконсультирует вас на месте —
               продемонстрирует образцы и каталоги тканей, сделает необходимые технические замеры,
               подготовит первоначальный эскиз и просчет.
@@ -895,7 +898,7 @@
               03
             </span>
             <h3 class="mb-2.5 text-[22px]">Пошив</h3>
-            <p class="text-[15px] leading-relaxed text-slate/80">
+            <p class="text-[14px] leading-relaxed text-slate/80">
               Пошив штор в собственном швейном цехе под надзором технолога. Проверка готовых изделий
               на брак. В отличие от многих, мы даём гарантию 2 года на все виды работ и материалы.
             </p>
@@ -907,7 +910,7 @@
               04
             </span>
             <h3 class="mb-2.5 text-[22px]">Монтаж</h3>
-            <p class="text-[15px] leading-relaxed text-slate/80">
+            <p class="text-[14px] leading-relaxed text-slate/80">
               Монтаж штор на окна. Осуществим доставку, установку карнизов и навеску штор, отпарив
               их. Все под ключ.
             </p>
@@ -964,7 +967,7 @@
               <li>Эскиз 1 вариант</li>
               <li>Наволочка под интерьер</li>
             </ul>
-            <p class="mb-6 text-[13px] text-slate/70">*Срок изготовления 14 дней</p>
+            <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 14 дней</p>
             <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
@@ -1007,7 +1010,7 @@
               <li>Эскиз 1 вариант</li>
               <li>Наволочка под интерьер</li>
             </ul>
-            <p class="mb-6 text-[13px] text-cream/60">*Срок изготовления 10 дней</p>
+            <p class="mb-6 text-[12px] text-cream/60">*Срок изготовления 10 дней</p>
             <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
@@ -1048,7 +1051,7 @@
               <li>Эскиз 1 вариант</li>
               <li>Наволочка под интерьер</li>
             </ul>
-            <p class="mb-6 text-[13px] text-slate/70">*Срок изготовления 7 дней</p>
+            <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 7 дней</p>
             <a href="#lead" class="btn-gold !flex w-full">Оставить заявку</a>
           </div>
         </div>
@@ -1380,16 +1383,17 @@
               class="mb-10 font-serif text-[20px] leading-relaxed text-slate/50 italic"
               data-quote
             >
-              Текст отзыва 1 — ждёт реального текста
+              Понравилось, что можно было спокойно посмотреть ткани дома и примерить к интерьеру.
+              Результат совпал с эскизом, ничего переделывать не пришлось.
             </blockquote>
             <div class="flex items-center justify-center gap-4">
               <span
-                class="grid size-12 place-items-center rounded-full bg-sand font-serif text-[17px] text-gold"
+                class="grid size-12 place-items-center rounded-full bg-sand font-serif tetext-[14px] text-gold"
                 data-avatar
               ></span>
               <div class="text-left">
-                <p class="font-serif text-[15px] text-slate/60" data-name>Имя клиента</p>
-                <p class="text-[13px] text-slate/40" data-cat>Раздел каталога</p>
+                <p class="font-serif text-[14px] text-slate/60" data-name>Марина</p>
+                <p class="text-[12px] text-slate/40" data-cat>Льняные шторы · Москва</p>
               </div>
             </div>
           </div>
@@ -1492,7 +1496,7 @@
             </span>
           </button>
           <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
               Редко какая студия, специализирующаяся на изготовлении штор по меркам клиента, сможет
               дать точный ответ на этот вопрос, не располагая деталями: конкретными габаритами
               будущих изделий, выбором материалов и декором. Цена любых индивидуальных заказов
@@ -1542,7 +1546,7 @@
             </span>
           </button>
           <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
               На нашем сайте есть большое портфолио выполненных работ. В нём Вы можете ознакомиться
               с разными вариантами исполнения штор на заказ, которые изготовлены нашей компанией.
               Работ так много, что Вы несомненно найдете в них вдохновение для своего проекта. Также
@@ -1583,7 +1587,7 @@
             </span>
           </button>
           <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
               Мы даем 2 года гарантии на изделия и на все работы, проводимые нами по договору.
             </p>
           </div>
@@ -1621,7 +1625,7 @@
             </span>
           </button>
           <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
               По договору 10–14 дней, в зависимости от объема можем сделать и раньше.
             </p>
           </div>
@@ -1659,7 +1663,7 @@
             </span>
           </button>
           <div class="faq-a" data-faq-a>
-            <p class="px-5 pb-6 text-[15px] leading-relaxed font-light text-slate sm:px-6">
+            <p class="px-5 pb-6 text-[14px] leading-relaxed font-light text-slate sm:px-6">
               Выезд дизайнера — бесплатный! Дизайнер приезжает с образцами и каталогами тканей,
               делает замер и просчет на месте. Даже если потребуется повторный выезд.
             </p>
@@ -1785,8 +1789,9 @@
         class="flex flex-col gap-5"
         novalidate
         data-lead-form
-        #lead="leadForm"
-        [formGroup]="lead.form"
+        data-lead-type="phone"
+        #contactLead="leadForm"
+        [formGroup]="contactLead.form"
       >
         <input
           type="text"
@@ -1802,7 +1807,7 @@
             Телефон
             <span class="text-red-600">*</span>
           </label>
-          <tui-textfield [tuiTextfieldCleaner]="false">
+          <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
             <input
               mask="+7 (###) ###-##-##"
               tuiInputPhone

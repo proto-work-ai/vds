@@ -31,7 +31,9 @@ export class CookieAccepted {
 
   readonly size = input<'s' | 'm'>('s');
 
-  protected bannerClose() {
+  protected bannerClose($event: Event) {
+    $event?.stopPropagation();
+    $event?.preventDefault();
     this.cookie.set('1');
     this.elementRef.nativeElement.setAttribute('hidden', 'true');
     // this.componentRef?.destroy();

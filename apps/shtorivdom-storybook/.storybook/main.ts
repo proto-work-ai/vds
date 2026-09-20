@@ -7,7 +7,7 @@ const config: StorybookConfig = {
   staticDirs: [
     { from: '../../../mockups/site/assets', to: '/site-assets' },
     { from: '../../../node_modules/@taiga-ui/icons/src', to: '/assets/taiga-ui/icons' },
-    { from: '../../shtorivdom-site/public/icons', to: '/site-icons' },
+    { from: '../../shtorivdom-site/public/assets/img/icons', to: '/site-icons' },
   ],
   // Стандартный сборщик @storybook/angular: vite.config.mts в проекте нет.
   framework: {

@@ -1,0 +1,117 @@
+<div class="wrap flex h-[72px] items-center justify-between gap-6">
+  <a
+    class="block w-[190px] shrink-0 text-white sm:w-[220px]"
+    aria-label="Shtorivdom — на главную"
+    [href]="home()"
+  >
+    <site-logo variant="horizontal" color="white" />
+  </a>
+  <nav class="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Основное меню">
+    <a class="nav-link" [href]="home()" [attr.aria-current]="current() === '' ? 'page' : null">
+      Главная
+    </a>
+    <div
+      class="has-dropdown relative py-6"
+      [class.is-open]="catalogOpen()"
+      [class.is-closed]="catalogClosed() && !catalogOpen()"
+      (mouseenter)="openCatalog()"
+      (mouseleave)="closeCatalog()"
+    >
+      <a
+        class="nav-link inline-flex items-center gap-1"
+        aria-haspopup="true"
+        [href]="root() + 'catalog/'"
+        [attr.aria-current]="current().startsWith('catalog/') ? 'page' : null"
+        (click)="closeMenu()"
+      >
+        Каталог
+        <svg
+          width="12"
+          height="12"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </a>
+      <div class="dropdown" (click)="closeCatalog()">
+        @for (c of catalog; track c.key) {
+          <a [href]="root() + 'catalog/' + c.key + '/'" (click)="closeMenu()">{{ c.title }}</a>
+        }
+        <span class="dropdown-sep" aria-hidden="true"></span>
+        <a [href]="root() + 'calc/'" (click)="closeMenu()">Калькулятор штор</a>
+        <a [href]="root() + 'quiz/'" (click)="closeMenu()">Подбор штор</a>
+      </div>
+    </div>
+    @for (n of nav; track n.path) {
+      <a
+        class="nav-link"
+        [href]="root() + n.path"
+        [attr.aria-current]="current().startsWith(n.path) ? 'page' : null"
+        (click)="closeMenu()"
+      >
+        {{ n.label }}
+      </a>
+    }
+  </nav>
+  <div class="hidden items-center gap-5 lg:flex">
+    <a
+      class="hidden text-[14px] font-bold whitespace-nowrap text-cream transition-colors hover:text-gold xl:block"
+      [href]="'tel:' + contacts.tel"
+    >
+      {{ contacts.phone }}
+    </a>
+    <a class="l3-btn-header btn-header" href="#lead">Заявка</a>
+  </div>
+  <div class="flex items-center gap-1 lg:hidden">
+    <a
+      class="grid size-11 place-items-center text-gold"
+      [href]="'tel:' + contacts.tel"
+      [attr.aria-label]="'Позвонить ' + contacts.phone"
+    >
+      <site-icon name="phone" />
+    </a>
+    <!-- eslint-disable-next-line @angular-eslint/template/elements-content -- полоски и aria-label задаёт сам siteBurger -->
+    <button siteBurger aria-controls="site-mobile-menu" [(expanded)]="menuOpen"></button>
+  </div>
+</div>
+<div #panel id="site-mobile-menu" class="mobile-panel lg:hidden" [class.is-open]="menuOpen()">
+  <div class="wrap pt-2 pb-6">
+    <a [href]="home()" (click)="closeMenu()">Главная</a>
+    <button
+      type="button"
+      class="m-toggle"
+      [attr.aria-expanded]="subOpen()"
+      (click)="subOpen.set(!subOpen())"
+    >
+      Каталог
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </button>
+    <div #sub class="m-sub">
+      <a [href]="root() + 'catalog/'" (click)="closeMenu()">Весь каталог</a>
+      @for (c of catalog; track c.key) {
+        <a [href]="root() + 'catalog/' + c.key + '/'" (click)="closeMenu()">{{ c.title }}</a>
+      }
+      <a [href]="root() + 'calc/'" (click)="closeMenu()">Калькулятор штор</a>
+      <a [href]="root() + 'quiz/'" (click)="closeMenu()">Подбор штор</a>
+    </div>
+    @for (n of nav; track n.path) {
+      <a [href]="root() + n.path" (click)="closeMenu()">{{ n.label }}</a>
+    }
+    <p class="mt-5 text-[14px] text-cream/70">{{ contacts.hours }}</p>
+    <a siteButton href="#lead" class="mt-4 !flex !justify-center !border-0" (click)="closeMenu()">
+      Оставить заявку
+    </a>
+  </div>
+</div>

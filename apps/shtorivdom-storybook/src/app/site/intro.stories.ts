@@ -18,7 +18,7 @@ export const Введение: StoryObj = {
         <p class="eyebrow">Дизайн-система</p>
         <h1 class="h2 mb-6 text-navy">Элементы сайта <span class="text-gold italic">Shtorivdom</span></h1>
         <p class="mb-4">Здесь собраны все элементы интерфейса прототипа сайта: палитра, шрифты, логотипы, кнопки, иконки, формы, карточки, блоки страниц, шапка, подвал и письма заявок.</p>
-        <h2 class="mt-10 mb-3 text-[26px] text-navy">Откуда элементы</h2>
+        <h2 class="mt-10 mb-3 text-[24px] text-navy">Откуда элементы</h2>
         <ul class="list-disc space-y-2 pl-6">
           <li>Источник — прототип <b>mockups/site</b>: разметка <b>src/partials</b> (theme.css, header, footer, lead-form) и <b>src/pages</b>, интерактив <b>assets/site.js</b>, письма <b>assets/email.js</b>.</li>
           <li>Компоненты — библиотека <b>libs/ui/site-kit</b> (<b>&#64;shtorivdom/site-kit</b>): standalone, OnPush, signal inputs, разметка и классы Tailwind из прототипа.</li>
@@ -26,7 +26,7 @@ export const Введение: StoryObj = {
           <li>Картинки и email.js берутся прямо из <b>mockups/site/assets</b> (staticDirs → <b>site-assets/</b>). В компонентах путь задаёт токен <b>SITE_ASSETS_URL</b>.</li>
           <li>Шрифты — пакеты <b>lato-font</b> (Lato 2.0 с кириллицей) и <b>&#64;fontsource/playfair-display</b>, как на сайте.</li>
         </ul>
-        <h2 class="mt-10 mb-3 text-[26px] text-navy">Как добавить элемент</h2>
+        <h2 class="mt-10 mb-3 text-[24px] text-navy">Как добавить элемент</h2>
         <ol class="list-decimal space-y-2 pl-6">
           <li>Скопируйте разметку из mockups/site/src, не меняя классов.</li>
           <li>Повторяющийся или интерактивный элемент — компонент в libs/ui/site-kit/src/lib (префикс <b>site</b>), экспорт в src/index.ts. Поведение — как в site.js.</li>

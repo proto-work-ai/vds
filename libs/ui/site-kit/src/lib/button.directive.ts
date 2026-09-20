@@ -26,7 +26,7 @@ export class SiteButton {
       this.appearance() === 'gold' ? 'btn-gold group' : '',
       this.appearance() === 'line' ? 'btn-line' : '',
       this.appearance() === 'outline-navy'
-        ? 'inline-flex items-center justify-center gap-2 rounded-[2px] border border-navy/25 px-6 py-3.5 text-[13px] font-bold tracking-[.1em] uppercase transition-opacity hover:opacity-80'
+        ? 'inline-flex items-center justify-center gap-2 rounded-[2px] border border-navy/25 px-6 py-3.5 text-[12px] font-bold tracking-[.1em] uppercase transition-opacity hover:opacity-80'
         : '',
       this.size() === 'sm' ? '!px-5 !py-2.5' : '',
       this.block() ? '!flex w-full' : '',

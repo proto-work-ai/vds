@@ -63,7 +63,7 @@ export const ВсеВарианты: StoryObj = {
             <a siteButton href="#">Заказать карниз <site-icon name="arrow-right" [size]="14" class="transition-transform duration-300 group-hover:translate-x-1" /></a>
             <a siteButton href="#">Задать вопрос</a>
           </div>
-          <p class="text-[13px] text-slate/60">Кнопка тарифа — на всю ширину карточки:</p>
+          <p class="text-[12px] text-slate/60">Кнопка тарифа — на всю ширину карточки:</p>
           <div class="max-w-[320px]"><a siteButton [block]="true" href="#">Оставить заявку</a></div>
         </div>
         <div class="space-y-6 bg-navy p-8">
@@ -74,9 +74,9 @@ export const ВсеВарианты: StoryObj = {
             <a siteButton="line" href="#">Смотреть цены</a>
             <a siteButton href="#">Стать партнером</a>
           </div>
-          <p class="text-[13px] text-cream/60">«Заявка» в шапке — size sm:</p>
-          <div class="flex items-center gap-5"><span class="text-[15px] font-bold text-cream">+7 (915) 359-12-00</span><a siteButton size="sm" href="#">Заявка</a></div>
-          <p class="text-[13px] text-cream/60">Мобильное меню и боковая панель раздела — на всю ширину:</p>
+          <p class="text-[12px] text-cream/60">«Заявка» в шапке — size sm:</p>
+          <div class="flex items-center gap-5"><span class="text-[14px] font-bold text-cream">+7 (915) 359-12-00</span><a siteButton size="sm" href="#">Заявка</a></div>
+          <p class="text-[12px] text-cream/60">Мобильное меню и боковая панель раздела — на всю ширину:</p>
           <div class="max-w-[320px] space-y-3"><a siteButton href="#" class="!flex !justify-center !border-0">Оставить заявку</a><a siteButton [block]="true" href="#">Пригласить дизайнера <site-icon name="arrow-right" [size]="14" /></a></div>
         </div>
       </div>
@@ -156,7 +156,7 @@ export const СсылкиКнопки: StoryObj<LinkArgs> = {
           </div>
           <div class="space-y-5 bg-[#12294a] p-8">
             <div><p class="mb-2 text-[12px] text-cream/60">card-dark — карточка коллекции</p><a href="#" siteTextLink="card-dark">Подробнее</a></div>
-            <div><p class="mb-2 text-[12px] text-cream/60">Телефон в шапке</p><a href="#" class="text-[15px] font-bold whitespace-nowrap text-cream transition-colors hover:text-gold">+7 (915) 359-12-00</a></div>
+            <div><p class="mb-2 text-[12px] text-cream/60">Телефон в шапке</p><a href="#" class="text-[14px] font-bold whitespace-nowrap text-cream transition-colors hover:text-gold">+7 (915) 359-12-00</a></div>
             <div><p class="mb-2 text-[12px] text-cream/60">«Открыть карту →»</p><span class="text-[12px] font-bold tracking-[.1em] text-gold uppercase">Открыть карту →</span></div>
           </div>
         </div>
@@ -235,7 +235,7 @@ export const КнопкаНаверх: StoryObj<ToTopArgs> = {
     props: args,
     template: `
       <div class="min-h-[320px] bg-cream p-8">
-        <p class="text-[13px] text-slate/60">Кнопка закреплена в правом нижнем углу окна (20px, с 640px — 28px). Появляется после прокрутки больше threshold.</p>
+        <p class="text-[12px] text-slate/60">Кнопка закреплена в правом нижнем углу окна (20px, с 640px — 28px). Появляется после прокрутки больше threshold.</p>
       </div>
       <site-to-top [threshold]="threshold" [visible]="visible" />
     `,
@@ -250,7 +250,7 @@ export const КнопкаНаверхПриПрокрутке: StoryObj<{ thresh
     props: { ...args, blocks: Array.from({ length: 12 }, (_, i) => i + 1) },
     template: `
       <div class="bg-cream">
-        <p class="sticky top-0 z-10 bg-gold-soft px-5 py-2 text-[13px]">Прокрутите страницу вниз больше чем на {{ threshold }}px — появится кнопка «наверх».</p>
+        <p class="sticky top-0 z-10 bg-gold-soft px-5 py-2 text-[12px]">Прокрутите страницу вниз больше чем на {{ threshold }}px — появится кнопка «наверх».</p>
         @for (b of blocks; track b) {
           <div class="wrap py-10"><p class="eyebrow">Блок {{ b }}</p><div class="h-[200px] border border-navy/10 bg-white"></div></div>
         }

@@ -11,8 +11,21 @@ function smtp_send(array $cfg, array $msg): array
     $secure = $cfg['secure'] ?? 'ssl';           // ssl (465) или tls (587)
     $timeout = (int) ($cfg['timeout'] ?? 20);
 
-    $target = ($secure === 'ssl' ? 'ssl://' : '') . $host . ':' . $port;
-    $socket = @stream_socket_client($target, $errNo, $errStr, $timeout);
+    $hosts = [$host];
+    $ipv4 = gethostbyname($host);
+    if ($ipv4 !== $host) {
+        $hosts[] = $ipv4;
+    }
+    $socket = false;
+    $errNo = 0;
+    $errStr = '';
+    foreach (array_unique($hosts) as $connectionHost) {
+        $target = ($secure === 'ssl' ? 'ssl://' : '') . $connectionHost . ':' . $port;
+        $socket = @stream_socket_client($target, $errNo, $errStr, $timeout);
+        if ($socket) {
+            break;
+        }
+    }
     if (!$socket) {
         return [false, "не удалось подключиться к $host:$port ($errStr)"];
     }
@@ -81,6 +94,18 @@ function smtp_send(array $cfg, array $msg): array
     @fclose($socket);
 
     return [$ok, $ok ? '' : $error];
+}
+
+/** Резервная отправка через локальный почтовый транспорт хостинга. */
+function native_mail_send(array $cfg, array $msg): array
+{
+    $message = smtp_build_message($cfg, $msg);
+    [$headers, $body] = array_pad(preg_split("/\r\n\r\n/", $message, 2), 2, '');
+    $headers = preg_replace('/^To:.*\r\n/m', '', (string) $headers);
+    $to = implode(', ', $msg['to']);
+    $sent = mail($to, $msg['subject'], $body, trim((string) $headers));
+
+    return $sent ? [true, ''] : [false, 'встроенная PHP-отправка mail() отклонена'];
 }
 
 /** Письмо целиком: заголовки плюс текстовая и HTML-части. */

@@ -103,16 +103,16 @@ const catalogCards = (root) => CATALOG.map((c, i) => {
             <div class="absolute inset-0 bg-gradient-to-t from-navy/75 to-transparent to-60%"></div>
             <div class="absolute inset-x-5 bottom-4 flex flex-wrap items-end justify-between gap-2">
               <h3 class="text-[20px] font-bold text-cream">${c.title}</h3>
-              <span class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[13px] font-bold whitespace-nowrap text-gold">от ${money(min)} ₽/${unit}</span>
+              <span class="rounded-[2px] bg-navy/60 px-2.5 py-1 text-[12px] font-bold whitespace-nowrap text-gold">от ${money(min)} ₽/${unit}</span>
             </div>
           </a>
           <div class="px-6 pt-6 pb-5">
-            <p class="mb-4 text-[15px] leading-[1.75] font-light text-slate">${c.text}</p>
+            <p class="mb-4 text-[14px] leading-[1.75] font-light text-slate">${c.text}</p>
             <div>
               <ul class="mb-4">
                 ${c.prices.map((r) => `<li class="flex items-baseline gap-2.5 py-1.5 text-[14px]"><span class="font-bold text-gold">✓</span><span class="flex-1">${r[0]}</span><span class="font-bold whitespace-nowrap">${Array.isArray(r[1]) ? '' : 'от '}${priceText(r[1])} ₽/${r[2]}</span></li>`).join('\n                ')}
               </ul>
-              <a href="${root}catalog/${c.key}/" class="mb-4 inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75">Подробнее →</a>
+              <a href="${root}catalog/${c.key}/" class="mb-4 inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75">Подробнее →</a>
             </div>
           </div>
         </div>

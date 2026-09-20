@@ -358,9 +358,9 @@
           '<span class="calc-option-box"><img src="' +
           c.image +
           '" alt="" loading="lazy" class="calc-kind-img" />' +
-          '<b class="font-serif text-[17px] leading-tight">' +
+          '<b class="font-serif tetext-[14px] leading-tight">' +
           c.title +
-          '</b><span class="text-[13px] text-slate/80">от ' +
+          '</b><span class="text-[12px] text-slate/80">от ' +
           money(c.min) +
           ' ₽/' +
           c.unit +
@@ -560,7 +560,7 @@
       nav.hidden = done;
       back.hidden = current === 0;
       next.disabled = !done && !answer(current);
-      next.textContent = current === steps.length - 1 ? 'Показать результат' : 'Далее →';
+      next.textContent = current === steps.length - 1 ? 'Показать результат' : 'Далее';
       hint.textContent = !done && !answer(current) ? 'Выберите вариант' : '';
       $('[data-quiz-counter]', quiz).textContent = done
         ? 'Готово'

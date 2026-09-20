@@ -79,7 +79,7 @@
         <div class="px-8 pt-10 pb-7 [border-bottom:1px_solid_rgba(0,_0,_0,_0.08)]"><div class="flex items-start justify-between"><div>
           <div class="flex items-center gap-3 mb-4 "><div class="h-px w-8 flex-shrink-0 [background:rgb(184,_149,_93)]"></div><span class="text-[10px] tracking-[0.28em] uppercase ${SANS} [color:rgb(184,_149,_93)]">Free Consultation</span></div>
           <h2 class="text-[1.85rem] leading-tight ${SERIF}">Book Your Appointment</h2>
-          <p class="mt-2 text-[13px] text-gray-400 ${SANS}">Fill in your details and we'll reach you on WhatsApp.</p>
+          <p class="mt-2 text-[12px] text-gray-400 ${SANS}">Fill in your details and we'll reach you on WhatsApp.</p>
         </div><button type="button" class="mt-1 p-1.5 text-gray-400 hover:text-gray-700 transition-colors" aria-label="Close" data-close>${svg(20, X_PATHS, 'lucide lucide-x')}</button></div></div>
         <form class="px-8 py-8 space-y-5" novalidate>
           <div data-field="name">${label('Full Name', true)}<div class="relative">${svg(14, '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle>', `lucide lucide-user ${FIELD_ICON}`)}<input type="text" name="name" placeholder="Your full name" class="${INPUT} ${BORDER_OK} [padding-left:36px]"></div></div>

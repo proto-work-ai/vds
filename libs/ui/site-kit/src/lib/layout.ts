@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, input, model, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, ElementRef, input, model, signal, viewChild } from '@angular/core';
 import { SiteButton } from './button.directive';
 import { SiteBurger } from './controls.component';
 import { SITE_CATALOG, SITE_CONTACTS, SITE_NAV } from './data';
@@ -17,53 +17,7 @@ import { SiteSocialLinks } from './social-links.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SiteBurger, SiteButton, SiteIcon, SiteLogo],
   host: { class: 'site-header block','[class.is-solid]': 'solid() || menuOpen()', '[class.relative]': '!fixed()', '(window:keydown.escape)': 'menuOpen.set(false)' },
-  template: `
-    <div class="wrap flex h-[72px] items-center justify-between gap-6">
-      <a class="block w-[190px] shrink-0 text-white sm:w-[220px]" aria-label="Shtorivdom — на главную" [href]="home()"><site-logo
-        variant="horizontal" color="white" /></a>
-      <nav class="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Основное меню">
-        <a class="nav-link" [href]="home()" [attr.aria-current]="current() === '' ? 'page' : null">Главная</a>
-        <div class="has-dropdown relative py-6" [class.is-open]="catalogOpen()">
-          <a class="nav-link inline-flex items-center gap-1" aria-haspopup="true" [href]="root() + 'catalog/'"
-            [attr.aria-current]="current().startsWith('catalog/') ? 'page' : null">Каталог
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6" />
-              </svg></a>
-          <div class="dropdown">
-            @for (c of catalog; track c.key) {<a [href]="root() + 'catalog/' + c.key + '/'">{{ c.title }}</a>}
-          </div>
-        </div>
-        @for (n of nav; track n.path) {
-          <a class="nav-link" [href]="root() + n.path" [attr.aria-current]="current().startsWith(n.path) ? 'page' : null">{{ n.label }}</a>
-        }
-      </nav>
-      <div class="hidden items-center gap-5 lg:flex">
-        <a class="hidden text-[15px] font-bold whitespace-nowrap text-cream transition-colors hover:text-gold xl:block"
-          [href]="'tel:' + contacts.tel">{{ contacts.phone }}</a>
-        <a class="btn-header" href="#lead">Заявка</a>
-      </div>
-      <div class="flex items-center gap-1 lg:hidden">
-        <a class="grid size-11 place-items-center text-gold" [href]="'tel:' + contacts.tel"
-          [attr.aria-label]="'Позвонить ' + contacts.phone"><site-icon name="phone" /></a>
-        <!-- eslint-disable-next-line @angular-eslint/template/elements-content -- полоски и aria-label задаёт сам siteBurger -->
-        <button siteBurger aria-controls="site-mobile-menu" [(expanded)]="menuOpen"></button>
-      </div>
-    </div>
-    <div #panel id="site-mobile-menu" class="mobile-panel lg:hidden" [class.is-open]="menuOpen()">
-      <div class="wrap pt-2 pb-6">
-        <a [href]="home()">Главная</a>
-        <button type="button" class="m-toggle" [attr.aria-expanded]="subOpen()" (click)="subOpen.set(!subOpen())">Каталог
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6" />
-            </svg></button>
-        <div #sub class="m-sub">
-          <a [href]="root() + 'catalog/'">Весь каталог</a>
-          @for (c of catalog; track c.key) {<a [href]="root() + 'catalog/' + c.key + '/'">{{ c.title }}</a>}
-        </div>
-        @for (n of nav; track n.path) {<a [href]="root() + n.path">{{ n.label }}</a>}
-        <p class="mt-5 text-[14px] text-cream/70">{{ contacts.hours }}</p>
-        <a siteButton href="#lead" class="mt-4 !flex !justify-center !border-0">Оставить заявку</a>
-      </div>
-    </div>
-  `,
+  templateUrl: './site-header.html',
 })
 export class SiteHeader {
   readonly solid = input(false);
@@ -77,6 +31,22 @@ export class SiteHeader {
   readonly catalogOpen = input(false);
 
   protected readonly home = computed(() => this.root() || './');
+  protected readonly catalogClosed = signal(false);
+
+  protected closeMenu(): void {
+    this.menuOpen.set(false);
+    this.subOpen.set(false);
+    this.closeCatalog();
+  }
+
+  protected closeCatalog(): void {
+    this.catalogClosed.set(true);
+  }
+
+  protected openCatalog(): void {
+    this.catalogClosed.set(false);
+  }
+
   protected readonly catalog = SITE_CATALOG;
   protected readonly nav = SITE_NAV;
   protected readonly contacts = SITE_CONTACTS;
@@ -153,7 +123,7 @@ export class SiteHeader {
           </div>
         </div>
       </div>
-      <div class="flex flex-col items-start justify-between gap-3 border-t border-gold/10 pt-8 text-[13px] font-light text-white/40
+      <div class="flex flex-col items-start justify-between gap-3 border-t border-gold/10 pt-8 text-[12px] font-light text-white/40
         md:flex-row md:items-center">
         <span>© 2020–2026. ООО «Shtorivdom»</span>
         <span class="flex flex-wrap gap-x-6 gap-y-2"><a class="hover:text-gold"

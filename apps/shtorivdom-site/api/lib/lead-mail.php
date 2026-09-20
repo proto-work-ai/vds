@@ -38,7 +38,7 @@ function lead_esc(string $v): string
 function lead_phone(string $raw): array
 {
     $d = preg_replace('/\D/', '', $raw);
-    if (strlen($d) === 11 && ($d[0] === '7' || $d[0] === '8')) {
+    if (strlen($d) === 10 && ($d[0] === '7' || $d[0] === '8')) {
         $d = '7' . substr($d, 1);
         $text = sprintf('+7 (%s) %s-%s-%s', substr($d, 1, 3), substr($d, 4, 3), substr($d, 7, 2), substr($d, 9, 2));
         return [$text, '+' . $d];

@@ -1,6 +1,5 @@
 import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
-  ApplicationRef,
   ChangeDetectionStrategy,
   Component,
   computed,
@@ -27,7 +26,6 @@ export class App {
   private readonly _router = inject(Router);
   private readonly _document = inject(DOCUMENT);
   private readonly _browser = isPlatformBrowser(inject(PLATFORM_ID));
-  private readonly _appRef = inject(ApplicationRef);
   private _pageAbort?: AbortController;
 
   /** Текущий раздел для меню: '' — главная, 'catalog/…/' и т. д. */
@@ -52,6 +50,7 @@ export class App {
     onScroll();
     win.addEventListener('scroll', onScroll, { passive: true });
     installGlobal(this._document);
+    this.onNavigated(this._router.url);
     destroyRef.onDestroy(() => {
       win.removeEventListener('scroll', onScroll);
       this._pageAbort?.abort();
@@ -72,11 +71,11 @@ export class App {
     this._pageAbort?.abort();
     const abort = new AbortController();
     this._pageAbort = abort;
-    // Интерактив навешивается после отрисовки и гидрации страницы
-    this._appRef.whenStable().then(() => {
+    const initialize = () => {
       const main = this._document.querySelector<HTMLElement>('router-outlet + *');
       if (!abort.signal.aborted && main) initPage(main, current, abort.signal);
-    });
+    };
+    requestAnimationFrame(initialize);
   }
 
   /** Внутренние ссылки шаблонов (обычные href) — переходом роутера, «#якорь» — прокруткой на текущей странице. */

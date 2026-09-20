@@ -53,7 +53,7 @@ export const ШапкаМобильная: StoryObj<HeaderArgs> = {
   render: (args) => ({
     props: { ...args, photo: ASSETS + 'img/hero.jpg' },
     template: `
-      <p class="hidden bg-gold-soft px-5 py-2 text-[13px] lg:block">Мобильная шапка видна при ширине окна меньше 1024px — сузьте окно или откройте историю в iframe на телефоне.</p>
+      <p class="hidden bg-gold-soft px-5 py-2 text-[12px] lg:block">Мобильная шапка видна при ширине окна меньше 1024px — сузьте окно или откройте историю в iframe на телефоне.</p>
       ${headerTemplate}
     `,
   }),

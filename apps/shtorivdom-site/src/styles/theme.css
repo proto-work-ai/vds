@@ -325,6 +325,45 @@
     outline: 2px solid var(--color-gold);
     outline-offset: 2px;
   }
+  .calc-checkbox {
+    position: relative;
+    flex: 0 0 auto;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    appearance: none;
+    border: 1px solid rgb(13 34 61 / 0.25);
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    transition:
+      border-color 0.2s,
+      background 0.2s,
+      box-shadow 0.2s;
+  }
+  .calc-checkbox:hover {
+    border-color: var(--color-gold);
+  }
+  .calc-checkbox:checked {
+    border-color: var(--color-gold);
+    background: var(--color-gold);
+    box-shadow: inset 0 0 0 1px var(--color-gold);
+  }
+  .calc-checkbox:checked::after {
+    position: absolute;
+    top: 3px;
+    left: 7px;
+    width: 5px;
+    height: 10px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    content: '';
+    transform: rotate(45deg);
+  }
+  .calc-checkbox:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
   .calc-kind-img {
     aspect-ratio: 4 / 3;
     width: 100%;
@@ -444,6 +483,12 @@
     opacity: 1;
     visibility: visible;
     transform: none;
+  }
+  .has-dropdown.is-closed .dropdown,
+  .has-dropdown.is-closed:focus-within .dropdown {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
   }
   .dropdown a {
     display: block;
@@ -718,13 +763,14 @@
   .field-label {
     display: block;
     margin-bottom: 8px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 0.15em;
+    line-height: 1.35;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
   .form-done {
-    opacity: 0;
+    /*opacity: 0;*/
     transform: scale(0.95);
     transition:
       opacity 0.4s ease-out,
@@ -742,8 +788,10 @@
     }
   }
   .rise {
-    animation: hero-rise 0.9s ease-out backwards;
-    animation-delay: var(--d, 0s);
+    /*
+      animation: hero-rise 0.9s ease-out backwards;
+      animation-delay: var(--d, 0s);
+    */
   }
   /* Текст без анимации появления (решение владельца): заголовки, подзаголовки, надписи и блоки-заголовки
      разделов видны сразу; карточки, фото и кнопки появляются как раньше. */
@@ -795,7 +843,7 @@
       font-size: 15px !important;
       line-height: 1.65 !important;
     }
-    :is(p, li, dd, blockquote)[class~='text-[15px]'] {
+    :is(p, li, dd, blockquote)[class~='text-[14px]'] {
       font-size: 16px !important;
       line-height: 1.7 !important;
     }

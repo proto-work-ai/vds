@@ -52,7 +52,3 @@ vitest.config.*.timestamp*
 
 
 storybook-static
-# Заявки с сайта: настройки с паролем и журнал заявок остаются только на хостинге
-apps/shtorivdom-site/api/lead-config.php
-apps/shtorivdom-site/api/leads/*.jsonl
-apps/shtorivdom-site/api/leads/rate-*.json

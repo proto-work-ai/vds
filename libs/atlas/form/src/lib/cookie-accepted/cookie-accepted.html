@@ -5,17 +5,17 @@
   <div class="cookie-text">
     @if (size() === 's') {
       Пользуясь сайтом, вы принимаете политику
-      <a [routerLink]="['/privacy-policy']" rel="noopener">Cookie</a>
+      <a rel="noopener" [routerLink]="['/privacy-policy']">Cookie</a>
       и обработку данных в соответствии с
-      <a [routerLink]="['/privacy-policy']" rel="noopener">Политикой конфиденциальности</a>
+      <a rel="noopener" [routerLink]="['/privacy-policy']">Политикой конфиденциальности</a>
     } @else {
       Продолжая использовать сайт и/или нажимая кнопку «Согласен» вы соглашаетесь с условиями
       использования cookie,
-      <a [routerLink]="['/privacy-policy']" rel="noopener">
+      <a rel="noopener" [routerLink]="['/privacy-policy']">
         Политикой обработки персональных данных
       </a>
       , выражаете
-      <a [routerLink]="['/soglasie-na-obrabotku-personalnyh-dannyh']" rel="noopener">
+      <a rel="noopener" [routerLink]="['/soglasie-na-obrabotku-personalnyh-dannyh']">
         согласие на их обработку
       </a>
       и их возможную передачу третьим лицам.
@@ -25,5 +25,6 @@
     }
   </div>
 
-  <button class="btn-sm btn-primary" type="button" (click)="bannerClose()">Ок</button>
+  <a href="#lead" class="btn-header" (click)="bannerClose($event)">Ок</a>
+  <!-- <button class="btn-sm btn-primary" type="button" (click)="bannerClose()">Ок</button> -->
 </div>

@@ -134,6 +134,10 @@ if ($data['email'] !== '' && !filter_var($data['email'], FILTER_VALIDATE_EMAIL))
 
 // телефон обязателен везде, кроме вопроса со страницы контактов — там нужен email
 $digits = preg_replace('/\D/', '', $data['phone']);
+if (strlen($digits) === 10) {
+    $digits = '7' . $digits;
+    $data['phone'] = $digits;
+}
 $needPhone = $kind !== 'contact';
 if ($needPhone && strlen($digits) !== 11) {
     lead_reply(400, ['ok' => false, 'error' => 'Укажите телефон полностью']);
@@ -170,6 +174,24 @@ $recipients = $config['to'] ?? [];
 
 if (!$sent) {
     lead_log(['at' => date('c'), 'error' => 'smtp', 'message' => $error, 'kind' => $kind]);
+    if ($recipients) {
+        [$sent, $fallbackError] = native_mail_send($config['smtp'], [
+            'to' => $recipients,
+            'subject' => $mail['subject'],
+            'html' => $mail['html'],
+            'text' => $mail['text'],
+            'replyTo' => $mail['replyTo'],
+            'replyToName' => $mail['replyToName'],
+        ]);
+        if (!$sent) {
+            lead_log([
+                'at' => date('c'),
+                'error' => 'mail-fallback',
+                'message' => $fallbackError,
+                'kind' => $kind,
+            ]);
+        }
+    }
 }
 
 // ---------- подтверждение клиенту ----------

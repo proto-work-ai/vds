@@ -2,7 +2,7 @@
   <section class="bg-navy pt-[84px] pb-5 text-center text-cream sm:pt-[100px] sm:pb-9">
     <div class="wrap">
       <nav
-        class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[13px] sm:mb-3 sm:text-[14px] text-cream/60"
+        class="mb-2 flex flex-wrap items-center justify-start gap-2 text-left text-[12px] sm:mb-3 sm:text-[14px] text-cream/60"
         aria-label="Хлебные крошки"
       >
         <a href="/" class="hover:text-gold">Главная</a>
@@ -93,7 +93,7 @@
           </li>
         </ul>
         <p
-          class="mt-6 border-l-2 border-gold pl-4 text-[15px] leading-relaxed font-light text-slate"
+          class="mt-6 border-l-2 border-gold pl-4 text-[14px] leading-relaxed font-light text-slate"
         >
           Дополнительно вы можете заказать комплект тканевых палитр (свотчей) под разрабатываемый
           дизайн-проект.
@@ -134,6 +134,7 @@
           class="flex flex-col gap-5"
           novalidate
           data-lead-form
+          data-lead-type="full"
           #lead="leadForm"
           [formGroup]="lead.form"
         >
@@ -167,7 +168,7 @@
                 Телефон
                 <span class="text-red-600">*</span>
               </label>
-              <tui-textfield [tuiTextfieldCleaner]="false">
+              <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
                 <input
                   mask="+7 (###) ###-##-##"
                   tuiInputPhone

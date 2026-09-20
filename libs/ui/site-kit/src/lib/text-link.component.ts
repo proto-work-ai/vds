@@ -13,10 +13,10 @@ import { SiteIcon } from './icon.component';
 export type SiteTextLinkVariant = 'more' | 'section' | 'invite' | 'back' | 'card-dark' | 'card-light';
 
 const CLASSES: Record<SiteTextLinkVariant, string> = {
-  more: 'inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75',
-  section: 'inline-flex items-center gap-2 text-[13px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:text-gold',
+  more: 'inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-gold uppercase transition-opacity hover:opacity-75',
+  section: 'inline-flex items-center gap-2 text-[12px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:text-gold',
   invite: 'group inline-flex items-center gap-3 text-[14px] font-bold tracking-[.12em] text-gold uppercase transition-[gap] duration-300 hover:gap-5',
-  back: 'inline-flex items-center gap-2 px-2 py-3.5 text-[13px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:text-gold',
+  back: 'inline-flex items-center gap-2 px-2 py-3.5 text-[12px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:text-gold',
   'card-dark': 'group inline-flex items-center gap-1.5 text-[11px] tracking-[.2em] text-cream/60 uppercase transition-colors hover:text-gold',
   'card-light': 'group inline-flex items-center gap-2 text-[12px] font-bold tracking-[.2em] text-navy/70 uppercase transition-colors hover:text-gold',
 };

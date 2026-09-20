@@ -21,12 +21,12 @@ export const Поля: StoryObj = {
         <div>
           <label class="field-label" for="f4">Телефон * — ошибка</label>
           <input siteField id="f4" [error]="true" value="+7 (925" />
-          <p class="mt-2 text-[13px] text-[#c0392b]">Введите номер телефона полностью</p>
+          <p class="mt-2 text-[12px] text-[#c0392b]">Введите номер телефона полностью</p>
         </div>
         <div>
           <label class="field-label" for="f5">Телефон с маской +7 (___) ___-__-__</label>
           <input siteField id="f5" placeholder="Укажите телефон" [(sitePhoneMask)]="phone" />
-          <p class="mt-2 text-[13px] text-slate/60">Значение: {{ phone || '—' }}</p>
+          <p class="mt-2 text-[12px] text-slate/60">Значение: {{ phone || '—' }}</p>
         </div>
         <div><label class="field-label" for="f6">Комментарий — textarea</label><textarea siteField id="f6" rows="3" placeholder="Комментарий"></textarea></div>
         <div class="md:col-span-2 grid gap-6 md:grid-cols-2">
@@ -68,7 +68,7 @@ export const ПоляПервогоЭкрана: StoryObj = {
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 <input value="+7 (9" class="h-10 w-full bg-transparent text-[16px] outline-none" />
               </label>
-              <p class="mt-2 text-[13px] text-[#c0392b]">Введите номер телефона полностью</p>
+              <p class="mt-2 text-[12px] text-[#c0392b]">Введите номер телефона полностью</p>
             </div>
           </div>
         </div>
@@ -95,7 +95,7 @@ export const ФормаЗаявки: StoryObj<FormArgs> = {
           <img [src]="photo" alt="" class="absolute inset-0 size-full object-cover opacity-90" />
           <div class="absolute inset-0 bg-[linear-gradient(115deg,rgb(13_34_61/.82)_0%,rgb(13_34_61/.5)_55%,rgb(13_34_61/.2)_100%)]"></div>
           <div class="relative max-w-[400px] rounded-[4px] bg-cream/95 px-6 py-8 shadow-[0_20px_60px_rgb(0_0_0/.25)] backdrop-blur sm:px-8">
-            <p class="mb-6 font-serif text-[26px] leading-tight font-bold">Оставьте заявку дизайнеру:</p>
+            <p class="mb-6 font-serif text-[24px] leading-tight font-bold">Оставьте заявку дизайнеру:</p>
             <site-lead-form variant="hero" [state]="state" />
           </div>
         </div>

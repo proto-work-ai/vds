@@ -259,7 +259,7 @@ const itemHtml = (it) => {
     ? `<strong class="font-bold text-navy">${esc(m[1])}${m[2] === '.' ? '.' : ':'}</strong> ${esc(m[3])}`
     : `<strong class="font-bold text-navy">${esc(it.text)}</strong>`;
   const plain = !m && !it.sub ? esc(it.text) : text;
-  return `<li class="cat-li">${plain}${it.quote ? `<p class="mt-3 border-l-2 border-gold bg-gold-soft/50 px-4 py-3 text-[15px] text-navy">${esc(it.quote)}</p>` : ''}${it.sub ? `<ul class="mt-3 space-y-3">${it.sub.map(itemHtml).join('')}</ul>` : ''}</li>`;
+  return `<li class="cat-li">${plain}${it.quote ? `<p class="mt-3 border-l-2 border-gold bg-gold-soft/50 px-4 py-3 text-[14px] text-navy">${esc(it.quote)}</p>` : ''}${it.sub ? `<ul class="mt-3 space-y-3">${it.sub.map(itemHtml).join('')}</ul>` : ''}</li>`;
 };
 
 const compareTable = (rows) => {
@@ -286,7 +286,7 @@ const contentBlocks = (detail) =>
       (s, i) => `
       <article class="reveal reveal-soft border-t border-navy/10 py-9 first:border-t-0 first:pt-0 sm:py-11" style="--d:.05s">
         <div class="grid gap-4 sm:grid-cols-[64px_minmax(0,1fr)] sm:gap-6">
-          <span class="font-serif text-[30px] leading-none text-gold sm:text-[36px]">${String(i + 1).padStart(2, '0')}</span>
+          <span class="font-serif text-[30px] leading-none text-gold sm:text-[34px]">${String(i + 1).padStart(2, '0')}</span>
           <div>
             <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">${esc(s.title)}</h3>
             ${s.note ? `<p class="mb-4 text-[16px] leading-relaxed font-light text-slate">${esc(s.note)}</p>` : ''}
@@ -313,7 +313,7 @@ const priceTable = (key, title) => {
     <div class="reveal hidden overflow-x-auto lg:block" data-price-table>
       <table class="cat-table cat-price">
         <thead><tr><th>Материал / модель</th><th>Производство</th><th>Ширина, м</th><th>Гарантия</th><th class="text-right">Цена <span class="block text-[11px] font-normal tracking-normal normal-case opacity-70">с пошивом и установкой</span></th></tr></thead>
-        <tbody>${rows.map(([name, country, width, warranty, price, unit]) => `<tr><td class="font-serif text-[18px] font-bold">${name}</td><td>${country}</td><td>${range(width, 'м', 'до ', num)}</td><td>${years(warranty)}</td><td class="text-right text-[17px] font-bold whitespace-nowrap">${range(price, '₽', 'от ')} <span class="font-normal text-slate/70">/ ${unit}</span></td></tr>`).join('')}</tbody>
+        <tbody>${rows.map(([name, country, width, warranty, price, unit]) => `<tr><td class="font-serif text-[18px] font-bold">${name}</td><td>${country}</td><td>${range(width, 'м', 'до ', num)}</td><td>${years(warranty)}</td><td class="text-right tetext-[14px] font-bold whitespace-nowrap">${range(price, '₽', 'от ')} <span class="font-normal text-slate/70">/ ${unit}</span></td></tr>`).join('')}</tbody>
       </table>
     </div>
     <div class="grid gap-4 lg:hidden" data-price-cards>${rows
@@ -322,7 +322,7 @@ const priceTable = (key, title) => {
       <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d:${i * 0.08}s">
         <p class="mb-3 font-serif text-[20px] leading-tight font-bold">${name}</p>
         <p class="mb-4 text-[20px] font-bold text-navy">${range(price, '₽', 'от ')} <span class="text-[14px] font-normal text-slate/70">/ ${unit}</span></p>
-        <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[13px]">
+        <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px]">
           <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt><dd>${country}</dd></div>
           <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt><dd>${range(width, 'м', 'до ', num)}</dd></div>
           <div><dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt><dd>${years(warranty)}</dd></div>
@@ -333,7 +333,7 @@ const priceTable = (key, title) => {
     </div>
     <div class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center">
       <a href="#lead" class="btn-gold group max-sm:w-full">Рассчитать стоимость ${arrow}</a>
-      <a href="{{root}}price/" class="inline-flex items-center justify-center gap-2 rounded-[2px] border border-navy/30 px-[26px] py-[14px] text-[13px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:border-gold hover:text-gold max-sm:w-full">Все цены →</a>
+      <a href="{{root}}price/" class="inline-flex items-center justify-center gap-2 rounded-[2px] border border-navy/30 px-[26px] py-[14px] text-[12px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:border-gold hover:text-gold max-sm:w-full">Все цены →</a>
     </div>
   </div>
 </section>`;
@@ -437,7 +437,7 @@ const listPage = () => `${styles}
           <div class="px-6 pt-6 pb-7 sm:px-7">
             <p class="mb-2 text-[11px] tracking-[.25em] text-gold uppercase opacity-80">Раздел ${String(i + 1).padStart(2, '0')}</p>
             <h2 class="mb-2.5 text-[24px] font-bold text-cream">${s.title}</h2>
-            <p class="mb-5 text-[15px] leading-[1.7] text-cream/55">${s.text}</p>
+            <p class="mb-5 text-[14px] leading-[1.7] text-cream/55">${s.text}</p>
             <div class="cat-gold-line mb-5"></div>
             <div class="flex flex-wrap items-center justify-between gap-3">
               <span class="text-[14px] tracking-[.04em] text-gold">от ${money(min)} ₽ / ${unit}</span>
@@ -452,7 +452,7 @@ const listPage = () => `${styles}
 </section>
 <section class="bg-cream py-14 sm:py-16">
   <div class="wrap reveal flex flex-col items-start gap-6 border border-gold/30 bg-white px-6 py-8 sm:flex-row sm:items-center sm:px-10">
-    <p class="flex-1 font-serif text-[22px] leading-snug sm:text-[26px]">Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.</p>
+    <p class="flex-1 font-serif text-[22px] leading-snug sm:text-[24px]">Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.</p>
     <a href="#lead" class="btn-gold group max-sm:w-full">Пригласить дизайнера ${arrow}</a>
   </div>
 </section>
@@ -472,7 +472,7 @@ const sectionPage = (s) => {
       <div>${eyebrow('Каталог', false, true)}</div>
       <h1 class="rise mb-5 text-[clamp(36px,6vw,60px)] leading-[1.1]" style="--d:.1s">${s.title}</h1>
       <p class="rise mb-8 max-w-[520px] text-[18px] leading-relaxed text-cream/75" style="--d:.2s">${s.text}</p>
-      <div class="rise mb-9 flex items-baseline gap-3" style="--d:.25s"><span class="text-[13px] tracking-[.2em] text-cream/50 uppercase">Цена</span><span class="font-serif text-[30px] text-gold">от ${money(min)} ₽</span><span class="text-cream/60">/ ${unit}</span></div>
+      <div class="rise mb-9 flex items-baseline gap-3" style="--d:.25s"><span class="text-[12px] tracking-[.2em] text-cream/50 uppercase">Цена</span><span class="font-serif text-[30px] text-gold">от ${money(min)} ₽</span><span class="text-cream/60">/ ${unit}</span></div>
       <div class="rise flex flex-wrap gap-4" style="--d:.3s">
         <a href="#lead" class="btn-gold group max-sm:w-full">Пригласить дизайнера ${arrow}</a>
         <a href="#prices" class="btn-line max-sm:w-full">Смотреть цены</a>
@@ -506,7 +506,7 @@ const sectionPage = (s) => {
         ${SECTIONS.filter((o) => o.key !== s.key)
           .map(
             (o) =>
-              `<a href="{{root}}catalog/${o.key}/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[15px] transition-colors last:border-0 hover:text-gold">${o.title}<span class="text-gold">→</span></a>`,
+              `<a href="{{root}}catalog/${o.key}/" class="flex items-center justify-between border-b border-navy/5 py-2.5 text-[14px] transition-colors last:border-0 hover:text-gold">${o.title}<span class="text-gold">→</span></a>`,
           )
           .join('\n        ')}
       </nav>
@@ -557,19 +557,19 @@ const modelPage = (m) => {
     <div>
       <div>${eyebrow('Карнизы для штор', false)}</div>
       <h1 class="rise mb-4 text-[clamp(32px,4.5vw,48px)] leading-[1.12]" style="--d:.1s">${m.title}</h1>
-      <p class="rise mb-8 text-[17px] leading-relaxed font-light text-slate" style="--d:.15s">Декоративные и профильные.</p>
+      <p class="rise mb-8 tetext-[14px] leading-relaxed font-light text-slate" style="--d:.15s">Декоративные и профильные.</p>
       <div class="rise mb-8 border border-navy/10 bg-white px-6 py-6" style="--d:.2s">
         <p class="mb-4 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Характеристики</p>
         <p class="border border-dashed border-gold px-4 py-3 text-[14px] text-slate">Заглушка: на текущем сайте у модели есть только название и фото — характеристики (материал, диаметр, длина, кронштейны) ждут данных.</p>
       </div>
       <div class="rise mb-8 border border-navy/10 bg-white px-6 py-6" style="--d:.25s">
         <p class="mb-1 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Цена</p>
-        <p class="mb-4 text-[13px] text-slate/70">Цены раздела «Карнизы для штор» с установкой; цены отдельной модели на текущем сайте нет.</p>
-        <ul>${PRICES['curtain-rods'].map(([name, , , , price, unit]) => `<li class="flex flex-wrap items-baseline justify-between gap-x-3 border-b border-navy/5 py-2.5 text-[15px] last:border-0"><span>${name}</span><span class="font-bold whitespace-nowrap">${range(price, '₽', 'от ')} / ${unit}</span></li>`).join('')}</ul>
+        <p class="mb-4 text-[12px] text-slate/70">Цены раздела «Карнизы для штор» с установкой; цены отдельной модели на текущем сайте нет.</p>
+        <ul>${PRICES['curtain-rods'].map(([name, , , , price, unit]) => `<li class="flex flex-wrap items-baseline justify-between gap-x-3 border-b border-navy/5 py-2.5 text-[14px] last:border-0"><span>${name}</span><span class="font-bold whitespace-nowrap">${range(price, '₽', 'от ')} / ${unit}</span></li>`).join('')}</ul>
       </div>
       <div class="rise flex flex-wrap gap-4" style="--d:.3s">
         <a href="#lead" class="btn-gold group max-sm:w-full" data-order="${m.title}">Заказать карниз ${arrow}</a>
-        <a href="../#models" class="inline-flex items-center gap-2 px-2 py-3.5 text-[13px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:text-gold max-sm:w-full max-sm:justify-center">← Все модели</a>
+        <a href="../#models" class="inline-flex items-center gap-2 px-2 py-3.5 text-[12px] font-bold tracking-[.1em] text-navy uppercase transition-colors hover:text-gold max-sm:w-full max-sm:justify-center">← Все модели</a>
       </div>
     </div>
   </div>
@@ -584,7 +584,7 @@ const modelPage = (m) => {
       </div>
     </div>
     <div class="reveal cat-strip cat-strip-models" data-strip>
-      ${others.map((o) => `<a href="../${o.key}/" class="cat-card group flex flex-col border border-navy/10 bg-white"><span class="flex h-[140px] items-center overflow-hidden px-5"><img src="{{root}}assets/img/catalog/curtain-rods/models/catalog-${o.key}.webp" alt="${o.title}" loading="lazy" class="cat-zoom-img max-h-[90px] w-full object-contain" /></span><span class="border-t border-navy/10 px-5 py-4 font-serif text-[17px] leading-snug transition-colors group-hover:text-gold">${o.title}</span></a>`).join('\n      ')}
+      ${others.map((o) => `<a href="../${o.key}/" class="cat-card group flex flex-col border border-navy/10 bg-white"><span class="flex h-[140px] items-center overflow-hidden px-5"><img src="{{root}}assets/img/catalog/curtain-rods/models/catalog-${o.key}.webp" alt="${o.title}" loading="lazy" class="cat-zoom-img max-h-[90px] w-full object-contain" /></span><span class="border-t border-navy/10 px-5 py-4 font-serif tetext-[14px] leading-snug transition-colors group-hover:text-gold">${o.title}</span></a>`).join('\n      ')}
     </div>
   </div>
 </section>

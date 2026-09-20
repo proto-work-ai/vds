@@ -1,6 +1,9 @@
 import { FormArray, FormGroup, NgForm } from '@angular/forms';
 
-export function markAsSubmit(form: NgForm | FormGroup | FormArray, updateValueAndValidity = true): boolean {
+export function markAsSubmit(
+  form: NgForm | FormGroup | FormArray,
+  updateValueAndValidity = true,
+): boolean {
   function fn(controls: typeof form.controls) {
     Object.keys(controls)
       .map((key) => (controls as any)[key])
