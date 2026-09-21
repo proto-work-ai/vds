@@ -1,0 +1,210 @@
+{
+  "currency": "RUB",
+  "calculator": {
+    "curtainRodPerLinearMeter": 900
+  },
+  "sections": [
+    {
+      "key": "blackout-curtains",
+      "title": "Шторы блэкаут",
+      "unit": "м.пог.",
+      "image": "blackout-curtains/image-5.jpg",
+      "rows": [
+        {
+          "name": "Блэкаут однотонный",
+          "country": "Турция",
+          "width": 2.8,
+          "warranty": 3,
+          "priceMin": 2500
+        },
+        {
+          "name": "Блэкаут с фактурой льна",
+          "country": "Турция",
+          "width": 2.8,
+          "warranty": 3,
+          "priceMin": 3200
+        },
+        {
+          "name": "Блэкаут жаккард",
+          "country": "Германия",
+          "width": 3,
+          "warranty": 5,
+          "priceMin": 4500,
+          "priceMax": 7000
+        }
+      ]
+    },
+    {
+      "key": "roman-blinds",
+      "title": "Римские шторы",
+      "unit": "м²",
+      "image": "roman-blinds/image-1.jpg",
+      "rows": [
+        {
+          "name": "Лёгкая ткань",
+          "country": "Турция",
+          "width": 2.8,
+          "warranty": 3,
+          "priceMin": 4500
+        },
+        {
+          "name": "Плотная ткань / блэкаут",
+          "country": "Турция",
+          "width": 2.8,
+          "warranty": 3,
+          "priceMin": 5500
+        },
+        {
+          "name": "Лён премиум",
+          "country": "Италия",
+          "width": 3,
+          "warranty": 5,
+          "priceMin": 8000,
+          "priceMax": 12000
+        }
+      ]
+    },
+    {
+      "key": "roller-blinds",
+      "title": "Рулонные шторы",
+      "unit": "м²",
+      "image": "roller-blinds/image-2.jpg",
+      "rows": [
+        {
+          "name": "Мини, ткань стандарт",
+          "country": "Россия",
+          "width": [0.3, 1.6],
+          "warranty": 2,
+          "priceMin": 2200
+        },
+        {
+          "name": "Кассетные UNI",
+          "country": "Россия",
+          "width": [0.3, 1.8],
+          "warranty": 3,
+          "priceMin": 3500
+        },
+        {
+          "name": "День-ночь (зебра)",
+          "country": "Корея",
+          "width": [0.3, 2.5],
+          "warranty": 3,
+          "priceMin": 4200
+        }
+      ]
+    },
+    {
+      "key": "linen-curtains",
+      "title": "Льняные шторы",
+      "unit": "м.пог.",
+      "image": "linen-curtains/image-3.jpg",
+      "rows": [
+        {
+          "name": "Лён с хлопком",
+          "country": "Турция",
+          "width": 2.8,
+          "warranty": 3,
+          "priceMin": 2800
+        },
+        {
+          "name": "Натуральный лён",
+          "country": "Беларусь",
+          "width": 2.6,
+          "warranty": 3,
+          "priceMin": 4000
+        },
+        {
+          "name": "Итальянский лён",
+          "country": "Италия",
+          "width": 3,
+          "warranty": 5,
+          "priceMin": 6500,
+          "priceMax": 9500
+        }
+      ]
+    },
+    {
+      "key": "pleated-blinds",
+      "title": "Шторы плиссе",
+      "unit": "м²",
+      "image": "pleated-blinds/image-1.jpg",
+      "rows": [
+        {
+          "name": "Плиссе стандарт",
+          "country": "Россия",
+          "width": [0.3, 1.8],
+          "warranty": 2,
+          "priceMin": 3500
+        },
+        {
+          "name": "Плиссе блэкаут",
+          "country": "Германия",
+          "width": [0.3, 1.8],
+          "warranty": 3,
+          "priceMin": 5000
+        },
+        {
+          "name": "Мансардные плиссе",
+          "country": "Германия",
+          "width": [0.3, 1.5],
+          "warranty": 3,
+          "priceMin": 7500
+        }
+      ]
+    },
+    {
+      "key": "curtain-rods",
+      "title": "Карнизы для штор",
+      "unit": "м.пог.",
+      "image": "curtain-rods/image-1.jpg",
+      "rows": [
+        {
+          "name": "Профильный алюминиевый",
+          "country": "Россия",
+          "width": null,
+          "warranty": 3,
+          "priceMin": 900
+        },
+        {
+          "name": "Декоративный металлический",
+          "country": "Германия",
+          "width": null,
+          "warranty": 5,
+          "priceMin": 2500,
+          "priceMax": 6000
+        },
+        {
+          "name": "Электрокарниз",
+          "country": "Германия",
+          "width": null,
+          "warranty": 2,
+          "priceMin": 18000,
+          "unit": "шт."
+        }
+      ]
+    },
+    {
+      "key": "blinds",
+      "title": "Жалюзи",
+      "unit": "м²",
+      "image": "blinds/image-1.jpg",
+      "rows": [
+        {
+          "name": "Горизонтальные алюминиевые",
+          "country": "Россия",
+          "width": null,
+          "warranty": 2,
+          "priceMin": 1500
+        },
+        {
+          "name": "Вертикальные тканевые",
+          "country": "Россия",
+          "width": null,
+          "warranty": 2,
+          "priceMin": 1800
+        },
+        { "name": "Деревянные", "country": "Китай", "width": null, "warranty": 3, "priceMin": 6500 }
+      ]
+    }
+  ]
+}

@@ -30,86 +30,32 @@ const SITE = 'mockups/site';
 const SRC = path.join(SITE, 'src');
 const read = (p) => readFileSync(path.join(SRC, p), 'utf8');
 
-// catalog.data.ts + price-list.service.ts
-const CATALOG = [
-  {
-    key: 'blackout-curtains',
-    title: 'Шторы блэкаут',
-    text: 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме',
-    image: 'image-5.jpg',
-    prices: [
-      ['Блэкаут однотонный', 2500, 'м.пог.'],
-      ['Блэкаут с фактурой льна', 3200, 'м.пог.'],
-      ['Блэкаут жаккард', [4500, 7000], 'м.пог.'],
-    ],
-  },
-  {
-    key: 'roman-blinds',
-    title: 'Римские шторы',
-    text: 'Из плотных и легких тканей для прямых и скошенных окон.',
-    image: 'image-1.jpg',
-    prices: [
-      ['Лёгкая ткань', 4500, 'м²'],
-      ['Плотная ткань / блэкаут', 5500, 'м²'],
-      ['Лён премиум', [8000, 12000], 'м²'],
-    ],
-  },
-  {
-    key: 'roller-blinds',
-    title: 'Рулонные шторы',
-    text: 'Крепление на проем, в проем или раму окна.',
-    image: 'image-2.jpg',
-    prices: [
-      ['Мини, ткань стандарт', 2200, 'м²'],
-      ['Кассетные UNI', 3500, 'м²'],
-      ['День-ночь (зебра)', 4200, 'м²'],
-    ],
-  },
-  {
-    key: 'linen-curtains',
-    title: 'Льняные шторы',
-    text: 'Для стандартных, мансардных и треугольных окон.',
-    image: 'image-3.jpg',
-    prices: [
-      ['Лён с хлопком', 2800, 'м.пог.'],
-      ['Натуральный лён', 4000, 'м.пог.'],
-      ['Итальянский лён', [6500, 9500], 'м.пог.'],
-    ],
-  },
-  {
-    key: 'pleated-blinds',
-    title: 'Шторы плиссе',
-    text: 'Для стандартных, мансардных и треугольных окон.',
-    image: 'image-1.jpg',
-    prices: [
-      ['Плиссе стандарт', 3500, 'м²'],
-      ['Плиссе блэкаут', 5000, 'м²'],
-      ['Мансардные плиссе', 7500, 'м²'],
-    ],
-  },
-  {
-    key: 'curtain-rods',
-    title: 'Карнизы для штор',
-    text: 'Декоративные и профильные.',
-    image: 'image-1.jpg',
-    prices: [
-      ['Профильный алюминиевый', 900, 'м.пог.'],
-      ['Декоративный металлический', [2500, 6000], 'м.пог.'],
-      ['Электрокарниз', 18000, 'шт.'],
-    ],
-  },
-  {
-    key: 'blinds',
-    title: 'Жалюзи',
-    text: 'Стильные, практичные.',
-    image: 'image-1.jpg',
-    prices: [
-      ['Горизонтальные алюминиевые', 1500, 'м²'],
-      ['Вертикальные тканевые', 1800, 'м²'],
-      ['Деревянные', 6500, 'м²'],
-    ],
-  },
+// Общая конфигурация цен используется мокапами и Angular-сайтом.
+const PRICE_CONFIG = JSON.parse(readFileSync('libs/ui/site-kit/src/lib/site-prices.json', 'utf8'));
+const CATALOG_META = [
+  ['blackout-curtains', 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме'],
+  ['roman-blinds', 'Из плотных и легких тканей для прямых и скошенных окон.'],
+  ['roller-blinds', 'Крепление на проем, в проем или раму окна.'],
+  ['linen-curtains', 'Для стандартных, мансардных и треугольных окон.'],
+  ['pleated-blinds', 'Для стандартных, мансардных и треугольных окон.'],
+  ['curtain-rods', 'Декоративные и профильные.'],
+  ['blinds', 'Стильные, практичные.'],
 ];
+const CATALOG = CATALOG_META.map(([key, text]) => {
+  const section = PRICE_CONFIG.sections.find((item) => item.key === key);
+  if (!section) throw new Error(`Нет настройки цен для раздела ${key}`);
+  return {
+    key,
+    title: section.title,
+    text,
+    image: section.image.split('/').at(-1),
+    prices: section.rows.map((row) => [
+      row.name,
+      row.priceMax ? [row.priceMin, row.priceMax] : row.priceMin,
+      row.unit ?? section.unit,
+    ]),
+  };
+});
 
 const money = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const priceText = (p) => (Array.isArray(p) ? `${money(p[0])}–${money(p[1])}` : money(p));
@@ -118,6 +64,63 @@ const minOf = (item) =>
     (m, r) => (Math.min(...[].concat(r[1])) < m[0] ? [Math.min(...[].concat(r[1])), r[2]] : m),
     [Infinity, ''],
   );
+
+const configuredPrice = (section, rowIndex) => {
+  const row = section.rows[rowIndex];
+  const unit = row.unit ?? section.unit;
+  return row.priceMax
+    ? `${money(row.priceMin)}–${money(row.priceMax)} ₽/${unit}`
+    : `от ${money(row.priceMin)} ₽/${unit}`;
+};
+
+const replacePriceSequence = (html, indexes, section) => {
+  let index = 0;
+  return html.replace(/(?:от )?\d[\d  ]*(?:–\d[\d  ]*)? ₽\/(?:м\.пог\.|м²|шт\.)/g, () => {
+    const rowIndex = indexes[index++];
+    return rowIndex === undefined ? '' : configuredPrice(section, rowIndex);
+  });
+};
+
+const applyConfiguredPrices = (body, pagePath) => {
+  body = body.replace(/<!-- @price:([a-z-]+):(\d+) -->/g, (_, key, rowIndex) => {
+    const section = PRICE_CONFIG.sections.find((item) => item.key === key);
+    if (!section?.rows[Number(rowIndex)]) {
+      throw new Error(`Нет цены для ${key}, строка ${rowIndex}`);
+    }
+    return configuredPrice(section, Number(rowIndex));
+  });
+
+  const replaceBlocks = (source, marker, indexes) => {
+    for (const section of PRICE_CONFIG.sections) {
+      const position = source.indexOf(marker(section.key));
+      if (position < 0) continue;
+      const start = source.lastIndexOf('<article', position);
+      const end = source.indexOf('</article>', position) + '</article>'.length;
+      const block = source.slice(start, end);
+      source =
+        source.slice(0, start) + replacePriceSequence(block, indexes, section) + source.slice(end);
+    }
+    return source;
+  };
+
+  if (pagePath === '') {
+    return replaceBlocks(body, (key) => `href="./catalog/${key}/"`, [0, 0, 1, 2]);
+  }
+  if (pagePath === 'price/') {
+    for (const section of PRICE_CONFIG.sections) {
+      const start = body.indexOf(`id="panel-${section.key}"`);
+      if (start < 0) continue;
+      const next = body.indexOf('role="tabpanel"', start + 1);
+      const end = next < 0 ? body.length : body.lastIndexOf('<div', next);
+      const block = body.slice(start, end);
+      body =
+        body.slice(0, start) +
+        replacePriceSequence(block, [0, 1, 2, 0, 1, 2], section) +
+        body.slice(end);
+    }
+  }
+  return body;
+};
 
 // Страницы: путь, <title>, description, заголовок. SEO — из app.routes.ts, где есть.
 const PAGES = [
@@ -360,6 +363,7 @@ for (const page of PAGES) {
             : '',
       );
   }
+  body = applyConfiguredPrices(body, page.path);
   let html = `${head(page, root)}\n<body data-page="${page.path}"${page.src ? '' : ' data-header="solid"'}>\n${body}\n<script src="${root}assets/site.js"></script>\n</body>\n</html>\n`;
   for (let i = 0; i < 2; i++) {
     html = html

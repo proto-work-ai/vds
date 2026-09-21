@@ -31,7 +31,9 @@
         </p>
         <div class="rise mb-9 flex items-baseline gap-3" style="--d: 0.25s">
           <span class="text-[12px] tracking-[.2em] text-cream/50 uppercase">Цена</span>
-          <span class="font-serif text-[30px] text-gold">от 2 500 ₽</span>
+          <span class="font-serif text-[30px] text-gold">
+            {{ priceSection.rows[0].price.split('/')[0] }}
+          </span>
           <span class="text-cream/60">/ м.пог.</span>
         </div>
         <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
@@ -637,121 +639,7 @@
           *Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.
         </p>
       </div>
-      <div class="reveal hidden overflow-x-auto lg:block" data-price-table>
-        <table class="cat-table cat-price">
-          <thead>
-            <tr>
-              <th>Материал / модель</th>
-              <th>Производство</th>
-              <th>Ширина, м</th>
-              <th>Гарантия</th>
-              <th class="text-right">
-                Цена
-                <span class="block text-[12px] font-normal tracking-normal normal-case opacity-70">
-                  с пошивом и установкой
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="font-serif text-[18px] font-bold">Блэкаут однотонный</td>
-              <td>Турция</td>
-              <td>до 2,8 м</td>
-              <td>3 года</td>
-              <td class="text-right text-[14px] font-bold whitespace-nowrap">
-                от 2 500 ₽
-                <span class="font-normal text-slate/70">/ м.пог.</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="font-serif text-[18px] font-bold">Блэкаут с фактурой льна</td>
-              <td>Турция</td>
-              <td>до 2,8 м</td>
-              <td>3 года</td>
-              <td class="text-right text-[14px] font-bold whitespace-nowrap">
-                от 3 200 ₽
-                <span class="font-normal text-slate/70">/ м.пог.</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="font-serif text-[18px] font-bold">Блэкаут жаккард</td>
-              <td>Германия</td>
-              <td>до 3 м</td>
-              <td>5 лет</td>
-              <td class="text-right text-[14px] font-bold whitespace-nowrap">
-                от 4 500 до 7 000 ₽
-                <span class="font-normal text-slate/70">/ м.пог.</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="grid gap-4 lg:hidden" data-price-cards>
-        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0s">
-          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Блэкаут однотонный</p>
-          <p class="mb-4 text-[20px] font-bold text-navy">
-            от 2 500 ₽
-            <span class="text-[14px] font-normal text-slate/70">/ м.пог.</span>
-          </p>
-          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px]">
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
-              <dd>Турция</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
-              <dd>до 2,8 м</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
-              <dd>3 года</dd>
-            </div>
-          </dl>
-        </div>
-        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0.08s">
-          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Блэкаут с фактурой льна</p>
-          <p class="mb-4 text-[20px] font-bold text-navy">
-            от 3 200 ₽
-            <span class="text-[14px] font-normal text-slate/70">/ м.пог.</span>
-          </p>
-          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px]">
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
-              <dd>Турция</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
-              <dd>до 2,8 м</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
-              <dd>3 года</dd>
-            </div>
-          </dl>
-        </div>
-        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0.16s">
-          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Блэкаут жаккард</p>
-          <p class="mb-4 text-[20px] font-bold text-navy">
-            от 4 500 до 7 000 ₽
-            <span class="text-[14px] font-normal text-slate/70">/ м.пог.</span>
-          </p>
-          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px]">
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
-              <dd>Германия</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
-              <dd>до 3 м</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
-              <dd>5 лет</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
+      <site-price-table class="reveal" [section]="priceSection" />
       <div
         class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center"
       >

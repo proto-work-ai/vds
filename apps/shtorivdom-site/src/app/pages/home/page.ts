@@ -5,7 +5,17 @@ import { CounterDirective } from '../../components/reveal.directive';
 import { RevealDirective } from '../../components/reveal.directive';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ContactLinksDirective } from '../../contact-links.directive';
-import { SITE_FAQ, SiteFaq, SiteBeforeAfter, SiteReviewSlider } from '@shtorivdom/site-kit';
+import {
+  formatSiteMinimumPrice,
+  SITE_FAQ,
+  SITE_PRICE_CONFIG,
+  SITE_PRICES,
+  SiteBeforeAfter,
+  SiteFaq,
+  SitePriceConfigSection,
+  SitePriceSection,
+  SiteReviewSlider,
+} from '@shtorivdom/site-kit';
 
 // Сгенерировано tools/mockups/site-to-angular.mjs из mockups/site/index.html
 @Component({
@@ -26,4 +36,10 @@ import { SITE_FAQ, SiteFaq, SiteBeforeAfter, SiteReviewSlider } from '@shtorivdo
 })
 export class HomePage {
   protected readonly faq = SITE_FAQ;
+  protected readonly prices = SITE_PRICE_CONFIG.sections;
+  protected readonly priceSections = Object.fromEntries(
+    SITE_PRICES.map((section) => [section.key, section]),
+  ) as Record<string, SitePriceSection>;
+  protected readonly minimumPriceLabel = (section: SitePriceConfigSection): string =>
+    formatSiteMinimumPrice(section);
 }

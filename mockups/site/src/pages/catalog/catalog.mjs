@@ -84,45 +84,20 @@ const MODELS = [
 ].map((title, i) => ({ key: String(i + 1), title }));
 
 // ---------- цены: price-list.service.ts ----------
-const U = { lm: 'м.пог.', m2: 'м²', pcs: 'шт.' };
-const PRICES = {
-  'blackout-curtains': [
-    ['Блэкаут однотонный', 'Турция', 2.8, 3, 2500, U.lm],
-    ['Блэкаут с фактурой льна', 'Турция', 2.8, 3, 3200, U.lm],
-    ['Блэкаут жаккард', 'Германия', 3, 5, [4500, 7000], U.lm],
-  ],
-  'roman-blinds': [
-    ['Лёгкая ткань', 'Турция', 2.8, 3, 4500, U.m2],
-    ['Плотная ткань / блэкаут', 'Турция', 2.8, 3, 5500, U.m2],
-    ['Лён премиум', 'Италия', 3, 5, [8000, 12000], U.m2],
-  ],
-  'roller-blinds': [
-    ['Мини, ткань стандарт', 'Россия', [0.3, 1.6], 2, 2200, U.m2],
-    ['Кассетные UNI', 'Россия', [0.3, 1.8], 3, 3500, U.m2],
-    ['День-ночь (зебра)', 'Корея', [0.3, 2.5], 3, 4200, U.m2],
-  ],
-  'linen-curtains': [
-    ['Лён с хлопком', 'Турция', 2.8, 3, 2800, U.lm],
-    ['Натуральный лён', 'Беларусь', 2.6, 3, 4000, U.lm],
-    ['Итальянский лён', 'Италия', 3, 5, [6500, 9500], U.lm],
-  ],
-  'pleated-blinds': [
-    ['Плиссе стандарт', 'Россия', [0.3, 1.8], 2, 3500, U.m2],
-    ['Плиссе блэкаут', 'Германия', [0.3, 1.8], 3, 5000, U.m2],
-    ['Мансардные плиссе', 'Германия', [0.3, 1.5], 3, 7500, U.m2],
-  ],
-  'curtain-rods': [
-    ['Профильный алюминиевый', 'Россия', undefined, 3, 900, U.lm],
-    ['Декоративный металлический', 'Германия', undefined, 5, [2500, 6000], U.lm],
-    ['Электрокарниз', 'Германия', undefined, 2, 18000, U.pcs],
-  ],
-  blinds: [
-    ['Горизонтальные алюминиевые', 'Россия', undefined, 2, 1500, U.m2],
-    ['Вертикальные тканевые', 'Россия', undefined, 2, 1800, U.m2],
-    ['Деревянные', 'Китай', undefined, 3, 6500, U.m2],
-  ],
-};
-
+const priceConfig = JSON.parse(readFileSync('libs/ui/site-kit/src/lib/site-prices.json', 'utf8'));
+const PRICES = Object.fromEntries(
+  priceConfig.sections.map((section) => [
+    section.key,
+    section.rows.map((row) => [
+      row.name,
+      row.country,
+      row.width ?? undefined,
+      row.warranty,
+      row.priceMax ? [row.priceMin, row.priceMax] : row.priceMin,
+      row.unit ?? section.unit,
+    ]),
+  ]),
+);
 const money = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const num = (n) => String(n).replace('.', ',');
 const range = (v, suffix, single, fmt = money) =>

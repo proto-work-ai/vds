@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { RevealDirective } from './reveal.directive';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { ContactLinksDirective } from '../contact-links.directive';
+import { SITE_PRICE_CONFIG, siteMinimumPrice } from '@shtorivdom/site-kit';
 
 type CalcItem = {
   key: string;
@@ -26,20 +27,15 @@ type CalcItem = {
   ],
 })
 export class CalcComponent {
-  protected readonly items: CalcItem[] = [
-    ['blackout-curtains', 'Шторы блэкаут', 'м.пог.', 2500, 'blackout-curtains/image-5.jpg'],
-    ['roman-blinds', 'Римские шторы', 'м²', 4500, 'roman-blinds/image-1.jpg'],
-    ['roller-blinds', 'Рулонные шторы', 'м²', 2200, 'roller-blinds/image-2.jpg'],
-    ['linen-curtains', 'Льняные шторы', 'м.пог.', 2800, 'linen-curtains/image-3.jpg'],
-    ['pleated-blinds', 'Шторы плиссе', 'м²', 3500, 'pleated-blinds/image-1.jpg'],
-    ['blinds', 'Жалюзи', 'м²', 1500, 'blinds/image-1.jpg'],
-  ].map(([key, title, unit, min, image]) => ({
-    key,
-    title,
-    unit,
-    min,
-    image: `../assets/img/catalog/${image}`,
-  })) as CalcItem[];
+  protected readonly items: CalcItem[] = SITE_PRICE_CONFIG.sections
+    .filter((section) => section.key !== 'curtain-rods')
+    .map((section) => ({
+      key: section.key,
+      title: section.title,
+      unit: section.unit,
+      min: siteMinimumPrice(section),
+      image: `../assets/img/catalog/${section.image}`,
+    }));
   protected readonly selectedKey = signal(this.items[0].key);
   protected readonly width = signal(250);
   protected readonly height = signal(260);
@@ -75,7 +71,8 @@ export class CalcComponent {
       rows.push(['Площадь', `${area.toString().replace('.', ',')} м²`]);
     }
     if (this.rod()) {
-      const rodPrice = Math.ceil(this.width() / 100) * 900;
+      const rodPrice =
+        Math.ceil(this.width() / 100) * SITE_PRICE_CONFIG.calculator.curtainRodPerLinearMeter;
       total += rodPrice;
       rows.push(['Карниз', `от ${this.formatMoney(rodPrice)} ₽`]);
     }

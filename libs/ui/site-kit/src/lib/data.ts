@@ -1,3 +1,4 @@
+import priceConfig from './site-prices.json';
 import { InjectionToken } from '@angular/core';
 
 /** Базовый путь к картинкам сайта (assets/img, assets/icons). На сайте — 'assets/', в Storybook — 'site-assets/'. */
@@ -36,100 +37,57 @@ export interface SiteCatalogSection {
   prices: SitePriceLine[];
 }
 
-/** catalog.data.ts + price-list.service.ts (как в tools/mockups/site-build.mjs) */
-export const SITE_CATALOG: SiteCatalogSection[] = [
-  {
-    key: 'blackout-curtains',
-    title: 'Шторы блэкаут',
+const SITE_CATALOG_DETAILS: Record<string, { text: string; photos: number }> = {
+  'blackout-curtains': {
     text: 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме',
-    image: 'image-5.jpg',
-    minPrice: 'от 2 500 ₽/м.пог.',
     photos: 11,
-    prices: [
-      { name: 'Блэкаут однотонный', price: 'от 2 500 ₽/м.пог.' },
-      { name: 'Блэкаут с фактурой льна', price: 'от 3 200 ₽/м.пог.' },
-      { name: 'Блэкаут жаккард', price: '4 500–7 000 ₽/м.пог.' },
-    ],
   },
-  {
-    key: 'roman-blinds',
-    title: 'Римские шторы',
+  'roman-blinds': {
     text: 'Из плотных и легких тканей для прямых и скошенных окон.',
-    image: 'image-1.jpg',
-    minPrice: 'от 4 500 ₽/м²',
     photos: 3,
-    prices: [
-      { name: 'Лёгкая ткань', price: 'от 4 500 ₽/м²' },
-      { name: 'Плотная ткань / блэкаут', price: 'от 5 500 ₽/м²' },
-      { name: 'Лён премиум', price: '8 000–12 000 ₽/м²' },
-    ],
   },
-  {
-    key: 'roller-blinds',
-    title: 'Рулонные шторы',
+  'roller-blinds': {
     text: 'Крепление на проем, в проем или раму окна.',
-    image: 'image-2.jpg',
-    minPrice: 'от 2 200 ₽/м²',
     photos: 9,
-    prices: [
-      { name: 'Мини, ткань стандарт', price: 'от 2 200 ₽/м²' },
-      { name: 'Кассетные UNI', price: 'от 3 500 ₽/м²' },
-      { name: 'День-ночь (зебра)', price: 'от 4 200 ₽/м²' },
-    ],
   },
-  {
-    key: 'linen-curtains',
-    title: 'Льняные шторы',
+  'linen-curtains': {
     text: 'Для стандартных, мансардных и треугольных окон.',
-    image: 'image-3.jpg',
-    minPrice: 'от 2 800 ₽/м.пог.',
     photos: 9,
-    prices: [
-      { name: 'Лён с хлопком', price: 'от 2 800 ₽/м.пог.' },
-      { name: 'Натуральный лён', price: 'от 4 000 ₽/м.пог.' },
-      { name: 'Итальянский лён', price: '6 500–9 500 ₽/м.пог.' },
-    ],
   },
-  {
-    key: 'pleated-blinds',
-    title: 'Шторы плиссе',
+  'pleated-blinds': {
     text: 'Для стандартных, мансардных и треугольных окон.',
-    image: 'image-1.jpg',
-    minPrice: 'от 3 500 ₽/м²',
     photos: 9,
-    prices: [
-      { name: 'Плиссе стандарт', price: 'от 3 500 ₽/м²' },
-      { name: 'Плиссе блэкаут', price: 'от 5 000 ₽/м²' },
-      { name: 'Мансардные плиссе', price: 'от 7 500 ₽/м²' },
-    ],
   },
-  {
-    key: 'curtain-rods',
-    title: 'Карнизы для штор',
-    text: 'Декоративные и профильные.',
-    image: 'image-1.jpg',
-    minPrice: 'от 900 ₽/м.пог.',
-    photos: 7,
-    prices: [
-      { name: 'Профильный алюминиевый', price: 'от 900 ₽/м.пог.' },
-      { name: 'Декоративный металлический', price: '2 500–6 000 ₽/м.пог.' },
-      { name: 'Электрокарниз', price: 'от 18 000 ₽/шт.' },
-    ],
-  },
-  {
-    key: 'blinds',
-    title: 'Жалюзи',
-    text: 'Стильные, практичные.',
-    image: 'image-1.jpg',
-    minPrice: 'от 1 500 ₽/м²',
-    photos: 9,
-    prices: [
-      { name: 'Горизонтальные алюминиевые', price: 'от 1 500 ₽/м²' },
-      { name: 'Вертикальные тканевые', price: 'от 1 800 ₽/м²' },
-      { name: 'Деревянные', price: 'от 6 500 ₽/м²' },
-    ],
-  },
-];
+  'curtain-rods': { text: 'Декоративные и профильные.', photos: 7 },
+  blinds: { text: 'Стильные, практичные.', photos: 9 },
+};
+
+const rawPriceLabel = (
+  row: { priceMin: number; priceMax?: number; unit?: string },
+  defaultUnit: string,
+): string => {
+  const unit = row.unit ?? defaultUnit;
+  return row.priceMax
+    ? `${row.priceMin.toLocaleString('ru-RU')}–${row.priceMax.toLocaleString('ru-RU')} ₽/${unit}`
+    : `от ${row.priceMin.toLocaleString('ru-RU')} ₽/${unit}`;
+};
+
+/** Каталог строится из общей конфигурации site-prices.json. */
+export const SITE_CATALOG: SiteCatalogSection[] = priceConfig.sections.map((section) => {
+  const details = SITE_CATALOG_DETAILS[section.key];
+  return {
+    key: section.key,
+    title: section.title,
+    text: details.text,
+    image: section.image.split('/').at(-1) ?? section.image,
+    minPrice: rawPriceLabel(section.rows[0], section.unit),
+    photos: details.photos,
+    prices: section.rows.map((row) => ({
+      name: row.name,
+      price: rawPriceLabel(row, section.unit),
+    })),
+  };
+});
 
 export interface SitePriceRow {
   name: string;
@@ -145,198 +103,84 @@ export interface SitePriceSection {
   rows: SitePriceRow[];
 }
 
-/** Таблицы страницы цен (mockups/site/src/pages/price.html) */
-export const SITE_PRICES: SitePriceSection[] = [
-  {
-    key: 'blackout-curtains',
-    title: 'Шторы блэкаут',
-    rows: [
-      {
-        name: 'Блэкаут однотонный',
-        country: 'Турция',
-        width: '2,8',
-        warranty: '3 года',
-        price: 'от 2 500 ₽/м.пог.',
-      },
-      {
-        name: 'Блэкаут с фактурой льна',
-        country: 'Турция',
-        width: '2,8',
-        warranty: '3 года',
-        price: 'от 3 200 ₽/м.пог.',
-      },
-      {
-        name: 'Блэкаут жаккард',
-        country: 'Германия',
-        width: '3',
-        warranty: '5 лет',
-        price: '4 500–7 000 ₽/м.пог.',
-      },
-    ],
-  },
-  {
-    key: 'roman-blinds',
-    title: 'Римские шторы',
-    rows: [
-      {
-        name: 'Лёгкая ткань',
-        country: 'Турция',
-        width: '2,8',
-        warranty: '3 года',
-        price: 'от 4 500 ₽/м²',
-      },
-      {
-        name: 'Плотная ткань / блэкаут',
-        country: 'Турция',
-        width: '2,8',
-        warranty: '3 года',
-        price: 'от 5 500 ₽/м²',
-      },
-      {
-        name: 'Лён премиум',
-        country: 'Италия',
-        width: '3',
-        warranty: '5 лет',
-        price: '8 000–12 000 ₽/м²',
-      },
-    ],
-  },
-  {
-    key: 'roller-blinds',
-    title: 'Рулонные шторы',
-    rows: [
-      {
-        name: 'Мини, ткань стандарт',
-        country: 'Россия',
-        width: '0,3–1,6',
-        warranty: '2 года',
-        price: 'от 2 200 ₽/м²',
-      },
-      {
-        name: 'Кассетные UNI',
-        country: 'Россия',
-        width: '0,3–1,8',
-        warranty: '3 года',
-        price: 'от 3 500 ₽/м²',
-      },
-      {
-        name: 'День-ночь (зебра)',
-        country: 'Корея',
-        width: '0,3–2,5',
-        warranty: '3 года',
-        price: 'от 4 200 ₽/м²',
-      },
-    ],
-  },
-  {
-    key: 'linen-curtains',
-    title: 'Льняные шторы',
-    rows: [
-      {
-        name: 'Лён с хлопком',
-        country: 'Турция',
-        width: '2,8',
-        warranty: '3 года',
-        price: 'от 2 800 ₽/м.пог.',
-      },
-      {
-        name: 'Натуральный лён',
-        country: 'Беларусь',
-        width: '2,6',
-        warranty: '3 года',
-        price: 'от 4 000 ₽/м.пог.',
-      },
-      {
-        name: 'Итальянский лён',
-        country: 'Италия',
-        width: '3',
-        warranty: '5 лет',
-        price: '6 500–9 500 ₽/м.пог.',
-      },
-    ],
-  },
-  {
-    key: 'pleated-blinds',
-    title: 'Шторы плиссе',
-    rows: [
-      {
-        name: 'Плиссе стандарт',
-        country: 'Россия',
-        width: '0,3–1,8',
-        warranty: '2 года',
-        price: 'от 3 500 ₽/м²',
-      },
-      {
-        name: 'Плиссе блэкаут',
-        country: 'Германия',
-        width: '0,3–1,8',
-        warranty: '3 года',
-        price: 'от 5 000 ₽/м²',
-      },
-      {
-        name: 'Мансардные плиссе',
-        country: 'Германия',
-        width: '0,3–1,5',
-        warranty: '3 года',
-        price: 'от 7 500 ₽/м²',
-      },
-    ],
-  },
-  {
-    key: 'curtain-rods',
-    title: 'Карнизы для штор',
-    rows: [
-      {
-        name: 'Профильный алюминиевый',
-        country: 'Россия',
-        width: '—',
-        warranty: '3 года',
-        price: 'от 900 ₽/м.пог.',
-      },
-      {
-        name: 'Декоративный металлический',
-        country: 'Германия',
-        width: '—',
-        warranty: '5 лет',
-        price: '2 500–6 000 ₽/м.пог.',
-      },
-      {
-        name: 'Электрокарниз',
-        country: 'Германия',
-        width: '—',
-        warranty: '2 года',
-        price: 'от 18 000 ₽/шт.',
-      },
-    ],
-  },
-  {
-    key: 'blinds',
-    title: 'Жалюзи',
-    rows: [
-      {
-        name: 'Горизонтальные алюминиевые',
-        country: 'Россия',
-        width: '—',
-        warranty: '2 года',
-        price: 'от 1 500 ₽/м²',
-      },
-      {
-        name: 'Вертикальные тканевые',
-        country: 'Россия',
-        width: '—',
-        warranty: '2 года',
-        price: 'от 1 800 ₽/м²',
-      },
-      {
-        name: 'Деревянные',
-        country: 'Китай',
-        width: '—',
-        warranty: '3 года',
-        price: 'от 6 500 ₽/м²',
-      },
-    ],
-  },
-];
+export interface SitePriceConfigRow {
+  name: string;
+  country: string;
+  width: number | [number, number] | null;
+  warranty: number;
+  priceMin: number;
+  priceMax?: number;
+  unit?: string;
+}
+
+export interface SitePriceConfigSection {
+  key: string;
+  title: string;
+  unit: string;
+  image: string;
+  rows: SitePriceConfigRow[];
+}
+
+export interface SitePriceConfig {
+  currency: 'RUB';
+  calculator: { curtainRodPerLinearMeter: number };
+  sections: SitePriceConfigSection[];
+}
+
+/** Единственный источник цен сайта. Редактировать site-prices.json. */
+export const SITE_PRICE_CONFIG = priceConfig as SitePriceConfig;
+
+const priceNumber = (value: number): string => value.toLocaleString('ru-RU');
+const decimalNumber = (value: number): string => value.toLocaleString('ru-RU');
+const warrantyLabel = (years: number): string => {
+  const word = years === 1 ? 'год' : years >= 2 && years <= 4 ? 'года' : 'лет';
+  return `${years} ${word}`;
+};
+
+export const formatSitePrice = (row: SitePriceConfigRow, defaultUnit: string): string => {
+  const unit = row.unit ?? defaultUnit;
+  return row.priceMax
+    ? `${priceNumber(row.priceMin)}–${priceNumber(row.priceMax)} ₽/${unit}`
+    : `от ${priceNumber(row.priceMin)} ₽/${unit}`;
+};
+
+export const SITE_PRICES: SitePriceSection[] = SITE_PRICE_CONFIG.sections.map((section) => ({
+  key: section.key,
+  title: section.title,
+  rows: section.rows.map((row) => ({
+    name: row.name,
+    country: row.country,
+    width: Array.isArray(row.width)
+      ? `${decimalNumber(row.width[0])}–${decimalNumber(row.width[1])}`
+      : row.width === null
+        ? '—'
+        : decimalNumber(row.width),
+    warranty: warrantyLabel(row.warranty),
+    price: formatSitePrice(row, section.unit),
+  })),
+}));
+
+export const siteMinimumPrice = (section: SitePriceConfigSection): number =>
+  Math.min(...section.rows.map((row) => row.priceMin));
+
+export const formatSiteMinimumPrice = (section: SitePriceConfigSection): string =>
+  `от ${priceNumber(siteMinimumPrice(section))} ₽/${section.unit}`;
+
+export const sitePriceOffer = (key: string) => {
+  const section = SITE_PRICE_CONFIG.sections.find((item) => item.key === key);
+  if (!section) throw new Error(`Нет настройки цен для раздела ${key}`);
+  const values = section.rows.flatMap((row) =>
+    row.priceMax ? [row.priceMin, row.priceMax] : [row.priceMin],
+  );
+  return {
+    '@type': 'AggregateOffer' as const,
+    priceCurrency: SITE_PRICE_CONFIG.currency,
+    lowPrice: Math.min(...values),
+    highPrice: Math.max(...values),
+    offerCount: section.rows.length,
+    availability: 'https://schema.org/InStock',
+  };
+};
 
 export interface SiteStep {
   title: string;

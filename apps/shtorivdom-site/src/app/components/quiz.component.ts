@@ -13,6 +13,7 @@ import {
 } from '@angular/core';
 import { ContactLinksDirective } from '../contact-links.directive';
 import { LeadFormDirective } from '../forms/lead-form.directive';
+import { SITE_PRICE_CONFIG, siteMinimumPrice } from '@shtorivdom/site-kit';
 
 type QuizAnswer = { room?: string; light?: string; window?: string; style?: string };
 
@@ -98,21 +99,16 @@ export class QuizComponent {
       .slice(0, 2);
   });
 
-  protected readonly catalog: Recommendation[] = [
-    ['blackout-curtains', 'Шторы блэкаут', 'м.пог.', 2500, 'blackout-curtains/image-5.jpg'],
-    ['roman-blinds', 'Римские шторы', 'м²', 4500, 'roman-blinds/image-1.jpg'],
-    ['roller-blinds', 'Рулонные шторы', 'м²', 2200, 'roller-blinds/image-2.jpg'],
-    ['linen-curtains', 'Льняные шторы', 'м.пог.', 2800, 'linen-curtains/image-3.jpg'],
-    ['pleated-blinds', 'Шторы плиссе', 'м²', 3500, 'pleated-blinds/image-1.jpg'],
-    ['blinds', 'Жалюзи', 'м²', 1500, 'blinds/image-1.jpg'],
-  ].map(([key, title, unit, min, image]) => ({
-    key,
-    title,
-    unit,
-    min,
-    image: `../assets/img/catalog/${image}`,
-    href: `/catalog/${key}`,
-  })) as Recommendation[];
+  protected readonly catalog: Recommendation[] = SITE_PRICE_CONFIG.sections
+    .filter((section) => section.key !== 'curtain-rods')
+    .map((section) => ({
+      key: section.key,
+      title: section.title,
+      unit: section.unit,
+      min: siteMinimumPrice(section),
+      image: `../assets/img/catalog/${section.image}`,
+      href: `/catalog/${section.key}`,
+    }));
 
   protected selectAnswer(event: Event): void {
     const input = event.target as HTMLInputElement;

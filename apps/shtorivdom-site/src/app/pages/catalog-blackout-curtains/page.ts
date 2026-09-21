@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { RevealDirective } from '../../components/reveal.directive';
 import { GALLERY } from '../../components/gallery.service';
 import { PhotoStripDirective } from '../../components/photo-strip.directive';
-import { SITE_FAQ } from '@shtorivdom/site-kit';
+import { SITE_FAQ, SITE_PRICES, SitePriceTable } from '@shtorivdom/site-kit';
 import { SiteFaq } from '@shtorivdom/site-kit';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ContactLinksDirective } from '../../contact-links.directive';
@@ -20,9 +20,13 @@ import { ContactLinksDirective } from '../../contact-links.directive';
     GALLERY,
     PhotoStripDirective,
     SiteFaq,
+    SitePriceTable,
     ContactLinksDirective,
   ],
 })
 export class CatalogBlackoutCurtainsPage {
   protected readonly faq = SITE_FAQ;
+  protected readonly priceSection = SITE_PRICES.find(
+    (section) => section.key === 'blackout-curtains',
+  )!;
 }

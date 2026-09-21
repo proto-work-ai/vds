@@ -31,7 +31,9 @@
         </p>
         <div class="rise mb-9 flex items-baseline gap-3" style="--d: 0.25s">
           <span class="text-[12px] tracking-[.2em] text-cream/50 uppercase">Цена</span>
-          <span class="font-serif text-[30px] text-gold">от 3 500 ₽</span>
+          <span class="font-serif text-[30px] text-gold">
+            {{ priceSection.rows[0].price.split('/')[0] }}
+          </span>
           <span class="text-cream/60">/ м²</span>
         </div>
         <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
@@ -610,121 +612,7 @@
           *Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.
         </p>
       </div>
-      <div class="reveal hidden overflow-x-auto lg:block" data-price-table>
-        <table class="cat-table cat-price">
-          <thead>
-            <tr>
-              <th>Материал / модель</th>
-              <th>Производство</th>
-              <th>Ширина, м</th>
-              <th>Гарантия</th>
-              <th class="text-right">
-                Цена
-                <span class="block text-[12px] font-normal tracking-normal normal-case opacity-70">
-                  с пошивом и установкой
-                </span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="font-serif text-[18px] font-bold">Плиссе стандарт</td>
-              <td>Россия</td>
-              <td>от 0,3 до 1,8 м</td>
-              <td>2 года</td>
-              <td class="text-right text-[14px] font-bold whitespace-nowrap">
-                от 3 500 ₽
-                <span class="font-normal text-slate/70">/ м²</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="font-serif text-[18px] font-bold">Плиссе блэкаут</td>
-              <td>Германия</td>
-              <td>от 0,3 до 1,8 м</td>
-              <td>3 года</td>
-              <td class="text-right text-[14px] font-bold whitespace-nowrap">
-                от 5 000 ₽
-                <span class="font-normal text-slate/70">/ м²</span>
-              </td>
-            </tr>
-            <tr>
-              <td class="font-serif text-[18px] font-bold">Мансардные плиссе</td>
-              <td>Германия</td>
-              <td>от 0,3 до 1,5 м</td>
-              <td>3 года</td>
-              <td class="text-right text-[14px] font-bold whitespace-nowrap">
-                от 7 500 ₽
-                <span class="font-normal text-slate/70">/ м²</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="grid gap-4 lg:hidden" data-price-cards>
-        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0s">
-          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Плиссе стандарт</p>
-          <p class="mb-4 text-[20px] font-bold text-navy">
-            от 3 500 ₽
-            <span class="text-[14px] font-normal text-slate/70">/ м²</span>
-          </p>
-          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px]">
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
-              <dd>Россия</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
-              <dd>от 0,3 до 1,8 м</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
-              <dd>2 года</dd>
-            </div>
-          </dl>
-        </div>
-        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0.08s">
-          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Плиссе блэкаут</p>
-          <p class="mb-4 text-[20px] font-bold text-navy">
-            от 5 000 ₽
-            <span class="text-[14px] font-normal text-slate/70">/ м²</span>
-          </p>
-          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px]">
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
-              <dd>Германия</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
-              <dd>от 0,3 до 1,8 м</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
-              <dd>3 года</dd>
-            </div>
-          </dl>
-        </div>
-        <div class="reveal border border-navy/10 bg-white px-5 py-5" style="--d: 0.16s">
-          <p class="mb-3 font-serif text-[20px] leading-tight font-bold">Мансардные плиссе</p>
-          <p class="mb-4 text-[20px] font-bold text-navy">
-            от 7 500 ₽
-            <span class="text-[14px] font-normal text-slate/70">/ м²</span>
-          </p>
-          <dl class="grid grid-cols-3 gap-2 border-t border-navy/10 pt-3 text-[12px]">
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Страна</dt>
-              <dd>Германия</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Ширина</dt>
-              <dd>от 0,3 до 1,5 м</dd>
-            </div>
-            <div>
-              <dt class="text-[10px] font-bold tracking-[.14em] text-gold uppercase">Гарантия</dt>
-              <dd>3 года</dd>
-            </div>
-          </dl>
-        </div>
-      </div>
+      <site-price-table class="reveal" [section]="priceSection" />
       <div
         class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center"
       >
