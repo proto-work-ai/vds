@@ -12,10 +12,12 @@
     "target": "es2015",
     "module": "esnext",
     "ignoreDeprecations": "6.0",
+
     "lib": ["es2022", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
+
     "paths": {
       "@metadb/core": ["libs/metadb/core/src/index.ts"],
       "@atlas/core": ["libs/atlas/core/src/index.ts"],

@@ -109,20 +109,28 @@ export async function deploy(files, { title, uploadCommand }) {
       child.stdin.end(config);
     });
   };
-  const worker = async () => {
-    while (nextIndex < pending.length) {
-      const file = pending[nextIndex++];
-      const result = await upload(file);
-      done++;
-      if (result.error) {
-        failed.push(`${result.remote}: ${result.error}`);
-        console.log(`✗ ${result.remote}`);
-      } else {
-        if (done % 20 === 0 || done === pending.length) console.log(`… ${done}/${pending.length}`);
+  const uploadBatch = async (batch) => {
+    nextIndex = 0;
+    const worker = async () => {
+      while (nextIndex < batch.length) {
+        const file = batch[nextIndex++];
+        const result = await upload(file);
+        done++;
+        if (result.error) {
+          failed.push(`${result.remote}: ${result.error}`);
+          console.log(`✗ ${result.remote}`);
+        } else if (done % 20 === 0 || done === pending.length) {
+          console.log(`… ${done}/${pending.length}`);
+        }
       }
-    }
+    };
+    await Promise.all(Array.from({ length: Math.min(concurrency, batch.length) }, worker));
   };
-  await Promise.all(Array.from({ length: Math.min(concurrency, pending.length) }, worker));
+  // HTML публикуем последним: он не должен ссылаться на bundle, который ещё загружается.
+  const html = pending.filter((item) => item.remote.endsWith('.html'));
+  const assets = pending.filter((item) => !item.remote.endsWith('.html'));
+  await uploadBatch(assets);
+  if (!failed.length) await uploadBatch(html);
   if (!failed.length) {
     const manifest = JSON.stringify(
       {
