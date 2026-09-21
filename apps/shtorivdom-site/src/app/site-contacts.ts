@@ -7,6 +7,6 @@ export const SITE_CONTACTS: SiteContacts = {
   address: 'Троицк, Кварцевая улица, 3, корп. 2',
   addressLink: 'https://yandex.ru/maps/-/CTxLMJIy',
   hours: '10:00–20:00 / Без выходных',
-  telegram: 'https://t.me/andreevav1',
+  telegram: 'https://t.me/alex_k1reev',
   max: 'https://max.ru/u/f9LHodD0cOKwgBlMG-mVRO0UljxgNw5HevLHSWPpLFqKcoYjRFhZADs6U34',
 };

@@ -1,5 +1,5 @@
 import { Directive, ElementRef, inject } from '@angular/core';
-import { CONTACT_CONFIG } from './contact-config';
+import { SITE_CONTACTS } from './site-contacts';
 
 @Directive({
   selector: '[data-contact-link]',
@@ -7,7 +7,7 @@ import { CONTACT_CONFIG } from './contact-config';
 })
 export class ContactLinksDirective {
   private readonly element = inject(ElementRef<HTMLElement>).nativeElement;
-  private readonly contacts = inject(CONTACT_CONFIG);
+  private readonly contacts = SITE_CONTACTS;
 
   constructor() {
     const link = this.element.getAttribute('data-contact-link');
@@ -24,13 +24,13 @@ export class ContactLinksDirective {
         value = { href: `mailto:${this.contacts.email}`, text: this.contacts.email };
         break;
       case 'telegram':
-        value = { href: this.contacts.telegramHref, text: null };
+        value = { href: this.contacts.telegram, text: null };
         break;
       case 'max':
-        value = { href: this.contacts.maxHref, text: null };
+        value = { href: this.contacts.max, text: null };
         break;
       case 'map':
-        value = { href: this.contacts.mapHref, text: null };
+        value = { href: this.contacts.addressLink, text: null };
         break;
     }
 

@@ -11,7 +11,6 @@ import { provideClientHydration, withEventReplay } from '@angular/platform-brows
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { SITE_ASSETS_URL } from '@shtorivdom/site-kit';
 import { appRoutes } from './app.routes';
-import { DEFAULT_CONTACT_CONFIG, provideContactConfig } from './contact-config';
 import { provideSeo } from './seo';
 import { CookieAcceptedService } from '@atlas/form';
 import { provideEventPlugins } from '@taiga-ui/event-plugins';
@@ -31,7 +30,6 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
     ),
     { provide: SITE_ASSETS_URL, useValue: '/assets/' },
-    provideContactConfig(DEFAULT_CONTACT_CONFIG),
     provideSeo(),
     provideAppInitializer(() => {
       inject(CookieAcceptedService);

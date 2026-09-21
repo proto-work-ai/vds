@@ -101,7 +101,7 @@ description: Правила Андрея для проекта shtorivdom (са�
 - Ответ API типизировать именованным интерфейсом (например, `LeadResponse`),
   а не оставлять повторяющийся inline-тип `{ok?: boolean; error?: string}`.
 - Контактные данные сайта (телефон, email, Telegram, MAX и карта) хранить только в
-  `app/contact-config.ts` и подключать через `provideContactConfig`. В шаблонах
+  `app/site-contacts.ts`. В шаблонах
   использовать `data-contact-link="phone|email|telegram|max|map"`; не дублировать
   `tel:`, `mailto:` и внешние ссылки по страницам.
 - В одном Angular-шаблоне каждая форма должна иметь уникальную template-ссылку:

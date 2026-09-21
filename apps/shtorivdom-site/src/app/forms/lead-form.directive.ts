@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Directive, ElementRef, HostListener, inject, input, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CONTACT_CONFIG } from '../contact-config';
 import { toLocalPhone } from './phone-value';
 import { DestroyRef } from '@angular/core';
 
@@ -23,7 +22,6 @@ export class LeadFormDirective {
   private readonly destroyRef = inject(DestroyRef);
   private readonly element = inject(ElementRef<HTMLFormElement>).nativeElement;
   private openedAt = Date.now();
-  public readonly contacts = inject(CONTACT_CONFIG);
   public readonly calculationSummary = input('');
   public readonly leadDescription = input('');
   public readonly orderModel = input('', { alias: 'data-order-model' });
