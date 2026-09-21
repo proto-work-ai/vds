@@ -360,14 +360,6 @@ tui-textfield label[tuiLabel] span {
   -webkit-text-fill-color: #0d223d !important;
 }
 
-tui-textfield input[tuiInput],
-tui-textfield input[tuiInputNumber],
-tui-textfield input[tuiInputPhone],
-tui-textfield textarea[tuiTextarea] {
-  color: #0d223d !important;
-  -webkit-text-fill-color: #0d223d !important;
-}
-
 input[type='range'] {
   color: var(--primari-color);
 }
