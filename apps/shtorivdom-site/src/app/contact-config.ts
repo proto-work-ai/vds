@@ -19,6 +19,6 @@ export const DEFAULT_CONTACT_CONFIG: ContactConfig = {
   phone: '+7 (915) 359-12-00',
   email: 'info@shtorivdom.ru',
   telegramHref: 'https://t.me/andreevav1',
-  maxHref: 'https://max.ru/u/f9LHodD0cOIMeP9lespjPt8cxagsm7ObEGSeElhYDRMQhW9vFT_lt7I30J0',
+  maxHref: 'https://max.ru/u/f9LHodD0cOKwgBlMG-mVRO0UljxgNw5HevLHSWPpLFqKcoYjRFhZADs6U34',
   mapHref: 'https://yandex.ru/maps/-/CTxLMJIy',
 };

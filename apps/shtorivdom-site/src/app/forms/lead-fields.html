@@ -1,4 +1,4 @@
-<div [formGroup]="form()" class="flex flex-col gap-5">
+<div class="flex flex-col gap-5" [formGroup]="form()">
   <input
     type="text"
     formControlName="website"
@@ -8,8 +8,40 @@
     aria-hidden="true"
     class="absolute -left-[9999px] size-0 opacity-0"
   />
+  @if (showName()) {
+    <tui-textfield [tuiTextfieldCleaner]="false">
+      <label tuiLabel>
+        Имя
+        <span class="text-red-600">*</span>
+      </label>
+      <input
+        tuiTextfield
+        formControlName="name"
+        name="name"
+        autocomplete="name"
+        placeholder="Введите имя"
+        class="field"
+      />
+    </tui-textfield>
+  }
+  @if (showCity()) {
+    <tui-textfield [tuiTextfieldCleaner]="false">
+      <label tuiLabel>Город</label>
+      <input
+        tuiTextfield
+        formControlName="city"
+        name="city"
+        autocomplete="address-level2"
+        placeholder="Город"
+        class="field"
+      />
+    </tui-textfield>
+  }
   <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-    <label tuiLabel>Телефон <span class="text-red-600">*</span></label>
+    <label tuiLabel>
+      Телефон
+      <span class="text-red-600">*</span>
+    </label>
     <input
       mask="+7 (###) ###-##-##"
       tuiInputPhone
@@ -30,11 +62,11 @@
       tuiTextarea
       id="lead-comment"
       formControlName="comment"
+      placeholder="Комментарий"
+      class="field resize-none"
       [rows]="3"
       [min]="3"
       [max]="6"
-      placeholder="Комментарий"
-      class="field resize-none"
     ></textarea>
   </tui-textfield>
   <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
@@ -42,10 +74,10 @@
       tuiCheckbox
       type="checkbox"
       formControlName="consent"
-      [size]="'m'"
       name="consent"
       class="mt-0.5 shrink-0"
       data-consent
+      [size]="'m'"
     />
     <span>
       Я соглашаюсь с правилами по обработке

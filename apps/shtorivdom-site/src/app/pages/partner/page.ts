@@ -8,6 +8,7 @@ import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { ContactLinksDirective } from '../../contact-links.directive';
 import { LeadFormDirective } from '../../forms/lead-form.directive';
+import { PartnerLeadFormComponent } from '../../forms/partner-lead-form.component';
 
 // Сгенерировано tools/mockups/site-to-angular.mjs из mockups/site/partner/index.html
 @Component({
@@ -27,6 +28,7 @@ import { LeadFormDirective } from '../../forms/lead-form.directive';
     TuiCheckbox,
     LeadFormDirective,
     ContactLinksDirective,
+    PartnerLeadFormComponent,
   ],
 })
 export class PartnerPage {}

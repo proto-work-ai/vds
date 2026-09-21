@@ -211,16 +211,7 @@
       class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
       style="--d: 0.15s"
     >
-      <form
-        class="flex flex-col gap-5"
-        novalidate
-        data-lead-form
-        #lead="leadForm"
-        [formGroup]="lead.form"
-      >
-        <app-lead-fields [form]="lead.form" />
-      </form>
-      <app-lead-status [lead]="lead" />
+      <app-lead-form />
     </div>
   </div>
 </section>

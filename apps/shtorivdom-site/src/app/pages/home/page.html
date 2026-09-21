@@ -33,12 +33,7 @@
           Дизайн-студия по пошиву штор и текстиля в Москве и Подмосковье
         </p>
         <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
-          <a
-            [routerLink]="[]"
-            fragment="hero-form"
-            class="btn-gold btn-pulse group max-sm:w-full"
-            (click)="heroName.focus()"
-          >
+          <a fragment="hero-form" class="btn-gold btn-pulse group max-sm:w-full" [routerLink]="[]">
             Пригласить дизайнера
             <svg
               width="14"
@@ -52,7 +47,7 @@
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-          <a [routerLink]="[]" fragment="catalog" class="btn-line btn-glow max-sm:w-full">
+          <a fragment="catalog" class="btn-line btn-glow max-sm:w-full" [routerLink]="[]">
             Каталог штор
           </a>
         </div>
@@ -86,110 +81,7 @@
         <p class="mb-6 font-serif text-[24px] leading-tight font-bold">
           Оставьте заявку дизайнеру:
         </p>
-        <form
-          class="flex flex-col gap-6"
-          novalidate
-          data-lead-form="designer"
-          data-lead-type="full"
-          data-inline-lead="designer"
-          #heroLead="leadForm"
-          [formGroup]="heroLead.form"
-        >
-          <input
-            type="text"
-            formControlName="website"
-            name="website"
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-            class="absolute -left-[9999px] size-0 opacity-0"
-          />
-          <input type="hidden" formControlName="comment" data-inline-comment />
-          <label class="flex items-center gap-3 border-b border-gold pb-3">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#c9a84c"
-              stroke-width="2"
-              class="shrink-0"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            <tui-textfield class="w-full" [tuiTextfieldCleaner]="false">
-              <label tuiLabel>
-                Имя
-                <span class="text-red-600">*</span>
-              </label>
-              <input
-                tuiInput
-                #heroName
-                formControlName="name"
-                type="text"
-                autocomplete="name"
-                placeholder="Введите имя"
-              />
-            </tui-textfield>
-          </label>
-          <div>
-            <label class="flex items-center gap-3 border-b border-gold pb-3" data-phone-wrap>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#c9a84c"
-                stroke-width="2"
-                class="shrink-0"
-              >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
-                />
-              </svg>
-              <div class="w-full">
-                <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-                  <label tuiLabel>
-                    Телефон
-                    <span class="text-red-600">*</span>
-                  </label>
-                  <input
-                    tuiInputPhone
-                    mask="+7 (###) ###-##-##"
-                    formControlName="phone"
-                    autocomplete="tel"
-                    placeholder="Укажите телефон"
-                  />
-                </tui-textfield>
-              </div>
-            </label>
-          </div>
-          <div>
-            <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-              <input
-                tuiCheckbox
-                formControlName="consent"
-                type="checkbox"
-                [size]="'m'"
-                class="mt-0.5 shrink-0"
-              />
-              <span>
-                Я соглашаюсь с правилами по обработке
-                <a
-                  routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
-                  class="underline decoration-gold underline-offset-2 hover:text-gold"
-                >
-                  персональных данных
-                </a>
-              </span>
-            </label>
-          </div>
-          <button type="submit" class="btn-gold w-full" [disabled]="heroLead.submitting()">
-            Отправить
-          </button>
-        </form>
-        <app-lead-status [lead]="heroLead" />
+        <app-designer-lead-form />
       </div>
     </div>
   </section>
@@ -281,9 +173,9 @@
           </li>
         </ol>
         <a
-          [routerLink]="[]"
           fragment="lead"
           class="group inline-flex items-center gap-3 text-[14px] font-bold tracking-[.12em] text-gold uppercase transition-[gap] duration-300 hover:gap-5"
+          [routerLink]="[]"
         >
           Пригласить дизайнера
           <svg
@@ -980,7 +872,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 14 дней</p>
-            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a fragment="lead" class="btn-gold !flex w-full" [routerLink]="[]">Оставить заявку</a>
           </div>
         </div>
         <div class="reveal" style="--d: 0.12s">
@@ -1023,7 +915,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-cream/60">*Срок изготовления 10 дней</p>
-            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a fragment="lead" class="btn-gold !flex w-full" [routerLink]="[]">Оставить заявку</a>
           </div>
         </div>
         <div class="reveal" style="--d: 0.24s">
@@ -1064,7 +956,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 7 дней</p>
-            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a fragment="lead" class="btn-gold !flex w-full" [routerLink]="[]">Оставить заявку</a>
           </div>
         </div>
       </div>
@@ -1460,88 +1352,7 @@
       class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
       style="--d: 0.15s"
     >
-      <form
-        class="flex flex-col gap-5"
-        novalidate
-        data-lead-form
-        data-lead-type="phone"
-        #contactLead="leadForm"
-        [formGroup]="contactLead.form"
-      >
-        <input
-          type="text"
-          formControlName="website"
-          name="website"
-          tabindex="-1"
-          autocomplete="off"
-          aria-hidden="true"
-          class="absolute -left-[9999px] size-0 opacity-0"
-        />
-        <div>
-          <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-            <label tuiLabel>
-              Телефон
-              <span class="text-red-600">*</span>
-            </label>
-            <input
-              mask="+7 (###) ###-##-##"
-              tuiInputPhone
-              id="lead-phone"
-              formControlName="phone"
-              name="phone"
-              type="tel"
-              inputmode="tel"
-              autocomplete="tel"
-              placeholder="Укажите телефон"
-              data-phone
-            />
-          </tui-textfield>
-        </div>
-        <div>
-          <tui-textfield [tuiTextfieldCleaner]="false">
-            <label tuiLabel>Комментарий</label>
-            <textarea
-              tuiTextarea
-              id="lead-comment"
-              formControlName="comment"
-              placeholder="Комментарий"
-              [rows]="3"
-              [min]="3"
-              [max]="6"
-            ></textarea>
-          </tui-textfield>
-        </div>
-        <div>
-          <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-            <input
-              tuiCheckbox
-              type="checkbox"
-              formControlName="consent"
-              [size]="'m'"
-              name="consent"
-              class="mt-0.5 shrink-0"
-              data-consent
-            />
-            <span>
-              Я соглашаюсь с правилами по обработке
-              <a
-                routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
-                class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
-              >
-                персональных данных
-              </a>
-            </span>
-          </label>
-        </div>
-        <button
-          type="submit"
-          class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
-          [disabled]="contactLead.submitting()"
-        >
-          Отправить
-        </button>
-      </form>
-      <app-lead-status [lead]="contactLead" />
+      <app-lead-form [leadType]="'phone'" />
     </div>
   </div>
 </section>

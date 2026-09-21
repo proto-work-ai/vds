@@ -1138,7 +1138,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 14 дней</p>
-            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a fragment="lead" class="btn-gold !flex w-full" [routerLink]="[]">Оставить заявку</a>
           </div>
         </div>
         <div class="reveal" style="--d: 0.12s">
@@ -1181,7 +1181,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-cream/60">*Срок изготовления 10 дней</p>
-            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a fragment="lead" class="btn-gold !flex w-full" [routerLink]="[]">Оставить заявку</a>
           </div>
         </div>
         <div class="reveal" style="--d: 0.24s">
@@ -1222,7 +1222,7 @@
               <li>Наволочка под интерьер</li>
             </ul>
             <p class="mb-6 text-[12px] text-slate/70">*Срок изготовления 7 дней</p>
-            <a [routerLink]="[]" fragment="lead" class="btn-gold !flex w-full">Оставить заявку</a>
+            <a fragment="lead" class="btn-gold !flex w-full" [routerLink]="[]">Оставить заявку</a>
           </div>
         </div>
       </div>
@@ -1341,16 +1341,7 @@
       class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
       style="--d: 0.15s"
     >
-      <form
-        class="flex flex-col gap-5"
-        novalidate
-        data-lead-form
-        #lead="leadForm"
-        [formGroup]="lead.form"
-      >
-        <app-lead-fields [form]="lead.form" />
-      </form>
-      <app-lead-status [lead]="lead" />
+      <app-lead-form />
     </div>
   </div>
 </section>

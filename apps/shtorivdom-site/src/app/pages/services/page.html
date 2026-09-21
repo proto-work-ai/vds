@@ -288,7 +288,7 @@
       <div class="reveal mt-16 flex flex-col items-center gap-4 text-center">
         <p class="max-w-[560px] text-[16px] font-light text-slate">Выезд дизайнера — бесплатный!</p>
         <div class="flex flex-wrap justify-center gap-3">
-          <a [routerLink]="[]" fragment="lead" class="btn-gold">Пригласить дизайнера</a>
+          <a fragment="lead" class="btn-gold" [routerLink]="[]">Пригласить дизайнера</a>
           <a
             routerLink="/price"
             class="inline-flex items-center rounded-[2px] border border-navy/25 px-6 py-3.5 text-[12px] font-bold tracking-[.1em] uppercase transition-opacity hover:opacity-80"
@@ -412,16 +412,7 @@
       class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
       style="--d: 0.15s"
     >
-      <form
-        class="flex flex-col gap-5"
-        novalidate
-        data-lead-form
-        #lead="leadForm"
-        [formGroup]="lead.form"
-      >
-        <app-lead-fields [form]="lead.form" />
-      </form>
-      <app-lead-status [lead]="lead" />
+      <app-lead-form />
     </div>
   </div>
 </section>

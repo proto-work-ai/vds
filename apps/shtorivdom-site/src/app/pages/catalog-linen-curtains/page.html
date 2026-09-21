@@ -35,7 +35,7 @@
           <span class="text-cream/60">/ м.пог.</span>
         </div>
         <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
-          <a [routerLink]="[]" fragment="lead" class="btn-gold group max-sm:w-full">
+          <a fragment="lead" class="btn-gold group max-sm:w-full" [routerLink]="[]">
             Пригласить дизайнера
             <svg
               width="14"
@@ -50,7 +50,7 @@
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </a>
-          <a [routerLink]="[]" fragment="prices" class="btn-line max-sm:w-full">Смотреть цены</a>
+          <a fragment="prices" class="btn-line max-sm:w-full" [routerLink]="[]">Смотреть цены</a>
         </div>
       </div>
       <div class="rise relative" style="--d: 0.2s">
@@ -217,9 +217,9 @@
             Закажите выезд дизайнера, и он поможет вам определиться в этом прекрасном многообразии.
           </p>
           <a
-            [routerLink]="[]"
             fragment="lead"
             class="btn-gold !flex w-full !px-4 whitespace-nowrap"
+            [routerLink]="[]"
           >
             Пригласить дизайнера
           </a>
@@ -300,8 +300,8 @@
             type="button"
             class="cat-arrow"
             aria-label="Предыдущие фото"
-            (click)="photoStrip.move(-1)"
             [disabled]="photoStrip.atStart()"
+            (click)="photoStrip.move(-1)"
           >
             <svg
               width="18"
@@ -319,8 +319,8 @@
             type="button"
             class="cat-arrow"
             aria-label="Следующие фото"
-            (click)="photoStrip.move(1)"
             [disabled]="photoStrip.atEnd()"
+            (click)="photoStrip.move(1)"
           >
             <svg
               width="18"
@@ -336,7 +336,7 @@
           </button>
         </div>
       </div>
-      <div class="reveal cat-strip" data-strip #photoStrip="photoStrip" data-gallery>
+      <div #photoStrip="photoStrip" class="reveal cat-strip" data-strip data-gallery>
         <button
           type="button"
           class="cat-shot group"
@@ -724,7 +724,7 @@
       <div
         class="reveal mt-10 flex flex-col items-center gap-4 text-center sm:flex-row sm:justify-center"
       >
-        <a [routerLink]="[]" fragment="lead" class="btn-gold group max-sm:w-full">
+        <a fragment="lead" class="btn-gold group max-sm:w-full" [routerLink]="[]">
           Рассчитать стоимость
           <svg
             width="14"
@@ -946,16 +946,7 @@
       class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
       style="--d: 0.15s"
     >
-      <form
-        class="flex flex-col gap-5"
-        novalidate
-        data-lead-form
-        #lead="leadForm"
-        [formGroup]="lead.form"
-      >
-        <app-lead-fields [form]="lead.form" />
-      </form>
-      <app-lead-status [lead]="lead" />
+      <app-lead-form />
     </div>
   </div>
 </section>

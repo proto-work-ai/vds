@@ -15,7 +15,7 @@
         Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании.
         Выгодные условия для партнёров.
       </p>
-      <a [routerLink]="[]" fragment="lead" class="btn-gold mt-8" style="--d: 0.2s">
+      <a fragment="lead" class="btn-gold mt-8" style="--d: 0.2s" [routerLink]="[]">
         Стать партнером
       </a>
     </div>
@@ -131,132 +131,7 @@
         class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
         style="--d: 0.15s"
       >
-        <form
-          id="form-partner"
-          class="flex flex-col gap-5"
-          novalidate
-          data-lead-form
-          data-lead-type="full"
-          #lead="leadForm"
-          [formGroup]="lead.form"
-        >
-          <input
-            type="text"
-            formControlName="website"
-            name="website"
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-            class="absolute -left-[9999px] size-0 opacity-0"
-          />
-          <div class="grid gap-5 sm:grid-cols-2">
-            <div>
-              <label class="field-label" for="partner-name">Имя</label>
-              <tui-textfield [tuiTextfieldCleaner]="false">
-                <label tuiLabel>
-                  Имя
-                  <span class="text-red-600">*</span>
-                </label>
-                <input
-                  tuiInput
-                  id="partner-name"
-                  formControlName="name"
-                  name="name"
-                  type="text"
-                  autocomplete="name"
-                  placeholder="Введите имя"
-                  class="field"
-                />
-              </tui-textfield>
-            </div>
-            <div>
-              <label class="field-label" for="partner-phone">
-                Телефон
-                <span class="text-red-600">*</span>
-              </label>
-              <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-                <label tuiLabel>
-                  Телефон
-                  <span class="text-red-600">*</span>
-                </label>
-                <input
-                  mask="+7 (###) ###-##-##"
-                  tuiInputPhone
-                  id="partner-phone"
-                  formControlName="phone"
-                  name="phone"
-                  type="tel"
-                  inputmode="tel"
-                  autocomplete="tel"
-                  placeholder="Укажите телефон"
-                  class="field"
-                  data-phone
-                />
-              </tui-textfield>
-            </div>
-          </div>
-          <div>
-            <label class="field-label" for="partner-city">Город</label>
-            <tui-textfield [tuiTextfieldCleaner]="false">
-              <input
-                tuiInput
-                id="partner-city"
-                formControlName="city"
-                name="city"
-                type="text"
-                autocomplete="address-level2"
-                placeholder="Город"
-                class="field"
-              />
-            </tui-textfield>
-          </div>
-          <div>
-            <label class="field-label" for="partner-comment">Комментарий</label>
-            <tui-textfield [tuiTextfieldCleaner]="false">
-              <label tuiLabel>Комментарий</label>
-              <textarea
-                tuiTextarea
-                [min]="3"
-                [max]="6"
-                id="partner-comment"
-                formControlName="comment"
-                [rows]="3"
-                placeholder="Комментарий"
-                class="field resize-none"
-              ></textarea>
-            </tui-textfield>
-          </div>
-          <div>
-            <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-              <input
-                tuiCheckbox
-                type="checkbox"
-                formControlName="consent"
-                [size]="'m'"
-                name="consent"
-                class="mt-0.5 shrink-0"
-                data-consent
-              />
-              <span>
-                Я соглашаюсь с правилами по обработке
-                <a
-                  routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
-                  class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
-                >
-                  персональных данных
-                </a>
-              </span>
-            </label>
-          </div>
-          <button
-            type="submit"
-            class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
-            [disabled]="lead.submitting()"
-          >
-            Отправить
-          </button>
-        </form>
-        <app-lead-status [lead]="lead" />
+        <app-partner-lead-form />
       </div>
     </div>
   </section>

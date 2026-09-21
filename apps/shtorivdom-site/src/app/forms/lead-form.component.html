@@ -1,0 +1,18 @@
+<form
+  class="flex flex-col gap-5"
+  novalidate
+  data-lead-form
+  [attr.data-lead-type]="leadType() || null"
+  [attr.data-order-model]="orderModel() || null"
+  [formGroup]="lead.form"
+  #lead="leadForm"
+  [leadDescription]="leadDescription()"
+  [calculationSummary]="calculationSummary()"
+  [attr.data-lead-kind]="kind() || null"
+>
+  <app-lead-fields [form]="lead.form" [showName]="showName()" [showCity]="showCity()" />
+  <button type="submit" class="btn-gold w-full" [disabled]="lead.submitting()">
+    {{ submitText() }}
+  </button>
+</form>
+<app-lead-feedback [lead]="lead" />

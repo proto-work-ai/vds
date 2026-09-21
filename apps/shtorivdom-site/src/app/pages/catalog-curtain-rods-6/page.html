@@ -117,9 +117,9 @@
         </div>
         <div class="rise flex flex-wrap gap-4" style="--d: 0.3s">
           <a
-            [routerLink]="[]"
             fragment="lead"
             class="btn-gold group max-sm:w-full"
+            [routerLink]="[]"
             (click)="lead.chooseModel('Карниз DAVOS белый')"
           >
             Заказать карниз
@@ -159,8 +159,8 @@
             type="button"
             class="cat-arrow"
             aria-label="Предыдущие модели"
-            (click)="photoStrip.move(-1)"
             [disabled]="photoStrip.atStart()"
+            (click)="photoStrip.move(-1)"
           >
             <svg
               width="18"
@@ -178,8 +178,8 @@
             type="button"
             class="cat-arrow"
             aria-label="Следующие модели"
-            (click)="photoStrip.move(1)"
             [disabled]="photoStrip.atEnd()"
+            (click)="photoStrip.move(1)"
           >
             <svg
               width="18"
@@ -195,7 +195,7 @@
           </button>
         </div>
       </div>
-      <div class="reveal cat-strip cat-strip-models" data-strip #photoStrip="photoStrip">
+      <div #photoStrip="photoStrip" class="reveal cat-strip cat-strip-models" data-strip>
         <a
           routerLink="/catalog/curtain-rods/1"
           class="cat-card group flex flex-col border border-navy/10 bg-white"
@@ -456,17 +456,7 @@
       class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
       style="--d: 0.15s"
     >
-      <form
-        data-order-model="Карниз DAVOS белый"
-        class="flex flex-col gap-5"
-        novalidate
-        data-lead-form
-        #lead="leadForm"
-        [formGroup]="lead.form"
-      >
-        <app-lead-fields [form]="lead.form" />
-      </form>
-      <app-lead-status [lead]="lead" />
+      <app-lead-form #lead="leadForm" />
     </div>
   </div>
 </section>

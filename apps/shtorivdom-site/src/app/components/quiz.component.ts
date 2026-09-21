@@ -1,3 +1,5 @@
+import { LeadFormComponent } from '../forms/lead-form.component';
+import { QuizLeadFormComponent } from '../forms/quiz-lead-form.component';
 import { RouterLink } from '@angular/router';
 import { LeadStatus } from '../forms/lead-status';
 import { RevealDirective } from './reveal.directive';
@@ -33,6 +35,8 @@ type Recommendation = {
   templateUrl: './quiz.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    LeadFormComponent,
+    QuizLeadFormComponent,
     RouterLink,
     LeadStatus,
     RevealDirective,

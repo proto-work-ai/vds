@@ -1,3 +1,5 @@
+import { LeadFormComponent } from '../../forms/lead-form.component';
+import { DesignerLeadFormComponent } from '../../forms/designer-lead-form.component';
 import { RouterLink } from '@angular/router';
 import { LeadStatus } from '../../forms/lead-status';
 import { CounterDirective } from '../../components/reveal.directive';
@@ -17,6 +19,8 @@ import { SITE_FAQ, SiteFaq, SiteBeforeAfter, SiteReviewSlider } from '@shtorivdo
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    LeadFormComponent,
+    DesignerLeadFormComponent,
     SiteBeforeAfter,
     SiteReviewSlider,
     RouterLink,

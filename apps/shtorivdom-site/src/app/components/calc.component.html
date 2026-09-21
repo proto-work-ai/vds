@@ -45,7 +45,7 @@
                   (change)="selectItem(item.key)"
                 />
                 <span class="calc-option-box">
-                  <img [src]="item.image" alt="" loading="lazy" class="calc-kind-img" />
+                  <img alt="" loading="lazy" class="calc-kind-img" [src]="item.image" />
                   <b class="font-serif tetext-[14px] leading-tight">{{ item.title }}</b>
                   <span class="text-[12px] text-slate/80">
                     от {{ item.min.toLocaleString('ru-RU') }} ₽/{{ item.unit }}
@@ -79,10 +79,10 @@
                 min="30"
                 max="1500"
                 step="1"
-                [value]="width()"
-                (input)="setNumber('width', $event)"
                 class="field"
                 data-calc-width
+                [value]="width()"
+                (input)="setNumber('width', $event)"
               />
               <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-width-hint>
                 Длина карниза от края до края. Если карниза ещё нет — ширина окна плюс по 15–20 см с
@@ -101,10 +101,10 @@
                 min="30"
                 max="600"
                 step="1"
-                [value]="height()"
-                (input)="setNumber('height', $event)"
                 class="field"
                 data-calc-height
+                [value]="height()"
+                (input)="setNumber('height', $event)"
               />
               <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-height-hint>
                 Для штор в пол — до пола минус 1–2 см, чтобы ткань не собирала пыль.
@@ -218,17 +218,12 @@
               Оставьте телефон — дизайнер перезвонит, уточнит размеры и договорится о бесплатном
               замере.
             </p>
-            <form
-              class="flex flex-col gap-5"
-              novalidate
-              data-calc-lead-form
+            <app-calc-lead-form
               [calculationSummary]="
                 calculation().summary ? 'Расчёт с калькулятора — ' + calculation().summary : ''
               "
-              data-inline-lead="calc"
-              #lead="calcLeadForm"
-              [formGroup]="lead.form"
-            >
+            />
+            <!--
               <input
                 type="text"
                 formControlName="website"
@@ -310,10 +305,10 @@
                     tuiCheckbox
                     type="checkbox"
                     formControlName="consent"
-                    [size]="'m'"
                     name="consent"
                     class="mt-0.5 shrink-0"
                     data-consent
+                    [size]="'m'"
                   />
                   <span>
                     Я соглашаюсь с правилами по обработке
@@ -330,7 +325,7 @@
                 Отправить расчёт дизайнеру
               </button>
             </form>
-            <app-lead-status [lead]="lead" />
+            <app-lead-feedback [lead]="lead" /> -->
             <p class="mt-5 text-[12px] leading-relaxed text-cream/60">
               Расчёт примерный: по минимальным ценам каталога, без учёта отделки и аксессуаров.
               Погрешность возможна до 15–20%. Точную стоимость дизайнер назовёт после бесплатного
@@ -464,90 +459,7 @@
         class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
         style="--d: 0.15s"
       >
-        <form
-          #contactLead="leadForm"
-          class="flex flex-col gap-5"
-          novalidate
-          data-lead-form
-          data-lead-type="phone"
-          [formGroup]="contactLead.form"
-        >
-          <input
-            type="text"
-            formControlName="website"
-            name="website"
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-            class="absolute -left-[9999px] size-0 opacity-0"
-          />
-          <div>
-            <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-              <label tuiLabel>
-                Телефон
-                <span class="text-red-600">*</span>
-              </label>
-              <input
-                mask="+7 (###) ###-##-##"
-                tuiInputPhone
-                id="lead-phone"
-                formControlName="phone"
-                name="phone"
-                type="tel"
-                inputmode="tel"
-                autocomplete="tel"
-                placeholder="Укажите телефон"
-                class="field"
-                data-phone
-              />
-            </tui-textfield>
-          </div>
-          <div>
-            <tui-textfield [tuiTextfieldCleaner]="false">
-              <label tuiLabel>Комментарий!</label>
-              <textarea
-                tuiTextarea
-                id="lead-comment"
-                formControlName="comment"
-                placeholder="Комментарий"
-                class="field resize-none"
-                [rows]="3"
-                [min]="3"
-                [max]="6"
-              ></textarea>
-            </tui-textfield>
-          </div>
-          <div>
-            <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-              <input
-                tuiCheckbox
-                type="checkbox"
-                formControlName="consent"
-                [size]="'m'"
-                name="consent"
-                class="mt-0.5 shrink-0"
-                data-consent
-              />
-              <span>
-                Я соглашаюсь с правилами по обработке
-                <a
-                  routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
-                  class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
-                >
-                  персональных данных
-                </a>
-              </span>
-            </label>
-          </div>
-          <button
-            type="submit"
-            class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
-            [disabled]="contactLead.submitting()"
-          >
-            Отправить
-          </button>
-        </form>
-        <app-lead-status [lead]="contactLead" />
+        <app-calc-lead-form [calculationSummary]="calculation().summary" />
       </div>
     </div>
   </section>

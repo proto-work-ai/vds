@@ -26,9 +26,9 @@
           <ol class="flex flex-col text-[14px] leading-snug">
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-1"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">1</span>
                 <span>Общие положения</span>
@@ -36,9 +36,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-2"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">2</span>
                 <span>Основные понятия, используемые в Политике</span>
@@ -46,9 +46,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-3"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">3</span>
                 <span>Основные права и обязанности Оператора</span>
@@ -56,9 +56,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-4"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">4</span>
                 <span>Основные права и обязанности субъектов персональных данных</span>
@@ -66,9 +66,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-5"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">5</span>
                 <span>Принципы обработки персональных данных</span>
@@ -76,9 +76,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-6"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">6</span>
                 <span>Цели обработки персональных данных</span>
@@ -86,9 +86,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-7"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">7</span>
                 <span>Условия обработки персональных данных</span>
@@ -96,9 +96,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-8"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">8</span>
                 <span>
@@ -108,9 +108,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-9"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">9</span>
                 <span>
@@ -120,9 +120,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-10"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">10</span>
                 <span>Трансграничная передача персональных данных</span>
@@ -130,9 +130,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-11"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">11</span>
                 <span>Конфиденциальность персональных данных</span>
@@ -140,9 +140,9 @@
             </li>
             <li>
               <a
-                [routerLink]="[]"
                 fragment="section-12"
                 class="flex gap-2.5 border-b border-navy/5 py-2 transition-colors hover:text-gold"
+                [routerLink]="[]"
               >
                 <span class="w-5 shrink-0 font-bold text-gold">12</span>
                 <span>Заключительные положения</span>
@@ -698,16 +698,7 @@
       class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
       style="--d: 0.15s"
     >
-      <form
-        class="flex flex-col gap-5"
-        novalidate
-        data-lead-form
-        #lead="leadForm"
-        [formGroup]="lead.form"
-      >
-        <app-lead-fields [form]="lead.form" />
-      </form>
-      <app-lead-status [lead]="lead" />
+      <app-lead-form />
     </div>
   </div>
 </section>

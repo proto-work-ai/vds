@@ -1,3 +1,4 @@
+import { CalcLeadFormComponent } from '../forms/calc-lead-form.component';
 import { RouterLink } from '@angular/router';
 import { LeadStatus } from '../forms/lead-status';
 import { RevealDirective } from './reveal.directive';
@@ -23,6 +24,7 @@ type CalcItem = {
   templateUrl: './calc.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    CalcLeadFormComponent,
     RouterLink,
     LeadStatus,
     RevealDirective,

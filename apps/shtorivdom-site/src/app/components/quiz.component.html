@@ -31,8 +31,8 @@
             >
               <div
                 class="h-full bg-gold transition-[width] duration-500"
-                [style.width.%]="progress()"
                 data-quiz-bar
+                [style.width.%]="progress()"
               ></div>
             </div>
           </div>
@@ -48,8 +48,8 @@
                     type="radio"
                     name="room"
                     value="bedroom"
-                    [checked]="answers().room === 'bedroom'"
                     class="sr-only"
+                    [checked]="answers().room === 'bedroom'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box"><b class="font-serif text-[18px]">Спальня</b></span>
@@ -59,8 +59,8 @@
                     type="radio"
                     name="room"
                     value="living"
-                    [checked]="answers().room === 'living'"
                     class="sr-only"
+                    [checked]="answers().room === 'living'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -72,8 +72,8 @@
                     type="radio"
                     name="room"
                     value="kids"
-                    [checked]="answers().room === 'kids'"
                     class="sr-only"
+                    [checked]="answers().room === 'kids'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box"><b class="font-serif text-[18px]">Детская</b></span>
@@ -83,8 +83,8 @@
                     type="radio"
                     name="room"
                     value="kitchen"
-                    [checked]="answers().room === 'kitchen'"
                     class="sr-only"
+                    [checked]="answers().room === 'kitchen'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box"><b class="font-serif text-[18px]">Кухня</b></span>
@@ -94,8 +94,8 @@
                     type="radio"
                     name="room"
                     value="office"
-                    [checked]="answers().room === 'office'"
                     class="sr-only"
+                    [checked]="answers().room === 'office'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box"><b class="font-serif text-[18px]">Кабинет</b></span>
@@ -105,8 +105,8 @@
                     type="radio"
                     name="room"
                     value="other"
-                    [checked]="answers().room === 'other'"
                     class="sr-only"
+                    [checked]="answers().room === 'other'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box"><b class="font-serif text-[18px]">Другое</b></span>
@@ -128,8 +128,8 @@
                     type="radio"
                     name="light"
                     value="dark"
-                    [checked]="answers().light === 'dark'"
                     class="sr-only"
+                    [checked]="answers().light === 'dark'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -142,8 +142,8 @@
                     type="radio"
                     name="light"
                     value="soft"
-                    [checked]="answers().light === 'soft'"
                     class="sr-only"
+                    [checked]="answers().light === 'soft'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -156,8 +156,8 @@
                     type="radio"
                     name="light"
                     value="privacy"
-                    [checked]="answers().light === 'privacy'"
                     class="sr-only"
+                    [checked]="answers().light === 'privacy'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -170,8 +170,8 @@
                     type="radio"
                     name="light"
                     value="decor"
-                    [checked]="answers().light === 'decor'"
                     class="sr-only"
+                    [checked]="answers().light === 'decor'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -196,8 +196,8 @@
                     type="radio"
                     name="window"
                     value="standard"
-                    [checked]="answers().window === 'standard'"
                     class="sr-only"
+                    [checked]="answers().window === 'standard'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -210,8 +210,8 @@
                     type="radio"
                     name="window"
                     value="panoramic"
-                    [checked]="answers().window === 'panoramic'"
                     class="sr-only"
+                    [checked]="answers().window === 'panoramic'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -224,8 +224,8 @@
                     type="radio"
                     name="window"
                     value="attic"
-                    [checked]="answers().window === 'attic'"
                     class="sr-only"
+                    [checked]="answers().window === 'attic'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -238,8 +238,8 @@
                     type="radio"
                     name="window"
                     value="door"
-                    [checked]="answers().window === 'door'"
                     class="sr-only"
+                    [checked]="answers().window === 'door'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -264,8 +264,8 @@
                     type="radio"
                     name="style"
                     value="classic"
-                    [checked]="answers().style === 'classic'"
                     class="sr-only"
+                    [checked]="answers().style === 'classic'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -278,8 +278,8 @@
                     type="radio"
                     name="style"
                     value="modern"
-                    [checked]="answers().style === 'modern'"
                     class="sr-only"
+                    [checked]="answers().style === 'modern'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -292,8 +292,8 @@
                     type="radio"
                     name="style"
                     value="eco"
-                    [checked]="answers().style === 'eco'"
                     class="sr-only"
+                    [checked]="answers().style === 'eco'"
                     (change)="selectAnswer($event)"
                   />
                   <span class="calc-option-box">
@@ -314,15 +314,15 @@
               <div class="grid gap-5 sm:grid-cols-2" data-quiz-cards>
                 @for (item of recommendations(); track item.key) {
                   <a
-                    [routerLink]="item.href"
                     class="work group relative block overflow-hidden rounded-[4px] bg-navy text-cream"
+                    [routerLink]="item.href"
                   >
                     <div class="relative aspect-[4/3] overflow-hidden">
                       <img
-                        [src]="item.image"
-                        [alt]="item.title"
                         loading="lazy"
                         class="absolute inset-0 size-full object-cover"
+                        [src]="item.image"
+                        [alt]="item.title"
                       />
                     </div>
                     <div class="flex items-center justify-between gap-3 p-5">
@@ -364,126 +364,7 @@
                     Пройти заново
                   </button>
                 </div>
-                <form
-                  class="flex flex-col gap-5"
-                  novalidate
-                  data-lead-form="order"
-                  data-lead-type="full"
-                  data-inline-lead="quiz"
-                  [leadDescription]="'Подбор штор — ' + summary()"
-                  #quizLead="leadForm"
-                  [formGroup]="quizLead.form"
-                >
-                  <input
-                    type="text"
-                    formControlName="website"
-                    name="website"
-                    tabindex="-1"
-                    autocomplete="off"
-                    aria-hidden="true"
-                    class="absolute -left-[9999px] size-0 opacity-0"
-                  />
-
-                  <label class="flex items-center gap-3 border-b border-gold pb-3">
-                    <svg
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#c9a84c"
-                      stroke-width="2"
-                      class="shrink-0"
-                    >
-                      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                    <tui-textfield class="w-full" [tuiTextfieldCleaner]="false">
-                      <label tuiLabel>
-                        Имя
-                        <span class="text-red-600">*</span>
-                      </label>
-                      <input
-                        tuiInput
-                        formControlName="name"
-                        name="name"
-                        type="text"
-                        autocomplete="name"
-                        placeholder="Введите имя"
-                        class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60"
-                      />
-                    </tui-textfield>
-                  </label>
-                  <div>
-                    <label
-                      class="flex items-center gap-3 border-b border-gold pb-3"
-                      data-phone-wrap
-                    >
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#c9a84c"
-                        stroke-width="2"
-                        class="shrink-0"
-                      >
-                        <path
-                          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
-                        />
-                      </svg>
-                      <div class="w-full">
-                        <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-                          <label tuiLabel>
-                            Телефон
-                            <span class="text-red-600">*</span>
-                          </label>
-                          <input
-                            mask="+7 (###) ###-##-##"
-                            tuiInputPhone
-                            formControlName="phone"
-                            name="phone"
-                            type="tel"
-                            inputmode="tel"
-                            autocomplete="tel"
-                            placeholder="Укажите телефон"
-                            class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60"
-                            data-phone
-                          />
-                        </tui-textfield>
-                      </div>
-                    </label>
-                  </div>
-                  <div>
-                    <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-                      <input
-                        tuiCheckbox
-                        type="checkbox"
-                        formControlName="consent"
-                        [size]="'m'"
-                        name="consent"
-                        class="mt-0.5 shrink-0"
-                        data-consent
-                      />
-                      <span>
-                        Я соглашаюсь с правилами по обработке
-                        <a
-                          routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
-                          class="underline decoration-gold underline-offset-2 hover:text-gold"
-                        >
-                          персональных данных
-                        </a>
-                      </span>
-                    </label>
-                  </div>
-                  <button
-                    type="submit"
-                    class="btn-gold !flex w-full"
-                    [disabled]="quizLead.submitting()"
-                  >
-                    Отправить подбор
-                  </button>
-                </form>
-                <app-lead-status [lead]="quizLead" />
+                <app-quiz-lead-form [leadDescription]="'Подбор штор — ' + summary()" />
               </div>
             </div>
           </div>
@@ -643,89 +524,7 @@
         class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
         style="--d: 0.15s"
       >
-        <form
-          class="flex flex-col gap-5"
-          novalidate
-          data-lead-form
-          #contactLead="leadForm"
-          [formGroup]="contactLead.form"
-        >
-          <input
-            type="text"
-            formControlName="website"
-            name="website"
-            tabindex="-1"
-            autocomplete="off"
-            aria-hidden="true"
-            class="absolute -left-[9999px] size-0 opacity-0"
-          />
-          <div>
-            <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-              <label tuiLabel>
-                Телефон
-                <span class="text-red-600">*</span>
-              </label>
-              <input
-                mask="+7 (###) ###-##-##"
-                tuiInputPhone
-                id="lead-phone"
-                formControlName="phone"
-                name="phone"
-                type="tel"
-                inputmode="tel"
-                autocomplete="tel"
-                placeholder="Укажите телефон"
-                class="field"
-                data-phone
-              />
-            </tui-textfield>
-          </div>
-          <div>
-            <tui-textfield [tuiTextfieldCleaner]="false">
-              <label tuiLabel>Комментарий</label>
-              <textarea
-                tuiTextarea
-                [min]="3"
-                [max]="6"
-                id="lead-comment"
-                formControlName="comment"
-                [rows]="3"
-                placeholder="Комментарий"
-                class="field resize-none"
-              ></textarea>
-            </tui-textfield>
-          </div>
-          <div>
-            <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
-              <input
-                tuiCheckbox
-                type="checkbox"
-                formControlName="consent"
-                [size]="'m'"
-                name="consent"
-                class="mt-0.5 shrink-0"
-                data-consent
-              />
-              <span>
-                Я соглашаюсь с правилами по обработке
-                <a
-                  routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
-                  class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
-                >
-                  персональных данных
-                </a>
-              </span>
-            </label>
-          </div>
-          <button
-            type="submit"
-            class="btn-gold mt-2 w-full sm:w-auto sm:self-end"
-            [disabled]="contactLead.submitting()"
-          >
-            Отправить
-          </button>
-        </form>
-        <app-lead-status [lead]="contactLead" />
+        <app-lead-form [leadType]="'phone'" />
       </div>
     </div>
   </section>

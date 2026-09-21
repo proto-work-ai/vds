@@ -308,11 +308,6 @@ tui-textfield {
   } */
 
   &.tui-invalid {
-    input[tuiInput],
-    textarea[tuiTextarea] {
-      // border-color: #f44336 !important;
-    }
-
     [tuiappearance] {
       padding-right: 1.6rem;
     }

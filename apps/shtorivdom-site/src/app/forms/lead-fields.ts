@@ -21,4 +21,6 @@ import { DeferDirective } from '../components/defer.component';
 })
 export class LeadFields {
   public readonly form = input.required<FormGroup>();
+  public readonly showName = input(false);
+  public readonly showCity = input(false);
 }

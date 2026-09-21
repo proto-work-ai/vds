@@ -3,7 +3,7 @@ import { LeadFormDirective } from './lead-form.directive';
 import { ContactLinksDirective } from '../contact-links.directive';
 
 @Component({
-  selector: 'app-lead-status',
+  selector: 'app-lead-feedback',
   imports: [ContactLinksDirective],
   templateUrl: './lead-status.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
