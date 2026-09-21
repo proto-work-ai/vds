@@ -1,12 +1,12 @@
 ---
 name: taiga-ui
-description: Use BEFORE writing or changing any Angular code that touches Taiga UI in this repository — components, textfields, dialogs, forms, icons, theming, dark mode, or provider setup. Grounds code in the Taiga UI v5 API actually installed here (correct import packages, CDK date/time types, OnPush, options providers) instead of recalled or v3/v4 APIs.
+description: Use before changing Taiga UI code in shtorivdom. Grounds components, forms, textfields, icons, theming, and provider setup in the installed Taiga UI 5.22 API and this site's conventions.
 ---
 
-# Taiga UI (v5) in Proto.ai
+# Taiga UI 5.22 in shtorivdom
 
 Unofficial skill, hand-assembled from the official machine-readable docs
-(`https://taiga-ui.dev/llms-full.txt`, fetched 2026-08-22). Taiga UI publishes no
+(`https://taiga-ui.dev/llms-full.txt`). Taiga UI publishes no
 official `SKILL.md`. The `references/` files in this skill are verbatim extracts of
 those docs — treat them as the source of truth over memory.
 
@@ -14,17 +14,15 @@ those docs — treat them as the source of truth over memory.
 
 | Package         | Version   | Notes                                                    |
 | --------------- | --------- | -------------------------------------------------------- |
-| `@taiga-ui/*`   | `^5.7.0`  | v5 — standalone components/directives only, no NgModules |
-| `@angular/core` | `^22.1.0` | standalone + signals                                     |
+| `@taiga-ui/*`   | `5.22.0`  | v5 — standalone components/directives only, no NgModules |
+| `@angular/core` | `~22.1.x` | standalone + signals                                     |
 
-Installed packages: `cdk`, `core`, `kit`, `layout`, `icons`, `styles`, `i18n`,
-`event-plugins`, `polymorpheus`, `addon-table`, `addon-mobile`, `experimental`.
-Do not add another `@taiga-ui/*` package without checking it against `package.json`.
+Treat `package.json` as the source of truth for installed packages. Do not add another
+`@taiga-ui/*` package without checking that it is required and version-compatible.
 
 ## Workflow
 
-1. Read `.agents/skills/nx-monorepo-conventions/SKILL.md` first — it owns the repo-wide
-   Angular/Nx rules (Prettier, `templateUrl` over 100 chars, library boundaries).
+1. Read `.agents/skills/nx-monorepo-conventions/SKILL.md` and the nearby implementation.
 2. Before using any `Tui*` symbol, look it up in
    [references/import-map.md](references/import-map.md) and import it from the package
    listed there. Wrong import package is the number one cause of compile errors.
@@ -35,21 +33,9 @@ Do not add another `@taiga-ui/*` package without checking it against `package.js
 
 ## Project setup (already done — do not duplicate)
 
-Global configuration lives in `libs/ui/taiga-ui` (path alias `@atlas/taiga-ui`) and is
-exported as `taigaUIProviders`, wired into `apps/admin/src/app/app.config.ts`.
-`TuiRoot` is already imported in `apps/admin/src/app/app.component.ts`.
-
-Defaults already set there — respect them instead of overriding per component:
-
-- `provideTaiga()`, `provideAnimations()`, `tuiAssetsPathProvider('/assets/taiga-ui/icons')`
-- Russian locale via `TUI_LANGUAGE` / `TUI_RUSSIAN_LANGUAGE`, Russian validation messages
-  through `tuiValidationErrorsProvider`
-- Sizes: textfield/button/checkbox/radio `'s'`, switch `'m'`; scrollbars `'native'`
-
-Changing a global default means editing `libs/ui/taiga-ui/src/lib/taiga-ui-providers.ts`,
-which affects every screen — say so explicitly rather than doing it silently.
-Per-screen overrides use the same `tui*OptionsProvider` functions in the component's own
-`providers` array.
+Inspect the existing providers in `apps/shtorivdom-site` before changing global defaults.
+Icons are served from `/assets/taiga-ui/icons`; production copies only the explicit SVG
+list in `apps/shtorivdom-site/project.json`.
 
 ## Hard rules
 
@@ -68,28 +54,23 @@ Per-screen overrides use the same `tui*OptionsProvider` functions in the compone
   `FormControl`/`FormGroup`. Missing them is a silent template failure.
 - **Never copy `@demo/emulate/*` imports** from documentation examples — they are
   demo-site internals.
+- **Textfields:** use `<tui-textfield>` with `<label tuiLabel>` and a native
+  `<input tuiInput>` or `<textarea tuiTextarea>`. Put control icons on the textfield via
+  `iconStart`/`iconEnd`.
+- **Phone:** use `TuiInputPhone`/`tuiInputPhone`; apply `*appDefer` only to the telephone
+  textfield where the existing mask initialization requires it.
+- **Required fields:** displayed name and city fields are required and marked `*`; city
+  also uses the verified location icon.
+- **Success:** preserve the form success block beginning with “Спасибо!”.
 
-## Tables
+## Icon workflow
 
-`TuiTable` (`@taiga-ui/addon-table`) is the table for this repository. AG Grid was removed
-on 2026-08-23; there is no `@atlas/ui-ag-grid` library and no `ag-grid-*` dependency any
-more. Do not reintroduce either without an explicit decision from the maintainer.
-
-Sorting, filtering and server-side paging are not wired up today. If a table needs them,
-build them on top of `TuiTable` (`tuiSortable`, `tuiTableSort`, `TuiTableFilters`) rather
-than adding another grid library.
-
-## Boundary with the Theme/Block Engine
-
-The portable Theme/Block Engine must not depend on Taiga UI (repo rule in `AGENTS.md`).
-Taiga UI is application-shell UI for Admin/Studio only.
-
-Where the two meet is theming: Taiga UI is themed through `--tui-*` CSS custom properties
-and the `tuiTheme` attribute on `<body>` (`document.body.setAttribute('tuiTheme', 'dark')`)
-— the same shape as the engine's ThemeSchema → CSS-variables pipeline. When a generated
-theme has to reach the admin chrome, map its resolved tokens onto `--tui-*` variables
-rather than introducing a second token system or writing raw CSS overrides against Taiga
-internals.
+1. Verify the `@tui.*` name and v5 API.
+2. Use the control's `iconStart` or `iconEnd` input.
+3. Add a missing SVG to the explicit asset glob in `apps/shtorivdom-site/project.json`.
+4. Build and verify that the icon remains visible after hydration.
+5. Report that Taiga icons need manual server synchronization unless the owner explicitly
+   requested deployment with `--with-taiga-icons`.
 
 ## References
 

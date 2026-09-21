@@ -1,40 +1,25 @@
-# Proto.ai Nx Monorepo Conventions
+# shtorivdom Nx monorepo conventions
 
 ## Target structure
 
 ```text
 apps/
-  admin/
-  admin-api/
-  studio/       # when implemented
-  studio-api/   # when implemented
-  landing/
+  shtorivdom-site/       # Angular 22 static site
+  shtorivdom-storybook/  # shared UI stories
 
 libs/
-  ui/
-    atlas/
-  contracts/
-  theme-engine/
-  block-engine/
-  integrations/
+  atlas/core/
+  atlas/form/
+  fonts/
+  metadb/core/
+  ui/site-kit/
 ```
 
 Do not invent future apps unless requested. A reserved README is acceptable.
 
-## Angular and NestJS
+## Angular
 
-Use Angular for Admin, Studio, and Landing. Use NestJS for backend applications. Prefer standalone Angular components and `ApplicationConfig` providers.
-
-## Angular localize
-
-All Angular applications (Admin, Studio, and Landing) must be created with `@angular/localize` support enabled.
-
-- Keep `@angular/localize` aligned with the workspace Angular version.
-- Add `@angular/localize/init` to the application build `polyfills` when runtime `$localize` support is required.
-- Add `"@angular/localize"` to the application's TypeScript `types`.
-- Define an `i18n.sourceLocale` in the Nx project configuration. The current source locale is `en-US` until product localization requirements change.
-- Add an `extract-i18n` target using `@angular/build:extract-i18n` so messages can be extracted consistently.
-- Do not enable multi-locale production builds until actual translation files/locales have been defined.
+Use Angular 22 standalone components, signals and `ApplicationConfig` providers. Keep browser-only behavior in Angular components or directives instead of global DOM scripts.
 
 ## TypeScript access modifiers
 
@@ -68,59 +53,34 @@ export class ExampleComponent {
 
 ## Tailwind CSS
 
-Install Tailwind once at workspace root. Use one shared stylesheet such as `styles/tailwind.css` and one root PostCSS config. Include sources for Admin, Studio, Landing, and shared libs. Do not make portable Theme/Block Engine output depend on Tailwind classes.
+Use the existing Tailwind 4 setup. Verify changed classes with `npm run check:tailwind-classes`; Tailwind silently ignores invalid utility names.
 
 ## Taiga UI
 
-Install compatible Taiga UI packages at root. Use Taiga UI for reusable application controls. Do not make generated user blocks depend on Taiga UI.
-
-## Tables
-
-All data tables use Taiga UI `@taiga-ui/addon-table`. AG Grid Enterprise and the
-`libs/ui/ag-grid` library were removed on 2026-08-23; do not reintroduce them without an
-explicit decision from the maintainer.
+Use the installed Taiga UI 5.22 packages and the repository `taiga-ui` skill. Do not mix APIs from other versions.
 
 ## Prettier
 
 Use one root Prettier config. Mandatory rule: every created or modified `.ts` file must be formatted before completion. For repository-wide TypeScript formatting use:
 
 ```bash
-pnpm format:ts
-pnpm format:ts:check
+npm run format
+npm run format:check
 ```
 
 ## Angular template rule
 
 Inline `template` is allowed only when normalized content is `<= 100` characters. Anything longer must use a sibling `.component.html` via `templateUrl`. After extraction, format both `.ts` and `.html`.
 
-Run:
-
-```bash
-pnpm check:templates
-```
-
-## Theme/Block Engine boundary
-
-```text
-Angular Admin / Studio
-  Tailwind
-  Taiga UI
-
-Theme Engine / Block Engine
-  Design Tokens
-  CSS Variables
-  portable schemas
-```
-
-Do not leak application UI frameworks into portable rendering contracts.
-
 ## Verification
 
 Before completing a repository change:
 
 - confirm dependency compatibility;
-- confirm Angular templates >100 chars use `templateUrl`;
+- confirm substantial Angular templates use `templateUrl`;
 - confirm each `templateUrl` exists;
 - run Prettier/checks when dependencies are available;
-- run affected Nx build/lint/typecheck/runtime checks when available;
+- run affected Nx checks and `npm run site:build` for site changes;
 - never claim successful execution if it did not run.
+- preserve unrelated working-tree changes;
+- do not commit, merge, push, or deploy without an explicit owner command.

@@ -1,9 +1,9 @@
 ---
 name: nx-monorepo-conventions
-description: Apply Proto.ai Nx monorepo conventions for Angular and NestJS work. Use when creating, updating, refactoring, reviewing, or scaffolding Admin, Studio, Landing, API, or shared libraries in this repository, including Tailwind, Taiga UI, Prettier, Angular templates, and shared application structure.
+description: Apply the shtorivdom Nx monorepo conventions when creating, updating, refactoring, reviewing, or scaffolding the Angular site and shared libraries.
 ---
 
-# Nx Monorepo Conventions
+# Nx conventions for shtorivdom
 
 Follow [references/conventions.md](references/conventions.md) as the authoritative project defaults unless the user explicitly overrides them.
 
@@ -11,18 +11,18 @@ Follow [references/conventions.md](references/conventions.md) as the authoritati
 
 1. Inspect `package.json`, `nx.json`, affected `project.json` files, `tsconfig.base.json`, and relevant Angular/NestJS bootstrap files before editing.
 2. Preserve application/library boundaries and reuse root dependencies/shared configuration.
-3. Keep Admin/Studio application UI dependencies separate from portable Theme/Block Engine contracts.
+3. Put reusable site UI in `libs/ui/site-kit`; keep page composition in `apps/shtorivdom-site`.
 4. Use `templateUrl` for Angular templates longer than 100 normalized characters.
-5. Format every changed `.ts` file with repository Prettier before completion. Also format changed HTML/SCSS/JSON/Markdown.
-6. Run `pnpm check:templates` after Angular component changes.
-7. Run the narrowest applicable Nx build/lint/typecheck/runtime check. Never claim success if it was not executed.
+5. Format changed files with the repository formatter without touching unrelated files.
+6. Run `npm run check:tailwind-classes` after template or Tailwind changes.
+7. Run the narrowest applicable Nx check and `npm run site:build` for site changes. Never claim success if it was not executed.
 
 ## Shared UI stack
 
 - Tailwind: layout, spacing, responsive utilities.
 - Taiga UI: Angular controls/forms/dialogs/dropdowns/tabs/notifications.
-- Taiga UI tables (`@taiga-ui/addon-table`): all data tables. AG Grid was removed on 2026-08-23.
+- Static prerender through `apps/shtorivdom-site`.
 
 ## Repository writes
 
-Prefer one coherent commit per requested refactor instead of one commit per file.
+Do not commit, merge, push, or deploy unless the owner explicitly requests that action.

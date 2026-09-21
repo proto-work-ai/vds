@@ -5,19 +5,19 @@ description: Monitor Nx Cloud CI pipeline and handle self-healing fixes. USE WHE
 
 # Monitor CI Command
 
-You are the orchestrator for monitoring Nx Cloud CI pipeline executions and handling self-healing fixes. You spawn subagents to interact with Nx Cloud, run deterministic decision scripts, and take action based on the results.
+Monitor Nx Cloud CI executions and handle self-healing fixes with the tools available to Codex. Use repository scripts for deterministic decisions and keep user worktree changes intact.
 
-## Context
+## Codex setup
 
-- **Current Branch:** !`git branch --show-current`
-- **Current Commit:** !`git rev-parse --short HEAD`
-- **Remote Status:** !`git status -sb | head -1`
+Read the current context with separate, read-only shell commands:
 
-## User Instructions
+```bash
+git branch --show-current
+git rev-parse --short HEAD
+git status -sb
+```
 
-$ARGUMENTS
-
-**Important:** If user provides specific instructions, respect them over default behaviors described below.
+Treat the user's current message as the invocation arguments. Explicit user instructions override the defaults below. Use `functions.exec`/`exec_command` for repository scripts. Use collaboration agents only when the user or an applicable repository instruction explicitly requests delegation.
 
 ## Configuration Defaults
 
@@ -32,7 +32,7 @@ $ARGUMENTS
 | `--new-cipe-timeout`      | 10            | Minutes to wait for new CI Attempt after action                           |
 | `--local-verify-attempts` | 3             | Max local verification + enhance cycles before pushing to CI              |
 
-Parse any overrides from `$ARGUMENTS` and merge with defaults.
+Parse any overrides from the user's request and merge them with these defaults.
 
 ## Nx Cloud Connection Check
 
@@ -51,8 +51,8 @@ Before starting the monitoring loop, verify the workspace is connected to Nx Clo
 
 ## Architecture Overview
 
-1. **This skill (orchestrator)**: spawns subagents, runs scripts, prints status, does local coding work
-2. **ci-monitor-subagent (haiku)**: calls one MCP tool (ci_information or update_self_healing_fix), returns structured result, exits
+1. **Codex task**: runs scripts, reports status, and performs authorized local fixes
+2. **Nx Cloud connector**: calls `ci_information` or `update_self_healing_fix` when those tools are available
 3. **ci-poll-decide.mjs (deterministic script)**: takes ci_information result + state, returns action + status message
 4. **ci-state-update.mjs (deterministic script)**: manages budget gates, post-action state transitions, and cycle classification
 
@@ -75,15 +75,15 @@ These behaviors cause real problems — racing with self-healing, losing CI prog
 | Running CI checks on main agent                                                                 | Wastes main agent context tokens                                   |
 | Independently analyzing/fixing CI failures while polling                                        | Races with self-healing, causes duplicate fixes and confused state |
 
-**If this skill fails to activate**, the fallback is:
+**If Nx Cloud tools are unavailable**, the fallback is:
 
 1. Use CI provider CLI for a one-time, read-only status check (single call, no watch/polling flags)
-2. Immediately delegate to this skill with gathered context
-3. Do not continue polling on main agent — it wastes context tokens and bypasses self-healing
+2. Report that Nx Cloud self-healing could not be inspected
+3. Do not invent CI or self-healing status
 
 ## Session Context Behavior
 
-If the user previously ran `/monitor-ci` in this session, you may have prior state (poll counts, last CI Attempt URL, etc.). Resume from that state unless `--fresh` is set, in which case discard it and start from Step 1.
+If this monitoring task already has state in the conversation, resume it unless `--fresh` is set. Do not rely on slash-command state or hidden variables.
 
 ## MCP Tool Reference
 
@@ -163,14 +163,14 @@ prev_failure_classification = null
 
 Repeat until done:
 
-#### 2a. Spawn subagent (FETCH_STATUS)
+#### 2a. Fetch status
 
 Determine select fields based on mode:
 
 - **Wait mode**: use WAIT_FIELDS (`cipeUrl,commitSha,cipeStatus`)
 - **Normal mode (first poll or after newCipeDetected)**: use LIGHT_FIELDS
 
-Call the `ci_information` tool with the determined `select` fields for the current branch. Wait for the result before proceeding.
+Call the `ci_information` tool with the determined `select` fields for the current branch when it is available. Wait for the result before proceeding. If it is unavailable, use the documented one-time provider fallback and stop.
 
 #### 2b. Run decision script
 

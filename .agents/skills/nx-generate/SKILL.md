@@ -1,6 +1,6 @@
 ---
 name: nx-generate
-description: Generate code using nx generators. INVOKE IMMEDIATELY when user mentions scaffolding, setup, structure, creating apps/libs, or setting up project structure. Trigger words - scaffold, setup, create a new app, create a new lib, project structure, generate, add a new project. ALWAYS use this BEFORE calling nx_docs or exploring - this skill handles discovery internally.
+description: Generate code using Nx generators. Use when scaffolding applications, libraries, components, or other workspace structure. Discover generators and options through the local Nx CLI, dry-run first, then verify the generated code.
 ---
 
 # Run Nx Generator
