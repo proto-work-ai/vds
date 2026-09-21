@@ -26,7 +26,7 @@
             "output": "api"
           },
           {
-            "glob": "*.svg",
+            "glob": "{arrow-left,arrow-right,calendar,check,chevron-down,chevron-left,chevron-right,circle-alert,circle-check,circle-help,circle-x,clock,copy,ellipsis,eye,eye-off,file,heart,heart-filled,info,map-pin,minimize,minus,phone,plus,rotate-ccw-square,search,star,trash,user,x}.svg",
             "input": "node_modules/@taiga-ui/icons/src",
             "output": "assets/taiga-ui/icons"
           }

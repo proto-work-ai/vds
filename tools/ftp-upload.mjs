@@ -3,7 +3,7 @@
    Используется в tools/deploy-site-ftp.mjs (Angular-сайт) и tools/mockups/deploy-site-ftp.mjs (прототип).
    Без флага --upload печатает список файлов и ничего не загружает.
    С --upload пароль берётся из FTP_PASSWORD и передаётся curl через stdin (-K -), в командной строке его не видно.
-   FTP_CONCURRENCY задаёт число одновременных FTP-соединений (по умолчанию 6).
+   FTP_CONCURRENCY задаёт число одновременных FTP-соединений (по умолчанию 12).
    Файлы на сервере только добавляются и перезаписываются — ничего не удаляется. */
 import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
@@ -89,10 +89,10 @@ export async function deploy(files, { title, uploadCommand }) {
   const skipped = local.length - pending.length;
   console.log(`Изменённых или новых файлов: ${pending.length}, без изменений: ${skipped}`);
 
-  const parsedConcurrency = Number.parseInt(process.env.FTP_CONCURRENCY || '6', 10);
+  const parsedConcurrency = Number.parseInt(process.env.FTP_CONCURRENCY || '12', 10);
   const concurrency = Number.isFinite(parsedConcurrency)
     ? Math.max(1, Math.min(parsedConcurrency, 16))
-    : 6;
+    : 12;
   let nextIndex = 0;
   let done = 0;
   const failed = [];

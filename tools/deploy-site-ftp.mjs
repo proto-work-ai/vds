@@ -3,7 +3,7 @@
    npm run site:deploy                                        — сборка и загрузка на FTP
    FTP_PASSWORD=… node tools/deploy-site-ftp.mjs --upload     — загрузка уже собранного сайта
    На Windows: $env:FTP_PASSWORD='…'; npm run site:deploy
-   FTP_CONCURRENCY=6                                          — число параллельных загрузок
+   FTP_CONCURRENCY=12                                         — число параллельных загрузок
    --no-php                                                   — без api/*.php (формы на хостинге работать не будут)
 
    dist/apps/shtorivdom-site/browser/** → public_html/
