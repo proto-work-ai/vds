@@ -185,7 +185,7 @@
       </nav>
       <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Стать партнером</h1>
       <p
-        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] font-light text-cream/75"
+        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[14px] leading-[1.7] font-light text-cream/75"
         style="--d: 0.1s"
       >
         Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании.
@@ -216,7 +216,7 @@
           В рамках программы лояльности вам доступны <em class="text-gold">бесплатные услуги:</em>
         </h2>
         <ul
-          class="flex flex-col border-t border-navy/10 text-[16px] leading-snug [&>li]:flex [&>li]:items-start [&>li]:gap-4 [&>li]:border-b [&>li]:border-navy/10 [&>li]:py-4"
+          class="flex flex-col border-t border-navy/10 text-[14px] leading-snug [&>li]:flex [&>li]:items-start [&>li]:gap-4 [&>li]:border-b [&>li]:border-navy/10 [&>li]:py-4"
         >
           <li>
             <span
@@ -274,10 +274,10 @@
       <div class="reveal">
         <p class="eyebrow">Анкета</p>
         <h2 class="h2 mb-5">Стать <span class="text-gold italic">партнером</span></h2>
-        <p class="mb-10 text-[16px] leading-[1.8] font-light text-slate">
+        <p class="mb-10 text-[14px] leading-[1.8] font-light text-slate">
           Для вступления в программу заполните анкету
         </p>
-        <ul class="flex flex-col gap-3 text-[16px]">
+        <ul class="flex flex-col gap-3 text-[14px]">
           <li>
             <a href="tel:+79153591200" class="font-serif text-[24px] font-bold hover:text-gold"
               >+7 (915) 359-12-00</a
@@ -303,43 +303,102 @@
           />
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label class="field-label" for="partner-name">Имя</label>
-              <input
-                id="partner-name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                placeholder="Введите имя"
-                class="field"
-              />
+              <label class="field-label" for="partner-name">Имя *</label>
+              <div class="relative text-gold">
+                <span class="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2">
+                  <svg class="size-5 shrink-0 text-gold" role="img" aria-hidden="true"
+  
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="calc((100vw - 100vh) / 10)"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path vector-effect="non-scaling-stroke" d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+  <circle vector-effect="non-scaling-stroke" cx="12" cy="7" r="4" />
+</svg>
+                </span>
+                <input
+                  id="partner-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="Введите имя"
+                  class="field pl-12"
+                  required
+                />
+              </div>
             </div>
             <div>
               <label class="field-label" for="partner-phone">Телефон *</label>
-              <input
-                id="partner-phone"
-                name="phone"
-                type="tel"
-                inputmode="tel"
-                autocomplete="tel"
-                placeholder="Укажите телефон"
-                class="field"
-                data-phone
-              />
+              <div class="relative text-gold">
+                <span class="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2">
+                  <svg class="size-5 shrink-0 text-gold" role="img" aria-hidden="true"
+  
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="calc((100vw - 100vh) / 10)"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path vector-effect="non-scaling-stroke" d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+</svg>
+                </span>
+                <input
+                  id="partner-phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  placeholder="Укажите телефон"
+                  class="field pl-12"
+                  data-phone
+                  required
+                />
+              </div>
               <p class="mt-2 hidden text-[12px] text-[#c0392b]" data-error="phone">
                 Введите номер телефона полностью
               </p>
             </div>
           </div>
           <div>
-            <label class="field-label" for="partner-city">Город</label>
-            <input
-              id="partner-city"
-              name="city"
-              type="text"
-              autocomplete="address-level2"
-              placeholder="Город"
-              class="field"
-            />
+            <label class="field-label" for="partner-city">Город *</label>
+            <div class="relative text-gold">
+              <span class="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2">
+                <svg class="size-5 shrink-0 text-gold" role="img" aria-hidden="true"
+  
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="calc((100vw - 100vh) / 10)"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path vector-effect="non-scaling-stroke" d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+  <circle vector-effect="non-scaling-stroke" cx="12" cy="10" r="3" />
+</svg>
+              </span>
+              <input
+                id="partner-city"
+                name="city"
+                type="text"
+                autocomplete="address-level2"
+                placeholder="Город"
+                class="field pl-12"
+                required
+              />
+            </div>
           </div>
           <div>
             <label class="field-label" for="partner-comment">Комментарий</label>

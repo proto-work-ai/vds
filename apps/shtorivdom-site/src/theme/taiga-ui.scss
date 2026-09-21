@@ -286,6 +286,14 @@ tui-icon {
 tui-textfield {
   --tui-background-base: white;
 
+  /* Keep iconStart visible when the field enters invalid or focus state. */
+  &[tuiIcons]::before {
+    --tui-icon-size: 1.25rem;
+
+    color: #c9a84c !important;
+    opacity: 1 !important;
+  }
+
   [tuiLabel],
   &:focus-within [tuiLabel] {
     color: var(--navy-color, #0d223d) !important;

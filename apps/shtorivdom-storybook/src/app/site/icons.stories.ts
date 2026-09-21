@@ -78,7 +78,7 @@ export const ГалочкиИКонтакты: StoryObj = {
         <div class="space-y-3 bg-white p-8">
           <p class="eyebrow">Галочки</p>
           <site-check-item class="text-[14px]">Тюль с пошивом (тарифы, услуги)</site-check-item>
-          <site-check-item variant="circle" class="text-[16px]">Выезд дизайнера на объект с образцами (партнёрам)</site-check-item>
+          <site-check-item variant="circle" class="text-[14px]">Выезд дизайнера на объект с образцами (партнёрам)</site-check-item>
         </div>
         <div class="space-y-3 bg-navy p-8 text-[14px] text-white/85">
           <p class="eyebrow">Первый экран</p>

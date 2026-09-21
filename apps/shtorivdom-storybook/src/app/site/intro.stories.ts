@@ -13,7 +13,7 @@ export default meta;
 export const Введение: StoryObj = {
   render: () => ({
     template: `
-      <div class="wrap max-w-[900px] py-12 text-[16px] leading-relaxed text-slate">
+      <div class="wrap max-w-[900px] py-12 text-[14px] leading-relaxed text-slate">
         <div class="mb-8 w-[220px]"><site-logo variant="horizontal" color="navy" /></div>
         <p class="eyebrow">Дизайн-система</p>
         <h1 class="h2 mb-6 text-navy">Элементы сайта <span class="text-gold italic">Shtorivdom</span></h1>

@@ -1,13 +1,7 @@
 import { RouterLink } from '@angular/router';
-import { LeadStatus } from '../../forms/lead-status';
 import { RevealDirective } from '../../components/reveal.directive';
-import { DeferDirective } from '../../components/defer.component';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
-import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { ContactLinksDirective } from '../../contact-links.directive';
-import { LeadFormDirective } from '../../forms/lead-form.directive';
 import { PartnerLeadFormComponent } from '../../forms/partner-lead-form.component';
 
 // Сгенерировано tools/mockups/site-to-angular.mjs из mockups/site/partner/index.html
@@ -15,20 +9,6 @@ import { PartnerLeadFormComponent } from '../../forms/partner-lead-form.componen
   selector: 'app-partner-page',
   templateUrl: './page.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    RouterLink,
-    LeadStatus,
-    RevealDirective,
-    DeferDirective,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInput,
-    TuiInputPhone,
-    TuiTextarea,
-    TuiCheckbox,
-    LeadFormDirective,
-    ContactLinksDirective,
-    PartnerLeadFormComponent,
-  ],
+  imports: [RouterLink, RevealDirective, ContactLinksDirective, PartnerLeadFormComponent],
 })
 export class PartnerPage {}

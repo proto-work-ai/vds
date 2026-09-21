@@ -12,7 +12,7 @@
       </nav>
       <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">{{h1}}</h1>
       <p
-        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] text-cream/75"
+        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[14px] leading-[1.7] text-cream/75"
       >
         Посчитайте, сколько ткани нужно под ваше окно и сколько это примерно стоит. Точную смету
         дизайнер составит после бесплатного замера.
@@ -180,49 +180,28 @@
               />
               <input type="hidden" name="comment" value="" data-inline-comment />
               <label class="flex items-center gap-3 border-b border-gold pb-3">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#c9a84c"
-                  stroke-width="2"
-                  class="shrink-0"
-                >
-                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
+                <!-- @tui-user -->
                 <input
                   name="name"
                   type="text"
                   autocomplete="name"
                   placeholder="Введите имя"
-                  class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50"
+                  class="h-10 w-full bg-transparent text-[14px] outline-none text-cream placeholder:text-cream/50"
+                  required
                 />
               </label>
               <div>
                 <label class="flex items-center gap-3 border-b border-gold pb-3" data-phone-wrap>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#c9a84c"
-                    stroke-width="2"
-                    class="shrink-0"
-                  >
-                    <path
-                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
-                    />
-                  </svg>
+                  <!-- @tui-phone -->
                   <input
                     name="phone"
                     type="tel"
                     inputmode="tel"
                     autocomplete="tel"
                     placeholder="Укажите телефон"
-                    class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50"
+                    class="h-10 w-full bg-transparent text-[14px] outline-none text-cream placeholder:text-cream/50"
                     data-phone
+                    required
                   />
                 </label>
                 <p class="mt-2 hidden text-[12px] text-[#ff8a7a]" data-error="phone">

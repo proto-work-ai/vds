@@ -258,49 +258,55 @@
             class="absolute -left-[9999px] size-0 opacity-0"
           />
           <label class="flex items-center gap-3 border-b border-gold pb-3">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#c9a84c"
-              stroke-width="2"
-              class="shrink-0"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
+            <svg class="size-5 shrink-0 text-gold" role="img" aria-hidden="true"
+  
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="calc((100vw - 100vh) / 10)"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path vector-effect="non-scaling-stroke" d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+  <circle vector-effect="non-scaling-stroke" cx="12" cy="7" r="4" />
+</svg>
             <input
               name="name"
               type="text"
               autocomplete="name"
               placeholder="Введите имя"
-              class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60"
+              class="h-10 w-full bg-transparent text-[14px] outline-none placeholder:text-slate/60"
+              required
             />
           </label>
           <div>
             <label class="flex items-center gap-3 border-b border-gold pb-3" data-phone-wrap>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#c9a84c"
-                stroke-width="2"
-                class="shrink-0"
-              >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
-                />
-              </svg>
+              <svg class="size-5 shrink-0 text-gold" role="img" aria-hidden="true"
+  
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="calc((100vw - 100vh) / 10)"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path vector-effect="non-scaling-stroke" d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+</svg>
               <input
                 name="phone"
                 type="tel"
                 inputmode="tel"
                 autocomplete="tel"
                 placeholder="Укажите телефон"
-                class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60"
+                class="h-10 w-full bg-transparent text-[14px] outline-none placeholder:text-slate/60"
                 data-phone
+                required
               />
             </label>
             <p class="mt-2 hidden text-[12px] text-[#c0392b]" data-error="phone">
@@ -362,7 +368,7 @@
           class="absolute right-0 bottom-0 z-20 flex size-28 flex-col items-center justify-center bg-gold shadow-xl sm:bottom-6"
         >
           <span class="font-serif text-[30px] leading-none text-white">15+</span>
-          <span class="mt-1 text-center text-[11px] tracking-[.2em] text-white/85 uppercase"
+          <span class="mt-1 text-center text-[12px] tracking-[.2em] text-white/85 uppercase"
             >лет</span
           >
         </div>
@@ -375,12 +381,12 @@
         <h2 class="mb-6 text-[clamp(30px,4vw,46px)] leading-tight">
           Более 15 лет мы создаем <em>уникальные текстильные интерьеры</em>
         </h2>
-        <p class="mb-4 text-[16px] leading-relaxed font-light text-slate">
+        <p class="mb-4 text-[14px] leading-relaxed font-light text-slate">
           Мы — это профессиональное ателье по пошиву штор в Москве. Мы создаем стильные
           индивидуальные решения для любого интерьера: изготавливаем все виды штор, карнизы, жалюзи
           и другие изделия для оформления всех видов окон.
         </p>
-        <p class="mb-9 text-[16px] leading-relaxed font-light text-slate">
+        <p class="mb-9 text-[14px] leading-relaxed font-light text-slate">
           Наши опытные дизайнеры разрабатывают проекты с учетом пожеланий клиента, а мастера
           обеспечивают безупречное качество исполнения, доставку и установку штор в Москве и МО.
           Действуют акции, скидки, гарантия и постгарантийное обслуживание.
@@ -446,7 +452,7 @@
         <p class="eyebrow">Каталог</p>
         <h2 class="h2">Каталог <span class="text-gold italic">Штор</span></h2>
         <div class="divider"><i></i></div>
-        <p class="mx-auto max-w-[560px] text-[16px] leading-[1.8] font-light text-slate">
+        <p class="mx-auto max-w-[560px] text-[14px] leading-[1.8] font-light text-slate">
           Вся продукция изготавливается по индивидуальным размерам из качественных материалов.
         </p>
       </div>
@@ -708,7 +714,7 @@
           <h2 class="mb-7 text-[clamp(30px,4vw,46px)] leading-[1.12]">
             Изготовление штор на заказ с контролем качества на каждом этапе
           </h2>
-          <div class="space-y-4 text-[16px] leading-relaxed font-light text-slate">
+          <div class="space-y-4 text-[14px] leading-relaxed font-light text-slate">
             <p>
               Пошив штор на заказ — лучший способ получить качественные занавеси, соответствующие
               размеру и форме окна, уровню освещенности и дизайну комнаты, а также вкусам Заказчика.
@@ -914,13 +920,13 @@
       </div>
       <div class="reveal mt-16 rounded-[4px] bg-white px-5 py-8 sm:px-10">
         <h3 class="mb-4 text-[24px]">Цены по разделам</h3>
-        <a href="catalog/blackout-curtains/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">Шторы блэкаут<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от 2 500 ₽/м.пог.</span></a>
-        <a href="catalog/roman-blinds/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">Римские шторы<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от 4 500 ₽/м²</span></a>
-        <a href="catalog/roller-blinds/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">Рулонные шторы<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от 2 200 ₽/м²</span></a>
-        <a href="catalog/linen-curtains/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">Льняные шторы<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от 2 800 ₽/м.пог.</span></a>
-        <a href="catalog/pleated-blinds/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">Шторы плиссе<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от 3 500 ₽/м²</span></a>
-        <a href="catalog/curtain-rods/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">Карнизы для штор<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от 900 ₽/м.пог.</span></a>
-        <a href="catalog/blinds/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">Жалюзи<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от 1 500 ₽/м²</span></a>
+        <a href="catalog/blackout-curtains/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[14px]">Шторы блэкаут<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[14px] font-bold whitespace-nowrap">от 2 500 ₽/м.пог.</span></a>
+        <a href="catalog/roman-blinds/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[14px]">Римские шторы<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[14px] font-bold whitespace-nowrap">от 4 500 ₽/м²</span></a>
+        <a href="catalog/roller-blinds/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[14px]">Рулонные шторы<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[14px] font-bold whitespace-nowrap">от 2 200 ₽/м²</span></a>
+        <a href="catalog/linen-curtains/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[14px]">Льняные шторы<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[14px] font-bold whitespace-nowrap">от 2 800 ₽/м.пог.</span></a>
+        <a href="catalog/pleated-blinds/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[14px]">Шторы плиссе<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[14px] font-bold whitespace-nowrap">от 3 500 ₽/м²</span></a>
+        <a href="catalog/curtain-rods/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[14px]">Карнизы для штор<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[14px] font-bold whitespace-nowrap">от 900 ₽/м.пог.</span></a>
+        <a href="catalog/blinds/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[14px]">Жалюзи<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[14px] font-bold whitespace-nowrap">от 1 500 ₽/м²</span></a>
         <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
           <p class="text-[14px] text-slate/70">
             *Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.
@@ -1126,7 +1132,7 @@
             </blockquote>
             <div class="flex items-center justify-center gap-4">
               <span
-                class="grid size-12 place-items-center rounded-full bg-sand font-serif tetext-[14px] text-gold"
+                class="grid size-12 place-items-center rounded-full bg-sand font-serif text-[14px] text-gold"
                 data-avatar
               ></span>
               <div class="text-left">
@@ -1206,7 +1212,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Сколько стоит пошив штор на заказ?</span
+            <span class="text-[14px]">Сколько стоит пошив штор на заказ?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -1255,7 +1261,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Где можно посмотреть Ваши работы?</span
+            <span class="text-[14px]">Где можно посмотреть Ваши работы?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -1295,7 +1301,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Есть ли гарантия на изделия?</span
+            <span class="text-[14px]">Есть ли гарантия на изделия?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -1332,7 +1338,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Какие сроки по пошиву?</span
+            <span class="text-[14px]">Какие сроки по пошиву?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -1369,7 +1375,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Сколько стоит выезд дизайнера?</span
+            <span class="text-[14px]">Сколько стоит выезд дизайнера?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -1412,7 +1418,7 @@
       <h2 class="h2 mb-5">
         Запишитесь на посещение шоурума и получите <span class="text-gold italic">скидку 10%</span>
       </h2>
-      <div class="mb-10 space-y-3 text-[16px] leading-[1.8] font-light text-slate">
+      <div class="mb-10 space-y-3 text-[14px] leading-[1.8] font-light text-slate">
         <p>Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.</p>
         <p>
           На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором
@@ -1459,7 +1465,7 @@
           ></span>
           <div>
             <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">Эл. почта</p>
-            <a href="mailto:info@shtorivdom.ru" class="text-[16px] hover:text-gold"
+            <a href="mailto:info@shtorivdom.ru" class="text-[14px] hover:text-gold"
               >info@shtorivdom.ru</a
             >
           </div>
@@ -1483,7 +1489,7 @@
               href="https://yandex.ru/maps/-/CTxLMJIy"
               target="_blank"
               rel="noopener"
-              class="text-[16px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold"
+              class="text-[14px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold"
               >Троицк, Кварцевая улица, 3, корп. 2</a
             >
           </div>
@@ -1505,7 +1511,7 @@
             <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">
               График работы
             </p>
-            <p class="text-[16px]">Без выходных, 10:00–20:00</p>
+            <p class="text-[14px]">Без выходных, 10:00–20:00</p>
           </div>
         </li>
       </ul>

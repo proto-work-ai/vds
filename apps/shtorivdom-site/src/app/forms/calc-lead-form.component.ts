@@ -6,6 +6,7 @@ import { LeadFormComponent } from './lead-form.component';
   template: `<app-lead-form
     [leadType]="'full'"
     [showName]="true"
+    [showComment]="false"
     [calculationSummary]="calculationSummary()"
     [submitText]="'Отправить расчёт дизайнеру'"
   />`,

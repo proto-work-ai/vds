@@ -32,70 +32,201 @@ const read = (p) => readFileSync(path.join(SRC, p), 'utf8');
 
 // catalog.data.ts + price-list.service.ts
 const CATALOG = [
-  { key: 'blackout-curtains', title: 'Шторы блэкаут', text: 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме', image: 'image-5.jpg',
-    prices: [['Блэкаут однотонный', 2500, 'м.пог.'], ['Блэкаут с фактурой льна', 3200, 'м.пог.'], ['Блэкаут жаккард', [4500, 7000], 'м.пог.']] },
-  { key: 'roman-blinds', title: 'Римские шторы', text: 'Из плотных и легких тканей для прямых и скошенных окон.', image: 'image-1.jpg',
-    prices: [['Лёгкая ткань', 4500, 'м²'], ['Плотная ткань / блэкаут', 5500, 'м²'], ['Лён премиум', [8000, 12000], 'м²']] },
-  { key: 'roller-blinds', title: 'Рулонные шторы', text: 'Крепление на проем, в проем или раму окна.', image: 'image-2.jpg',
-    prices: [['Мини, ткань стандарт', 2200, 'м²'], ['Кассетные UNI', 3500, 'м²'], ['День-ночь (зебра)', 4200, 'м²']] },
-  { key: 'linen-curtains', title: 'Льняные шторы', text: 'Для стандартных, мансардных и треугольных окон.', image: 'image-3.jpg',
-    prices: [['Лён с хлопком', 2800, 'м.пог.'], ['Натуральный лён', 4000, 'м.пог.'], ['Итальянский лён', [6500, 9500], 'м.пог.']] },
-  { key: 'pleated-blinds', title: 'Шторы плиссе', text: 'Для стандартных, мансардных и треугольных окон.', image: 'image-1.jpg',
-    prices: [['Плиссе стандарт', 3500, 'м²'], ['Плиссе блэкаут', 5000, 'м²'], ['Мансардные плиссе', 7500, 'м²']] },
-  { key: 'curtain-rods', title: 'Карнизы для штор', text: 'Декоративные и профильные.', image: 'image-1.jpg',
-    prices: [['Профильный алюминиевый', 900, 'м.пог.'], ['Декоративный металлический', [2500, 6000], 'м.пог.'], ['Электрокарниз', 18000, 'шт.']] },
-  { key: 'blinds', title: 'Жалюзи', text: 'Стильные, практичные.', image: 'image-1.jpg',
-    prices: [['Горизонтальные алюминиевые', 1500, 'м²'], ['Вертикальные тканевые', 1800, 'м²'], ['Деревянные', 6500, 'м²']] },
+  {
+    key: 'blackout-curtains',
+    title: 'Шторы блэкаут',
+    text: 'Это идеальное решение для тех, кто ценит тишину и комфорт в своем доме',
+    image: 'image-5.jpg',
+    prices: [
+      ['Блэкаут однотонный', 2500, 'м.пог.'],
+      ['Блэкаут с фактурой льна', 3200, 'м.пог.'],
+      ['Блэкаут жаккард', [4500, 7000], 'м.пог.'],
+    ],
+  },
+  {
+    key: 'roman-blinds',
+    title: 'Римские шторы',
+    text: 'Из плотных и легких тканей для прямых и скошенных окон.',
+    image: 'image-1.jpg',
+    prices: [
+      ['Лёгкая ткань', 4500, 'м²'],
+      ['Плотная ткань / блэкаут', 5500, 'м²'],
+      ['Лён премиум', [8000, 12000], 'м²'],
+    ],
+  },
+  {
+    key: 'roller-blinds',
+    title: 'Рулонные шторы',
+    text: 'Крепление на проем, в проем или раму окна.',
+    image: 'image-2.jpg',
+    prices: [
+      ['Мини, ткань стандарт', 2200, 'м²'],
+      ['Кассетные UNI', 3500, 'м²'],
+      ['День-ночь (зебра)', 4200, 'м²'],
+    ],
+  },
+  {
+    key: 'linen-curtains',
+    title: 'Льняные шторы',
+    text: 'Для стандартных, мансардных и треугольных окон.',
+    image: 'image-3.jpg',
+    prices: [
+      ['Лён с хлопком', 2800, 'м.пог.'],
+      ['Натуральный лён', 4000, 'м.пог.'],
+      ['Итальянский лён', [6500, 9500], 'м.пог.'],
+    ],
+  },
+  {
+    key: 'pleated-blinds',
+    title: 'Шторы плиссе',
+    text: 'Для стандартных, мансардных и треугольных окон.',
+    image: 'image-1.jpg',
+    prices: [
+      ['Плиссе стандарт', 3500, 'м²'],
+      ['Плиссе блэкаут', 5000, 'м²'],
+      ['Мансардные плиссе', 7500, 'м²'],
+    ],
+  },
+  {
+    key: 'curtain-rods',
+    title: 'Карнизы для штор',
+    text: 'Декоративные и профильные.',
+    image: 'image-1.jpg',
+    prices: [
+      ['Профильный алюминиевый', 900, 'м.пог.'],
+      ['Декоративный металлический', [2500, 6000], 'м.пог.'],
+      ['Электрокарниз', 18000, 'шт.'],
+    ],
+  },
+  {
+    key: 'blinds',
+    title: 'Жалюзи',
+    text: 'Стильные, практичные.',
+    image: 'image-1.jpg',
+    prices: [
+      ['Горизонтальные алюминиевые', 1500, 'м²'],
+      ['Вертикальные тканевые', 1800, 'м²'],
+      ['Деревянные', 6500, 'м²'],
+    ],
+  },
 ];
 
 const money = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const priceText = (p) => (Array.isArray(p) ? `${money(p[0])}–${money(p[1])}` : money(p));
-const minOf = (item) => item.prices.reduce((m, r) => (Math.min(...[].concat(r[1])) < m[0] ? [Math.min(...[].concat(r[1])), r[2]] : m), [Infinity, '']);
+const minOf = (item) =>
+  item.prices.reduce(
+    (m, r) => (Math.min(...[].concat(r[1])) < m[0] ? [Math.min(...[].concat(r[1])), r[2]] : m),
+    [Infinity, ''],
+  );
 
 // Страницы: путь, <title>, description, заголовок. SEO — из app.routes.ts, где есть.
 const PAGES = [
-  { path: '', src: 'pages/index.html', title: 'Шторы на заказ в Москве — пошив и дизайн штор | Shtorivdom',
-    description: 'Пошив штор на заказ в Москве и Подмосковье: римские, рулонные, льняные шторы, блэкаут, плиссе, жалюзи и карнизы. Бесплатный выезд дизайнера с образцами тканей.' },
-  { path: 'catalog/', h1: 'Каталог штор', lead: 'Вся продукция изготавливается по индивидуальным размерам из качественных материалов.', title: 'Каталог штор | Shtorivdom', extra: 'catalog' },
-  ...CATALOG.map((c) => ({ path: `catalog/${c.key}/`, h1: c.title, lead: c.text, title: `${c.title} на заказ в Москве | Shtorivdom`,
-    description: `${c.title} на заказ: ${c.text} Бесплатный выезд дизайнера с образцами.`, crumb: ['Каталог', 'catalog/'] })),
-  { path: 'calc/', h1: 'Калькулятор штор', title: 'Калькулятор штор на заказ — расчёт ткани и стоимости | Shtorivdom',
-    description: 'Рассчитайте шторы на заказ: сколько ткани нужно под ваш карниз и окно и сколько это стоит по ценам каталога. Точный расчёт — после бесплатного замера.' },
-  { path: 'quiz/', h1: 'Подбор штор', title: 'Подбор штор за 4 шага — какие шторы подойдут | Shtorivdom',
-    description: 'Ответьте на 4 вопроса о комнате и окне — подскажем, какие шторы подойдут: блэкаут, римские, рулонные, льняные, плиссе или жалюзи.' },
+  {
+    path: '',
+    src: 'pages/index.html',
+    title: 'Шторы на заказ в Москве — пошив и дизайн штор | Shtorivdom',
+    description:
+      'Пошив штор на заказ в Москве и Подмосковье: римские, рулонные, льняные шторы, блэкаут, плиссе, жалюзи и карнизы. Бесплатный выезд дизайнера с образцами тканей.',
+  },
+  {
+    path: 'catalog/',
+    h1: 'Каталог штор',
+    lead: 'Вся продукция изготавливается по индивидуальным размерам из качественных материалов.',
+    title: 'Каталог штор | Shtorivdom',
+    extra: 'catalog',
+  },
+  ...CATALOG.map((c) => ({
+    path: `catalog/${c.key}/`,
+    h1: c.title,
+    lead: c.text,
+    title: `${c.title} на заказ в Москве | Shtorivdom`,
+    description: `${c.title} на заказ: ${c.text} Бесплатный выезд дизайнера с образцами.`,
+    crumb: ['Каталог', 'catalog/'],
+  })),
+  {
+    path: 'calc/',
+    h1: 'Калькулятор штор',
+    title: 'Калькулятор штор на заказ — расчёт ткани и стоимости | Shtorivdom',
+    description:
+      'Рассчитайте шторы на заказ: сколько ткани нужно под ваш карниз и окно и сколько это стоит по ценам каталога. Точный расчёт — после бесплатного замера.',
+  },
+  {
+    path: 'quiz/',
+    h1: 'Подбор штор',
+    title: 'Подбор штор за 4 шага — какие шторы подойдут | Shtorivdom',
+    description:
+      'Ответьте на 4 вопроса о комнате и окне — подскажем, какие шторы подойдут: блэкаут, римские, рулонные, льняные, плиссе или жалюзи.',
+  },
   { path: 'price/', h1: 'Цены / стоимость', title: 'Цены | Shtorivdom', extra: 'prices' },
   { path: 'services/', h1: 'Услуги', title: 'Услуги | Shtorivdom' },
-  { path: 'about/', h1: 'О нас', lead: 'Более 15 лет мы создаем уникальные текстильные интерьеры', title: 'О салоне штор Shtorivdom — более 15 лет пошива штор',
-    description: 'Дизайн-студия Shtorivdom: собственный швейный цех, 3000+ тканей и карнизов, более 10 000 реализованных проектов штор в Москве и области.' },
-  { path: 'partner/', h1: 'Стать партнером', title: 'Сотрудничество с салоном штор Shtorivdom',
-    description: 'Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров.' },
-  { path: 'contact/', h1: 'Контакты', title: 'Контакты салона штор Shtorivdom — адрес, телефон',
-    description: 'Салон штор Shtorivdom: Троицк, Кварцевая улица, 3, корп. 2. Работаем без выходных с 10:00 до 20:00. Телефон +7 (915) 359-12-00.' },
-  { path: 'privacy-policy/', h1: 'Политика конфиденциальности', title: 'Shtorivdom | Политика конфиденциальности',
-    description: 'Политика конфиденциальности, соглашение на обработку информации на сайте' },
-  { path: 'soglasie-na-obrabotku-personalnyh-dannyh/', h1: 'Согласие на обработку персональных данных', title: 'Shtorivdom | Согласие на обработку персональных данных',
-    description: 'Согласие на обработку персональных данных. Перечень персональных данных, цели обработки, срок действия согласия и порядок отзыва.' },
+  {
+    path: 'about/',
+    h1: 'О нас',
+    lead: 'Более 15 лет мы создаем уникальные текстильные интерьеры',
+    title: 'О салоне штор Shtorivdom — более 15 лет пошива штор',
+    description:
+      'Дизайн-студия Shtorivdom: собственный швейный цех, 3000+ тканей и карнизов, более 10 000 реализованных проектов штор в Москве и области.',
+  },
+  {
+    path: 'partner/',
+    h1: 'Стать партнером',
+    title: 'Сотрудничество с салоном штор Shtorivdom',
+    description:
+      'Приглашаем к сотрудничеству дизайнеров интерьера, архитекторов и строительные компании. Выгодные условия для партнёров.',
+  },
+  {
+    path: 'contact/',
+    h1: 'Контакты',
+    title: 'Контакты салона штор Shtorivdom — адрес, телефон',
+    description:
+      'Салон штор Shtorivdom: Троицк, Кварцевая улица, 3, корп. 2. Работаем без выходных с 10:00 до 20:00. Телефон +7 (915) 359-12-00.',
+  },
+  {
+    path: 'privacy-policy/',
+    h1: 'Политика конфиденциальности',
+    title: 'Shtorivdom | Политика конфиденциальности',
+    description: 'Политика конфиденциальности, соглашение на обработку информации на сайте',
+  },
+  {
+    path: 'soglasie-na-obrabotku-personalnyh-dannyh/',
+    h1: 'Согласие на обработку персональных данных',
+    title: 'Shtorivdom | Согласие на обработку персональных данных',
+    description:
+      'Согласие на обработку персональных данных. Перечень персональных данных, цели обработки, срок действия согласия и порядок отзыва.',
+  },
 ];
 
 // Каталог: разделы, страницы разделов и моделей карнизов — src/pages/catalog/catalog.mjs (готовый body).
 // Страница с тем же путём заменяет заготовку, новые (модели карнизов) добавляются в конец.
-for (const cp of (await import('../../mockups/site/src/pages/catalog/catalog.mjs')).catalogPages()) {
+for (const cp of (
+  await import('../../mockups/site/src/pages/catalog/catalog.mjs')
+).catalogPages()) {
   const i = PAGES.findIndex((p) => p.path === cp.path);
   i >= 0 ? (PAGES[i] = cp) : PAGES.push(cp);
 }
 
-const logo = (n) => readFileSync(path.join(SITE, 'assets/logo', `logo-${n}.svg`), 'utf8')
-  .replace(/<\?xml[^>]*>/, '')
-  .replace(/<svg([^>]*?)\swidth="[^"]*"\s+height="[^"]*"/, '<svg$1')
-  .replace('<svg', '<svg class="block h-auto w-full" role="img" aria-hidden="true"')
-  .trim();
+const logo = (n) =>
+  readFileSync(path.join(SITE, 'assets/logo', `logo-${n}.svg`), 'utf8')
+    .replace(/<\?xml[^>]*>/, '')
+    .replace(/<svg([^>]*?)\swidth="[^"]*"\s+height="[^"]*"/, '<svg$1')
+    .replace('<svg', '<svg class="block h-auto w-full" role="img" aria-hidden="true"')
+    .trim();
 
-const catalogLinks = (root) => CATALOG.map((c) => `<a href="${root}catalog/${c.key}/">${c.title}</a>`).join('');
+const taigaIcon = (name) =>
+  readFileSync(path.join('node_modules/@taiga-ui/icons/src', `${name}.svg`), 'utf8')
+    .replace(/\swidth="24"/, '')
+    .replace(/\sheight="24"/, '')
+    .replace('<svg', '<svg class="size-5 shrink-0 text-gold" role="img" aria-hidden="true"')
+    .trim();
+
+const catalogLinks = (root) =>
+  CATALOG.map((c) => `<a href="${root}catalog/${c.key}/">${c.title}</a>`).join('');
 
 // Каталог разделов — landing-1 «Services»: фото с градиентом, цена «от» и прайс раздела видны всегда.
-const catalogCards = (root) => CATALOG.map((c, i) => {
-  const [min, unit] = minOf(c);
-  return `
+const catalogCards = (root) =>
+  CATALOG.map((c, i) => {
+    const [min, unit] = minOf(c);
+    return `
       <article class="reveal h-full" style="--d:${(i % 3) * 0.08}s">
         <div class="svc-card" data-svc>
           <a href="${root}catalog/${c.key}/" class="relative block h-[200px] sm:h-[220px]" aria-label="${c.title}">
@@ -117,19 +248,25 @@ const catalogCards = (root) => CATALOG.map((c, i) => {
           </div>
         </div>
       </article>`;
-}).join('');
+  }).join('');
 
-const priceRows = (root) => CATALOG.map((c) => {
-  const [min, unit] = minOf(c);
-  return `<a href="${root}catalog/${c.key}/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[16px]">${c.title}<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[16px] font-bold whitespace-nowrap">от ${money(min)} ₽/${unit}</span></a>`;
-}).join('\n        ');
+const priceRows = (root) =>
+  CATALOG.map((c) => {
+    const [min, unit] = minOf(c);
+    return `<a href="${root}catalog/${c.key}/" class="group flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex flex-1 items-center gap-2 text-[14px]">${c.title}<span class="text-gold transition-transform group-hover:translate-x-1" aria-hidden="true">→</span></span><span class="text-[14px] font-bold whitespace-nowrap">от ${money(min)} ₽/${unit}</span></a>`;
+  }).join('\n        ');
 
 // Метаданные — как на основном сайте (apps/shtorivdom-site: src/index.html, seo.ts,
 // catalog-detail-page.ts): canonical и og:url на shtorivdom.ru, og:image разделов каталога
 // из первого фото images в catalog.data.ts, иконки, манифест и карточка организации.
 const SITE_URL = 'https://shtorivdom.ru';
 const ogImageByKey = Object.fromEntries(
-  [...readFileSync('mockups/site/src/data/old-site/model/catalog/catalog.data.ts', 'utf8').matchAll(/key:\s*'([^']+)'[\s\S]*?images:\s*\[\s*'([^']+)'/g)].map((m) => [m[1], m[2]])
+  [
+    ...readFileSync(
+      'mockups/site/src/data/old-site/model/catalog/catalog.data.ts',
+      'utf8',
+    ).matchAll(/key:\s*'([^']+)'[\s\S]*?images:\s*\[\s*'([^']+)'/g),
+  ].map((m) => [m[1], m[2]]),
 );
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const ORG_LD = `  <!-- Карточка организации для поисковиков: адрес, телефон, часы работы -->
@@ -162,7 +299,10 @@ const ORG_LD = `  <!-- Карточка организации для поиск
 const head = (page, root) => {
   const url = `${SITE_URL}/${page.path}`;
   const sectionKey = page.path.match(/^catalog\/([^/]+)\/$/)?.[1];
-  const ogImage = sectionKey && ogImageByKey[sectionKey] ? `${SITE_URL}/assets/img${ogImageByKey[sectionKey]}` : '';
+  const ogImage =
+    sectionKey && ogImageByKey[sectionKey]
+      ? `${SITE_URL}/assets/img${ogImageByKey[sectionKey]}`
+      : '';
   const icons = `${root}assets/icons/`;
   return `<!doctype html>
 <html lang="ru">
@@ -207,14 +347,18 @@ for (const page of PAGES) {
     const own = `pages/${page.path.replace(/\/$/, '').replaceAll('/', '--')}.html`;
     body = read(existsSync(path.join(SRC, own)) ? own : 'pages/_stub.html');
     const crumbs = [`<a href="${home}" class="hover:text-gold">Главная</a>`];
-    if (page.crumb) crumbs.push(`<a href="${root}${page.crumb[1]}" class="hover:text-gold">${page.crumb[0]}</a>`);
+    if (page.crumb)
+      crumbs.push(`<a href="${root}${page.crumb[1]}" class="hover:text-gold">${page.crumb[0]}</a>`);
     body = body
       .replace('<!-- @crumbs -->', crumbs.join('<span class="text-gold">/</span>'))
-      .replace('<!-- @extra -->', page.extra === 'catalog'
-        ? `<div class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"><!-- @catalog-cards --></div>`
-        : page.extra === 'prices'
-          ? `<div class="max-w-[720px]"><!-- @price-rows --><p class="mt-4 text-[14px] text-slate/70">*Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.</p></div>`
-          : '');
+      .replace(
+        '<!-- @extra -->',
+        page.extra === 'catalog'
+          ? `<div class="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3"><!-- @catalog-cards --></div>`
+          : page.extra === 'prices'
+            ? `<div class="max-w-[720px]"><!-- @price-rows --><p class="mt-4 text-[14px] text-slate/70">*Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.</p></div>`
+            : '',
+      );
   }
   let html = `${head(page, root)}\n<body data-page="${page.path}"${page.src ? '' : ' data-header="solid"'}>\n${body}\n<script src="${root}assets/site.js"></script>\n</body>\n</html>\n`;
   for (let i = 0; i < 2; i++) {
@@ -229,12 +373,36 @@ for (const page of PAGES) {
     .replaceAll('<!-- @logo-3 -->', logo(3))
     .replaceAll('<!-- @logo-4 -->', logo(4))
     .replaceAll('<!-- @logo-5 -->', logo(5))
+    .replaceAll('<!-- @tui-user -->', taigaIcon('user'))
+    .replaceAll('<!-- @tui-phone -->', taigaIcon('phone'))
+    .replaceAll('<!-- @tui-map-pin -->', taigaIcon('map-pin'))
     // Золотой оригинал logo-5 с градиентом (assets/logo/logo-5.svg), тянется по ширине блока
-    .replaceAll('<!-- @logo-5-gold -->', readFileSync(path.join(SITE, 'assets/logo/logo-5.svg'), 'utf8').replace('<svg width="400" height="250"', '<svg class="block h-auto w-full" role="img" aria-label="Шторы в дом"'))
+    .replaceAll(
+      '<!-- @logo-5-gold -->',
+      readFileSync(path.join(SITE, 'assets/logo/logo-5.svg'), 'utf8').replace(
+        '<svg width="400" height="250"',
+        '<svg class="block h-auto w-full" role="img" aria-label="Шторы в дом"',
+      ),
+    )
     .replaceAll('<!-- @catalog-links -->', catalogLinks(root))
     .replaceAll('<!-- @catalog-cards -->', catalogCards(root))
     .replaceAll('<!-- @price-rows -->', priceRows(root))
-    .replaceAll('<!-- @calc-data -->', `<script type="application/json" id="calc-data">${JSON.stringify(CATALOG.map((c) => { const [min, unit] = minOf(c); return { key: c.key, title: c.title, unit, min, image: `${root}assets/img/catalog/${c.key}/${c.image}`, href: `${root}catalog/${c.key}/` }; }))}</script>`)
+    .replaceAll(
+      '<!-- @calc-data -->',
+      `<script type="application/json" id="calc-data">${JSON.stringify(
+        CATALOG.map((c) => {
+          const [min, unit] = minOf(c);
+          return {
+            key: c.key,
+            title: c.title,
+            unit,
+            min,
+            image: `${root}assets/img/catalog/${c.key}/${c.image}`,
+            href: `${root}catalog/${c.key}/`,
+          };
+        }),
+      )}</script>`,
+    )
     .replaceAll('{{root}}', root)
     .replaceAll('{{home}}', home)
     .replaceAll('{{h1}}', page.h1 ?? '')
@@ -251,16 +419,26 @@ console.log(`site-build: собрано страниц — ${count}`);
 // при каждом переходе). Классы берутся из всех HTML и JS прототипа.
 const twDir = path.dirname(createRequire(import.meta.url).resolve('tailwindcss/package.json'));
 const loadStylesheet = async (id, base) => {
-  const file = id === 'tailwindcss' ? path.join(twDir, 'index.css')
-    : id.startsWith('tailwindcss/') ? path.join(twDir, id.slice(12))
-    : path.resolve(base, id);
+  const file =
+    id === 'tailwindcss'
+      ? path.join(twDir, 'index.css')
+      : id.startsWith('tailwindcss/')
+        ? path.join(twDir, id.slice(12))
+        : path.resolve(base, id);
   return { path: file, base: path.dirname(file), content: readFileSync(file, 'utf8') };
 };
-const compiler = await compile(['@import "tailwindcss";', read('partials/theme.css')].join('\n'), { base: path.resolve(SITE), loadStylesheet });
-const candidates = new Scanner({ sources: [{ base: path.resolve(SITE), pattern: '**/*.{html,js,mjs}', negated: false }] }).scan();
+const compiler = await compile(['@import "tailwindcss";', read('partials/theme.css')].join('\n'), {
+  base: path.resolve(SITE),
+  loadStylesheet,
+});
+const candidates = new Scanner({
+  sources: [{ base: path.resolve(SITE), pattern: '**/*.{html,js,mjs}', negated: false }],
+}).scan();
 const css = compiler.build(candidates);
 writeFileSync(path.join(SITE, 'assets/site.css'), css);
-console.log(`site-build: assets/site.css — ${Math.round(css.length / 1024)} КБ, классов ${candidates.length}`);
+console.log(
+  `site-build: assets/site.css — ${Math.round(css.length / 1024)} КБ, классов ${candidates.length}`,
+);
 
 // Версии в адресах стилей и скриптов: хостинг отдаёт css/js с Cache-Control на год,
 // без ?v= браузер показывает старые стили после выкладки. Хеш меняется вместе с содержимым файла.
@@ -277,7 +455,14 @@ for (const file of WITH_VERSIONS ? built : []) {
   const html = readFileSync(file, 'utf8')
     .replace(/(shared\/fonts\.css)(\?v=[0-9a-f]+)?"/g, `$1?v=${V.fonts}"`)
     .replace(/(assets\/site\.css)(\?v=[0-9a-f]+)?"/g, `$1?v=${V.css}"`)
-    .replace(/(assets\/site\.js)(\?v=[0-9a-f]+)?"( data-email-v="[0-9a-f]+")?/g, `$1?v=${V.js}" data-email-v="${V.email}"`);
+    .replace(
+      /(assets\/site\.js)(\?v=[0-9a-f]+)?"( data-email-v="[0-9a-f]+")?/g,
+      `$1?v=${V.js}" data-email-v="${V.email}"`,
+    );
   writeFileSync(file, html);
 }
-console.log(WITH_VERSIONS ? `site-build: версии файлов — css ${V.css}, js ${V.js}, email ${V.email}, fonts ${V.fonts}` : 'site-build: без версий в адресах (для выкладки и коммита — --versions)');
+console.log(
+  WITH_VERSIONS
+    ? `site-build: версии файлов — css ${V.css}, js ${V.js}, email ${V.email}, fonts ${V.fonts}`
+    : 'site-build: без версий в адресах (для выкладки и коммита — --versions)',
+);

@@ -18,7 +18,7 @@
     <figure class="flex max-h-full max-w-[1200px] flex-col items-center gap-3">
       <div data-body class="flex max-h-[80vh] items-center justify-center"></div>
       <figcaption class="max-w-[800px] text-center text-white">
-        <p data-title class="text-[16px] font-semibold"></p>
+        <p data-title class="text-[14px] font-semibold"></p>
         <p data-text class="text-[14px] text-white/70"></p>
       </figcaption>
     </figure>`;

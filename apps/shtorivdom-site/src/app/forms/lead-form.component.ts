@@ -20,6 +20,7 @@ export class LeadFormComponent {
   public readonly calculationSummary = input('');
   public readonly showName = input(false);
   public readonly showCity = input(false);
+  public readonly showComment = input(true);
   public readonly submitText = input('Отправить');
 
   public chooseModel(model: string): void {

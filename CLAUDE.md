@@ -7,18 +7,17 @@ Nx-монорепозиторий с одним продуктом — сайт�
 
 ## Приложения
 
-- `apps/shtorivdom-site` — сайт на Angular 21 с SSR и пререндером
-  (`outputMode: server`). Taiga UI 5.13 + Tailwind 4.
+- `apps/shtorivdom-site` — сайт на Angular 22 с пререндером
+  (`outputMode: static`). Taiga UI 5.22 + Tailwind 4.
 - `apps/shtorivdom-site/api/*.php` — отправка заявок с форм на почту.
   **PHP не трогаем без отдельной просьбы.**
-- `apps/shtorivdom-storybook` — Storybook для компонентов `libs/ui` и
-  `libs/atlas`. К сайту напрямую не относится.
+- `apps/shtorivdom-storybook` — Storybook для `libs/ui/site-kit` и оставшихся
+  общих компонентов. К сайту напрямую не относится.
 
 ## Библиотеки
 
-- `libs/atlas/{core,form,table}` — общие утилиты, формы, таблицы (Taiga UI).
-- `libs/ui/*` — компоненты Spartan NG (`@spartan-ng/helm/*`), версия brain
-  зафиксирована `0.0.1-alpha.643` — на 1.x API несовместим.
+- `libs/atlas/{core,form}` — общие утилиты и формы на Taiga UI.
+- `libs/ui/site-kit` — компоненты и стили основного сайта.
 - `libs/metadb/core`, `libs/fonts`.
 
 ## Команды

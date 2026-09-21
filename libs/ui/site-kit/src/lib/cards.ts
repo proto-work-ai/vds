@@ -57,14 +57,14 @@ export class SiteCatalogCard {
           <span class="cat-pill absolute top-4 right-4">{{ pill() }}</span>
         </div>
         <div class="px-6 pt-6 pb-7 sm:px-7">
-          <p class="mb-2 text-[11px] tracking-[.25em] text-gold uppercase opacity-80">Раздел {{ number() }}</p>
+          <p class="mb-2 text-[12px] tracking-[.25em] text-gold uppercase opacity-80">Раздел {{ number() }}</p>
           <h2 class="mb-2.5 text-[24px] font-bold text-cream">{{ section().title }}</h2>
           <p class="mb-5 text-[14px] leading-[1.7] text-cream/55">{{ section().text }}</p>
           <div class="cat-gold-line mb-5"></div>
           <div class="flex flex-wrap items-center justify-between gap-3">
             <span class="text-[14px] tracking-[.04em] text-gold">{{ section().minPrice.replace('/', ' / ') }}</span>
             <span
-              class="inline-flex items-center gap-1.5 text-[11px] tracking-[.2em] text-cream/60 uppercase transition-colors
+              class="inline-flex items-center gap-1.5 text-[12px] tracking-[.2em] text-cream/60 uppercase transition-colors
                 group-hover:text-gold">Подробнее <site-icon name="arrow-right"
                 class="transition-transform duration-300 group-hover:translate-x-1" [size]="14" /></span>
           </div>
@@ -156,7 +156,7 @@ export class SiteWorkCard {
           <div class="relative flex h-[190px] items-center justify-center overflow-hidden bg-white px-6"><img loading="lazy"
             class="cat-zoom-img max-h-[120px] w-full object-contain" [src]="image()" [alt]="title()" /></div>
           <div class="border-t border-navy/10 px-6 pt-5 pb-6">
-            <p class="mb-2 text-[11px] tracking-[.25em] text-gold uppercase">Модель {{ number() }}</p>
+            <p class="mb-2 text-[12px] tracking-[.25em] text-gold uppercase">Модель {{ number() }}</p>
             <h3 class="mb-4 text-[20px] leading-snug">{{ title() }}</h3>
             <div class="cat-gold-line mb-4"></div>
             <span
@@ -171,7 +171,7 @@ export class SiteWorkCard {
         <span class="flex h-[140px] items-center overflow-hidden px-5"><img loading="lazy"
           class="cat-zoom-img max-h-[90px] w-full object-contain" [src]="image()" [alt]="title()" /></span>
         <span
-          class="border-t border-navy/10 px-5 py-4 font-serif tetext-[14px] leading-snug transition-colors
+          class="border-t border-navy/10 px-5 py-4 font-serif text-[14px] leading-snug transition-colors
             group-hover:text-gold">{{ title() }}</span>
       </a>
     }
@@ -221,7 +221,7 @@ export class SiteServiceCard {
   template: `
     <span class="mb-4 grid size-12 place-items-center border border-gold/40 text-gold"><site-icon [name]="icon()" [size]="22"
       [strokeWidth]="1.6" /></span>
-    <h3 class="mb-2 text-[19px]">{{ title() }}</h3>
+    <h3 class="mb-2 text-[20px]">{{ title() }}</h3>
     <p class="text-[14px] leading-relaxed font-light text-slate">{{ text() }}</p>
   `,
 })

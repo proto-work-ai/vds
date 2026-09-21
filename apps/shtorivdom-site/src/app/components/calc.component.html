@@ -9,7 +9,7 @@
       </nav>
       <h1 class="rise text-[24px] leading-[1.2] font-bold sm:text-[38px]">Калькулятор штор</h1>
       <p
-        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[16px] leading-[1.7] text-cream/75"
+        class="rise mx-auto mt-2 max-w-[900px] text-[14px] text-balance sm:mt-3 sm:text-[14px] leading-[1.7] text-cream/75"
       >
         Посчитайте, сколько ткани нужно под ваше окно и сколько это примерно стоит. Точную смету
         дизайнер составит после бесплатного замера.
@@ -46,7 +46,7 @@
                 />
                 <span class="calc-option-box">
                   <img alt="" loading="lazy" class="calc-kind-img" [src]="item.image" />
-                  <b class="font-serif tetext-[14px] leading-tight">{{ item.title }}</b>
+                  <b class="font-serif text-[14px] leading-tight">{{ item.title }}</b>
                   <span class="text-[12px] text-slate/80">
                     от {{ item.min.toLocaleString('ru-RU') }} ₽/{{ item.unit }}
                   </span>
@@ -223,109 +223,6 @@
                 calculation().summary ? 'Расчёт с калькулятора — ' + calculation().summary : ''
               "
             />
-            <!--
-              <input
-                type="text"
-                formControlName="website"
-                name="website"
-                tabindex="-1"
-                autocomplete="off"
-                aria-hidden="true"
-                class="absolute -left-[9999px] size-0 opacity-0"
-              />
-              <label class="flex items-center gap-3 border-b border-gold pb-3">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#c9a84c"
-                  stroke-width="2"
-                  class="shrink-0"
-                >
-                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-                <tui-textfield class="w-full" [tuiTextfieldCleaner]="false">
-                  <label tuiLabel>
-                    Имя
-                    <span class="text-red-600">*</span>
-                  </label>
-                  <input
-                    tuiInput
-                    formControlName="name"
-                    name="name"
-                    type="text"
-                    autocomplete="name"
-                    placeholder="Введите имя"
-                    class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50"
-                  />
-                </tui-textfield>
-              </label>
-              <div>
-                <label data-phone-wrap class="flex items-center gap-3 border-b border-gold pb-3">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="#c9a84c"
-                    stroke-width="2"
-                    class="shrink-0"
-                  >
-                    <path
-                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
-                    />
-                  </svg>
-                  <div class="w-full">
-                    <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-                      <label tuiLabel>
-                        Телефон
-                        <span class="text-red-600">*</span>
-                      </label>
-                      <input
-                        mask="+7 (###) ###-##-##"
-                        tuiInputPhone
-                        formControlName="phone"
-                        name="phone"
-                        type="tel"
-                        inputmode="tel"
-                        autocomplete="tel"
-                        placeholder="Укажите телефон"
-                        class="h-10 w-full bg-transparent text-[16px] outline-none text-cream placeholder:text-cream/50"
-                        data-phone
-                      />
-                    </tui-textfield>
-                  </div>
-                </label>
-              </div>
-              <div>
-                <label class="flex items-start gap-3 text-[14px] leading-snug text-cream/75">
-                  <input
-                    tuiCheckbox
-                    type="checkbox"
-                    formControlName="consent"
-                    name="consent"
-                    class="mt-0.5 shrink-0"
-                    data-consent
-                    [size]="'m'"
-                  />
-                  <span>
-                    Я соглашаюсь с правилами по обработке
-                    <a
-                      routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
-                      class="underline decoration-gold underline-offset-2 hover:text-gold"
-                    >
-                      персональных данных
-                    </a>
-                  </span>
-                </label>
-              </div>
-              <button type="submit" class="btn-gold !flex w-full" [disabled]="lead.submitting()">
-                Отправить расчёт дизайнеру
-              </button>
-            </form>
-            <app-lead-feedback [lead]="lead" /> -->
             <p class="mt-5 text-[12px] leading-relaxed text-cream/60">
               Расчёт примерный: по минимальным ценам каталога, без учёта отделки и аксессуаров.
               Погрешность возможна до 15–20%. Точную стоимость дизайнер назовёт после бесплатного
@@ -351,7 +248,7 @@
           Запишитесь на посещение шоурума и получите
           <span class="text-gold italic">скидку 10%</span>
         </h2>
-        <div class="mb-10 space-y-3 text-[16px] leading-[1.8] font-light text-slate">
+        <div class="mb-10 space-y-3 text-[14px] leading-[1.8] font-light text-slate">
           <p>
             Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.
           </p>
@@ -403,7 +300,7 @@
               <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">
                 Эл. почта
               </p>
-              <a data-contact-link="email" class="text-[16px] hover:text-gold"></a>
+              <a data-contact-link="email" class="text-[14px] hover:text-gold"></a>
             </div>
           </li>
           <li class="flex gap-4">
@@ -426,7 +323,7 @@
                 href="https://yandex.ru/maps/-/CTxLMJIy"
                 target="_blank"
                 rel="noopener"
-                class="text-[16px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold"
+                class="text-[14px] underline decoration-gold/50 decoration-dashed underline-offset-4 hover:text-gold"
               >
                 Троицк, Кварцевая улица, 3, корп. 2
               </a>
@@ -450,7 +347,7 @@
               <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">
                 График работы
               </p>
-              <p class="text-[16px]">Без выходных, 10:00–20:00</p>
+              <p class="text-[14px]">Без выходных, 10:00–20:00</p>
             </div>
           </li>
         </ul>
@@ -459,7 +356,7 @@
         class="reveal rounded-[4px] border border-navy/5 bg-white px-5 py-8 shadow-[0_8px_40px_rgb(13_34_61/.08)] sm:px-10 sm:py-12"
         style="--d: 0.15s"
       >
-        <app-calc-lead-form [calculationSummary]="calculation().summary" />
+        <app-lead-form />
       </div>
     </div>
   </section>

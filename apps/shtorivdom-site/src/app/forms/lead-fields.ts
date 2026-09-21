@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { TuiCheckbox, TuiTextfield } from '@taiga-ui/core';
+import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
 import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { DeferDirective } from '../components/defer.component';
 
@@ -13,6 +13,7 @@ import { DeferDirective } from '../components/defer.component';
     RouterLink,
     ReactiveFormsModule,
     TuiTextfield,
+    TuiInput,
     TuiInputPhone,
     TuiTextarea,
     TuiCheckbox,
@@ -23,4 +24,5 @@ export class LeadFields {
   public readonly form = input.required<FormGroup>();
   public readonly showName = input(false);
   public readonly showCity = input(false);
+  public readonly showComment = input(true);
 }

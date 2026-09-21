@@ -7,6 +7,7 @@ import { LeadFormComponent } from './lead-form.component';
     [leadType]="'full'"
     [leadDescription]="leadDescription()"
     [showName]="true"
+    [showComment]="false"
     [submitText]="'Отправить подбор'"
   />`,
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,9 +1,7 @@
 import { LeadFormComponent } from '../forms/lead-form.component';
 import { QuizLeadFormComponent } from '../forms/quiz-lead-form.component';
 import { RouterLink } from '@angular/router';
-import { LeadStatus } from '../forms/lead-status';
 import { RevealDirective } from './reveal.directive';
-import { DeferDirective } from './defer.component';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -13,9 +11,6 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { TuiCheckbox, TuiInput, TuiTextfield } from '@taiga-ui/core';
-import { TuiInputPhone, TuiTextarea } from '@taiga-ui/kit';
 import { ContactLinksDirective } from '../contact-links.directive';
 import { LeadFormDirective } from '../forms/lead-form.directive';
 
@@ -38,16 +33,7 @@ type Recommendation = {
     LeadFormComponent,
     QuizLeadFormComponent,
     RouterLink,
-    LeadStatus,
     RevealDirective,
-    DeferDirective,
-    ReactiveFormsModule,
-    TuiTextfield,
-    TuiInput,
-    TuiInputPhone,
-    TuiTextarea,
-    TuiCheckbox,
-    LeadFormDirective,
     ContactLinksDirective,
   ],
 })

@@ -5,12 +5,14 @@
 ## 📦 Установленные Пакеты Taiga UI
 
 ### Core Packages
+
 - **@taiga-ui/core** (5.7.0) - Основные компоненты и функциональность
 - **@taiga-ui/kit** (5.7.0) - Расширенный набор компонентов
 - **@taiga-ui/cdk** (5.7.0) - Component Development Kit
 - **@taiga-ui/styles** (5.7.0) - Стили и темы
 
 ### Additional Packages
+
 - **@taiga-ui/layout** (5.7.0) - Компоненты макета
 - **@taiga-ui/icons** (5.7.0) - Библиотека иконок
 - **@taiga-ui/event-plugins** (5.0.0) - Плагины событий
@@ -22,21 +24,27 @@
 ## ⚙️ Файлы Конфигурации
 
 ### 1. `taiga-ui-mcp.json` - MCP Configuration
+
 Главный файл конфигурации для Taiga UI MCP:
+
 - Регистрация всех пакетов и компонентов
 - Настройка темы и стилей
 - Design tokens (цвета, радиусы, размеры)
 - Импорт-алиасы
 
 ### 2. `taiga-ui.config.ts` - TypeScript Configuration
+
 Конфигурация приложения:
+
 - Провайдеры Taiga UI
 - Конфигурация компонентов по умолчанию
 - Темы (light/dark)
 - Функция `provideTaigaUI()` для интеграции в app config
 
 ### 3. `tsconfig.base.json` - Path Aliases
+
 Пути импорта для всех Taiga UI пакетов:
+
 ```json
 {
   "paths": {
@@ -53,6 +61,7 @@
 ### Базовая Интеграция
 
 1. **В app.config.ts:**
+
 ```typescript
 import { ApplicationConfig } from '@angular/core';
 import { provideTaigaUI } from './taiga-ui.config';
@@ -61,11 +70,12 @@ export const appConfig: ApplicationConfig = {
   providers: [
     ...provideTaigaUI(),
     // другие провайдеры
-  ]
+  ],
 };
 ```
 
 2. **В компонентах:**
+
 ```typescript
 import { Component } from '@angular/core';
 import { TuiButtonModule } from '@taiga-ui/kit';
@@ -76,11 +86,9 @@ import { TuiRootModule } from '@taiga-ui/core';
   imports: [TuiRootModule, TuiButtonModule],
   template: `
     <tui-root>
-      <button tuiButton appearance="primary">
-        Taiga UI Button
-      </button>
+      <button tuiButton appearance="primary">Taiga UI Button</button>
     </tui-root>
-  `
+  `,
 })
 export class ExampleComponent {}
 ```
@@ -88,6 +96,7 @@ export class ExampleComponent {}
 ## 📋 Доступные Компоненты
 
 ### Core Components (@taiga-ui/core)
+
 - Button
 - Icon
 - Textfield
@@ -104,7 +113,9 @@ export class ExampleComponent {}
 - Error, Hint
 
 ### Kit Components (@taiga-ui/kit)
+
 **Формы и Ввод:**
+
 - Input (текст, число, пароль, чип, дата, время и т.д.)
 - Combo Box
 - Multi Select
@@ -117,6 +128,7 @@ export class ExampleComponent {}
 - Counter
 
 **Навигация:**
+
 - Breadcrumbs
 - Tabs
 - Pagination
@@ -124,6 +136,7 @@ export class ExampleComponent {}
 - Drawer
 
 **Отображение:**
+
 - Avatar
 - Badge, Badge Notification
 - Tile, Tiles
@@ -134,6 +147,7 @@ export class ExampleComponent {}
 - Thumbnail
 
 **Другое:**
+
 - Accordion
 - Confirm
 - Filter
@@ -144,6 +158,7 @@ export class ExampleComponent {}
 - Stepper
 
 ### Layout Components (@taiga-ui/layout)
+
 - Header
 - Footer
 - Aside
@@ -151,15 +166,18 @@ export class ExampleComponent {}
 - Mobile Sidebar
 
 ### Table Components (@taiga-ui/addon-table)
+
 - Table
 - Table Head, Body, Row, Cell
 - Table Pagination
 
 ### Icons (@taiga-ui/icons)
+
 - Полная библиотека иконок
 - Импорт через `@taiga-ui/icons`
 
 ### Mobile Components (@taiga-ui/addon-mobile)
+
 - Mobile Aware
 - Mobile Dropdown
 - Mobile Optimized Components
@@ -167,9 +185,11 @@ export class ExampleComponent {}
 ## 🎨 Темы и Стили
 
 ### Текущие Темы
+
 Конфигурированы в `taiga-ui.config.ts`:
 
 **Light Theme:**
+
 - Primary: #3b82f6 (Blue)
 - Secondary: #8b5cf6 (Purple)
 - Success: #10b981 (Green)
@@ -178,6 +198,7 @@ export class ExampleComponent {}
 - Info: #06b6d4 (Cyan)
 
 **Dark Theme:**
+
 - Primary: #60a5fa (Light Blue)
 - Secondary: #a78bfa (Light Purple)
 - Success: #34d399 (Light Green)
@@ -186,7 +207,9 @@ export class ExampleComponent {}
 - Info: #22d3ee (Light Cyan)
 
 ### CSS Variables
+
 Taiga UI автоматически генерирует CSS переменные для всех цветов и размеров. Используйте в стилях:
+
 ```css
 color: var(--tui-base-01);
 background: var(--tui-primary);
@@ -196,6 +219,7 @@ border-radius: var(--tui-radius-m);
 ## 🔧 Примеры Компонентов
 
 ### Кнопка
+
 ```typescript
 import { TuiButtonModule } from '@taiga-ui/kit';
 
@@ -210,6 +234,7 @@ import { TuiButtonModule } from '@taiga-ui/kit';
 ```
 
 ### Инпут
+
 ```typescript
 import { TuiInputModule } from '@taiga-ui/kit';
 
@@ -222,6 +247,7 @@ import { TuiInputModule } from '@taiga-ui/kit';
 ```
 
 ### Таблица
+
 ```typescript
 import { TuiTableModule } from '@taiga-ui/addon-table';
 
@@ -239,6 +265,7 @@ import { TuiTableModule } from '@taiga-ui/addon-table';
 ```
 
 ### Диалог
+
 ```typescript
 import { TuiDialogService } from '@taiga-ui/core';
 
@@ -262,7 +289,6 @@ open() {
 - `taiga-ui.config.ts` - TypeScript конфиг
 - `tsconfig.base.json` - Path aliases
 - `apps/proto/src/app/app.config.ts` - App configuration
-- `spartan.json` - Spartan NG MCP config
 - `MCP-SETUP.md` - Общая документация
 
 ## ⚡ Quick Tips

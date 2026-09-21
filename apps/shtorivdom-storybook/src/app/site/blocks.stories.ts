@@ -71,7 +71,7 @@ export const ЦеныПоРазделам: StoryObj = {
         <div class="mx-auto max-w-[1100px] rounded-[4px] bg-white px-5 py-8 sm:px-10">
           <h3 class="mb-4 text-[24px]">Цены по разделам</h3>
           @for (c of catalog; track c.key) {
-            <a href="#" class="flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex-1 text-[16px]">{{ c.title }}</span><span class="text-[16px] font-bold whitespace-nowrap">{{ c.minPrice }}</span></a>
+            <a href="#" class="flex items-baseline gap-3 border-b border-navy/10 py-3.5 transition-colors hover:text-gold"><span class="flex-1 text-[14px]">{{ c.title }}</span><span class="text-[14px] font-bold whitespace-nowrap">{{ c.minPrice }}</span></a>
           }
           <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
             <p class="text-[14px] text-slate/70">*Цены ориентировочные. Точная стоимость — после бесплатного замера и выбора ткани.</p>

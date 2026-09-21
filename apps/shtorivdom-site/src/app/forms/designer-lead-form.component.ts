@@ -3,7 +3,12 @@ import { LeadFormComponent } from './lead-form.component';
 
 @Component({
   selector: 'app-designer-lead-form',
-  template: `<app-lead-form [kind]="'designer'" [leadType]="'phone'" />`,
+  template: `<app-lead-form
+    [kind]="'designer'"
+    [leadType]="'phone'"
+    [showName]="true"
+    [showComment]="false"
+  />`,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [LeadFormComponent],
 })

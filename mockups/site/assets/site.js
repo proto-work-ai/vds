@@ -358,7 +358,7 @@
           '<span class="calc-option-box"><img src="' +
           c.image +
           '" alt="" loading="lazy" class="calc-kind-img" />' +
-          '<b class="font-serif tetext-[14px] leading-tight">' +
+          '<b class="font-serif text-[14px] leading-tight">' +
           c.title +
           '</b><span class="text-[12px] text-slate/80">от ' +
           money(c.min) +
@@ -759,7 +759,7 @@
           done.setAttribute('role', 'status');
           done.setAttribute('data-thanks', '');
           done.innerHTML =
-            '<p class="mb-3 font-serif text-[30px] font-bold text-gold">Спасибо!</p><p class="text-[16px] leading-relaxed text-slate">Ваша заявка успешно отправлена! Мы скоро с вами свяжемся.</p>';
+            '<p class="mb-3 font-serif text-[30px] font-bold text-gold">Спасибо!</p><p class="text-[14px] leading-relaxed text-slate">Ваша заявка успешно отправлена! Мы скоро с вами свяжемся.</p>';
           form.replaceWith(done);
           void done.offsetHeight;
           done.classList.add('is-in');

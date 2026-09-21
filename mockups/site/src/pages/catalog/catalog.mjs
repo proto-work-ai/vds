@@ -273,7 +273,7 @@ const compareTable = (rows) => {
                 .slice(1)
                 .map(
                   (c, i) =>
-                    `<dd class="flex flex-col py-1 text-[14px]"><span class="text-[11px] font-bold tracking-[.14em] text-gold uppercase">${esc(head[i + 1])}</span>${esc(c)}</dd>`,
+                    `<dd class="flex flex-col py-1 text-[14px]"><span class="text-[12px] font-bold tracking-[.14em] text-gold uppercase">${esc(head[i + 1])}</span>${esc(c)}</dd>`,
                 )
                 .join('')}</dl>`,
           )
@@ -289,7 +289,7 @@ const contentBlocks = (detail) =>
           <span class="font-serif text-[30px] leading-none text-gold sm:text-[34px]">${String(i + 1).padStart(2, '0')}</span>
           <div>
             <h3 class="mb-5 text-[24px] leading-tight sm:text-[28px]">${esc(s.title)}</h3>
-            ${s.note ? `<p class="mb-4 text-[16px] leading-relaxed font-light text-slate">${esc(s.note)}</p>` : ''}
+            ${s.note ? `<p class="mb-4 text-[14px] leading-relaxed font-light text-slate">${esc(s.note)}</p>` : ''}
             ${s.items.length ? `<ul class="space-y-3.5">${s.items.map(itemHtml).join('')}</ul>` : ''}
             ${s.rows ? compareTable(s.rows) : ''}
           </div>
@@ -312,8 +312,8 @@ const priceTable = (key, title) => {
     </div>
     <div class="reveal hidden overflow-x-auto lg:block" data-price-table>
       <table class="cat-table cat-price">
-        <thead><tr><th>Материал / модель</th><th>Производство</th><th>Ширина, м</th><th>Гарантия</th><th class="text-right">Цена <span class="block text-[11px] font-normal tracking-normal normal-case opacity-70">с пошивом и установкой</span></th></tr></thead>
-        <tbody>${rows.map(([name, country, width, warranty, price, unit]) => `<tr><td class="font-serif text-[18px] font-bold">${name}</td><td>${country}</td><td>${range(width, 'м', 'до ', num)}</td><td>${years(warranty)}</td><td class="text-right tetext-[14px] font-bold whitespace-nowrap">${range(price, '₽', 'от ')} <span class="font-normal text-slate/70">/ ${unit}</span></td></tr>`).join('')}</tbody>
+        <thead><tr><th>Материал / модель</th><th>Производство</th><th>Ширина, м</th><th>Гарантия</th><th class="text-right">Цена <span class="block text-[12px] font-normal tracking-normal normal-case opacity-70">с пошивом и установкой</span></th></tr></thead>
+        <tbody>${rows.map(([name, country, width, warranty, price, unit]) => `<tr><td class="font-serif text-[18px] font-bold">${name}</td><td>${country}</td><td>${range(width, 'м', 'до ', num)}</td><td>${years(warranty)}</td><td class="text-right text-[14px] font-bold whitespace-nowrap">${range(price, '₽', 'от ')} <span class="font-normal text-slate/70">/ ${unit}</span></td></tr>`).join('')}</tbody>
       </table>
     </div>
     <div class="grid gap-4 lg:hidden" data-price-cards>${rows
@@ -373,7 +373,7 @@ const modelsGrid = () => `
         <div class="cat-card h-full overflow-hidden rounded-[2px] border border-navy/10 bg-white">
           <div class="relative flex h-[190px] items-center justify-center overflow-hidden bg-white px-6"><img src="{{root}}assets/img/catalog/curtain-rods/models/catalog-${m.key}.webp" alt="${m.title}" loading="lazy" class="cat-zoom-img max-h-[120px] w-full object-contain" /></div>
           <div class="border-t border-navy/10 px-6 pt-5 pb-6">
-            <p class="mb-2 text-[11px] tracking-[.25em] text-gold uppercase">Модель ${m.key}</p>
+            <p class="mb-2 text-[12px] tracking-[.25em] text-gold uppercase">Модель ${m.key}</p>
             <h3 class="mb-4 text-[20px] leading-snug">${m.title}</h3>
             <div class="cat-gold-line mb-4"></div>
             <span class="inline-flex items-center gap-2 text-[12px] font-bold tracking-[.2em] text-navy/70 uppercase transition-colors group-hover:text-gold">Подробнее ${arrow}</span>
@@ -422,7 +422,7 @@ const listPage = () => `${styles}
     <div class="text-center">
       <div>${eyebrow('Наше ателье')}</div>
       <h1 class="rise mb-5 text-[clamp(36px,6vw,60px)] leading-[1.15] font-bold" style="--d:.1s">Каталог <em class="text-gold">Штор</em></h1>
-      <p class="rise mx-auto max-w-[520px] text-[16px] leading-[1.8] text-cream/60" style="--d:.2s">Вся продукция изготавливается по индивидуальным размерам из качественных материалов.</p>
+      <p class="rise mx-auto max-w-[520px] text-[14px] leading-[1.8] text-cream/60" style="--d:.2s">Вся продукция изготавливается по индивидуальным размерам из качественных материалов.</p>
     </div>
     <div class="mt-16 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3" data-catalog-list>
       ${SECTIONS.map((s, i) => {
@@ -435,13 +435,13 @@ const listPage = () => `${styles}
             ${s.key === 'curtain-rods' ? `<span class="cat-pill absolute top-4 right-4">${MODELS.length} моделей</span>` : `<span class="cat-pill absolute top-4 right-4">${s.images.length} фото</span>`}
           </div>
           <div class="px-6 pt-6 pb-7 sm:px-7">
-            <p class="mb-2 text-[11px] tracking-[.25em] text-gold uppercase opacity-80">Раздел ${String(i + 1).padStart(2, '0')}</p>
+            <p class="mb-2 text-[12px] tracking-[.25em] text-gold uppercase opacity-80">Раздел ${String(i + 1).padStart(2, '0')}</p>
             <h2 class="mb-2.5 text-[24px] font-bold text-cream">${s.title}</h2>
             <p class="mb-5 text-[14px] leading-[1.7] text-cream/55">${s.text}</p>
             <div class="cat-gold-line mb-5"></div>
             <div class="flex flex-wrap items-center justify-between gap-3">
               <span class="text-[14px] tracking-[.04em] text-gold">от ${money(min)} ₽ / ${unit}</span>
-              <span class="inline-flex items-center gap-1.5 text-[11px] tracking-[.2em] text-cream/60 uppercase transition-colors group-hover:text-gold">Подробнее ${arrow}</span>
+              <span class="inline-flex items-center gap-1.5 text-[12px] tracking-[.2em] text-cream/60 uppercase transition-colors group-hover:text-gold">Подробнее ${arrow}</span>
             </div>
           </div>
         </div>
@@ -490,7 +490,7 @@ const sectionPage = (s) => {
 <section class="bg-cream py-16 sm:py-24">
   <div class="wrap grid gap-12 lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16">
     <div>
-      <p class="reveal mb-12 border-l-2 border-gold pl-5 font-serif text-[20px] leading-[1.6] text-navy sm:pl-7 sm:text-[23px]">${esc(detail.intro)}</p>
+      <p class="reveal mb-12 border-l-2 border-gold pl-5 font-serif text-[20px] leading-[1.6] text-navy sm:pl-7 sm:text-[24px]">${esc(detail.intro)}</p>
       <div data-detail>${contentBlocks(detail)}
       </div>
     </div>
@@ -557,7 +557,7 @@ const modelPage = (m) => {
     <div>
       <div>${eyebrow('Карнизы для штор', false)}</div>
       <h1 class="rise mb-4 text-[clamp(32px,4.5vw,48px)] leading-[1.12]" style="--d:.1s">${m.title}</h1>
-      <p class="rise mb-8 tetext-[14px] leading-relaxed font-light text-slate" style="--d:.15s">Декоративные и профильные.</p>
+      <p class="rise mb-8 text-[14px] leading-relaxed font-light text-slate" style="--d:.15s">Декоративные и профильные.</p>
       <div class="rise mb-8 border border-navy/10 bg-white px-6 py-6" style="--d:.2s">
         <p class="mb-4 text-[12px] font-bold tracking-[.2em] text-gold uppercase">Характеристики</p>
         <p class="border border-dashed border-gold px-4 py-3 text-[14px] text-slate">Заглушка: на текущем сайте у модели есть только название и фото — характеристики (материал, диаметр, длина, кронштейны) ждут данных.</p>
@@ -584,7 +584,7 @@ const modelPage = (m) => {
       </div>
     </div>
     <div class="reveal cat-strip cat-strip-models" data-strip>
-      ${others.map((o) => `<a href="../${o.key}/" class="cat-card group flex flex-col border border-navy/10 bg-white"><span class="flex h-[140px] items-center overflow-hidden px-5"><img src="{{root}}assets/img/catalog/curtain-rods/models/catalog-${o.key}.webp" alt="${o.title}" loading="lazy" class="cat-zoom-img max-h-[90px] w-full object-contain" /></span><span class="border-t border-navy/10 px-5 py-4 font-serif tetext-[14px] leading-snug transition-colors group-hover:text-gold">${o.title}</span></a>`).join('\n      ')}
+      ${others.map((o) => `<a href="../${o.key}/" class="cat-card group flex flex-col border border-navy/10 bg-white"><span class="flex h-[140px] items-center overflow-hidden px-5"><img src="{{root}}assets/img/catalog/curtain-rods/models/catalog-${o.key}.webp" alt="${o.title}" loading="lazy" class="cat-zoom-img max-h-[90px] w-full object-contain" /></span><span class="border-t border-navy/10 px-5 py-4 font-serif text-[14px] leading-snug transition-colors group-hover:text-gold">${o.title}</span></a>`).join('\n      ')}
     </div>
   </div>
 </section>

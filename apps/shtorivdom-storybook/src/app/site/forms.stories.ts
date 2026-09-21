@@ -50,11 +50,11 @@ export const ПоляПервогоЭкрана: StoryObj = {
           <div class="flex flex-col gap-6">
             <label class="flex items-center gap-3 border-b border-gold pb-3">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <input type="text" placeholder="Введите имя" class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60" />
+              <input type="text" placeholder="Введите имя" class="h-10 w-full bg-transparent text-[14px] outline-none placeholder:text-slate/60" />
             </label>
             <label class="flex items-center gap-3 border-b border-gold pb-3">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <input placeholder="Укажите телефон" class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60" [(sitePhoneMask)]="phone" />
+              <input placeholder="Укажите телефон" class="h-10 w-full bg-transparent text-[14px] outline-none placeholder:text-slate/60" [(sitePhoneMask)]="phone" />
             </label>
           </div>
         </div>
@@ -66,7 +66,7 @@ export const ПоляПервогоЭкрана: StoryObj = {
             <div>
               <label class="flex items-center gap-3 border-b border-[#c0392b] pb-3">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="2" class="shrink-0"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                <input value="+7 (9" class="h-10 w-full bg-transparent text-[16px] outline-none" />
+                <input value="+7 (9" class="h-10 w-full bg-transparent text-[14px] outline-none" />
               </label>
               <p class="mt-2 text-[12px] text-[#c0392b]">Введите номер телефона полностью</p>
             </div>

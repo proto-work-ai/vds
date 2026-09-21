@@ -1,12 +1,9 @@
 @if (lead().submitted()) {
   <div class="form-done py-8 text-center" role="status">
     <p class="mb-3 font-serif text-[30px] font-bold text-gold">Спасибо!</p>
-    <p class="text-[16px] leading-relaxed text-current opacity-80">{{ lead().successMessage }}</p>
+    <p class="text-[14px] leading-relaxed text-current opacity-80">{{ lead().successMessage }}</p>
   </div>
 } @else {
-  @for (message of lead().invalid(); track message) {
-    <p class="mt-2 text-[12px] text-[#c0392b]" role="alert">{{ message }}</p>
-  }
   @if (lead().error()) {
     <p class="mt-2 text-[12px] text-[#c0392b]" role="alert">
       {{ lead().error() }}

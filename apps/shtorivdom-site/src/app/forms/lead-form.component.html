@@ -10,7 +10,12 @@
   [calculationSummary]="calculationSummary()"
   [attr.data-lead-kind]="kind() || null"
 >
-  <app-lead-fields [form]="lead.form" [showName]="showName()" [showCity]="showCity()" />
+  <app-lead-fields
+    [form]="lead.form"
+    [showName]="showName()"
+    [showCity]="showCity()"
+    [showComment]="showComment()"
+  />
   <button type="submit" class="btn-gold w-full" [disabled]="lead.submitting()">
     {{ submitText() }}
   </button>

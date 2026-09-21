@@ -9,67 +9,81 @@
     class="absolute -left-[9999px] size-0 opacity-0"
   />
   @if (showName()) {
-    <tui-textfield [tuiTextfieldCleaner]="false">
+    <tui-textfield
+      iconStart="@tui.user"
+      [invalid]="form().controls['name'].touched && form().controls['name'].invalid"
+      [tuiTextfieldCleaner]="false"
+    >
       <label tuiLabel>
         Имя
         <span class="text-red-600">*</span>
       </label>
       <input
-        tuiTextfield
+        tuiInput
         formControlName="name"
         name="name"
         autocomplete="name"
         placeholder="Введите имя"
-        class="field"
+        required
       />
     </tui-textfield>
   }
   @if (showCity()) {
-    <tui-textfield [tuiTextfieldCleaner]="false">
-      <label tuiLabel>Город</label>
+    <tui-textfield
+      iconStart="@tui.map-pin"
+      [invalid]="form().controls['city'].touched && form().controls['city'].invalid"
+      [tuiTextfieldCleaner]="false"
+    >
+      <label tuiLabel>
+        Город
+        <span class="text-red-600">*</span>
+      </label>
       <input
-        tuiTextfield
+        tuiInput
         formControlName="city"
         name="city"
         autocomplete="address-level2"
         placeholder="Город"
-        class="field"
+        required
       />
     </tui-textfield>
   }
-  <tui-textfield *appDefer [tuiTextfieldCleaner]="false">
-    <label tuiLabel>
-      Телефон
-      <span class="text-red-600">*</span>
-    </label>
-    <input
-      mask="+7 (###) ###-##-##"
-      tuiInputPhone
-      id="lead-phone"
-      formControlName="phone"
-      name="phone"
-      type="tel"
-      inputmode="tel"
-      autocomplete="tel"
-      placeholder="Укажите телефон"
-      class="field"
-      data-phone
-    />
-  </tui-textfield>
-  <tui-textfield [tuiTextfieldCleaner]="false">
-    <label tuiLabel>Комментарий</label>
-    <textarea
-      tuiTextarea
-      id="lead-comment"
-      formControlName="comment"
-      placeholder="Комментарий"
-      class="field resize-none"
-      [rows]="3"
-      [min]="3"
-      [max]="6"
-    ></textarea>
-  </tui-textfield>
-  <label class="flex items-start gap-3 text-[14px] leading-snug text-slate">
+  <div *appDefer>
+    <tui-textfield iconStart="@tui.phone" [tuiTextfieldCleaner]="false">
+      <label tuiLabel>
+        Телефон
+        <span class="text-red-600">*</span>
+      </label>
+      <input
+        mask="+7 (###) ###-##-##"
+        tuiInputPhone
+        id="lead-phone"
+        formControlName="phone"
+        name="phone"
+        type="tel"
+        inputmode="tel"
+        autocomplete="tel"
+        placeholder="Укажите телефон"
+        data-phone
+      />
+    </tui-textfield>
+  </div>
+  @if (showComment()) {
+    <tui-textfield [tuiTextfieldCleaner]="false">
+      <label tuiLabel>Комментарий</label>
+      <textarea
+        tuiTextarea
+        id="lead-comment"
+        formControlName="comment"
+        placeholder="Комментарий"
+        class="field resize-none"
+        [rows]="3"
+        [min]="3"
+        [max]="6"
+      ></textarea>
+    </tui-textfield>
+  }
+  <label class="flex items-start gap-3 text-[14px] leading-snug text-current">
     <input
       tuiCheckbox
       type="checkbox"
@@ -83,7 +97,7 @@
       Я соглашаюсь с правилами по обработке
       <a
         routerLink="/soglasie-na-obrabotku-personalnyh-dannyh"
-        class="text-navy underline decoration-gold underline-offset-2 hover:text-gold"
+        class="text-current underline decoration-gold underline-offset-2 hover:text-gold"
       >
         персональных данных
       </a>

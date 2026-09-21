@@ -85,49 +85,28 @@
             class="absolute -left-[9999px] size-0 opacity-0"
           />
           <label class="flex items-center gap-3 border-b border-gold pb-3">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#c9a84c"
-              stroke-width="2"
-              class="shrink-0"
-            >
-              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
+            <!-- @tui-user -->
             <input
               name="name"
               type="text"
               autocomplete="name"
               placeholder="Введите имя"
-              class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60"
+              class="h-10 w-full bg-transparent text-[14px] outline-none placeholder:text-slate/60"
+              required
             />
           </label>
           <div>
             <label class="flex items-center gap-3 border-b border-gold pb-3" data-phone-wrap>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#c9a84c"
-                stroke-width="2"
-                class="shrink-0"
-              >
-                <path
-                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"
-                />
-              </svg>
+              <!-- @tui-phone -->
               <input
                 name="phone"
                 type="tel"
                 inputmode="tel"
                 autocomplete="tel"
                 placeholder="Укажите телефон"
-                class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60"
+                class="h-10 w-full bg-transparent text-[14px] outline-none placeholder:text-slate/60"
                 data-phone
+                required
               />
             </label>
             <p class="mt-2 hidden text-[12px] text-[#c0392b]" data-error="phone">
@@ -189,7 +168,7 @@
           class="absolute right-0 bottom-0 z-20 flex size-28 flex-col items-center justify-center bg-gold shadow-xl sm:bottom-6"
         >
           <span class="font-serif text-[30px] leading-none text-white">15+</span>
-          <span class="mt-1 text-center text-[11px] tracking-[.2em] text-white/85 uppercase"
+          <span class="mt-1 text-center text-[12px] tracking-[.2em] text-white/85 uppercase"
             >лет</span
           >
         </div>
@@ -202,12 +181,12 @@
         <h2 class="mb-6 text-[clamp(30px,4vw,46px)] leading-tight">
           Более 15 лет мы создаем <em>уникальные текстильные интерьеры</em>
         </h2>
-        <p class="mb-4 text-[16px] leading-relaxed font-light text-slate">
+        <p class="mb-4 text-[14px] leading-relaxed font-light text-slate">
           Мы — это профессиональное ателье по пошиву штор в Москве. Мы создаем стильные
           индивидуальные решения для любого интерьера: изготавливаем все виды штор, карнизы, жалюзи
           и другие изделия для оформления всех видов окон.
         </p>
-        <p class="mb-9 text-[16px] leading-relaxed font-light text-slate">
+        <p class="mb-9 text-[14px] leading-relaxed font-light text-slate">
           Наши опытные дизайнеры разрабатывают проекты с учетом пожеланий клиента, а мастера
           обеспечивают безупречное качество исполнения, доставку и установку штор в Москве и МО.
           Действуют акции, скидки, гарантия и постгарантийное обслуживание.
@@ -273,7 +252,7 @@
         <p class="eyebrow">Каталог</p>
         <h2 class="h2">Каталог <span class="text-gold italic">Штор</span></h2>
         <div class="divider"><i></i></div>
-        <p class="mx-auto max-w-[560px] text-[16px] leading-[1.8] font-light text-slate">
+        <p class="mx-auto max-w-[560px] text-[14px] leading-[1.8] font-light text-slate">
           Вся продукция изготавливается по индивидуальным размерам из качественных материалов.
         </p>
       </div>
@@ -374,7 +353,7 @@
           <h2 class="mb-7 text-[clamp(30px,4vw,46px)] leading-[1.12]">
             Изготовление штор на заказ с контролем качества на каждом этапе
           </h2>
-          <div class="space-y-4 text-[16px] leading-relaxed font-light text-slate">
+          <div class="space-y-4 text-[14px] leading-relaxed font-light text-slate">
             <p>
               Пошив штор на заказ — лучший способ получить качественные занавеси, соответствующие
               размеру и форме окна, уровню освещенности и дизайну комнаты, а также вкусам Заказчика.
@@ -786,7 +765,7 @@
             </blockquote>
             <div class="flex items-center justify-center gap-4">
               <span
-                class="grid size-12 place-items-center rounded-full bg-sand font-serif tetext-[14px] text-gold"
+                class="grid size-12 place-items-center rounded-full bg-sand font-serif text-[14px] text-gold"
                 data-avatar
               ></span>
               <div class="text-left">
@@ -866,7 +845,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Сколько стоит пошив штор на заказ?</span
+            <span class="text-[14px]">Сколько стоит пошив штор на заказ?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -915,7 +894,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Где можно посмотреть Ваши работы?</span
+            <span class="text-[14px]">Где можно посмотреть Ваши работы?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -955,7 +934,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Есть ли гарантия на изделия?</span
+            <span class="text-[14px]">Есть ли гарантия на изделия?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -992,7 +971,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Какие сроки по пошиву?</span
+            <span class="text-[14px]">Какие сроки по пошиву?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"
@@ -1029,7 +1008,7 @@
             aria-expanded="false"
             data-faq-q
           >
-            <span class="text-[16px]">Сколько стоит выезд дизайнера?</span
+            <span class="text-[14px]">Сколько стоит выезд дизайнера?</span
             ><span class="faq-icon shrink-0 text-gold"
               ><svg
                 class="plus"

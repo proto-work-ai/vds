@@ -448,6 +448,10 @@
     width: calc(var(--spacing) * 4);
     height: calc(var(--spacing) * 4);
   }
+  .size-5 {
+    width: calc(var(--spacing) * 5);
+    height: calc(var(--spacing) * 5);
+  }
   .size-6 {
     width: calc(var(--spacing) * 6);
     height: calc(var(--spacing) * 6);
@@ -645,6 +649,10 @@
   }
   .-translate-x-1\/2 {
     --tw-translate-x: calc(calc(1 / 2 * 100%) * -1);
+    translate: var(--tw-translate-x) var(--tw-translate-y);
+  }
+  .-translate-y-1\/2 {
+    --tw-translate-y: calc(calc(1 / 2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
   .-translate-y-full {
@@ -1265,6 +1273,9 @@
   .pl-5 {
     padding-left: calc(var(--spacing) * 5);
   }
+  .pl-12 {
+    padding-left: calc(var(--spacing) * 12);
+  }
   .text-center {
     text-align: center;
   }
@@ -1298,32 +1309,14 @@
   .text-\[10px\] {
     font-size: 10px;
   }
-  .text-\[11px\] {
-    font-size: 11px;
-  }
   .text-\[12px\] {
     font-size: 12px;
-  }
-  .text-\[13px\] {
-    font-size: 13px;
   }
   .text-\[14px\] {
     font-size: 14px;
   }
-  .text-\[15px\] {
-    font-size: 15px;
-  }
-  .text-\[16px\] {
-    font-size: 16px;
-  }
-  .text-\[17px\] {
-    font-size: 17px;
-  }
   .text-\[18px\] {
     font-size: 18px;
-  }
-  .text-\[19px\] {
-    font-size: 19px;
   }
   .text-\[20px\] {
     font-size: 20px;
@@ -1334,17 +1327,11 @@
   .text-\[24px\] {
     font-size: 24px;
   }
-  .text-\[26px\] {
-    font-size: 26px;
-  }
   .text-\[30px\] {
     font-size: 30px;
   }
   .text-\[34px\] {
     font-size: 34px;
-  }
-  .text-\[36px\] {
-    font-size: 36px;
   }
   .text-\[40px\] {
     font-size: 40px;
@@ -1939,9 +1926,9 @@
       justify-content: center;
     }
   }
-  .min-\[375px\]\:text-\[26px\] {
+  .min-\[375px\]\:text-\[24px\] {
     @media (width >= 375px) {
-      font-size: 26px;
+      font-size: 24px;
     }
   }
   .min-\[420px\]\:grid-cols-2 {
@@ -2294,24 +2281,9 @@
       font-size: 14px;
     }
   }
-  .sm\:text-\[15px\] {
+  .sm\:text-\[24px\] {
     @media (width >= 40rem) {
-      font-size: 15px;
-    }
-  }
-  .sm\:text-\[16px\] {
-    @media (width >= 40rem) {
-      font-size: 16px;
-    }
-  }
-  .sm\:text-\[23px\] {
-    @media (width >= 40rem) {
-      font-size: 23px;
-    }
-  }
-  .sm\:text-\[26px\] {
-    @media (width >= 40rem) {
-      font-size: 26px;
+      font-size: 24px;
     }
   }
   .sm\:text-\[28px\] {
@@ -2329,9 +2301,9 @@
       font-size: 32px;
     }
   }
-  .sm\:text-\[36px\] {
+  .sm\:text-\[34px\] {
     @media (width >= 40rem) {
-      font-size: 36px;
+      font-size: 34px;
     }
   }
   .sm\:text-\[38px\] {
@@ -2667,10 +2639,10 @@
       color: var(--color-navy);
     }
   }
-  .sm\:\[\&_h2\]\:text-\[26px\] {
+  .sm\:\[\&_h2\]\:text-\[24px\] {
     @media (width >= 40rem) {
       & h2 {
-        font-size: 26px;
+        font-size: 24px;
       }
     }
   }
@@ -2861,6 +2833,7 @@
   }
   body {
     font-family: var(--font-sans);
+    font-size: 14px;
     color: var(--color-navy);
     background: var(--color-cream);
     overflow-x: hidden;
@@ -3453,7 +3426,7 @@
   }
   .field {
     width: 100%;
-    font-size: 15px;
+    font-size: 16px;
     color: var(--color-navy);
     background: #fff;
     border: 1px solid rgb(13 34 61 / 0.18);
@@ -3524,20 +3497,6 @@
   }
   :is(p, li, dd, figcaption, blockquote, span, div).font-light, .font-light :is(p, li, dd), .font-light {
     font-weight: 400 !important;
-  }
-  @media (max-width: 767px) {
-    :is(p, li, dd, blockquote)[class~='text-[14px]'] {
-      font-size: 15px !important;
-      line-height: 1.65 !important;
-    }
-    :is(p, li, dd, blockquote)[class~='text-[14px]'] {
-      font-size: 16px !important;
-      line-height: 1.7 !important;
-    }
-    :is(p, li, dd, blockquote)[class~='text-[16px]'] {
-      font-size: 17px !important;
-      line-height: 1.75 !important;
-    }
   }
 }
 @property --tw-translate-x {

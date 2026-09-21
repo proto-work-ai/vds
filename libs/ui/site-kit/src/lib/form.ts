@@ -92,7 +92,7 @@ export interface SiteLeadData {
     @if (done()) {
       <div class="form-done is-in py-8 text-center" role="status">
         <p class="mb-3 font-serif text-[30px] font-bold text-gold">Спасибо!</p>
-        <p class="text-[16px] leading-relaxed text-slate">Ваша заявка успешно отправлена! Мы скоро с вами свяжемся.</p>
+        <p class="text-[14px] leading-relaxed text-slate">Ваша заявка успешно отправлена! Мы скоро с вами свяжемся.</p>
       </div>
     } @else {
       <form novalidate [class]="variant() === 'hero' ? 'flex flex-col gap-6' : 'flex flex-col gap-5'" (submit)="submit($event)">
@@ -100,14 +100,14 @@ export interface SiteLeadData {
           <label class="flex items-center gap-3 border-b border-gold pb-3">
             <site-icon name="user" class="text-gold" />
             <input name="name" type="text" autocomplete="name" placeholder="Введите имя"
-              class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60" [value]="name()"
+              class="h-10 w-full bg-transparent text-[14px] outline-none placeholder:text-slate/60" [value]="name()"
                 (input)="name.set(val($event))" />
           </label>
           <div>
             <label class="flex items-center gap-3 border-b border-gold pb-3" [style.border-color]="phoneError() ? '#c0392b' : null">
               <site-icon name="phone" class="text-gold" />
               <input #phoneInput name="phone" placeholder="Укажите телефон"
-                class="h-10 w-full bg-transparent text-[16px] outline-none placeholder:text-slate/60" [value]="phone()"
+                class="h-10 w-full bg-transparent text-[14px] outline-none placeholder:text-slate/60" [value]="phone()"
                   [(sitePhoneMask)]="phone" (input)="phoneError.set(false)" />
             </label>
             @if (phoneError()) {<p class="mt-2 text-[12px] text-[#c0392b]">Введите номер телефона полностью</p>}
@@ -194,7 +194,7 @@ export class SiteLeadForm {
       <div>
         <p class="eyebrow">Заявка</p>
         <h2 class="h2 mb-5">Запишитесь на посещение шоурума и получите <span class="text-gold italic">скидку 10%</span></h2>
-        <div class="mb-10 space-y-3 text-[16px] leading-[1.8] font-light text-slate">
+        <div class="mb-10 space-y-3 text-[14px] leading-[1.8] font-light text-slate">
           <p>Бесплатно осуществим выезд в любой район Москвы и МО в удобный для Вас день и время.</p>
           <p>На встрече продемонстрируем все образцы материалов, произведём замеры, поможем с выбором модели и рассчитаем стоимость в разных
             ценовых категориях.</p>
@@ -206,8 +206,8 @@ export class SiteLeadForm {
               <span class="mt-1 text-gold"><site-icon [name]="c.icon" /></span>
               <div>
                 <p class="mb-1 text-[12px] font-bold tracking-[.12em] text-gold uppercase">{{ c.label }}</p>
-                @if (c.href) {<a class="text-[16px] hover:text-gold" [href]="c.href">{{ c.text }}</a>} @else {<p
-                  class="text-[16px]">{{ c.text }}</p>}
+                @if (c.href) {<a class="text-[14px] hover:text-gold" [href]="c.href">{{ c.text }}</a>} @else {<p
+                  class="text-[14px]">{{ c.text }}</p>}
               </div>
             </li>
           }

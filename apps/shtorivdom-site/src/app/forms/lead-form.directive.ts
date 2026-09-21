@@ -44,19 +44,10 @@ export class LeadFormDirective {
   public readonly submitting = signal(false);
   public readonly submitted = signal(false);
   public readonly error = signal('');
-  public readonly invalid = signal<string[]>([]);
   private readonly calc = this.element.hasAttribute('data-calc-lead-form');
   public readonly successMessage = this.calc
     ? 'Расчёт отправлен дизайнеру. Мы скоро с вами свяжемся.'
     : 'Ваша заявка успешно отправлена! Мы скоро с вами свяжемся.';
-
-  constructor() {
-    if (this.element.getAttribute('data-lead-type') === 'full' || this.calc) {
-      this.form.controls.name.addValidators(Validators.required);
-      this.form.controls.name.updateValueAndValidity();
-    }
-    this.form.valueChanges.pipe(takeUntilDestroyed()).subscribe(() => this.updateErrors());
-  }
 
   public chooseModel(model: string): void {
     if (!this.form.controls.comment.value)
@@ -68,7 +59,6 @@ export class LeadFormDirective {
     event.preventDefault();
     if (this.submitting() || this.submitted()) return;
     this.form.markAllAsTouched();
-    this.updateErrors();
     if (this.form.invalid) return;
     const value = this.form.getRawValue();
     const description = this.calculationSummary() || this.leadDescription() || value.comment;
@@ -123,20 +113,6 @@ export class LeadFormDirective {
     this.form.reset({ consent: true });
     this.submitted.set(false);
     this.error.set('');
-    this.invalid.set([]);
     this.openedAt = Date.now();
-  }
-
-  private updateErrors(): void {
-    const controls = this.form.controls;
-    const messages: string[] = [];
-    if (controls.name.touched && controls.name.invalid) messages.push('Укажите имя.');
-    if (controls.phone.touched && controls.phone.invalid)
-      messages.push('Укажите телефон полностью — 10 цифр после +7.');
-    if (controls.email.touched && controls.email.invalid)
-      messages.push('Проверьте адрес электронной почты.');
-    if (controls.consent.touched && controls.consent.invalid)
-      messages.push('Необходимо согласие на обработку персональных данных.');
-    this.invalid.set(messages);
   }
 }
