@@ -81,7 +81,11 @@ export async function deploy(files, { title, uploadCommand }) {
   if (existsSync(manifestFile)) unlinkSync(manifestFile);
 
   const local = files.map(([file, remote]) => ({ file, remote, hash: hashFile(file) }));
-  const pending = local.filter((item) => previous[item.remote] !== item.hash);
+  const isCritical = ({ remote }) =>
+    remote === '.htaccess' ||
+    remote.endsWith('.html') ||
+    (!remote.includes('/') && /\.(?:css|js)$/.test(remote));
+  const pending = local.filter((item) => isCritical(item) || previous[item.remote] !== item.hash);
   const skipped = local.length - pending.length;
   console.log(`Изменённых или новых файлов: ${pending.length}, без изменений: ${skipped}`);
 

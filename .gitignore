@@ -54,3 +54,4 @@ vitest.config.*.timestamp*
 storybook-static
 /.tmp/visual-audit
 /.tmp/cache-build-check
+/.tmp
