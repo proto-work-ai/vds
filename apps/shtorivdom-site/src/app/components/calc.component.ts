@@ -5,6 +5,9 @@ import { RevealDirective } from './reveal.directive';
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 import { ContactLinksDirective } from '../contact-links.directive';
 import { SITE_PRICE_CONFIG, siteMinimumPrice } from '@shtorivdom/site-kit';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { TuiInputNumber } from '@taiga-ui/kit';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 type CalcItem = {
   key: string;
@@ -24,6 +27,8 @@ type CalcItem = {
     RouterLink,
     RevealDirective,
     ContactLinksDirective,
+    ReactiveFormsModule,
+    TuiInputNumber,
   ],
 })
 export class CalcComponent {
@@ -37,8 +42,14 @@ export class CalcComponent {
       image: `../assets/img/catalog/${section.image}`,
     }));
   protected readonly selectedKey = signal(this.items[0].key);
-  protected readonly width = signal(250);
-  protected readonly height = signal(260);
+  protected readonly widthControl = new FormControl(250, { nonNullable: true });
+  protected readonly heightControl = new FormControl(260, { nonNullable: true });
+  protected readonly width = toSignal(this.widthControl.valueChanges, {
+    initialValue: this.widthControl.value,
+  });
+  protected readonly height = toSignal(this.heightControl.valueChanges, {
+    initialValue: this.heightControl.value,
+  });
   protected readonly fullness = signal(2);
   protected readonly rod = signal(false);
   protected readonly selected = computed(
@@ -100,12 +111,6 @@ export class CalcComponent {
     if (event.target instanceof HTMLInputElement) return;
     event.preventDefault();
     this.selectItem(key);
-  }
-
-  protected setNumber(target: 'width' | 'height', event: Event): void {
-    const value = Number((event.target as HTMLInputElement).value);
-    if (target === 'width') this.width.set(value);
-    else this.height.set(value);
   }
 
   protected setFullness(event: Event): void {

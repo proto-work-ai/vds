@@ -57,6 +57,9 @@ list in `apps/shtorivdom-site/project.json`.
 - **Textfields:** use `<tui-textfield>` with `<label tuiLabel>` and a native
   `<input tuiInput>` or `<textarea tuiTextarea>`. Put control icons on the textfield via
   `iconStart`/`iconEnd`.
+- **Borders:** do not add manual `border`, `outline`, `ring`, or corresponding Tailwind
+  border classes to Taiga UI controls. Use the component's built-in appearance and public
+  Taiga UI theming API.
 - **Phone:** use `TuiInputPhone`/`tuiInputPhone`; apply `*appDefer` only to the telephone
   textfield where the existing mask initialization requires it.
 - **Required fields:** displayed name and city fields are required and marked `*`; city

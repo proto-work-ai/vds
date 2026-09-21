@@ -68,44 +68,44 @@
           </div>
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label class="field-label" for="calc-width">
-                {{ byMeter() ? 'Ширина карниза, см' : 'Ширина окна (створки), см' }}
-              </label>
-              <input
-                id="calc-width"
-                name="width"
-                type="number"
-                inputmode="numeric"
-                min="30"
-                max="1500"
-                step="1"
-                class="field"
-                data-calc-width
-                [value]="width()"
-                (input)="setNumber('width', $event)"
-              />
+              <tui-textfield [tuiTextfieldCleaner]="false">
+                <label tuiLabel>
+                  {{ byMeter() ? 'Ширина карниза, см' : 'Ширина окна (створки), см' }}
+                </label>
+                <input
+                  tuiInputNumber
+                  id="calc-width"
+                  name="width"
+                  inputmode="numeric"
+                  data-calc-width
+                  [min]="30"
+                  [max]="1500"
+                  [step]="1"
+                  [formControl]="widthControl"
+                />
+              </tui-textfield>
               <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-width-hint>
                 Длина карниза от края до края. Если карниза ещё нет — ширина окна плюс по 15–20 см с
                 каждой стороны.
               </p>
             </div>
             <div>
-              <label class="field-label" for="calc-height">
-                {{ byMeter() ? 'Высота от карниза до пола, см' : 'Высота окна (створки), см' }}
-              </label>
-              <input
-                id="calc-height"
-                name="height"
-                type="number"
-                inputmode="numeric"
-                min="30"
-                max="600"
-                step="1"
-                class="field"
-                data-calc-height
-                [value]="height()"
-                (input)="setNumber('height', $event)"
-              />
+              <tui-textfield [tuiTextfieldCleaner]="false">
+                <label tuiLabel>
+                  {{ byMeter() ? 'Высота от карниза до пола, см' : 'Высота окна (створки), см' }}
+                </label>
+                <input
+                  tuiInputNumber
+                  id="calc-height"
+                  name="height"
+                  inputmode="numeric"
+                  data-calc-height
+                  [min]="30"
+                  [max]="600"
+                  [step]="1"
+                  [formControl]="heightControl"
+                />
+              </tui-textfield>
               <p class="mt-2 text-[14px] leading-snug text-slate/80" data-calc-height-hint>
                 Для штор в пол — до пола минус 1–2 см, чтобы ткань не собирала пыль.
               </p>

@@ -157,6 +157,7 @@
   --tui-background-neutral-1: white;
   --tui-background-neutral-1-hover: white;
   --tui-border-normal: #e0e0e0;
+  --tui-text-tertiary: rgba(27, 31, 59, .4);
   tui-textfield[tuiAppearance][data-appearance='textfield'][data-focus='true'] {
     background-color: white !important;
   }
@@ -285,6 +286,8 @@ tui-icon {
 
 tui-textfield {
   --tui-background-base: white;
+  --tui-text-primary: #0d223d;
+  --tui-text-secondary: #0d223d;
 
   /* Keep iconStart visible when the field enters invalid or focus state. */
   &[tuiIcons]::before {
@@ -358,8 +361,11 @@ tui-textfield label[tuiLabel] span {
 }
 
 tui-textfield input[tuiInput],
+tui-textfield input[tuiInputNumber],
+tui-textfield input[tuiInputPhone],
 tui-textfield textarea[tuiTextarea] {
   color: #0d223d !important;
+  -webkit-text-fill-color: #0d223d !important;
 }
 
 input[type='range'] {
