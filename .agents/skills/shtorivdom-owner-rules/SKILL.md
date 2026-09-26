@@ -201,30 +201,34 @@ description: Правила Андрея для проекта shtorivdom (са�
 
 ## Макеты
 
-- Макеты редизайна — Angular-приложение `apps/shtorivdom-mockups`; перенесённые статические исходники лежат в `apps/shtorivdom-mockups/public/legacy/`: HTML + Tailwind 4
-  (браузерная сборка) + Lucide. Запуск: `npm run mockups` → http://localhost:4320.
-- При добавлении мокапа сохранять локально полный набор его ресурсов: изображения,
-  шрифты, иконки, видео, CSS, JavaScript и другие нужные файлы. В готовом мокапе не
-  оставлять зависимости от внешних CDN, hotlink-изображений или исходного сайта.
-- Сохранять оригинальные файлы и не подменять их похожими изображениями. Если обычная
-  загрузка командой или скриптом не работает, открыть ресурс в браузере и сохранить
-  через браузер. Если ресурс недоступен и там, явно перечислить недостающий файл и
-  причину; не оставлять внешнюю ссылку и не делать молчаливую подмену.
-- После сохранения проверить `src`, `srcset`, CSS `url(...)`, favicon, шрифты и URL,
-  которые формирует JavaScript. Перед сдачей прогнать проверку битых изображений и
-  внутренних ссылок.
-- Тема — `apps/shtorivdom-mockups/public/legacy/assets/theme.css` (палитра navy/gold/cream, шрифты Lato и
-  Playfair Display). После правки: `node apps/shtorivdom-mockups/public/legacy/assets/build-theme.mjs`,
-  `theme.js` руками не править.
-- Один экран — один файл, у каждого карточка в Angular-каталоге `apps/shtorivdom-mockups/src/app/mockups.ts`.
-- Картинки — только свои (`apps/shtorivdom-mockups/public/legacy/assets/img`, копии из `apps/shtorivdom-site/public`).
-- Референс редизайна — лендинг Figma Make: копируем структуру, сетки, отступы,
-  цвета и шрифты; тексты, фото, цены и контакты — shtorivdom. Отзывы — заглушки,
-  пока нет настоящих.
+- Статические оригиналы и история находятся в `apps/mockups/public/legacy/` и
+  остаются там после переноса. Не перемещать их в корневой `mockups/` и не удалять.
+- `npm run mockups` (или `npm run mockups:angular`) запускает приложение Angular
+  `apps/mockups` на `http://localhost:4321`; `npm run mockups:angular:build` собирает его.
+  `npm run mockups:legacy` запускает статический архив на `http://localhost:4320`,
+  а `npm run mockups:tailwind` локально генерирует CSS архива.
+- Добавлять мокап в Angular постепенно и отдельно от production-сайта:
+  приложение `mockups` находится в `apps/mockups/`, страница и компоненты —
+  в `apps/mockups/src/app/landings/landing-N/`, ресурсы — в
+  `apps/mockups/public/landings/landing-N/`.
+- При добавлении мокапа сохранять локально полный точный набор его ресурсов:
+  изображения, шрифты, иконки, видео, CSS, JavaScript и прочее. Не оставлять CDN,
+  hotlink-изображения или зависимость от доступности исходного сайта. Если обычная
+  загрузка не сработала, использовать браузер; если ресурс всё ещё недоступен — назвать
+  конкретный файл и причину, не подменять молча.
+- Проверять HTML `src`/`srcset`/`href`, CSS `url(...)`, favicon, шрифты, динамические URL,
+  битые изображения и локальные ссылки. Для новых мокапов внешние font/CDN URL запрещены.
+- Реестр `apps/mockups/src/app/mockups.ts` должен честно отражать наличие
+  legacy-исходника, Angular-маршрута и `landing.md`; каталог не показывает ссылку на
+  несуществующий артефакт.
+- Описание Angular-переноса `landing.md` фиксирует дерево компонентов, inputs/outputs,
+  состояние, события, источники данных, SSR-ограничения и заменяемый макетный JS.
+- Подробно: `.agents/skills/shtorivdom-mockup-workflow/SKILL.md` и
+  `.agents/skills/shtorivdom-angular-mockup-porting/SKILL.md`.
 
 ## Перевод макетов на Tailwind
 
-- Оригиналы Figma переведены в `mockups/landing-N` (сами оригиналы удалены по решению владельца, восстановить — из git) — статичный HTML на
+- Статичные HTML-версии находятся в `apps/shtorivdom-mockups/public/legacy/landing-N/` — HTML на
   Tailwind 4: без React и рантайма Figma, интерактив — на чистом JS.
 - Сохранять **все анимации и цвета**: keyframes, появление при прокрутке, hover
   из JS-обработчиков. Тексты, картинки и порядок блоков не менять.
@@ -238,8 +242,8 @@ description: Правила Андрея для проекта shtorivdom (са�
 
 ### Как устроен перевод (проверено на 9 сайтах)
 
-- Переводы — `mockups/landing-N/index.html` (+ `app.js` с интерактивом), общие скрипты —
-  `mockups/shared/`, галереи — `mockups/images/` и `icons/` (страницы в папках:
+- Legacy-версии — `apps/shtorivdom-mockups/public/legacy/landing-N/index.html` (+ локальный JS с интерактивом), общие ресурсы —
+  `apps/shtorivdom-mockups/public/legacy/shared/`, галереи — `images/` и `icons/` (страницы в папках:
   сервер макетов открывает адреса со слешем, относительные пути считаются от папки).
 - Конвейер на сайт: `snapshot.mjs` (DOM до/после прокрутки) → `hover.mjs` (hover из JS) →
   `timeline.mjs` (слайдеры, вступления, текст по времени) → `scrollmap.mjs` (параллакс) →
@@ -263,8 +267,9 @@ description: Правила Андрея для проекта shtorivdom (са�
 
 ## Прототип сайта (`apps/shtorivdom-mockups/public/legacy/site`)
 
-- Сайт сначала живёт макетом: `apps/shtorivdom-mockups/public/legacy/site/` (http://localhost:4320/view/site). Лендинги
-  `mockups/landing-N` — **источники блоков**, их не меняем: нужный блок копируем в прототип
+- Прототип сайта живёт отдельно от production: `apps/shtorivdom-mockups/public/legacy/site/`
+  (http://localhost:4320/site/). Лендинги
+  `apps/shtorivdom-mockups/public/legacy/landing-N/` — **источники блоков**, их не меняем: нужный блок копируем в прототип
   и приводим к единому стилю (тёмно-синий `#0d223d` от логотипа, золото, крем;
   Playfair Display + Lato), анимации переносим вместе с блоком.
 - Перед любой визуальной правкой Angular-сайта сначала находить соответствующий элемент
@@ -283,11 +288,11 @@ description: Правила Андрея для проекта shtorivdom (са�
   `price-list.service.ts`, `contacts.ts`, SEO из `app.routes.ts`). Ничего не придумывать:
   чего нет (отзывы, фото работ) — заглушка с пометкой. Расхождения на текущем сайте
   (график, цифры «лет/изделий», чужие названия) — не исправлять молча, спросить владельца.
-- Сборка: исходники в `mockups/site/src/` (partials: тема, шапка, подвал, форма; pages),
+- Сборка: исходники в `apps/shtorivdom-mockups/public/legacy/site/src/` (partials: тема, шапка, подвал, форма; pages),
   `node tools/mockups/site-gen-pages.mjs` (цены и тексты политики из исходников сайта) →
-  `node tools/mockups/site-build.mjs` (собирает `mockups/site/**/index.html`, логотипы инлайн).
+  `node tools/mockups/site-build.mjs` (собирает `apps/shtorivdom-mockups/public/legacy/site/**/index.html`, логотипы инлайн).
   Готовые `index.html` руками не править.
-- Логотипы `mockups/site/assets/logo/*.svg` с `fill="currentColor"`: вставлять инлайн,
+- Логотипы `apps/shtorivdom-mockups/public/legacy/site/assets/logo/*.svg` с `fill="currentColor"`: вставлять инлайн,
   цвет по фону (владелец разрешил менять цвет логотипов по контексту).
 - Проверка: `node tools/mockups/check-site.mjs` (все страницы, меню, формы, вкладки, FAQ,
   слайдеры) и `check-responsive.mjs` от 320px пачками по 3–4 адреса. Несколько Chrome

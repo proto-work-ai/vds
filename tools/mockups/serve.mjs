@@ -1,10 +1,10 @@
-/* Сервер макетов: npm run mockups — http://localhost:4320/ раздаёт папку mockups/.
+/* Сервер макетов: npm run mockups:legacy — http://localhost:4320/ раздаёт apps/mockups/public/legacy/.
    Прототип сайта: npm run mockups:site — собрать (site-build.mjs) и открыть http://localhost:4320/site/. */
 import { createServer } from 'node:http';
 import { createReadStream, statSync } from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.resolve('apps/shtorivdom-mockups/public/legacy');
+const ROOT = path.resolve('apps/mockups/public/legacy');
 const SERVERS = [[4320, '']];
 const TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -73,5 +73,5 @@ for (const [port, dir] of SERVERS) {
     createReadStream(file).pipe(res);
   })
     .on('error', (e) => console.error(`порт ${port}: ${e.message}`))
-    .listen(port, () => console.log(`http://localhost:${port}/  ←  mockups/${dir}`));
+    .listen(port, () => console.log(`http://localhost:${port}/  ←  ${ROOT}/${dir}`));
 }

@@ -22,7 +22,7 @@ import {
 } from 'node:fs';
 import path from 'node:path';
 
-const SITE = 'apps/shtorivdom-mockups/public/legacy/site';
+const SITE = 'apps/mockups/public/legacy/site';
 const APP = 'apps/shtorivdom-site';
 const SITE_URL = 'https://shtorivdom.ru';
 
@@ -343,7 +343,7 @@ cpSync(
 );
 mkdirSync(path.join(APP, 'public/fonts'), { recursive: true });
 for (const f of ['lato-light', 'lato-normal', 'lato-normal-italic', 'lato-semibold', 'lato-bold']) {
-  cpSync(`apps/shtorivdom-mockups/public/legacy/shared/fonts/${f}.woff2`, path.join(APP, `public/fonts/${f}.woff2`));
+  cpSync(`apps/mockups/public/legacy/shared/fonts/${f}.woff2`, path.join(APP, `public/fonts/${f}.woff2`));
 }
 
 // Все картинки из шаблонов должны существовать в public/

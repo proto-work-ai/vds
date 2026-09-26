@@ -2,7 +2,7 @@
 
    node tools/mockups/check-responsive.mjs [ширины через запятую] [url…]
 
-   По умолчанию все mockups/landing-N на 320, 375 и 768px. Для каждой ширины
+   По умолчанию все доступные legacy/landing-N на 320, 375 и 768px. Для каждой ширины
    печатает scrollWidth страницы и до 8 самых широких элементов, выходящих за окно
    (без учёта скрытых через overflow предков и position:fixed вне экрана). */
 import { readdirSync } from 'node:fs';
@@ -13,7 +13,7 @@ const [w, ...rest] = process.argv.slice(2);
 const widths = (w && /^[\d,]+$/.test(w) ? w : '320,375,768').split(',').map(Number);
 const urls = (w && !/^[\d,]+$/.test(w) ? [w, ...rest] : rest).length
   ? (w && !/^[\d,]+$/.test(w) ? [w, ...rest] : rest)
-  : readdirSync('apps/shtorivdom-mockups/public/legacy')
+  : readdirSync('apps/mockups/public/legacy')
       .filter((d) => /^landing-\d+$/.test(d))
       .sort((a, b) => Number(a.slice(8)) - Number(b.slice(8)))
       .map((d) => `${base}${d}/`);

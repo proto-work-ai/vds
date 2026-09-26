@@ -3,8 +3,9 @@ import { extname, join } from 'node:path';
 
 const roots = [
   'apps/shtorivdom-site/src',
-  'apps/shtorivdom-mockups/public/legacy/site/src',
-  'apps/shtorivdom-mockups/public/legacy/site/assets',
+  'apps/mockups/src',
+  'apps/mockups/public/legacy/site/src',
+  'apps/mockups/public/legacy/site/assets',
   'tools/mockups',
   'libs',
 ];

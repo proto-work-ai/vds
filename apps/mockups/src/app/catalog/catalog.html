@@ -1,0 +1,44 @@
+<main class="catalog">
+  <header class="catalog__header">
+    <p class="catalog__eyebrow">SHTORIVDOM · ANGULAR</p>
+    <h1>Мокапы</h1>
+    <p>Каталог Angular-версий и их статических исходников. Переносим макеты постепенно.</p>
+  </header>
+
+  <section class="catalog__grid" aria-label="Список мокапов">
+    @for (mockup of mockups; track mockup.id) {
+      <article class="card">
+        <span class="card__group">{{ mockup.group }}</span>
+        <h2>{{ mockup.title }}</h2>
+        <p>{{ mockup.description }}</p>
+        <span class="card__status">
+          {{
+            mockup.status === 'angular'
+              ? 'Angular'
+              : mockup.legacyAvailable === false
+                ? 'Нет исходника'
+                : 'HTML-исходник'
+          }}
+        </span>
+        <div class="card__links">
+          @if (mockup.angularRoute) {
+            <a class="card__link" [routerLink]="mockup.angularRoute">Открыть Angular</a>
+          }
+          @if (mockup.legacyAvailable !== false) {
+            <a class="card__link" [routerLink]="['/view', mockup.id]">Просмотр</a>
+            <a class="card__link card__link--secondary" [href]="'/legacy/' + mockup.legacyPath">
+              Исходник отдельно ↗
+            </a>
+          } @else {
+            <span class="card__link--unavailable">Исходник отсутствует в архиве</span>
+          }
+          @if (mockup.descriptionPath) {
+            <a class="card__link card__link--secondary" [routerLink]="['/descriptions', mockup.id]">
+              Описание
+            </a>
+          }
+        </div>
+      </article>
+    }
+  </section>
+</main>

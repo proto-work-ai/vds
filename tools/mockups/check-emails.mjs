@@ -14,7 +14,7 @@ import path from 'node:path';
 import { withBrowser } from './snapshot.mjs';
 
 const require = createRequire(import.meta.url);
-const E = require('../../apps/shtorivdom-mockups/public/legacy/site/assets/email.js');
+const E = require('../../apps/mockups/public/legacy/site/assets/email.js');
 const OUT = process.argv[2] ?? 'C:/Users/Andrey/AppData/Local/Temp/claude/C--git-shtorivdom-git/421dcc02-e4ee-4509-96ef-b378432b6a4f/scratchpad/emails';
 mkdirSync(OUT, { recursive: true });
 

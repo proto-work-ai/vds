@@ -1,0 +1,111 @@
+.catalog {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0;
+}
+.catalog__header {
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+.catalog__eyebrow,
+.card__group {
+  color: #b08b43;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 8px 0 16px;
+  font:
+    700 clamp(48px, 8vw, 88px) / 1 Georgia,
+    serif;
+}
+.catalog__header > p:last-child {
+  color: #647080;
+  font-size: 18px;
+}
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  padding: 28px;
+  border: 1px solid rgb(13 34 61 / 12%);
+  border-radius: 4px;
+  color: inherit;
+  background: #fff;
+  box-shadow: 0 14px 40px rgb(13 34 61 / 7%);
+  text-decoration: none;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
+}
+.card:hover {
+  border-color: #b08b43;
+  transform: translateY(-3px);
+}
+.card h2 {
+  margin: 18px 0 8px;
+  font:
+    700 26px/1.2 Georgia,
+    serif;
+}
+.card p {
+  min-height: 48px;
+  margin: 0 0 28px;
+  color: #647080;
+}
+.card__link {
+  font-weight: 700;
+  color: #0d223d;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+}
+.card__link:hover,
+.card__link:focus-visible {
+  color: #9a7736;
+  text-decoration-color: currentColor;
+}
+.card__status {
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 3px;
+  color: #657083;
+  background: #f4f1e9;
+  font-size: 12px;
+  font-weight: 700;
+}
+.card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 18px;
+  margin-top: auto;
+  padding-top: 24px;
+}
+.card__link--secondary {
+  color: #657083;
+}
+.card__link--unavailable {
+  color: #9a5c52;
+  font-size: 13px;
+}
+@media (max-width: 850px) {
+  .catalog__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 560px) {
+  .catalog {
+    width: min(100% - 32px, 1180px);
+    padding: 44px 0;
+  }
+  .catalog__grid {
+    grid-template-columns: 1fr;
+  }
+}

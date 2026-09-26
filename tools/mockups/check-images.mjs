@@ -2,7 +2,7 @@
 
    node tools/mockups/check-images.mjs [url…]
 
-   Без аргументов — все переводы и галерея картинок на сервере карты (4320).
+   Без аргументов — все доступные лендинги и галерея картинок на сервере архива (4320).
    Страница прокручивается до конца, ленивые картинки грузятся сразу; печатает
    адреса картинок, которые не загрузились (img и background-image). */
 import { withBrowser, SCROLL_SCRIPT } from './snapshot.mjs';
@@ -12,10 +12,10 @@ const base = 'http://localhost:4320/';
 const urls = process.argv.slice(2).length
   ? process.argv.slice(2)
   : [
-      ...readdirSync('apps/shtorivdom-mockups/public/legacy')
+      ...readdirSync('apps/mockups/public/legacy')
         .filter((d) => /^landing-\d+$/.test(d))
-        .map((d) => `${base}legacy/${d}/`),
-      `${base}legacy/images/`,
+        .map((d) => `${base}${d}/`),
+      `${base}images/`,
     ];
 
 const broken = new Map();

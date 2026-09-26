@@ -47,6 +47,8 @@ Thumbs.db
 .claude
 .playwright-mcp
 
+apps/mockups/public/legacy/**/tailwind.generated.css
+
 vite.config.*.timestamp*
 vitest.config.*.timestamp*
 

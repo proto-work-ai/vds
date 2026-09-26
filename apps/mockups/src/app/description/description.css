@@ -1,0 +1,44 @@
+.description {
+  width: min(960px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 48px 0;
+}
+
+.description nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.description nav a {
+  color: #0d223d;
+  font-weight: 700;
+}
+
+.description__eyebrow {
+  margin: 48px 0 8px;
+  color: #9a7736;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.description h1 {
+  margin: 0 0 24px;
+  font:
+    700 clamp(32px, 6vw, 52px) / 1.1 Georgia,
+    serif;
+}
+
+.description pre {
+  overflow-x: auto;
+  padding: 24px;
+  border: 1px solid rgb(13 34 61 / 12%);
+  background: #fff;
+  font:
+    14px / 1.6 Arial,
+    sans-serif;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

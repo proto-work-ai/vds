@@ -1,8 +1,8 @@
-/* Проверка лендинга «Карина» (mockups/landing-10) против макета template-01.jpg.
+/* Проверка лендинга «Карина» (legacy/landing-10) против макета template-01.jpg.
 
    node tools/mockups/check-karina.mjs [outDir]
 
-   Нужен сервер макетов на http://localhost:4320 (раздаёт папку mockups).
+   Нужен сервер архива на http://localhost:4320 (раздаёт public/legacy).
    Печатает ✓/✗; в outDir кладёт снимок 1920 по всей высоте и склейки
    «макет | вёрстка» по фрагментам — для сравнения глазами. */
 import { mkdirSync, writeFileSync } from 'node:fs';

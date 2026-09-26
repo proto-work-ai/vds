@@ -1,0 +1,11 @@
+<main class="description">
+  <nav aria-label="Навигация по мокапам">
+    <a routerLink="/">← Все мокапы</a>
+    @if (mockup(); as entry) {
+      <a [routerLink]="['/view', entry.id]">Открыть просмотр</a>
+    }
+  </nav>
+  <p class="description__eyebrow">Описание Angular-варианта</p>
+  <h1>{{ mockup()?.title ?? 'Мокап не найден' }}</h1>
+  <pre>{{ description() }}</pre>
+</main>

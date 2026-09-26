@@ -26,7 +26,7 @@ import { createHash } from 'node:crypto';
 import { compile } from 'tailwindcss';
 import { Scanner } from '@tailwindcss/oxide';
 
-const SITE = 'apps/shtorivdom-mockups/public/legacy/site';
+const SITE = 'apps/mockups/public/legacy/site';
 const SRC = path.join(SITE, 'src');
 const read = (p) => readFileSync(path.join(SRC, p), 'utf8');
 
@@ -202,7 +202,7 @@ const PAGES = [
 // Каталог: разделы, страницы разделов и моделей карнизов — src/pages/catalog/catalog.mjs (готовый body).
 // Страница с тем же путём заменяет заготовку, новые (модели карнизов) добавляются в конец.
 for (const cp of (
-  await import('../../apps/shtorivdom-mockups/public/legacy/site/src/pages/catalog/catalog.mjs')
+  await import('../../apps/mockups/public/legacy/site/src/pages/catalog/catalog.mjs')
 ).catalogPages()) {
   const i = PAGES.findIndex((p) => p.path === cp.path);
   i >= 0 ? (PAGES[i] = cp) : PAGES.push(cp);
@@ -266,7 +266,7 @@ const SITE_URL = 'https://shtorivdom.ru';
 const ogImageByKey = Object.fromEntries(
   [
     ...readFileSync(
-      'apps/shtorivdom-mockups/public/legacy/site/src/data/old-site/model/catalog/catalog.data.ts',
+      'apps/mockups/public/legacy/site/src/data/old-site/model/catalog/catalog.data.ts',
       'utf8',
     ).matchAll(/key:\s*'([^']+)'[\s\S]*?images:\s*\[\s*'([^']+)'/g),
   ].map((m) => [m[1], m[2]]),
@@ -453,7 +453,7 @@ const V = {
   css: ver(path.join(SITE, 'assets/site.css')),
   js: ver(path.join(SITE, 'assets/site.js')),
   email: ver(path.join(SITE, 'assets/email.js')),
-  fonts: ver('apps/shtorivdom-mockups/public/legacy/shared/fonts.css'),
+  fonts: ver('apps/mockups/public/legacy/shared/fonts.css'),
 };
 for (const file of WITH_VERSIONS ? built : []) {
   const html = readFileSync(file, 'utf8')

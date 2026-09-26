@@ -20,7 +20,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 
-const ROOT = 'apps/shtorivdom-mockups/public/legacy';
+const ROOT = 'apps/mockups/public/legacy';
 const sites = readdirSync(ROOT)
   .filter((d) => /^landing-\d+$/.test(d) && existsSync(path.join(ROOT, d, 'index.html.assets.json')))
   .sort((a, b) => Number(a.slice(8)) - Number(b.slice(8)));

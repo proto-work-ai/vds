@@ -1,0 +1,45 @@
+/* Общая тема макетов shtorivdom для Tailwind 4.
+   Локальная генерация CSS подключает этот файл: npm run mockups:tailwind. */
+
+@layer base {
+  /* Высота фиксированной шапки + воздух, чтобы якорь не прятал заголовок. */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+  }
+
+  button:not(:disabled),
+  summary,
+  [role='button'] {
+    cursor: pointer;
+  }
+}
+
+@theme {
+  --font-sans: 'Lato', system-ui, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+
+  --color-navy: #1a2744;
+  --color-navy-deep: #0f1a33;
+  --color-gold: #c9a84c;
+  --color-gold-soft: #f0e6c8;
+  --color-cream: #f5f0e8;
+  --color-sand: #e8e2d6;
+  --color-slate: #2d3748;
+
+  --shadow-card: 0 2px 20px 0 rgb(26 39 68 / 0.06);
+  --shadow-form: 0 8px 40px 0 rgb(26 39 68 / 0.08);
+  --shadow-featured: 0 20px 60px 0 rgb(201 168 76 / 0.2);
+}
+
+/* Контейнер секций: предел 1200px, поля 32px — как в референсе. */
+@utility container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @media (width >= 640px) {
+    padding-inline: 32px;
+  }
+}

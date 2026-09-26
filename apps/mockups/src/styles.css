@@ -1,0 +1,31 @@
+@import 'tailwindcss';
+
+@source './app';
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  color: #0d223d;
+  background: #f7f3ea;
+  font:
+    14px/1.5 Arial,
+    sans-serif;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+button:not(:disabled),
+[role='button'] {
+  cursor: pointer;
+}
