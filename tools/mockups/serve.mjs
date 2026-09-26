@@ -4,7 +4,7 @@ import { createServer } from 'node:http';
 import { createReadStream, statSync } from 'node:fs';
 import path from 'node:path';
 
-const ROOT = path.resolve('mockups');
+const ROOT = path.resolve('apps/shtorivdom-mockups/public/legacy');
 const SERVERS = [[4320, '']];
 const TYPES = {
   '.html': 'text/html; charset=utf-8',

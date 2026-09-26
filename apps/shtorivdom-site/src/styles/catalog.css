@@ -151,6 +151,7 @@ a:hover > .cat-card-dark {
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   overscroll-behavior-x: contain;
+  touch-action: pan-y;
 }
 .cat-strip::-webkit-scrollbar {
   display: none;

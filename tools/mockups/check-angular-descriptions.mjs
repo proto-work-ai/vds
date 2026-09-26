@@ -1,7 +1,7 @@
 import { existsSync, readdirSync } from 'node:fs';
 import { extname, join } from 'node:path';
 
-const pagesDir = 'mockups/site/src/pages';
+const pagesDir = 'apps/shtorivdom-mockups/public/legacy/site/src/pages';
 const missing = [];
 
 function checkDirectory(directory) {

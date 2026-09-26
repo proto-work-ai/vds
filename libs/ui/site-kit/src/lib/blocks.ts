@@ -15,7 +15,9 @@ import {
 import { SiteArrow, SiteDots } from './controls.component';
 import {
   SITE_ASSETS_URL,
+  SITE_CLIENTS,
   SITE_REVIEWS,
+  SiteClient,
   SiteFaqItem,
   SiteLink,
   SitePriceSection,
@@ -235,6 +237,18 @@ export class SiteBeforeAfter {
     this.pos.set(Math.max(3, Math.min(97, this.pos() + (e.key === 'ArrowRight' ? 5 : -5))));
     e.preventDefault();
   }
+}
+
+/** Логотипы клиентов салона. */
+@Component({
+  selector: 'site-clients',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: { class: 'block' },
+  templateUrl: './site-clients.html',
+})
+export class SiteClients {
+  protected readonly assets = inject(SITE_ASSETS_URL);
+  readonly clients = input<readonly SiteClient[]>(SITE_CLIENTS);
 }
 
 /** Таблица цен раздела (price.html): таблица на md+, карточки на телефоне; layout фиксирует вид для витрины. */

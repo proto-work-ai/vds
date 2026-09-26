@@ -1,0 +1,42 @@
+<main class="bg-cream pt-[100px] pb-20">
+  <div class="wrap">
+    <nav class="mb-5 text-[14px] text-navy/60" aria-label="Хлебные крошки">
+      <a routerLink="/" class="hover:text-gold">Главная</a>
+      <span aria-hidden="true">/</span>
+      <span>Карта сайта</span>
+    </nav>
+    <h1 class="mb-10 font-serif text-[32px] font-bold text-navy sm:text-[40px]">Карта сайта</h1>
+    <div class="grid gap-10 md:grid-cols-2">
+      <section>
+        <h2 class="mb-4 font-serif text-[24px] font-bold text-navy">Основные разделы</h2>
+        <ul class="space-y-3 text-[16px] text-navy">
+          @for (page of mainPages; track page.url) {
+            <li>
+              <a
+                [routerLink]="page.url"
+                class="underline decoration-gold underline-offset-4 hover:text-gold"
+              >
+                {{ page.title }}
+              </a>
+            </li>
+          }
+        </ul>
+      </section>
+      <section>
+        <h2 class="mb-4 font-serif text-[24px] font-bold text-navy">Каталог</h2>
+        <ul class="space-y-3 text-[16px] text-navy">
+          @for (page of catalogPages; track page.url) {
+            <li>
+              <a
+                [routerLink]="page.url"
+                class="underline decoration-gold underline-offset-4 hover:text-gold"
+              >
+                {{ page.title }}
+              </a>
+            </li>
+          }
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>

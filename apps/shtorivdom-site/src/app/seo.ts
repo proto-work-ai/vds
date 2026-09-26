@@ -13,6 +13,7 @@ export interface SeoData {
   image: string;
   /** Разметка schema.org: хлебные крошки, FAQ, товар, организация */
   jsonLd: object[];
+  noIndex?: boolean;
 }
 
 function deepest(route: ActivatedRouteSnapshot): ActivatedRouteSnapshot {
@@ -46,6 +47,9 @@ export function provideSeo() {
       document.head.querySelectorAll('script[data-page-ld]').forEach((s) => s.remove());
       const seo = deepest(router.routerState.snapshot.root).data['seo'] as SeoData | undefined;
       if (!seo) return;
+
+      if (seo.noIndex) meta.updateTag({ name: 'robots', content: 'noindex, nofollow' });
+      else meta.removeTag("name='robots'");
 
       title.setTitle(seo.title);
       meta.updateTag({ name: 'description', content: seo.description });

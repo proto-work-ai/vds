@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title description">
+  <title id="title">Исходное изображение недоступно</title>
+  <desc id="description">Unsplash вернул ошибку 404 для исходного изображения</desc>
+  <rect width="160" height="160" fill="#e7e5e4" />
+  <circle cx="80" cy="60" r="26" fill="#a8a29e" />
+  <path d="M34 144c4-34 22-52 46-52s42 18 46 52" fill="#a8a29e" />
+  <path d="M28 28l104 104" stroke="#78716c" stroke-width="8" stroke-linecap="round" />
+</svg>

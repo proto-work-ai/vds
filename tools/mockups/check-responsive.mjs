@@ -13,7 +13,7 @@ const [w, ...rest] = process.argv.slice(2);
 const widths = (w && /^[\d,]+$/.test(w) ? w : '320,375,768').split(',').map(Number);
 const urls = (w && !/^[\d,]+$/.test(w) ? [w, ...rest] : rest).length
   ? (w && !/^[\d,]+$/.test(w) ? [w, ...rest] : rest)
-  : readdirSync('mockups')
+  : readdirSync('apps/shtorivdom-mockups/public/legacy')
       .filter((d) => /^landing-\d+$/.test(d))
       .sort((a, b) => Number(a.slice(8)) - Number(b.slice(8)))
       .map((d) => `${base}${d}/`);

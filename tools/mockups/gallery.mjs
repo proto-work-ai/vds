@@ -20,7 +20,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync, rmSync
 import { createHash } from 'node:crypto';
 import path from 'node:path';
 
-const ROOT = 'mockups';
+const ROOT = 'apps/shtorivdom-mockups/public/legacy';
 const sites = readdirSync(ROOT)
   .filter((d) => /^landing-\d+$/.test(d) && existsSync(path.join(ROOT, d, 'index.html.assets.json')))
   .sort((a, b) => Number(a.slice(8)) - Number(b.slice(8)));
@@ -73,7 +73,7 @@ const siteLabel = (s) => (/^landing-\d+$/.test(s) ? `Лендинг ${s.slice(8)
 
 // ---------- файлы картинок и SVG ----------
 const FILE_SOURCES = [
-  { dir: 'mockups/site/assets', url: '../site/assets', label: 'Прототип сайта' },
+  { dir: path.join(ROOT, 'site/assets'), url: '../site/assets', label: 'Прототип сайта' },
 ];
 const RASTER = /\.(jpe?g|png|webp|gif|avif)$/i;
 const walk = (dir) => readdirSync(dir).flatMap((n) => {

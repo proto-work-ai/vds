@@ -9,8 +9,8 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 
-const DIR = 'mockups/emails';
-const E = createRequire(import.meta.url)('../../mockups/site/assets/email.js');
+const DIR = 'apps/shtorivdom-mockups/public/legacy/emails';
+const E = createRequire(import.meta.url)('../../apps/shtorivdom-mockups/public/legacy/site/assets/email.js');
 const src = readFileSync(path.join(DIR, 'index.html'), 'utf8');
 const WITH_CLIENT = ['order', 'contact', 'partner', 'curtain-rod']; // как SAMPLES в галерее
 

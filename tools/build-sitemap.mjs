@@ -1,16 +1,11 @@
-import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 
 /**
  * Собирает `sitemap.xml` и `robots.txt` сайта shtorivdom.
  *
- * Перенесено из DesignPad (tools/build-sitemap.mjs) и переделано: список
- * адресов не выписан отдельным файлом, а берётся из маршрутов
- * `site-pages.ts` — новая страница попадает в карту сама.
+ * Адреса берутся из маршрутов `site-pages.ts` — новые страницы
+ * попадают в карту автоматически.
  *
- * Дата изменения — из истории git по папке страницы, а не время запуска:
- * `lastmod`, который меняется у всех страниц при каждой сборке, поисковик
- * перестаёт принимать всерьёз.
  *
  * Запуск: `node tools/build-sitemap.mjs`, проверка без записи — `--check`.
  */
@@ -21,44 +16,20 @@ const SITE_PAGES = `${APP}/src/app/site-pages.ts`;
 
 const SITE = process.env.SITE_URL ?? 'https://shtorivdom.ru';
 
-const priorityOf = (route) =>
-  route === '/'
-    ? '1.0'
-    : route.startsWith('/catalog')
-      ? '0.8'
-      : ['/price/', '/services/', '/contact/'].includes(route)
-        ? '0.7'
-        : route === '/about/'
-          ? '0.6'
-          : route === '/partner/'
-            ? '0.5'
-            : '0.2';
-
 // Маршрут и папка страницы: path: '…' и import('./pages/<папка>/page')
-const pages = [...readFileSync(SITE_PAGES, 'utf8').matchAll(/path: '([^']*)'[\s\S]*?import\('\.\/pages\/([^/]+)\/page'\)/g)].map(
-  ([, path, dir]) => {
-    const route = path ? `/${path}/` : '/';
-    return { route, source: `${APP}/src/app/pages/${dir}`, priority: priorityOf(route) };
-  }
-);
+const pages = [
+  ...readFileSync(SITE_PAGES, 'utf8').matchAll(
+    /path: '([^']*)'[\s\S]*?import\('\.\/pages\/([^/]+)\/page'\)/g,
+  ),
+].map(([, path, dir]) => {
+  const route = path ? `/${path}/` : '/';
+  return { route };
+});
 
-function lastModified(path) {
-  try {
-    return execSync(`git log -1 --format=%ad --date=short -- "${path}"`, { encoding: 'utf8' }).trim() || null;
-  } catch {
-    return null;
-  }
-}
+pages.push({ route: '/site-map/' });
 
-const entries = pages.map(({ route, source, priority }) => {
-  const lastmod = lastModified(source);
-  return [
-    '  <url>',
-    `    <loc>${SITE}${route}</loc>`,
-    ...(lastmod ? [`    <lastmod>${lastmod}</lastmod>`] : []),
-    `    <priority>${priority}</priority>`,
-    '  </url>',
-  ].join('\n');
+const entries = pages.map(({ route }) => {
+  return ['  <url>', `    <loc>${SITE}${route}</loc>`, '  </url>'].join('\n');
 });
 
 const sitemap = [
@@ -69,7 +40,14 @@ const sitemap = [
   '',
 ].join('\n');
 
-const robots = ['User-agent: *', 'Allow: /', 'Disallow: /api/', '', `Sitemap: ${SITE}/sitemap.xml`, ''].join('\n');
+const robots = [
+  'User-agent: *',
+  'Allow: /',
+  'Disallow: /api/',
+  '',
+  `Sitemap: ${SITE}/sitemap.xml`,
+  '',
+].join('\n');
 
 // `--check` сверяет, а не пишет: забытая в карте страница иначе видна только
 // по отсутствию в поиске, то есть спустя недели.

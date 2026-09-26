@@ -1,0 +1,21 @@
+<main class="catalog">
+  <header class="catalog__header">
+    <p class="catalog__eyebrow">SHTORIVDOM · ANGULAR</p>
+    <h1>Мокапы</h1>
+    <p>Все рабочие прототипы и референсы в одном Angular-приложении.</p>
+  </header>
+
+  <section class="catalog__grid" aria-label="Список мокапов">
+    @for (mockup of mockups; track mockup.id) {
+      <a class="card" [routerLink]="['/view', mockup.id]">
+        <span class="card__group">{{ mockup.group }}</span>
+        <h2>{{ mockup.title }}</h2>
+        <p>{{ mockup.description }}</p>
+        <span class="card__link">
+          Открыть
+          <span aria-hidden="true">→</span>
+        </span>
+      </a>
+    }
+  </section>
+</main>

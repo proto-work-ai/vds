@@ -12,10 +12,10 @@ const base = 'http://localhost:4320/';
 const urls = process.argv.slice(2).length
   ? process.argv.slice(2)
   : [
-      ...readdirSync('mockups')
+      ...readdirSync('apps/shtorivdom-mockups/public/legacy')
         .filter((d) => /^landing-\d+$/.test(d))
-        .map((d) => `${base}${d}/`),
-      `${base}images/`,
+        .map((d) => `${base}legacy/${d}/`),
+      `${base}legacy/images/`,
     ];
 
 const broken = new Map();

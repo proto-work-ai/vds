@@ -11,6 +11,21 @@ export interface SiteLink {
   href?: string;
 }
 
+export interface SiteClient {
+  name: string;
+  logo: string;
+}
+
+/** Логотипы компаний, для которых салон выполнял проекты. */
+export const SITE_CLIENTS: readonly SiteClient[] = [
+  { name: 'Якитория', logo: 'clients/yakitoria.jpg' },
+  { name: 'Котово', logo: 'clients/kotovo.jpg' },
+  { name: 'Best Western Vega', logo: 'clients/best-western-vega.jpg' },
+  { name: 'Урюк кафе', logo: 'clients/uruk-cafe.jpg' },
+  { name: 'Отель «Метрополь»', logo: 'clients/metropol.png' },
+  { name: 'Millennium Park', logo: 'clients/millennium-park.jpg' },
+];
+
 export interface SiteContacts {
   phone: string;
   tel: string;
@@ -345,7 +360,7 @@ export const SITE_REVIEWS: SiteReview[] = [
   },
   {
     name: 'Сергей',
-    cat: 'Шторы блэкаут · Ватутинки',
+    cat: 'Шторы блэкаут · Химки',
     text: 'Искали плотные шторы в спальню, чтобы утром не будил свет. Сделали замеры, повесили карниз и шторы за один приезд — в комнате теперь полная темнота.',
     avatar: 'img/avatars/sergey.png',
   },

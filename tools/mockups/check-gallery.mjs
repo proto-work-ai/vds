@@ -32,6 +32,9 @@ await withBrowser(async (page) => {
       const imgs = [...document.querySelectorAll('main img')];
       const local = imgs.filter((i) => !/^https?:/.test(i.getAttribute('src')));
       const localLoaded = local.filter((i) => i.complete && i.naturalWidth > 0).length;
+      const localBroken = local
+        .filter((i) => i.complete && i.naturalWidth === 0)
+        .map((i) => i.getAttribute('src'));
       if (!cards.length) return { cards: 0 };
       cards[0].click();
       await sleep(200);
@@ -45,11 +48,11 @@ await withBrowser(async (page) => {
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
       await sleep(100);
       const closed = overlay?.classList.contains('hidden');
-      return { cards: cards.length, titles, local: local.length, localLoaded, open, hasMedia, switched: cards.length < 2 || title1 !== title2 || true, title1, title2, closed, errors: window.__errors };
+      return { cards: cards.length, titles, local: local.length, localLoaded, localBroken, open, hasMedia, switched: cards.length < 2 || title1 !== title2 || true, title1, title2, closed, errors: window.__errors };
     })()`);
     check(`${file}: карточки отрисованы`, r.cards > 0, JSON.stringify(r));
     check(`${file}: у всех карточек есть название`, r.titles === r.cards, `${r.titles} из ${r.cards}`);
-    if (kind === 'image') check(`${file}: локальные картинки загрузились`, r.localLoaded === r.local, `${r.localLoaded} из ${r.local}`);
+    if (kind === 'image') check(`${file}: локальные картинки загрузились`, r.localLoaded === r.local, `${r.localLoaded} из ${r.local}: ${JSON.stringify(r.localBroken ?? [])}`);
     check(`${file}: клик открывает полную версию с подписью`, r.open && r.hasMedia && Boolean(r.title1), JSON.stringify({ open: r.open, hasMedia: r.hasMedia, title: r.title1 }));
     check(`${file}: стрелка листает, Escape закрывает`, r.closed && (r.cards < 2 || r.title1 !== r.title2), JSON.stringify({ title1: r.title1, title2: r.title2, closed: r.closed }));
     check(`${file}: нет ошибок скрипта`, (r.errors ?? []).length === 0, JSON.stringify(r.errors));
